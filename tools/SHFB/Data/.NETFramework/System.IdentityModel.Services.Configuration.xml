@@ -1,0 +1,2816 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.IdentityModel.Services">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1755dbba-883b-4821-af64-78ed69ca9748</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.Services.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.Services.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.Services.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.IdentityModel.Services.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.IdentityModel.Services.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+        <element api="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" />
+        <element api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" />
+        <element api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" />
+        <element api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+        <element api="T:System.IdentityModel.Services.Configuration.WSFederationElement" />
+        <element api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      </elements>
+      <file name="442ea198-b4da-b680-00eb-6e0c8713b291" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Configuration.FederationConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      <apidata name="FederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+      </containers>
+      <file name="a2b914d6-2901-7097-7951-1738089d0c0e" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfiguration">
+      <topicdata name="FederationConfiguration" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      <apidata name="FederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor">
+          <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+          <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor(System.Boolean)" />
+          <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor(System.String)" />
+        </element>
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.CookieHandler" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.CustomElement" />
+        <element api="F:System.IdentityModel.Services.Configuration.FederationConfiguration.DefaultFederationConfigurationName" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.IdentityConfiguration" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.Initialize" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.IsInitialized" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.LoadConfiguration(System.IdentityModel.Services.Configuration.FederationConfigurationElement)" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.Name" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.ServiceCertificate" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.WsFederationConfiguration" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      </containers>
+      <file name="5b7601d4-822a-d907-ab06-c2d8a5a2bba9" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Configuration.FederationConfiguration">
+      <topicdata name="FederationConfiguration" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      <apidata name="FederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.Initialize" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.LoadConfiguration(System.IdentityModel.Services.Configuration.FederationConfigurationElement)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      </containers>
+      <file name="f2f98ceb-685a-2d38-e68e-0889881e17e3" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Configuration.FederationConfiguration">
+      <topicdata name="FederationConfiguration" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      <apidata name="FederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+      <elements>
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.CookieHandler" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.CustomElement" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.IdentityConfiguration" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.IsInitialized" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.Name" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.ServiceCertificate" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfiguration.WsFederationConfiguration" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      </containers>
+      <file name="36c16c5f-1b7e-f0e6-f7c9-385f0640e775" />
+    </api>
+    <api id="Fields.T:System.IdentityModel.Services.Configuration.FederationConfiguration">
+      <topicdata name="FederationConfiguration" group="list" subgroup="Fields" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      <apidata name="FederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+      <elements>
+        <element api="F:System.IdentityModel.Services.Configuration.FederationConfiguration.DefaultFederationConfigurationName" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      </containers>
+      <file name="360b9add-a7dc-583f-62a3-aad7d3bb01d6" />
+    </api>
+    <api id="Overload:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfiguration" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor(System.Boolean)" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="e9489607-9251-03f3-11de-05bfe656bf2c" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="79116d2e-0257-f19b-9b44-b61877d46405" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+      <parameters>
+        <parameter name="loadConfig">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="92b22b46-62df-3044-19c2-238e90d375ce" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Configuration.FederationConfiguration.#ctor" />
+      <parameters>
+        <parameter name="federationConfigurationName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="b9ddc353-aeb5-d7f0-4777-f20537f6b47e" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfiguration.CookieHandler">
+      <topicdata group="api" />
+      <apidata name="CookieHandler" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CookieHandler" />
+      <setter name="set_CookieHandler" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.CookieHandler" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="6ac0937c-609a-9421-51d7-cef5b6cad0f0" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfiguration.CustomElement">
+      <topicdata group="api" />
+      <apidata name="CustomElement" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CustomElement" />
+      <setter name="set_CustomElement" />
+      <returns>
+        <type api="T:System.Xml.XmlElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="35e46773-b5b4-aa3f-d1aa-fa008c81842c" />
+    </api>
+    <api id="F:System.IdentityModel.Services.Configuration.FederationConfiguration.DefaultFederationConfigurationName">
+      <topicdata group="api" />
+      <apidata name="DefaultFederationConfigurationName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="94551668-ef3a-6d90-dbdb-1794cdde5132" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfiguration.IdentityConfiguration">
+      <topicdata group="api" />
+      <apidata name="IdentityConfiguration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IdentityConfiguration" />
+      <setter name="set_IdentityConfiguration" />
+      <returns>
+        <type api="T:System.IdentityModel.Configuration.IdentityConfiguration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="f77fe17a-09bd-a3b0-02c6-10e5c9115d74" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfiguration.Initialize">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="a5501079-70c1-6387-aac3-7a89a1cc6dc4" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfiguration.IsInitialized">
+      <topicdata group="api" />
+      <apidata name="IsInitialized" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_IsInitialized" />
+      <setter name="set_IsInitialized" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="b02536f4-5140-7f5c-c668-94825a74a592" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfiguration.LoadConfiguration(System.IdentityModel.Services.Configuration.FederationConfigurationElement)">
+      <topicdata group="api" />
+      <apidata name="LoadConfiguration" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element">
+          <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="cb88017b-9782-3825-604f-52163bf893db" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfiguration.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="01ca92a5-3009-75f9-df44-c12a21f56aca" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfiguration.ServiceCertificate">
+      <topicdata group="api" />
+      <apidata name="ServiceCertificate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ServiceCertificate" />
+      <setter name="set_ServiceCertificate" />
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate2" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="a7326941-b004-75b5-73a9-e56ea6e1f2c3" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfiguration.WsFederationConfiguration">
+      <topicdata group="api" />
+      <apidata name="WsFederationConfiguration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WsFederationConfiguration" />
+      <setter name="set_WsFederationConfiguration" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </containers>
+      <file name="b06ed58f-b138-9622-d43d-dc26126ec94e" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" />
+      <apidata name="FederationConfigurationCreatedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+      </containers>
+      <file name="529417f7-e372-abdf-3b68-d02fe8826458" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs">
+      <topicdata name="FederationConfigurationCreatedEventArgs" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" />
+      <apidata name="FederationConfigurationCreatedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs.#ctor(System.IdentityModel.Services.Configuration.FederationConfiguration)" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs.FederationConfiguration" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" />
+      </containers>
+      <file name="0dbbd0bf-c4e4-a20e-e2e4-aeb020c625bd" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs">
+      <topicdata name="FederationConfigurationCreatedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" />
+      <apidata name="FederationConfigurationCreatedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" />
+      </containers>
+      <file name="9dabbdb1-d2a8-ac81-cb98-599912199cc9" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs">
+      <topicdata name="FederationConfigurationCreatedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" />
+      <apidata name="FederationConfigurationCreatedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs.FederationConfiguration" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" />
+      </containers>
+      <file name="05db72d1-162b-a362-2d72-ebd991028a4c" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs.#ctor(System.IdentityModel.Services.Configuration.FederationConfiguration)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="config">
+          <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" ref="true" />
+      </containers>
+      <file name="c628797e-82a3-7ff8-ac6a-c2669f369c04" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs.FederationConfiguration">
+      <topicdata group="api" />
+      <apidata name="FederationConfiguration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FederationConfiguration" />
+      <setter name="set_FederationConfiguration" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfiguration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationCreatedEventArgs" ref="true" />
+      </containers>
+      <file name="b8d6b68c-fd53-bda2-9c20-791f26df36e7" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" />
+      <apidata name="FederationConfigurationElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfigurationElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+      </containers>
+      <file name="25b0913e-2001-8dd6-ab73-3dcfa5fa9c27" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfigurationElement">
+      <topicdata name="FederationConfigurationElement" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" />
+      <apidata name="FederationConfigurationElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfigurationElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfigurationElement.#ctor" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.CookieHandler" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.CustomElement" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.IdentityConfigurationName" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.IsConfigured" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.Name" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.ServiceCertificate" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.WsFederation" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" />
+      </containers>
+      <file name="f7557d93-3ed8-b988-e8e1-523573cf84f9" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Configuration.FederationConfigurationElement">
+      <topicdata name="FederationConfigurationElement" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" />
+      <apidata name="FederationConfigurationElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfigurationElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" />
+      </containers>
+      <file name="b42dd55f-f619-82bd-090d-4b7e0d7a5e9d" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Configuration.FederationConfigurationElement">
+      <topicdata name="FederationConfigurationElement" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" />
+      <apidata name="FederationConfigurationElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfigurationElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.CookieHandler" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.CustomElement" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.IdentityConfigurationName" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.IsConfigured" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.Name" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.ServiceCertificate" />
+        <element api="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.WsFederation" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" />
+      </containers>
+      <file name="cdcd099b-5b6f-48a7-7df6-20b2c3b7daea" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfigurationElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </containers>
+      <file name="89b7c954-aefa-5466-6ed1-0fde1029f7aa" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.CookieHandler">
+      <topicdata group="api" />
+      <apidata name="CookieHandler" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CookieHandler" />
+      <setter name="set_CookieHandler" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.CookieHandlerElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>cookieHandler</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f9820a28-e572-405d-fd4f-3b684b9afcfa" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.CustomElement">
+      <topicdata group="api" />
+      <apidata name="CustomElement" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CustomElement" />
+      <setter name="set_CustomElement" />
+      <returns>
+        <type api="T:System.Xml.XmlElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </containers>
+      <file name="85653b69-a380-b6bc-913f-25234fec6a11" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.IdentityConfigurationName">
+      <topicdata group="api" />
+      <apidata name="IdentityConfigurationName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IdentityConfigurationName" />
+      <setter name="set_IdentityConfigurationName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>identityConfigurationName</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value />
+          </assignment>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="98961124-18de-6cf1-fd94-bc50ee8274c1" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.IsConfigured">
+      <topicdata group="api" />
+      <apidata name="IsConfigured" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsConfigured" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </containers>
+      <file name="0ce0575b-90df-638a-e5ed-1f73f3713c98" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>name</value>
+          </argument>
+          <assignment name="Options">
+            <type api="T:System.Configuration.ConfigurationPropertyOptions" ref="false" />
+            <enumValue>
+              <field name="IsKey" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6c6c400e-a74c-c648-83d8-2d8cd2947503" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.ServiceCertificate">
+      <topicdata group="api" />
+      <apidata name="ServiceCertificate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ServiceCertificate" />
+      <setter name="set_ServiceCertificate" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.ServiceCertificateElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>serviceCertificate</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="9759213b-6cbc-d21c-56f2-d32ad1aff3e8" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.FederationConfigurationElement.WsFederation">
+      <topicdata group="api" />
+      <apidata name="WsFederation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WsFederation" />
+      <setter name="set_WsFederation" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>wsFederation</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5879a538-6d96-fe49-e12d-7adbfabfdf33" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" />
+      <apidata name="FederationConfigurationElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+            </typeValue>
+          </argument>
+          <assignment name="AddItemName">
+            <type api="T:System.String" ref="true" />
+            <value>federationConfiguration</value>
+          </assignment>
+          <assignment name="CollectionType">
+            <type api="T:System.Configuration.ConfigurationElementCollectionType" ref="false" />
+            <enumValue>
+              <field name="BasicMap" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="44fc55a5-3817-a3e3-d7e4-e0d249ec0fbc" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection">
+      <topicdata name="FederationConfigurationElementCollection" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" />
+      <apidata name="FederationConfigurationElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.#ctor" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.GetElement(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" />
+      </containers>
+      <file name="b1289583-1c02-2bcb-b237-989807953627" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection">
+      <topicdata name="FederationConfigurationElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" />
+      <apidata name="FederationConfigurationElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.GetElement(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" />
+      </containers>
+      <file name="2b33e33b-3330-00fd-2aff-78759e9a285e" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection">
+      <topicdata name="FederationConfigurationElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" />
+      <apidata name="FederationConfigurationElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.CollectionType" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" />
+      </containers>
+      <file name="b4468fa4-ea0c-1a23-5387-b2e2b6b524e5" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" ref="true" />
+      </containers>
+      <file name="efbd645a-fbd1-626c-4197-0fc0f7503c92" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection.GetElement(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetElement" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" ref="true" />
+      </containers>
+      <file name="2bee02f3-fcb9-8876-a9bb-5fc13e50f54c" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      <apidata name="SystemIdentityModelServicesSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+      </containers>
+      <file name="777e6452-9e30-7b68-63f1-4643611260a3" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection">
+      <topicdata name="SystemIdentityModelServicesSection" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      <apidata name="SystemIdentityModelServicesSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.#ctor" />
+        <element api="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.Current" />
+        <element api="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.DefaultFederationConfigurationElement" />
+        <element api="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.FederationConfigurationElements" />
+        <element api="F:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.SectionName" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      </containers>
+      <file name="42e97bd9-9a29-49e4-84a7-11f1a6f4f7b7" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection">
+      <topicdata name="SystemIdentityModelServicesSection" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      <apidata name="SystemIdentityModelServicesSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      </containers>
+      <file name="f79d2327-f35a-008f-eb3d-dc300cb24985" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection">
+      <topicdata name="SystemIdentityModelServicesSection" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      <apidata name="SystemIdentityModelServicesSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.Current" />
+        <element api="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.DefaultFederationConfigurationElement" />
+        <element api="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.FederationConfigurationElements" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      </containers>
+      <file name="ac275b1e-9cf6-a9a7-f1f5-fd5589fffbb3" />
+    </api>
+    <api id="Fields.T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection">
+      <topicdata name="SystemIdentityModelServicesSection" group="list" subgroup="Fields" typeTopicId="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      <apidata name="SystemIdentityModelServicesSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.#ctor" />
+      <elements>
+        <element api="F:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.SectionName" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" />
+      </containers>
+      <file name="6f408972-5b74-d3f8-b2d6-918d59afbcaa" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" ref="true" />
+      </containers>
+      <file name="28184463-4a85-56cd-4f3f-539edae123be" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" ref="true" />
+      </containers>
+      <file name="65b4576e-0f32-06ed-4ab6-fc43919e7787" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.DefaultFederationConfigurationElement">
+      <topicdata group="api" />
+      <apidata name="DefaultFederationConfigurationElement" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultFederationConfigurationElement" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" ref="true" />
+      </containers>
+      <file name="a92c78e1-9ba1-0297-b6b6-5871769ca56a" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.FederationConfigurationElements">
+      <topicdata group="api" />
+      <apidata name="FederationConfigurationElements" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FederationConfigurationElements" />
+      <returns>
+        <type api="T:System.IdentityModel.Services.Configuration.FederationConfigurationElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <assignment name="Options">
+            <type api="T:System.Configuration.ConfigurationPropertyOptions" ref="false" />
+            <enumValue>
+              <field name="IsDefaultCollection" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f9662f56-1776-f7d7-dfa2-dce27cc98088" />
+    </api>
+    <api id="F:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection.SectionName">
+      <topicdata group="api" />
+      <apidata name="SectionName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>system.identityModel.services</value>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection" ref="true" />
+      </containers>
+      <file name="6818d291-adce-9726-6753-5a2628aef8ad" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      <apidata name="WsFederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+      </containers>
+      <file name="748b03d0-37c2-cad1-ed9f-d5b631e6b2d7" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Configuration.WsFederationConfiguration">
+      <topicdata name="WsFederationConfiguration" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      <apidata name="WsFederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor">
+          <element api="M:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor(System.IdentityModel.Services.Configuration.WSFederationElement)" />
+          <element api="M:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor(System.String,System.String)" />
+        </element>
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.AuthenticationType" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.CustomAttributes" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultFreshness" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultMaxArrayLength" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultMaxStringContentLength" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultPassiveRedirectEnabled" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultPersistentCookiesOnPassiveRedirects" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultRequireHttps" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Freshness" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.HomeRealm" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Issuer" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.PassiveRedirectEnabled" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.PersistentCookiesOnPassiveRedirects" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Policy" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Realm" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Reply" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Request" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.RequestPtr" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.RequireHttps" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Resource" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignInQueryString" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignOutQueryString" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignOutReply" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.XmlDictionaryReaderQuotas" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      </containers>
+      <file name="2f0ea635-5044-0c73-956a-6e2c8a23b194" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Configuration.WsFederationConfiguration">
+      <topicdata name="WsFederationConfiguration" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      <apidata name="WsFederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      </containers>
+      <file name="ade3caae-8e96-fbc1-95fa-dd8ab6493478" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Configuration.WsFederationConfiguration">
+      <topicdata name="WsFederationConfiguration" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      <apidata name="WsFederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.AuthenticationType" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.CustomAttributes" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Freshness" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.HomeRealm" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Issuer" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.PassiveRedirectEnabled" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.PersistentCookiesOnPassiveRedirects" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Policy" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Realm" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Reply" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Request" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.RequestPtr" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.RequireHttps" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Resource" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignInQueryString" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignOutQueryString" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignOutReply" />
+        <element api="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.XmlDictionaryReaderQuotas" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      </containers>
+      <file name="8da43490-5c65-a200-7f8b-81068d3fb242" />
+    </api>
+    <api id="Fields.T:System.IdentityModel.Services.Configuration.WsFederationConfiguration">
+      <topicdata name="WsFederationConfiguration" group="list" subgroup="Fields" typeTopicId="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      <apidata name="WsFederationConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultFreshness" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultMaxArrayLength" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultMaxStringContentLength" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultPassiveRedirectEnabled" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultPersistentCookiesOnPassiveRedirects" />
+        <element api="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultRequireHttps" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      </containers>
+      <file name="9d8991e8-1976-a872-b441-b3db1909824e" />
+    </api>
+    <api id="Overload:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor(System.IdentityModel.Services.Configuration.WSFederationElement)" />
+        <element api="M:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="abfee3eb-cd82-7e6c-2d7e-64051c80390e" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor(System.IdentityModel.Services.Configuration.WSFederationElement)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor" />
+      <parameters>
+        <parameter name="federationElement">
+          <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="7b08f510-19d6-189c-40c7-8b398889631c" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Configuration.WsFederationConfiguration.#ctor" />
+      <parameters>
+        <parameter name="issuer">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="realm">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="d0c1e546-3d64-f46c-8fd3-f68ea689ed14" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.AuthenticationType">
+      <topicdata group="api" />
+      <apidata name="AuthenticationType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AuthenticationType" />
+      <setter name="set_AuthenticationType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="554dae86-fdf8-f5fb-6cc9-9ca69e9e7a5f" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.CustomAttributes">
+      <topicdata group="api" />
+      <apidata name="CustomAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CustomAttributes" />
+      <returns>
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="77c70e5f-14ed-db8a-f5c9-397a7fd6da2c" />
+    </api>
+    <api id="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultFreshness">
+      <topicdata group="api" />
+      <apidata name="DefaultFreshness" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <nullValue />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="4e938431-34d8-dcba-0f78-e2f3b5ff4bed" />
+    </api>
+    <api id="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultMaxArrayLength">
+      <topicdata group="api" />
+      <apidata name="DefaultMaxArrayLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>2097152</value>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="18b7b02c-eb12-d2f4-d108-8bf0de6ea4fb" />
+    </api>
+    <api id="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultMaxStringContentLength">
+      <topicdata group="api" />
+      <apidata name="DefaultMaxStringContentLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>2097152</value>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="db237d75-d1ac-4b89-7fd5-c9db425ab9ed" />
+    </api>
+    <api id="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultPassiveRedirectEnabled">
+      <topicdata group="api" />
+      <apidata name="DefaultPassiveRedirectEnabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <value>True</value>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="ef253092-b3fe-96be-5c82-0b9abba55541" />
+    </api>
+    <api id="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultPersistentCookiesOnPassiveRedirects">
+      <topicdata group="api" />
+      <apidata name="DefaultPersistentCookiesOnPassiveRedirects" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <value>False</value>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="a3559380-2cc4-f2d5-f070-3a83f9f3e2c4" />
+    </api>
+    <api id="F:System.IdentityModel.Services.Configuration.WsFederationConfiguration.DefaultRequireHttps">
+      <topicdata group="api" />
+      <apidata name="DefaultRequireHttps" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <value>True</value>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="d7b15be7-8eb6-00d5-77e6-d4e54ccb4705" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Freshness">
+      <topicdata group="api" />
+      <apidata name="Freshness" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Freshness" />
+      <setter name="set_Freshness" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="93ebe24e-5f95-226f-bca8-1eeab717557a" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.HomeRealm">
+      <topicdata group="api" />
+      <apidata name="HomeRealm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HomeRealm" />
+      <setter name="set_HomeRealm" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="ba45b027-9daf-7bc1-7ad6-b6b03a195b3d" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Issuer">
+      <topicdata group="api" />
+      <apidata name="Issuer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Issuer" />
+      <setter name="set_Issuer" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="60c1b9ac-0d2a-bbcd-32f0-ea1793b30a76" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.PassiveRedirectEnabled">
+      <topicdata group="api" />
+      <apidata name="PassiveRedirectEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PassiveRedirectEnabled" />
+      <setter name="set_PassiveRedirectEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="474e8888-b36c-4040-3201-f7ab4e45a445" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.PersistentCookiesOnPassiveRedirects">
+      <topicdata group="api" />
+      <apidata name="PersistentCookiesOnPassiveRedirects" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PersistentCookiesOnPassiveRedirects" />
+      <setter name="set_PersistentCookiesOnPassiveRedirects" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="8d5cffa2-df69-041c-f72f-229ae78e8fb8" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Policy">
+      <topicdata group="api" />
+      <apidata name="Policy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Policy" />
+      <setter name="set_Policy" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="563985cb-b6df-6ec1-661c-42c0b893360b" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Realm">
+      <topicdata group="api" />
+      <apidata name="Realm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Realm" />
+      <setter name="set_Realm" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="c2491e3e-55b7-28ff-f251-7eea16e5b41d" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Reply">
+      <topicdata group="api" />
+      <apidata name="Reply" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Reply" />
+      <setter name="set_Reply" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="060249af-b8ad-ab22-3683-9acb8d80d80a" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Request" />
+      <setter name="set_Request" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="281cc412-9273-1553-bb35-25bbf404fb06" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.RequestPtr">
+      <topicdata group="api" />
+      <apidata name="RequestPtr" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RequestPtr" />
+      <setter name="set_RequestPtr" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="571382b6-9553-80da-5413-403a5b9f9856" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.RequireHttps">
+      <topicdata group="api" />
+      <apidata name="RequireHttps" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RequireHttps" />
+      <setter name="set_RequireHttps" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="01288896-279e-fb92-e16e-e11abac2f82b" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.Resource">
+      <topicdata group="api" />
+      <apidata name="Resource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Resource" />
+      <setter name="set_Resource" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="449502a8-6022-ba3b-2116-1c1b4f32a133" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignInQueryString">
+      <topicdata group="api" />
+      <apidata name="SignInQueryString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SignInQueryString" />
+      <setter name="set_SignInQueryString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="85184449-aa12-6df6-479b-278b2affdef7" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignOutQueryString">
+      <topicdata group="api" />
+      <apidata name="SignOutQueryString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SignOutQueryString" />
+      <setter name="set_SignOutQueryString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="d2e5e4ac-cb4e-6fa9-a6c0-053b5e6afbd1" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.SignOutReply">
+      <topicdata group="api" />
+      <apidata name="SignOutReply" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SignOutReply" />
+      <setter name="set_SignOutReply" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="dcda22ae-5a01-1931-a9ce-2c11f1315002" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WsFederationConfiguration.XmlDictionaryReaderQuotas">
+      <topicdata group="api" />
+      <apidata name="XmlDictionaryReaderQuotas" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlDictionaryReaderQuotas" />
+      <setter name="set_XmlDictionaryReaderQuotas" />
+      <returns>
+        <type api="T:System.Xml.XmlDictionaryReaderQuotas" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WsFederationConfiguration" ref="true" />
+      </containers>
+      <file name="efbfcd4e-2238-1022-a9c9-6a81fa89dc00" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Configuration.WSFederationElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Configuration.WSFederationElement" />
+      <apidata name="WSFederationElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.WSFederationElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+      </containers>
+      <file name="8098936c-1020-04c1-5250-309d7ee51f2c" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Configuration.WSFederationElement">
+      <topicdata name="WSFederationElement" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Configuration.WSFederationElement" />
+      <apidata name="WSFederationElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.WSFederationElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="M:System.IdentityModel.Services.Configuration.WSFederationElement.#ctor" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.AuthenticationType" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.CustomAttributes" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Freshness" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.HomeRealm" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.IsConfigured" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Issuer" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.PassiveRedirectEnabled" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.PersistentCookiesOnPassiveRedirects" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Policy" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Realm" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Reply" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Request" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.RequestPtr" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.RequireHttps" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Resource" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignInQueryString" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignOutQueryString" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignOutReply" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" />
+      </containers>
+      <file name="cbb56b9a-2630-4704-0039-edfc891ada93" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Configuration.WSFederationElement">
+      <topicdata name="WSFederationElement" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Configuration.WSFederationElement" />
+      <apidata name="WSFederationElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.WSFederationElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" />
+      </containers>
+      <file name="de5b3cbc-a7b8-db36-0864-ea1f8d64c58a" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Configuration.WSFederationElement">
+      <topicdata name="WSFederationElement" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Configuration.WSFederationElement" />
+      <apidata name="WSFederationElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Configuration.WSFederationElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.AuthenticationType" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.CustomAttributes" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Freshness" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.HomeRealm" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.IsConfigured" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Issuer" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.PassiveRedirectEnabled" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.PersistentCookiesOnPassiveRedirects" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Policy" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Realm" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Reply" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Request" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.RequestPtr" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.RequireHttps" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.Resource" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignInQueryString" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignOutQueryString" />
+        <element api="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignOutReply" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" />
+      </containers>
+      <file name="f277e469-f40e-fb39-3e0b-1fee88d45f36" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Configuration.WSFederationElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <file name="61c5c585-a681-e136-00f3-c4f4ca1b71b3" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.AuthenticationType">
+      <topicdata group="api" />
+      <apidata name="AuthenticationType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AuthenticationType" />
+      <setter name="set_AuthenticationType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>authenticationType</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e733306f-37fe-b011-30cb-20daed40401e" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.CustomAttributes">
+      <topicdata group="api" />
+      <apidata name="CustomAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CustomAttributes" />
+      <returns>
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <file name="e7b3ffb9-1f74-dd01-288b-8cabfcd56f11" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.Freshness">
+      <topicdata group="api" />
+      <apidata name="Freshness" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Freshness" />
+      <setter name="set_Freshness" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>freshness</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c2517b37-2da7-0f2f-765a-3a20886a9b27" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.HomeRealm">
+      <topicdata group="api" />
+      <apidata name="HomeRealm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HomeRealm" />
+      <setter name="set_HomeRealm" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>homeRealm</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="70e940d0-8866-e1e8-9867-24865e7ddeb5" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.IsConfigured">
+      <topicdata group="api" />
+      <apidata name="IsConfigured" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsConfigured" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <file name="fc175970-9d4e-210d-e0a9-ac576c4229c7" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.Issuer">
+      <topicdata group="api" />
+      <apidata name="Issuer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Issuer" />
+      <setter name="set_Issuer" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>issuer</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c673f137-7023-e33b-5588-68bd96ffbd92" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.PassiveRedirectEnabled">
+      <topicdata group="api" />
+      <apidata name="PassiveRedirectEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PassiveRedirectEnabled" />
+      <setter name="set_PassiveRedirectEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>passiveRedirectEnabled</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="fabcc28c-ee46-bc0c-415f-2e98cf80a7f4" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.PersistentCookiesOnPassiveRedirects">
+      <topicdata group="api" />
+      <apidata name="PersistentCookiesOnPassiveRedirects" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PersistentCookiesOnPassiveRedirects" />
+      <setter name="set_PersistentCookiesOnPassiveRedirects" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>persistentCookiesOnPassiveRedirects</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4444b4b8-2b4a-4a96-65c8-b1c1e3c471e7" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.Policy">
+      <topicdata group="api" />
+      <apidata name="Policy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Policy" />
+      <setter name="set_Policy" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>policy</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="60c18486-dc5a-d8b1-d698-81dbba5cbcb3" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.Realm">
+      <topicdata group="api" />
+      <apidata name="Realm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Realm" />
+      <setter name="set_Realm" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>realm</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8fe0b871-4377-b4e0-737f-00a36b3f6838" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.Reply">
+      <topicdata group="api" />
+      <apidata name="Reply" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Reply" />
+      <setter name="set_Reply" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>reply</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="21185d73-0c17-4fe2-36fb-d8a397f18ed2" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Request" />
+      <setter name="set_Request" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>request</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a85544e5-91de-1c26-f826-986138590071" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.RequestPtr">
+      <topicdata group="api" />
+      <apidata name="RequestPtr" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RequestPtr" />
+      <setter name="set_RequestPtr" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>requestPtr</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="71f6a5a1-7dac-138d-fcf5-4364fa073141" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.RequireHttps">
+      <topicdata group="api" />
+      <apidata name="RequireHttps" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RequireHttps" />
+      <setter name="set_RequireHttps" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>requireHttps</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b5509e02-5b14-8e53-4fc0-3b022a1489aa" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.Resource">
+      <topicdata group="api" />
+      <apidata name="Resource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Resource" />
+      <setter name="set_Resource" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>resource</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="53c0695b-2e11-4eb5-2cdb-5ee3ab5bd218" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignInQueryString">
+      <topicdata group="api" />
+      <apidata name="SignInQueryString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SignInQueryString" />
+      <setter name="set_SignInQueryString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>signInQueryString</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="557fde20-9089-416e-fd6f-041ba90e1fa9" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignOutQueryString">
+      <topicdata group="api" />
+      <apidata name="SignOutQueryString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SignOutQueryString" />
+      <setter name="set_SignOutQueryString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>signOutQueryString</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2dfe0182-212c-b634-34ea-8e9a9c439afd" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Configuration.WSFederationElement.SignOutReply">
+      <topicdata group="api" />
+      <apidata name="SignOutReply" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SignOutReply" />
+      <setter name="set_SignOutReply" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Configuration" />
+        <type api="T:System.IdentityModel.Services.Configuration.WSFederationElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>signOutReply</value>
+          </argument>
+          <assignment name="IsRequired">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1ff10777-42d7-f63b-882d-39b8ccea430b" />
+    </api>
+  </apis>
+</reflection>

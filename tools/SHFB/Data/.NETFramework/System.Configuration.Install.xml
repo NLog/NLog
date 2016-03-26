@@ -1,0 +1,3260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Configuration.Install">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Configuration.Install.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Configuration.Install.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Configuration.Install.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Configuration.Install">
+      <topicdata group="api" />
+      <apidata name="System.Configuration.Install" group="namespace" />
+      <elements>
+        <element api="T:System.Configuration.Install.AssemblyInstaller" />
+        <element api="T:System.Configuration.Install.ComponentInstaller" />
+        <element api="T:System.Configuration.Install.IManagedInstaller" />
+        <element api="T:System.Configuration.Install.InstallContext" />
+        <element api="T:System.Configuration.Install.Installer" />
+        <element api="T:System.Configuration.Install.InstallerCollection" />
+        <element api="T:System.Configuration.Install.InstallEventArgs" />
+        <element api="T:System.Configuration.Install.InstallEventHandler" />
+        <element api="T:System.Configuration.Install.InstallException" />
+        <element api="T:System.Configuration.Install.ManagedInstallerClass" />
+        <element api="T:System.Configuration.Install.TransactedInstaller" />
+        <element api="T:System.Configuration.Install.UninstallAction" />
+      </elements>
+      <file name="2ed0e238-4600-f652-1d8d-0f59adde36de" />
+    </api>
+    <api id="T:System.Configuration.Install.AssemblyInstaller">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.AssemblyInstaller" />
+      <apidata name="AssemblyInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.AssemblyInstaller.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="c08a98b9-3208-7e82-53be-2aff425b2de5" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.AssemblyInstaller">
+      <topicdata name="AssemblyInstaller" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.AssemblyInstaller" />
+      <apidata name="AssemblyInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.AssemblyInstaller.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Configuration.Install.AssemblyInstaller.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.Configuration.Install.AssemblyInstaller.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="Overload:System.Configuration.Install.AssemblyInstaller.#ctor">
+          <element api="M:System.Configuration.Install.AssemblyInstaller.#ctor" />
+          <element api="M:System.Configuration.Install.AssemblyInstaller.#ctor(System.Reflection.Assembly,System.String[])" />
+          <element api="M:System.Configuration.Install.AssemblyInstaller.#ctor(System.String,System.String[])" />
+        </element>
+        <element api="P:System.Configuration.Install.AssemblyInstaller.Assembly" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.CheckIfInstallable(System.String)" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.CommandLine" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.Commit(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.HelpText" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.Install(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.Path" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.Rollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.Uninstall(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.UseNewContext" />
+        <element api="E:System.Configuration.Install.Installer.AfterInstall" />
+        <element api="E:System.Configuration.Install.Installer.AfterRollback" />
+        <element api="E:System.Configuration.Install.Installer.AfterUninstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeInstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeRollback" />
+        <element api="E:System.Configuration.Install.Installer.BeforeUninstall" />
+        <element api="E:System.Configuration.Install.Installer.Committed" />
+        <element api="E:System.Configuration.Install.Installer.Committing" />
+        <element api="P:System.Configuration.Install.Installer.Context" />
+        <element api="P:System.Configuration.Install.Installer.Installers" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.Installer.Parent" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" />
+      </containers>
+      <file name="25a2d943-0be0-4b2d-2aab-a720497134a8" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.AssemblyInstaller">
+      <topicdata name="AssemblyInstaller" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.AssemblyInstaller" />
+      <apidata name="AssemblyInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.AssemblyInstaller.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Configuration.Install.AssemblyInstaller.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Configuration.Install.AssemblyInstaller.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.CheckIfInstallable(System.String)" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.Commit(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.Install(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.Rollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.Uninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" />
+      </containers>
+      <file name="5b764350-e52b-94c1-4550-d72bf4e47634" />
+    </api>
+    <api id="Properties.T:System.Configuration.Install.AssemblyInstaller">
+      <topicdata name="AssemblyInstaller" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Install.AssemblyInstaller" />
+      <apidata name="AssemblyInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.AssemblyInstaller.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.Assembly" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.CommandLine" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.HelpText" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.Path" />
+        <element api="P:System.Configuration.Install.AssemblyInstaller.UseNewContext" />
+        <element api="P:System.Configuration.Install.Installer.Context" />
+        <element api="P:System.Configuration.Install.Installer.Installers" />
+        <element api="P:System.Configuration.Install.Installer.Parent" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" />
+      </containers>
+      <file name="0d3fc3ef-c4b3-ca0d-23c5-a9901a2d4e05" />
+    </api>
+    <api id="Events.T:System.Configuration.Install.AssemblyInstaller">
+      <topicdata name="AssemblyInstaller" group="list" subgroup="Events" typeTopicId="T:System.Configuration.Install.AssemblyInstaller" />
+      <apidata name="AssemblyInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.AssemblyInstaller.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="E:System.Configuration.Install.Installer.AfterInstall" />
+        <element api="E:System.Configuration.Install.Installer.AfterRollback" />
+        <element api="E:System.Configuration.Install.Installer.AfterUninstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeInstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeRollback" />
+        <element api="E:System.Configuration.Install.Installer.BeforeUninstall" />
+        <element api="E:System.Configuration.Install.Installer.Committed" />
+        <element api="E:System.Configuration.Install.Installer.Committing" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" />
+      </containers>
+      <file name="a4b6b313-ff2e-130e-b17f-be84bb8ac85e" />
+    </api>
+    <api id="Overload:System.Configuration.Install.AssemblyInstaller.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Configuration.Install.AssemblyInstaller" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Configuration.Install.AssemblyInstaller.#ctor" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.#ctor(System.Reflection.Assembly,System.String[])" />
+        <element api="M:System.Configuration.Install.AssemblyInstaller.#ctor(System.String,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="5f4adabb-9b43-4f43-71a7-5be0e292c203" />
+    </api>
+    <api id="M:System.Configuration.Install.AssemblyInstaller.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.AssemblyInstaller.#ctor" />
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="13e3b98b-cf27-e449-da2b-41622f96c9dc" />
+    </api>
+    <api id="M:System.Configuration.Install.AssemblyInstaller.#ctor(System.Reflection.Assembly,System.String[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.AssemblyInstaller.#ctor" />
+      <parameters>
+        <parameter name="assembly">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+        <parameter name="commandLine">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="8632a2d4-7658-3ce2-ec6d-ecbd8b8c98ab" />
+    </api>
+    <api id="M:System.Configuration.Install.AssemblyInstaller.#ctor(System.String,System.String[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.AssemblyInstaller.#ctor" />
+      <parameters>
+        <parameter name="fileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="commandLine">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="4ccdb35d-f142-8375-2b9d-9057d0c410a5" />
+    </api>
+    <api id="P:System.Configuration.Install.AssemblyInstaller.Assembly">
+      <topicdata group="api" />
+      <apidata name="Assembly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Assembly" />
+      <setter name="set_Assembly" />
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="c93d66f7-1333-8eed-4904-8477832d0535" />
+    </api>
+    <api id="M:System.Configuration.Install.AssemblyInstaller.CheckIfInstallable(System.String)">
+      <topicdata group="api" />
+      <apidata name="CheckIfInstallable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="46846a65-8f2b-32f3-c3a4-ea36a96708f7" />
+    </api>
+    <api id="P:System.Configuration.Install.AssemblyInstaller.CommandLine">
+      <topicdata group="api" />
+      <apidata name="CommandLine" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CommandLine" />
+      <setter name="set_CommandLine" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="a5482d73-e328-9a55-fd4c-1491a23e4dd6" />
+    </api>
+    <api id="M:System.Configuration.Install.AssemblyInstaller.Commit(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Commit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="f254b426-c3f7-ce7e-9266-abd142c22e0e" />
+    </api>
+    <api id="P:System.Configuration.Install.AssemblyInstaller.HelpText">
+      <topicdata group="api" />
+      <apidata name="HelpText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Configuration.Install.Installer.HelpText">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_HelpText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="bf9d7f2a-7e06-f378-b355-986d97f16dbc" />
+    </api>
+    <api id="M:System.Configuration.Install.AssemblyInstaller.Install(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Install" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="4ccdb763-96a4-51d9-f999-a27389f22d0a" />
+    </api>
+    <api id="P:System.Configuration.Install.AssemblyInstaller.Path">
+      <topicdata group="api" />
+      <apidata name="Path" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Path" />
+      <setter name="set_Path" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="58fe46e9-5c64-4397-8d22-bcef208b1f40" />
+    </api>
+    <api id="M:System.Configuration.Install.AssemblyInstaller.Rollback(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Rollback" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="ba5b9096-b1e0-de03-831a-ac22c8f52292" />
+    </api>
+    <api id="M:System.Configuration.Install.AssemblyInstaller.Uninstall(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Uninstall" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.Install.Installer.Uninstall(System.Collections.IDictionary)">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="31e80e59-93ae-6838-d1c4-8d19cd832c82" />
+    </api>
+    <api id="P:System.Configuration.Install.AssemblyInstaller.UseNewContext">
+      <topicdata group="api" />
+      <apidata name="UseNewContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UseNewContext" />
+      <setter name="set_UseNewContext" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+      </containers>
+      <file name="8cad726c-173d-f5af-f1fe-e3db820c66e2" />
+    </api>
+    <api id="T:System.Configuration.Install.ComponentInstaller">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.ComponentInstaller" />
+      <apidata name="ComponentInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Diagnostics.EventLogInstaller" ref="true" />
+          <type api="T:System.Diagnostics.PerformanceCounterInstaller" ref="true" />
+          <type api="T:System.Messaging.MessageQueueInstaller" ref="true" />
+          <type api="T:System.ServiceProcess.ServiceInstaller" ref="true" />
+          <type api="T:System.ServiceProcess.ServiceProcessInstaller" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="a8c3640c-2044-9cee-0ed0-5447675a2071" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.ComponentInstaller">
+      <topicdata name="ComponentInstaller" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.ComponentInstaller" />
+      <apidata name="ComponentInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Configuration.Install.ComponentInstaller.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.Configuration.Install.ComponentInstaller.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Configuration.Install.ComponentInstaller.#ctor" />
+        <element api="M:System.Configuration.Install.ComponentInstaller.CopyFromComponent(System.ComponentModel.IComponent)" />
+        <element api="M:System.Configuration.Install.ComponentInstaller.IsEquivalentInstaller(System.Configuration.Install.ComponentInstaller)" />
+        <element api="E:System.Configuration.Install.Installer.AfterInstall" />
+        <element api="E:System.Configuration.Install.Installer.AfterRollback" />
+        <element api="E:System.Configuration.Install.Installer.AfterUninstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeInstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeRollback" />
+        <element api="E:System.Configuration.Install.Installer.BeforeUninstall" />
+        <element api="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)" />
+        <element api="E:System.Configuration.Install.Installer.Committed" />
+        <element api="E:System.Configuration.Install.Installer.Committing" />
+        <element api="P:System.Configuration.Install.Installer.Context" />
+        <element api="P:System.Configuration.Install.Installer.HelpText" />
+        <element api="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.Installer.Installers" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.Installer.Parent" />
+        <element api="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Uninstall(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ComponentInstaller" />
+      </containers>
+      <file name="7ea0d3bf-fc29-7622-30c3-c645a5f1ae09" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.ComponentInstaller">
+      <topicdata name="ComponentInstaller" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.ComponentInstaller" />
+      <apidata name="ComponentInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Configuration.Install.ComponentInstaller.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Configuration.Install.ComponentInstaller.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Configuration.Install.ComponentInstaller.CopyFromComponent(System.ComponentModel.IComponent)" />
+        <element api="M:System.Configuration.Install.ComponentInstaller.IsEquivalentInstaller(System.Configuration.Install.ComponentInstaller)" />
+        <element api="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Uninstall(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ComponentInstaller" />
+      </containers>
+      <file name="b35130c9-0490-7a48-c77d-146d3b09a6d7" />
+    </api>
+    <api id="Properties.T:System.Configuration.Install.ComponentInstaller">
+      <topicdata name="ComponentInstaller" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Install.ComponentInstaller" />
+      <apidata name="ComponentInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="P:System.Configuration.Install.Installer.Context" />
+        <element api="P:System.Configuration.Install.Installer.HelpText" />
+        <element api="P:System.Configuration.Install.Installer.Installers" />
+        <element api="P:System.Configuration.Install.Installer.Parent" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ComponentInstaller" />
+      </containers>
+      <file name="ab03974c-58b9-fe7e-b50a-023ff76a138a" />
+    </api>
+    <api id="Events.T:System.Configuration.Install.ComponentInstaller">
+      <topicdata name="ComponentInstaller" group="list" subgroup="Events" typeTopicId="T:System.Configuration.Install.ComponentInstaller" />
+      <apidata name="ComponentInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="E:System.Configuration.Install.Installer.AfterInstall" />
+        <element api="E:System.Configuration.Install.Installer.AfterRollback" />
+        <element api="E:System.Configuration.Install.Installer.AfterUninstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeInstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeRollback" />
+        <element api="E:System.Configuration.Install.Installer.BeforeUninstall" />
+        <element api="E:System.Configuration.Install.Installer.Committed" />
+        <element api="E:System.Configuration.Install.Installer.Committing" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ComponentInstaller" />
+      </containers>
+      <file name="2d85526d-91fd-951c-24fe-f22dcec3f538" />
+    </api>
+    <api id="M:System.Configuration.Install.ComponentInstaller.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ComponentInstaller" ref="true" />
+      </containers>
+      <file name="06380046-06d3-62c1-0784-4560d0c41b0e" />
+    </api>
+    <api id="M:System.Configuration.Install.ComponentInstaller.CopyFromComponent(System.ComponentModel.IComponent)">
+      <topicdata group="api" />
+      <apidata name="CopyFromComponent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="component">
+          <type api="T:System.ComponentModel.IComponent" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ComponentInstaller" ref="true" />
+      </containers>
+      <file name="619d467f-9a6f-8c47-3f52-8c8ed47822ab" />
+    </api>
+    <api id="M:System.Configuration.Install.ComponentInstaller.IsEquivalentInstaller(System.Configuration.Install.ComponentInstaller)">
+      <topicdata group="api" />
+      <apidata name="IsEquivalentInstaller" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="otherInstaller">
+          <type api="T:System.Configuration.Install.ComponentInstaller" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ComponentInstaller" ref="true" />
+      </containers>
+      <file name="6ce41e75-9607-fa8a-3b1f-8f46c4765516" />
+    </api>
+    <api id="T:System.Configuration.Install.IManagedInstaller">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.IManagedInstaller" />
+      <apidata name="IManagedInstaller" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <implementors>
+        <type api="T:System.Configuration.Install.ManagedInstallerClass" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1E233FE7-C16D-4512-8C3B-2E9988F08D38</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.InterfaceTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Runtime.InteropServices.ComInterfaceType" ref="false" />
+            <enumValue>
+              <field name="InterfaceIsIUnknown" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5a1238a0-0fd0-611a-e2cb-2ff01602149d" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.IManagedInstaller">
+      <topicdata name="IManagedInstaller" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.IManagedInstaller" />
+      <apidata name="IManagedInstaller" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:System.Configuration.Install.IManagedInstaller.ManagedInstall(System.String,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.IManagedInstaller" />
+      </containers>
+      <file name="5451cb17-6d6e-f26f-d3cf-17bdf82281f7" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.IManagedInstaller">
+      <topicdata name="IManagedInstaller" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.IManagedInstaller" />
+      <apidata name="IManagedInstaller" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:System.Configuration.Install.IManagedInstaller.ManagedInstall(System.String,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.IManagedInstaller" />
+      </containers>
+      <file name="74a7f63f-4915-303d-b56e-4b6ba7b7e3eb" />
+    </api>
+    <api id="M:System.Configuration.Install.IManagedInstaller.ManagedInstall(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ManagedInstall" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="commandLine" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="hInstall" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.IManagedInstaller" ref="true" />
+      </containers>
+      <file name="f44f3bf5-6814-de75-8ac4-2cd01377feb8" />
+    </api>
+    <api id="T:System.Configuration.Install.InstallContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.InstallContext" />
+      <apidata name="InstallContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.InstallContext.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="ef758b1c-52e6-d21f-960a-8c36a5702262" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.InstallContext">
+      <topicdata name="InstallContext" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.InstallContext" />
+      <apidata name="InstallContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.InstallContext.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Configuration.Install.InstallContext.#ctor">
+          <element api="M:System.Configuration.Install.InstallContext.#ctor" />
+          <element api="M:System.Configuration.Install.InstallContext.#ctor(System.String,System.String[])" />
+        </element>
+        <element api="M:System.Configuration.Install.InstallContext.IsParameterTrue(System.String)" />
+        <element api="M:System.Configuration.Install.InstallContext.LogMessage(System.String)" />
+        <element api="P:System.Configuration.Install.InstallContext.Parameters" />
+        <element api="M:System.Configuration.Install.InstallContext.ParseCommandLine(System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" />
+      </containers>
+      <file name="0c3a56cc-ea90-0c13-7732-a6ad69960fac" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.InstallContext">
+      <topicdata name="InstallContext" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.InstallContext" />
+      <apidata name="InstallContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.InstallContext.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.Install.InstallContext.IsParameterTrue(System.String)" />
+        <element api="M:System.Configuration.Install.InstallContext.LogMessage(System.String)" />
+        <element api="M:System.Configuration.Install.InstallContext.ParseCommandLine(System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" />
+      </containers>
+      <file name="80c3390b-2a61-f75f-2810-8761089516a5" />
+    </api>
+    <api id="Properties.T:System.Configuration.Install.InstallContext">
+      <topicdata name="InstallContext" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Install.InstallContext" />
+      <apidata name="InstallContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.InstallContext.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.Install.InstallContext.Parameters" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" />
+      </containers>
+      <file name="c74acb8c-98a2-9481-7a8f-74aae974d8be" />
+    </api>
+    <api id="Overload:System.Configuration.Install.InstallContext.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Configuration.Install.InstallContext" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Configuration.Install.InstallContext.#ctor" />
+        <element api="M:System.Configuration.Install.InstallContext.#ctor(System.String,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" ref="true" />
+      </containers>
+      <file name="1f84fbb9-111c-e812-ab79-a9f8f7112532" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallContext.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.InstallContext.#ctor" />
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" ref="true" />
+      </containers>
+      <file name="feb714e1-5e48-0f77-3ee6-ae33e43082fb" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallContext.#ctor(System.String,System.String[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.InstallContext.#ctor" />
+      <parameters>
+        <parameter name="logFilePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="commandLine">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" ref="true" />
+      </containers>
+      <file name="eaddbc6d-1784-9b63-7600-c579d259e7ef" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallContext.IsParameterTrue(System.String)">
+      <topicdata group="api" />
+      <apidata name="IsParameterTrue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="paramName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" ref="true" />
+      </containers>
+      <file name="f84cb2ef-21e0-1747-ea7d-6abeec382724" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallContext.LogMessage(System.String)">
+      <topicdata group="api" />
+      <apidata name="LogMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" ref="true" />
+      </containers>
+      <file name="06d6a0ab-1909-cc3b-f5b7-f2d3fd45002a" />
+    </api>
+    <api id="P:System.Configuration.Install.InstallContext.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parameters" />
+      <returns>
+        <type api="T:System.Collections.Specialized.StringDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" ref="true" />
+      </containers>
+      <file name="c620d776-ec29-ef26-a392-a8910f91e933" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallContext.ParseCommandLine(System.String[])">
+      <topicdata group="api" />
+      <apidata name="ParseCommandLine" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="args">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Specialized.StringDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallContext" ref="true" />
+      </containers>
+      <file name="864f2253-4c86-b0fb-a45c-0060e50e2d9a" />
+    </api>
+    <api id="T:System.Configuration.Install.Installer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.Installer" />
+      <apidata name="Installer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.Installer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Configuration.Install.AssemblyInstaller" ref="true" />
+          <type api="T:System.Configuration.Install.ComponentInstaller" ref="true" />
+          <type api="T:System.Configuration.Install.TransactedInstaller" ref="true" />
+          <type api="T:System.Management.Instrumentation.ManagementInstaller" ref="true" />
+          <type api="T:System.Management.Instrumentation.DefaultManagementProjectInstaller" ref="true" />
+          <type api="T:System.Management.Instrumentation.DefaultManagementInstaller" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultEventAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AfterInstall</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4d68b414-0181-eff8-944a-98530d10d37a" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.Installer">
+      <topicdata name="Installer" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.Installer" />
+      <apidata name="Installer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.Installer.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Configuration.Install.Installer.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.Configuration.Install.Installer.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Configuration.Install.Installer.#ctor" />
+        <element api="E:System.Configuration.Install.Installer.AfterInstall" />
+        <element api="E:System.Configuration.Install.Installer.AfterRollback" />
+        <element api="E:System.Configuration.Install.Installer.AfterUninstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeInstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeRollback" />
+        <element api="E:System.Configuration.Install.Installer.BeforeUninstall" />
+        <element api="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)" />
+        <element api="E:System.Configuration.Install.Installer.Committed" />
+        <element api="E:System.Configuration.Install.Installer.Committing" />
+        <element api="P:System.Configuration.Install.Installer.Context" />
+        <element api="P:System.Configuration.Install.Installer.HelpText" />
+        <element api="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.Installer.Installers" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.Installer.Parent" />
+        <element api="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Uninstall(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" />
+      </containers>
+      <file name="54253b4f-f035-4eb9-c343-8483ab1173d1" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.Installer">
+      <topicdata name="Installer" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.Installer" />
+      <apidata name="Installer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.Installer.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Configuration.Install.Installer.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Configuration.Install.Installer.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Uninstall(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" />
+      </containers>
+      <file name="afb2bb0f-8659-f653-e0c4-3ed8adda0f80" />
+    </api>
+    <api id="Properties.T:System.Configuration.Install.Installer">
+      <topicdata name="Installer" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Install.Installer" />
+      <apidata name="Installer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.Installer.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="P:System.Configuration.Install.Installer.Context" />
+        <element api="P:System.Configuration.Install.Installer.HelpText" />
+        <element api="P:System.Configuration.Install.Installer.Installers" />
+        <element api="P:System.Configuration.Install.Installer.Parent" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" />
+      </containers>
+      <file name="31528ae2-aa1c-40df-2794-46bfdb845d4d" />
+    </api>
+    <api id="Events.T:System.Configuration.Install.Installer">
+      <topicdata name="Installer" group="list" subgroup="Events" typeTopicId="T:System.Configuration.Install.Installer" />
+      <apidata name="Installer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.Installer.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="E:System.Configuration.Install.Installer.AfterInstall" />
+        <element api="E:System.Configuration.Install.Installer.AfterRollback" />
+        <element api="E:System.Configuration.Install.Installer.AfterUninstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeInstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeRollback" />
+        <element api="E:System.Configuration.Install.Installer.BeforeUninstall" />
+        <element api="E:System.Configuration.Install.Installer.Committed" />
+        <element api="E:System.Configuration.Install.Installer.Committing" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" />
+      </containers>
+      <file name="a1b6eed8-4660-8c25-b021-eff92f4cd964" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="acf419b2-f564-b969-c93c-81653e8a8b82" />
+    </api>
+    <api id="E:System.Configuration.Install.Installer.AfterInstall">
+      <topicdata group="api" />
+      <apidata name="AfterInstall" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AfterInstall" />
+      <remover name="remove_AfterInstall" />
+      <eventhandler>
+        <type api="T:System.Configuration.Install.InstallEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="daccda21-4ff8-5290-48d9-ab21bd0356d0" />
+    </api>
+    <api id="E:System.Configuration.Install.Installer.AfterRollback">
+      <topicdata group="api" />
+      <apidata name="AfterRollback" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AfterRollback" />
+      <remover name="remove_AfterRollback" />
+      <eventhandler>
+        <type api="T:System.Configuration.Install.InstallEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="7b8b64ad-15dc-65ea-83e3-1750b04dc8e3" />
+    </api>
+    <api id="E:System.Configuration.Install.Installer.AfterUninstall">
+      <topicdata group="api" />
+      <apidata name="AfterUninstall" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AfterUninstall" />
+      <remover name="remove_AfterUninstall" />
+      <eventhandler>
+        <type api="T:System.Configuration.Install.InstallEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="c2c13458-9d95-57b5-d388-471263b0906b" />
+    </api>
+    <api id="E:System.Configuration.Install.Installer.BeforeInstall">
+      <topicdata group="api" />
+      <apidata name="BeforeInstall" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BeforeInstall" />
+      <remover name="remove_BeforeInstall" />
+      <eventhandler>
+        <type api="T:System.Configuration.Install.InstallEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="b01b29de-d709-4582-1f2e-1745b5e2f858" />
+    </api>
+    <api id="E:System.Configuration.Install.Installer.BeforeRollback">
+      <topicdata group="api" />
+      <apidata name="BeforeRollback" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BeforeRollback" />
+      <remover name="remove_BeforeRollback" />
+      <eventhandler>
+        <type api="T:System.Configuration.Install.InstallEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="6b48f3b8-f320-6400-2168-ddfe7ae35673" />
+    </api>
+    <api id="E:System.Configuration.Install.Installer.BeforeUninstall">
+      <topicdata group="api" />
+      <apidata name="BeforeUninstall" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BeforeUninstall" />
+      <remover name="remove_BeforeUninstall" />
+      <eventhandler>
+        <type api="T:System.Configuration.Install.InstallEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="b66e9333-ee01-ef91-76cd-b195296ce44b" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Commit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="e92a99d4-8505-1d78-a601-65f68a385ba0" />
+    </api>
+    <api id="E:System.Configuration.Install.Installer.Committed">
+      <topicdata group="api" />
+      <apidata name="Committed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Committed" />
+      <remover name="remove_Committed" />
+      <eventhandler>
+        <type api="T:System.Configuration.Install.InstallEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="fdf571cc-5ac2-91fc-9883-767c53210c09" />
+    </api>
+    <api id="E:System.Configuration.Install.Installer.Committing">
+      <topicdata group="api" />
+      <apidata name="Committing" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Committing" />
+      <remover name="remove_Committing" />
+      <eventhandler>
+        <type api="T:System.Configuration.Install.InstallEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="8571a3c0-a747-ba09-ed9f-d358c79b5a9e" />
+    </api>
+    <api id="P:System.Configuration.Install.Installer.Context">
+      <topicdata group="api" />
+      <apidata name="Context" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Context" />
+      <setter name="set_Context" />
+      <returns>
+        <type api="T:System.Configuration.Install.InstallContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4161047f-a0bc-3f77-984e-f37d6c235f1b" />
+    </api>
+    <api id="P:System.Configuration.Install.Installer.HelpText">
+      <topicdata group="api" />
+      <apidata name="HelpText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HelpText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="c8f98d66-1b23-4308-39c9-9c1706b59322" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Install" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="stateSaver">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="4d651f24-586f-76aa-4b11-cb8f4f37ea60" />
+    </api>
+    <api id="P:System.Configuration.Install.Installer.Installers">
+      <topicdata group="api" />
+      <apidata name="Installers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Installers" />
+      <returns>
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Content" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f6b30ad0-c34b-ebbb-2506-6f854d9203e0" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="OnAfterInstall" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="7dc863a2-a4dd-63ad-3d53-51cd25007f54" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="OnAfterRollback" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="a02069eb-a6e7-0841-9391-3eee77e8c450" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="OnAfterUninstall" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="d6b3266e-526f-cd83-a92e-dc3b3042da21" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="OnBeforeInstall" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="cd7b5cfe-23b4-0028-763a-c56d9fa0a104" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="OnBeforeRollback" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="e89381c2-1eb5-63d2-d49c-4f0d84ba273b" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="OnBeforeUninstall" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="bc29ff63-d044-4c2d-5d57-f0163678e423" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="OnCommitted" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="19a5d9c6-c5b1-f3cc-059c-8a61d160af19" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="OnCommitting" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="8837cc12-53a9-31cb-9112-2736ec8fb259" />
+    </api>
+    <api id="P:System.Configuration.Install.Installer.Parent">
+      <topicdata group="api" />
+      <apidata name="Parent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Parent" />
+      <setter name="set_Parent" />
+      <returns>
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b43c4f4c-fb2c-adbf-97d7-85ee817eec34" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Rollback" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="7e779806-97c5-abfd-7b8d-a7ce239d9a87" />
+    </api>
+    <api id="M:System.Configuration.Install.Installer.Uninstall(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Uninstall" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </containers>
+      <file name="4068b8b7-0178-64f4-83f3-66ccc19e918c" />
+    </api>
+    <api id="T:System.Configuration.Install.InstallerCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.InstallerCollection" />
+      <apidata name="InstallerCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Collections.CollectionBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="e7f9e079-0853-2936-1f09-4d41792309a5" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.InstallerCollection">
+      <topicdata name="InstallerCollection" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.InstallerCollection" />
+      <apidata name="InstallerCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Collections.CollectionBase.Capacity" />
+        <element api="M:System.Collections.CollectionBase.Clear" />
+        <element api="P:System.Collections.CollectionBase.Count" />
+        <element api="M:System.Collections.CollectionBase.GetEnumerator" />
+        <element api="P:System.Collections.CollectionBase.InnerList" />
+        <element api="P:System.Collections.CollectionBase.List" />
+        <element api="M:System.Collections.CollectionBase.OnClear" />
+        <element api="M:System.Collections.CollectionBase.OnClearComplete" />
+        <element api="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />
+        <element api="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />
+        <element api="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />
+        <element api="M:System.Collections.CollectionBase.OnValidate(System.Object)" />
+        <element api="M:System.Collections.CollectionBase.RemoveAt(System.Int32)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#ICollection#SyncRoot" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#Add(System.Object)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#Contains(System.Object)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#IndexOf(System.Object)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#Insert(System.Int32,System.Object)" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#IList#IsFixedSize" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#IList#IsReadOnly" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#IList#Item(System.Int32)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#Remove(System.Object)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.Add(System.Configuration.Install.Installer)" />
+        <element api="Overload:System.Configuration.Install.InstallerCollection.AddRange">
+          <element api="M:System.Configuration.Install.InstallerCollection.AddRange(System.Configuration.Install.Installer[])" />
+          <element api="M:System.Configuration.Install.InstallerCollection.AddRange(System.Configuration.Install.InstallerCollection)" />
+        </element>
+        <element api="M:System.Configuration.Install.InstallerCollection.Contains(System.Configuration.Install.Installer)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.CopyTo(System.Configuration.Install.Installer[],System.Int32)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.IndexOf(System.Configuration.Install.Installer)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.Insert(System.Int32,System.Configuration.Install.Installer)" />
+        <element api="P:System.Configuration.Install.InstallerCollection.Item(System.Int32)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.OnInsert(System.Int32,System.Object)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.OnRemove(System.Int32,System.Object)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.OnSet(System.Int32,System.Object,System.Object)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.Remove(System.Configuration.Install.Installer)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" />
+      </containers>
+      <file name="a5a4c339-d791-2f12-d69e-045829488d43" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.InstallerCollection">
+      <topicdata name="InstallerCollection" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.InstallerCollection" />
+      <apidata name="InstallerCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Collections.CollectionBase.Clear" />
+        <element api="M:System.Collections.CollectionBase.GetEnumerator" />
+        <element api="M:System.Collections.CollectionBase.OnClear" />
+        <element api="M:System.Collections.CollectionBase.OnClearComplete" />
+        <element api="M:System.Collections.CollectionBase.OnInsertComplete(System.Int32,System.Object)" />
+        <element api="M:System.Collections.CollectionBase.OnRemoveComplete(System.Int32,System.Object)" />
+        <element api="M:System.Collections.CollectionBase.OnSetComplete(System.Int32,System.Object,System.Object)" />
+        <element api="M:System.Collections.CollectionBase.OnValidate(System.Object)" />
+        <element api="M:System.Collections.CollectionBase.RemoveAt(System.Int32)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#Add(System.Object)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#Contains(System.Object)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#IndexOf(System.Object)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#Insert(System.Int32,System.Object)" />
+        <element api="M:System.Collections.CollectionBase.System#Collections#IList#Remove(System.Object)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.Add(System.Configuration.Install.Installer)" />
+        <element api="Overload:System.Configuration.Install.InstallerCollection.AddRange">
+          <element api="M:System.Configuration.Install.InstallerCollection.AddRange(System.Configuration.Install.Installer[])" />
+          <element api="M:System.Configuration.Install.InstallerCollection.AddRange(System.Configuration.Install.InstallerCollection)" />
+        </element>
+        <element api="M:System.Configuration.Install.InstallerCollection.Contains(System.Configuration.Install.Installer)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.CopyTo(System.Configuration.Install.Installer[],System.Int32)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.IndexOf(System.Configuration.Install.Installer)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.Insert(System.Int32,System.Configuration.Install.Installer)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.OnInsert(System.Int32,System.Object)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.OnRemove(System.Int32,System.Object)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.OnSet(System.Int32,System.Object,System.Object)" />
+        <element api="M:System.Configuration.Install.InstallerCollection.Remove(System.Configuration.Install.Installer)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" />
+      </containers>
+      <file name="ca795c9b-52d8-8bd3-cc34-0d2c7d172866" />
+    </api>
+    <api id="Properties.T:System.Configuration.Install.InstallerCollection">
+      <topicdata name="InstallerCollection" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Install.InstallerCollection" />
+      <apidata name="InstallerCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.CollectionBase.Capacity" />
+        <element api="P:System.Collections.CollectionBase.Count" />
+        <element api="P:System.Collections.CollectionBase.InnerList" />
+        <element api="P:System.Collections.CollectionBase.List" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#ICollection#SyncRoot" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#IList#IsFixedSize" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#IList#IsReadOnly" />
+        <element api="P:System.Collections.CollectionBase.System#Collections#IList#Item(System.Int32)" />
+        <element api="P:System.Configuration.Install.InstallerCollection.Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" />
+      </containers>
+      <file name="ff0aab15-69e4-42ed-418c-51c3ab09e179" />
+    </api>
+    <api id="Overload:System.Configuration.Install.InstallerCollection.AddRange">
+      <topicdata name="AddRange" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Configuration.Install.InstallerCollection" />
+      <apidata name="AddRange" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Configuration.Install.InstallerCollection.AddRange(System.Configuration.Install.Installer[])" />
+        <element api="M:System.Configuration.Install.InstallerCollection.AddRange(System.Configuration.Install.InstallerCollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="28d575d8-2498-b057-f70b-8567ec19f361" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.Add(System.Configuration.Install.Installer)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="af4fae10-8c3a-809e-fc3b-ad1c15a5b94f" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.AddRange(System.Configuration.Install.Installer[])">
+      <topicdata group="api" />
+      <apidata name="AddRange" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Configuration.Install.InstallerCollection.AddRange" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Configuration.Install.Installer" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="2729aba5-ae58-b263-595c-450219cd1ea6" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.AddRange(System.Configuration.Install.InstallerCollection)">
+      <topicdata group="api" />
+      <apidata name="AddRange" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Configuration.Install.InstallerCollection.AddRange" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="68882830-880e-c2f5-249f-d83eb45da273" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.Contains(System.Configuration.Install.Installer)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="98de2a20-e3f9-b1e3-4620-84a7b294c949" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.CopyTo(System.Configuration.Install.Installer[],System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="array">
+          <arrayOf rank="1">
+            <type api="T:System.Configuration.Install.Installer" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="2581efd4-6f91-2734-2b09-75c61bf96807" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.IndexOf(System.Configuration.Install.Installer)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="4c07329b-d1a5-5c61-4203-ecae43193e02" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.Insert(System.Int32,System.Configuration.Install.Installer)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="e00253fd-ad00-d6d3-680f-fd562c1d6ce5" />
+    </api>
+    <api id="P:System.Configuration.Install.InstallerCollection.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Configuration.Install.Installer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="b47908b6-1c6f-46d3-158c-6dadf772fcb7" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.OnInsert(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="OnInsert" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Collections.CollectionBase.OnInsert(System.Int32,System.Object)">
+          <type api="T:System.Collections.CollectionBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="f6ff5221-7c29-7dde-d525-3467b02fabd7" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.OnRemove(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="OnRemove" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Collections.CollectionBase.OnRemove(System.Int32,System.Object)">
+          <type api="T:System.Collections.CollectionBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="fa271d26-c0b4-3d05-4c12-9613663efe8c" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.OnSet(System.Int32,System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="OnSet" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Collections.CollectionBase.OnSet(System.Int32,System.Object,System.Object)">
+          <type api="T:System.Collections.CollectionBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="oldValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="newValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="3f0234bb-ebee-085a-0fa0-efb65c8bdac4" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallerCollection.Remove(System.Configuration.Install.Installer)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallerCollection" ref="true" />
+      </containers>
+      <file name="3c6be20b-cedb-4271-a7d8-5d8080f86edd" />
+    </api>
+    <api id="T:System.Configuration.Install.InstallEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.InstallEventArgs" />
+      <apidata name="InstallEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.InstallEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="e09d2624-8091-4338-278f-aef2264255e3" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.InstallEventArgs">
+      <topicdata name="InstallEventArgs" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.InstallEventArgs" />
+      <apidata name="InstallEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.InstallEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Configuration.Install.InstallEventArgs.#ctor">
+          <element api="M:System.Configuration.Install.InstallEventArgs.#ctor" />
+          <element api="M:System.Configuration.Install.InstallEventArgs.#ctor(System.Collections.IDictionary)" />
+        </element>
+        <element api="P:System.Configuration.Install.InstallEventArgs.SavedState" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallEventArgs" />
+      </containers>
+      <file name="112d3ed9-5339-d9b1-8538-9cb9874eae49" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.InstallEventArgs">
+      <topicdata name="InstallEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.InstallEventArgs" />
+      <apidata name="InstallEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.InstallEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallEventArgs" />
+      </containers>
+      <file name="9c086ba2-098a-3f75-cc06-e80e2943f3da" />
+    </api>
+    <api id="Properties.T:System.Configuration.Install.InstallEventArgs">
+      <topicdata name="InstallEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Install.InstallEventArgs" />
+      <apidata name="InstallEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.InstallEventArgs.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.Install.InstallEventArgs.SavedState" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallEventArgs" />
+      </containers>
+      <file name="d34bd7ca-4181-96d2-19af-74ea2c421957" />
+    </api>
+    <api id="Overload:System.Configuration.Install.InstallEventArgs.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Configuration.Install.InstallEventArgs" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Configuration.Install.InstallEventArgs.#ctor" />
+        <element api="M:System.Configuration.Install.InstallEventArgs.#ctor(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </containers>
+      <file name="7368eee3-4578-dc39-925a-ab522d0fba3c" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.InstallEventArgs.#ctor" />
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </containers>
+      <file name="2b98e6c8-1938-d0ea-587d-b1256f72f09c" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallEventArgs.#ctor(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.InstallEventArgs.#ctor" />
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </containers>
+      <file name="9a6b39fb-3954-ba0c-6657-ed55488d4e86" />
+    </api>
+    <api id="P:System.Configuration.Install.InstallEventArgs.SavedState">
+      <topicdata group="api" />
+      <apidata name="SavedState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SavedState" />
+      <returns>
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+      </containers>
+      <file name="a21eb32b-fc1a-5ff8-e59c-02fe06f20e23" />
+    </api>
+    <api id="T:System.Configuration.Install.InstallEventHandler">
+      <topicdata group="api" />
+      <apidata name="InstallEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Configuration.Install.InstallEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="878234ab-ba81-8b39-529b-080993df41a4" />
+    </api>
+    <api id="T:System.Configuration.Install.InstallException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.InstallException" />
+      <apidata name="InstallException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Install.InstallException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="58b38ffd-77ee-3604-14f4-825eb817be8a" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.InstallException">
+      <topicdata name="InstallException" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.InstallException" />
+      <apidata name="InstallException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Install.InstallException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Configuration.Install.InstallException.#ctor">
+          <element api="M:System.Configuration.Install.InstallException.#ctor" />
+          <element api="M:System.Configuration.Install.InstallException.#ctor(System.String)" />
+          <element api="M:System.Configuration.Install.InstallException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:System.Configuration.Install.InstallException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" />
+      </containers>
+      <file name="77c60e05-ec3d-e0ae-148a-47b86fafc1ca" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.InstallException">
+      <topicdata name="InstallException" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.InstallException" />
+      <apidata name="InstallException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Install.InstallException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" />
+      </containers>
+      <file name="d68a0964-6286-872c-49e7-8b6897bd10ae" />
+    </api>
+    <api id="Properties.T:System.Configuration.Install.InstallException">
+      <topicdata name="InstallException" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Install.InstallException" />
+      <apidata name="InstallException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Install.InstallException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" />
+      </containers>
+      <file name="807efdf6-64cb-4da2-0781-4ccaa3533b9f" />
+    </api>
+    <api id="Events.T:System.Configuration.Install.InstallException">
+      <topicdata name="InstallException" group="list" subgroup="Events" typeTopicId="T:System.Configuration.Install.InstallException" />
+      <apidata name="InstallException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Install.InstallException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" />
+      </containers>
+      <file name="9d9dc6fd-ef89-4ba5-196d-9fb3bf98927a" />
+    </api>
+    <api id="Overload:System.Configuration.Install.InstallException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Configuration.Install.InstallException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Configuration.Install.InstallException.#ctor" />
+        <element api="M:System.Configuration.Install.InstallException.#ctor(System.String)" />
+        <element api="M:System.Configuration.Install.InstallException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Configuration.Install.InstallException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" ref="true" />
+      </containers>
+      <file name="80b848aa-0bc1-cc5c-11c9-9674e2d9a09e" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.InstallException.#ctor" />
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" ref="true" />
+      </containers>
+      <file name="74c77848-3f7b-a871-e121-938614abc1ce" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Configuration.Install.InstallException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" ref="true" />
+      </containers>
+      <file name="902a1443-731a-fe54-37fd-56808bafa9cb" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.InstallException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" ref="true" />
+      </containers>
+      <file name="60b49734-96f2-6319-8462-73d0f3ad5229" />
+    </api>
+    <api id="M:System.Configuration.Install.InstallException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Install.InstallException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.InstallException" ref="true" />
+      </containers>
+      <file name="cdb6e34d-3b4f-b4df-4d72-f3a4931ff3ff" />
+    </api>
+    <api id="T:System.Configuration.Install.ManagedInstallerClass">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.ManagedInstallerClass" />
+      <apidata name="ManagedInstallerClass" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.ManagedInstallerClass.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Configuration.Install.IManagedInstaller" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>42EB0342-0393-448f-84AA-D4BEB0283595</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0ead6ab3-719f-b40a-8781-c5d432806d34" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.ManagedInstallerClass">
+      <topicdata name="ManagedInstallerClass" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.ManagedInstallerClass" />
+      <apidata name="ManagedInstallerClass" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.ManagedInstallerClass.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.Install.ManagedInstallerClass.#ctor" />
+        <element api="M:System.Configuration.Install.ManagedInstallerClass.InstallHelper(System.String[])" />
+        <element api="M:System.Configuration.Install.ManagedInstallerClass.System#Configuration#Install#IManagedInstaller#ManagedInstall(System.String,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ManagedInstallerClass" />
+      </containers>
+      <file name="7c8f84d5-d41f-2834-0c21-3478d0394a82" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.ManagedInstallerClass">
+      <topicdata name="ManagedInstallerClass" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.ManagedInstallerClass" />
+      <apidata name="ManagedInstallerClass" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.ManagedInstallerClass.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.Install.ManagedInstallerClass.InstallHelper(System.String[])" />
+        <element api="M:System.Configuration.Install.ManagedInstallerClass.System#Configuration#Install#IManagedInstaller#ManagedInstall(System.String,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ManagedInstallerClass" />
+      </containers>
+      <file name="ab31c8b4-08f5-f494-646f-e4b1f8c213fa" />
+    </api>
+    <api id="M:System.Configuration.Install.ManagedInstallerClass.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ManagedInstallerClass" ref="true" />
+      </containers>
+      <file name="307ff0ae-4ab4-4239-8c65-08bd121aaf93" />
+    </api>
+    <api id="M:System.Configuration.Install.ManagedInstallerClass.InstallHelper(System.String[])">
+      <topicdata group="api" />
+      <apidata name="InstallHelper" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="args">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ManagedInstallerClass" ref="true" />
+      </containers>
+      <file name="fa48e155-0eee-283a-393b-a01d6c349551" />
+    </api>
+    <api id="M:System.Configuration.Install.ManagedInstallerClass.System#Configuration#Install#IManagedInstaller#ManagedInstall(System.String,System.Int32)">
+      <topicdata group="api" eiiName="IManagedInstaller.ManagedInstall" />
+      <apidata name="ManagedInstall" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="argString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="hInstall">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Configuration.Install.IManagedInstaller.ManagedInstall(System.String,System.Int32)">
+          <type api="T:System.Configuration.Install.IManagedInstaller" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.ManagedInstallerClass" ref="true" />
+      </containers>
+      <file name="f469acef-8835-14b1-2d65-83c88a9c3990" />
+    </api>
+    <api id="T:System.Configuration.Install.TransactedInstaller">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Install.TransactedInstaller" />
+      <apidata name="TransactedInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.TransactedInstaller.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="14d215cb-f6c5-a01e-2fb6-ea35186183f1" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Install.TransactedInstaller">
+      <topicdata name="TransactedInstaller" group="list" subgroup="members" typeTopicId="T:System.Configuration.Install.TransactedInstaller" />
+      <apidata name="TransactedInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.TransactedInstaller.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Configuration.Install.TransactedInstaller.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.Configuration.Install.TransactedInstaller.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="E:System.Configuration.Install.Installer.AfterInstall" />
+        <element api="E:System.Configuration.Install.Installer.AfterRollback" />
+        <element api="E:System.Configuration.Install.Installer.AfterUninstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeInstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeRollback" />
+        <element api="E:System.Configuration.Install.Installer.BeforeUninstall" />
+        <element api="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)" />
+        <element api="E:System.Configuration.Install.Installer.Committed" />
+        <element api="E:System.Configuration.Install.Installer.Committing" />
+        <element api="P:System.Configuration.Install.Installer.Context" />
+        <element api="P:System.Configuration.Install.Installer.HelpText" />
+        <element api="P:System.Configuration.Install.Installer.Installers" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)" />
+        <element api="P:System.Configuration.Install.Installer.Parent" />
+        <element api="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.TransactedInstaller.#ctor" />
+        <element api="M:System.Configuration.Install.TransactedInstaller.Install(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.TransactedInstaller.Uninstall(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.TransactedInstaller" />
+      </containers>
+      <file name="37786d6b-07ed-a242-197c-c5f6ca5ee45e" />
+    </api>
+    <api id="Methods.T:System.Configuration.Install.TransactedInstaller">
+      <topicdata name="TransactedInstaller" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Install.TransactedInstaller" />
+      <apidata name="TransactedInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.TransactedInstaller.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Configuration.Install.TransactedInstaller.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Configuration.Install.TransactedInstaller.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Configuration.Install.Installer.Commit(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnAfterUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeInstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeRollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnBeforeUninstall(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitted(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.OnCommitting(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.Installer.Rollback(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.TransactedInstaller.Install(System.Collections.IDictionary)" />
+        <element api="M:System.Configuration.Install.TransactedInstaller.Uninstall(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.TransactedInstaller" />
+      </containers>
+      <file name="55380c8a-1e2e-7030-9aee-98b6e33a427c" />
+    </api>
+    <api id="Properties.T:System.Configuration.Install.TransactedInstaller">
+      <topicdata name="TransactedInstaller" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Install.TransactedInstaller" />
+      <apidata name="TransactedInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.TransactedInstaller.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="P:System.Configuration.Install.Installer.Context" />
+        <element api="P:System.Configuration.Install.Installer.HelpText" />
+        <element api="P:System.Configuration.Install.Installer.Installers" />
+        <element api="P:System.Configuration.Install.Installer.Parent" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.TransactedInstaller" />
+      </containers>
+      <file name="589fffcd-ef87-8ba6-6639-7d0a0e6cf4bc" />
+    </api>
+    <api id="Events.T:System.Configuration.Install.TransactedInstaller">
+      <topicdata name="TransactedInstaller" group="list" subgroup="Events" typeTopicId="T:System.Configuration.Install.TransactedInstaller" />
+      <apidata name="TransactedInstaller" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Install.TransactedInstaller.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="E:System.Configuration.Install.Installer.AfterInstall" />
+        <element api="E:System.Configuration.Install.Installer.AfterRollback" />
+        <element api="E:System.Configuration.Install.Installer.AfterUninstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeInstall" />
+        <element api="E:System.Configuration.Install.Installer.BeforeRollback" />
+        <element api="E:System.Configuration.Install.Installer.BeforeUninstall" />
+        <element api="E:System.Configuration.Install.Installer.Committed" />
+        <element api="E:System.Configuration.Install.Installer.Committing" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.TransactedInstaller" />
+      </containers>
+      <file name="2709162b-7b43-21ef-79d3-48953f6cbac9" />
+    </api>
+    <api id="M:System.Configuration.Install.TransactedInstaller.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.TransactedInstaller" ref="true" />
+      </containers>
+      <file name="541eb0ab-eaac-bdc6-b960-82f19c1e56fd" />
+    </api>
+    <api id="M:System.Configuration.Install.TransactedInstaller.Install(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Install" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.Install.Installer.Install(System.Collections.IDictionary)">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.TransactedInstaller" ref="true" />
+      </containers>
+      <file name="94c429a2-e439-3f31-7b62-783f4658a391" />
+    </api>
+    <api id="M:System.Configuration.Install.TransactedInstaller.Uninstall(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="Uninstall" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Configuration.Install.Installer.Uninstall(System.Collections.IDictionary)">
+          <type api="T:System.Configuration.Install.Installer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="savedState">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.TransactedInstaller" ref="true" />
+      </containers>
+      <file name="f7ecaff9-bd67-38af-5598-e33c1bfb3430" />
+    </api>
+    <api id="T:System.Configuration.Install.UninstallAction">
+      <topicdata group="api" />
+      <apidata name="UninstallAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Configuration.Install.UninstallAction.Remove" />
+        <element api="F:System.Configuration.Install.UninstallAction.NoAction" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+      </containers>
+      <file name="96946960-e662-b417-1f90-959dc27ff0f8" />
+    </api>
+    <api id="F:System.Configuration.Install.UninstallAction.NoAction">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoAction" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Install.UninstallAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.UninstallAction" ref="false" />
+      </containers>
+      <file name="4a6dcad8-3491-0465-7433-ab0c0120315d" />
+    </api>
+    <api id="F:System.Configuration.Install.UninstallAction.Remove">
+      <topicdata group="api" notopic="" />
+      <apidata name="Remove" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Install.UninstallAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Configuration.Install" module="System.Configuration.Install" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Configuration.Install" />
+        <type api="T:System.Configuration.Install.UninstallAction" ref="false" />
+      </containers>
+      <file name="aa435ee5-433c-83b4-fbde-2090753c30fd" />
+    </api>
+  </apis>
+</reflection>

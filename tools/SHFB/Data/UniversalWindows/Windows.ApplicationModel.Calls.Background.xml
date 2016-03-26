@@ -1,0 +1,1668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.ApplicationModel.Calls.CallsPhoneContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Calls.Background">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Calls.Background" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason" />
+        <element api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" />
+        <element api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind" />
+        <element api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" />
+        <element api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" />
+        <element api="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" />
+        <element api="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" />
+        <element api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" />
+      </elements>
+      <file name="6fcd1da0-2066-e519-eef9-d7b834711440" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason">
+      <topicdata group="api" />
+      <apidata name="PhoneCallBlockedReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason.InCallBlockingList" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason.PrivateNumber" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason.UnknownNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="62256b22-801e-f93a-15d1-14b9ef14ac3d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason.InCallBlockingList">
+      <topicdata group="api" notopic="" />
+      <apidata name="InCallBlockingList" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason" ref="false" />
+      </containers>
+      <file name="a5691365-4234-f037-de62-227b0dfbdee6" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason.PrivateNumber">
+      <topicdata group="api" notopic="" />
+      <apidata name="PrivateNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason" ref="false" />
+      </containers>
+      <file name="0437338b-b48e-6a45-2c17-dc26f5903f88" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason.UnknownNumber">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnknownNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason" ref="false" />
+      </containers>
+      <file name="3c8e450a-d6b3-0422-9b3f-845d94e7e510" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" />
+      <apidata name="PhoneCallBlockedTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ee650392-5e61-73e3-4ed4-4ab7f229f79c" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails">
+      <topicdata name="PhoneCallBlockedTriggerDetails" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" />
+      <apidata name="PhoneCallBlockedTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.CallBlockedReason" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.LineId" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.PhoneNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" />
+      </containers>
+      <file name="3cf48cb3-db9b-4630-e94e-db2f8c91ac6b" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails">
+      <topicdata name="PhoneCallBlockedTriggerDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" />
+      <apidata name="PhoneCallBlockedTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" />
+      </containers>
+      <file name="39de9249-548a-0285-a4b1-cbf96a9122ae" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails">
+      <topicdata name="PhoneCallBlockedTriggerDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" />
+      <apidata name="PhoneCallBlockedTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.CallBlockedReason" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.LineId" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.PhoneNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" />
+      </containers>
+      <file name="19943feb-dc22-191a-02a6-5474ffd001d6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.CallBlockedReason">
+      <topicdata group="api" />
+      <apidata name="CallBlockedReason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CallBlockedReason" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" ref="true" />
+      </containers>
+      <file name="71b1081e-c8c1-004d-0cb7-ba04bf8b4c40" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.LineId">
+      <topicdata group="api" />
+      <apidata name="LineId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LineId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" ref="true" />
+      </containers>
+      <file name="b6f29624-e795-2f69-7f17-842148260fb2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails.PhoneNumber">
+      <topicdata group="api" />
+      <apidata name="PhoneNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PhoneNumber" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallBlockedTriggerDetails" ref="true" />
+      </containers>
+      <file name="0943cfcf-3741-7418-bae5-6c7849d656f1" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" />
+      <apidata name="PhoneCallOriginDataRequestTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1a77edf0-ad12-c474-3468-a8d2c4e70451" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails">
+      <topicdata name="PhoneCallOriginDataRequestTriggerDetails" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" />
+      <apidata name="PhoneCallOriginDataRequestTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails.PhoneNumber" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails.RequestId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" />
+      </containers>
+      <file name="1bf37249-3ebf-1465-4c1c-1512bfed5837" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails">
+      <topicdata name="PhoneCallOriginDataRequestTriggerDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" />
+      <apidata name="PhoneCallOriginDataRequestTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" />
+      </containers>
+      <file name="19d9cd84-6a1b-2ed3-53b7-7ff23a6ec93f" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails">
+      <topicdata name="PhoneCallOriginDataRequestTriggerDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" />
+      <apidata name="PhoneCallOriginDataRequestTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails.PhoneNumber" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails.RequestId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" />
+      </containers>
+      <file name="065dd5b3-d0ea-0341-cf57-265035f8760f" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails.PhoneNumber">
+      <topicdata group="api" />
+      <apidata name="PhoneNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PhoneNumber" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" ref="true" />
+      </containers>
+      <file name="16155f5e-6e0f-13c1-ceb4-4c6627f4f1d0" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails.RequestId">
+      <topicdata group="api" />
+      <apidata name="RequestId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequestId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneCallOriginDataRequestTriggerDetails" ref="true" />
+      </containers>
+      <file name="495ce485-3903-b03f-c44c-2c9e0a0e9040" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" />
+      <apidata name="PhoneLineChangedTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a5881b59-672b-f991-3d81-cc72448cea6a" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails">
+      <topicdata name="PhoneLineChangedTriggerDetails" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" />
+      <apidata name="PhoneLineChangedTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.ChangeType" />
+        <element api="M:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.HasLinePropertyChanged(Windows.ApplicationModel.Calls.Background.PhoneLineProperties)" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.LineId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" />
+      </containers>
+      <file name="f622528c-b5ec-4c87-1564-45a56d6d3903" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails">
+      <topicdata name="PhoneLineChangedTriggerDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" />
+      <apidata name="PhoneLineChangedTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.HasLinePropertyChanged(Windows.ApplicationModel.Calls.Background.PhoneLineProperties)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" />
+      </containers>
+      <file name="032c5005-0a39-d93e-33c9-0baeaaaceaac" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails">
+      <topicdata name="PhoneLineChangedTriggerDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" />
+      <apidata name="PhoneLineChangedTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.ChangeType" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.LineId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" />
+      </containers>
+      <file name="f20a7b28-4fe6-747c-af08-857ccc1bcf2e" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.ChangeType">
+      <topicdata group="api" />
+      <apidata name="ChangeType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChangeType" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" ref="true" />
+      </containers>
+      <file name="b5f480af-64ec-a4e0-8b40-adcdf6ab466a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.HasLinePropertyChanged(Windows.ApplicationModel.Calls.Background.PhoneLineProperties)">
+      <topicdata group="api" />
+      <apidata name="HasLinePropertyChanged" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="lineProperty" in="true">
+          <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" ref="true" />
+      </containers>
+      <file name="fb482c16-53f3-1af8-b60e-f06b16f220a5" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails.LineId">
+      <topicdata group="api" />
+      <apidata name="LineId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LineId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangedTriggerDetails" ref="true" />
+      </containers>
+      <file name="8489f48f-7a9a-e090-c424-0deb5198dd9b" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind">
+      <topicdata group="api" />
+      <apidata name="PhoneLineChangeKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind.Added" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind.Removed" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind.PropertiesChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fd1606ab-859f-f7ae-3432-46417da33549" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind.Added">
+      <topicdata group="api" notopic="" />
+      <apidata name="Added" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind" ref="false" />
+      </containers>
+      <file name="375f75eb-f5f6-8d21-9f60-4c5924ba47bc" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind.PropertiesChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="PropertiesChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind" ref="false" />
+      </containers>
+      <file name="6263dcf0-9e47-8f57-2c5f-2e1172871817" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind.Removed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Removed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineChangeKind" ref="false" />
+      </containers>
+      <file name="cadf8bbb-6b50-a485-c788-4ae7e0ef4b00" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties">
+      <topicdata group="api" />
+      <apidata name="PhoneLineProperties" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.None" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.BrandingOptions" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.CanDial" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.CellularDetails" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.DisplayColor" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.DisplayName" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.NetworkName" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.NetworkState" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.Transport" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.Voicemail" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e94ba402-422f-4fed-376d-94657880d426" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.BrandingOptions">
+      <topicdata group="api" notopic="" />
+      <apidata name="BrandingOptions" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="d8f6977d-7654-7cf3-0b3f-379c8def426b" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.CanDial">
+      <topicdata group="api" notopic="" />
+      <apidata name="CanDial" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="ef7782d2-6214-38a5-dfbc-de2371e5ebcf" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.CellularDetails">
+      <topicdata group="api" notopic="" />
+      <apidata name="CellularDetails" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="5a0e0a50-5054-823e-91d0-f629d00f4736" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.DisplayColor">
+      <topicdata group="api" notopic="" />
+      <apidata name="DisplayColor" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="b00a3caf-690c-1c4d-a78e-e002a6c96f6b" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.DisplayName">
+      <topicdata group="api" notopic="" />
+      <apidata name="DisplayName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="c05b2924-5c86-8fd3-54b0-879fe5d85b6f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.NetworkName">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="16b4b0fd-998e-a8ec-ae54-4d3e56c0d768" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.NetworkState">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkState" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="1de23092-1901-fc4d-f48c-650d2348e8ae" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="df8fea47-f0dc-e1d2-eb26-5b3055b5f1df" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.Transport">
+      <topicdata group="api" notopic="" />
+      <apidata name="Transport" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="a50c35b7-e810-878d-a06d-e50f59d17b88" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneLineProperties.Voicemail">
+      <topicdata group="api" notopic="" />
+      <apidata name="Voicemail" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneLineProperties" ref="false" />
+      </containers>
+      <file name="1b99223f-26ad-9a88-0375-e962aa115aae" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" />
+      <apidata name="PhoneNewVoicemailMessageTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="69c6dabc-f4ca-09bd-2413-8b9d4f88f6f9" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails">
+      <topicdata name="PhoneNewVoicemailMessageTriggerDetails" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" />
+      <apidata name="PhoneNewVoicemailMessageTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.LineId" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.OperatorMessage" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.VoicemailCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" />
+      </containers>
+      <file name="84aa2407-21c6-9419-ba10-3c9f9988436e" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails">
+      <topicdata name="PhoneNewVoicemailMessageTriggerDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" />
+      <apidata name="PhoneNewVoicemailMessageTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" />
+      </containers>
+      <file name="a8343c3c-8a53-84e6-f7ae-4a2d88303088" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails">
+      <topicdata name="PhoneNewVoicemailMessageTriggerDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" />
+      <apidata name="PhoneNewVoicemailMessageTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.LineId" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.OperatorMessage" />
+        <element api="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.VoicemailCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" />
+      </containers>
+      <file name="1d93f3d1-9bbe-b18a-6e86-dc58d2a8fca6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.LineId">
+      <topicdata group="api" />
+      <apidata name="LineId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LineId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" ref="true" />
+      </containers>
+      <file name="a7bcb4ee-678a-e6c5-5b44-04abb1354ec6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.OperatorMessage">
+      <topicdata group="api" />
+      <apidata name="OperatorMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OperatorMessage" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" ref="true" />
+      </containers>
+      <file name="ee446a34-6c54-a6e3-9764-415dea6d0c15" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails.VoicemailCount">
+      <topicdata group="api" />
+      <apidata name="VoicemailCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VoicemailCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneNewVoicemailMessageTriggerDetails" ref="true" />
+      </containers>
+      <file name="1c1bf99b-c77a-d004-41be-1c72ed24c48a" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType">
+      <topicdata group="api" />
+      <apidata name="PhoneTriggerType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.NewVoicemailMessage" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.CallHistoryChanged" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.LineChanged" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.AirplaneModeDisabledForEmergencyCall" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.CallOriginDataRequest" />
+        <element api="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.CallBlocked" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="692f48ad-7a26-246e-84a1-223c47dc2550" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.AirplaneModeDisabledForEmergencyCall">
+      <topicdata group="api" notopic="" />
+      <apidata name="AirplaneModeDisabledForEmergencyCall" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </containers>
+      <file name="e2ef8d95-c7ae-03f5-b965-d18e867b02ca" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.CallBlocked">
+      <topicdata group="api" notopic="" />
+      <apidata name="CallBlocked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </containers>
+      <file name="85b7d9da-d88c-27b3-23b7-ab2f78343bb9" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.CallHistoryChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="CallHistoryChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </containers>
+      <file name="d0956bf0-9f2b-debd-2c77-df98dc4a449f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.CallOriginDataRequest">
+      <topicdata group="api" notopic="" />
+      <apidata name="CallOriginDataRequest" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </containers>
+      <file name="ab2a9305-ac3e-45ab-1627-92ded8ee8858" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.LineChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="LineChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </containers>
+      <file name="a42888ee-ca88-0871-5d1c-5482443b6779" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Calls.Background.PhoneTriggerType.NewVoicemailMessage">
+      <topicdata group="api" notopic="" />
+      <apidata name="NewVoicemailMessage" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Background" />
+        <type api="T:Windows.ApplicationModel.Calls.Background.PhoneTriggerType" ref="false" />
+      </containers>
+      <file name="b4fd3486-4110-09aa-a83d-31031757a8c0" />
+    </api>
+  </apis>
+</reflection>

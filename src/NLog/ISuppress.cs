@@ -82,11 +82,13 @@ namespace NLog
         /// <param name="task">The task for which to log an error if it does not run to completion.</param>
         /// <returns>A task that completes in the <see cref="TaskStatus.RanToCompletion"/> state when <paramref name="task"/> completes.</returns>
         Task SwallowAsync(Task task);
- 
+
         /// <summary>
         /// Runs async action. If the action throws, the exception is logged at <c>Error</c> level. The exception is not propagated outside of this method.
         /// </summary>
         /// <param name="asyncAction">Async action to execute.</param>
+        /// <returns>A task that completes in the <see cref="TaskStatus.RanToCompletion"/> state when <paramref name="asyncAction"/> completes.</returns>
+
         Task SwallowAsync(Func<Task> asyncAction);
 
         /// <summary>

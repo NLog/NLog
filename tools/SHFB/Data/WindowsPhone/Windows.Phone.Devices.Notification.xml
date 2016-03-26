@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.Devices.Notification">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.Devices.Notification" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.Devices.Notification.VibrationDevice" />
+      </elements>
+      <file name="aafa2b6d-939a-1733-4283-a44e95012e4e" />
+    </api>
+    <api id="T:Windows.Phone.Devices.Notification.VibrationDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.Devices.Notification.VibrationDevice" />
+      <apidata name="VibrationDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Phone.Devices.Notification.IVibrationDevice" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Notification" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dac6cd82-235b-cc01-7a66-662602cb6176" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.Devices.Notification.VibrationDevice">
+      <topicdata name="VibrationDevice" group="list" subgroup="members" typeTopicId="T:Windows.Phone.Devices.Notification.VibrationDevice" />
+      <apidata name="VibrationDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Phone.Devices.Notification.VibrationDevice.Cancel" />
+        <element api="M:Windows.Phone.Devices.Notification.VibrationDevice.GetDefault" />
+        <element api="M:Windows.Phone.Devices.Notification.VibrationDevice.Vibrate(Windows.Foundation.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Notification" />
+        <type api="T:Windows.Phone.Devices.Notification.VibrationDevice" />
+      </containers>
+      <file name="c4056628-9b4f-73d6-03da-088d3b9a5039" />
+    </api>
+    <api id="Methods.T:Windows.Phone.Devices.Notification.VibrationDevice">
+      <topicdata name="VibrationDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.Devices.Notification.VibrationDevice" />
+      <apidata name="VibrationDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Phone.Devices.Notification.VibrationDevice.Cancel" />
+        <element api="M:Windows.Phone.Devices.Notification.VibrationDevice.GetDefault" />
+        <element api="M:Windows.Phone.Devices.Notification.VibrationDevice.Vibrate(Windows.Foundation.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Notification" />
+        <type api="T:Windows.Phone.Devices.Notification.VibrationDevice" />
+      </containers>
+      <file name="e8232fb8-999b-15ce-620c-ee57da4cf41f" />
+    </api>
+    <api id="M:Windows.Phone.Devices.Notification.VibrationDevice.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Notification" />
+        <type api="T:Windows.Phone.Devices.Notification.VibrationDevice" ref="true" />
+      </containers>
+      <file name="67083343-48dd-082a-942d-b446095b6b2b" />
+    </api>
+    <api id="M:Windows.Phone.Devices.Notification.VibrationDevice.GetDefault">
+      <topicdata group="api" />
+      <apidata name="GetDefault" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Phone.Devices.Notification.VibrationDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Notification" />
+        <type api="T:Windows.Phone.Devices.Notification.VibrationDevice" ref="true" />
+      </containers>
+      <file name="daf3dc8d-2580-c922-389b-681d7564a606" />
+    </api>
+    <api id="M:Windows.Phone.Devices.Notification.VibrationDevice.Vibrate(Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="Vibrate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="duration" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Notification" />
+        <type api="T:Windows.Phone.Devices.Notification.VibrationDevice" ref="true" />
+      </containers>
+      <file name="4b2f567e-f731-a6d4-f7c2-b70555d75568" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,3343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.IO.Compression">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.Compression.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.Compression.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.Compression.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.IO.Compression.ZipFile">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.Compression.ZipFile</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.Compression.ZipFile</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.Compression.ZipFile</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.IO.Compression">
+      <topicdata group="api" />
+      <apidata name="System.IO.Compression" group="namespace" />
+      <elements>
+        <element api="T:System.IO.Compression.CompressionLevel" />
+        <element api="T:System.IO.Compression.CompressionMode" />
+        <element api="T:System.IO.Compression.DeflateStream" />
+        <element api="T:System.IO.Compression.GZipStream" />
+        <element api="T:System.IO.Compression.ZipArchive" />
+        <element api="T:System.IO.Compression.ZipArchiveEntry" />
+        <element api="T:System.IO.Compression.ZipArchiveMode" />
+        <element api="T:System.IO.Compression.ZipFile" />
+        <element api="T:System.IO.Compression.ZipFileExtensions" />
+      </elements>
+      <file name="6906b236-71c1-528c-a8a5-217c81a88dd7" />
+    </api>
+    <api id="T:System.IO.Compression.CompressionLevel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.CompressionLevel" />
+      <apidata name="CompressionLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <file name="3e19e7d5-3fa9-d2d5-f847-1ff7d4f1d2d2" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.CompressionLevel">
+      <topicdata name="CompressionLevel" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.CompressionLevel" />
+      <apidata name="CompressionLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.Compression.CompressionLevel.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.IO.Compression.CompressionLevel.Fastest" />
+        <element api="F:System.IO.Compression.CompressionLevel.NoCompression" />
+        <element api="F:System.IO.Compression.CompressionLevel.Optimal" />
+        <element api="F:System.IO.Compression.CompressionLevel.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionLevel" />
+      </containers>
+      <file name="7e93c65a-e792-0e32-0a52-b93557cc2c14" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.CompressionLevel">
+      <topicdata name="CompressionLevel" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.CompressionLevel" />
+      <apidata name="CompressionLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.Compression.CompressionLevel.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionLevel" />
+      </containers>
+      <file name="a0bb30de-fa7e-9271-fe59-ee014dbb3a7f" />
+    </api>
+    <api id="Fields.T:System.IO.Compression.CompressionLevel">
+      <topicdata name="CompressionLevel" group="list" subgroup="Fields" typeTopicId="T:System.IO.Compression.CompressionLevel" />
+      <apidata name="CompressionLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Compression.CompressionLevel.Fastest" />
+        <element api="F:System.IO.Compression.CompressionLevel.NoCompression" />
+        <element api="F:System.IO.Compression.CompressionLevel.Optimal" />
+        <element api="F:System.IO.Compression.CompressionLevel.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionLevel" />
+      </containers>
+      <file name="9f8a3846-b263-0e7f-3d56-ff251149230d" />
+    </api>
+    <api id="F:System.IO.Compression.CompressionLevel.Fastest">
+      <topicdata group="api" />
+      <apidata name="Fastest" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+      </containers>
+      <file name="440f27b0-8a5a-3140-1a33-292207d92c06" />
+    </api>
+    <api id="F:System.IO.Compression.CompressionLevel.NoCompression">
+      <topicdata group="api" />
+      <apidata name="NoCompression" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+      </containers>
+      <file name="1641719b-1f55-3c1f-504d-5c60273bad87" />
+    </api>
+    <api id="F:System.IO.Compression.CompressionLevel.Optimal">
+      <topicdata group="api" />
+      <apidata name="Optimal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+      </containers>
+      <file name="5225196a-4b5e-4aff-7a5a-fd35f691783c" />
+    </api>
+    <api id="F:System.IO.Compression.CompressionLevel.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+      </containers>
+      <file name="c858b5bd-3f45-ac0b-4d60-3e94e4282806" />
+    </api>
+    <api id="T:System.IO.Compression.CompressionMode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.CompressionMode" />
+      <apidata name="CompressionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <file name="91287fe2-748e-c158-89d4-3c0bd6386364" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.CompressionMode">
+      <topicdata name="CompressionMode" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.CompressionMode" />
+      <apidata name="CompressionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.Compression.CompressionMode.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.IO.Compression.CompressionMode.Compress" />
+        <element api="F:System.IO.Compression.CompressionMode.Decompress" />
+        <element api="F:System.IO.Compression.CompressionMode.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionMode" />
+      </containers>
+      <file name="ad1d353d-37e1-616b-1014-add62223a325" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.CompressionMode">
+      <topicdata name="CompressionMode" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.CompressionMode" />
+      <apidata name="CompressionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.Compression.CompressionMode.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionMode" />
+      </containers>
+      <file name="a267af23-442c-35cc-8878-b2e825e34305" />
+    </api>
+    <api id="Fields.T:System.IO.Compression.CompressionMode">
+      <topicdata name="CompressionMode" group="list" subgroup="Fields" typeTopicId="T:System.IO.Compression.CompressionMode" />
+      <apidata name="CompressionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Compression.CompressionMode.Compress" />
+        <element api="F:System.IO.Compression.CompressionMode.Decompress" />
+        <element api="F:System.IO.Compression.CompressionMode.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionMode" />
+      </containers>
+      <file name="592b949e-0c39-1e08-a221-6a57f19a8563" />
+    </api>
+    <api id="F:System.IO.Compression.CompressionMode.Compress">
+      <topicdata group="api" />
+      <apidata name="Compress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+      </containers>
+      <file name="704b6e24-2bcb-bc43-e1ee-6fcdd27fcc1f" />
+    </api>
+    <api id="F:System.IO.Compression.CompressionMode.Decompress">
+      <topicdata group="api" />
+      <apidata name="Decompress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+      </containers>
+      <file name="de5ca435-d7eb-a779-1f91-a7cab1f3674f" />
+    </api>
+    <api id="F:System.IO.Compression.CompressionMode.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+      </containers>
+      <file name="f3da98ec-4056-1be2-d333-e075fe701361" />
+    </api>
+    <api id="T:System.IO.Compression.DeflateStream">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.DeflateStream" />
+      <apidata name="DeflateStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.IO.Stream" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <file name="447b540c-32a9-0138-a5e0-5ddd1e1c9ea4" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.DeflateStream">
+      <topicdata name="DeflateStream" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.DeflateStream" />
+      <apidata name="DeflateStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Stream.CanTimeout" />
+        <element api="Overload:System.IO.Compression.DeflateStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.Compression.DeflateStream.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.Stream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="P:System.IO.Stream.ReadTimeout" />
+        <element api="Overload:System.IO.Compression.DeflateStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="P:System.IO.Stream.WriteTimeout" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.#ctor">
+          <element api="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)" />
+          <element api="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)" />
+          <element api="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)" />
+          <element api="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)" />
+        </element>
+        <element api="P:System.IO.Compression.DeflateStream.BaseStream" />
+        <element api="P:System.IO.Compression.DeflateStream.CanRead" />
+        <element api="P:System.IO.Compression.DeflateStream.CanSeek" />
+        <element api="P:System.IO.Compression.DeflateStream.CanWrite" />
+        <element api="M:System.IO.Compression.DeflateStream.Flush" />
+        <element api="P:System.IO.Compression.DeflateStream.Length" />
+        <element api="P:System.IO.Compression.DeflateStream.Position" />
+        <element api="M:System.IO.Compression.DeflateStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.Compression.DeflateStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.Compression.DeflateStream.SetLength(System.Int64)" />
+        <element api="M:System.IO.Compression.DeflateStream.Write(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" />
+      </containers>
+      <file name="90f35492-d304-0b80-2bdc-9e9e07bf5c7a" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.DeflateStream">
+      <topicdata name="DeflateStream" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.DeflateStream" />
+      <apidata name="DeflateStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.Compression.DeflateStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.Compression.DeflateStream.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.Stream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.Compression.DeflateStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="Overload:System.IO.Compression.DeflateStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.Compression.DeflateStream.Flush" />
+        <element api="M:System.IO.Compression.DeflateStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.Compression.DeflateStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.Compression.DeflateStream.SetLength(System.Int64)" />
+        <element api="M:System.IO.Compression.DeflateStream.Write(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" />
+      </containers>
+      <file name="9feaef5b-c095-c220-2985-d46f2c7b6225" />
+    </api>
+    <api id="Properties.T:System.IO.Compression.DeflateStream">
+      <topicdata name="DeflateStream" group="list" subgroup="Properties" typeTopicId="T:System.IO.Compression.DeflateStream" />
+      <apidata name="DeflateStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Stream.CanTimeout" />
+        <element api="P:System.IO.Stream.ReadTimeout" />
+        <element api="P:System.IO.Stream.WriteTimeout" />
+        <element api="P:System.IO.Compression.DeflateStream.BaseStream" />
+        <element api="P:System.IO.Compression.DeflateStream.CanRead" />
+        <element api="P:System.IO.Compression.DeflateStream.CanSeek" />
+        <element api="P:System.IO.Compression.DeflateStream.CanWrite" />
+        <element api="P:System.IO.Compression.DeflateStream.Length" />
+        <element api="P:System.IO.Compression.DeflateStream.Position" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" />
+      </containers>
+      <file name="312e50a1-d6ce-4f2d-fb73-d132ee674470" />
+    </api>
+    <api id="Overload:System.IO.Compression.DeflateStream.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.DeflateStream" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Stream.Dispose" />
+        <element api="M:System.IO.Compression.DeflateStream.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="84ab8537-9857-a6e7-0bed-70789d223f5a" />
+    </api>
+    <api id="Overload:System.IO.Compression.DeflateStream.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.DeflateStream" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)" />
+        <element api="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)" />
+        <element api="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)" />
+        <element api="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="d1755e72-e657-22f3-127f-475307e21913" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.DeflateStream.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="compressionLevel">
+          <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="c84d9fbb-7572-b8c2-afdc-19211e5afcb5" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.DeflateStream.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="compressionLevel">
+          <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+        </parameter>
+        <parameter name="leaveOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="5ca27485-e969-0cae-6bfd-020458a7c7da" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.DeflateStream.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="626cfb52-6de0-7fb1-467f-a85758b7d6b0" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.DeflateStream.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+        </parameter>
+        <parameter name="leaveOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="54a54305-3322-a828-7a47-61aa81cecf14" />
+    </api>
+    <api id="P:System.IO.Compression.DeflateStream.BaseStream">
+      <topicdata group="api" />
+      <apidata name="BaseStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BaseStream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="8a29df61-fa64-7151-6466-b8d1b111dd38" />
+    </api>
+    <api id="P:System.IO.Compression.DeflateStream.CanRead">
+      <topicdata group="api" />
+      <apidata name="CanRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanRead">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanRead" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="21538dee-4f46-744d-07c2-16cbc8b48c9f" />
+    </api>
+    <api id="P:System.IO.Compression.DeflateStream.CanSeek">
+      <topicdata group="api" />
+      <apidata name="CanSeek" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanSeek">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanSeek" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="8b0faecb-11a9-4029-2b83-eb95edbeafed" />
+    </api>
+    <api id="P:System.IO.Compression.DeflateStream.CanWrite">
+      <topicdata group="api" />
+      <apidata name="CanWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanWrite">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanWrite" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="680a3076-c451-c11c-d4c1-19e4aceeba41" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.IO.Compression.DeflateStream.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Dispose(System.Boolean)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="2ed1d7a6-1e52-9843-af3b-b767fdf3f64e" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Flush">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="034677cf-9d13-ea6f-d10d-4552f74f1608" />
+    </api>
+    <api id="P:System.IO.Compression.DeflateStream.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Length">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Length" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="d1eff7ee-5916-9851-ac31-54c3ac669bbf" />
+    </api>
+    <api id="P:System.IO.Compression.DeflateStream.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Position">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Position" />
+      <setter name="set_Position" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="2aad333f-d677-81b1-d1ac-8bdd88ebe506" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="array">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="68919d84-878f-d4c2-906a-b30a626585cb" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <topicdata group="api" />
+      <apidata name="Seek" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="origin">
+          <type api="T:System.IO.SeekOrigin" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="754a5791-b137-6480-4f4c-58d0fd6722dc" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.SetLength(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="SetLength" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.SetLength(System.Int64)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="d729fb96-4295-3ba9-ee0a-8e49e7a99f4f" />
+    </api>
+    <api id="M:System.IO.Compression.DeflateStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="array">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.DeflateStream" ref="true" />
+      </containers>
+      <file name="da3c33d3-2717-4742-0021-6e0deea0453d" />
+    </api>
+    <api id="T:System.IO.Compression.GZipStream">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.GZipStream" />
+      <apidata name="GZipStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.IO.Stream" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <file name="b48a6518-2f8f-6173-061f-614af5ad45b3" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.GZipStream">
+      <topicdata name="GZipStream" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.GZipStream" />
+      <apidata name="GZipStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Stream.CanTimeout" />
+        <element api="Overload:System.IO.Compression.GZipStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.Compression.GZipStream.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.Stream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="P:System.IO.Stream.ReadTimeout" />
+        <element api="Overload:System.IO.Compression.GZipStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="P:System.IO.Stream.WriteTimeout" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.#ctor">
+          <element api="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)" />
+          <element api="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)" />
+          <element api="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)" />
+          <element api="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)" />
+        </element>
+        <element api="P:System.IO.Compression.GZipStream.BaseStream" />
+        <element api="P:System.IO.Compression.GZipStream.CanRead" />
+        <element api="P:System.IO.Compression.GZipStream.CanSeek" />
+        <element api="P:System.IO.Compression.GZipStream.CanWrite" />
+        <element api="M:System.IO.Compression.GZipStream.Flush" />
+        <element api="P:System.IO.Compression.GZipStream.Length" />
+        <element api="P:System.IO.Compression.GZipStream.Position" />
+        <element api="M:System.IO.Compression.GZipStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.Compression.GZipStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.Compression.GZipStream.SetLength(System.Int64)" />
+        <element api="M:System.IO.Compression.GZipStream.Write(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" />
+      </containers>
+      <file name="7b49cb54-9e46-9237-6a5c-decbd91af16c" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.GZipStream">
+      <topicdata name="GZipStream" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.GZipStream" />
+      <apidata name="GZipStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.Compression.GZipStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.Compression.GZipStream.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.Stream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.Compression.GZipStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="Overload:System.IO.Compression.GZipStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.Compression.GZipStream.Flush" />
+        <element api="M:System.IO.Compression.GZipStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.Compression.GZipStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.Compression.GZipStream.SetLength(System.Int64)" />
+        <element api="M:System.IO.Compression.GZipStream.Write(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" />
+      </containers>
+      <file name="318fb2da-ae0b-889b-cc1d-858073235a6f" />
+    </api>
+    <api id="Properties.T:System.IO.Compression.GZipStream">
+      <topicdata name="GZipStream" group="list" subgroup="Properties" typeTopicId="T:System.IO.Compression.GZipStream" />
+      <apidata name="GZipStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Stream.CanTimeout" />
+        <element api="P:System.IO.Stream.ReadTimeout" />
+        <element api="P:System.IO.Stream.WriteTimeout" />
+        <element api="P:System.IO.Compression.GZipStream.BaseStream" />
+        <element api="P:System.IO.Compression.GZipStream.CanRead" />
+        <element api="P:System.IO.Compression.GZipStream.CanSeek" />
+        <element api="P:System.IO.Compression.GZipStream.CanWrite" />
+        <element api="P:System.IO.Compression.GZipStream.Length" />
+        <element api="P:System.IO.Compression.GZipStream.Position" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" />
+      </containers>
+      <file name="7f7ed810-a77e-acc2-26b8-f7fdd021d098" />
+    </api>
+    <api id="Overload:System.IO.Compression.GZipStream.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.GZipStream" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Stream.Dispose" />
+        <element api="M:System.IO.Compression.GZipStream.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="908cd81f-45a5-978a-821c-7b9dc6bb60a1" />
+    </api>
+    <api id="Overload:System.IO.Compression.GZipStream.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.GZipStream" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)" />
+        <element api="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)" />
+        <element api="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)" />
+        <element api="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="c687601e-83eb-19fd-590f-fd2fcd9277a8" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.GZipStream.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="compressionLevel">
+          <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="dad0d410-9fe3-bb43-32d3-2519a9529a3d" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.GZipStream.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="compressionLevel">
+          <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+        </parameter>
+        <parameter name="leaveOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="51e63fe0-7885-3ba3-1ac6-55d90a8a25a5" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.GZipStream.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="47147394-6549-d9d6-cc34-31f5f45d913d" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.GZipStream.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.CompressionMode" ref="true" />
+        </parameter>
+        <parameter name="leaveOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="630509f3-7808-8d2a-de1f-d9c99ed99dcf" />
+    </api>
+    <api id="P:System.IO.Compression.GZipStream.BaseStream">
+      <topicdata group="api" />
+      <apidata name="BaseStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BaseStream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="9d3878f9-e6b6-225f-f812-91c47283aec8" />
+    </api>
+    <api id="P:System.IO.Compression.GZipStream.CanRead">
+      <topicdata group="api" />
+      <apidata name="CanRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanRead">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanRead" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="7ae91b4b-e07b-c5ce-0ad6-986f08fe2033" />
+    </api>
+    <api id="P:System.IO.Compression.GZipStream.CanSeek">
+      <topicdata group="api" />
+      <apidata name="CanSeek" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanSeek">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanSeek" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="70996ba0-866d-827e-f6de-6e7c5f0f79ac" />
+    </api>
+    <api id="P:System.IO.Compression.GZipStream.CanWrite">
+      <topicdata group="api" />
+      <apidata name="CanWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanWrite">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanWrite" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="fdf3d669-a8f0-5878-26a9-102bc220d8eb" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.IO.Compression.GZipStream.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Dispose(System.Boolean)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="dfd2a205-0dee-b47e-3bf3-a5bed0231a84" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Flush">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="43ab5d74-a3f9-7a69-b238-4b33445e325c" />
+    </api>
+    <api id="P:System.IO.Compression.GZipStream.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Length">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Length" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="24a56500-f342-4b18-6235-fa885965a3a7" />
+    </api>
+    <api id="P:System.IO.Compression.GZipStream.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Position">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Position" />
+      <setter name="set_Position" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="468ed495-ab46-7fda-82cb-6c6087b25ca1" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="array">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="c0fa4863-1444-e413-80d5-a1d2fcf331ba" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <topicdata group="api" />
+      <apidata name="Seek" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="origin">
+          <type api="T:System.IO.SeekOrigin" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="5d45932d-3d3d-42c6-23e0-d35c08d68161" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.SetLength(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="SetLength" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.SetLength(System.Int64)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="b7a76aac-2f15-1853-6063-dd90a9b82c7d" />
+    </api>
+    <api id="M:System.IO.Compression.GZipStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="array">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.GZipStream" ref="true" />
+      </containers>
+      <file name="91942dbf-99dc-e201-4908-0ca1f98888b0" />
+    </api>
+    <api id="T:System.IO.Compression.ZipArchive">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipArchive" />
+      <apidata name="ZipArchive" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <file name="fecd9f6c-f908-2303-0072-a0b3641c8c66" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.ZipArchive">
+      <topicdata name="ZipArchive" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.ZipArchive" />
+      <apidata name="ZipArchive" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.Compression.ZipArchive.#ctor">
+          <element api="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream)" />
+          <element api="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode)" />
+          <element api="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode,System.Boolean)" />
+          <element api="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode,System.Boolean,System.Text.Encoding)" />
+        </element>
+        <element api="Overload:System.IO.Compression.ZipArchive.CreateEntry">
+          <element api="M:System.IO.Compression.ZipArchive.CreateEntry(System.String)" />
+          <element api="M:System.IO.Compression.ZipArchive.CreateEntry(System.String,System.IO.Compression.CompressionLevel)" />
+        </element>
+        <element api="Overload:System.IO.Compression.ZipArchive.Dispose">
+          <element api="M:System.IO.Compression.ZipArchive.Dispose" />
+          <element api="M:System.IO.Compression.ZipArchive.Dispose(System.Boolean)" />
+        </element>
+        <element api="P:System.IO.Compression.ZipArchive.Entries" />
+        <element api="M:System.IO.Compression.ZipArchive.GetEntry(System.String)" />
+        <element api="P:System.IO.Compression.ZipArchive.Mode" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" />
+      </containers>
+      <file name="761ca8b9-057d-e000-529f-ef5459b9f60d" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.ZipArchive">
+      <topicdata name="ZipArchive" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.ZipArchive" />
+      <apidata name="ZipArchive" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.Compression.ZipArchive.CreateEntry">
+          <element api="M:System.IO.Compression.ZipArchive.CreateEntry(System.String)" />
+          <element api="M:System.IO.Compression.ZipArchive.CreateEntry(System.String,System.IO.Compression.CompressionLevel)" />
+        </element>
+        <element api="Overload:System.IO.Compression.ZipArchive.Dispose">
+          <element api="M:System.IO.Compression.ZipArchive.Dispose" />
+          <element api="M:System.IO.Compression.ZipArchive.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.IO.Compression.ZipArchive.GetEntry(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" />
+      </containers>
+      <file name="a1bd64c9-b55e-2271-b01d-f8485fff9630" />
+    </api>
+    <api id="Properties.T:System.IO.Compression.ZipArchive">
+      <topicdata name="ZipArchive" group="list" subgroup="Properties" typeTopicId="T:System.IO.Compression.ZipArchive" />
+      <apidata name="ZipArchive" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Compression.ZipArchive.Entries" />
+        <element api="P:System.IO.Compression.ZipArchive.Mode" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" />
+      </containers>
+      <file name="165f9edd-2b43-d197-1c2f-3ab077500336" />
+    </api>
+    <api id="Overload:System.IO.Compression.ZipArchive.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipArchive" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream)" />
+        <element api="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode)" />
+        <element api="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode,System.Boolean)" />
+        <element api="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode,System.Boolean,System.Text.Encoding)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="40061e80-3406-02f9-d35e-ca1760dfc884" />
+    </api>
+    <api id="Overload:System.IO.Compression.ZipArchive.CreateEntry">
+      <topicdata name="CreateEntry" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipArchive" />
+      <apidata name="CreateEntry" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Compression.ZipArchive.CreateEntry(System.String)" />
+        <element api="M:System.IO.Compression.ZipArchive.CreateEntry(System.String,System.IO.Compression.CompressionLevel)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="b80c2e80-b4e3-5784-8c76-fa498c8d114d" />
+    </api>
+    <api id="Overload:System.IO.Compression.ZipArchive.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipArchive" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Compression.ZipArchive.Dispose" />
+        <element api="M:System.IO.Compression.ZipArchive.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="24a0d69e-8904-feaa-5a8f-e3cfa1df2001" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.ZipArchive.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="2f6f17ad-c3f9-8c33-88d3-59b8104dfdb4" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.ZipArchive.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="1a86cfcd-7024-4c07-9c6d-97fc2c4c2092" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.ZipArchive.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+        </parameter>
+        <parameter name="leaveOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="f706927e-8d0c-5ce6-1229-6b80d2cffe80" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode,System.Boolean,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Compression.ZipArchive.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+        </parameter>
+        <parameter name="leaveOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="entryNameEncoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="97b6a753-ea8b-642e-e357-c486a9eaeaf1" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.CreateEntry(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateEntry" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.Compression.ZipArchive.CreateEntry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="entryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="884fb84f-c86c-9035-98f9-c938857dfd56" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.CreateEntry(System.String,System.IO.Compression.CompressionLevel)">
+      <topicdata group="api" />
+      <apidata name="CreateEntry" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.Compression.ZipArchive.CreateEntry" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="entryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compressionLevel">
+          <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="f4a108f8-5a45-f8a0-52be-5c5c5adf1989" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.Compression.ZipArchive.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="472df085-0ca0-99ad-f6ce-eb0c83242779" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.IO.Compression.ZipArchive.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="befd6d52-65dc-a196-52cb-9a71f2ae43ce" />
+    </api>
+    <api id="P:System.IO.Compression.ZipArchive.Entries">
+      <topicdata group="api" />
+      <apidata name="Entries" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Entries" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="4af7ae5f-146e-77ea-0dcd-2da057d2e791" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchive.GetEntry(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetEntry" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="entryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="3122205d-8cf7-9307-3bbd-951e4c9bfed5" />
+    </api>
+    <api id="P:System.IO.Compression.ZipArchive.Mode">
+      <topicdata group="api" />
+      <apidata name="Mode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Mode" />
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </containers>
+      <file name="fc841496-eb83-fe21-d2d0-1aa0625b5b82" />
+    </api>
+    <api id="T:System.IO.Compression.ZipArchiveEntry">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipArchiveEntry" />
+      <apidata name="ZipArchiveEntry" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <file name="a92a1988-0df7-cf1b-f185-5047fff6a326" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.ZipArchiveEntry">
+      <topicdata name="ZipArchiveEntry" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.ZipArchiveEntry" />
+      <apidata name="ZipArchiveEntry" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.Archive" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.CompressedLength" />
+        <element api="M:System.IO.Compression.ZipArchiveEntry.Delete" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.FullName" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.LastWriteTime" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.Length" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.Name" />
+        <element api="M:System.IO.Compression.ZipArchiveEntry.Open" />
+        <element api="M:System.IO.Compression.ZipArchiveEntry.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" />
+      </containers>
+      <file name="5c66384b-57f3-32ca-3f1f-e7fef2d5916e" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.ZipArchiveEntry">
+      <topicdata name="ZipArchiveEntry" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.ZipArchiveEntry" />
+      <apidata name="ZipArchiveEntry" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.IO.Compression.ZipArchiveEntry.Delete" />
+        <element api="M:System.IO.Compression.ZipArchiveEntry.Open" />
+        <element api="M:System.IO.Compression.ZipArchiveEntry.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" />
+      </containers>
+      <file name="abb15aa3-dd8d-6432-ce3a-f38a1d09c864" />
+    </api>
+    <api id="Properties.T:System.IO.Compression.ZipArchiveEntry">
+      <topicdata name="ZipArchiveEntry" group="list" subgroup="Properties" typeTopicId="T:System.IO.Compression.ZipArchiveEntry" />
+      <apidata name="ZipArchiveEntry" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Compression.ZipArchiveEntry.Archive" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.CompressedLength" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.FullName" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.LastWriteTime" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.Length" />
+        <element api="P:System.IO.Compression.ZipArchiveEntry.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" />
+      </containers>
+      <file name="f2c13560-70af-8a78-9d8e-998a46699f08" />
+    </api>
+    <api id="P:System.IO.Compression.ZipArchiveEntry.Archive">
+      <topicdata group="api" />
+      <apidata name="Archive" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Archive" />
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="1fd3b061-667b-5849-6085-53650a8f55d9" />
+    </api>
+    <api id="P:System.IO.Compression.ZipArchiveEntry.CompressedLength">
+      <topicdata group="api" />
+      <apidata name="CompressedLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CompressedLength" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="e66ff307-34e2-ad1a-38fb-d74577341eec" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchiveEntry.Delete">
+      <topicdata group="api" />
+      <apidata name="Delete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="9ea30c19-c356-cbea-4999-389d197453ee" />
+    </api>
+    <api id="P:System.IO.Compression.ZipArchiveEntry.FullName">
+      <topicdata group="api" />
+      <apidata name="FullName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FullName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="ebac3974-1fc1-37f9-a6e3-e252afdb7956" />
+    </api>
+    <api id="P:System.IO.Compression.ZipArchiveEntry.LastWriteTime">
+      <topicdata group="api" />
+      <apidata name="LastWriteTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LastWriteTime" />
+      <setter name="set_LastWriteTime" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="c5fa0f72-34ef-713c-bfe7-d562b5d578fa" />
+    </api>
+    <api id="P:System.IO.Compression.ZipArchiveEntry.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Length" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="9c06f19b-c11c-97ba-0565-e5de48bd1ef2" />
+    </api>
+    <api id="P:System.IO.Compression.ZipArchiveEntry.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="eff47f29-193b-d8ff-2bc6-deb87710de29" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchiveEntry.Open">
+      <topicdata group="api" />
+      <apidata name="Open" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="81cc623b-6bc2-416c-8f0a-d0c951bcc8ff" />
+    </api>
+    <api id="M:System.IO.Compression.ZipArchiveEntry.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </containers>
+      <file name="fff60b5c-686b-9dad-1442-f988f8185649" />
+    </api>
+    <api id="T:System.IO.Compression.ZipArchiveMode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipArchiveMode" />
+      <apidata name="ZipArchiveMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <file name="a0dd81f4-6da9-f501-9ec4-b7bbe27b0456" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.ZipArchiveMode">
+      <topicdata name="ZipArchiveMode" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.ZipArchiveMode" />
+      <apidata name="ZipArchiveMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.Compression.ZipArchiveMode.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.IO.Compression.ZipArchiveMode.Create" />
+        <element api="F:System.IO.Compression.ZipArchiveMode.Read" />
+        <element api="F:System.IO.Compression.ZipArchiveMode.Update" />
+        <element api="F:System.IO.Compression.ZipArchiveMode.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveMode" />
+      </containers>
+      <file name="6b738159-8871-e2fd-941d-3415fb978f4a" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.ZipArchiveMode">
+      <topicdata name="ZipArchiveMode" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.ZipArchiveMode" />
+      <apidata name="ZipArchiveMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.Compression.ZipArchiveMode.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveMode" />
+      </containers>
+      <file name="c95e16b9-0c4b-16ae-86b6-26f967721482" />
+    </api>
+    <api id="Fields.T:System.IO.Compression.ZipArchiveMode">
+      <topicdata name="ZipArchiveMode" group="list" subgroup="Fields" typeTopicId="T:System.IO.Compression.ZipArchiveMode" />
+      <apidata name="ZipArchiveMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Compression.ZipArchiveMode.Create" />
+        <element api="F:System.IO.Compression.ZipArchiveMode.Read" />
+        <element api="F:System.IO.Compression.ZipArchiveMode.Update" />
+        <element api="F:System.IO.Compression.ZipArchiveMode.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveMode" />
+      </containers>
+      <file name="0c8111ef-b982-3e9e-2392-d4f35763077a" />
+    </api>
+    <api id="F:System.IO.Compression.ZipArchiveMode.Create">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+      </containers>
+      <file name="2d367fa0-d8ef-3fe3-014b-623b7c109401" />
+    </api>
+    <api id="F:System.IO.Compression.ZipArchiveMode.Read">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+      </containers>
+      <file name="b68eabce-d04f-99a0-5767-b7f3d01b5307" />
+    </api>
+    <api id="F:System.IO.Compression.ZipArchiveMode.Update">
+      <topicdata group="api" />
+      <apidata name="Update" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+      </containers>
+      <file name="4ed3de59-ae5a-997a-79ea-51fc45503cca" />
+    </api>
+    <api id="F:System.IO.Compression.ZipArchiveMode.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression" module="System.IO.Compression" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+      </containers>
+      <file name="8537c9ac-891f-55e0-93de-f7b0448ddaec" />
+    </api>
+    <api id="T:System.IO.Compression.ZipFile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipFile" />
+      <apidata name="ZipFile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <file name="5bff8b05-4889-9b6c-fb14-722cf78580da" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.ZipFile">
+      <topicdata name="ZipFile" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.ZipFile" />
+      <apidata name="ZipFile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.IO.Compression.ZipFile.CreateFromDirectory">
+          <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String)" />
+          <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean)" />
+          <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean,System.Text.Encoding)" />
+        </element>
+        <element api="Overload:System.IO.Compression.ZipFile.ExtractToDirectory">
+          <element api="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String)" />
+          <element api="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Text.Encoding)" />
+        </element>
+        <element api="Overload:System.IO.Compression.ZipFile.Open">
+          <element api="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode)" />
+          <element api="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode,System.Text.Encoding)" />
+        </element>
+        <element api="M:System.IO.Compression.ZipFile.OpenRead(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" />
+      </containers>
+      <file name="4e37d175-fbfd-f7c5-8ead-96772de6ba51" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.ZipFile">
+      <topicdata name="ZipFile" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.ZipFile" />
+      <apidata name="ZipFile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.IO.Compression.ZipFile.CreateFromDirectory">
+          <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String)" />
+          <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean)" />
+          <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean,System.Text.Encoding)" />
+        </element>
+        <element api="Overload:System.IO.Compression.ZipFile.ExtractToDirectory">
+          <element api="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String)" />
+          <element api="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Text.Encoding)" />
+        </element>
+        <element api="Overload:System.IO.Compression.ZipFile.Open">
+          <element api="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode)" />
+          <element api="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode,System.Text.Encoding)" />
+        </element>
+        <element api="M:System.IO.Compression.ZipFile.OpenRead(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" />
+      </containers>
+      <file name="9b2cf074-3af9-c0fa-0c12-f3aec7c6dc19" />
+    </api>
+    <api id="Overload:System.IO.Compression.ZipFile.CreateFromDirectory">
+      <topicdata name="CreateFromDirectory" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipFile" />
+      <apidata name="CreateFromDirectory" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String)" />
+        <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean)" />
+        <element api="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean,System.Text.Encoding)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="81aaaba1-9c13-ab49-ac22-f6ae5305b19b" />
+    </api>
+    <api id="Overload:System.IO.Compression.ZipFile.ExtractToDirectory">
+      <topicdata name="ExtractToDirectory" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipFile" />
+      <apidata name="ExtractToDirectory" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String)" />
+        <element api="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Text.Encoding)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="8b04d9dd-ba5b-906f-e4f5-f1b06cde1234" />
+    </api>
+    <api id="Overload:System.IO.Compression.ZipFile.Open">
+      <topicdata name="Open" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipFile" />
+      <apidata name="Open" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode)" />
+        <element api="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode,System.Text.Encoding)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="8b763a71-cc5e-a538-88f5-7f6a78a8841c" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFromDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFile.CreateFromDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationArchiveFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="08020ee3-7e96-0395-9a3f-fe0456dbe772" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CreateFromDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFile.CreateFromDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationArchiveFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compressionLevel">
+          <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+        </parameter>
+        <parameter name="includeBaseDirectory">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="9589abb1-7f3c-b19f-630b-3de85bb02fa0" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name="CreateFromDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFile.CreateFromDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationArchiveFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compressionLevel">
+          <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+        </parameter>
+        <parameter name="includeBaseDirectory">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="entryNameEncoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="0e81df52-d846-747a-ea62-27f3e129a611" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="ExtractToDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFile.ExtractToDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceArchiveFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="b19d0da0-6a22-a36b-0a09-e0779e3659b5" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name="ExtractToDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFile.ExtractToDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceArchiveFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="entryNameEncoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="ae2e150a-bad3-2227-dd2e-9463d6775e44" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode)">
+      <topicdata group="api" />
+      <apidata name="Open" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFile.Open" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="archiveFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="84b84c7a-6f95-505f-0e89-c14a887ef515" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name="Open" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFile.Open" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="archiveFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.Compression.ZipArchiveMode" ref="true" />
+        </parameter>
+        <parameter name="entryNameEncoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="50f058eb-4c3f-25b8-8f2f-2ae7a4744120" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFile.OpenRead(System.String)">
+      <topicdata group="api" />
+      <apidata name="OpenRead" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="archiveFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFile" ref="true" />
+      </containers>
+      <file name="767c3073-83be-de75-abd7-d0fb4c974848" />
+    </api>
+    <api id="T:System.IO.Compression.ZipFileExtensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipFileExtensions" />
+      <apidata name="ZipFileExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1cf72982-a7e8-89ec-040f-5a752d635df6" />
+    </api>
+    <api id="AllMembers.T:System.IO.Compression.ZipFileExtensions">
+      <topicdata name="ZipFileExtensions" group="list" subgroup="members" typeTopicId="T:System.IO.Compression.ZipFileExtensions" />
+      <apidata name="ZipFileExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile">
+          <element api="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String)" />
+          <element api="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String,System.IO.Compression.CompressionLevel)" />
+        </element>
+        <element api="M:System.IO.Compression.ZipFileExtensions.ExtractToDirectory(System.IO.Compression.ZipArchive,System.String)" />
+        <element api="Overload:System.IO.Compression.ZipFileExtensions.ExtractToFile">
+          <element api="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String)" />
+          <element api="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" />
+      </containers>
+      <file name="c0faab9d-d1e0-6ddb-e538-0228aa96d83d" />
+    </api>
+    <api id="Methods.T:System.IO.Compression.ZipFileExtensions">
+      <topicdata name="ZipFileExtensions" group="list" subgroup="Methods" typeTopicId="T:System.IO.Compression.ZipFileExtensions" />
+      <apidata name="ZipFileExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile">
+          <element api="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String)" />
+          <element api="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String,System.IO.Compression.CompressionLevel)" />
+        </element>
+        <element api="M:System.IO.Compression.ZipFileExtensions.ExtractToDirectory(System.IO.Compression.ZipArchive,System.String)" />
+        <element api="Overload:System.IO.Compression.ZipFileExtensions.ExtractToFile">
+          <element api="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String)" />
+          <element api="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" />
+      </containers>
+      <file name="774f0744-31b8-9602-c382-2cf3cf619067" />
+    </api>
+    <api id="Overload:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile">
+      <topicdata name="CreateEntryFromFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipFileExtensions" />
+      <apidata name="CreateEntryFromFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String)" />
+        <element api="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String,System.IO.Compression.CompressionLevel)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" ref="true" />
+      </containers>
+      <file name="4b58fa67-7c84-ed44-0f43-c4fce9e723da" />
+    </api>
+    <api id="Overload:System.IO.Compression.ZipFileExtensions.ExtractToFile">
+      <topicdata name="ExtractToFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Compression.ZipFileExtensions" />
+      <apidata name="ExtractToFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String)" />
+        <element api="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" ref="true" />
+      </containers>
+      <file name="87f7ea52-d30a-46cc-66f9-498f646b2a34" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateEntryFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="destination">
+          <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+        </parameter>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="entryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="94370063-fa34-d27f-7171-86f4d570a781" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String,System.IO.Compression.CompressionLevel)">
+      <topicdata group="api" />
+      <apidata name="CreateEntryFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="destination">
+          <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+        </parameter>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="entryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="compressionLevel">
+          <type api="T:System.IO.Compression.CompressionLevel" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b7f23049-51e1-b4b6-84f3-26f7834af012" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFileExtensions.ExtractToDirectory(System.IO.Compression.ZipArchive,System.String)">
+      <topicdata group="api" />
+      <apidata name="ExtractToDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.IO.Compression.ZipArchive" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="43e7a1f6-6132-50c4-db28-5edebaeb14d6" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String)">
+      <topicdata group="api" />
+      <apidata name="ExtractToFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFileExtensions.ExtractToFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8ea55c21-eb1f-d10d-1d64-8c37321d4578" />
+    </api>
+    <api id="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ExtractToFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.Compression.ZipFileExtensions.ExtractToFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.IO.Compression.ZipArchiveEntry" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.Compression.ZipFile" module="System.IO.Compression.ZipFile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.Compression" />
+        <type api="T:System.IO.Compression.ZipFileExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8cd6343c-4bc6-5eb1-9d10-c157ead1db12" />
+    </api>
+  </apis>
+</reflection>

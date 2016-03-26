@@ -1,0 +1,1330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Forms">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Forms.Layout">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Forms.Layout" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+        <element api="T:System.Windows.Forms.Layout.ArrangedElementCollection" />
+        <element api="T:System.Windows.Forms.Layout.LayoutEngine" />
+      </elements>
+      <file name="82c37900-046f-7cae-0dca-9a41f4b154e6" />
+    </api>
+    <api id="T:System.Windows.Forms.Layout.ArrangedElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.Layout.ArrangedElementCollection" />
+      <apidata name="ArrangedElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Forms.Control.ControlCollection" ref="true">
+            <type api="T:System.Windows.Forms.Control" ref="true" />
+          </type>
+          <type api="T:System.Windows.Forms.ToolStripItemCollection" ref="true" />
+          <type api="T:System.Windows.Forms.ToolStripPanel.ToolStripPanelRowCollection" ref="true">
+            <type api="T:System.Windows.Forms.ToolStripPanel" ref="true" />
+          </type>
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.Collections.IList" ref="true" />
+        <type api="T:System.Collections.ICollection" ref="true" />
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+      </containers>
+      <file name="d4fea8cc-b569-ac13-9a94-af1b04c92fdb" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.Layout.ArrangedElementCollection">
+      <topicdata name="ArrangedElementCollection" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.Layout.ArrangedElementCollection" />
+      <apidata name="ArrangedElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.Count" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.Equals(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.GetEnumerator" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.GetHashCode" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.IsReadOnly" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#ICollection#SyncRoot" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Add(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Clear" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Contains(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#IndexOf(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Insert(System.Int32,System.Object)" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#IsFixedSize" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Item(System.Int32)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Remove(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" />
+      </containers>
+      <file name="cacc158e-af10-5a2c-2d6e-2657ef8faede" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.Layout.ArrangedElementCollection">
+      <topicdata name="ArrangedElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.Layout.ArrangedElementCollection" />
+      <apidata name="ArrangedElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.Equals(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.GetEnumerator" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.GetHashCode" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Add(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Clear" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Contains(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#IndexOf(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Insert(System.Int32,System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Remove(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" />
+      </containers>
+      <file name="37cad10d-0b93-bfb8-8867-e3665cc8cf97" />
+    </api>
+    <api id="Properties.T:System.Windows.Forms.Layout.ArrangedElementCollection">
+      <topicdata name="ArrangedElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Forms.Layout.ArrangedElementCollection" />
+      <apidata name="ArrangedElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.Count" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.IsReadOnly" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#ICollection#SyncRoot" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#IsFixedSize" />
+        <element api="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" />
+      </containers>
+      <file name="3312091e-d5c8-0d6e-6164-22a64a699941" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.CopyTo(System.Array,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="0c12602b-13aa-7e0f-000f-ce7b4caa5cc0" />
+    </api>
+    <api id="P:System.Windows.Forms.Layout.ArrangedElementCollection.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.Count">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="986b6fb8-d499-c985-b53d-95c9e3114e45" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="b1ac906b-d979-c7d1-fd2d-e5b76c83a3d6" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IEnumerable.GetEnumerator">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="70c877a8-fe3c-e14a-64a6-0a1e40b2ae41" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="db14f662-a266-2a73-de4d-868cf06bd975" />
+    </api>
+    <api id="P:System.Windows.Forms.Layout.ArrangedElementCollection.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IList.IsReadOnly">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="fa580180-60b7-66e2-4a92-38bcb37f4d0e" />
+    </api>
+    <api id="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#ICollection#IsSynchronized">
+      <topicdata group="api" eiiName="ICollection.IsSynchronized" />
+      <apidata name="IsSynchronized" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.ICollection.IsSynchronized" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.IsSynchronized">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="a80cd67a-014e-3c88-b32a-a474bedee117" />
+    </api>
+    <api id="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#ICollection#SyncRoot">
+      <topicdata group="api" eiiName="ICollection.SyncRoot" />
+      <apidata name="SyncRoot" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.ICollection.SyncRoot" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.SyncRoot">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="ec07e323-e03c-136d-78a4-9c76115e7c8d" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Add(System.Object)">
+      <topicdata group="api" eiiName="IList.Add" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IList.Add(System.Object)">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="07e3e56c-d814-9095-eaa3-6cb59d201313" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Clear">
+      <topicdata group="api" eiiName="IList.Clear" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:System.Collections.IList.Clear">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="ff6c9370-caf1-9b5e-82d9-0b7415fc34f3" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Contains(System.Object)">
+      <topicdata group="api" eiiName="IList.Contains" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IList.Contains(System.Object)">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="db61030e-d931-7c12-a663-383c582e6030" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#IndexOf(System.Object)">
+      <topicdata group="api" eiiName="IList.IndexOf" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IList.IndexOf(System.Object)">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="feb040f9-27f5-b215-c0e4-8690844f43a6" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Insert(System.Int32,System.Object)">
+      <topicdata group="api" eiiName="IList.Insert" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.IList.Insert(System.Int32,System.Object)">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="b5a2a303-b8ce-c08f-c79f-8d561ef7bfa9" />
+    </api>
+    <api id="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#IsFixedSize">
+      <topicdata group="api" eiiName="IList.IsFixedSize" />
+      <apidata name="IsFixedSize" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" />
+      <getter name="get_System.Collections.IList.IsFixedSize" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IList.IsFixedSize">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="7043d5d6-ab08-bc2a-6e8c-3cd7cbd90f1b" />
+    </api>
+    <api id="P:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Item(System.Int32)">
+      <topicdata group="api" eiiName="IList.Item" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_System.Collections.IList.Item" />
+      <setter name="set_System.Collections.IList.Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IList.Item(System.Int32)">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="03570ae8-b3b0-3949-f33b-765362eba2d6" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#Remove(System.Object)">
+      <topicdata group="api" eiiName="IList.Remove" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.IList.Remove(System.Object)">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="1e9b6e02-e555-2044-53d7-aa0cde946fc2" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.ArrangedElementCollection.System#Collections#IList#RemoveAt(System.Int32)">
+      <topicdata group="api" eiiName="IList.RemoveAt" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.IList.RemoveAt(System.Int32)">
+          <type api="T:System.Collections.IList" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.ArrangedElementCollection" ref="true" />
+      </containers>
+      <file name="0b1a3328-a779-2a23-0f35-79e2bce0017a" />
+    </api>
+    <api id="T:System.Windows.Forms.Layout.LayoutEngine">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.Layout.LayoutEngine" />
+      <apidata name="LayoutEngine" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+      </containers>
+      <file name="421622c9-c153-f787-8c01-a7fc62eb2802" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.Layout.LayoutEngine">
+      <topicdata name="LayoutEngine" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.Layout.LayoutEngine" />
+      <apidata name="LayoutEngine" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Forms.Layout.LayoutEngine.#ctor" />
+        <element api="M:System.Windows.Forms.Layout.LayoutEngine.InitLayout(System.Object,System.Windows.Forms.BoundsSpecified)" />
+        <element api="M:System.Windows.Forms.Layout.LayoutEngine.Layout(System.Object,System.Windows.Forms.LayoutEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.LayoutEngine" />
+      </containers>
+      <file name="08782485-b8c3-d42c-7707-e6ebfd6f2a78" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.Layout.LayoutEngine">
+      <topicdata name="LayoutEngine" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.Layout.LayoutEngine" />
+      <apidata name="LayoutEngine" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Forms.Layout.LayoutEngine.InitLayout(System.Object,System.Windows.Forms.BoundsSpecified)" />
+        <element api="M:System.Windows.Forms.Layout.LayoutEngine.Layout(System.Object,System.Windows.Forms.LayoutEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.LayoutEngine" />
+      </containers>
+      <file name="8a03616e-e773-48cd-e2ca-6ce1a2affabc" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.LayoutEngine.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.LayoutEngine" ref="true" />
+      </containers>
+      <file name="81d772f7-4314-98ed-900d-e70ba7dca6b8" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.LayoutEngine.InitLayout(System.Object,System.Windows.Forms.BoundsSpecified)">
+      <topicdata group="api" />
+      <apidata name="InitLayout" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="child">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="specified">
+          <type api="T:System.Windows.Forms.BoundsSpecified" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.LayoutEngine" ref="true" />
+      </containers>
+      <file name="c7252381-9b1c-67fc-5bda-279b0a45df45" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.LayoutEngine.Layout(System.Object,System.Windows.Forms.LayoutEventArgs)">
+      <topicdata group="api" />
+      <apidata name="Layout" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="container">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="layoutEventArgs">
+          <type api="T:System.Windows.Forms.LayoutEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.LayoutEngine" ref="true" />
+      </containers>
+      <file name="6cae9d6a-5be9-9590-2091-cd5b8dda7d02" />
+    </api>
+    <api id="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      <apidata name="TableLayoutSettingsTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+      </containers>
+      <file name="5c958dc7-6537-d674-988d-94ba393f141b" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter">
+      <topicdata name="TableLayoutSettingsTypeConverter" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      <apidata name="TableLayoutSettingsTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+        <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      </containers>
+      <file name="19f8a711-e247-b740-b751-be4c23b00450" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter">
+      <topicdata name="TableLayoutSettingsTypeConverter" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      <apidata name="TableLayoutSettingsTypeConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      </containers>
+      <file name="b56e3555-7f43-f4c2-4fa8-d039fdd8a2ef" />
+    </api>
+    <api id="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertFrom">
+      <topicdata name="CanConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+        <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="346cd7d9-26f5-8c1d-7213-733a7b0d300b" />
+    </api>
+    <api id="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertTo">
+      <topicdata name="CanConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+        <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="d1bef865-06d1-7af1-0a8b-5e3acd710ae0" />
+    </api>
+    <api id="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFrom">
+      <topicdata name="ConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+        <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="7b9e1819-c136-65a3-355f-f2565472f029" />
+    </api>
+    <api id="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertTo">
+      <topicdata name="ConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+        <element api="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="4c2d2be9-a0ca-6ff2-1d2b-ade1e48eb096" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="a44abce7-38e4-10d2-0708-2153e9678289" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="sourceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="831727a7-f369-d0a8-4155-8b6bcf76a659" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.CanConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="87288383-6291-eafa-9a1e-86d40801f817" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="02f3169e-3f8e-8248-4c5f-359de86037cb" />
+    </api>
+    <api id="M:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+      <topicdata group="api" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter.ConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.Layout" />
+        <type api="T:System.Windows.Forms.Layout.TableLayoutSettingsTypeConverter" ref="true" />
+      </containers>
+      <file name="d9cff945-7d72-ebd4-fed8-bc54e21e7149" />
+    </api>
+  </apis>
+</reflection>

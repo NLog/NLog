@@ -1,0 +1,590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Management.Deployment.Preview.DeploymentPreviewContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Management.Deployment.Preview">
+      <topicdata group="api" />
+      <apidata name="Windows.Management.Deployment.Preview" group="namespace" />
+      <elements>
+        <element api="T:Windows.Management.Deployment.Preview.DeploymentPreviewContract" />
+        <element api="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" />
+        <element api="T:Windows.Management.Deployment.Preview.ClassicAppManager" />
+      </elements>
+      <file name="304c3474-c408-40f9-3868-0d7cdc29f88b" />
+    </api>
+    <api id="T:Windows.Management.Deployment.Preview.ClassicAppManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Management.Deployment.Preview.ClassicAppManager" />
+      <apidata name="ClassicAppManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Management.Deployment.Preview.DeploymentPreviewContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9cc7e48f-8ea5-f679-e611-8554880bf51e" />
+    </api>
+    <api id="AllMembers.T:Windows.Management.Deployment.Preview.ClassicAppManager">
+      <topicdata name="ClassicAppManager" group="list" subgroup="members" typeTopicId="T:Windows.Management.Deployment.Preview.ClassicAppManager" />
+      <apidata name="ClassicAppManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Management.Deployment.Preview.ClassicAppManager.FindInstalledApp(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.ClassicAppManager" />
+      </containers>
+      <file name="ab2b88cf-5665-1f3c-fd77-e5ffa72581d2" />
+    </api>
+    <api id="Methods.T:Windows.Management.Deployment.Preview.ClassicAppManager">
+      <topicdata name="ClassicAppManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Management.Deployment.Preview.ClassicAppManager" />
+      <apidata name="ClassicAppManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Management.Deployment.Preview.ClassicAppManager.FindInstalledApp(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.ClassicAppManager" />
+      </containers>
+      <file name="8e48f52a-829e-eac3-4bb6-a34a0c3e11cc" />
+    </api>
+    <api id="M:Windows.Management.Deployment.Preview.ClassicAppManager.FindInstalledApp(System.String)">
+      <topicdata group="api" />
+      <apidata name="FindInstalledApp" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appUninstallKey" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.ClassicAppManager" ref="true" />
+      </containers>
+      <file name="2d644cc8-bc6d-89af-0944-eca536a753c4" />
+    </api>
+    <api id="T:Windows.Management.Deployment.Preview.DeploymentPreviewContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Management.Deployment.Preview.DeploymentPreviewContract" />
+      <apidata name="DeploymentPreviewContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b052dafb-c809-1863-a056-8d00208fa7b1" />
+    </api>
+    <api id="AllMembers.T:Windows.Management.Deployment.Preview.DeploymentPreviewContract">
+      <topicdata name="DeploymentPreviewContract" group="list" subgroup="members" typeTopicId="T:Windows.Management.Deployment.Preview.DeploymentPreviewContract" />
+      <apidata name="DeploymentPreviewContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.DeploymentPreviewContract" />
+      </containers>
+      <file name="eccaeffe-a9a9-cf6d-41ab-1a40b5ab4b21" />
+    </api>
+    <api id="Methods.T:Windows.Management.Deployment.Preview.DeploymentPreviewContract">
+      <topicdata name="DeploymentPreviewContract" group="list" subgroup="Methods" typeTopicId="T:Windows.Management.Deployment.Preview.DeploymentPreviewContract" />
+      <apidata name="DeploymentPreviewContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.DeploymentPreviewContract" />
+      </containers>
+      <file name="ff086c69-5325-e90e-d9e8-901f29243adf" />
+    </api>
+    <api id="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" />
+      <apidata name="InstalledClassicAppInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Management.Deployment.Preview.DeploymentPreviewContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ab77b065-f485-e2c1-188b-7784d8bda34e" />
+    </api>
+    <api id="AllMembers.T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo">
+      <topicdata name="InstalledClassicAppInfo" group="list" subgroup="members" typeTopicId="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" />
+      <apidata name="InstalledClassicAppInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Management.Deployment.Preview.InstalledClassicAppInfo.DisplayName" />
+        <element api="P:Windows.Management.Deployment.Preview.InstalledClassicAppInfo.DisplayVersion" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" />
+      </containers>
+      <file name="b62d16d8-7d14-2f2d-0199-f40e8b989f44" />
+    </api>
+    <api id="Methods.T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo">
+      <topicdata name="InstalledClassicAppInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" />
+      <apidata name="InstalledClassicAppInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" />
+      </containers>
+      <file name="c4d641a1-c5e7-fead-4196-95da4c1a632d" />
+    </api>
+    <api id="Properties.T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo">
+      <topicdata name="InstalledClassicAppInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" />
+      <apidata name="InstalledClassicAppInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Management.Deployment.Preview.InstalledClassicAppInfo.DisplayName" />
+        <element api="P:Windows.Management.Deployment.Preview.InstalledClassicAppInfo.DisplayVersion" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" />
+      </containers>
+      <file name="226940d1-f5fa-a37a-673d-43336261505d" />
+    </api>
+    <api id="P:Windows.Management.Deployment.Preview.InstalledClassicAppInfo.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" ref="true" />
+      </containers>
+      <file name="3374acc3-d31c-8777-b5c5-c641684c59bc" />
+    </api>
+    <api id="P:Windows.Management.Deployment.Preview.InstalledClassicAppInfo.DisplayVersion">
+      <topicdata group="api" />
+      <apidata name="DisplayVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Management.Deployment.Preview.DeploymentPreviewContract" module="Windows.Management.Deployment.Preview.DeploymentPreviewContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Deployment.Preview" />
+        <type api="T:Windows.Management.Deployment.Preview.InstalledClassicAppInfo" ref="true" />
+      </containers>
+      <file name="cc867322-2c2f-abca-18ee-58620e45d99f" />
+    </api>
+  </apis>
+</reflection>

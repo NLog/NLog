@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT COPY THIS FILE TO THE VISUAL STUDIO XML SCHEMA CACHE -->
+<!-- This is a copy of the xlink.xsd schema file from Visual Studio.  It is here for the MAML base.xsd schema
+     file to reference for development. -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.w3.org/1999/xlink"
+           xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+
+  <xs:attribute name="type" type="xlink:typeType"/>
+
+  <xs:simpleType name="typeType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="simple"/>
+      <xs:enumeration value="extended"/>
+      <xs:enumeration value="title"/>
+      <xs:enumeration value="resource"/>
+      <xs:enumeration value="locator"/>
+      <xs:enumeration value="arc"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attribute name="href" type="xlink:hrefType"/>
+
+  <xs:simpleType name="hrefType">
+    <xs:restriction base="xs:anyURI"/>
+  </xs:simpleType>
+
+  <xs:attribute name="role" type="xlink:roleType"/>
+
+  <xs:simpleType name="roleType">
+    <xs:restriction base="xs:anyURI">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attribute name="arcrole" type="xlink:arcroleType"/>
+
+  <xs:simpleType name="arcroleType">
+    <xs:restriction base="xs:anyURI">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attribute name="title" type="xlink:titleAttrType"/>
+
+  <xs:simpleType name="titleAttrType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:attribute name="show" type="xlink:showType"/>
+
+  <xs:simpleType name="showType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="new"/>
+      <xs:enumeration value="replace"/>
+      <xs:enumeration value="embed"/>
+      <xs:enumeration value="other"/>
+      <xs:enumeration value="none"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attribute name="actuate" type="xlink:actuateType"/>
+
+  <xs:simpleType name="actuateType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="onLoad"/>
+      <xs:enumeration value="onRequest"/>
+      <xs:enumeration value="other"/>
+      <xs:enumeration value="none"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attribute name="label" type="xlink:labelType"/>
+
+  <xs:simpleType name="labelType">
+    <xs:restriction base="xs:NMTOKEN"/>
+  </xs:simpleType>
+
+  <xs:attribute name="from" type="xlink:fromType"/>
+
+  <xs:simpleType name="fromType">
+    <xs:restriction base="xs:NMTOKEN"/>
+  </xs:simpleType>
+
+  <xs:attribute name="to" type="xlink:toType"/>
+
+  <xs:simpleType name="toType">
+    <xs:restriction base="xs:NMTOKEN"/>
+  </xs:simpleType>
+
+  <xs:complexType mixed="true" name="simple">
+    <xs:annotation>
+      <xs:documentation>
+        Intended for use as the type of user-declared elements to make them
+        simple links.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:type" fixed="simple"/>
+    <xs:attribute ref="xlink:href"/>
+    <xs:attribute ref="xlink:role"/>
+    <xs:attribute ref="xlink:arcrole"/>
+    <xs:attribute ref="xlink:title"/>
+    <xs:attribute ref="xlink:show"/>
+    <xs:attribute ref="xlink:actuate"/>
+  </xs:complexType>
+
+  <xs:complexType name="extended">
+    <xs:annotation>
+      <xs:documentation>
+        Intended for use as the type of user-declared elements to make them
+        extended links.
+        Note that the elements referenced in the content model are all abstract.
+        The intention is that by simply declaring elements with these as their
+        substitutionGroup, all the right things will happen.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="xlink:title"/>
+      <xs:element ref="xlink:resource"/>
+      <xs:element ref="xlink:locator"/>
+      <xs:element ref="xlink:arc"/>
+    </xs:choice>
+    <xs:attribute ref="xlink:type" fixed="extended"/>
+    <xs:attribute ref="xlink:role"/>
+    <xs:attribute ref="xlink:title"/>
+  </xs:complexType>
+
+  <xs:element name="title" type="xlink:titleEltType" abstract="true"/>
+
+  <xs:complexType mixed="true" name="titleEltType">
+    <xs:sequence>
+      <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:type" fixed="title"/>
+    <xs:attribute ref="xml:lang">
+      <xs:annotation>
+        <xs:documentation>
+          xml:lang is not required, but provides much of the
+          motivation for title elements in addition to attributes, and so
+          is provided here for convenience.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="resource" type="xlink:resourceType" abstract="true"/>
+
+  <xs:complexType mixed="true" name="resourceType">
+    <xs:sequence>
+      <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:type" fixed="resource"/>
+    <xs:attribute ref="xlink:role"/>
+    <xs:attribute ref="xlink:title"/>
+    <xs:attribute ref="xlink:label"/>
+  </xs:complexType>
+
+  <xs:element name="locator" type="xlink:locatorType" abstract="true"/>
+
+  <xs:complexType name="locatorType">
+    <xs:sequence>
+      <xs:element ref="xlink:title" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:type" fixed="locator"/>
+    <xs:attribute ref="xlink:href" use="required"/>
+    <xs:attribute ref="xlink:role"/>
+    <xs:attribute ref="xlink:title"/>
+    <xs:attribute ref="xlink:label">
+      <xs:annotation>
+        <xs:documentation>
+          label is not required, but locators have no particular
+          XLink function if they are not labeled.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="arc" type="xlink:arcType" abstract="true"/>
+
+  <xs:complexType name="arcType">
+    <xs:sequence>
+      <xs:element ref="xlink:title" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="xlink:type" fixed="arc"/>
+    <xs:attribute ref="xlink:arcrole"/>
+    <xs:attribute ref="xlink:title"/>
+    <xs:attribute ref="xlink:show"/>
+    <xs:attribute ref="xlink:actuate"/>
+    <xs:attribute ref="xlink:from"/>
+    <xs:attribute ref="xlink:to">
+      <xs:annotation>
+        <xs:documentation>
+          from and to have default behavior when values are missing
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,1817 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.TinyCore">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.TinyCore</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.Presentation.Shapes">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.Presentation.Shapes" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+        <element api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+        <element api="T:Microsoft.SPOT.Presentation.Shapes.Direction" />
+        <element api="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+        <element api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+        <element api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      </elements>
+      <file name="16afaa05-e584-acb7-3117-60efcc8192bc" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Shapes.Direction">
+      <topicdata group="api" />
+      <apidata name="Direction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Shapes.Direction.TopToBottom" />
+        <element api="F:Microsoft.SPOT.Presentation.Shapes.Direction.BottomToTop" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+      </containers>
+      <file name="9f41e7f1-317f-d8f4-a901-529025ed22a5" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Shapes.Direction.BottomToTop">
+      <topicdata group="api" notopic="" />
+      <apidata name="BottomToTop" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Direction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Direction" ref="false" />
+      </containers>
+      <file name="92f545ae-4a9d-a126-48e0-17ccbee48b72" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Shapes.Direction.TopToBottom">
+      <topicdata group="api" notopic="" />
+      <apidata name="TopToBottom" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Direction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Direction" ref="false" />
+      </containers>
+      <file name="b2bdc4d7-0568-6cac-489a-ae9e1bb582d5" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Shapes.Ellipse">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+          <type api="T:Microsoft.SPOT.DispatcherObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+      </containers>
+      <file name="64c731c4-221a-e35b-f8a3-87e7bdfda5df" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Ellipse.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Ellipse.#ctor(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Ellipse.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      </containers>
+      <file name="d591c2a5-ec7e-59f7-e569-ea13ce9a56c8" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Ellipse.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Ellipse.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      </containers>
+      <file name="9c0b8a1e-3c14-1d4b-690f-1bd673123537" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      </containers>
+      <file name="9c8af61f-9330-ff98-f6ab-ca282c79610d" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Presentation.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      </containers>
+      <file name="2a801e30-0a2e-7b0e-9b5b-a8556a4ab906" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" />
+      </containers>
+      <file name="b6748f83-ed68-514c-2192-b7251d4f8fb4" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Ellipse.#ctor(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="xRadius">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="yRadius">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" ref="true" />
+      </containers>
+      <file name="c0f1f509-12ee-20f6-f86d-9280c14c116d" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Ellipse.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+      <topicdata group="api" />
+      <apidata name="OnRender" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.SPOT.Presentation.UIElement.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="dc">
+          <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" ref="true" />
+      </containers>
+      <file name="40e09105-94aa-b516-4c3f-43c0e2c7fd96" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Shapes.Line">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+          <type api="T:Microsoft.SPOT.DispatcherObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+      </containers>
+      <file name="4e84a2c5-7501-f18c-b5f7-18dc26a0ff09" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Line.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Line.#ctor">
+          <element api="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+          <element api="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor(System.Int32,System.Int32)" />
+        </element>
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Line.Direction" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Line.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      </containers>
+      <file name="62c726b2-bb19-10f6-26ed-8ab3391d22ae" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Line.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Line.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      </containers>
+      <file name="8365f52a-7e0d-50ba-462a-c4ebced1ddaf" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Line.Direction" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      </containers>
+      <file name="cf7e17f2-6ad8-9f1d-b177-b2fb9fab8af9" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Presentation.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      </containers>
+      <file name="db94e2c4-a5b6-4d51-8137-c85ea0fec8f4" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      </containers>
+      <file name="5d37f903-c7e1-4b36-23c6-e8ee46423e09" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Shapes.Line.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Line" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" ref="true" />
+      </containers>
+      <file name="195918e1-cd45-fa9d-7090-7f5db1f203e2" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" ref="true" />
+      </containers>
+      <file name="97149cf5-c710-253e-b719-afbc16ecd126" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Line.#ctor(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Shapes.Line.#ctor" />
+      <parameters>
+        <parameter name="dx">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="dy">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" ref="true" />
+      </containers>
+      <file name="ccbf5790-a9dc-7f7e-d21b-31a40b363855" />
+    </api>
+    <api id="P:Microsoft.SPOT.Presentation.Shapes.Line.Direction">
+      <topicdata group="api" />
+      <apidata name="Direction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Direction" />
+      <setter name="set_Direction" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Direction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" ref="true" />
+      </containers>
+      <file name="c0f73cf2-65a4-4d6d-262f-7ffdd5e5410f" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Line.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+      <topicdata group="api" />
+      <apidata name="OnRender" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.SPOT.Presentation.UIElement.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="dc">
+          <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" ref="true" />
+      </containers>
+      <file name="caeef9ba-6336-b343-fea6-8971cdb5a786" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Shapes.Polygon">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+          <type api="T:Microsoft.SPOT.DispatcherObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+      </containers>
+      <file name="ecd47b1f-c3d5-8176-52b8-d417f2aeb99c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Polygon.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor">
+          <element api="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+          <element api="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor(System.Int32[])" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Polygon.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Polygon.Points" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      </containers>
+      <file name="875dbdea-d672-bf0c-e18b-de77b13a8d7c" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Polygon.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Polygon.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      </containers>
+      <file name="703087e8-a9eb-d8f3-633e-de1f057a5e48" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Polygon.Points" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      </containers>
+      <file name="285ab417-d7c7-413c-998b-915d21425b9a" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Presentation.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      </containers>
+      <file name="75b639fc-51df-34b8-e3ca-1ee2a2ffd998" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      </containers>
+      <file name="dac2af6a-5513-6c73-5fe4-4af29077210c" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Polygon" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor(System.Int32[])" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="622a182f-43d9-1f85-9fee-90c7c1717194" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="41cdccc4-c206-4643-80e8-b3204cdf7f54" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor(System.Int32[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Shapes.Polygon.#ctor" />
+      <parameters>
+        <parameter name="pts">
+          <arrayOf rank="1">
+            <type api="T:System.Int32" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="6efc04b5-ad3d-4cea-a69d-853986b802cf" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Polygon.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+      <topicdata group="api" />
+      <apidata name="OnRender" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.SPOT.Presentation.UIElement.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="dc">
+          <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="b6a69080-c755-298a-9b38-57c65ff9acf1" />
+    </api>
+    <api id="P:Microsoft.SPOT.Presentation.Shapes.Polygon.Points">
+      <topicdata group="api" />
+      <apidata name="Points" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Points" />
+      <setter name="set_Points" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Int32" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="195cabe1-7849-3d63-0776-4c1971bc2c9a" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Shapes.Rectangle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+          <type api="T:Microsoft.SPOT.DispatcherObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+      </containers>
+      <file name="ef4bdcde-67e7-97db-ed19-2c018600abbc" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Rectangle.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor">
+          <element api="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+          <element api="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor(System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      </containers>
+      <file name="e55a039d-7069-38d2-2642-41141b15dc93" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Rectangle.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      </containers>
+      <file name="e4dddbd6-5e64-e35d-c5a5-838291625870" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      </containers>
+      <file name="c03a1edb-9d29-507b-b868-3e08fd92828c" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Presentation.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      </containers>
+      <file name="830d0efc-23b3-eb6c-968c-d5a05d654fec" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      </containers>
+      <file name="06b23920-a50d-42f2-36ec-45d7a49d1301" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Rectangle" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="bc6f5d76-b436-1ce5-349f-fa4a440801a4" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="29f0a5d6-2212-6dc6-6676-eb209d3a4027" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Shapes.Rectangle.#ctor" />
+      <parameters>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="7dae66e8-7945-c44c-aad4-b12292d774c6" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Rectangle.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+      <topicdata group="api" />
+      <apidata name="OnRender" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.SPOT.Presentation.UIElement.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="dc">
+          <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="61576e1c-41c3-2718-423e-e982ece18ab9" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Shapes.Shape">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+          <type api="T:Microsoft.SPOT.DispatcherObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.SPOT.Presentation.Shapes.Ellipse" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.Shapes.Line" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.Shapes.Polygon" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.Shapes.Rectangle" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+      </containers>
+      <file name="fe4c66c0-1374-0efd-72d6-f7d736e53d5c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Shape.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="M:Microsoft.SPOT.Presentation.Shapes.Shape.#ctor" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      </containers>
+      <file name="89115ad6-0bb5-a6de-4ab9-b4272d79e7d9" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Shapes.Shape.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      </containers>
+      <file name="78dc1793-9d9c-98a7-b9d9-3ba6ce005020" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill" />
+        <element api="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      </containers>
+      <file name="02baec63-2fcb-88fc-ec85-bb264f26ec81" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Presentation.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      </containers>
+      <file name="8e747e41-212a-ef1c-cac1-84f7c0dcfec0" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" />
+      </containers>
+      <file name="e5b36fbe-86b4-d142-37ae-1fb7d0b578ad" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Shapes.Shape.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="0767517f-0012-0df2-3905-30dd497415a5" />
+    </api>
+    <api id="P:Microsoft.SPOT.Presentation.Shapes.Shape.Fill">
+      <topicdata group="api" />
+      <apidata name="Fill" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Fill" />
+      <setter name="set_Fill" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="50f6e0d9-0814-973c-7573-e54cdd9c407b" />
+    </api>
+    <api id="P:Microsoft.SPOT.Presentation.Shapes.Shape.Stroke">
+      <topicdata group="api" />
+      <apidata name="Stroke" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Stroke" />
+      <setter name="set_Stroke" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Shapes" />
+        <type api="T:Microsoft.SPOT.Presentation.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="85094e53-5e1f-e366-875c-9df4405e87c5" />
+    </api>
+  </apis>
+</reflection>

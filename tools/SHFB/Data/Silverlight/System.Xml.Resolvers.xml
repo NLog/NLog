@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Xml.Utils">
+      <assemblydata version="5.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.Utils.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.Utils.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.Utils.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\Tools\devdiv\silverlightpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Xml.Resolvers">
+      <topicdata group="api" />
+      <apidata name="System.Xml.Resolvers" group="namespace" />
+      <elements>
+        <element api="T:System.Xml.Resolvers.XmlPreloadedResolver" />
+        <element api="T:System.Xml.Resolvers.XmlKnownDtds" />
+      </elements>
+      <file name="00ed44e1-5945-da14-e3d1-ce6f0eb4418c" />
+    </api>
+    <api id="T:System.Xml.Resolvers.XmlKnownDtds">
+      <topicdata group="api" />
+      <apidata name="XmlKnownDtds" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Xml.Resolvers.XmlKnownDtds.None" />
+        <element api="F:System.Xml.Resolvers.XmlKnownDtds.Xhtml10" />
+        <element api="F:System.Xml.Resolvers.XmlKnownDtds.Rss091" />
+        <element api="F:System.Xml.Resolvers.XmlKnownDtds.All" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="229df3ac-4649-9e20-61b9-ab7631982929" />
+    </api>
+    <api id="F:System.Xml.Resolvers.XmlKnownDtds.All">
+      <topicdata group="api" notopic="" />
+      <apidata name="All" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+      </returns>
+      <value>65535</value>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+      </containers>
+      <file name="61968a0f-0625-e15a-750d-f43f3cbcf193" />
+    </api>
+    <api id="F:System.Xml.Resolvers.XmlKnownDtds.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+      </containers>
+      <file name="c06fba89-34a3-274c-7530-13dab351d2e9" />
+    </api>
+    <api id="F:System.Xml.Resolvers.XmlKnownDtds.Rss091">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rss091" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+      </containers>
+      <file name="be6445c5-5290-394d-01b2-17bc6c5e0655" />
+    </api>
+    <api id="F:System.Xml.Resolvers.XmlKnownDtds.Xhtml10">
+      <topicdata group="api" notopic="" />
+      <apidata name="Xhtml10" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+      </containers>
+      <file name="f74a66be-7736-5670-0c04-d30faff79b58" />
+    </api>
+    <api id="T:System.Xml.Resolvers.XmlPreloadedResolver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      <apidata name="XmlPreloadedResolver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+      </containers>
+      <file name="85b8ccff-14f4-a7a4-b1b8-a796dd08f758" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Resolvers.XmlPreloadedResolver">
+      <topicdata name="XmlPreloadedResolver" group="list" subgroup="members" typeTopicId="T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      <apidata name="XmlPreloadedResolver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xml.Resolvers.XmlPreloadedResolver.#ctor">
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.Resolvers.XmlKnownDtds)" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver)" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver,System.Xml.Resolvers.XmlKnownDtds)" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver,System.Xml.Resolvers.XmlKnownDtds,System.Collections.Generic.IEqualityComparer{System.Uri})" />
+        </element>
+        <element api="Overload:System.Xml.Resolvers.XmlPreloadedResolver.Add">
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.Byte[])" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.IO.Stream)" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.String)" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.GetEntity(System.Uri,System.String,System.Type)" />
+        <element api="P:System.Xml.Resolvers.XmlPreloadedResolver.PreloadedUris" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Remove(System.Uri)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.ResolveUri(System.Uri,System.String)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.SupportsType(System.Uri,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      </containers>
+      <file name="1066432b-62dd-111b-4468-6701ba7d123b" />
+    </api>
+    <api id="Methods.T:System.Xml.Resolvers.XmlPreloadedResolver">
+      <topicdata name="XmlPreloadedResolver" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      <apidata name="XmlPreloadedResolver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Xml.Resolvers.XmlPreloadedResolver.Add">
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.Byte[])" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.IO.Stream)" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.String)" />
+          <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.GetEntity(System.Uri,System.String,System.Type)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Remove(System.Uri)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.ResolveUri(System.Uri,System.String)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.SupportsType(System.Uri,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      </containers>
+      <file name="bf640124-606a-b23d-c69d-6c4e191db6c1" />
+    </api>
+    <api id="Properties.T:System.Xml.Resolvers.XmlPreloadedResolver">
+      <topicdata name="XmlPreloadedResolver" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      <apidata name="XmlPreloadedResolver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <elements>
+        <element api="P:System.Xml.Resolvers.XmlPreloadedResolver.PreloadedUris" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      </containers>
+      <file name="5dbb7eb1-d5e8-899b-c781-48cab29f6fd2" />
+    </api>
+    <api id="Overload:System.Xml.Resolvers.XmlPreloadedResolver.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.Resolvers.XmlKnownDtds)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver,System.Xml.Resolvers.XmlKnownDtds)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver,System.Xml.Resolvers.XmlKnownDtds,System.Collections.Generic.IEqualityComparer{System.Uri})" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="588ee49a-84ff-c396-7538-1d884cc1657c" />
+    </api>
+    <api id="Overload:System.Xml.Resolvers.XmlPreloadedResolver.Add">
+      <topicdata name="Add" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Resolvers.XmlPreloadedResolver" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.Byte[])" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.IO.Stream)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.String)" />
+        <element api="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="46f3b33c-a1e6-df5f-9be4-4392041e157d" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="c52eb88b-8e45-cf58-21ec-8c7be6b3b705" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.Resolvers.XmlKnownDtds)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <parameters>
+        <parameter name="preloadedDtds">
+          <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="39eb882a-72b0-362d-42e1-dff23fc2eac3" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <parameters>
+        <parameter name="fallbackResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="ddd16521-fed0-4b25-9bd6-8534b859b9d5" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver,System.Xml.Resolvers.XmlKnownDtds)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <parameters>
+        <parameter name="fallbackResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+        <parameter name="preloadedDtds">
+          <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="acc5557f-190f-12d3-5abb-53b0b17b2217" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.#ctor(System.Xml.XmlResolver,System.Xml.Resolvers.XmlKnownDtds,System.Collections.Generic.IEqualityComparer{System.Uri})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.#ctor" />
+      <parameters>
+        <parameter name="fallbackResolver">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </parameter>
+        <parameter name="preloadedDtds">
+          <type api="T:System.Xml.Resolvers.XmlKnownDtds" ref="false" />
+        </parameter>
+        <parameter name="uriComparer">
+          <type api="T:System.Collections.Generic.IEqualityComparer`1" ref="true">
+            <specialization>
+              <type api="T:System.Uri" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="40fd7cdc-e935-2f5b-c543-36919b2091ec" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.Add" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="79b497fd-5faf-9d3d-d06e-9fec40a90d5b" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.Add" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="cede4b95-5374-9a2b-b8f5-d5834f734535" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.Add" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="1138f03f-6341-2aab-8021-0c8807101a7a" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.Add(System.Uri,System.String)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Xml.Resolvers.XmlPreloadedResolver.Add" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="a936b01a-0aed-a8a6-279b-3ac5bc4bb175" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.GetEntity(System.Uri,System.String,System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetEntity" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Xml.XmlResolver.GetEntity(System.Uri,System.String,System.Type)">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="absoluteUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="role">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ofObjectToReturn">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="c9d27ad4-5bd4-7d80-f352-75603cbe8d71" />
+    </api>
+    <api id="P:System.Xml.Resolvers.XmlPreloadedResolver.PreloadedUris">
+      <topicdata group="api" />
+      <apidata name="PreloadedUris" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PreloadedUris" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Uri" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="b5b9917f-68b2-4cda-ebe5-bd882def5514" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.Remove(System.Uri)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="40b8de89-543a-3628-3ba8-7443aa34a222" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.ResolveUri(System.Uri,System.String)">
+      <topicdata group="api" />
+      <apidata name="ResolveUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Xml.XmlResolver.ResolveUri(System.Uri,System.String)">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="baseUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="relativeUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="0d51e4ef-164a-64f5-4660-6133c1b92093" />
+    </api>
+    <api id="M:System.Xml.Resolvers.XmlPreloadedResolver.SupportsType(System.Uri,System.Type)">
+      <topicdata group="api" />
+      <apidata name="SupportsType" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Xml.XmlResolver.SupportsType(System.Uri,System.Type)">
+          <type api="T:System.Xml.XmlResolver" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="absoluteUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.Utils" module="System.Xml.Utils" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Resolvers" />
+        <type api="T:System.Xml.Resolvers.XmlPreloadedResolver" ref="true" />
+      </containers>
+      <file name="8beda08c-976a-2d85-4a5e-f37760d01d34" />
+    </api>
+  </apis>
+</reflection>

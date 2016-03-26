@@ -1,0 +1,974 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Timers">
+      <topicdata group="api" />
+      <apidata name="System.Timers" group="namespace" />
+      <elements>
+        <element api="T:System.Timers.ElapsedEventArgs" />
+        <element api="T:System.Timers.ElapsedEventHandler" />
+        <element api="T:System.Timers.Timer" />
+        <element api="T:System.Timers.TimersDescriptionAttribute" />
+      </elements>
+      <file name="8c6f67f1-35ed-1274-baa4-5074ff74209c" />
+    </api>
+    <api id="T:System.Timers.ElapsedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Timers.ElapsedEventArgs" />
+      <apidata name="ElapsedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+      </containers>
+      <file name="45a459fa-6bf5-5178-7e63-84c340fcf8c7" />
+    </api>
+    <api id="AllMembers.T:System.Timers.ElapsedEventArgs">
+      <topicdata name="ElapsedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Timers.ElapsedEventArgs" />
+      <apidata name="ElapsedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Timers.ElapsedEventArgs.SignalTime" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.ElapsedEventArgs" />
+      </containers>
+      <file name="1af3179b-ae51-5864-5d46-dce8b765eef4" />
+    </api>
+    <api id="Methods.T:System.Timers.ElapsedEventArgs">
+      <topicdata name="ElapsedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Timers.ElapsedEventArgs" />
+      <apidata name="ElapsedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.ElapsedEventArgs" />
+      </containers>
+      <file name="e749b9e6-51c4-794f-2493-c497499ccc45" />
+    </api>
+    <api id="Properties.T:System.Timers.ElapsedEventArgs">
+      <topicdata name="ElapsedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Timers.ElapsedEventArgs" />
+      <apidata name="ElapsedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Timers.ElapsedEventArgs.SignalTime" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.ElapsedEventArgs" />
+      </containers>
+      <file name="3c2b2dab-9302-0679-fa59-67d97da0eb8f" />
+    </api>
+    <api id="P:System.Timers.ElapsedEventArgs.SignalTime">
+      <topicdata group="api" />
+      <apidata name="SignalTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SignalTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.ElapsedEventArgs" ref="true" />
+      </containers>
+      <file name="d5bbbbbd-bbea-b632-66de-0fb72e31d93c" />
+    </api>
+    <api id="T:System.Timers.ElapsedEventHandler">
+      <topicdata group="api" />
+      <apidata name="ElapsedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Timers.ElapsedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+      </containers>
+      <file name="474c3c97-1d6c-fdcb-638a-a8451729e2c3" />
+    </api>
+    <api id="T:System.Timers.Timer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Timers.Timer" />
+      <apidata name="Timer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Timers.Timer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Interval</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultEventAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Elapsed</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Synchronization">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="ExternalThreading">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f2837689-ab7f-82a0-3dfd-279fd03db871" />
+    </api>
+    <api id="AllMembers.T:System.Timers.Timer">
+      <topicdata name="Timer" group="list" subgroup="members" typeTopicId="T:System.Timers.Timer" />
+      <apidata name="Timer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Timers.Timer.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Timers.Timer.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.Timers.Timer.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.Timers.Timer.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="Overload:System.Timers.Timer.#ctor">
+          <element api="M:System.Timers.Timer.#ctor" />
+          <element api="M:System.Timers.Timer.#ctor(System.Double)" />
+        </element>
+        <element api="P:System.Timers.Timer.AutoReset" />
+        <element api="M:System.Timers.Timer.BeginInit" />
+        <element api="M:System.Timers.Timer.Close" />
+        <element api="E:System.Timers.Timer.Elapsed" />
+        <element api="P:System.Timers.Timer.Enabled" />
+        <element api="M:System.Timers.Timer.EndInit" />
+        <element api="P:System.Timers.Timer.Interval" />
+        <element api="P:System.Timers.Timer.Site" />
+        <element api="M:System.Timers.Timer.Start" />
+        <element api="M:System.Timers.Timer.Stop" />
+        <element api="P:System.Timers.Timer.SynchronizingObject" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" />
+      </containers>
+      <file name="fa485043-d4a3-19c3-e9a8-862ee4bc2d95" />
+    </api>
+    <api id="Methods.T:System.Timers.Timer">
+      <topicdata name="Timer" group="list" subgroup="Methods" typeTopicId="T:System.Timers.Timer" />
+      <apidata name="Timer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Timers.Timer.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Timers.Timer.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Timers.Timer.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.Timers.Timer.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Timers.Timer.BeginInit" />
+        <element api="M:System.Timers.Timer.Close" />
+        <element api="M:System.Timers.Timer.EndInit" />
+        <element api="M:System.Timers.Timer.Start" />
+        <element api="M:System.Timers.Timer.Stop" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" />
+      </containers>
+      <file name="5b0ab4e1-5ca0-1ef9-8156-d9dc6676f762" />
+    </api>
+    <api id="Properties.T:System.Timers.Timer">
+      <topicdata name="Timer" group="list" subgroup="Properties" typeTopicId="T:System.Timers.Timer" />
+      <apidata name="Timer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Timers.Timer.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.Timers.Timer.AutoReset" />
+        <element api="P:System.Timers.Timer.Enabled" />
+        <element api="P:System.Timers.Timer.Interval" />
+        <element api="P:System.Timers.Timer.Site" />
+        <element api="P:System.Timers.Timer.SynchronizingObject" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" />
+      </containers>
+      <file name="953a03db-ce96-dbc1-84d4-d2f7f7f27107" />
+    </api>
+    <api id="Events.T:System.Timers.Timer">
+      <topicdata name="Timer" group="list" subgroup="Events" typeTopicId="T:System.Timers.Timer" />
+      <apidata name="Timer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Timers.Timer.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="E:System.Timers.Timer.Elapsed" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" />
+      </containers>
+      <file name="ebf2f09c-d6e0-2568-c3f8-9d1513c18f87" />
+    </api>
+    <api id="Overload:System.Timers.Timer.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Timers.Timer" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.Component.Dispose" />
+        <element api="M:System.Timers.Timer.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="cdfea1bf-5693-293c-d936-9bbe2cdfea60" />
+    </api>
+    <api id="Overload:System.Timers.Timer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Timers.Timer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Timers.Timer.#ctor" />
+        <element api="M:System.Timers.Timer.#ctor(System.Double)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="d5dc832c-1b51-30fa-d9ab-a5d6463d2abe" />
+    </api>
+    <api id="M:System.Timers.Timer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Timers.Timer.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="db22ee94-f9bd-7437-53ff-47363b476f19" />
+    </api>
+    <api id="M:System.Timers.Timer.#ctor(System.Double)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Timers.Timer.#ctor" />
+      <parameters>
+        <parameter name="interval">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="0361a496-d41c-29e4-b887-250086e354cc" />
+    </api>
+    <api id="P:System.Timers.Timer.AutoReset">
+      <topicdata group="api" />
+      <apidata name="AutoReset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AutoReset" />
+      <setter name="set_AutoReset" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Timers.TimersDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TimerAutoReset</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7d534878-7a88-1943-004d-260044a5e457" />
+    </api>
+    <api id="M:System.Timers.Timer.BeginInit">
+      <topicdata group="api" />
+      <apidata name="BeginInit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.ComponentModel.ISupportInitialize.BeginInit">
+          <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="9e8d5d24-d9e4-d2c4-9199-03662bc8f576" />
+    </api>
+    <api id="M:System.Timers.Timer.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="a5ef10c3-7328-f04e-4c45-f1783d20c3db" />
+    </api>
+    <api id="M:System.Timers.Timer.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Timers.Timer.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.Component.Dispose(System.Boolean)">
+          <type api="T:System.ComponentModel.Component" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="7e17c78f-0d9b-9d56-e007-3817c6949d1f" />
+    </api>
+    <api id="E:System.Timers.Timer.Elapsed">
+      <topicdata group="api" />
+      <apidata name="Elapsed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Elapsed" />
+      <remover name="remove_Elapsed" />
+      <eventhandler>
+        <type api="T:System.Timers.ElapsedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Timers.ElapsedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Timers.TimersDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TimerIntervalElapsed</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="843a5273-7cac-0905-aef9-df0942599186" />
+    </api>
+    <api id="P:System.Timers.Timer.Enabled">
+      <topicdata group="api" />
+      <apidata name="Enabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Enabled" />
+      <setter name="set_Enabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Timers.TimersDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TimerEnabled</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f0cf58c4-1567-66bb-5740-a203d3ad9ff3" />
+    </api>
+    <api id="M:System.Timers.Timer.EndInit">
+      <topicdata group="api" />
+      <apidata name="EndInit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.ComponentModel.ISupportInitialize.EndInit">
+          <type api="T:System.ComponentModel.ISupportInitialize" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="7bd09f7d-ce89-32e7-6855-35da29f980b8" />
+    </api>
+    <api id="P:System.Timers.Timer.Interval">
+      <topicdata group="api" />
+      <apidata name="Interval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Interval" />
+      <setter name="set_Interval" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Timers.TimersDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TimerInterval</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Double" ref="false" />
+            <value>100</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.SettingsBindableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="52bcca64-84e5-7b0e-7c6c-25099e411c73" />
+    </api>
+    <api id="P:System.Timers.Timer.Site">
+      <topicdata group="api" />
+      <apidata name="Site" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.ComponentModel.Component.Site">
+          <type api="T:System.ComponentModel.Component" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Site" />
+      <setter name="set_Site" />
+      <returns>
+        <type api="T:System.ComponentModel.ISite" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.ComponentModel.IComponent.Site">
+          <type api="T:System.ComponentModel.IComponent" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="982d41fd-e650-eb69-681f-ce03e6cf9865" />
+    </api>
+    <api id="M:System.Timers.Timer.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="fbc6d4d8-71c4-49f6-7434-5032ca4c1956" />
+    </api>
+    <api id="M:System.Timers.Timer.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <file name="147d9913-1f6b-28cf-4716-37d2ee66e71c" />
+    </api>
+    <api id="P:System.Timers.Timer.SynchronizingObject">
+      <topicdata group="api" />
+      <apidata name="SynchronizingObject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SynchronizingObject" />
+      <setter name="set_SynchronizingObject" />
+      <returns>
+        <type api="T:System.ComponentModel.ISynchronizeInvoke" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.Timer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Timers.TimersDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TimerSynchronizingObject</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7abd2bc0-3275-5589-adb5-deba62bdc680" />
+    </api>
+    <api id="T:System.Timers.TimersDescriptionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Timers.TimersDescriptionAttribute" />
+      <apidata name="TimersDescriptionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.DescriptionAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="All" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c43dace4-cdde-874c-5ffe-673aa0e0be5e" />
+    </api>
+    <api id="AllMembers.T:System.Timers.TimersDescriptionAttribute">
+      <topicdata name="TimersDescriptionAttribute" group="list" subgroup="members" typeTopicId="T:System.Timers.TimersDescriptionAttribute" />
+      <apidata name="TimersDescriptionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.DescriptionAttribute.DescriptionValue" />
+        <element api="M:System.ComponentModel.DescriptionAttribute.Equals(System.Object)" />
+        <element api="M:System.ComponentModel.DescriptionAttribute.GetHashCode" />
+        <element api="M:System.ComponentModel.DescriptionAttribute.IsDefaultAttribute" />
+        <element api="M:System.Timers.TimersDescriptionAttribute.#ctor(System.String)" />
+        <element api="P:System.Timers.TimersDescriptionAttribute.Description" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.TimersDescriptionAttribute" />
+      </containers>
+      <file name="21d7c598-7fc4-3b31-2e7a-0548634a9b87" />
+    </api>
+    <api id="Methods.T:System.Timers.TimersDescriptionAttribute">
+      <topicdata name="TimersDescriptionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Timers.TimersDescriptionAttribute" />
+      <apidata name="TimersDescriptionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DescriptionAttribute.Equals(System.Object)" />
+        <element api="M:System.ComponentModel.DescriptionAttribute.GetHashCode" />
+        <element api="M:System.ComponentModel.DescriptionAttribute.IsDefaultAttribute" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.TimersDescriptionAttribute" />
+      </containers>
+      <file name="81b40748-831d-e805-1ce4-fbdfbc0ee78a" />
+    </api>
+    <api id="Properties.T:System.Timers.TimersDescriptionAttribute">
+      <topicdata name="TimersDescriptionAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Timers.TimersDescriptionAttribute" />
+      <apidata name="TimersDescriptionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.ComponentModel.DescriptionAttribute.DescriptionValue" />
+        <element api="P:System.Timers.TimersDescriptionAttribute.Description" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.TimersDescriptionAttribute" />
+      </containers>
+      <file name="1e2ce67f-e468-5bf6-b966-6d7a5139fe5e" />
+    </api>
+    <api id="M:System.Timers.TimersDescriptionAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="description">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.TimersDescriptionAttribute" ref="true" />
+      </containers>
+      <file name="576a9223-125f-8727-94af-2c7cc93a05f1" />
+    </api>
+    <api id="P:System.Timers.TimersDescriptionAttribute.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.ComponentModel.DescriptionAttribute.Description">
+          <type api="T:System.ComponentModel.DescriptionAttribute" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Timers" />
+        <type api="T:System.Timers.TimersDescriptionAttribute" ref="true" />
+      </containers>
+      <file name="ea493885-d6f1-0834-43c7-8084e56ccd69" />
+    </api>
+  </apis>
+</reflection>

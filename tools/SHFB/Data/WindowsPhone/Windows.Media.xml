@@ -1,0 +1,3514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media">
+      <topicdata group="api" />
+      <apidata name="Windows.Media" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.SoundLevel" />
+        <element api="T:Windows.Media.IMediaMarker" />
+        <element api="T:Windows.Media.IMediaMarkers" />
+        <element api="T:Windows.Media.MediaMarkerTypes" />
+        <element api="T:Windows.Media.MediaPlaybackType" />
+        <element api="T:Windows.Media.MusicDisplayProperties" />
+        <element api="T:Windows.Media.VideoDisplayProperties" />
+        <element api="T:Windows.Media.ImageDisplayProperties" />
+        <element api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" />
+        <element api="T:Windows.Media.MediaPlaybackStatus" />
+        <element api="T:Windows.Media.SystemMediaTransportControlsButton" />
+        <element api="T:Windows.Media.SystemMediaTransportControlsProperty" />
+        <element api="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" />
+        <element api="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" />
+        <element api="T:Windows.Media.SystemMediaTransportControls" />
+        <element api="T:Windows.Media.AudioProcessing" />
+        <element api="T:Windows.Media.IMediaExtension" />
+        <element api="T:Windows.Media.MediaExtensionManager" />
+        <element api="T:Windows.Media.VideoEffects" />
+      </elements>
+      <file name="dc36d60b-18da-7018-0c04-ec24e56bd171" />
+    </api>
+    <api id="T:Windows.Media.AudioProcessing">
+      <topicdata group="api" />
+      <apidata name="AudioProcessing" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.AudioProcessing.Default" />
+        <element api="F:Windows.Media.AudioProcessing.Raw" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7b553e57-18f0-8029-ee52-2596988e12bc" />
+    </api>
+    <api id="F:Windows.Media.AudioProcessing.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.AudioProcessing" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.AudioProcessing" ref="false" />
+      </containers>
+      <file name="48269e98-4663-ab6c-f773-07c41abbf020" />
+    </api>
+    <api id="F:Windows.Media.AudioProcessing.Raw">
+      <topicdata group="api" notopic="" />
+      <apidata name="Raw" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.AudioProcessing" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.AudioProcessing" ref="false" />
+      </containers>
+      <file name="d573e463-ea40-7c36-9ee5-4594d9385a7c" />
+    </api>
+    <api id="T:Windows.Media.ImageDisplayProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.ImageDisplayProperties" />
+      <apidata name="ImageDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.IImageDisplayProperties" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8985d7a4-23fd-22bd-1a07-f2d127188ba8" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.ImageDisplayProperties">
+      <topicdata name="ImageDisplayProperties" group="list" subgroup="members" typeTopicId="T:Windows.Media.ImageDisplayProperties" />
+      <apidata name="ImageDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.ImageDisplayProperties.Subtitle" />
+        <element api="P:Windows.Media.ImageDisplayProperties.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.ImageDisplayProperties" />
+      </containers>
+      <file name="05ffef6e-8a1b-d66b-1e84-bc668055e357" />
+    </api>
+    <api id="Methods.T:Windows.Media.ImageDisplayProperties">
+      <topicdata name="ImageDisplayProperties" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.ImageDisplayProperties" />
+      <apidata name="ImageDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.ImageDisplayProperties" />
+      </containers>
+      <file name="254060a4-d73e-fb5b-06e5-86de1431a775" />
+    </api>
+    <api id="Properties.T:Windows.Media.ImageDisplayProperties">
+      <topicdata name="ImageDisplayProperties" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.ImageDisplayProperties" />
+      <apidata name="ImageDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.ImageDisplayProperties.Subtitle" />
+        <element api="P:Windows.Media.ImageDisplayProperties.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.ImageDisplayProperties" />
+      </containers>
+      <file name="dd429ad2-c5a7-d392-4e28-953b41d249a9" />
+    </api>
+    <api id="P:Windows.Media.ImageDisplayProperties.Subtitle">
+      <topicdata group="api" />
+      <apidata name="Subtitle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Subtitle" />
+      <setter name="set_Subtitle" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.ImageDisplayProperties" ref="true" />
+      </containers>
+      <file name="e179d19e-4cfc-5331-0696-0af7e8b0ec39" />
+    </api>
+    <api id="P:Windows.Media.ImageDisplayProperties.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.ImageDisplayProperties" ref="true" />
+      </containers>
+      <file name="2f22dbeb-2096-311f-2a39-effce20b2c8e" />
+    </api>
+    <api id="T:Windows.Media.IMediaExtension">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.IMediaExtension" />
+      <apidata name="IMediaExtension" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>126963992</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17887</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17451</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>138</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>63</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>247</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>130</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>106</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>99</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>112</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>171</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="001e2c60-4d8f-6a1e-8096-cfe2c9e7cda2" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.IMediaExtension">
+      <topicdata name="IMediaExtension" group="list" subgroup="members" typeTopicId="T:Windows.Media.IMediaExtension" />
+      <apidata name="IMediaExtension" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Media.IMediaExtension.SetProperties(Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaExtension" />
+      </containers>
+      <file name="41e25ae0-00f0-3158-0a71-33bdca43d00c" />
+    </api>
+    <api id="Methods.T:Windows.Media.IMediaExtension">
+      <topicdata name="IMediaExtension" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.IMediaExtension" />
+      <apidata name="IMediaExtension" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Media.IMediaExtension.SetProperties(Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaExtension" />
+      </containers>
+      <file name="35b2253f-69be-507d-17fe-350d541b025e" />
+    </api>
+    <api id="M:Windows.Media.IMediaExtension.SetProperties(Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="SetProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaExtension" ref="true" />
+      </containers>
+      <file name="d1f45713-fcf4-0ace-10e0-1cc9fdc347c7" />
+    </api>
+    <api id="T:Windows.Media.IMediaMarker">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.IMediaMarker" />
+      <apidata name="IMediaMarker" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>402906872</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>56485</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19311</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>156</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>32</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>227</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>211</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>192</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>100</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>54</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>37</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3c7eb7ef-a772-aa12-90de-c480db7522b8" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.IMediaMarker">
+      <topicdata name="IMediaMarker" group="list" subgroup="members" typeTopicId="T:Windows.Media.IMediaMarker" />
+      <apidata name="IMediaMarker" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.IMediaMarker.MediaMarkerType" />
+        <element api="P:Windows.Media.IMediaMarker.Text" />
+        <element api="P:Windows.Media.IMediaMarker.Time" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaMarker" />
+      </containers>
+      <file name="fb73ef49-2eb0-9676-3136-fb79d985b6c9" />
+    </api>
+    <api id="Properties.T:Windows.Media.IMediaMarker">
+      <topicdata name="IMediaMarker" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.IMediaMarker" />
+      <apidata name="IMediaMarker" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.IMediaMarker.MediaMarkerType" />
+        <element api="P:Windows.Media.IMediaMarker.Text" />
+        <element api="P:Windows.Media.IMediaMarker.Time" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaMarker" />
+      </containers>
+      <file name="b9738843-969c-ac61-ce66-b2a8f4b46861" />
+    </api>
+    <api id="P:Windows.Media.IMediaMarker.MediaMarkerType">
+      <topicdata group="api" />
+      <apidata name="MediaMarkerType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_MediaMarkerType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaMarker" ref="true" />
+      </containers>
+      <file name="5452b0ce-ad7c-968f-a5bf-938bac9d666f" />
+    </api>
+    <api id="P:Windows.Media.IMediaMarker.Text">
+      <topicdata group="api" />
+      <apidata name="Text" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Text" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaMarker" ref="true" />
+      </containers>
+      <file name="2331d385-d869-625f-43a9-a082986d04a3" />
+    </api>
+    <api id="P:Windows.Media.IMediaMarker.Time">
+      <topicdata group="api" />
+      <apidata name="Time" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Time" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaMarker" ref="true" />
+      </containers>
+      <file name="f108fb64-cc85-2696-94b6-ca6f3d45b6ee" />
+    </api>
+    <api id="T:Windows.Media.IMediaMarkers">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.IMediaMarkers" />
+      <apidata name="IMediaMarkers" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2951393673</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>63709</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18030</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>170</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>16</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>146</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>11</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>82</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>53</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>63</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>223</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cec78b7a-7046-a51a-4e54-f1a3be36f924" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.IMediaMarkers">
+      <topicdata name="IMediaMarkers" group="list" subgroup="members" typeTopicId="T:Windows.Media.IMediaMarkers" />
+      <apidata name="IMediaMarkers" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.IMediaMarkers.Markers" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaMarkers" />
+      </containers>
+      <file name="b7b5a1af-b368-6df5-1db8-ee4558a05c8d" />
+    </api>
+    <api id="Properties.T:Windows.Media.IMediaMarkers">
+      <topicdata name="IMediaMarkers" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.IMediaMarkers" />
+      <apidata name="IMediaMarkers" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.IMediaMarkers.Markers" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaMarkers" />
+      </containers>
+      <file name="a16d1220-f265-45c0-0e85-84f53f5c0933" />
+    </api>
+    <api id="P:Windows.Media.IMediaMarkers.Markers">
+      <topicdata group="api" />
+      <apidata name="Markers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Markers" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.IMediaMarker" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.IMediaMarkers" ref="true" />
+      </containers>
+      <file name="f1137cd1-4e49-23e7-74dc-533f98061829" />
+    </api>
+    <api id="T:Windows.Media.MediaExtensionManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.MediaExtensionManager" />
+      <apidata name="MediaExtensionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.MediaExtensionManager.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.IMediaExtensionManager" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0af761d1-c0e4-f548-7919-b18362535917" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.MediaExtensionManager">
+      <topicdata name="MediaExtensionManager" group="list" subgroup="members" typeTopicId="T:Windows.Media.MediaExtensionManager" />
+      <apidata name="MediaExtensionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.MediaExtensionManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.MediaExtensionManager.#ctor" />
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterAudioDecoder">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioDecoder(System.String,System.Guid,System.Guid)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioDecoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterAudioEncoder">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioEncoder(System.String,System.Guid,System.Guid)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioEncoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler(System.String,System.String,System.String)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler(System.String,System.String,System.String,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterSchemeHandler">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterSchemeHandler(System.String,System.String)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterSchemeHandler(System.String,System.String,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterVideoDecoder">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoDecoder(System.String,System.Guid,System.Guid)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoDecoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterVideoEncoder">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoEncoder(System.String,System.Guid,System.Guid)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoEncoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" />
+      </containers>
+      <file name="46e9c72e-ccb5-c3a0-32df-168b5d67487c" />
+    </api>
+    <api id="Methods.T:Windows.Media.MediaExtensionManager">
+      <topicdata name="MediaExtensionManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.MediaExtensionManager" />
+      <apidata name="MediaExtensionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.MediaExtensionManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterAudioDecoder">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioDecoder(System.String,System.Guid,System.Guid)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioDecoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterAudioEncoder">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioEncoder(System.String,System.Guid,System.Guid)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioEncoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler(System.String,System.String,System.String)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler(System.String,System.String,System.String,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterSchemeHandler">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterSchemeHandler(System.String,System.String)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterSchemeHandler(System.String,System.String,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterVideoDecoder">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoDecoder(System.String,System.Guid,System.Guid)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoDecoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.MediaExtensionManager.RegisterVideoEncoder">
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoEncoder(System.String,System.Guid,System.Guid)" />
+          <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoEncoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" />
+      </containers>
+      <file name="b29ca060-7117-6ed3-e1b6-abf6fd5583ac" />
+    </api>
+    <api id="Overload:Windows.Media.MediaExtensionManager.RegisterAudioDecoder">
+      <topicdata name="RegisterAudioDecoder" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.MediaExtensionManager" />
+      <apidata name="RegisterAudioDecoder" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioDecoder(System.String,System.Guid,System.Guid)" />
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioDecoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <file name="54923ae0-185f-d0f3-ce45-cc8609e0da68" />
+    </api>
+    <api id="Overload:Windows.Media.MediaExtensionManager.RegisterAudioEncoder">
+      <topicdata name="RegisterAudioEncoder" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.MediaExtensionManager" />
+      <apidata name="RegisterAudioEncoder" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioEncoder(System.String,System.Guid,System.Guid)" />
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterAudioEncoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <file name="e19aeca2-082d-6cc8-5286-ed1b353ed7b5" />
+    </api>
+    <api id="Overload:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler">
+      <topicdata name="RegisterByteStreamHandler" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.MediaExtensionManager" />
+      <apidata name="RegisterByteStreamHandler" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler(System.String,System.String,System.String)" />
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler(System.String,System.String,System.String,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <file name="e4a872c8-5f9f-ef4a-b0ba-a6459ddfd762" />
+    </api>
+    <api id="Overload:Windows.Media.MediaExtensionManager.RegisterSchemeHandler">
+      <topicdata name="RegisterSchemeHandler" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.MediaExtensionManager" />
+      <apidata name="RegisterSchemeHandler" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterSchemeHandler(System.String,System.String)" />
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterSchemeHandler(System.String,System.String,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <file name="a03fe042-0a7d-17a0-2147-a87fafa17737" />
+    </api>
+    <api id="Overload:Windows.Media.MediaExtensionManager.RegisterVideoDecoder">
+      <topicdata name="RegisterVideoDecoder" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.MediaExtensionManager" />
+      <apidata name="RegisterVideoDecoder" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoDecoder(System.String,System.Guid,System.Guid)" />
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoDecoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <file name="ef69a54b-44b3-3c15-309b-3ffd89188cf7" />
+    </api>
+    <api id="Overload:Windows.Media.MediaExtensionManager.RegisterVideoEncoder">
+      <topicdata name="RegisterVideoEncoder" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.MediaExtensionManager" />
+      <apidata name="RegisterVideoEncoder" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoEncoder(System.String,System.Guid,System.Guid)" />
+        <element api="M:Windows.Media.MediaExtensionManager.RegisterVideoEncoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <file name="b7c06590-94dc-f190-5a7c-3014928983d5" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <file name="9a0a107a-0975-7148-5c00-ca49e86a0c48" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterAudioDecoder(System.String,System.Guid,System.Guid)">
+      <topicdata group="api" />
+      <apidata name="RegisterAudioDecoder" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterAudioDecoder" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="outputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterAudioDecoder</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6b6bc43a-1ba9-8faf-69d6-f7f6f5ede51b" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterAudioDecoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="RegisterAudioDecoder" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterAudioDecoder" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="outputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterAudioDecoderWithSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="92a60ca5-883f-2690-c712-19bf3c0ad6f2" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterAudioEncoder(System.String,System.Guid,System.Guid)">
+      <topicdata group="api" />
+      <apidata name="RegisterAudioEncoder" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterAudioEncoder" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="outputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterAudioEncoder</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7f8d190e-7e41-5c2a-5886-b254e3c83674" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterAudioEncoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="RegisterAudioEncoder" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterAudioEncoder" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="outputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterAudioEncoderWithSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f3044695-5520-91ec-79da-3ce8034dc424" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RegisterByteStreamHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="fileExtension" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mimeType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterByteStreamHandler</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d5a3216d-fdb0-3cae-852c-4b1e81ee9320" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler(System.String,System.String,System.String,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="RegisterByteStreamHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterByteStreamHandler" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="fileExtension" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mimeType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterByteStreamHandlerWithSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="040ff5a7-3dae-1b6e-9b57-67517f23b4c0" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterSchemeHandler(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RegisterSchemeHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterSchemeHandler" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="scheme" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterSchemeHandler</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="178f52c5-015f-8d65-be1d-1cdacffc2a6b" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterSchemeHandler(System.String,System.String,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="RegisterSchemeHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterSchemeHandler" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="scheme" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterSchemeHandlerWithSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4a8f0962-59cd-f41f-4d8f-c65b77d2d931" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterVideoDecoder(System.String,System.Guid,System.Guid)">
+      <topicdata group="api" />
+      <apidata name="RegisterVideoDecoder" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterVideoDecoder" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="outputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterVideoDecoder</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0d8b5b08-3fbe-3e0e-d104-a09e5b599391" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterVideoDecoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="RegisterVideoDecoder" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterVideoDecoder" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="outputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterVideoDecoderWithSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="db02f401-0a2e-9ed8-3b89-c22b27e89e98" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterVideoEncoder(System.String,System.Guid,System.Guid)">
+      <topicdata group="api" />
+      <apidata name="RegisterVideoEncoder" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterVideoEncoder" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="outputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterVideoEncoder</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f1756766-11c5-b218-2ca8-c85bdc506031" />
+    </api>
+    <api id="M:Windows.Media.MediaExtensionManager.RegisterVideoEncoder(System.String,System.Guid,System.Guid,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="RegisterVideoEncoder" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.MediaExtensionManager.RegisterVideoEncoder" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="outputSubtype" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaExtensionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterVideoEncoderWithSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="776facec-f9c0-2672-9d9b-2189adbfeb21" />
+    </api>
+    <api id="T:Windows.Media.MediaMarkerTypes">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.MediaMarkerTypes" />
+      <apidata name="MediaMarkerTypes" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="319dc21f-820c-2a51-37f5-c653aa6f7a7d" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.MediaMarkerTypes">
+      <topicdata name="MediaMarkerTypes" group="list" subgroup="members" typeTopicId="T:Windows.Media.MediaMarkerTypes" />
+      <apidata name="MediaMarkerTypes" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.MediaMarkerTypes.Bookmark" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaMarkerTypes" />
+      </containers>
+      <file name="8ef4d909-8b6a-caf9-fb9d-1b15eebf7457" />
+    </api>
+    <api id="Properties.T:Windows.Media.MediaMarkerTypes">
+      <topicdata name="MediaMarkerTypes" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.MediaMarkerTypes" />
+      <apidata name="MediaMarkerTypes" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.MediaMarkerTypes.Bookmark" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaMarkerTypes" />
+      </containers>
+      <file name="5d8c71d7-fb53-8da1-d93a-54db05157c65" />
+    </api>
+    <api id="P:Windows.Media.MediaMarkerTypes.Bookmark">
+      <topicdata group="api" />
+      <apidata name="Bookmark" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Bookmark" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaMarkerTypes" ref="true" />
+      </containers>
+      <file name="a82f6ea5-fd78-0bf1-584b-9ee9dca38450" />
+    </api>
+    <api id="T:Windows.Media.MediaPlaybackStatus">
+      <topicdata group="api" />
+      <apidata name="MediaPlaybackStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.MediaPlaybackStatus.Closed" />
+        <element api="F:Windows.Media.MediaPlaybackStatus.Changing" />
+        <element api="F:Windows.Media.MediaPlaybackStatus.Stopped" />
+        <element api="F:Windows.Media.MediaPlaybackStatus.Playing" />
+        <element api="F:Windows.Media.MediaPlaybackStatus.Paused" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="df77d380-5dc5-427b-6e41-913ecaa591fa" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackStatus.Changing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Changing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </containers>
+      <file name="d3076384-811c-c8c7-91da-e5d98df5340a" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackStatus.Closed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Closed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </containers>
+      <file name="595f3e00-743b-0c55-aca5-383668621ac9" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackStatus.Paused">
+      <topicdata group="api" notopic="" />
+      <apidata name="Paused" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </containers>
+      <file name="7bf9111a-f97f-1619-42a2-91d90771af47" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackStatus.Playing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Playing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </containers>
+      <file name="e84b9bcd-93ce-6efd-e4d5-a5a290b187ac" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackStatus.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </containers>
+      <file name="461fdb14-fe43-eb5e-48cc-3e0fd812f2fc" />
+    </api>
+    <api id="T:Windows.Media.MediaPlaybackType">
+      <topicdata group="api" />
+      <apidata name="MediaPlaybackType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.MediaPlaybackType.Unknown" />
+        <element api="F:Windows.Media.MediaPlaybackType.Music" />
+        <element api="F:Windows.Media.MediaPlaybackType.Video" />
+        <element api="F:Windows.Media.MediaPlaybackType.Image" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4ab9a1ad-55d3-75d4-82dc-fde67287b731" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackType.Image">
+      <topicdata group="api" notopic="" />
+      <apidata name="Image" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </containers>
+      <file name="ccf68511-c7fc-f6c3-3ab3-80ed22dcf467" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackType.Music">
+      <topicdata group="api" notopic="" />
+      <apidata name="Music" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </containers>
+      <file name="ba806cc2-1cfa-e01e-3ca8-608c55b31a70" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackType.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </containers>
+      <file name="d0f4b8b2-3a43-0a16-43e8-a448ef71a30d" />
+    </api>
+    <api id="F:Windows.Media.MediaPlaybackType.Video">
+      <topicdata group="api" notopic="" />
+      <apidata name="Video" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </containers>
+      <file name="5f43049a-1c2c-ef9a-5781-f6415fd379b0" />
+    </api>
+    <api id="T:Windows.Media.MusicDisplayProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.MusicDisplayProperties" />
+      <apidata name="MusicDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.IMusicDisplayProperties" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d3801bbd-a1b8-b27b-3220-44505fd6a963" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.MusicDisplayProperties">
+      <topicdata name="MusicDisplayProperties" group="list" subgroup="members" typeTopicId="T:Windows.Media.MusicDisplayProperties" />
+      <apidata name="MusicDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.MusicDisplayProperties.AlbumArtist" />
+        <element api="P:Windows.Media.MusicDisplayProperties.Artist" />
+        <element api="P:Windows.Media.MusicDisplayProperties.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MusicDisplayProperties" />
+      </containers>
+      <file name="2462223a-9bb9-457c-639d-e3ee2ef33b5e" />
+    </api>
+    <api id="Methods.T:Windows.Media.MusicDisplayProperties">
+      <topicdata name="MusicDisplayProperties" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.MusicDisplayProperties" />
+      <apidata name="MusicDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MusicDisplayProperties" />
+      </containers>
+      <file name="07c03217-ffe0-e954-c91d-5f9b54157ee1" />
+    </api>
+    <api id="Properties.T:Windows.Media.MusicDisplayProperties">
+      <topicdata name="MusicDisplayProperties" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.MusicDisplayProperties" />
+      <apidata name="MusicDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.MusicDisplayProperties.AlbumArtist" />
+        <element api="P:Windows.Media.MusicDisplayProperties.Artist" />
+        <element api="P:Windows.Media.MusicDisplayProperties.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MusicDisplayProperties" />
+      </containers>
+      <file name="f3544e03-c5e4-289a-bb2a-312d77e9d4ec" />
+    </api>
+    <api id="P:Windows.Media.MusicDisplayProperties.AlbumArtist">
+      <topicdata group="api" />
+      <apidata name="AlbumArtist" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlbumArtist" />
+      <setter name="set_AlbumArtist" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MusicDisplayProperties" ref="true" />
+      </containers>
+      <file name="101251b6-2a76-374f-afa6-9712f9a18faa" />
+    </api>
+    <api id="P:Windows.Media.MusicDisplayProperties.Artist">
+      <topicdata group="api" />
+      <apidata name="Artist" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Artist" />
+      <setter name="set_Artist" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MusicDisplayProperties" ref="true" />
+      </containers>
+      <file name="4807ae48-f469-a3ba-0c99-b59f46478e92" />
+    </api>
+    <api id="P:Windows.Media.MusicDisplayProperties.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.MusicDisplayProperties" ref="true" />
+      </containers>
+      <file name="b2e6db69-f13b-021d-3a32-38a3e0462183" />
+    </api>
+    <api id="T:Windows.Media.SoundLevel">
+      <topicdata group="api" />
+      <apidata name="SoundLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.SoundLevel.Muted" />
+        <element api="F:Windows.Media.SoundLevel.Low" />
+        <element api="F:Windows.Media.SoundLevel.Full" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="101972b1-b64c-aaa7-e7eb-055090e9964a" />
+    </api>
+    <api id="F:Windows.Media.SoundLevel.Full">
+      <topicdata group="api" notopic="" />
+      <apidata name="Full" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SoundLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SoundLevel" ref="false" />
+      </containers>
+      <file name="1e2878aa-91fd-a0e5-dc54-f3fa0b602369" />
+    </api>
+    <api id="F:Windows.Media.SoundLevel.Low">
+      <topicdata group="api" notopic="" />
+      <apidata name="Low" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SoundLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SoundLevel" ref="false" />
+      </containers>
+      <file name="390156f6-3414-13bb-c602-3c156c64de68" />
+    </api>
+    <api id="F:Windows.Media.SoundLevel.Muted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Muted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SoundLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SoundLevel" ref="false" />
+      </containers>
+      <file name="e08dff57-8ac0-a962-f3d5-e4558a57237b" />
+    </api>
+    <api id="T:Windows.Media.SystemMediaTransportControls">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.SystemMediaTransportControls" />
+      <apidata name="SystemMediaTransportControls" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.ISystemMediaTransportControls" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e7a18f74-a686-ffd4-3319-29e23dede5ab" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.SystemMediaTransportControls">
+      <topicdata name="SystemMediaTransportControls" group="list" subgroup="members" typeTopicId="T:Windows.Media.SystemMediaTransportControls" />
+      <apidata name="SystemMediaTransportControls" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Media.SystemMediaTransportControls.ButtonPressed" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.DisplayUpdater" />
+        <element api="M:Windows.Media.SystemMediaTransportControls.GetForCurrentView" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsChannelDownEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsChannelUpEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsFastForwardEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsNextEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsPauseEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsPlayEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsPreviousEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsRecordEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsRewindEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsStopEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.PlaybackStatus" />
+        <element api="E:Windows.Media.SystemMediaTransportControls.PropertyChanged" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.SoundLevel" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" />
+      </containers>
+      <file name="41ed7075-1bc8-ddc6-3add-818ff1218031" />
+    </api>
+    <api id="Methods.T:Windows.Media.SystemMediaTransportControls">
+      <topicdata name="SystemMediaTransportControls" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.SystemMediaTransportControls" />
+      <apidata name="SystemMediaTransportControls" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.SystemMediaTransportControls.GetForCurrentView" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" />
+      </containers>
+      <file name="c52f927b-5ddd-e5dc-1052-e0f5e28f0970" />
+    </api>
+    <api id="Properties.T:Windows.Media.SystemMediaTransportControls">
+      <topicdata name="SystemMediaTransportControls" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.SystemMediaTransportControls" />
+      <apidata name="SystemMediaTransportControls" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.SystemMediaTransportControls.DisplayUpdater" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsChannelDownEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsChannelUpEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsFastForwardEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsNextEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsPauseEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsPlayEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsPreviousEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsRecordEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsRewindEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.IsStopEnabled" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.PlaybackStatus" />
+        <element api="P:Windows.Media.SystemMediaTransportControls.SoundLevel" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" />
+      </containers>
+      <file name="8dfc42f1-1378-20e9-6b7c-7e5d0597ec48" />
+    </api>
+    <api id="Events.T:Windows.Media.SystemMediaTransportControls">
+      <topicdata name="SystemMediaTransportControls" group="list" subgroup="Events" typeTopicId="T:Windows.Media.SystemMediaTransportControls" />
+      <apidata name="SystemMediaTransportControls" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Media.SystemMediaTransportControls.ButtonPressed" />
+        <element api="E:Windows.Media.SystemMediaTransportControls.PropertyChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" />
+      </containers>
+      <file name="dde4c4b8-49c1-be6a-3ddd-c9534b96919b" />
+    </api>
+    <api id="E:Windows.Media.SystemMediaTransportControls.ButtonPressed">
+      <topicdata group="api" />
+      <apidata name="ButtonPressed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ButtonPressed" />
+      <remover name="remove_ButtonPressed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+            <type api="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="75f753c7-f1b6-c8c6-adad-d658fae84872" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.DisplayUpdater">
+      <topicdata group="api" />
+      <apidata name="DisplayUpdater" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayUpdater" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="e375db64-6a59-ba01-fc60-319976d1eaeb" />
+    </api>
+    <api id="M:Windows.Media.SystemMediaTransportControls.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="e5b57bdb-5f36-7133-1197-41621b567a52" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsChannelDownEnabled">
+      <topicdata group="api" />
+      <apidata name="IsChannelDownEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsChannelDownEnabled" />
+      <setter name="set_IsChannelDownEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="d710158c-dc1e-1991-3140-c6d6e64994ad" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsChannelUpEnabled">
+      <topicdata group="api" />
+      <apidata name="IsChannelUpEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsChannelUpEnabled" />
+      <setter name="set_IsChannelUpEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="36f87f09-c573-50d1-0930-93a831b1c33f" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsEnabled">
+      <topicdata group="api" />
+      <apidata name="IsEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsEnabled" />
+      <setter name="set_IsEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="70805e5b-8ea1-d701-ac22-17acc65d6443" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsFastForwardEnabled">
+      <topicdata group="api" />
+      <apidata name="IsFastForwardEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsFastForwardEnabled" />
+      <setter name="set_IsFastForwardEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="23471360-4ceb-c31b-6d37-b884f0f367b1" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsNextEnabled">
+      <topicdata group="api" />
+      <apidata name="IsNextEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsNextEnabled" />
+      <setter name="set_IsNextEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="372d7029-b25c-708c-4dc9-b607159bfc5f" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsPauseEnabled">
+      <topicdata group="api" />
+      <apidata name="IsPauseEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsPauseEnabled" />
+      <setter name="set_IsPauseEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="9068242a-422b-0be2-6108-bccf6fb9a361" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsPlayEnabled">
+      <topicdata group="api" />
+      <apidata name="IsPlayEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsPlayEnabled" />
+      <setter name="set_IsPlayEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="ffdcfdba-4463-7c32-1076-5b818e59299b" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsPreviousEnabled">
+      <topicdata group="api" />
+      <apidata name="IsPreviousEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsPreviousEnabled" />
+      <setter name="set_IsPreviousEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="fff7969e-8f91-0d87-8ed9-9fe110e6f07b" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsRecordEnabled">
+      <topicdata group="api" />
+      <apidata name="IsRecordEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsRecordEnabled" />
+      <setter name="set_IsRecordEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="01f1e375-5858-2861-e130-cb9e40569109" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsRewindEnabled">
+      <topicdata group="api" />
+      <apidata name="IsRewindEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsRewindEnabled" />
+      <setter name="set_IsRewindEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="5074223d-fd21-1792-bc3e-a713a3e41325" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.IsStopEnabled">
+      <topicdata group="api" />
+      <apidata name="IsStopEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsStopEnabled" />
+      <setter name="set_IsStopEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="92f77981-7425-304d-f2a4-86173ff60541" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.PlaybackStatus">
+      <topicdata group="api" />
+      <apidata name="PlaybackStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PlaybackStatus" />
+      <setter name="set_PlaybackStatus" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="4d53e733-ed3a-e30f-4f4f-30d2f1d7c084" />
+    </api>
+    <api id="E:Windows.Media.SystemMediaTransportControls.PropertyChanged">
+      <topicdata group="api" />
+      <apidata name="PropertyChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PropertyChanged" />
+      <remover name="remove_PropertyChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+            <type api="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="e7135a40-acc2-21d0-45c3-7afdda20959f" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControls.SoundLevel">
+      <topicdata group="api" />
+      <apidata name="SoundLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SoundLevel" />
+      <returns>
+        <type api="T:Windows.Media.SoundLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControls" ref="true" />
+      </containers>
+      <file name="8e4e86d8-ae37-fcfa-509b-ffdc08991df3" />
+    </api>
+    <api id="T:Windows.Media.SystemMediaTransportControlsButton">
+      <topicdata group="api" />
+      <apidata name="SystemMediaTransportControlsButton" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.Play" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.Pause" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.Stop" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.Record" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.FastForward" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.Rewind" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.Next" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.Previous" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.ChannelUp" />
+        <element api="F:Windows.Media.SystemMediaTransportControlsButton.ChannelDown" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ec55d75c-ed7e-58af-c715-e49116d06762" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.ChannelDown">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChannelDown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="55c21765-aa88-7380-34b2-3a8e7d92f052" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.ChannelUp">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChannelUp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="2ae4df47-733a-81f6-facc-e77090fd5327" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.FastForward">
+      <topicdata group="api" notopic="" />
+      <apidata name="FastForward" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="62f75776-4487-ccb6-217c-53ca0459d79a" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.Next">
+      <topicdata group="api" notopic="" />
+      <apidata name="Next" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="1cff72d0-0431-9d51-501b-ccfddd9dd570" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.Pause">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pause" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="cde60652-2406-50d4-30d3-dde1d17b50ff" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.Play">
+      <topicdata group="api" notopic="" />
+      <apidata name="Play" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="526e87ac-e29f-f5d7-ac2b-8e66c0967aa5" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.Previous">
+      <topicdata group="api" notopic="" />
+      <apidata name="Previous" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="76fd1564-e982-2e87-0c3d-7bb5d84b1856" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.Record">
+      <topicdata group="api" notopic="" />
+      <apidata name="Record" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="5346203f-2950-34e8-ecc1-9d8c2fe9e5b8" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.Rewind">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rewind" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="c1091ba6-511d-f9d9-b80c-da550e13f211" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsButton.Stop">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stop" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </containers>
+      <file name="44e95075-993f-1c16-28fc-64cb301b23f0" />
+    </api>
+    <api id="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" />
+      <apidata name="SystemMediaTransportControlsButtonPressedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.ISystemMediaTransportControlsButtonPressedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6203a4ef-826a-5ac6-2374-ab9977c2eee9" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs">
+      <topicdata name="SystemMediaTransportControlsButtonPressedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" />
+      <apidata name="SystemMediaTransportControlsButtonPressedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs.Button" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" />
+      </containers>
+      <file name="6f9ffbf8-38d5-95fa-c834-ccbf4d365aab" />
+    </api>
+    <api id="Methods.T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs">
+      <topicdata name="SystemMediaTransportControlsButtonPressedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" />
+      <apidata name="SystemMediaTransportControlsButtonPressedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" />
+      </containers>
+      <file name="88ccaf72-753f-12e6-93d7-2737f207ab2a" />
+    </api>
+    <api id="Properties.T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs">
+      <topicdata name="SystemMediaTransportControlsButtonPressedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" />
+      <apidata name="SystemMediaTransportControlsButtonPressedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs.Button" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" />
+      </containers>
+      <file name="8329a7e0-f5f9-bd3a-85b4-d5cf372255f4" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs.Button">
+      <topicdata group="api" />
+      <apidata name="Button" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Button" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsButton" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsButtonPressedEventArgs" ref="true" />
+      </containers>
+      <file name="aedaded8-bc9f-43c8-b3a0-a44c4bbabf1b" />
+    </api>
+    <api id="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" />
+      <apidata name="SystemMediaTransportControlsDisplayUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.ISystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b8c74233-0031-cf19-ce17-89a9951701af" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.SystemMediaTransportControlsDisplayUpdater">
+      <topicdata name="SystemMediaTransportControlsDisplayUpdater" group="list" subgroup="members" typeTopicId="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" />
+      <apidata name="SystemMediaTransportControlsDisplayUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.AppMediaId" />
+        <element api="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.ClearAll" />
+        <element api="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.CopyFromFileAsync(Windows.Media.MediaPlaybackType,Windows.Storage.StorageFile)" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.ImageProperties" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.MusicProperties" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Thumbnail" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Type" />
+        <element api="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Update" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.VideoProperties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" />
+      </containers>
+      <file name="0394c5e9-4da9-1b75-dc7c-3c23afa46392" />
+    </api>
+    <api id="Methods.T:Windows.Media.SystemMediaTransportControlsDisplayUpdater">
+      <topicdata name="SystemMediaTransportControlsDisplayUpdater" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" />
+      <apidata name="SystemMediaTransportControlsDisplayUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.ClearAll" />
+        <element api="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.CopyFromFileAsync(Windows.Media.MediaPlaybackType,Windows.Storage.StorageFile)" />
+        <element api="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Update" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" />
+      </containers>
+      <file name="ebb7fd3b-4b95-2e7f-74c2-c0c284c05fc0" />
+    </api>
+    <api id="Properties.T:Windows.Media.SystemMediaTransportControlsDisplayUpdater">
+      <topicdata name="SystemMediaTransportControlsDisplayUpdater" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" />
+      <apidata name="SystemMediaTransportControlsDisplayUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.AppMediaId" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.ImageProperties" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.MusicProperties" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Thumbnail" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Type" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.VideoProperties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" />
+      </containers>
+      <file name="73fe618b-3a84-d775-798e-97517b29accf" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.AppMediaId">
+      <topicdata group="api" />
+      <apidata name="AppMediaId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AppMediaId" />
+      <setter name="set_AppMediaId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="c4c60acf-452a-54a4-e8ad-29851ae6f422" />
+    </api>
+    <api id="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.ClearAll">
+      <topicdata group="api" />
+      <apidata name="ClearAll" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="8736796d-28f7-23f9-c5c0-da21dd9d569f" />
+    </api>
+    <api id="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.CopyFromFileAsync(Windows.Media.MediaPlaybackType,Windows.Storage.StorageFile)">
+      <topicdata group="api" />
+      <apidata name="CopyFromFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+        </parameter>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Storage.StorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="d594fbd9-a4cf-b218-d385-2d7097f7598c" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.ImageProperties">
+      <topicdata group="api" />
+      <apidata name="ImageProperties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ImageProperties" />
+      <returns>
+        <type api="T:Windows.Media.ImageDisplayProperties" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="dfe2c9c9-9474-203f-3e14-a08c299580bb" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.MusicProperties">
+      <topicdata group="api" />
+      <apidata name="MusicProperties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MusicProperties" />
+      <returns>
+        <type api="T:Windows.Media.MusicDisplayProperties" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="75efbcf2-4677-c01b-98b6-c855920e6077" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Thumbnail">
+      <topicdata group="api" />
+      <apidata name="Thumbnail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Thumbnail" />
+      <setter name="set_Thumbnail" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.RandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="553b520f-cea6-2be5-5eef-eaa23715cac9" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Type" />
+      <setter name="set_Type" />
+      <returns>
+        <type api="T:Windows.Media.MediaPlaybackType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="b18d6f62-de8c-536e-8af7-cfde0650eccf" />
+    </api>
+    <api id="M:Windows.Media.SystemMediaTransportControlsDisplayUpdater.Update">
+      <topicdata group="api" />
+      <apidata name="Update" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="d53997a1-c8c7-0932-4c83-69c398699c50" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControlsDisplayUpdater.VideoProperties">
+      <topicdata group="api" />
+      <apidata name="VideoProperties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VideoProperties" />
+      <returns>
+        <type api="T:Windows.Media.VideoDisplayProperties" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsDisplayUpdater" ref="true" />
+      </containers>
+      <file name="82378736-25ba-12cb-95a5-f0170341aff3" />
+    </api>
+    <api id="T:Windows.Media.SystemMediaTransportControlsProperty">
+      <topicdata group="api" />
+      <apidata name="SystemMediaTransportControlsProperty" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.SystemMediaTransportControlsProperty.SoundLevel" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4bd50669-2ed4-78d3-5269-6b6bf28bf2b7" />
+    </api>
+    <api id="F:Windows.Media.SystemMediaTransportControlsProperty.SoundLevel">
+      <topicdata group="api" notopic="" />
+      <apidata name="SoundLevel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsProperty" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsProperty" ref="false" />
+      </containers>
+      <file name="84e89387-ae3d-8fe2-a01c-d39363bdfe81" />
+    </api>
+    <api id="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" />
+      <apidata name="SystemMediaTransportControlsPropertyChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.ISystemMediaTransportControlsPropertyChangedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="63dea73a-e933-1fff-35e2-64f7a350e78a" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs">
+      <topicdata name="SystemMediaTransportControlsPropertyChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" />
+      <apidata name="SystemMediaTransportControlsPropertyChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs.Property" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" />
+      </containers>
+      <file name="e032dbfb-fde3-3e43-885e-1263428eb452" />
+    </api>
+    <api id="Methods.T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs">
+      <topicdata name="SystemMediaTransportControlsPropertyChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" />
+      <apidata name="SystemMediaTransportControlsPropertyChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" />
+      </containers>
+      <file name="b236eff9-5d20-f56e-1c38-1757e4b8e95a" />
+    </api>
+    <api id="Properties.T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs">
+      <topicdata name="SystemMediaTransportControlsPropertyChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" />
+      <apidata name="SystemMediaTransportControlsPropertyChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs.Property" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" />
+      </containers>
+      <file name="add78973-b25c-f64b-ad2e-291146108fcc" />
+    </api>
+    <api id="P:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs.Property">
+      <topicdata group="api" />
+      <apidata name="Property" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Property" />
+      <returns>
+        <type api="T:Windows.Media.SystemMediaTransportControlsProperty" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.SystemMediaTransportControlsPropertyChangedEventArgs" ref="true" />
+      </containers>
+      <file name="ec0fa89d-ad39-03c3-f105-f6418e5b2ba2" />
+    </api>
+    <api id="T:Windows.Media.VideoDisplayProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.VideoDisplayProperties" />
+      <apidata name="VideoDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.IVideoDisplayProperties" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5e722cfb-556c-8662-58af-994c8209bcdc" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.VideoDisplayProperties">
+      <topicdata name="VideoDisplayProperties" group="list" subgroup="members" typeTopicId="T:Windows.Media.VideoDisplayProperties" />
+      <apidata name="VideoDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.VideoDisplayProperties.Subtitle" />
+        <element api="P:Windows.Media.VideoDisplayProperties.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.VideoDisplayProperties" />
+      </containers>
+      <file name="076d3b4d-811e-b94f-2ae1-3205c36bc0cc" />
+    </api>
+    <api id="Methods.T:Windows.Media.VideoDisplayProperties">
+      <topicdata name="VideoDisplayProperties" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.VideoDisplayProperties" />
+      <apidata name="VideoDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.VideoDisplayProperties" />
+      </containers>
+      <file name="1d48d6a9-5220-0203-402e-33ca4c71f85c" />
+    </api>
+    <api id="Properties.T:Windows.Media.VideoDisplayProperties">
+      <topicdata name="VideoDisplayProperties" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.VideoDisplayProperties" />
+      <apidata name="VideoDisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.VideoDisplayProperties.Subtitle" />
+        <element api="P:Windows.Media.VideoDisplayProperties.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.VideoDisplayProperties" />
+      </containers>
+      <file name="7627cdba-3fb2-1704-d6c0-2dc62902d6b5" />
+    </api>
+    <api id="P:Windows.Media.VideoDisplayProperties.Subtitle">
+      <topicdata group="api" />
+      <apidata name="Subtitle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Subtitle" />
+      <setter name="set_Subtitle" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.VideoDisplayProperties" ref="true" />
+      </containers>
+      <file name="90c2a3ab-b3e8-c906-d65e-b3997f53b75b" />
+    </api>
+    <api id="P:Windows.Media.VideoDisplayProperties.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.VideoDisplayProperties" ref="true" />
+      </containers>
+      <file name="a54060bc-257d-0b4b-d22d-901f0865f60b" />
+    </api>
+    <api id="T:Windows.Media.VideoEffects">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.VideoEffects" />
+      <apidata name="VideoEffects" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d0fa23de-3eb4-3dc4-96dd-32e81f39845a" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.VideoEffects">
+      <topicdata name="VideoEffects" group="list" subgroup="members" typeTopicId="T:Windows.Media.VideoEffects" />
+      <apidata name="VideoEffects" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.VideoEffects.VideoStabilization" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.VideoEffects" />
+      </containers>
+      <file name="1012ea9f-4858-7ef5-fef6-ced0abe8ebb8" />
+    </api>
+    <api id="Properties.T:Windows.Media.VideoEffects">
+      <topicdata name="VideoEffects" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.VideoEffects" />
+      <apidata name="VideoEffects" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.VideoEffects.VideoStabilization" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.VideoEffects" />
+      </containers>
+      <file name="e7320827-14f5-ff24-fd65-266c4aa144b2" />
+    </api>
+    <api id="P:Windows.Media.VideoEffects.VideoStabilization">
+      <topicdata group="api" />
+      <apidata name="VideoStabilization" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_VideoStabilization" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media" />
+        <type api="T:Windows.Media.VideoEffects" ref="true" />
+      </containers>
+      <file name="4cdd89d4-73e9-d309-05df-12040a6a1b99" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReflectionDataSet Platform="Silverlight" Version="3.0" Title="Silverlight 3">
+  <AssemblyLocations>
+    <Location Path="%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework\Silverlight\v3.0">
+      <AssemblyDetails Filename="Microsoft.VisualBasic.dll" Name="Microsoft.VisualBasic" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="mscorlib.dll" Name="mscorlib" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="system.dll" Name="System" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Core.dll" Name="System.Core" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Net.dll" Name="System.Net" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.dll" Name="System.Runtime.Serialization" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.ServiceModel.dll" Name="System.ServiceModel" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.Web.dll" Name="System.ServiceModel.Web" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Windows.dll" Name="System.Windows" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Windows.Browser.dll" Name="System.Windows.Browser" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Xml.dll" Name="System.Xml" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft F#\Silverlight\Libraries\Client\v3.0">
+      <AssemblyDetails Filename="FSharp.Core.dll" Name="FSharp.Core" Version="2.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft SDKs\Silverlight\v3.0\Libraries\Client">
+      <AssemblyDetails Filename="System.ComponentModel.DataAnnotations.dll" Name="System.ComponentModel.DataAnnotations" Version="2.0.5.0" PublicKeyToken="ddd0da4d3e678217" />
+      <AssemblyDetails Filename="System.Data.Services.Client.dll" Name="System.Data.Services.Client" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Json.dll" Name="System.Json" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.Json.dll" Name="System.Runtime.Serialization.Json" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.PollingDuplex.dll" Name="System.ServiceModel.PollingDuplex" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.Syndication.dll" Name="System.ServiceModel.Syndication" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.dll" Name="System.Windows.Controls" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Data.dll" Name="System.Windows.Controls.Data" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Data.Input.dll" Name="System.Windows.Controls.Data.Input" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Input.dll" Name="System.Windows.Controls.Input" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Controls.Navigation.dll" Name="System.Windows.Controls.Navigation" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.Data.dll" Name="System.Windows.Data" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Windows.VisualStudio.Design.dll" Name="System.Windows.Design" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Xml.Linq.dll" Name="System.Xml.Linq" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.Serialization.dll" Name="System.Xml.Serialization" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.Utils.dll" Name="System.Xml.Utils" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Microsoft SDKs\Silverlight\v3.0\Libraries\Server">
+      <AssemblyDetails Filename="System.ServiceModel.PollingDuplex.dll" Name="System.ServiceModel.PollingDuplex" Version="3.0.0.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+  </AssemblyLocations>
+</ReflectionDataSet>

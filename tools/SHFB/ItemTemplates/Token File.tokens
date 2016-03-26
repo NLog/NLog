@@ -10,7 +10,7 @@
        prefixed with "ddue:" if they appear in a token. -->
   <item id="SHFB"><ddue:externalLink>
     <ddue:linkText>Sandcastle Help File Builder</ddue:linkText>
-    <ddue:linkUri>http://SHFB.CodePlex.com</ddue:linkUri>
+    <ddue:linkUri>https://GitHub.com/EWSoftware/SHFB</ddue:linkUri>
     </ddue:externalLink></item>
 
 </content>

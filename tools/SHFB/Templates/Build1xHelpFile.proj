@@ -1,7 +1,7 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Sandcastle Help File Builder Tasks.  https://GitHub.com/EWSoftware/SHFB -->
   <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.Build1xHelpFile"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+    AssemblyFile="{@SHFBFolder}\SandcastleBuilder.Utils.dll" />
 
   <!-- Task properties -->
   <PropertyGroup>
@@ -9,7 +9,7 @@
     <HelpProjectName>Help1x.hhp</HelpProjectName>
     <LocalizeApp />
     <LanguageId>{@LangId}</LanguageId>
-    <WorkingFolder>{@HtmlEncWorkingFolder}Output</WorkingFolder>
+    <WorkingFolder>{@HtmlEncWorkingFolder}Output\HtmlHelp1</WorkingFolder>
     <OutputFolder>{@HtmlEncOutputFolder}</OutputFolder>
     <HtmlHelpName>{@HTMLEncHelpName}</HtmlHelpName>
   </PropertyGroup>
@@ -38,12 +38,12 @@
          $(WorkingFolder)\$(HtmlHelpName).hhk" />
 
     <!-- Build the help file -->
-    <Build1xHelpFile
+    <SandcastleBuilder.Utils.MSBuild.Build1xHelpFile
       WorkingFolder="$(WorkingFolder)"
       HelpCompilerFolder="$(HelpCompilerFolder)"
       HelpProjectName="$(HelpProjectName)"
       LocalizeApp="$(LocalizeApp)"
-      LanguageId="$(LangId)" />
+      LanguageId="$(LanguageId)" />
 
     <!-- Delete the old version if it is there -->
     <Delete Files="$(OutputFolder)\$(HtmlHelpName).chm" />
@@ -51,15 +51,6 @@
     <!-- Copy the new one -->
     <Copy SourceFiles    = "$(WorkingFolder)\$(HtmlHelpName).chm"
         DestinationFiles = "$(OutputFolder)\$(HtmlHelpName).chm" />
-
-    <!-- We must remove these in case we are building a 2x file or a website
-         as well -->
-    <Delete Files =
-        "$(WorkingFolder)\$(HelpProjectName);
-         $(WorkingFolder)\$(HtmlHelpName).hhc;
-         $(WorkingFolder)\$(HtmlHelpName).hhk;
-         $(WorkingFolder)\$(HtmlHelpName).chm;
-         $(WorkingFolder)\$(HtmlHelpName).log" />
 
   </Target>
 

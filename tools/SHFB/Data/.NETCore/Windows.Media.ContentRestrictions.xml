@@ -1,0 +1,970 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.ContentRestrictions">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.ContentRestrictions" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.ContentRestrictions.RatedContentCategory" />
+        <element api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" />
+        <element api="T:Windows.Media.ContentRestrictions.RatedContentDescription" />
+        <element api="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" />
+        <element api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      </elements>
+      <file name="1aec2410-4812-50ff-b40d-91ca1bb7d3a1" />
+    </api>
+    <api id="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel">
+      <topicdata group="api" />
+      <apidata name="ContentAccessRestrictionLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel.Allow" />
+        <element api="F:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel.Warn" />
+        <element api="F:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel.Block" />
+        <element api="F:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel.Hide" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e05dbe24-1d71-2b3b-2913-752db7c5824a" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel.Allow">
+      <topicdata group="api" notopic="" />
+      <apidata name="Allow" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+      </containers>
+      <file name="d156c6ca-6ea5-ee21-a668-edcfaa16835b" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel.Block">
+      <topicdata group="api" notopic="" />
+      <apidata name="Block" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+      </containers>
+      <file name="2bab7ae2-1777-dbfb-5e4e-d441fcc7129e" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel.Hide">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hide" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+      </containers>
+      <file name="5289278d-f7cb-9a71-3341-2dbedd761477" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel.Warn">
+      <topicdata group="api" notopic="" />
+      <apidata name="Warn" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+      </containers>
+      <file name="db981088-815e-9474-7a3c-63ee51978f78" />
+    </api>
+    <api id="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" />
+      <apidata name="ContentRestrictionsBrowsePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.ContentRestrictions.IContentRestrictionsBrowsePolicy" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bc8d55ca-469b-f67a-2135-92c7568072e3" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy">
+      <topicdata name="ContentRestrictionsBrowsePolicy" group="list" subgroup="members" typeTopicId="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" />
+      <apidata name="ContentRestrictionsBrowsePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.GeographicRegion" />
+        <element api="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.MaxBrowsableAgeRating" />
+        <element api="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.PreferredAgeRating" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" />
+      </containers>
+      <file name="6b743f6c-3178-092f-8c87-f247d0ae4fbd" />
+    </api>
+    <api id="Methods.T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy">
+      <topicdata name="ContentRestrictionsBrowsePolicy" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" />
+      <apidata name="ContentRestrictionsBrowsePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" />
+      </containers>
+      <file name="66e7b3c7-4f58-411a-20b0-6cb76a0b08fe" />
+    </api>
+    <api id="Properties.T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy">
+      <topicdata name="ContentRestrictionsBrowsePolicy" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" />
+      <apidata name="ContentRestrictionsBrowsePolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.GeographicRegion" />
+        <element api="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.MaxBrowsableAgeRating" />
+        <element api="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.PreferredAgeRating" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" />
+      </containers>
+      <file name="334b84bd-77be-1d91-2437-f48bfc22f362" />
+    </api>
+    <api id="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.GeographicRegion">
+      <topicdata group="api" />
+      <apidata name="GeographicRegion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_GeographicRegion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" ref="true" />
+      </containers>
+      <file name="5bb7ae53-c201-2dd3-307d-1ff8c34c67e0" />
+    </api>
+    <api id="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.MaxBrowsableAgeRating">
+      <topicdata group="api" />
+      <apidata name="MaxBrowsableAgeRating" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxBrowsableAgeRating" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" ref="true" />
+      </containers>
+      <file name="65c41c53-3614-6818-2096-a71185c86cf5" />
+    </api>
+    <api id="P:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy.PreferredAgeRating">
+      <topicdata group="api" />
+      <apidata name="PreferredAgeRating" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PreferredAgeRating" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" ref="true" />
+      </containers>
+      <file name="2164e5b2-8d96-f8a2-cb31-e9f9120b3208" />
+    </api>
+    <api id="T:Windows.Media.ContentRestrictions.RatedContentCategory">
+      <topicdata group="api" />
+      <apidata name="RatedContentCategory" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.ContentRestrictions.RatedContentCategory.General" />
+        <element api="F:Windows.Media.ContentRestrictions.RatedContentCategory.Application" />
+        <element api="F:Windows.Media.ContentRestrictions.RatedContentCategory.Game" />
+        <element api="F:Windows.Media.ContentRestrictions.RatedContentCategory.Movie" />
+        <element api="F:Windows.Media.ContentRestrictions.RatedContentCategory.Television" />
+        <element api="F:Windows.Media.ContentRestrictions.RatedContentCategory.Music" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bb24c8a1-51f3-7cc4-9a2c-447e82d4cb3a" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.RatedContentCategory.Application">
+      <topicdata group="api" notopic="" />
+      <apidata name="Application" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </containers>
+      <file name="b275e097-65c3-fc24-9926-dfdc34699359" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.RatedContentCategory.Game">
+      <topicdata group="api" notopic="" />
+      <apidata name="Game" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </containers>
+      <file name="a47bf75a-c5f2-bce7-1141-49a0800794b1" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.RatedContentCategory.General">
+      <topicdata group="api" notopic="" />
+      <apidata name="General" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </containers>
+      <file name="1197baf6-a874-5164-6e46-a8c2d949f682" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.RatedContentCategory.Movie">
+      <topicdata group="api" notopic="" />
+      <apidata name="Movie" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </containers>
+      <file name="dc8e654c-679e-c3d1-ade4-c1f5eb73d8d9" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.RatedContentCategory.Music">
+      <topicdata group="api" notopic="" />
+      <apidata name="Music" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </containers>
+      <file name="9e9e663b-bca0-0c4e-cf1c-ff4eadff18c2" />
+    </api>
+    <api id="F:Windows.Media.ContentRestrictions.RatedContentCategory.Television">
+      <topicdata group="api" notopic="" />
+      <apidata name="Television" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </containers>
+      <file name="2cd81216-5bd0-ec38-98e6-2fdc21930e68" />
+    </api>
+    <api id="T:Windows.Media.ContentRestrictions.RatedContentDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.ContentRestrictions.RatedContentDescription" />
+      <apidata name="RatedContentDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.ContentRestrictions.IRatedContentDescription" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2fa6f8f9-af25-fe31-0855-dd9ffbb174b7" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.ContentRestrictions.RatedContentDescription">
+      <topicdata name="RatedContentDescription" group="list" subgroup="members" typeTopicId="T:Windows.Media.ContentRestrictions.RatedContentDescription" />
+      <apidata name="RatedContentDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentDescription.#ctor(System.String,System.String,Windows.Media.ContentRestrictions.RatedContentCategory)" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Category" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Id" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Image" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Ratings" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" />
+      </containers>
+      <file name="e213714c-e868-70d7-91dd-aa620af555e1" />
+    </api>
+    <api id="Methods.T:Windows.Media.ContentRestrictions.RatedContentDescription">
+      <topicdata name="RatedContentDescription" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.ContentRestrictions.RatedContentDescription" />
+      <apidata name="RatedContentDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" />
+      </containers>
+      <file name="839e2ef2-2297-d7f7-a70e-b4274b86456c" />
+    </api>
+    <api id="Properties.T:Windows.Media.ContentRestrictions.RatedContentDescription">
+      <topicdata name="RatedContentDescription" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.ContentRestrictions.RatedContentDescription" />
+      <apidata name="RatedContentDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Category" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Id" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Image" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Ratings" />
+        <element api="P:Windows.Media.ContentRestrictions.RatedContentDescription.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" />
+      </containers>
+      <file name="86cfb55f-ac7b-57c0-c55e-64f0e8246018" />
+    </api>
+    <api id="M:Windows.Media.ContentRestrictions.RatedContentDescription.#ctor(System.String,System.String,Windows.Media.ContentRestrictions.RatedContentCategory)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="title" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="category" in="true">
+          <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" ref="true" />
+      </containers>
+      <file name="ac00412c-ec76-fa4d-2cfe-e26db9584a74" />
+    </api>
+    <api id="P:Windows.Media.ContentRestrictions.RatedContentDescription.Category">
+      <topicdata group="api" />
+      <apidata name="Category" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Category" />
+      <setter name="set_Category" />
+      <returns>
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentCategory" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" ref="true" />
+      </containers>
+      <file name="60ba6920-b358-401f-e485-b70d80f0871d" />
+    </api>
+    <api id="P:Windows.Media.ContentRestrictions.RatedContentDescription.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Id" />
+      <setter name="set_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" ref="true" />
+      </containers>
+      <file name="4ff5e9a6-5de5-684f-3398-be91e5f65da8" />
+    </api>
+    <api id="P:Windows.Media.ContentRestrictions.RatedContentDescription.Image">
+      <topicdata group="api" />
+      <apidata name="Image" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Image" />
+      <setter name="set_Image" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" ref="true" />
+      </containers>
+      <file name="07bbaf8e-42e2-ae23-81fa-9f9b3df99f2b" />
+    </api>
+    <api id="P:Windows.Media.ContentRestrictions.RatedContentDescription.Ratings">
+      <topicdata group="api" />
+      <apidata name="Ratings" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Ratings" />
+      <setter name="set_Ratings" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" ref="true" />
+      </containers>
+      <file name="0542b555-8b3e-b715-3a2f-d6a0caed1c87" />
+    </api>
+    <api id="P:Windows.Media.ContentRestrictions.RatedContentDescription.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" ref="true" />
+      </containers>
+      <file name="2ad4da97-cc52-47e9-d5cb-a27b7a2874bc" />
+    </api>
+    <api id="T:Windows.Media.ContentRestrictions.RatedContentRestrictions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      <apidata name="RatedContentRestrictions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.ContentRestrictions.IRatedContentRestrictions" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e610dcc5-bef2-fef6-0cc7-d89ff1f7a36e" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.ContentRestrictions.RatedContentRestrictions">
+      <topicdata name="RatedContentRestrictions" group="list" subgroup="members" typeTopicId="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      <apidata name="RatedContentRestrictions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor">
+          <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor" />
+          <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor(System.UInt32)" />
+        </element>
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.GetBrowsePolicyAsync" />
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.GetRestrictionLevelAsync(Windows.Media.ContentRestrictions.RatedContentDescription)" />
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.RequestContentAccessAsync(Windows.Media.ContentRestrictions.RatedContentDescription)" />
+        <element api="E:Windows.Media.ContentRestrictions.RatedContentRestrictions.RestrictionsChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      </containers>
+      <file name="5d3dbd03-f79a-ce4e-bdbe-a70357cdd761" />
+    </api>
+    <api id="Methods.T:Windows.Media.ContentRestrictions.RatedContentRestrictions">
+      <topicdata name="RatedContentRestrictions" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      <apidata name="RatedContentRestrictions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.GetBrowsePolicyAsync" />
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.GetRestrictionLevelAsync(Windows.Media.ContentRestrictions.RatedContentDescription)" />
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.RequestContentAccessAsync(Windows.Media.ContentRestrictions.RatedContentDescription)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      </containers>
+      <file name="1d1f69d6-157b-e948-15b9-088ec22328f8" />
+    </api>
+    <api id="Events.T:Windows.Media.ContentRestrictions.RatedContentRestrictions">
+      <topicdata name="RatedContentRestrictions" group="list" subgroup="Events" typeTopicId="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      <apidata name="RatedContentRestrictions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor" />
+      <elements>
+        <element api="E:Windows.Media.ContentRestrictions.RatedContentRestrictions.RestrictionsChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      </containers>
+      <file name="cf10ed3e-1199-0094-26d9-826b15e09793" />
+    </api>
+    <api id="Overload:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.ContentRestrictions.RatedContentRestrictions" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor" />
+        <element api="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor(System.UInt32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" ref="true" />
+      </containers>
+      <file name="15d3bbd8-8aac-f279-9679-d002f1e51f1a" />
+    </api>
+    <api id="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" ref="true" />
+      </containers>
+      <file name="391ebc05-4d2f-c1e1-70d4-a93e77b5377b" />
+    </api>
+    <api id="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Media.ContentRestrictions.RatedContentRestrictions.#ctor" />
+      <parameters>
+        <parameter name="maxAgeRating" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" ref="true" />
+      </containers>
+      <file name="a8a22101-140f-d52b-4f9c-447b851d3167" />
+    </api>
+    <api id="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.GetBrowsePolicyAsync">
+      <topicdata group="api" />
+      <apidata name="GetBrowsePolicyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" ref="true" />
+      </containers>
+      <file name="0585a67e-f845-4769-da9f-aeda2859751c" />
+    </api>
+    <api id="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.GetRestrictionLevelAsync(Windows.Media.ContentRestrictions.RatedContentDescription)">
+      <topicdata group="api" />
+      <apidata name="GetRestrictionLevelAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="RatedContentDescription" in="true">
+          <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" ref="true" />
+      </containers>
+      <file name="753ca362-b52f-67fa-9960-9a69fe145bf6" />
+    </api>
+    <api id="M:Windows.Media.ContentRestrictions.RatedContentRestrictions.RequestContentAccessAsync(Windows.Media.ContentRestrictions.RatedContentDescription)">
+      <topicdata group="api" />
+      <apidata name="RequestContentAccessAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="RatedContentDescription" in="true">
+          <type api="T:Windows.Media.ContentRestrictions.RatedContentDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" ref="true" />
+      </containers>
+      <file name="e1013035-5397-479c-a605-524b5da2cde1" />
+    </api>
+    <api id="E:Windows.Media.ContentRestrictions.RatedContentRestrictions.RestrictionsChanged">
+      <topicdata group="api" />
+      <apidata name="RestrictionsChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RestrictionsChanged" />
+      <remover name="remove_RestrictionsChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ContentRestrictions" />
+        <type api="T:Windows.Media.ContentRestrictions.RatedContentRestrictions" ref="true" />
+      </containers>
+      <file name="bc843104-bfcf-0622-bcf2-273d8cfcaea4" />
+    </api>
+  </apis>
+</reflection>

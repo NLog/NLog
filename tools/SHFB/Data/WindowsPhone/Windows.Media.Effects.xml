@@ -1,0 +1,2120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Effects">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Effects" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Effects.SlowMotionEffectDefinition" />
+        <element api="T:Windows.Media.Effects.IVideoEffectDefinition" />
+        <element api="T:Windows.Media.Effects.VideoEffectDefinition" />
+        <element api="T:Windows.Media.Effects.IAudioEffectDefinition" />
+        <element api="T:Windows.Media.Effects.AudioEffectDefinition" />
+        <element api="T:Windows.Media.Effects.AudioEffectType" />
+        <element api="T:Windows.Media.Effects.AudioEffect" />
+        <element api="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+        <element api="T:Windows.Media.Effects.AudioCaptureEffectsManager" />
+        <element api="T:Windows.Media.Effects.AudioEffectsManager" />
+      </elements>
+      <file name="69df8eca-87ae-c094-4134-a61f84abebf4" />
+    </api>
+    <api id="T:Windows.Media.Effects.AudioCaptureEffectsManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.AudioCaptureEffectsManager" />
+      <apidata name="AudioCaptureEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Effects.IAudioCaptureEffectsManager" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="93ab9e73-ea31-4088-9b3b-bf3ae9635792" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.AudioCaptureEffectsManager">
+      <topicdata name="AudioCaptureEffectsManager" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.AudioCaptureEffectsManager" />
+      <apidata name="AudioCaptureEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Media.Effects.AudioCaptureEffectsManager.AudioCaptureEffectsChanged" />
+        <element api="M:Windows.Media.Effects.AudioCaptureEffectsManager.GetAudioCaptureEffects" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioCaptureEffectsManager" />
+      </containers>
+      <file name="0894bf25-8f36-342d-dde0-df4c46f86524" />
+    </api>
+    <api id="Methods.T:Windows.Media.Effects.AudioCaptureEffectsManager">
+      <topicdata name="AudioCaptureEffectsManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Effects.AudioCaptureEffectsManager" />
+      <apidata name="AudioCaptureEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Effects.AudioCaptureEffectsManager.GetAudioCaptureEffects" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioCaptureEffectsManager" />
+      </containers>
+      <file name="7ad6f8de-fc2b-9189-beb5-dadaef7bc2c0" />
+    </api>
+    <api id="Events.T:Windows.Media.Effects.AudioCaptureEffectsManager">
+      <topicdata name="AudioCaptureEffectsManager" group="list" subgroup="Events" typeTopicId="T:Windows.Media.Effects.AudioCaptureEffectsManager" />
+      <apidata name="AudioCaptureEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Media.Effects.AudioCaptureEffectsManager.AudioCaptureEffectsChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioCaptureEffectsManager" />
+      </containers>
+      <file name="a65df1e8-aa16-b43e-41cc-567fd2cb4d35" />
+    </api>
+    <api id="E:Windows.Media.Effects.AudioCaptureEffectsManager.AudioCaptureEffectsChanged">
+      <topicdata group="api" />
+      <apidata name="AudioCaptureEffectsChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AudioCaptureEffectsChanged" />
+      <remover name="remove_AudioCaptureEffectsChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Effects.AudioCaptureEffectsManager" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioCaptureEffectsManager" ref="true" />
+      </containers>
+      <file name="4fa0cf3e-dbac-e48d-aca7-62004b3628a7" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioCaptureEffectsManager.GetAudioCaptureEffects">
+      <topicdata group="api" />
+      <apidata name="GetAudioCaptureEffects" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Effects.AudioEffect" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioCaptureEffectsManager" ref="true" />
+      </containers>
+      <file name="823887d4-ade4-e8ef-0fde-1537357f5c71" />
+    </api>
+    <api id="T:Windows.Media.Effects.AudioEffect">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.AudioEffect" />
+      <apidata name="AudioEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Effects.IAudioEffect" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="80ce83bd-527b-8676-bef3-072813cfcc46" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.AudioEffect">
+      <topicdata name="AudioEffect" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.AudioEffect" />
+      <apidata name="AudioEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Effects.AudioEffect.AudioEffectType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffect" />
+      </containers>
+      <file name="802de53b-ef68-dc9f-c8a4-074712df1a92" />
+    </api>
+    <api id="Methods.T:Windows.Media.Effects.AudioEffect">
+      <topicdata name="AudioEffect" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Effects.AudioEffect" />
+      <apidata name="AudioEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffect" />
+      </containers>
+      <file name="b76906bd-66f2-0d6d-5ffd-2915122e1cf6" />
+    </api>
+    <api id="Properties.T:Windows.Media.Effects.AudioEffect">
+      <topicdata name="AudioEffect" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Effects.AudioEffect" />
+      <apidata name="AudioEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Effects.AudioEffect.AudioEffectType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffect" />
+      </containers>
+      <file name="4c1b9b95-c80d-5eda-859c-91e59f706799" />
+    </api>
+    <api id="P:Windows.Media.Effects.AudioEffect.AudioEffectType">
+      <topicdata group="api" />
+      <apidata name="AudioEffectType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AudioEffectType" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffect" ref="true" />
+      </containers>
+      <file name="6a70f08c-6358-0a49-53b1-6ae374ab31a0" />
+    </api>
+    <api id="T:Windows.Media.Effects.AudioEffectDefinition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.AudioEffectDefinition" />
+      <apidata name="AudioEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Effects.IAudioEffectDefinition" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f22df3a7-a102-eb77-9fac-49579ffb3d30" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.AudioEffectDefinition">
+      <topicdata name="AudioEffectDefinition" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.AudioEffectDefinition" />
+      <apidata name="AudioEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Media.Effects.AudioEffectDefinition.#ctor">
+          <element api="M:Windows.Media.Effects.AudioEffectDefinition.#ctor(System.String)" />
+          <element api="M:Windows.Media.Effects.AudioEffectDefinition.#ctor(System.String,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="P:Windows.Media.Effects.AudioEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.AudioEffectDefinition.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" />
+      </containers>
+      <file name="2377a9a8-2a2f-1a27-ed2b-b73d8897edef" />
+    </api>
+    <api id="Methods.T:Windows.Media.Effects.AudioEffectDefinition">
+      <topicdata name="AudioEffectDefinition" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Effects.AudioEffectDefinition" />
+      <apidata name="AudioEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" />
+      </containers>
+      <file name="dd7a9d8a-8f05-81f3-4be9-267631e51cc3" />
+    </api>
+    <api id="Properties.T:Windows.Media.Effects.AudioEffectDefinition">
+      <topicdata name="AudioEffectDefinition" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Effects.AudioEffectDefinition" />
+      <apidata name="AudioEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Effects.AudioEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.AudioEffectDefinition.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" />
+      </containers>
+      <file name="896c0432-82b2-9faa-6a11-62f54a2934a3" />
+    </api>
+    <api id="Overload:Windows.Media.Effects.AudioEffectDefinition.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Effects.AudioEffectDefinition" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Media.Effects.AudioEffectDefinition.#ctor(System.String)" />
+        <element api="M:Windows.Media.Effects.AudioEffectDefinition.#ctor(System.String,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" ref="true" />
+      </containers>
+      <file name="9da29bfb-3489-aea0-b986-5f5092e28fc0" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioEffectDefinition.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Media.Effects.AudioEffectDefinition.#ctor" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" ref="true" />
+      </containers>
+      <file name="0f58e7c8-aaad-02f5-ef57-ec7101cc6096" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioEffectDefinition.#ctor(System.String,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Media.Effects.AudioEffectDefinition.#ctor" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="props" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" ref="true" />
+      </containers>
+      <file name="7e1f3e12-71b8-9d17-f910-501dbaec7717" />
+    </api>
+    <api id="P:Windows.Media.Effects.AudioEffectDefinition.ActivatableClassId">
+      <topicdata group="api" />
+      <apidata name="ActivatableClassId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivatableClassId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Media.Effects.IAudioEffectDefinition.ActivatableClassId">
+          <type api="T:Windows.Media.Effects.IAudioEffectDefinition" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" ref="true" />
+      </containers>
+      <file name="891d7f03-334a-430d-8672-4f37b0eec699" />
+    </api>
+    <api id="P:Windows.Media.Effects.AudioEffectDefinition.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Media.Effects.IAudioEffectDefinition.Properties">
+          <type api="T:Windows.Media.Effects.IAudioEffectDefinition" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" ref="true" />
+      </containers>
+      <file name="d72e181e-c022-f56d-0973-be292251bb48" />
+    </api>
+    <api id="T:Windows.Media.Effects.AudioEffectsManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.AudioEffectsManager" />
+      <apidata name="AudioEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4ecd1880-297d-316c-f68d-b0f7be2714ef" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.AudioEffectsManager">
+      <topicdata name="AudioEffectsManager" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.AudioEffectsManager" />
+      <apidata name="AudioEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager">
+          <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager(System.String,Windows.Media.Capture.MediaCategory)" />
+          <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager(System.String,Windows.Media.Capture.MediaCategory,Windows.Media.AudioProcessing)" />
+        </element>
+        <element api="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager">
+          <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager(System.String,Windows.Media.Render.AudioRenderCategory)" />
+          <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager(System.String,Windows.Media.Render.AudioRenderCategory,Windows.Media.AudioProcessing)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectsManager" />
+      </containers>
+      <file name="2f7af39b-420b-0070-b578-2bc5cddef6c1" />
+    </api>
+    <api id="Methods.T:Windows.Media.Effects.AudioEffectsManager">
+      <topicdata name="AudioEffectsManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Effects.AudioEffectsManager" />
+      <apidata name="AudioEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager">
+          <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager(System.String,Windows.Media.Capture.MediaCategory)" />
+          <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager(System.String,Windows.Media.Capture.MediaCategory,Windows.Media.AudioProcessing)" />
+        </element>
+        <element api="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager">
+          <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager(System.String,Windows.Media.Render.AudioRenderCategory)" />
+          <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager(System.String,Windows.Media.Render.AudioRenderCategory,Windows.Media.AudioProcessing)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectsManager" />
+      </containers>
+      <file name="72852802-3005-37bc-5970-42c8caa1a14a" />
+    </api>
+    <api id="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager">
+      <topicdata name="CreateAudioCaptureEffectsManager" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Effects.AudioEffectsManager" />
+      <apidata name="CreateAudioCaptureEffectsManager" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager(System.String,Windows.Media.Capture.MediaCategory)" />
+        <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager(System.String,Windows.Media.Capture.MediaCategory,Windows.Media.AudioProcessing)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectsManager" ref="true" />
+      </containers>
+      <file name="dd6de107-a1ce-db83-f404-02dec6a3eac5" />
+    </api>
+    <api id="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager">
+      <topicdata name="CreateAudioRenderEffectsManager" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Effects.AudioEffectsManager" />
+      <apidata name="CreateAudioRenderEffectsManager" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager(System.String,Windows.Media.Render.AudioRenderCategory)" />
+        <element api="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager(System.String,Windows.Media.Render.AudioRenderCategory,Windows.Media.AudioProcessing)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectsManager" ref="true" />
+      </containers>
+      <file name="97a8ca9b-680c-77ee-ec9e-3855dfb55000" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager(System.String,Windows.Media.Capture.MediaCategory)">
+      <topicdata group="api" />
+      <apidata name="CreateAudioCaptureEffectsManager" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="category" in="true">
+          <type api="T:Windows.Media.Capture.MediaCategory" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioCaptureEffectsManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectsManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateAudioCaptureEffectsManager</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="08bd9c03-97d5-59fe-91b5-03980e7dfe0a" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager(System.String,Windows.Media.Capture.MediaCategory,Windows.Media.AudioProcessing)">
+      <topicdata group="api" />
+      <apidata name="CreateAudioCaptureEffectsManager" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioCaptureEffectsManager" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="category" in="true">
+          <type api="T:Windows.Media.Capture.MediaCategory" ref="false" />
+        </parameter>
+        <parameter name="mode" in="true">
+          <type api="T:Windows.Media.AudioProcessing" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioCaptureEffectsManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectsManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateAudioCaptureEffectsManagerWithMode</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="49b032fa-57df-67de-099c-3cf8343dc91d" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager(System.String,Windows.Media.Render.AudioRenderCategory)">
+      <topicdata group="api" />
+      <apidata name="CreateAudioRenderEffectsManager" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="category" in="true">
+          <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectsManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateAudioRenderEffectsManager</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ffdd0321-17cc-a62c-bb4d-762ca9c50bf3" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager(System.String,Windows.Media.Render.AudioRenderCategory,Windows.Media.AudioProcessing)">
+      <topicdata group="api" />
+      <apidata name="CreateAudioRenderEffectsManager" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Media.Effects.AudioEffectsManager.CreateAudioRenderEffectsManager" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="category" in="true">
+          <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+        </parameter>
+        <parameter name="mode" in="true">
+          <type api="T:Windows.Media.AudioProcessing" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectsManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateAudioRenderEffectsManagerWithMode</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4c049ecc-c3da-1c85-bad8-2bb68fd8e712" />
+    </api>
+    <api id="T:Windows.Media.Effects.AudioEffectType">
+      <topicdata group="api" />
+      <apidata name="AudioEffectType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Effects.AudioEffectType.Other" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.AcousticEchoCancellation" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.NoiseSuppression" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.AutomaticGainControl" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.BeamForming" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.ConstantToneRemoval" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.Equalizer" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.LoudnessEqualizer" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.BassBoost" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.VirtualSurround" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.VirtualHeadphones" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.SpeakerFill" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.RoomCorrection" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.BassManagement" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.EnvironmentalEffects" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.SpeakerProtection" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.SpeakerCompensation" />
+        <element api="F:Windows.Media.Effects.AudioEffectType.DynamicRangeCompression" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c450a57b-2761-611a-b33a-ff71c9d00287" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.AcousticEchoCancellation">
+      <topicdata group="api" notopic="" />
+      <apidata name="AcousticEchoCancellation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="9d3bef0a-0a16-fed9-38a8-b6132e79e4ef" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.AutomaticGainControl">
+      <topicdata group="api" notopic="" />
+      <apidata name="AutomaticGainControl" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="1e6a6d0b-477b-14ec-51ae-08ac920ca728" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.BassBoost">
+      <topicdata group="api" notopic="" />
+      <apidata name="BassBoost" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="db05abea-87c3-89b1-4831-c7dada91bfe0" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.BassManagement">
+      <topicdata group="api" notopic="" />
+      <apidata name="BassManagement" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="21b5471f-9d30-dbd4-5a86-486a8e375d95" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.BeamForming">
+      <topicdata group="api" notopic="" />
+      <apidata name="BeamForming" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="e349f26c-efef-6a5a-c9db-6f8fad84da6a" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.ConstantToneRemoval">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConstantToneRemoval" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="e8763a95-713c-d0a4-4797-2cb75b3de39e" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.DynamicRangeCompression">
+      <topicdata group="api" notopic="" />
+      <apidata name="DynamicRangeCompression" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="b5bd0a4c-9e7c-d5a2-6fc6-5d4c2b305029" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.EnvironmentalEffects">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnvironmentalEffects" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="3dc3e231-38f7-7404-6dc8-f7caf204d08f" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.Equalizer">
+      <topicdata group="api" notopic="" />
+      <apidata name="Equalizer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="2c5f93ff-f9ce-5261-b629-a9aba074ef46" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.LoudnessEqualizer">
+      <topicdata group="api" notopic="" />
+      <apidata name="LoudnessEqualizer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="0ef414e5-3ef2-a3a0-4488-fbd089fb39cc" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.NoiseSuppression">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoiseSuppression" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="9ce44700-698a-16ea-4ce0-b6722680a8d8" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="22965bb9-22cf-b999-c1dc-0ec1744324ab" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.RoomCorrection">
+      <topicdata group="api" notopic="" />
+      <apidata name="RoomCorrection" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="c28c9eaf-1c51-f8d2-cf9b-368d054f6108" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.SpeakerCompensation">
+      <topicdata group="api" notopic="" />
+      <apidata name="SpeakerCompensation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="da604ad8-67cb-4739-64f1-a64877fbcce2" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.SpeakerFill">
+      <topicdata group="api" notopic="" />
+      <apidata name="SpeakerFill" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="f421c723-bfdd-05e3-f9e8-6d5e801e4bde" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.SpeakerProtection">
+      <topicdata group="api" notopic="" />
+      <apidata name="SpeakerProtection" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="09613ea5-f3f1-83f9-1713-6bfb0dc84f8f" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.VirtualHeadphones">
+      <topicdata group="api" notopic="" />
+      <apidata name="VirtualHeadphones" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="f0335628-a5bc-5bfe-fc8c-fdf3b8419a76" />
+    </api>
+    <api id="F:Windows.Media.Effects.AudioEffectType.VirtualSurround">
+      <topicdata group="api" notopic="" />
+      <apidata name="VirtualSurround" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioEffectType" ref="false" />
+      </containers>
+      <file name="328d3df7-58f7-e171-8497-a4cb86a807b8" />
+    </api>
+    <api id="T:Windows.Media.Effects.AudioRenderEffectsManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      <apidata name="AudioRenderEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Effects.IAudioRenderEffectsManager" ref="true" />
+        <type api="T:Windows.Media.Effects.IAudioRenderEffectsManager2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6bcd6984-351d-d12b-b560-cac07329967c" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.AudioRenderEffectsManager">
+      <topicdata name="AudioRenderEffectsManager" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      <apidata name="AudioRenderEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Media.Effects.AudioRenderEffectsManager.AudioRenderEffectsChanged" />
+        <element api="P:Windows.Media.Effects.AudioRenderEffectsManager.EffectsProviderSettingsLabel" />
+        <element api="P:Windows.Media.Effects.AudioRenderEffectsManager.EffectsProviderThumbnail" />
+        <element api="M:Windows.Media.Effects.AudioRenderEffectsManager.GetAudioRenderEffects" />
+        <element api="M:Windows.Media.Effects.AudioRenderEffectsManager.ShowSettingsUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      </containers>
+      <file name="62967764-51d5-0e66-9b24-ff6ae4f6a9d3" />
+    </api>
+    <api id="Methods.T:Windows.Media.Effects.AudioRenderEffectsManager">
+      <topicdata name="AudioRenderEffectsManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      <apidata name="AudioRenderEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Effects.AudioRenderEffectsManager.GetAudioRenderEffects" />
+        <element api="M:Windows.Media.Effects.AudioRenderEffectsManager.ShowSettingsUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      </containers>
+      <file name="d5fc6bb3-5b2f-a019-5be9-92ae5e4313ae" />
+    </api>
+    <api id="Properties.T:Windows.Media.Effects.AudioRenderEffectsManager">
+      <topicdata name="AudioRenderEffectsManager" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      <apidata name="AudioRenderEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Effects.AudioRenderEffectsManager.EffectsProviderSettingsLabel" />
+        <element api="P:Windows.Media.Effects.AudioRenderEffectsManager.EffectsProviderThumbnail" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      </containers>
+      <file name="56930602-bc1d-e1c2-b013-34e172ddaae6" />
+    </api>
+    <api id="Events.T:Windows.Media.Effects.AudioRenderEffectsManager">
+      <topicdata name="AudioRenderEffectsManager" group="list" subgroup="Events" typeTopicId="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      <apidata name="AudioRenderEffectsManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Media.Effects.AudioRenderEffectsManager.AudioRenderEffectsChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" />
+      </containers>
+      <file name="d5a878e6-da75-6fd5-76c6-e2ea6d1b1804" />
+    </api>
+    <api id="E:Windows.Media.Effects.AudioRenderEffectsManager.AudioRenderEffectsChanged">
+      <topicdata group="api" />
+      <apidata name="AudioRenderEffectsChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AudioRenderEffectsChanged" />
+      <remover name="remove_AudioRenderEffectsChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" ref="true" />
+      </containers>
+      <file name="cc4e7c06-cdee-72fc-c886-ee2177fb8eb6" />
+    </api>
+    <api id="P:Windows.Media.Effects.AudioRenderEffectsManager.EffectsProviderSettingsLabel">
+      <topicdata group="api" />
+      <apidata name="EffectsProviderSettingsLabel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EffectsProviderSettingsLabel" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" ref="true" />
+      </containers>
+      <file name="6d1e4e6a-1fce-9221-a233-508160c5458a" />
+    </api>
+    <api id="P:Windows.Media.Effects.AudioRenderEffectsManager.EffectsProviderThumbnail">
+      <topicdata group="api" />
+      <apidata name="EffectsProviderThumbnail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EffectsProviderThumbnail" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamWithContentType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" ref="true" />
+      </containers>
+      <file name="56268f65-5605-3ee0-68fb-e2df75bf27b0" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioRenderEffectsManager.GetAudioRenderEffects">
+      <topicdata group="api" />
+      <apidata name="GetAudioRenderEffects" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Effects.AudioEffect" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" ref="true" />
+      </containers>
+      <file name="28da867e-8c02-efbd-a247-d762323b74ec" />
+    </api>
+    <api id="M:Windows.Media.Effects.AudioRenderEffectsManager.ShowSettingsUI">
+      <topicdata group="api" />
+      <apidata name="ShowSettingsUI" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.AudioRenderEffectsManager" ref="true" />
+      </containers>
+      <file name="17f04cf7-999d-ac3c-8777-ffde955a3bcb" />
+    </api>
+    <api id="T:Windows.Media.Effects.IAudioEffectDefinition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.IAudioEffectDefinition" />
+      <apidata name="IAudioEffectDefinition" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Media.Effects.AudioEffectDefinition" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3839359348</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>32128</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20339</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>144</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>137</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>227</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>28</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>157</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>185</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>194</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>148</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4c5a8e37-67fd-3b44-c777-0d1f95625f1b" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.IAudioEffectDefinition">
+      <topicdata name="IAudioEffectDefinition" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.IAudioEffectDefinition" />
+      <apidata name="IAudioEffectDefinition" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Effects.IAudioEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.IAudioEffectDefinition.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.IAudioEffectDefinition" />
+      </containers>
+      <file name="4a8699c4-1e55-0e5a-3925-5ef64660e41a" />
+    </api>
+    <api id="Properties.T:Windows.Media.Effects.IAudioEffectDefinition">
+      <topicdata name="IAudioEffectDefinition" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Effects.IAudioEffectDefinition" />
+      <apidata name="IAudioEffectDefinition" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Effects.IAudioEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.IAudioEffectDefinition.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.IAudioEffectDefinition" />
+      </containers>
+      <file name="41eac0b5-9bd4-e792-dfc7-90bffa9b9e72" />
+    </api>
+    <api id="P:Windows.Media.Effects.IAudioEffectDefinition.ActivatableClassId">
+      <topicdata group="api" />
+      <apidata name="ActivatableClassId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivatableClassId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.IAudioEffectDefinition" ref="true" />
+      </containers>
+      <file name="b14a1838-fc59-0fbe-e178-7c3284f4eeba" />
+    </api>
+    <api id="P:Windows.Media.Effects.IAudioEffectDefinition.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.IAudioEffectDefinition" ref="true" />
+      </containers>
+      <file name="38d5547b-b3a7-0ea8-6db4-fcba7068415f" />
+    </api>
+    <api id="T:Windows.Media.Effects.IVideoEffectDefinition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.IVideoEffectDefinition" />
+      <apidata name="IVideoEffectDefinition" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Media.Effects.SlowMotionEffectDefinition" ref="true" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>972262640</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>36111</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20286</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>132</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>252</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>45</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>70</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>165</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>41</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>121</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>67</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5154c4ea-dd7e-6975-8453-3bfdc2c037ae" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.IVideoEffectDefinition">
+      <topicdata name="IVideoEffectDefinition" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.IVideoEffectDefinition" />
+      <apidata name="IVideoEffectDefinition" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Effects.IVideoEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.IVideoEffectDefinition.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.IVideoEffectDefinition" />
+      </containers>
+      <file name="e2351b96-3b91-d081-0c5a-8ae3ee34b25a" />
+    </api>
+    <api id="Properties.T:Windows.Media.Effects.IVideoEffectDefinition">
+      <topicdata name="IVideoEffectDefinition" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Effects.IVideoEffectDefinition" />
+      <apidata name="IVideoEffectDefinition" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Effects.IVideoEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.IVideoEffectDefinition.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.IVideoEffectDefinition" />
+      </containers>
+      <file name="f5c1652d-b4a3-ba9e-8566-4d06b60b2ed1" />
+    </api>
+    <api id="P:Windows.Media.Effects.IVideoEffectDefinition.ActivatableClassId">
+      <topicdata group="api" />
+      <apidata name="ActivatableClassId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivatableClassId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+      </containers>
+      <file name="6fc0007e-e80a-e8f9-71aa-a1ccad4ebcf6" />
+    </api>
+    <api id="P:Windows.Media.Effects.IVideoEffectDefinition.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+      </containers>
+      <file name="72f46990-c992-8efd-015f-21fe63f571e2" />
+    </api>
+    <api id="T:Windows.Media.Effects.SlowMotionEffectDefinition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.SlowMotionEffectDefinition" />
+      <apidata name="SlowMotionEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Effects.SlowMotionEffectDefinition.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Effects.ISlowMotionEffectDefinition" ref="true" />
+        <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a4546261-7fc7-a4d7-a4fa-214bf6ba73f0" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.SlowMotionEffectDefinition">
+      <topicdata name="SlowMotionEffectDefinition" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.SlowMotionEffectDefinition" />
+      <apidata name="SlowMotionEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Effects.SlowMotionEffectDefinition.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Effects.SlowMotionEffectDefinition.#ctor" />
+        <element api="P:Windows.Media.Effects.SlowMotionEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.SlowMotionEffectDefinition.Properties" />
+        <element api="P:Windows.Media.Effects.SlowMotionEffectDefinition.TimeStretchRate" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.SlowMotionEffectDefinition" />
+      </containers>
+      <file name="499d5703-5144-c592-cee3-fc3048ce4e6a" />
+    </api>
+    <api id="Methods.T:Windows.Media.Effects.SlowMotionEffectDefinition">
+      <topicdata name="SlowMotionEffectDefinition" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Effects.SlowMotionEffectDefinition" />
+      <apidata name="SlowMotionEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Effects.SlowMotionEffectDefinition.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.SlowMotionEffectDefinition" />
+      </containers>
+      <file name="e984fca9-bbc8-d9f2-833e-87442a0634f5" />
+    </api>
+    <api id="Properties.T:Windows.Media.Effects.SlowMotionEffectDefinition">
+      <topicdata name="SlowMotionEffectDefinition" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Effects.SlowMotionEffectDefinition" />
+      <apidata name="SlowMotionEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Effects.SlowMotionEffectDefinition.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.Effects.SlowMotionEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.SlowMotionEffectDefinition.Properties" />
+        <element api="P:Windows.Media.Effects.SlowMotionEffectDefinition.TimeStretchRate" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.SlowMotionEffectDefinition" />
+      </containers>
+      <file name="cd240283-04b7-0b67-c6ce-0761dd48f5b3" />
+    </api>
+    <api id="M:Windows.Media.Effects.SlowMotionEffectDefinition.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.SlowMotionEffectDefinition" ref="true" />
+      </containers>
+      <file name="9eb69fb9-adf9-40c4-a492-dd4a8efcbb23" />
+    </api>
+    <api id="P:Windows.Media.Effects.SlowMotionEffectDefinition.ActivatableClassId">
+      <topicdata group="api" />
+      <apidata name="ActivatableClassId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivatableClassId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Media.Effects.IVideoEffectDefinition.ActivatableClassId">
+          <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.SlowMotionEffectDefinition" ref="true" />
+      </containers>
+      <file name="190bfd94-77da-5dc9-cf85-3c3a4f4acf29" />
+    </api>
+    <api id="P:Windows.Media.Effects.SlowMotionEffectDefinition.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Media.Effects.IVideoEffectDefinition.Properties">
+          <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.SlowMotionEffectDefinition" ref="true" />
+      </containers>
+      <file name="f842b39e-2323-2d2d-f4d5-d276e2df39c3" />
+    </api>
+    <api id="P:Windows.Media.Effects.SlowMotionEffectDefinition.TimeStretchRate">
+      <topicdata group="api" />
+      <apidata name="TimeStretchRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TimeStretchRate" />
+      <setter name="set_TimeStretchRate" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.SlowMotionEffectDefinition" ref="true" />
+      </containers>
+      <file name="77d360e2-1d20-53b8-ca5c-caaf3128fc6f" />
+    </api>
+    <api id="T:Windows.Media.Effects.VideoEffectDefinition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Effects.VideoEffectDefinition" />
+      <apidata name="VideoEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6247457e-9b51-dd72-f817-48d325e0f13f" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Effects.VideoEffectDefinition">
+      <topicdata name="VideoEffectDefinition" group="list" subgroup="members" typeTopicId="T:Windows.Media.Effects.VideoEffectDefinition" />
+      <apidata name="VideoEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Media.Effects.VideoEffectDefinition.#ctor">
+          <element api="M:Windows.Media.Effects.VideoEffectDefinition.#ctor(System.String)" />
+          <element api="M:Windows.Media.Effects.VideoEffectDefinition.#ctor(System.String,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="P:Windows.Media.Effects.VideoEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.VideoEffectDefinition.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" />
+      </containers>
+      <file name="f8223309-0707-a871-57ca-9384fea0fd82" />
+    </api>
+    <api id="Methods.T:Windows.Media.Effects.VideoEffectDefinition">
+      <topicdata name="VideoEffectDefinition" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Effects.VideoEffectDefinition" />
+      <apidata name="VideoEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" />
+      </containers>
+      <file name="ffd82704-873d-d26f-06fa-abaa66ff8d01" />
+    </api>
+    <api id="Properties.T:Windows.Media.Effects.VideoEffectDefinition">
+      <topicdata name="VideoEffectDefinition" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Effects.VideoEffectDefinition" />
+      <apidata name="VideoEffectDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Effects.VideoEffectDefinition.ActivatableClassId" />
+        <element api="P:Windows.Media.Effects.VideoEffectDefinition.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" />
+      </containers>
+      <file name="0d9796f3-ca36-a436-e677-1a06f9395772" />
+    </api>
+    <api id="Overload:Windows.Media.Effects.VideoEffectDefinition.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Effects.VideoEffectDefinition" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Media.Effects.VideoEffectDefinition.#ctor(System.String)" />
+        <element api="M:Windows.Media.Effects.VideoEffectDefinition.#ctor(System.String,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" ref="true" />
+      </containers>
+      <file name="0472118f-7d26-ce49-3c36-8f82637aa128" />
+    </api>
+    <api id="M:Windows.Media.Effects.VideoEffectDefinition.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Media.Effects.VideoEffectDefinition.#ctor" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" ref="true" />
+      </containers>
+      <file name="cd121b21-e922-9f23-83aa-98a37e61db87" />
+    </api>
+    <api id="M:Windows.Media.Effects.VideoEffectDefinition.#ctor(System.String,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Media.Effects.VideoEffectDefinition.#ctor" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="props" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" ref="true" />
+      </containers>
+      <file name="58ad525d-109b-f6fa-edf4-747d078ffe94" />
+    </api>
+    <api id="P:Windows.Media.Effects.VideoEffectDefinition.ActivatableClassId">
+      <topicdata group="api" />
+      <apidata name="ActivatableClassId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivatableClassId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Media.Effects.IVideoEffectDefinition.ActivatableClassId">
+          <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" ref="true" />
+      </containers>
+      <file name="164ffc9a-e926-76c8-8f76-a3d2ca902e83" />
+    </api>
+    <api id="P:Windows.Media.Effects.VideoEffectDefinition.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Media.Effects.IVideoEffectDefinition.Properties">
+          <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Effects" />
+        <type api="T:Windows.Media.Effects.VideoEffectDefinition" ref="true" />
+      </containers>
+      <file name="462c47b5-e449-9d55-542f-eb1e502db198" />
+    </api>
+  </apis>
+</reflection>

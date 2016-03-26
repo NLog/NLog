@@ -1,0 +1,3221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Data.Json">
+      <topicdata group="api" />
+      <apidata name="Windows.Data.Json" group="namespace" />
+      <elements>
+        <element api="T:Windows.Data.Json.JsonValueType" />
+        <element api="T:Windows.Data.Json.JsonErrorStatus" />
+        <element api="T:Windows.Data.Json.IJsonValue" />
+        <element api="T:Windows.Data.Json.JsonArray" />
+        <element api="T:Windows.Data.Json.JsonObject" />
+        <element api="T:Windows.Data.Json.JsonValue" />
+        <element api="T:Windows.Data.Json.JsonError" />
+      </elements>
+      <file name="591536fb-3932-a1fe-d89c-c6574c78874a" />
+    </api>
+    <api id="T:Windows.Data.Json.IJsonValue">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Json.IJsonValue" />
+      <apidata name="IJsonValue" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2736889547</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>61619</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19917</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>190</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>238</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>25</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>212</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>140</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>211</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>237</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>30</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2d11ea88-db52-106d-887f-ffae7703533e" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Json.IJsonValue">
+      <topicdata name="IJsonValue" group="list" subgroup="members" typeTopicId="T:Windows.Data.Json.IJsonValue" />
+      <apidata name="IJsonValue" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Data.Json.IJsonValue.GetArray" />
+        <element api="M:Windows.Data.Json.IJsonValue.GetBoolean" />
+        <element api="M:Windows.Data.Json.IJsonValue.GetNumber" />
+        <element api="M:Windows.Data.Json.IJsonValue.GetObject" />
+        <element api="M:Windows.Data.Json.IJsonValue.GetString" />
+        <element api="M:Windows.Data.Json.IJsonValue.Stringify" />
+        <element api="P:Windows.Data.Json.IJsonValue.ValueType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" />
+      </containers>
+      <file name="ad68034e-d6ff-e2bf-b1a3-fbec1e1aabbf" />
+    </api>
+    <api id="Methods.T:Windows.Data.Json.IJsonValue">
+      <topicdata name="IJsonValue" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Json.IJsonValue" />
+      <apidata name="IJsonValue" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Data.Json.IJsonValue.GetArray" />
+        <element api="M:Windows.Data.Json.IJsonValue.GetBoolean" />
+        <element api="M:Windows.Data.Json.IJsonValue.GetNumber" />
+        <element api="M:Windows.Data.Json.IJsonValue.GetObject" />
+        <element api="M:Windows.Data.Json.IJsonValue.GetString" />
+        <element api="M:Windows.Data.Json.IJsonValue.Stringify" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" />
+      </containers>
+      <file name="cfd5e9c2-0bea-7d34-123e-abb1ad2fa150" />
+    </api>
+    <api id="Properties.T:Windows.Data.Json.IJsonValue">
+      <topicdata name="IJsonValue" group="list" subgroup="Properties" typeTopicId="T:Windows.Data.Json.IJsonValue" />
+      <apidata name="IJsonValue" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Data.Json.IJsonValue.ValueType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" />
+      </containers>
+      <file name="2a78dd13-e5ee-6e7a-fd8a-0a29e6ac5140" />
+    </api>
+    <api id="M:Windows.Data.Json.IJsonValue.GetArray">
+      <topicdata group="api" />
+      <apidata name="GetArray" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </containers>
+      <file name="d88dbe85-dd68-e0b3-f256-b7eade530a74" />
+    </api>
+    <api id="M:Windows.Data.Json.IJsonValue.GetBoolean">
+      <topicdata group="api" />
+      <apidata name="GetBoolean" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </containers>
+      <file name="806098b1-3278-c74e-43fc-0cab98c63cb5" />
+    </api>
+    <api id="M:Windows.Data.Json.IJsonValue.GetNumber">
+      <topicdata group="api" />
+      <apidata name="GetNumber" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </containers>
+      <file name="c4fd9ba2-c633-e3b3-0908-8bb657ef0475" />
+    </api>
+    <api id="M:Windows.Data.Json.IJsonValue.GetObject">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </containers>
+      <file name="f0c874d6-c5dd-537c-6134-95ffa66fd5ed" />
+    </api>
+    <api id="M:Windows.Data.Json.IJsonValue.GetString">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </containers>
+      <file name="7a254121-40be-2cdd-7a57-14a7722c8b2e" />
+    </api>
+    <api id="M:Windows.Data.Json.IJsonValue.Stringify">
+      <topicdata group="api" />
+      <apidata name="Stringify" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </containers>
+      <file name="122eeec8-f16a-dd79-5441-bc2b88d6c40d" />
+    </api>
+    <api id="P:Windows.Data.Json.IJsonValue.ValueType">
+      <topicdata group="api" />
+      <apidata name="ValueType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ValueType" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </containers>
+      <file name="ed90f7d2-7ad1-54eb-c16b-d2115d0badeb" />
+    </api>
+    <api id="T:Windows.Data.Json.JsonArray">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonArray" />
+      <apidata name="JsonArray" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Json.JsonArray.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Data.Json.IJsonArray" ref="true" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ab962770-2441-ed3a-fdfe-4ee38b66f5b9" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Json.JsonArray">
+      <topicdata name="JsonArray" group="list" subgroup="members" typeTopicId="T:Windows.Data.Json.JsonArray" />
+      <apidata name="JsonArray" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Json.JsonArray.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Data.Json.JsonArray.#ctor" />
+        <element api="M:Windows.Data.Json.JsonArray.Append(Windows.Data.Json.IJsonValue)" />
+        <element api="M:Windows.Data.Json.JsonArray.Clear" />
+        <element api="M:Windows.Data.Json.JsonArray.First" />
+        <element api="M:Windows.Data.Json.JsonArray.GetArray" />
+        <element api="M:Windows.Data.Json.JsonArray.GetArrayAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetBoolean" />
+        <element api="M:Windows.Data.Json.JsonArray.GetBooleanAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetMany(System.UInt32,Windows.Data.Json.IJsonValue[])" />
+        <element api="M:Windows.Data.Json.JsonArray.GetNumber" />
+        <element api="M:Windows.Data.Json.JsonArray.GetNumberAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetObject" />
+        <element api="M:Windows.Data.Json.JsonArray.GetObjectAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetString" />
+        <element api="M:Windows.Data.Json.JsonArray.GetStringAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetView" />
+        <element api="M:Windows.Data.Json.JsonArray.IndexOf(Windows.Data.Json.IJsonValue,System.UInt32@)" />
+        <element api="M:Windows.Data.Json.JsonArray.InsertAt(System.UInt32,Windows.Data.Json.IJsonValue)" />
+        <element api="M:Windows.Data.Json.JsonArray.Parse(System.String)" />
+        <element api="M:Windows.Data.Json.JsonArray.RemoveAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.RemoveAtEnd" />
+        <element api="M:Windows.Data.Json.JsonArray.ReplaceAll(Windows.Data.Json.IJsonValue[])" />
+        <element api="M:Windows.Data.Json.JsonArray.SetAt(System.UInt32,Windows.Data.Json.IJsonValue)" />
+        <element api="P:Windows.Data.Json.JsonArray.Size" />
+        <element api="M:Windows.Data.Json.JsonArray.Stringify" />
+        <element api="M:Windows.Data.Json.JsonArray.TryParse(System.String,Windows.Data.Json.JsonArray@)" />
+        <element api="P:Windows.Data.Json.JsonArray.ValueType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" />
+      </containers>
+      <file name="2d02b1aa-9522-c203-9d04-287b3acce2c6" />
+    </api>
+    <api id="Methods.T:Windows.Data.Json.JsonArray">
+      <topicdata name="JsonArray" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Json.JsonArray" />
+      <apidata name="JsonArray" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Json.JsonArray.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Data.Json.JsonArray.Append(Windows.Data.Json.IJsonValue)" />
+        <element api="M:Windows.Data.Json.JsonArray.Clear" />
+        <element api="M:Windows.Data.Json.JsonArray.First" />
+        <element api="M:Windows.Data.Json.JsonArray.GetArray" />
+        <element api="M:Windows.Data.Json.JsonArray.GetArrayAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetBoolean" />
+        <element api="M:Windows.Data.Json.JsonArray.GetBooleanAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetMany(System.UInt32,Windows.Data.Json.IJsonValue[])" />
+        <element api="M:Windows.Data.Json.JsonArray.GetNumber" />
+        <element api="M:Windows.Data.Json.JsonArray.GetNumberAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetObject" />
+        <element api="M:Windows.Data.Json.JsonArray.GetObjectAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetString" />
+        <element api="M:Windows.Data.Json.JsonArray.GetStringAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.GetView" />
+        <element api="M:Windows.Data.Json.JsonArray.IndexOf(Windows.Data.Json.IJsonValue,System.UInt32@)" />
+        <element api="M:Windows.Data.Json.JsonArray.InsertAt(System.UInt32,Windows.Data.Json.IJsonValue)" />
+        <element api="M:Windows.Data.Json.JsonArray.Parse(System.String)" />
+        <element api="M:Windows.Data.Json.JsonArray.RemoveAt(System.UInt32)" />
+        <element api="M:Windows.Data.Json.JsonArray.RemoveAtEnd" />
+        <element api="M:Windows.Data.Json.JsonArray.ReplaceAll(Windows.Data.Json.IJsonValue[])" />
+        <element api="M:Windows.Data.Json.JsonArray.SetAt(System.UInt32,Windows.Data.Json.IJsonValue)" />
+        <element api="M:Windows.Data.Json.JsonArray.Stringify" />
+        <element api="M:Windows.Data.Json.JsonArray.TryParse(System.String,Windows.Data.Json.JsonArray@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" />
+      </containers>
+      <file name="425dec13-4120-2573-057f-dea62ef8b123" />
+    </api>
+    <api id="Properties.T:Windows.Data.Json.JsonArray">
+      <topicdata name="JsonArray" group="list" subgroup="Properties" typeTopicId="T:Windows.Data.Json.JsonArray" />
+      <apidata name="JsonArray" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Json.JsonArray.#ctor" />
+      <elements>
+        <element api="P:Windows.Data.Json.JsonArray.Size" />
+        <element api="P:Windows.Data.Json.JsonArray.ValueType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" />
+      </containers>
+      <file name="47161792-fba5-f625-5228-c56628d5827c" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="7b5650fc-0e44-b540-fc7b-2ae42ff3cbe7" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.Append(Windows.Data.Json.IJsonValue)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.Append(`0)">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="18a4f0f8-52fd-cc78-cffa-11e0ae19ca51" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.Clear">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="6fe04d44-1a9e-d3b6-2bf1-3a9da38f431e" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="ff705e10-c761-0a0d-b0cd-1517802596a9" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetArray">
+      <topicdata group="api" />
+      <apidata name="GetArray" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetArray">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="af431fa7-660b-2385-84e1-a48e0de61758" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetArrayAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetArrayAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="e78634e8-9b30-e548-0e5c-263e902f7580" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.GetAt(System.UInt32)">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="a0aecbd4-e8e8-4b78-96a3-95e3f979e8c5" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetBoolean">
+      <topicdata group="api" />
+      <apidata name="GetBoolean" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetBoolean">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="c7b7f183-bb86-0348-1bf2-ae29705a19f6" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetBooleanAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetBooleanAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="43309544-4d24-9423-c914-269ddc5ebcf6" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetMany(System.UInt32,Windows.Data.Json.IJsonValue[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="startIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.GetMany(System.UInt32,`0[])">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="78bc18e0-c356-a408-16ac-e46ce091c8f1" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetNumber">
+      <topicdata group="api" />
+      <apidata name="GetNumber" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetNumber">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="bc3e8ced-a1f2-8ea3-1f03-04b8a60673c9" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetNumberAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetNumberAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="fa2dd466-38e5-5bea-5b94-98fe4ca487ed" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetObject">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetObject">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="9cf79902-b5e5-a1b1-3a6b-8eb43dda41d5" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetObjectAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetObjectAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="b8d80b4e-fe82-1aa0-7ceb-b85b736dc0f7" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetString">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetString">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="7609716d-c6a5-41f4-19f4-0086b5ca4c14" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetStringAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetStringAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="8c8a537a-79b7-a4b6-aad4-19b9ec3667fd" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.GetView">
+      <topicdata group="api" />
+      <apidata name="GetView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.GetView">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="b2e2b56f-ce66-f4ab-12ba-e991c723d19a" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.IndexOf(Windows.Data.Json.IJsonValue,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.IndexOf(`0,System.UInt32@)">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="291468f8-8c33-c51c-34c3-8765afc5b139" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.InsertAt(System.UInt32,Windows.Data.Json.IJsonValue)">
+      <topicdata group="api" />
+      <apidata name="InsertAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.InsertAt(System.UInt32,`0)">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="af7e8b6e-ce05-cba2-3d42-72c022b13de9" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.Parse(System.String)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="7d844ce7-941f-b525-b7d5-e9127bc81bc6" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.RemoveAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.RemoveAt(System.UInt32)">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="224151c8-4d92-1060-fbb6-929e25b6eab5" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.RemoveAtEnd">
+      <topicdata group="api" />
+      <apidata name="RemoveAtEnd" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.RemoveAtEnd">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="c72ac8d8-62c2-c607-2520-6964aba277ba" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.ReplaceAll(Windows.Data.Json.IJsonValue[])">
+      <topicdata group="api" />
+      <apidata name="ReplaceAll" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="items" in="true">
+          <arrayOf rank="1">
+            <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.ReplaceAll(`0[])">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="3013c9e1-9ce2-3fd8-acfa-933babd2f4f2" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.SetAt(System.UInt32,Windows.Data.Json.IJsonValue)">
+      <topicdata group="api" />
+      <apidata name="SetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVector`1.SetAt(System.UInt32,`0)">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="04ca45b8-5e4a-c4ec-4103-65367026cf6c" />
+    </api>
+    <api id="P:Windows.Data.Json.JsonArray.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IVector`1.Size">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="5e7c1b0e-7883-5682-42c4-a43cf9ec3cee" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.Stringify">
+      <topicdata group="api" />
+      <apidata name="Stringify" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.Stringify">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="1ec92a11-c444-9e2b-47de-fcf2997202ae" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonArray.TryParse(System.String,Windows.Data.Json.JsonArray@)">
+      <topicdata group="api" />
+      <apidata name="TryParse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="result" out="true">
+          <referenceTo>
+            <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="9c78a6a4-06e4-6272-306c-8fea36d3ad6c" />
+    </api>
+    <api id="P:Windows.Data.Json.JsonArray.ValueType">
+      <topicdata group="api" />
+      <apidata name="ValueType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ValueType" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Data.Json.IJsonValue.ValueType">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </containers>
+      <file name="92564dec-29fb-62d0-61ab-3ad02966f9d5" />
+    </api>
+    <api id="T:Windows.Data.Json.JsonError">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonError" />
+      <apidata name="JsonError" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a0e46e51-1977-45fa-836b-b3ce0b6c4b68" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Json.JsonError">
+      <topicdata name="JsonError" group="list" subgroup="members" typeTopicId="T:Windows.Data.Json.JsonError" />
+      <apidata name="JsonError" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Data.Json.JsonError.GetJsonStatus(System.Int32)" />
+        <element api="M:Windows.Data.Json.JsonError.GetStatus(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonError" />
+      </containers>
+      <file name="226102cb-b798-a983-9bcc-cdd22adadf98" />
+    </api>
+    <api id="Methods.T:Windows.Data.Json.JsonError">
+      <topicdata name="JsonError" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Json.JsonError" />
+      <apidata name="JsonError" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Data.Json.JsonError.GetJsonStatus(System.Int32)" />
+        <element api="M:Windows.Data.Json.JsonError.GetStatus(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonError" />
+      </containers>
+      <file name="d368223b-bad0-de3e-1608-0b24bcd6fab0" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonError.GetJsonStatus(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetJsonStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="hresult" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonError" ref="true" />
+      </containers>
+      <file name="f310068f-ef7a-7911-e6c8-a48798dd3dde" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonError.GetStatus(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="hresult" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonError" ref="true" />
+      </containers>
+      <file name="d81a8bce-269a-7268-01f0-fa6e07881c35" />
+    </api>
+    <api id="T:Windows.Data.Json.JsonErrorStatus">
+      <topicdata group="api" />
+      <apidata name="JsonErrorStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Data.Json.JsonErrorStatus.Unknown" />
+        <element api="F:Windows.Data.Json.JsonErrorStatus.InvalidJsonString" />
+        <element api="F:Windows.Data.Json.JsonErrorStatus.InvalidJsonNumber" />
+        <element api="F:Windows.Data.Json.JsonErrorStatus.JsonValueNotFound" />
+        <element api="F:Windows.Data.Json.JsonErrorStatus.ImplementationLimit" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="24356615-7a51-cb5e-a592-d018a4e6c9ef" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonErrorStatus.ImplementationLimit">
+      <topicdata group="api" notopic="" />
+      <apidata name="ImplementationLimit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </containers>
+      <file name="917a63c0-569a-6b1f-93c6-f39e01f74e8f" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonErrorStatus.InvalidJsonNumber">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidJsonNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </containers>
+      <file name="885266df-7d82-25b1-390f-58b2aa7f2f77" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonErrorStatus.InvalidJsonString">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidJsonString" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </containers>
+      <file name="3f1d926b-1ad7-6538-b2f5-b5087bac0722" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonErrorStatus.JsonValueNotFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="JsonValueNotFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </containers>
+      <file name="9b15cc65-9c8c-29b0-6a67-307f0b38bd04" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonErrorStatus.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonErrorStatus" ref="false" />
+      </containers>
+      <file name="639fe53e-991a-7221-6e3e-29b4b4930574" />
+    </api>
+    <api id="T:Windows.Data.Json.JsonObject">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonObject" />
+      <apidata name="JsonObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Json.JsonObject.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Data.Json.IJsonObject" ref="true" />
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+              <specialization>
+                <type api="T:System.String" ref="true" />
+                <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+        <type api="T:Windows.Data.Json.IJsonObjectWithDefaultValues" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b4558f31-f59f-84aa-c41a-722d7320eaaa" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Json.JsonObject">
+      <topicdata name="JsonObject" group="list" subgroup="members" typeTopicId="T:Windows.Data.Json.JsonObject" />
+      <apidata name="JsonObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Json.JsonObject.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Data.Json.JsonObject.#ctor" />
+        <element api="M:Windows.Data.Json.JsonObject.Clear" />
+        <element api="M:Windows.Data.Json.JsonObject.First" />
+        <element api="M:Windows.Data.Json.JsonObject.GetArray" />
+        <element api="M:Windows.Data.Json.JsonObject.GetBoolean" />
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedArray">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedArray(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedArray(System.String,Windows.Data.Json.JsonArray)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedBoolean">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedBoolean(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedBoolean(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedNumber">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedNumber(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedNumber(System.String,System.Double)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedObject">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedObject(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedObject(System.String,Windows.Data.Json.JsonObject)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedString">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedString(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedString(System.String,System.String)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedValue">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedValue(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedValue(System.String,Windows.Data.Json.JsonValue)" />
+        </element>
+        <element api="M:Windows.Data.Json.JsonObject.GetNumber" />
+        <element api="M:Windows.Data.Json.JsonObject.GetObject" />
+        <element api="M:Windows.Data.Json.JsonObject.GetString" />
+        <element api="M:Windows.Data.Json.JsonObject.GetView" />
+        <element api="M:Windows.Data.Json.JsonObject.HasKey(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.Insert(System.String,Windows.Data.Json.IJsonValue)" />
+        <element api="M:Windows.Data.Json.JsonObject.Lookup(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.Parse(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.Remove(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.SetNamedValue(System.String,Windows.Data.Json.IJsonValue)" />
+        <element api="P:Windows.Data.Json.JsonObject.Size" />
+        <element api="M:Windows.Data.Json.JsonObject.Stringify" />
+        <element api="M:Windows.Data.Json.JsonObject.TryParse(System.String,Windows.Data.Json.JsonObject@)" />
+        <element api="P:Windows.Data.Json.JsonObject.ValueType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" />
+      </containers>
+      <file name="abdc2305-5124-4b47-9a27-e1ecad97ac73" />
+    </api>
+    <api id="Methods.T:Windows.Data.Json.JsonObject">
+      <topicdata name="JsonObject" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Json.JsonObject" />
+      <apidata name="JsonObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Json.JsonObject.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Data.Json.JsonObject.Clear" />
+        <element api="M:Windows.Data.Json.JsonObject.First" />
+        <element api="M:Windows.Data.Json.JsonObject.GetArray" />
+        <element api="M:Windows.Data.Json.JsonObject.GetBoolean" />
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedArray">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedArray(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedArray(System.String,Windows.Data.Json.JsonArray)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedBoolean">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedBoolean(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedBoolean(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedNumber">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedNumber(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedNumber(System.String,System.Double)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedObject">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedObject(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedObject(System.String,Windows.Data.Json.JsonObject)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedString">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedString(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedString(System.String,System.String)" />
+        </element>
+        <element api="Overload:Windows.Data.Json.JsonObject.GetNamedValue">
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedValue(System.String)" />
+          <element api="M:Windows.Data.Json.JsonObject.GetNamedValue(System.String,Windows.Data.Json.JsonValue)" />
+        </element>
+        <element api="M:Windows.Data.Json.JsonObject.GetNumber" />
+        <element api="M:Windows.Data.Json.JsonObject.GetObject" />
+        <element api="M:Windows.Data.Json.JsonObject.GetString" />
+        <element api="M:Windows.Data.Json.JsonObject.GetView" />
+        <element api="M:Windows.Data.Json.JsonObject.HasKey(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.Insert(System.String,Windows.Data.Json.IJsonValue)" />
+        <element api="M:Windows.Data.Json.JsonObject.Lookup(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.Parse(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.Remove(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.SetNamedValue(System.String,Windows.Data.Json.IJsonValue)" />
+        <element api="M:Windows.Data.Json.JsonObject.Stringify" />
+        <element api="M:Windows.Data.Json.JsonObject.TryParse(System.String,Windows.Data.Json.JsonObject@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" />
+      </containers>
+      <file name="919e532a-741a-3b1f-467e-85596ac7d21c" />
+    </api>
+    <api id="Properties.T:Windows.Data.Json.JsonObject">
+      <topicdata name="JsonObject" group="list" subgroup="Properties" typeTopicId="T:Windows.Data.Json.JsonObject" />
+      <apidata name="JsonObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Data.Json.JsonObject.#ctor" />
+      <elements>
+        <element api="P:Windows.Data.Json.JsonObject.Size" />
+        <element api="P:Windows.Data.Json.JsonObject.ValueType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" />
+      </containers>
+      <file name="de31503f-d443-9005-2141-60aa1db4cd41" />
+    </api>
+    <api id="Overload:Windows.Data.Json.JsonObject.GetNamedArray">
+      <topicdata name="GetNamedArray" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonObject" />
+      <apidata name="GetNamedArray" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedArray(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedArray(System.String,Windows.Data.Json.JsonArray)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="60439feb-126a-f09a-0622-c766a55acfb2" />
+    </api>
+    <api id="Overload:Windows.Data.Json.JsonObject.GetNamedBoolean">
+      <topicdata name="GetNamedBoolean" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonObject" />
+      <apidata name="GetNamedBoolean" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedBoolean(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedBoolean(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="ae4b4ff2-bfda-70a2-bae7-69f392ce14c1" />
+    </api>
+    <api id="Overload:Windows.Data.Json.JsonObject.GetNamedNumber">
+      <topicdata name="GetNamedNumber" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonObject" />
+      <apidata name="GetNamedNumber" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedNumber(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedNumber(System.String,System.Double)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="0262672c-8706-b3f9-36e0-441192fa1892" />
+    </api>
+    <api id="Overload:Windows.Data.Json.JsonObject.GetNamedObject">
+      <topicdata name="GetNamedObject" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonObject" />
+      <apidata name="GetNamedObject" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedObject(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedObject(System.String,Windows.Data.Json.JsonObject)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="1bd05331-f491-10a1-24fc-7f05b036e80e" />
+    </api>
+    <api id="Overload:Windows.Data.Json.JsonObject.GetNamedString">
+      <topicdata name="GetNamedString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonObject" />
+      <apidata name="GetNamedString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedString(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedString(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="1f73681b-39bc-6339-4d86-a8776decf965" />
+    </api>
+    <api id="Overload:Windows.Data.Json.JsonObject.GetNamedValue">
+      <topicdata name="GetNamedValue" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonObject" />
+      <apidata name="GetNamedValue" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedValue(System.String)" />
+        <element api="M:Windows.Data.Json.JsonObject.GetNamedValue(System.String,Windows.Data.Json.JsonValue)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="56cedb61-084e-e2ff-169c-1dbca7ddf7dc" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="c72b4a36-c1d2-c492-46fc-f8217cd4dc92" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Clear">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="c626e784-93af-e4c1-610b-259ffb80d2c1" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+              <specialization>
+                <type api="T:System.String" ref="true" />
+                <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Foundation.Collections.IKeyValuePair`2" ref="true">
+                <specialization>
+                  <type api="T:System.String" ref="true" />
+                  <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="217c4b44-1962-61fc-de62-43e6a4d5aceb" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetArray">
+      <topicdata group="api" />
+      <apidata name="GetArray" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetArray">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="5fe2495d-6406-542a-e661-d2154b6fc052" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetBoolean">
+      <topicdata group="api" />
+      <apidata name="GetBoolean" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetBoolean">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="a579488b-5bdd-14c9-3397-5992aa4d900a" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedArray(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetNamedArray" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedArray" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="801c93f5-e377-b871-b099-773cee069e38" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedArray(System.String,Windows.Data.Json.JsonArray)">
+      <topicdata group="api" />
+      <apidata name="GetNamedArray" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedArray" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue" in="true">
+          <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetNamedArrayOrDefault</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="55b09e9c-7548-16ed-043e-82d0cd1e8727" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedBoolean(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetNamedBoolean" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedBoolean" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="6606a4c3-edbd-6df1-cbd6-0b89150d1ab0" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedBoolean(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetNamedBoolean" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedBoolean" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetNamedBooleanOrDefault</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0f00c577-690a-1c17-0dee-3da8e560bdbe" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedNumber(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetNamedNumber" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedNumber" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="09fcb2f2-9664-60b2-a2d5-17ea4987e6a0" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedNumber(System.String,System.Double)">
+      <topicdata group="api" />
+      <apidata name="GetNamedNumber" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedNumber" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetNamedNumberOrDefault</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ccdc02a3-d338-29ec-adec-b6b9af10e67d" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedObject(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetNamedObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedObject" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="41aafaff-81a4-42da-53dd-65605993d987" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedObject(System.String,Windows.Data.Json.JsonObject)">
+      <topicdata group="api" />
+      <apidata name="GetNamedObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedObject" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue" in="true">
+          <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetNamedObjectOrDefault</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3fa075ac-85eb-4238-d116-a7d2518e1304" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedString(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetNamedString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedString" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="4ddd4eda-a540-8949-e615-afceb084c7f3" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedString(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetNamedString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedString" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetNamedStringOrDefault</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a9532091-56ce-f14c-6606-26a4b0a533e4" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedValue(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetNamedValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedValue" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="a9c97c78-a43b-3f82-6b69-120f28ebebb0" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNamedValue(System.String,Windows.Data.Json.JsonValue)">
+      <topicdata group="api" />
+      <apidata name="GetNamedValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Data.Json.JsonObject.GetNamedValue" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue" in="true">
+          <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetNamedValueOrDefault</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="517fdd01-f616-f4f4-4a64-b3c079239be9" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetNumber">
+      <topicdata group="api" />
+      <apidata name="GetNumber" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetNumber">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="b534ff9b-4211-7de9-2627-bda26c7ec2de" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetObject">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetObject">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="2d551a6c-106d-75a1-c524-00c9d9b1faee" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetString">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetString">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="dea2af9b-2723-0529-ddd3-95a006ab5219" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.GetView">
+      <topicdata group="api" />
+      <apidata name="GetView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.GetView">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="e4678d3d-5ad8-dd26-be1f-f003cbdbbeff" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.HasKey(System.String)">
+      <topicdata group="api" />
+      <apidata name="HasKey" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.HasKey(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="ab9f0fc0-46a9-6959-633c-fa46a20567e6" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.Insert(System.String,Windows.Data.Json.IJsonValue)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Insert(`0,`1)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="ef2ae301-4f67-cd87-e47d-93358f3658ad" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.Lookup(System.String)">
+      <topicdata group="api" />
+      <apidata name="Lookup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Lookup(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="60d53305-24d9-0435-0609-2bc4a7c04caa" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.Parse(System.String)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="bc7000a0-121d-3982-0877-6ec953019d49" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="key" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IMap`2.Remove(`0)">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="e554e9af-ecbb-020e-76ea-361fa73443f4" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.SetNamedValue(System.String,Windows.Data.Json.IJsonValue)">
+      <topicdata group="api" />
+      <apidata name="SetNamedValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="f5c907a6-bcc0-dee0-ae2c-fb70f067af41" />
+    </api>
+    <api id="P:Windows.Data.Json.JsonObject.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IMap`2.Size">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="1ebe4175-16f3-25f7-7f49-e5e638ddc06b" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.Stringify">
+      <topicdata group="api" />
+      <apidata name="Stringify" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.Stringify">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="45ae2ceb-475d-08ac-ee3a-ee10c627a15f" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonObject.TryParse(System.String,Windows.Data.Json.JsonObject@)">
+      <topicdata group="api" />
+      <apidata name="TryParse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="result" out="true">
+          <referenceTo>
+            <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="dafa06ae-253c-ab80-48cc-3dec4ab1285b" />
+    </api>
+    <api id="P:Windows.Data.Json.JsonObject.ValueType">
+      <topicdata group="api" />
+      <apidata name="ValueType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ValueType" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Data.Json.IJsonValue.ValueType">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </containers>
+      <file name="41db42ea-0730-ebd1-97a4-a4fcfd9e341a" />
+    </api>
+    <api id="T:Windows.Data.Json.JsonValue">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Json.JsonValue" />
+      <apidata name="JsonValue" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8976e4fb-30e4-216d-d3c0-e5c4671de8b2" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Json.JsonValue">
+      <topicdata name="JsonValue" group="list" subgroup="members" typeTopicId="T:Windows.Data.Json.JsonValue" />
+      <apidata name="JsonValue" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Data.Json.JsonValue.CreateBooleanValue(System.Boolean)" />
+        <element api="M:Windows.Data.Json.JsonValue.CreateNumberValue(System.Double)" />
+        <element api="M:Windows.Data.Json.JsonValue.CreateStringValue(System.String)" />
+        <element api="M:Windows.Data.Json.JsonValue.GetArray" />
+        <element api="M:Windows.Data.Json.JsonValue.GetBoolean" />
+        <element api="M:Windows.Data.Json.JsonValue.GetNumber" />
+        <element api="M:Windows.Data.Json.JsonValue.GetObject" />
+        <element api="M:Windows.Data.Json.JsonValue.GetString" />
+        <element api="M:Windows.Data.Json.JsonValue.Parse(System.String)" />
+        <element api="M:Windows.Data.Json.JsonValue.Stringify" />
+        <element api="M:Windows.Data.Json.JsonValue.TryParse(System.String,Windows.Data.Json.JsonValue@)" />
+        <element api="P:Windows.Data.Json.JsonValue.ValueType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" />
+      </containers>
+      <file name="3b440a05-f870-f6f0-23e1-7b974d84850d" />
+    </api>
+    <api id="Methods.T:Windows.Data.Json.JsonValue">
+      <topicdata name="JsonValue" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Json.JsonValue" />
+      <apidata name="JsonValue" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Data.Json.JsonValue.CreateBooleanValue(System.Boolean)" />
+        <element api="M:Windows.Data.Json.JsonValue.CreateNumberValue(System.Double)" />
+        <element api="M:Windows.Data.Json.JsonValue.CreateStringValue(System.String)" />
+        <element api="M:Windows.Data.Json.JsonValue.GetArray" />
+        <element api="M:Windows.Data.Json.JsonValue.GetBoolean" />
+        <element api="M:Windows.Data.Json.JsonValue.GetNumber" />
+        <element api="M:Windows.Data.Json.JsonValue.GetObject" />
+        <element api="M:Windows.Data.Json.JsonValue.GetString" />
+        <element api="M:Windows.Data.Json.JsonValue.Parse(System.String)" />
+        <element api="M:Windows.Data.Json.JsonValue.Stringify" />
+        <element api="M:Windows.Data.Json.JsonValue.TryParse(System.String,Windows.Data.Json.JsonValue@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" />
+      </containers>
+      <file name="e1f403b8-67e0-c19e-8fd6-b2be6db8728d" />
+    </api>
+    <api id="Properties.T:Windows.Data.Json.JsonValue">
+      <topicdata name="JsonValue" group="list" subgroup="Properties" typeTopicId="T:Windows.Data.Json.JsonValue" />
+      <apidata name="JsonValue" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Data.Json.JsonValue.ValueType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" />
+      </containers>
+      <file name="31ef3bfb-49a5-c8b1-6a35-41c985cf5bc9" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.CreateBooleanValue(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CreateBooleanValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="53e3b781-2834-74db-d130-ec80ae1a9dd0" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.CreateNumberValue(System.Double)">
+      <topicdata group="api" />
+      <apidata name="CreateNumberValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="98099eb7-4a9d-694b-e3ba-d0ada29dab67" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.CreateStringValue(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateStringValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="f299b569-955f-aa4f-2a67-8e70ba8b49b8" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.GetArray">
+      <topicdata group="api" />
+      <apidata name="GetArray" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonArray" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetArray">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="01c29712-a0f7-337b-1c41-5549eb1d983b" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.GetBoolean">
+      <topicdata group="api" />
+      <apidata name="GetBoolean" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetBoolean">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="874880ef-c207-3b60-b3bc-64af9c3348d7" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.GetNumber">
+      <topicdata group="api" />
+      <apidata name="GetNumber" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetNumber">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="fa1ad8c1-3fb6-ee62-260c-6a79a4fbe405" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.GetObject">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonObject" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetObject">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="0de9264a-398a-0773-da46-c6e91e9d615c" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.GetString">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.GetString">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="902a1347-ddd2-edbd-8ca6-583d8299cf43" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.Parse(System.String)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="37b4ec99-0def-2861-8466-ce3fbdc6ce25" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.Stringify">
+      <topicdata group="api" />
+      <apidata name="Stringify" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Data.Json.IJsonValue.Stringify">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="6a4d017e-09a7-d2b5-ff1a-55b3c85b6dde" />
+    </api>
+    <api id="M:Windows.Data.Json.JsonValue.TryParse(System.String,Windows.Data.Json.JsonValue@)">
+      <topicdata group="api" />
+      <apidata name="TryParse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="result" out="true">
+          <referenceTo>
+            <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="3be51fb8-39b6-53f5-ce02-8269b8e3ed4f" />
+    </api>
+    <api id="P:Windows.Data.Json.JsonValue.ValueType">
+      <topicdata group="api" />
+      <apidata name="ValueType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ValueType" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Data.Json.IJsonValue.ValueType">
+          <type api="T:Windows.Data.Json.IJsonValue" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValue" ref="true" />
+      </containers>
+      <file name="1f966918-26e6-c486-7b88-af1f3c209246" />
+    </api>
+    <api id="T:Windows.Data.Json.JsonValueType">
+      <topicdata group="api" />
+      <apidata name="JsonValueType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Data.Json.JsonValueType.Null" />
+        <element api="F:Windows.Data.Json.JsonValueType.Boolean" />
+        <element api="F:Windows.Data.Json.JsonValueType.Number" />
+        <element api="F:Windows.Data.Json.JsonValueType.String" />
+        <element api="F:Windows.Data.Json.JsonValueType.Array" />
+        <element api="F:Windows.Data.Json.JsonValueType.Object" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b93feac6-c221-e37f-0909-f22b82f8bb65" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonValueType.Array">
+      <topicdata group="api" notopic="" />
+      <apidata name="Array" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </containers>
+      <file name="6fc4b6c7-2b86-3d50-d6c3-1a9227eeb493" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonValueType.Boolean">
+      <topicdata group="api" notopic="" />
+      <apidata name="Boolean" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </containers>
+      <file name="d36ad47d-106b-cd57-06e6-5d5c50eeace7" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonValueType.Null">
+      <topicdata group="api" notopic="" />
+      <apidata name="Null" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </containers>
+      <file name="f136b905-1b9c-5301-8fd1-5a2ad408e1b6" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonValueType.Number">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </containers>
+      <file name="24b20c71-0dcd-2036-25c5-0ac326034960" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonValueType.Object">
+      <topicdata group="api" notopic="" />
+      <apidata name="Object" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </containers>
+      <file name="885268f4-da89-af36-ed57-78a27f548266" />
+    </api>
+    <api id="F:Windows.Data.Json.JsonValueType.String">
+      <topicdata group="api" notopic="" />
+      <apidata name="String" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Json" />
+        <type api="T:Windows.Data.Json.JsonValueType" ref="false" />
+      </containers>
+      <file name="c4a3cb51-3baa-0316-16ff-8b8823910cb9" />
+    </api>
+  </apis>
+</reflection>

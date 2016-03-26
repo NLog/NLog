@@ -1,0 +1,2309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.Hardware">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Hardware</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="Microsoft.SPOT.Hardware.SerialPort">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Hardware.SerialPort</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.IO.Ports">
+      <topicdata group="api" />
+      <apidata name="System.IO.Ports" group="namespace" />
+      <elements>
+        <element api="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+        <element api="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+        <element api="T:System.IO.Ports.SerialErrorReceivedEventHandler" />
+        <element api="T:System.IO.Ports.SerialDataReceivedEventHandler" />
+        <element api="T:System.IO.Ports.Handshake" />
+        <element api="T:System.IO.Ports.Parity" />
+        <element api="T:System.IO.Ports.StopBits" />
+        <element api="T:System.IO.Ports.Serial" />
+        <element api="T:System.IO.Ports.BaudRate" />
+        <element api="T:System.IO.Ports.SerialError" />
+        <element api="T:System.IO.Ports.SerialData" />
+        <element api="T:System.IO.Ports.SerialPort" />
+      </elements>
+      <file name="a307fb44-0b20-5203-0242-ba2137e67bd4" />
+    </api>
+    <api id="T:System.IO.Ports.BaudRate">
+      <topicdata group="api" />
+      <apidata name="BaudRate" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.BaudRate.BaudrateNONE" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate75" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate150" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate300" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate600" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate1200" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate2400" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate4800" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate9600" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate19200" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate38400" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate57600" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate115200" />
+        <element api="F:System.IO.Ports.BaudRate.Baudrate230400" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="d3ed3504-5c96-a66f-fb7d-3a468c6a8616" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate115200">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate115200" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>115200</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="ca5aea74-0042-32d2-d17b-88c7d19ecc89" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate1200">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate1200" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>1200</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="6be40641-acb8-ff10-db1d-11861871b184" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate150">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate150" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>150</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="e94affcb-7a19-d9f8-f763-34ba0202b42d" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate19200">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate19200" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>19200</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="26912789-d30a-c806-db18-92521f1d27cd" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate230400">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate230400" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>230400</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="1504f6b0-d208-dd4f-3873-bc6c3cf78c3d" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate2400">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate2400" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>2400</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="3d3eaa21-9131-7640-ecfa-d988f2c855b4" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate300">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate300" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>300</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="7b70a308-096e-5e32-bc1a-1d659283cd9f" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate38400">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate38400" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>38400</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="689b7b45-5462-ef87-4b1c-165ba13f6da7" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate4800">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate4800" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>4800</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="f85bd44a-a1a4-afda-b90b-825886030649" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate57600">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate57600" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>57600</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="fdad6fb5-9d2c-fd1a-c354-2c03a8c8539a" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate600">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate600" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>600</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="9d613bee-95e3-a3a4-7003-e5469f48688e" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate75">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate75" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>75</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="5a104b58-2085-513e-72d1-d58a474ab5bd" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.Baudrate9600">
+      <topicdata group="api" notopic="" />
+      <apidata name="Baudrate9600" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>9600</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="e315f266-ca4b-328f-1523-c67f5d3cb01a" />
+    </api>
+    <api id="F:System.IO.Ports.BaudRate.BaudrateNONE">
+      <topicdata group="api" notopic="" />
+      <apidata name="BaudrateNONE" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.BaudRate" ref="false" />
+      </containers>
+      <file name="70da82f5-ce5e-006b-4846-bb10cfe5d28c" />
+    </api>
+    <api id="T:System.IO.Ports.Handshake">
+      <topicdata group="api" />
+      <apidata name="Handshake" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.Handshake.None" />
+        <element api="F:System.IO.Ports.Handshake.XOnXOff" />
+        <element api="F:System.IO.Ports.Handshake.RequestToSend" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="480b9be1-7bf0-e31f-8159-fd65a1b76db8" />
+    </api>
+    <api id="F:System.IO.Ports.Handshake.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </containers>
+      <file name="6fc8a34d-d2e4-d32a-a07d-08707e29c41f" />
+    </api>
+    <api id="F:System.IO.Ports.Handshake.RequestToSend">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequestToSend" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </containers>
+      <file name="dab0dc85-982b-64dc-b287-d785b11aaa22" />
+    </api>
+    <api id="F:System.IO.Ports.Handshake.XOnXOff">
+      <topicdata group="api" notopic="" />
+      <apidata name="XOnXOff" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <value>24</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </containers>
+      <file name="81fd0ee1-1d95-4f4d-582b-fd0327ab5d3d" />
+    </api>
+    <api id="T:System.IO.Ports.Parity">
+      <topicdata group="api" />
+      <apidata name="Parity" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.Parity.None" />
+        <element api="F:System.IO.Ports.Parity.Odd" />
+        <element api="F:System.IO.Ports.Parity.Even" />
+        <element api="F:System.IO.Ports.Parity.Mark" />
+        <element api="F:System.IO.Ports.Parity.Space" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="8f3ee699-9008-45dc-3e96-b0bfb42002ff" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.Even">
+      <topicdata group="api" notopic="" />
+      <apidata name="Even" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="333e8c3a-9c05-9813-9e7a-280caee713b4" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.Mark">
+      <topicdata group="api" notopic="" />
+      <apidata name="Mark" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="87a53b1a-b57c-ad49-91a9-0579430ce846" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="1555851d-5d38-3987-0570-1a5db4aba3f8" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.Odd">
+      <topicdata group="api" notopic="" />
+      <apidata name="Odd" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="1d81999e-0d7b-ec34-1a67-4e866ada9797" />
+    </api>
+    <api id="F:System.IO.Ports.Parity.Space">
+      <topicdata group="api" notopic="" />
+      <apidata name="Space" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </containers>
+      <file name="31797e13-ba6a-c27f-b86d-e693295f4c31" />
+    </api>
+    <api id="T:System.IO.Ports.Serial">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Ports.Serial" />
+      <apidata name="Serial" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.Serial.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="23865703-3e5f-a7fa-91aa-367feb94261c" />
+    </api>
+    <api id="AllMembers.T:System.IO.Ports.Serial">
+      <topicdata name="Serial" group="list" subgroup="members" typeTopicId="T:System.IO.Ports.Serial" />
+      <apidata name="Serial" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.Serial.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IO.Ports.Serial.#ctor" />
+        <element api="F:System.IO.Ports.Serial.COM1" />
+        <element api="F:System.IO.Ports.Serial.COM2" />
+        <element api="F:System.IO.Ports.Serial.COM3" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Serial" />
+      </containers>
+      <file name="b363ff1f-3499-4434-2cd1-d5ee4c555b22" />
+    </api>
+    <api id="Methods.T:System.IO.Ports.Serial">
+      <topicdata name="Serial" group="list" subgroup="Methods" typeTopicId="T:System.IO.Ports.Serial" />
+      <apidata name="Serial" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.Serial.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Serial" />
+      </containers>
+      <file name="9cd9f7a6-11e6-8d03-1f1b-3c38770aec38" />
+    </api>
+    <api id="Fields.T:System.IO.Ports.Serial">
+      <topicdata name="Serial" group="list" subgroup="Fields" typeTopicId="T:System.IO.Ports.Serial" />
+      <apidata name="Serial" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.Ports.Serial.#ctor" />
+      <elements>
+        <element api="F:System.IO.Ports.Serial.COM1" />
+        <element api="F:System.IO.Ports.Serial.COM2" />
+        <element api="F:System.IO.Ports.Serial.COM3" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Serial" />
+      </containers>
+      <file name="c07224eb-7df0-57c4-7f9c-6a497e52a144" />
+    </api>
+    <api id="M:System.IO.Ports.Serial.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Serial" ref="true" />
+      </containers>
+      <file name="a5dc441c-7e16-128a-4074-19593c7701a8" />
+    </api>
+    <api id="F:System.IO.Ports.Serial.COM1">
+      <topicdata group="api" />
+      <apidata name="COM1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>COM1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Serial" ref="true" />
+      </containers>
+      <file name="dd203161-8911-dc44-9d94-bc8963685f08" />
+    </api>
+    <api id="F:System.IO.Ports.Serial.COM2">
+      <topicdata group="api" />
+      <apidata name="COM2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>COM2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Serial" ref="true" />
+      </containers>
+      <file name="f5f24923-97d9-39bc-4410-cd4f593f9e68" />
+    </api>
+    <api id="F:System.IO.Ports.Serial.COM3">
+      <topicdata group="api" />
+      <apidata name="COM3" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>COM3</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.Serial" ref="true" />
+      </containers>
+      <file name="e2887c5c-e8ef-20d0-e60a-43af1b0ac33a" />
+    </api>
+    <api id="T:System.IO.Ports.SerialData">
+      <topicdata group="api" />
+      <apidata name="SerialData" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.SerialData.Chars" />
+        <element api="F:System.IO.Ports.SerialData.Eof" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="e6f906cb-313b-d623-1039-f69f2c971e87" />
+    </api>
+    <api id="F:System.IO.Ports.SerialData.Chars">
+      <topicdata group="api" notopic="" />
+      <apidata name="Chars" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </containers>
+      <file name="f1466994-5c7a-10ef-32c8-8317b14a3a32" />
+    </api>
+    <api id="F:System.IO.Ports.SerialData.Eof">
+      <topicdata group="api" notopic="" />
+      <apidata name="Eof" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </containers>
+      <file name="f759a77e-c14c-d288-ecea-8b184e7cca2e" />
+    </api>
+    <api id="T:System.IO.Ports.SerialDataReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      <apidata name="SerialDataReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="b50b26c2-f751-570f-cdc2-ac4b7768ddde" />
+    </api>
+    <api id="AllMembers.T:System.IO.Ports.SerialDataReceivedEventArgs">
+      <topicdata name="SerialDataReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      <apidata name="SerialDataReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Ports.SerialDataReceivedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      </containers>
+      <file name="9d255181-21aa-be6c-7264-c2272b8a40e0" />
+    </api>
+    <api id="Methods.T:System.IO.Ports.SerialDataReceivedEventArgs">
+      <topicdata name="SerialDataReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      <apidata name="SerialDataReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      </containers>
+      <file name="3dec7087-6dcb-cb24-8396-c787d92020e3" />
+    </api>
+    <api id="Properties.T:System.IO.Ports.SerialDataReceivedEventArgs">
+      <topicdata name="SerialDataReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      <apidata name="SerialDataReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Ports.SerialDataReceivedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" />
+      </containers>
+      <file name="5c20de76-f310-1515-5872-9b851b8df539" />
+    </api>
+    <api id="P:System.IO.Ports.SerialDataReceivedEventArgs.EventType">
+      <topicdata group="api" />
+      <apidata name="EventType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EventType" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialData" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="105548b6-da7a-c80c-26ff-ed4ff11ee9c4" />
+    </api>
+    <api id="T:System.IO.Ports.SerialDataReceivedEventHandler">
+      <topicdata group="api" />
+      <apidata name="SerialDataReceivedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="187787df-44ab-96d5-c666-d86e2536fa47" />
+    </api>
+    <api id="T:System.IO.Ports.SerialError">
+      <topicdata group="api" />
+      <apidata name="SerialError" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.SerialError.TXFull" />
+        <element api="F:System.IO.Ports.SerialError.RXOver" />
+        <element api="F:System.IO.Ports.SerialError.Overrun" />
+        <element api="F:System.IO.Ports.SerialError.RXParity" />
+        <element api="F:System.IO.Ports.SerialError.Frame" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="098146a8-11bc-7e4b-61cf-ae50a538c939" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.Frame">
+      <topicdata group="api" notopic="" />
+      <apidata name="Frame" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="ba6ce111-3596-5989-0095-f1edb3cc4626" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.Overrun">
+      <topicdata group="api" notopic="" />
+      <apidata name="Overrun" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="c276770c-8c13-5c46-7681-32d5162ee8ee" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.RXOver">
+      <topicdata group="api" notopic="" />
+      <apidata name="RXOver" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="f77d5ca6-946b-0257-41f2-ebadecfafde0" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.RXParity">
+      <topicdata group="api" notopic="" />
+      <apidata name="RXParity" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="b16dd48d-53f8-c7ef-19d7-72846a864d3c" />
+    </api>
+    <api id="F:System.IO.Ports.SerialError.TXFull">
+      <topicdata group="api" notopic="" />
+      <apidata name="TXFull" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </containers>
+      <file name="bf28b8c6-e229-cf3b-a7ff-8b55042ad72d" />
+    </api>
+    <api id="T:System.IO.Ports.SerialErrorReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      <apidata name="SerialErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="3b60b5d4-4037-78b2-eadd-407c64322151" />
+    </api>
+    <api id="AllMembers.T:System.IO.Ports.SerialErrorReceivedEventArgs">
+      <topicdata name="SerialErrorReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      <apidata name="SerialErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Ports.SerialErrorReceivedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      </containers>
+      <file name="e419bccf-92df-39fd-7681-611360810a7c" />
+    </api>
+    <api id="Methods.T:System.IO.Ports.SerialErrorReceivedEventArgs">
+      <topicdata name="SerialErrorReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      <apidata name="SerialErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      </containers>
+      <file name="baa28174-6052-8c05-81ba-6f7ab451c707" />
+    </api>
+    <api id="Properties.T:System.IO.Ports.SerialErrorReceivedEventArgs">
+      <topicdata name="SerialErrorReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      <apidata name="SerialErrorReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Ports.SerialErrorReceivedEventArgs.EventType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" />
+      </containers>
+      <file name="8261229b-1ce2-b84c-bc1c-aa561c82d6e4" />
+    </api>
+    <api id="P:System.IO.Ports.SerialErrorReceivedEventArgs.EventType">
+      <topicdata group="api" />
+      <apidata name="EventType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EventType" />
+      <returns>
+        <type api="T:System.IO.Ports.SerialError" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="45a5567c-47f6-c344-f684-ee500cd17471" />
+    </api>
+    <api id="T:System.IO.Ports.SerialErrorReceivedEventHandler">
+      <topicdata group="api" />
+      <apidata name="SerialErrorReceivedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="a22bc45f-9ff6-1c49-1771-b3c5e3287d5a" />
+    </api>
+    <api id="T:System.IO.Ports.SerialPort">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.IO.Stream" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="18320aae-c9c6-fef7-d437-56d8dacd9219" />
+    </api>
+    <api id="AllMembers.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="members" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.Ports.SerialPort.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.Ports.SerialPort.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.IO.Stream.Finalize" />
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="Overload:System.IO.Ports.SerialPort.#ctor">
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)" />
+          <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)" />
+        </element>
+        <element api="P:System.IO.Ports.SerialPort.BaseStream" />
+        <element api="P:System.IO.Ports.SerialPort.BaudRate" />
+        <element api="P:System.IO.Ports.SerialPort.BytesToRead" />
+        <element api="P:System.IO.Ports.SerialPort.BytesToWrite" />
+        <element api="P:System.IO.Ports.SerialPort.CanRead" />
+        <element api="P:System.IO.Ports.SerialPort.CanSeek" />
+        <element api="P:System.IO.Ports.SerialPort.CanTimeout" />
+        <element api="P:System.IO.Ports.SerialPort.CanWrite" />
+        <element api="M:System.IO.Ports.SerialPort.Close" />
+        <element api="P:System.IO.Ports.SerialPort.DataBits" />
+        <element api="E:System.IO.Ports.SerialPort.DataReceived" />
+        <element api="M:System.IO.Ports.SerialPort.DiscardInBuffer" />
+        <element api="M:System.IO.Ports.SerialPort.DiscardOutBuffer" />
+        <element api="E:System.IO.Ports.SerialPort.ErrorReceived" />
+        <element api="M:System.IO.Ports.SerialPort.Flush" />
+        <element api="P:System.IO.Ports.SerialPort.Handshake" />
+        <element api="P:System.IO.Ports.SerialPort.IsOpen" />
+        <element api="P:System.IO.Ports.SerialPort.Length" />
+        <element api="M:System.IO.Ports.SerialPort.Open" />
+        <element api="P:System.IO.Ports.SerialPort.Parity" />
+        <element api="P:System.IO.Ports.SerialPort.PortName" />
+        <element api="P:System.IO.Ports.SerialPort.Position" />
+        <element api="M:System.IO.Ports.SerialPort.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="P:System.IO.Ports.SerialPort.ReadTimeout" />
+        <element api="M:System.IO.Ports.SerialPort.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.Ports.SerialPort.SetLength(System.Int64)" />
+        <element api="P:System.IO.Ports.SerialPort.StopBits" />
+        <element api="M:System.IO.Ports.SerialPort.Write(System.Byte[],System.Int32,System.Int32)" />
+        <element api="P:System.IO.Ports.SerialPort.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="b13732c0-a8e3-88cc-7284-1b17a55fca56" />
+    </api>
+    <api id="Methods.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="Methods" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.Ports.SerialPort.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.Ports.SerialPort.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.IO.Stream.Finalize" />
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="M:System.IO.Ports.SerialPort.Close" />
+        <element api="M:System.IO.Ports.SerialPort.DiscardInBuffer" />
+        <element api="M:System.IO.Ports.SerialPort.DiscardOutBuffer" />
+        <element api="M:System.IO.Ports.SerialPort.Flush" />
+        <element api="M:System.IO.Ports.SerialPort.Open" />
+        <element api="M:System.IO.Ports.SerialPort.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.Ports.SerialPort.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.Ports.SerialPort.SetLength(System.Int64)" />
+        <element api="M:System.IO.Ports.SerialPort.Write(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="2e78a4e1-9765-f92a-da48-be02514f72c5" />
+    </api>
+    <api id="Properties.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="Properties" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Ports.SerialPort.BaseStream" />
+        <element api="P:System.IO.Ports.SerialPort.BaudRate" />
+        <element api="P:System.IO.Ports.SerialPort.BytesToRead" />
+        <element api="P:System.IO.Ports.SerialPort.BytesToWrite" />
+        <element api="P:System.IO.Ports.SerialPort.CanRead" />
+        <element api="P:System.IO.Ports.SerialPort.CanSeek" />
+        <element api="P:System.IO.Ports.SerialPort.CanTimeout" />
+        <element api="P:System.IO.Ports.SerialPort.CanWrite" />
+        <element api="P:System.IO.Ports.SerialPort.DataBits" />
+        <element api="P:System.IO.Ports.SerialPort.Handshake" />
+        <element api="P:System.IO.Ports.SerialPort.IsOpen" />
+        <element api="P:System.IO.Ports.SerialPort.Length" />
+        <element api="P:System.IO.Ports.SerialPort.Parity" />
+        <element api="P:System.IO.Ports.SerialPort.PortName" />
+        <element api="P:System.IO.Ports.SerialPort.Position" />
+        <element api="P:System.IO.Ports.SerialPort.ReadTimeout" />
+        <element api="P:System.IO.Ports.SerialPort.StopBits" />
+        <element api="P:System.IO.Ports.SerialPort.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="de9ddd31-e408-105c-d402-866fb5a2b7b7" />
+    </api>
+    <api id="Events.T:System.IO.Ports.SerialPort">
+      <topicdata name="SerialPort" group="list" subgroup="Events" typeTopicId="T:System.IO.Ports.SerialPort" />
+      <apidata name="SerialPort" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:System.IO.Ports.SerialPort.DataReceived" />
+        <element api="E:System.IO.Ports.SerialPort.ErrorReceived" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" />
+      </containers>
+      <file name="8dbd468a-6ded-290e-316b-52814b3e6579" />
+    </api>
+    <api id="Overload:System.IO.Ports.SerialPort.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPort" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Stream.Dispose" />
+        <element api="M:System.IO.Ports.SerialPort.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="ef8132fe-a1e9-60a3-3c72-f9a794beb423" />
+    </api>
+    <api id="Overload:System.IO.Ports.SerialPort.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.Ports.SerialPort" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)" />
+        <element api="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="a92edff7-06a9-def0-dd0b-9f77eb1276c5" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="d668f8e3-e76c-d2fa-98da-342711c65510" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="02e1835c-3102-3ab5-dbc7-9bf3128345a4" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="bf6cc1a2-78cc-f80d-6c8a-ddc4c7d555f0" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+        <parameter name="dataBits">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="01a7cb07-4bb6-29fb-c996-793100352f8e" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.Ports.SerialPort.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baudRate">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="parity">
+          <type api="T:System.IO.Ports.Parity" ref="false" />
+        </parameter>
+        <parameter name="dataBits">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="stopBits">
+          <type api="T:System.IO.Ports.StopBits" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="2cfa7d00-1faf-9a6e-43d8-0cf684e23205" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BaseStream">
+      <topicdata group="api" />
+      <apidata name="BaseStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BaseStream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="9e552dde-7ad7-eee0-9986-b648554f9963" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BaudRate">
+      <topicdata group="api" />
+      <apidata name="BaudRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BaudRate" />
+      <setter name="set_BaudRate" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="638e5c0f-84d4-e128-0c86-2e8db6c884db" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BytesToRead">
+      <topicdata group="api" />
+      <apidata name="BytesToRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BytesToRead" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="a18c4c67-4c58-c6fe-a288-fde130b39ade" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.BytesToWrite">
+      <topicdata group="api" />
+      <apidata name="BytesToWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BytesToWrite" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="e58e264e-f99c-31a3-938a-de9d0cd29b1b" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.CanRead">
+      <topicdata group="api" />
+      <apidata name="CanRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanRead">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanRead" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="203fa378-464c-7325-2cb2-d1e7305ace9a" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.CanSeek">
+      <topicdata group="api" />
+      <apidata name="CanSeek" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanSeek">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanSeek" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="6a6b40f0-12e0-fa7c-f9de-97cd4f3d4ae7" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.CanTimeout">
+      <topicdata group="api" />
+      <apidata name="CanTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanTimeout">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanTimeout" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="bfae18c3-9fd6-d56d-8d1a-6b884862c197" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.CanWrite">
+      <topicdata group="api" />
+      <apidata name="CanWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanWrite">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanWrite" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="2bbb969f-32bf-59a2-1a13-9a56fa921eed" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Close">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="f1120ecf-510c-c6fc-7b6d-eb2a1e35b747" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.DataBits">
+      <topicdata group="api" />
+      <apidata name="DataBits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DataBits" />
+      <setter name="set_DataBits" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="963e276f-cbb6-4dfb-6ed3-2e5b86d0201e" />
+    </api>
+    <api id="E:System.IO.Ports.SerialPort.DataReceived">
+      <topicdata group="api" />
+      <apidata name="DataReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DataReceived" />
+      <remover name="remove_DataReceived" />
+      <eventhandler>
+        <type api="T:System.IO.Ports.SerialDataReceivedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.IO.Ports.SerialDataReceivedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="504dc565-248b-24bc-9baa-50a33d72e819" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.DiscardInBuffer">
+      <topicdata group="api" />
+      <apidata name="DiscardInBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="45d10db7-6613-20b9-a7e1-0a876d572c28" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.DiscardOutBuffer">
+      <topicdata group="api" />
+      <apidata name="DiscardOutBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="2b4966f7-b824-61c1-e337-5f291452f055" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.IO.Ports.SerialPort.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Dispose(System.Boolean)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="f061e863-2b9c-7248-29b8-a5a1ff0f08f8" />
+    </api>
+    <api id="E:System.IO.Ports.SerialPort.ErrorReceived">
+      <topicdata group="api" />
+      <apidata name="ErrorReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ErrorReceived" />
+      <remover name="remove_ErrorReceived" />
+      <eventhandler>
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.IO.Ports.SerialErrorReceivedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="c0e0127b-ff4f-82fa-4bbe-b2b23e50b4fc" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Flush">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="8e815550-6ab1-f4b3-5a13-b421a4af2b56" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.Handshake">
+      <topicdata group="api" />
+      <apidata name="Handshake" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Handshake" />
+      <setter name="set_Handshake" />
+      <returns>
+        <type api="T:System.IO.Ports.Handshake" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="dc911c9e-5054-41ef-b498-695094ba9c96" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.IsOpen">
+      <topicdata group="api" />
+      <apidata name="IsOpen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsOpen" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="04822eda-4bb0-c88a-d646-1320352ced7c" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Length">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Length" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="34626bff-acf5-a50f-72f4-fdfdcf15397b" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Open">
+      <topicdata group="api" />
+      <apidata name="Open" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="654aafa9-5768-6b3b-0dbd-208e559c49d8" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.Parity">
+      <topicdata group="api" />
+      <apidata name="Parity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Parity" />
+      <setter name="set_Parity" />
+      <returns>
+        <type api="T:System.IO.Ports.Parity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="3309e11c-81de-258f-e253-a57639615bf7" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.PortName">
+      <topicdata group="api" />
+      <apidata name="PortName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PortName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="2ac201cd-7d00-72e5-6c6b-ea21da542af0" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Position">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Position" />
+      <setter name="set_Position" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="1071792b-2bc1-a634-f82f-1452db57f926" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Read(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="f3bdb214-ac1f-9d5a-6ff2-9ef888a77128" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.ReadTimeout">
+      <topicdata group="api" />
+      <apidata name="ReadTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.ReadTimeout">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_ReadTimeout" />
+      <setter name="set_ReadTimeout" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="d7e1e33a-b931-b74c-b29c-2870d1f8b95e" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Seek(System.Int64,System.IO.SeekOrigin)">
+      <topicdata group="api" />
+      <apidata name="Seek" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="origin">
+          <type api="T:System.IO.SeekOrigin" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="817332bd-c7e0-b291-9831-0590edf763a3" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.SetLength(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="SetLength" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.SetLength(System.Int64)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="363d49a0-2a30-2dfa-f8e5-7ab15edf1d29" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.StopBits">
+      <topicdata group="api" />
+      <apidata name="StopBits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StopBits" />
+      <setter name="set_StopBits" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="8254f1be-d613-d88e-ecae-59b7eabe4be2" />
+    </api>
+    <api id="M:System.IO.Ports.SerialPort.Write(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="b5e9b9cc-d700-912f-25ce-7c782a3462a6" />
+    </api>
+    <api id="P:System.IO.Ports.SerialPort.WriteTimeout">
+      <topicdata group="api" />
+      <apidata name="WriteTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.WriteTimeout">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_WriteTimeout" />
+      <setter name="set_WriteTimeout" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware.SerialPort" module="Microsoft.SPOT.Hardware.SerialPort" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.SerialPort" ref="true" />
+      </containers>
+      <file name="89637650-57d7-f0b8-de27-44ac0e3c069d" />
+    </api>
+    <api id="T:System.IO.Ports.StopBits">
+      <topicdata group="api" />
+      <apidata name="StopBits" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.Ports.StopBits.None" />
+        <element api="F:System.IO.Ports.StopBits.One" />
+        <element api="F:System.IO.Ports.StopBits.Two" />
+        <element api="F:System.IO.Ports.StopBits.OnePointFive" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+      </containers>
+      <file name="ac01dd2c-2ecf-ba15-3795-375ae427b726" />
+    </api>
+    <api id="F:System.IO.Ports.StopBits.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </containers>
+      <file name="edae5f63-a9a5-49d1-b451-a37fcce6d817" />
+    </api>
+    <api id="F:System.IO.Ports.StopBits.One">
+      <topicdata group="api" notopic="" />
+      <apidata name="One" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </containers>
+      <file name="a85050b2-96a9-673e-2d27-ed20792c811b" />
+    </api>
+    <api id="F:System.IO.Ports.StopBits.OnePointFive">
+      <topicdata group="api" notopic="" />
+      <apidata name="OnePointFive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </containers>
+      <file name="c6a2a4e6-2b57-f9d4-87ed-06ba942ffaa8" />
+    </api>
+    <api id="F:System.IO.Ports.StopBits.Two">
+      <topicdata group="api" notopic="" />
+      <apidata name="Two" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Hardware" module="Microsoft.SPOT.Hardware" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IO.Ports" />
+        <type api="T:System.IO.Ports.StopBits" ref="false" />
+      </containers>
+      <file name="38f8ea3b-c3c7-4e82-5037-adf7168d84e8" />
+    </api>
+  </apis>
+</reflection>

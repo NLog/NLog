@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.VisualBasic.Activities.XamlIntegration">
+      <topicdata group="api" />
+      <apidata name="Microsoft.VisualBasic.Activities.XamlIntegration" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+        <element api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" />
+      </elements>
+      <file name="6fb17aeb-5835-0048-ac41-605d5c1bd666" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      <apidata name="VisualBasicSettingsConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+      </containers>
+      <file name="599c2c08-29a0-f6a1-6bc8-b8f4e8a12c19" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter">
+      <topicdata name="VisualBasicSettingsConverter" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      <apidata name="VisualBasicSettingsConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.#ctor" />
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      </containers>
+      <file name="be9d4098-2be7-f236-c9a1-fac6242a3074" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter">
+      <topicdata name="VisualBasicSettingsConverter" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      <apidata name="VisualBasicSettingsConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      </containers>
+      <file name="06d0901c-2b2b-9d07-6318-9c09427ac49e" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertFrom">
+      <topicdata name="CanConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="7f014967-dcd7-bd1a-594d-6e60001a71b3" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertTo">
+      <topicdata name="CanConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="5e8a95c5-527c-1eaf-1599-8b2812e3a403" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFrom">
+      <topicdata name="ConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="c7cfb96b-72a0-88cf-0f30-f6907ec2b3c1" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertTo">
+      <topicdata name="ConvertTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="08986305-9419-9a36-48c1-34c61c6c14bd" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="f7b6944c-85d6-ecba-3f6e-c8f7ae9cb8e7" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="sourceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="8414fd53-1133-7ba6-bbee-cffa417efb23" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.CanConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="1035b22b-ceb4-dfa4-842d-aaf72d70e9d5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="65c6b98d-0bc8-ef98-5431-e3f2a733076b" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+      <topicdata group="api" />
+      <apidata name="ConvertTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter.ConvertTo" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="destinationType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+      </containers>
+      <file name="364672a2-0218-c01a-dbea-97185d8d823e" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" />
+      <apidata name="VisualBasicSettingsValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+      </containers>
+      <file name="156415c6-4894-ac0e-dd7a-dbcf7f15fb70" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer">
+      <topicdata name="VisualBasicSettingsValueSerializer" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" />
+      <apidata name="VisualBasicSettingsValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.#ctor" />
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" />
+      </containers>
+      <file name="a0269ac3-4ac0-6dd6-21bc-7b037795aa10" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer">
+      <topicdata name="VisualBasicSettingsValueSerializer" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" />
+      <apidata name="VisualBasicSettingsValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" />
+      </containers>
+      <file name="5949df64-77e0-3a68-4205-b8959c849daf" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" ref="true" />
+      </containers>
+      <file name="fb18c6dc-e96b-4a2c-af37-acc5aa561b07" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" ref="true" />
+      </containers>
+      <file name="eb42f1f4-db3a-2ca9-db03-9233247be2a9" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities.XamlIntegration" />
+        <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsValueSerializer" ref="true" />
+      </containers>
+      <file name="0abc7185-6cc3-a1b7-56f8-de330291d5c3" />
+    </api>
+  </apis>
+</reflection>

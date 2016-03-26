@@ -1,0 +1,40 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Sandcastle Help File Builder Tasks.  https://GitHub.com/EWSoftware/SHFB -->
+  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.BuildOpenXmlFile"
+    AssemblyFile="{@SHFBFolder}\SandcastleBuilder.Utils.dll" />
+
+  <!-- Task properties -->
+  <PropertyGroup>
+    <WorkingFolder>{@HtmlEncWorkingFolder}Output\OpenXml</WorkingFolder>
+    <OutputFolder>{@HtmlEncOutputFolder}</OutputFolder>
+    <HelpFilename>{@HTMLEncHelpName}</HelpFilename>
+		<IndentXml>{@IndentHtml}</IndentXml>
+  </PropertyGroup>
+
+  <!-- This defines the dependencies for the Build target -->
+  <PropertyGroup>
+    <BuildDependsOn>
+      BeforeBuildOpenXmlFile;
+      BuildOpenXmlFile;
+      AfterBuildOpenXmlFile
+    </BuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
+
+  <!-- The Build Open XML file target -->
+  <Target Name="BuildOpenXmlFile">
+
+    <!-- Build the help file -->
+    <SandcastleBuilder.Utils.MSBuild.BuildOpenXmlFile
+      WorkingFolder="$(WorkingFolder)"
+      OutputFolder="$(OutputFolder)"
+      HelpFilename="$(HelpFilename)"
+			IndentXml="$(IndentXml)" />
+
+  </Target>
+
+  <!-- The following targets may be overridden or replaced to perform additional processing. -->
+  <Target Name="BeforeBuildOpenXmlFile" />
+  <Target Name="AfterBuildOpenXmlFile" />
+</Project>

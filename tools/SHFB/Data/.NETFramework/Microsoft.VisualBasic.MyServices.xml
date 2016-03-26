@@ -1,0 +1,3305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.VisualBasic">
+      <assemblydata version="10.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Visual Studio® 12 CTP</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\\dd\\tools\\devdiv\\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.VisualBasic.MyServices">
+      <topicdata group="api" />
+      <apidata name="Microsoft.VisualBasic.MyServices" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+        <element api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+        <element api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+        <element api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" />
+      </elements>
+      <file name="eab18c36-fa83-7cd9-7b09-454bb02342f2" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.MyServices.ClipboardProxy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      <apidata name="ClipboardProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c85e984a-f1c9-0ffb-d837-d87bfb771311" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.MyServices.ClipboardProxy">
+      <topicdata name="ClipboardProxy" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      <apidata name="ClipboardProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.Clear" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsAudio" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsData(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsFileDropList" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsImage" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText">
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText" />
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText(System.Windows.Forms.TextDataFormat)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetAudioStream" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetData(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetDataObject" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetFileDropList" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetImage" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText">
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText" />
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText(System.Windows.Forms.TextDataFormat)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio">
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio(System.Byte[])" />
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio(System.IO.Stream)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetData(System.String,System.Object)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetDataObject(System.Windows.Forms.DataObject)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetFileDropList(System.Collections.Specialized.StringCollection)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetImage(System.Drawing.Image)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText">
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText(System.String,System.Windows.Forms.TextDataFormat)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      </containers>
+      <file name="d9c31512-7824-554a-e204-b04b1ea20c7f" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.MyServices.ClipboardProxy">
+      <topicdata name="ClipboardProxy" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      <apidata name="ClipboardProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.Clear" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsAudio" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsData(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsFileDropList" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsImage" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText">
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText" />
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText(System.Windows.Forms.TextDataFormat)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetAudioStream" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetData(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetDataObject" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetFileDropList" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetImage" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText">
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText" />
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText(System.Windows.Forms.TextDataFormat)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio">
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio(System.Byte[])" />
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio(System.IO.Stream)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetData(System.String,System.Object)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetDataObject(System.Windows.Forms.DataObject)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetFileDropList(System.Collections.Specialized.StringCollection)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetImage(System.Drawing.Image)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText">
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText(System.String,System.Windows.Forms.TextDataFormat)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      </containers>
+      <file name="ea173255-2d13-18e6-d141-caf7d971241a" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText">
+      <topicdata name="ContainsText" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      <apidata name="ContainsText" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText(System.Windows.Forms.TextDataFormat)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="0b52d5ce-518f-7895-3ab4-0a70a0e733eb" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText">
+      <topicdata name="GetText" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      <apidata name="GetText" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText(System.Windows.Forms.TextDataFormat)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="08f1a3d9-9eeb-99d6-f0a1-f6f9e04b5ad2" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio">
+      <topicdata name="SetAudio" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      <apidata name="SetAudio" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio(System.Byte[])" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio(System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="785f0e39-cd71-3633-13b5-b84d45a2bd81" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText">
+      <topicdata name="SetText" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.ClipboardProxy" />
+      <apidata name="SetText" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText(System.String,System.Windows.Forms.TextDataFormat)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="8396af05-8044-d41d-0759-b4b7a0e708bc" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="2953d01e-57db-b503-1fbb-1646d1c513c7" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsAudio">
+      <topicdata group="api" />
+      <apidata name="ContainsAudio" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="abc7865f-552b-1a9d-5946-51753d2dd249" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsData(System.String)">
+      <topicdata group="api" />
+      <apidata name="ContainsData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="d7c896ff-a05f-0f91-b94c-e65fe11e9bbe" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsFileDropList">
+      <topicdata group="api" />
+      <apidata name="ContainsFileDropList" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="19c9195e-0cce-acfe-4cda-23ee9440b9a6" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsImage">
+      <topicdata group="api" />
+      <apidata name="ContainsImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="cf3ff9c0-c494-e482-2c49-c0b0e9d86402" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText">
+      <topicdata group="api" />
+      <apidata name="ContainsText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="ce664441-e205-742c-ed1d-edf16f222554" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText(System.Windows.Forms.TextDataFormat)">
+      <topicdata group="api" />
+      <apidata name="ContainsText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.ContainsText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.Windows.Forms.TextDataFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="f2dccf1b-7c67-31bd-0ee7-981de343b058" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetAudioStream">
+      <topicdata group="api" />
+      <apidata name="GetAudioStream" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="62b554d3-dcd1-5aab-b782-dba7889df931" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetData(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="1d792409-6ddf-dff0-5384-bc7a9bba3374" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetDataObject">
+      <topicdata group="api" />
+      <apidata name="GetDataObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Windows.Forms.IDataObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Advanced" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ab1c8e67-b470-d74b-03c2-bcc7fab2f535" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetFileDropList">
+      <topicdata group="api" />
+      <apidata name="GetFileDropList" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Specialized.StringCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="e32e414c-8c3e-bed0-ec6e-91c4b884863c" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetImage">
+      <topicdata group="api" />
+      <apidata name="GetImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Drawing.Image" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="bead4da8-a604-ff60-2515-30b781143b70" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText">
+      <topicdata group="api" />
+      <apidata name="GetText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="2e1575cb-9a48-8843-5c16-a40850cd2b8c" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText(System.Windows.Forms.TextDataFormat)">
+      <topicdata group="api" />
+      <apidata name="GetText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.GetText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.Windows.Forms.TextDataFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="7386e48d-d46e-7b71-b718-22dc3128c27e" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="SetAudio" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="audioBytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="8cf22be6-7fa2-b784-508e-db265c912133" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="SetAudio" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetAudio" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="audioStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="a1e7376f-5dc2-c734-0b12-6128fc2ce2e2" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetData(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="82928476-28d3-791e-c051-2aacf8ffec85" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetDataObject(System.Windows.Forms.DataObject)">
+      <topicdata group="api" />
+      <apidata name="SetDataObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Windows.Forms.DataObject" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Advanced" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d5899ce5-663d-fa93-9398-f887090b2815" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetFileDropList(System.Collections.Specialized.StringCollection)">
+      <topicdata group="api" />
+      <apidata name="SetFileDropList" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="filePaths">
+          <type api="T:System.Collections.Specialized.StringCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="bc67c0a2-b300-7a9a-f1be-87a5ad8a3b93" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetImage(System.Drawing.Image)">
+      <topicdata group="api" />
+      <apidata name="SetImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="image">
+          <type api="T:System.Drawing.Image" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="74405662-9f67-d39b-79d3-ba55162701ab" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText(System.String)">
+      <topicdata group="api" />
+      <apidata name="SetText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="9669f230-0f56-86d1-0f50-a184690223a6" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText(System.String,System.Windows.Forms.TextDataFormat)">
+      <topicdata group="api" />
+      <apidata name="SetText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.ClipboardProxy.SetText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="format">
+          <type api="T:System.Windows.Forms.TextDataFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.ClipboardProxy" ref="true" />
+      </containers>
+      <file name="0f4db73d-65de-fa6a-3659-4e037477e45e" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.MyServices.FileSystemProxy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="FileSystemProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c79cc6da-2562-5a24-bf13-b3c1efe6d8c8" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy">
+      <topicdata name="FileSystemProxy" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="FileSystemProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CombinePath(System.String,System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CreateDirectory(System.String)" />
+        <element api="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.CurrentDirectory" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.DeleteDirectoryOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DirectoryExists(System.String)" />
+        <element api="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.Drives" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FileExists(System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles(System.String,System.String,System.Boolean,Microsoft.VisualBasic.FileIO.SearchOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles(System.String,System.String,System.Boolean,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories(System.String,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectoryInfo(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDriveInfo(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFileInfo(System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles(System.String,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetName(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetParentPath(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetTempFileName" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String,System.Int32[])" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String,System.String[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader(System.String,System.Text.Encoding)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter(System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter(System.String,System.Boolean,System.Text.Encoding)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllBytes(System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText(System.String,System.Text.Encoding)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.RenameDirectory(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.RenameFile(System.String,System.String)" />
+        <element api="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.SpecialDirectories" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllBytes(System.String,System.Byte[],System.Boolean)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText(System.String,System.String,System.Boolean,System.Text.Encoding)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      </containers>
+      <file name="ab43ab5b-0dd2-0c1d-41c5-c512c1405cb9" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.MyServices.FileSystemProxy">
+      <topicdata name="FileSystemProxy" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="FileSystemProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CombinePath(System.String,System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CreateDirectory(System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.DeleteDirectoryOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DirectoryExists(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FileExists(System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles(System.String,System.String,System.Boolean,Microsoft.VisualBasic.FileIO.SearchOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles(System.String,System.String,System.Boolean,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories(System.String,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectoryInfo(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDriveInfo(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFileInfo(System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles(System.String,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetName(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetParentPath(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetTempFileName" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String,System.Int32[])" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String,System.String[])" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader(System.String,System.Text.Encoding)" />
+        </element>
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter(System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter(System.String,System.Boolean,System.Text.Encoding)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllBytes(System.String)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText(System.String)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText(System.String,System.Text.Encoding)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.RenameDirectory(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.RenameFile(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllBytes(System.String,System.Byte[],System.Boolean)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText">
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText(System.String,System.String,System.Boolean)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText(System.String,System.String,System.Boolean,System.Text.Encoding)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      </containers>
+      <file name="c4e0b21f-731d-6b29-d941-3f8b2deb1043" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.MyServices.FileSystemProxy">
+      <topicdata name="FileSystemProxy" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="FileSystemProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.CurrentDirectory" />
+        <element api="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.Drives" />
+        <element api="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.SpecialDirectories" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      </containers>
+      <file name="f316b089-eadf-ae12-e2d7-67584b13ff3f" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory">
+      <topicdata name="CopyDirectory" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="CopyDirectory" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="72f11b97-fa50-b62a-c21b-ae5f0374775f" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile">
+      <topicdata name="CopyFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="CopyFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="c3f84474-2f5d-cffa-1f54-18d8194ce434" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory">
+      <topicdata name="DeleteDirectory" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="DeleteDirectory" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.DeleteDirectoryOption)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="d37fbfdd-b3d1-e185-6b0b-bc2ec6f72154" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile">
+      <topicdata name="DeleteFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="DeleteFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="8c783f56-c2fd-9a91-b9fe-984826648923" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles">
+      <topicdata name="FindInFiles" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="FindInFiles" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles(System.String,System.String,System.Boolean,Microsoft.VisualBasic.FileIO.SearchOption)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles(System.String,System.String,System.Boolean,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="51801fe8-2298-892d-10fd-abfa19c5695a" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories">
+      <topicdata name="GetDirectories" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="GetDirectories" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories(System.String,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="66ab8f39-3942-726d-ea24-44f8508f08a5" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles">
+      <topicdata name="GetFiles" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="GetFiles" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles(System.String,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="9ef33686-4092-11c9-39b3-58cee9ace8d7" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory">
+      <topicdata name="MoveDirectory" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="MoveDirectory" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="41808910-697d-764c-6467-3d3748b8b6aa" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile">
+      <topicdata name="MoveFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="MoveFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="e09ed44d-cbcc-b23f-480d-0502682febea" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser">
+      <topicdata name="OpenTextFieldParser" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="OpenTextFieldParser" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String,System.Int32[])" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="a40d4af2-ffde-8c29-057e-2c9304fce29e" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader">
+      <topicdata name="OpenTextFileReader" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="OpenTextFileReader" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader(System.String,System.Text.Encoding)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="86c97418-b186-96ab-99bb-07a50e6a0d3f" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter">
+      <topicdata name="OpenTextFileWriter" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="OpenTextFileWriter" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter(System.String,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter(System.String,System.Boolean,System.Text.Encoding)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="307b879c-d61f-7464-1c8f-9372d631ea4b" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText">
+      <topicdata name="ReadAllText" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="ReadAllText" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText(System.String)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText(System.String,System.Text.Encoding)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="439ae4ec-2e3b-cd73-4219-796cc9d42de6" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText">
+      <topicdata name="WriteAllText" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.FileSystemProxy" />
+      <apidata name="WriteAllText" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText(System.String,System.String,System.Boolean)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText(System.String,System.String,System.Boolean,System.Text.Encoding)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="265e4e6b-11cd-8441-7fc4-18a73a4cf0d1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CombinePath(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CombinePath" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="baseDirectory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="relativePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="c49d033c-663b-5b40-de2b-e75718a2b4b5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CopyDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="4fc74d33-1051-c5cd-c94b-66e3377e1b2c" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)">
+      <topicdata group="api" />
+      <apidata name="CopyDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="5a21f893-4b93-fbf5-ce88-9c09baf8b187" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="CopyDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="3f74e3c1-62d5-4e8c-4fec-003935c66f1e" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory(System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CopyDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="70074dc4-6dee-09e9-23f7-44fac58e9519" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CopyFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="d1f3b29d-d34e-c27e-1b3b-e2108ae645f3" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)">
+      <topicdata group="api" />
+      <apidata name="CopyFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="ca4e9415-1222-e692-a549-1d3ddced8d97" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="CopyFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="2d727599-391b-defd-4014-d727e56b8e4b" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile(System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CopyFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.CopyFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="5f0cd3c4-8bb5-e708-a450-3779488a9efc" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.CreateDirectory(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="290b1c72-1dbb-4184-8e5a-f843c3dba6d8" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.CurrentDirectory">
+      <topicdata group="api" />
+      <apidata name="CurrentDirectory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CurrentDirectory" />
+      <setter name="set_CurrentDirectory" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="f4e6f690-f463-af1d-4b50-614aa7177e0c" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.DeleteDirectoryOption)">
+      <topicdata group="api" />
+      <apidata name="DeleteDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="onDirectoryNotEmpty">
+          <type api="T:Microsoft.VisualBasic.FileIO.DeleteDirectoryOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="6fcd322f-d0b8-5869-c402-bbcc6ab38f35" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption)">
+      <topicdata group="api" />
+      <apidata name="DeleteDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+        <parameter name="recycle">
+          <type api="T:Microsoft.VisualBasic.FileIO.RecycleOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="60257d6a-64bd-5ace-2d08-62ee86069e7f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="DeleteDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+        <parameter name="recycle">
+          <type api="T:Microsoft.VisualBasic.FileIO.RecycleOption" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="112bf0c6-c973-8987-d930-0b2b71e130aa" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String)">
+      <topicdata group="api" />
+      <apidata name="DeleteFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="b31ef4a1-5c8d-8dad-c4f4-d1ffc4295ff3" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption)">
+      <topicdata group="api" />
+      <apidata name="DeleteFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+        <parameter name="recycle">
+          <type api="T:Microsoft.VisualBasic.FileIO.RecycleOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="84147294-d628-6bde-adb9-bbe06006f355" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile(System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.RecycleOption,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="DeleteFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.DeleteFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+        <parameter name="recycle">
+          <type api="T:Microsoft.VisualBasic.FileIO.RecycleOption" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="7c97fc9a-1088-5219-3e71-5715557f7666" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.DirectoryExists(System.String)">
+      <topicdata group="api" />
+      <apidata name="DirectoryExists" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="8f533a97-57c5-2f07-1a39-78472135c41c" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.Drives">
+      <topicdata group="api" />
+      <apidata name="Drives" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Drives" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.IO.DriveInfo" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="d93a3258-6444-a824-0ed3-892a7a484633" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FileExists(System.String)">
+      <topicdata group="api" />
+      <apidata name="FileExists" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="f777e1dd-025a-272d-c51f-ce9dbf4d66eb" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles(System.String,System.String,System.Boolean,Microsoft.VisualBasic.FileIO.SearchOption)">
+      <topicdata group="api" />
+      <apidata name="FindInFiles" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="containsText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ignoreCase">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="searchType">
+          <type api="T:Microsoft.VisualBasic.FileIO.SearchOption" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="0671098a-39b1-4b42-204e-6e6c26d570d5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles(System.String,System.String,System.Boolean,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])">
+      <topicdata group="api" />
+      <apidata name="FindInFiles" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.FindInFiles" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="containsText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ignoreCase">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="searchType">
+          <type api="T:Microsoft.VisualBasic.FileIO.SearchOption" ref="false" />
+        </parameter>
+        <parameter name="fileWildcards" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="47848752-4452-b568-4148-d18fe85d5f31" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDirectories" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="9662e2d3-95ca-1599-0ea0-fa234bbb4001" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories(System.String,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])">
+      <topicdata group="api" />
+      <apidata name="GetDirectories" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectories" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="searchType">
+          <type api="T:Microsoft.VisualBasic.FileIO.SearchOption" ref="false" />
+        </parameter>
+        <parameter name="wildcards" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="449b075e-84a6-8d3d-e95c-74167db4a7b1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDirectoryInfo(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDirectoryInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.DirectoryInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="10622b36-8427-6839-a965-2ec1d8aa428d" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetDriveInfo(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDriveInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="drive">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.DriveInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="acc6e58e-7239-a4c2-c894-d25f3b097a4d" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFileInfo(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFileInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.FileInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="15834526-8580-c1dc-b308-0bf7050b6992" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFiles" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="8a801cef-b9c4-eb38-afad-94c6e78dda6a" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles(System.String,Microsoft.VisualBasic.FileIO.SearchOption,System.String[])">
+      <topicdata group="api" />
+      <apidata name="GetFiles" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetFiles" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="searchType">
+          <type api="T:Microsoft.VisualBasic.FileIO.SearchOption" ref="false" />
+        </parameter>
+        <parameter name="wildcards" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="cfff8bc2-a1cb-b0eb-7385-827d20860e7a" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetName(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="7e39e968-7047-de46-47fe-7d0f9d04491b" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetParentPath(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetParentPath" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="e4998923-6eac-eb23-24b7-2cfe53da243f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.GetTempFileName">
+      <topicdata group="api" />
+      <apidata name="GetTempFileName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="191a9803-40dd-b23c-38aa-e6ecb1d60694" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="MoveDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="c5961f54-7cf8-aa6d-094a-15d151051304" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)">
+      <topicdata group="api" />
+      <apidata name="MoveDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="1e633120-bc90-91b1-ed1b-4b1e1f6d6b44" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="MoveDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="369e1a92-7985-f40b-3272-767aa28973a2" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory(System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="MoveDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveDirectory" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="6023caba-fff5-2854-9ff9-a7ddc6937b3d" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="MoveFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="932b5ea4-88f4-b57c-d5c0-44a4c17cc466" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption)">
+      <topicdata group="api" />
+      <apidata name="MoveFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="91afb975-ca7e-d045-cb33-bc72944964bc" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,Microsoft.VisualBasic.FileIO.UIOption,Microsoft.VisualBasic.FileIO.UICancelOption)">
+      <topicdata group="api" />
+      <apidata name="MoveFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="showUI">
+          <type api="T:Microsoft.VisualBasic.FileIO.UIOption" ref="false" />
+        </parameter>
+        <parameter name="onUserCancel">
+          <type api="T:Microsoft.VisualBasic.FileIO.UICancelOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="f95b1c55-e14e-1589-3322-3546091d2fe5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile(System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="MoveFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.MoveFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="0d871abb-ecec-e5e2-6b08-8a40bcc9d2ff" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String)">
+      <topicdata group="api" />
+      <apidata name="OpenTextFieldParser" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.VisualBasic.FileIO.TextFieldParser" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="bc12e0af-1f00-d219-8f7c-36df4e3d0da0" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String,System.Int32[])">
+      <topicdata group="api" />
+      <apidata name="OpenTextFieldParser" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="fieldWidths" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Int32" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.VisualBasic.FileIO.TextFieldParser" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="f3baf1c4-1833-ecf8-dc1d-beeee50517dd" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser(System.String,System.String[])">
+      <topicdata group="api" />
+      <apidata name="OpenTextFieldParser" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFieldParser" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="delimiters" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.VisualBasic.FileIO.TextFieldParser" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="aaddd80e-369c-739f-f7e9-3ee543274a75" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader(System.String)">
+      <topicdata group="api" />
+      <apidata name="OpenTextFileReader" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.StreamReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="3444c5ab-8458-003d-cbbe-9d55f2771b09" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader(System.String,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name="OpenTextFileReader" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileReader" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="encoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.StreamReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="77b7eb76-cdab-8c1b-0b7a-bd9dbba691af" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OpenTextFileWriter" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="append">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.StreamWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="326b82fa-e59e-3e8a-b6a0-6191645df342" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter(System.String,System.Boolean,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name="OpenTextFileWriter" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.OpenTextFileWriter" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="append">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="encoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.StreamWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="cb911b03-44f0-272e-391a-5306e73d8d8d" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllBytes(System.String)">
+      <topicdata group="api" />
+      <apidata name="ReadAllBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="5cf2d14e-a85b-8708-f112-5f050fe0fbe9" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText(System.String)">
+      <topicdata group="api" />
+      <apidata name="ReadAllText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="b649c8f2-f624-5b74-5755-1b1a0515f387" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText(System.String,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name="ReadAllText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.ReadAllText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="encoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="28fc1987-5d6d-3a18-1f9a-2b1be6153974" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.RenameDirectory(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RenameDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="newName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="e2880abb-3d2d-f056-2d38-849efc81ca3d" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.RenameFile(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RenameFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="newName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="7d5f0873-3f53-dc3d-4c41-e3055c53f445" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.FileSystemProxy.SpecialDirectories">
+      <topicdata group="api" />
+      <apidata name="SpecialDirectories" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SpecialDirectories" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="9fe4cdf1-504c-54e8-b904-92d1e8787a4f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllBytes(System.String,System.Byte[],System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="WriteAllBytes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="append">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="d62c6525-80db-3751-26b9-5d3cfad77851" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText(System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="WriteAllText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="append">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="e7ab4cad-2042-2bd2-04cb-c2f069f8369b" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText(System.String,System.String,System.Boolean,System.Text.Encoding)">
+      <topicdata group="api" />
+      <apidata name="WriteAllText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.FileSystemProxy.WriteAllText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="append">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="encoding">
+          <type api="T:System.Text.Encoding" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.FileSystemProxy" ref="true" />
+      </containers>
+      <file name="f7d4b2b2-1e4e-5818-e374-6d40b2e19beb" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.MyServices.RegistryProxy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+      <apidata name="RegistryProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c37042c2-ea1d-484e-1ae5-24a97bf00f81" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.MyServices.RegistryProxy">
+      <topicdata name="RegistryProxy" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+      <apidata name="RegistryProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.ClassesRoot" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.CurrentConfig" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.CurrentUser" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.DynData" />
+        <element api="M:Microsoft.VisualBasic.MyServices.RegistryProxy.GetValue(System.String,System.String,System.Object)" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.LocalMachine" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.PerformanceData" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue">
+          <element api="M:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue(System.String,System.String,System.Object)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+        </element>
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.Users" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+      </containers>
+      <file name="a337f54d-2337-201e-5d8d-8342091785b2" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.MyServices.RegistryProxy">
+      <topicdata name="RegistryProxy" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+      <apidata name="RegistryProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.RegistryProxy.GetValue(System.String,System.String,System.Object)" />
+        <element api="Overload:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue">
+          <element api="M:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue(System.String,System.String,System.Object)" />
+          <element api="M:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+      </containers>
+      <file name="030bfce1-92e6-a66b-51fa-8d3a5d4c278e" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.MyServices.RegistryProxy">
+      <topicdata name="RegistryProxy" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+      <apidata name="RegistryProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.ClassesRoot" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.CurrentConfig" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.CurrentUser" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.DynData" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.LocalMachine" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.PerformanceData" />
+        <element api="P:Microsoft.VisualBasic.MyServices.RegistryProxy.Users" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+      </containers>
+      <file name="2369d148-5d4f-1c90-6474-6053f8d0ce02" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue">
+      <topicdata name="SetValue" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.RegistryProxy" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue(System.String,System.String,System.Object)" />
+        <element api="M:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="3e9b7d04-bb1d-f173-84f7-0a086783701a" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.RegistryProxy.ClassesRoot">
+      <topicdata group="api" />
+      <apidata name="ClassesRoot" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClassesRoot" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="f021bf5a-b869-bea1-ceb6-3f0fd238a20e" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.RegistryProxy.CurrentConfig">
+      <topicdata group="api" />
+      <apidata name="CurrentConfig" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentConfig" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="5af8cde8-a231-70f6-7a51-3479c0460efb" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.RegistryProxy.CurrentUser">
+      <topicdata group="api" />
+      <apidata name="CurrentUser" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentUser" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="4695e645-8481-1950-a5fe-e55e3c58893e" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.RegistryProxy.DynData">
+      <topicdata group="api" />
+      <apidata name="DynData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DynData" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The DynData registry key works only on Win9x, which is not supported by this version of the .NET Framework.  Use the PerformanceData registry key instead.  This property will be removed from a future version of the framework.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ebe0dfb2-ad77-c2d1-0cac-cf0be4ee0c7a" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.RegistryProxy.GetValue(System.String,System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="keyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="valueName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="96eae073-5d99-d249-654f-3d6df6463a21" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.RegistryProxy.LocalMachine">
+      <topicdata group="api" />
+      <apidata name="LocalMachine" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LocalMachine" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="2f521880-02ec-e45c-5c97-964dd9d30e24" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.RegistryProxy.PerformanceData">
+      <topicdata group="api" />
+      <apidata name="PerformanceData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PerformanceData" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="c4fb5280-f33b-cb01-24cc-85165e5f115d" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue(System.String,System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="keyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="valueName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="7802c6f3-fb15-c50b-e40a-557b4bd16fdf" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.MyServices.RegistryProxy.SetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="keyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="valueName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="valueKind">
+          <type api="T:Microsoft.Win32.RegistryValueKind" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="554df0bb-ceea-77d2-231d-48efd6e9f4df" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.RegistryProxy.Users">
+      <topicdata group="api" />
+      <apidata name="Users" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Users" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.RegistryProxy" ref="true" />
+      </containers>
+      <file name="bfa39194-a58c-0f47-67f0-15baad094f91" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" />
+      <apidata name="SpecialDirectoriesProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Resources">
+            <type api="T:System.Security.Permissions.HostProtectionResource" ref="false" />
+            <enumValue>
+              <field name="ExternalProcessMgmt" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d3134a3e-a3c5-508d-d6b2-0351daf25d4c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy">
+      <topicdata name="SpecialDirectoriesProxy" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" />
+      <apidata name="SpecialDirectoriesProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.AllUsersApplicationData" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.CurrentUserApplicationData" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Desktop" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyDocuments" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyMusic" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyPictures" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.ProgramFiles" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Programs" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Temp" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" />
+      </containers>
+      <file name="7cf0b19d-b33f-1307-dc00-2065614c0ce4" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy">
+      <topicdata name="SpecialDirectoriesProxy" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" />
+      <apidata name="SpecialDirectoriesProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" />
+      </containers>
+      <file name="588ec1c8-2509-b59c-c4e9-27f4fd537189" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy">
+      <topicdata name="SpecialDirectoriesProxy" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" />
+      <apidata name="SpecialDirectoriesProxy" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.AllUsersApplicationData" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.CurrentUserApplicationData" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Desktop" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyDocuments" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyMusic" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyPictures" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.ProgramFiles" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Programs" />
+        <element api="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Temp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" />
+      </containers>
+      <file name="cdecc1a5-ac57-c420-fdd2-234576f96c8e" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.AllUsersApplicationData">
+      <topicdata group="api" />
+      <apidata name="AllUsersApplicationData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllUsersApplicationData" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="98d4d6d3-1b0c-4a77-c683-950eee1f09fc" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.CurrentUserApplicationData">
+      <topicdata group="api" />
+      <apidata name="CurrentUserApplicationData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentUserApplicationData" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="1ddb52d7-188a-eea8-f68d-b5fed1477efd" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Desktop">
+      <topicdata group="api" />
+      <apidata name="Desktop" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Desktop" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="33ab353d-8ccb-a3b6-e69a-9e961ad5caa1" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyDocuments">
+      <topicdata group="api" />
+      <apidata name="MyDocuments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MyDocuments" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="2919ab42-2b63-4507-96d0-db0aa149f2d0" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyMusic">
+      <topicdata group="api" />
+      <apidata name="MyMusic" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MyMusic" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="c2fef0e0-a607-66a4-aa54-006ba5a2b213" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.MyPictures">
+      <topicdata group="api" />
+      <apidata name="MyPictures" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MyPictures" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="d1fe8c23-caac-2e73-3e11-de55d0d53044" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.ProgramFiles">
+      <topicdata group="api" />
+      <apidata name="ProgramFiles" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProgramFiles" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="6369b085-67a5-3a76-2c1f-a1c0c6f8fff5" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Programs">
+      <topicdata group="api" />
+      <apidata name="Programs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Programs" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="11544495-f1af-565f-c677-e3bac784eaf1" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy.Temp">
+      <topicdata group="api" />
+      <apidata name="Temp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Temp" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="10.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.MyServices" />
+        <type api="T:Microsoft.VisualBasic.MyServices.SpecialDirectoriesProxy" ref="true" />
+      </containers>
+      <file name="015a5700-60c1-0078-5ca3-96c42c7d8581" />
+    </api>
+  </apis>
+</reflection>

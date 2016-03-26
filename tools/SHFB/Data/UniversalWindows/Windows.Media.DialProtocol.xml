@@ -1,0 +1,2760 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.DialProtocol">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.DialProtocol" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.DialProtocol.DialAppState" />
+        <element api="T:Windows.Media.DialProtocol.DialAppLaunchResult" />
+        <element api="T:Windows.Media.DialProtocol.DialAppStopResult" />
+        <element api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" />
+        <element api="T:Windows.Media.DialProtocol.DialAppStateDetails" />
+        <element api="T:Windows.Media.DialProtocol.DialApp" />
+        <element api="T:Windows.Media.DialProtocol.DialDevice" />
+        <element api="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" />
+        <element api="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" />
+        <element api="T:Windows.Media.DialProtocol.DialDevicePickerFilter" />
+        <element api="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      </elements>
+      <file name="8d898a11-6130-edd1-a26b-f8103e6aae3c" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialApp">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialApp" />
+      <apidata name="DialApp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b8538547-e5f2-bff8-201a-86ee4f1540bb" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.DialProtocol.DialApp">
+      <topicdata name="DialApp" group="list" subgroup="members" typeTopicId="T:Windows.Media.DialProtocol.DialApp" />
+      <apidata name="DialApp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.DialProtocol.DialApp.AppName" />
+        <element api="M:Windows.Media.DialProtocol.DialApp.GetAppStateAsync" />
+        <element api="M:Windows.Media.DialProtocol.DialApp.RequestLaunchAsync(System.String)" />
+        <element api="M:Windows.Media.DialProtocol.DialApp.StopAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialApp" />
+      </containers>
+      <file name="4d6a0910-0ca3-87c2-5a5f-5f64754569d9" />
+    </api>
+    <api id="Methods.T:Windows.Media.DialProtocol.DialApp">
+      <topicdata name="DialApp" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.DialProtocol.DialApp" />
+      <apidata name="DialApp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.DialProtocol.DialApp.GetAppStateAsync" />
+        <element api="M:Windows.Media.DialProtocol.DialApp.RequestLaunchAsync(System.String)" />
+        <element api="M:Windows.Media.DialProtocol.DialApp.StopAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialApp" />
+      </containers>
+      <file name="c93bdecb-a3fc-fbad-d8b6-eac6d07ba3a7" />
+    </api>
+    <api id="Properties.T:Windows.Media.DialProtocol.DialApp">
+      <topicdata name="DialApp" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.DialProtocol.DialApp" />
+      <apidata name="DialApp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.DialProtocol.DialApp.AppName" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialApp" />
+      </containers>
+      <file name="48c7b016-ebc6-ad80-31c2-6b8b0b01a418" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialApp.AppName">
+      <topicdata group="api" />
+      <apidata name="AppName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AppName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialApp" ref="true" />
+      </containers>
+      <file name="9bfc38df-875c-df8c-41fd-55b91b539395" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialApp.GetAppStateAsync">
+      <topicdata group="api" />
+      <apidata name="GetAppStateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialAppStateDetails" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialApp" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7cbdd6e8-001e-9fa7-0c7d-e0596f22ab77" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialApp.RequestLaunchAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="RequestLaunchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="appArgument" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialApp" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7faeabe0-86eb-3492-9029-25f987b86abc" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialApp.StopAsync">
+      <topicdata group="api" />
+      <apidata name="StopAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialApp" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="cb3823f6-e857-492f-de02-9a61f88d5d96" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialAppLaunchResult">
+      <topicdata group="api" />
+      <apidata name="DialAppLaunchResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.DialProtocol.DialAppLaunchResult.Launched" />
+        <element api="F:Windows.Media.DialProtocol.DialAppLaunchResult.FailedToLaunch" />
+        <element api="F:Windows.Media.DialProtocol.DialAppLaunchResult.NotFound" />
+        <element api="F:Windows.Media.DialProtocol.DialAppLaunchResult.NetworkFailure" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="68926de2-146e-dbc9-55be-161c3dc323b2" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppLaunchResult.FailedToLaunch">
+      <topicdata group="api" notopic="" />
+      <apidata name="FailedToLaunch" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+      </containers>
+      <file name="49aae2df-4f46-3931-cd95-5602621a9c33" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppLaunchResult.Launched">
+      <topicdata group="api" notopic="" />
+      <apidata name="Launched" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+      </containers>
+      <file name="a1ad3af8-826b-1cb3-62b6-043090f4a42b" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppLaunchResult.NetworkFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+      </containers>
+      <file name="e6d321d2-6647-21a8-a3d9-f8a6d1b771a3" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppLaunchResult.NotFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppLaunchResult" ref="false" />
+      </containers>
+      <file name="895e4dca-98f3-2b10-8bb1-d627ae3556a3" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialAppState">
+      <topicdata group="api" />
+      <apidata name="DialAppState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.DialProtocol.DialAppState.Unknown" />
+        <element api="F:Windows.Media.DialProtocol.DialAppState.Stopped" />
+        <element api="F:Windows.Media.DialProtocol.DialAppState.Running" />
+        <element api="F:Windows.Media.DialProtocol.DialAppState.NetworkFailure" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5b01c6d9-511b-98bb-ef03-36c66a92080e" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppState.NetworkFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </containers>
+      <file name="c89e86ad-f538-1bd5-fa69-c4ebcb75a3d6" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppState.Running">
+      <topicdata group="api" notopic="" />
+      <apidata name="Running" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </containers>
+      <file name="98464f3e-c258-0e97-774d-31cee6c5b546" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppState.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </containers>
+      <file name="5b757c4a-7aff-5aba-a593-a75841818376" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppState.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </containers>
+      <file name="06e30b1b-1228-dfdf-faa8-aa49b08c8902" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialAppStateDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialAppStateDetails" />
+      <apidata name="DialAppStateDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ff339f7f-1156-54d6-8501-c16a438ef65b" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.DialProtocol.DialAppStateDetails">
+      <topicdata name="DialAppStateDetails" group="list" subgroup="members" typeTopicId="T:Windows.Media.DialProtocol.DialAppStateDetails" />
+      <apidata name="DialAppStateDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.DialProtocol.DialAppStateDetails.FullXml" />
+        <element api="P:Windows.Media.DialProtocol.DialAppStateDetails.State" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStateDetails" />
+      </containers>
+      <file name="033eb425-d25d-71bd-09da-d7a9773f8835" />
+    </api>
+    <api id="Methods.T:Windows.Media.DialProtocol.DialAppStateDetails">
+      <topicdata name="DialAppStateDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.DialProtocol.DialAppStateDetails" />
+      <apidata name="DialAppStateDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStateDetails" />
+      </containers>
+      <file name="fd7b7580-6ff9-60bc-20f1-3ef8e58bb17c" />
+    </api>
+    <api id="Properties.T:Windows.Media.DialProtocol.DialAppStateDetails">
+      <topicdata name="DialAppStateDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.DialProtocol.DialAppStateDetails" />
+      <apidata name="DialAppStateDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.DialProtocol.DialAppStateDetails.FullXml" />
+        <element api="P:Windows.Media.DialProtocol.DialAppStateDetails.State" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStateDetails" />
+      </containers>
+      <file name="b4fe2330-8b95-560e-77fb-c15e24f9dc9b" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialAppStateDetails.FullXml">
+      <topicdata group="api" />
+      <apidata name="FullXml" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FullXml" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStateDetails" ref="true" />
+      </containers>
+      <file name="8bf5b128-9b24-f14d-0c64-1dcca475f102" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialAppStateDetails.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStateDetails" ref="true" />
+      </containers>
+      <file name="b55d70d3-a311-b7d6-128c-c78255c26bd3" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialAppStopResult">
+      <topicdata group="api" />
+      <apidata name="DialAppStopResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.DialProtocol.DialAppStopResult.Stopped" />
+        <element api="F:Windows.Media.DialProtocol.DialAppStopResult.StopFailed" />
+        <element api="F:Windows.Media.DialProtocol.DialAppStopResult.OperationNotSupported" />
+        <element api="F:Windows.Media.DialProtocol.DialAppStopResult.NetworkFailure" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="52199bf1-8fa0-6d9d-35f2-0f205f609250" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppStopResult.NetworkFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+      </containers>
+      <file name="a071225b-bb41-9203-74a2-20994bb30bbb" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppStopResult.OperationNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="OperationNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+      </containers>
+      <file name="8283f1ae-cb1d-a0fd-2252-d1368f488fcf" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppStopResult.StopFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="StopFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+      </containers>
+      <file name="31b7231c-c3c8-3815-2d9c-f4020a6ed52b" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialAppStopResult.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialAppStopResult" ref="false" />
+      </containers>
+      <file name="196310bd-0faf-acc3-88be-7daf5e210d11" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialDevice" />
+      <apidata name="DialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2a118099-2a68-d505-e971-a0de905ccb0d" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.DialProtocol.DialDevice">
+      <topicdata name="DialDevice" group="list" subgroup="members" typeTopicId="T:Windows.Media.DialProtocol.DialDevice" />
+      <apidata name="DialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.DialProtocol.DialDevice.DeviceInfoSupportsDialAsync(Windows.Devices.Enumeration.DeviceInformation)" />
+        <element api="M:Windows.Media.DialProtocol.DialDevice.FromIdAsync(System.String)" />
+        <element api="M:Windows.Media.DialProtocol.DialDevice.GetDeviceSelector(System.String)" />
+        <element api="M:Windows.Media.DialProtocol.DialDevice.GetDialApp(System.String)" />
+        <element api="P:Windows.Media.DialProtocol.DialDevice.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevice" />
+      </containers>
+      <file name="dc2dc0c5-7242-bdbf-c773-6e108273c9d8" />
+    </api>
+    <api id="Methods.T:Windows.Media.DialProtocol.DialDevice">
+      <topicdata name="DialDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.DialProtocol.DialDevice" />
+      <apidata name="DialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.DialProtocol.DialDevice.DeviceInfoSupportsDialAsync(Windows.Devices.Enumeration.DeviceInformation)" />
+        <element api="M:Windows.Media.DialProtocol.DialDevice.FromIdAsync(System.String)" />
+        <element api="M:Windows.Media.DialProtocol.DialDevice.GetDeviceSelector(System.String)" />
+        <element api="M:Windows.Media.DialProtocol.DialDevice.GetDialApp(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevice" />
+      </containers>
+      <file name="0b5a5b01-fe15-26a9-1038-0f2013e28ca3" />
+    </api>
+    <api id="Properties.T:Windows.Media.DialProtocol.DialDevice">
+      <topicdata name="DialDevice" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.DialProtocol.DialDevice" />
+      <apidata name="DialDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.DialProtocol.DialDevice.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevice" />
+      </containers>
+      <file name="a4fed9d1-0def-fe04-a3e6-1744e07e4b3f" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevice.DeviceInfoSupportsDialAsync(Windows.Devices.Enumeration.DeviceInformation)">
+      <topicdata group="api" />
+      <apidata name="DeviceInfoSupportsDialAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="device" in="true">
+          <type api="T:Windows.Devices.Enumeration.DeviceInformation" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ac885bc2-389e-9d4b-ee99-6c8b85a02e36" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevice.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1131aa6d-e553-0bcc-a25b-b16ac21b6bfe" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevice.GetDeviceSelector(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+      </containers>
+      <file name="fcf17d85-4ca9-58fc-6737-dd6403a7eb90" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevice.GetDialApp(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDialApp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="appName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialApp" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+      </containers>
+      <file name="6ddc4e5a-e53d-b70f-a291-54d438162d37" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialDevice.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+      </containers>
+      <file name="4a00f31b-be51-5c81-2d33-0a1a5bdd2cef" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus">
+      <topicdata group="api" />
+      <apidata name="DialDeviceDisplayStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.None" />
+        <element api="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Connecting" />
+        <element api="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Connected" />
+        <element api="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Disconnecting" />
+        <element api="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Disconnected" />
+        <element api="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Error" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="056767a0-f123-6a76-76b1-fd5ad7909d8b" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Connected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </containers>
+      <file name="2b90bcbe-6b2e-e71b-6353-b62db23affdd" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Connecting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </containers>
+      <file name="1d5c91e9-8a8f-1567-28e8-f460c4440ad0" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Disconnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </containers>
+      <file name="f9170c8d-f000-803a-1dc3-60319aab32bc" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Disconnecting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </containers>
+      <file name="934d28b5-56e8-ae2b-3672-303d5e053bb6" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.Error">
+      <topicdata group="api" notopic="" />
+      <apidata name="Error" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </containers>
+      <file name="20893cae-5546-4e04-381f-44d1ee55b059" />
+    </api>
+    <api id="F:Windows.Media.DialProtocol.DialDeviceDisplayStatus.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+      </containers>
+      <file name="4f524d37-6a4a-3414-36dc-e7744d6eb96d" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialDevicePicker">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialDevicePicker" />
+      <apidata name="DialDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.DialProtocol.DialDevicePicker.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8c459b66-f599-2f8c-b568-5b22565b7c9b" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.DialProtocol.DialDevicePicker">
+      <topicdata name="DialDevicePicker" group="list" subgroup="members" typeTopicId="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      <apidata name="DialDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.DialProtocol.DialDevicePicker.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.#ctor" />
+        <element api="P:Windows.Media.DialProtocol.DialDevicePicker.Appearance" />
+        <element api="E:Windows.Media.DialProtocol.DialDevicePicker.DialDevicePickerDismissed" />
+        <element api="E:Windows.Media.DialProtocol.DialDevicePicker.DialDeviceSelected" />
+        <element api="E:Windows.Media.DialProtocol.DialDevicePicker.DisconnectButtonClicked" />
+        <element api="P:Windows.Media.DialProtocol.DialDevicePicker.Filter" />
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.Hide" />
+        <element api="Overload:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync">
+          <element api="M:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync(Windows.Foundation.Rect)" />
+          <element api="M:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.SetDisplayStatus(Windows.Media.DialProtocol.DialDevice,Windows.Media.DialProtocol.DialDeviceDisplayStatus)" />
+        <element api="Overload:Windows.Media.DialProtocol.DialDevicePicker.Show">
+          <element api="M:Windows.Media.DialProtocol.DialDevicePicker.Show(Windows.Foundation.Rect)" />
+          <element api="M:Windows.Media.DialProtocol.DialDevicePicker.Show(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      </containers>
+      <file name="3b3415b6-b32f-c77d-ffbb-1bff55f17885" />
+    </api>
+    <api id="Methods.T:Windows.Media.DialProtocol.DialDevicePicker">
+      <topicdata name="DialDevicePicker" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      <apidata name="DialDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.DialProtocol.DialDevicePicker.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.Hide" />
+        <element api="Overload:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync">
+          <element api="M:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync(Windows.Foundation.Rect)" />
+          <element api="M:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.SetDisplayStatus(Windows.Media.DialProtocol.DialDevice,Windows.Media.DialProtocol.DialDeviceDisplayStatus)" />
+        <element api="Overload:Windows.Media.DialProtocol.DialDevicePicker.Show">
+          <element api="M:Windows.Media.DialProtocol.DialDevicePicker.Show(Windows.Foundation.Rect)" />
+          <element api="M:Windows.Media.DialProtocol.DialDevicePicker.Show(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      </containers>
+      <file name="7c0d6ffc-39aa-692e-8f66-b7ef05049e70" />
+    </api>
+    <api id="Properties.T:Windows.Media.DialProtocol.DialDevicePicker">
+      <topicdata name="DialDevicePicker" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      <apidata name="DialDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.DialProtocol.DialDevicePicker.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.DialProtocol.DialDevicePicker.Appearance" />
+        <element api="P:Windows.Media.DialProtocol.DialDevicePicker.Filter" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      </containers>
+      <file name="2fc1a7f2-ba41-c60c-ff31-d77767a834d8" />
+    </api>
+    <api id="Events.T:Windows.Media.DialProtocol.DialDevicePicker">
+      <topicdata name="DialDevicePicker" group="list" subgroup="Events" typeTopicId="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      <apidata name="DialDevicePicker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.DialProtocol.DialDevicePicker.#ctor" />
+      <elements>
+        <element api="E:Windows.Media.DialProtocol.DialDevicePicker.DialDevicePickerDismissed" />
+        <element api="E:Windows.Media.DialProtocol.DialDevicePicker.DialDeviceSelected" />
+        <element api="E:Windows.Media.DialProtocol.DialDevicePicker.DisconnectButtonClicked" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" />
+      </containers>
+      <file name="1a2d3815-3f7f-0725-d99e-362a95bea61b" />
+    </api>
+    <api id="Overload:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync">
+      <topicdata name="PickSingleDialDeviceAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialDevicePicker" />
+      <apidata name="PickSingleDialDeviceAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync(Windows.Foundation.Rect)" />
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="7ddd3f8c-90a4-da71-600d-caf4ab44e472" />
+    </api>
+    <api id="Overload:Windows.Media.DialProtocol.DialDevicePicker.Show">
+      <topicdata name="Show" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialDevicePicker" />
+      <apidata name="Show" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.Show(Windows.Foundation.Rect)" />
+        <element api="M:Windows.Media.DialProtocol.DialDevicePicker.Show(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="a1969611-e880-b2d1-b518-a57070c26585" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevicePicker.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="3d997208-a9c7-9d9a-430a-54661e55f266" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialDevicePicker.Appearance">
+      <topicdata group="api" />
+      <apidata name="Appearance" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Appearance" />
+      <returns>
+        <type api="T:Windows.Devices.Enumeration.DevicePickerAppearance" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="766bcd8d-b6bf-f95b-befe-d722e4f7e097" />
+    </api>
+    <api id="E:Windows.Media.DialProtocol.DialDevicePicker.DialDevicePickerDismissed">
+      <topicdata group="api" />
+      <apidata name="DialDevicePickerDismissed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DialDevicePickerDismissed" />
+      <remover name="remove_DialDevicePickerDismissed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="5d8341b0-3763-5c55-b265-b5b308a0b5f3" />
+    </api>
+    <api id="E:Windows.Media.DialProtocol.DialDevicePicker.DialDeviceSelected">
+      <topicdata group="api" />
+      <apidata name="DialDeviceSelected" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DialDeviceSelected" />
+      <remover name="remove_DialDeviceSelected" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+            <type api="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="aaf7586c-f014-cbdf-e6d3-9e6019ebbf18" />
+    </api>
+    <api id="E:Windows.Media.DialProtocol.DialDevicePicker.DisconnectButtonClicked">
+      <topicdata group="api" />
+      <apidata name="DisconnectButtonClicked" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DisconnectButtonClicked" />
+      <remover name="remove_DisconnectButtonClicked" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+            <type api="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="af0152a7-eb0b-6c16-13c1-dbbfa2cb95cc" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialDevicePicker.Filter">
+      <topicdata group="api" />
+      <apidata name="Filter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Filter" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDevicePickerFilter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="a58815ff-0766-2087-bcb7-8d6bd25c9f98" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevicePicker.Hide">
+      <topicdata group="api" />
+      <apidata name="Hide" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="b40f039a-ca49-0411-63fe-9341645229fb" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync(Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="PickSingleDialDeviceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PickSingleDialDeviceAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="eded3e0f-d118-7420-9890-f49c0aef793a" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="PickSingleDialDeviceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.DialProtocol.DialDevicePicker.PickSingleDialDeviceAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PickSingleDialDeviceAsyncWithPlacement</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3ffe9c84-fb87-6e77-c039-725a45697593" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevicePicker.SetDisplayStatus(Windows.Media.DialProtocol.DialDevice,Windows.Media.DialProtocol.DialDeviceDisplayStatus)">
+      <topicdata group="api" />
+      <apidata name="SetDisplayStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="device" in="true">
+          <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+        </parameter>
+        <parameter name="status" in="true">
+          <type api="T:Windows.Media.DialProtocol.DialDeviceDisplayStatus" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <file name="dbe897a9-e843-8bc6-8de7-de58cf11864b" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevicePicker.Show(Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="Show" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.DialProtocol.DialDevicePicker.Show" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Show</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="35072a41-ce0c-c24c-d1d3-52726bf78e22" />
+    </api>
+    <api id="M:Windows.Media.DialProtocol.DialDevicePicker.Show(Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="Show" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.DialProtocol.DialDevicePicker.Show" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePicker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowWithPlacement</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="485090b9-50d8-7ec6-b977-ea449f02b33f" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialDevicePickerFilter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialDevicePickerFilter" />
+      <apidata name="DialDevicePickerFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5f0bfe2c-b236-2336-b832-e4d9720d0c97" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.DialProtocol.DialDevicePickerFilter">
+      <topicdata name="DialDevicePickerFilter" group="list" subgroup="members" typeTopicId="T:Windows.Media.DialProtocol.DialDevicePickerFilter" />
+      <apidata name="DialDevicePickerFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.DialProtocol.DialDevicePickerFilter.SupportedAppNames" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePickerFilter" />
+      </containers>
+      <file name="a27268b0-5d1d-998b-069b-6c7a4539402f" />
+    </api>
+    <api id="Methods.T:Windows.Media.DialProtocol.DialDevicePickerFilter">
+      <topicdata name="DialDevicePickerFilter" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.DialProtocol.DialDevicePickerFilter" />
+      <apidata name="DialDevicePickerFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePickerFilter" />
+      </containers>
+      <file name="349569aa-e03b-ffbb-73ca-81a846693aa0" />
+    </api>
+    <api id="Properties.T:Windows.Media.DialProtocol.DialDevicePickerFilter">
+      <topicdata name="DialDevicePickerFilter" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.DialProtocol.DialDevicePickerFilter" />
+      <apidata name="DialDevicePickerFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.DialProtocol.DialDevicePickerFilter.SupportedAppNames" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePickerFilter" />
+      </containers>
+      <file name="8b69ff74-e610-12ec-b56f-13b823d52a73" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialDevicePickerFilter.SupportedAppNames">
+      <topicdata group="api" />
+      <apidata name="SupportedAppNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportedAppNames" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDevicePickerFilter" ref="true" />
+      </containers>
+      <file name="56bd5e87-eb87-34ad-825e-193f4e9ef387" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" />
+      <apidata name="DialDeviceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9adcab8f-8a89-3c00-4ed5-e1345d2bb574" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs">
+      <topicdata name="DialDeviceSelectedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" />
+      <apidata name="DialDeviceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs.SelectedDialDevice" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" />
+      </containers>
+      <file name="5f2d8968-8fa7-3a22-d491-30b9c9d0b220" />
+    </api>
+    <api id="Methods.T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs">
+      <topicdata name="DialDeviceSelectedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" />
+      <apidata name="DialDeviceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" />
+      </containers>
+      <file name="5f477459-dd29-dfca-e768-b55d2772d533" />
+    </api>
+    <api id="Properties.T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs">
+      <topicdata name="DialDeviceSelectedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" />
+      <apidata name="DialDeviceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs.SelectedDialDevice" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" />
+      </containers>
+      <file name="d1f4a7ad-5419-c8f7-7b72-8faa8aaf6503" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs.SelectedDialDevice">
+      <topicdata group="api" />
+      <apidata name="SelectedDialDevice" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SelectedDialDevice" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDeviceSelectedEventArgs" ref="true" />
+      </containers>
+      <file name="39541e1c-44ad-428c-9d57-5d0dd36ecbd1" />
+    </api>
+    <api id="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" />
+      <apidata name="DialDisconnectButtonClickedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="79ef565f-a664-2266-8ea4-4d65ab9f6896" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs">
+      <topicdata name="DialDisconnectButtonClickedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" />
+      <apidata name="DialDisconnectButtonClickedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs.Device" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" />
+      </containers>
+      <file name="3e739941-12f8-950b-43e9-f0086063193b" />
+    </api>
+    <api id="Methods.T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs">
+      <topicdata name="DialDisconnectButtonClickedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" />
+      <apidata name="DialDisconnectButtonClickedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" />
+      </containers>
+      <file name="883f6e74-4b9f-5c28-6222-b6b022bd843d" />
+    </api>
+    <api id="Properties.T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs">
+      <topicdata name="DialDisconnectButtonClickedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" />
+      <apidata name="DialDisconnectButtonClickedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs.Device" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" />
+      </containers>
+      <file name="5138529d-c1fc-7533-2c23-2d4423411a40" />
+    </api>
+    <api id="P:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs.Device">
+      <topicdata group="api" />
+      <apidata name="Device" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Device" />
+      <returns>
+        <type api="T:Windows.Media.DialProtocol.DialDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.DialProtocol" />
+        <type api="T:Windows.Media.DialProtocol.DialDisconnectButtonClickedEventArgs" ref="true" />
+      </containers>
+      <file name="f204fd30-ccc3-56d9-2401-51b6c199d166" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2758 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BED7F4EA-1A96-11d2-8F08-00A0C9A6186D</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Core">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Win32.SafeHandles">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Win32.SafeHandles" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Win32.SafeHandles.SafeFileHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+        <element api="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+        <element api="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafePipeHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" />
+        <element api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" />
+      </elements>
+      <file name="d9033be0-8cfa-6327-ac08-7786a35ca6c2" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      <apidata name="CriticalHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.CriticalHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b4517081-c2b5-9915-d556-b24c8a6b93c5" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid">
+      <topicdata name="CriticalHandleMinusOneIsInvalid" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      <apidata name="CriticalHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid.#ctor" />
+        <element api="P:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.Close" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid.Dispose">
+          <element api="M:System.Runtime.InteropServices.CriticalHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.CriticalHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.Finalize" />
+        <element api="F:System.Runtime.InteropServices.CriticalHandle.handle" />
+        <element api="P:System.Runtime.InteropServices.CriticalHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      </containers>
+      <file name="62e2a588-7999-111e-4e45-2879b7d3c4f3" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid">
+      <topicdata name="CriticalHandleMinusOneIsInvalid" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      <apidata name="CriticalHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.Close" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid.Dispose">
+          <element api="M:System.Runtime.InteropServices.CriticalHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.CriticalHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.Finalize" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      </containers>
+      <file name="49fd230a-e44a-5aa8-a580-8c042f207082" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid">
+      <topicdata name="CriticalHandleMinusOneIsInvalid" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      <apidata name="CriticalHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.CriticalHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      </containers>
+      <file name="49d0476c-d8c9-b3f6-479c-8634167591ea" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid">
+      <topicdata name="CriticalHandleMinusOneIsInvalid" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      <apidata name="CriticalHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.CriticalHandle.handle" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" />
+      </containers>
+      <file name="1a32d1bb-2768-edf4-0d56-a1a87180eda2" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" ref="true" />
+      </containers>
+      <file name="0d7e06ce-2e4c-a593-5396-abddbdf3c45e" />
+    </api>
+    <api id="P:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid.IsInvalid">
+      <topicdata group="api" />
+      <apidata name="IsInvalid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.InteropServices.CriticalHandle.IsInvalid">
+          <type api="T:System.Runtime.InteropServices.CriticalHandle" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsInvalid">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleMinusOneIsInvalid" ref="true" />
+      </containers>
+      <file name="15419e1b-fe1c-4ade-972f-a3227bef34f8" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="CriticalHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.CriticalHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d2b0fb89-ca33-0d0e-020f-d1eaa9adf4fd" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid">
+      <topicdata name="CriticalHandleZeroOrMinusOneIsInvalid" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="CriticalHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid.#ctor" />
+        <element api="P:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.Close" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid.Dispose">
+          <element api="M:System.Runtime.InteropServices.CriticalHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.CriticalHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.Finalize" />
+        <element api="F:System.Runtime.InteropServices.CriticalHandle.handle" />
+        <element api="P:System.Runtime.InteropServices.CriticalHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      </containers>
+      <file name="924af9ef-cf24-5e7e-6174-2ea4abd22445" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid">
+      <topicdata name="CriticalHandleZeroOrMinusOneIsInvalid" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="CriticalHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.Close" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid.Dispose">
+          <element api="M:System.Runtime.InteropServices.CriticalHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.CriticalHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.Finalize" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.CriticalHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      </containers>
+      <file name="265b2003-8a73-6975-88cb-db48cfa7bd5b" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid">
+      <topicdata name="CriticalHandleZeroOrMinusOneIsInvalid" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="CriticalHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.CriticalHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      </containers>
+      <file name="bb2d950d-ea8b-4685-fce5-25735451c46b" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid">
+      <topicdata name="CriticalHandleZeroOrMinusOneIsInvalid" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="CriticalHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.CriticalHandle.handle" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" />
+      </containers>
+      <file name="df1c2a93-2e15-b135-3333-722e73e10ceb" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" ref="true" />
+      </containers>
+      <file name="b53c9316-0737-699a-0495-8bf98a389d26" />
+    </api>
+    <api id="P:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid.IsInvalid">
+      <topicdata group="api" />
+      <apidata name="IsInvalid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.InteropServices.CriticalHandle.IsInvalid">
+          <type api="T:System.Runtime.InteropServices.CriticalHandle" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsInvalid">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.CriticalHandleZeroOrMinusOneIsInvalid" ref="true" />
+      </containers>
+      <file name="655a5737-5e69-cf60-f615-f3bafa6ee528" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />
+      <apidata name="SafeAccessTokenHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f8087f5c-cf24-d9ba-04ad-21414c74b8a7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle">
+      <topicdata name="SafeAccessTokenHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />
+      <apidata name="SafeAccessTokenHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.#ctor(System.IntPtr)" />
+        <element api="P:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.InvalidHandle" />
+        <element api="P:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />
+      </containers>
+      <file name="21aaa50a-dc8a-d09a-57b9-1fa41db5169b" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle">
+      <topicdata name="SafeAccessTokenHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />
+      <apidata name="SafeAccessTokenHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />
+      </containers>
+      <file name="fa84d0d3-c764-5bf0-f21d-c521e90f5f65" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle">
+      <topicdata name="SafeAccessTokenHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />
+      <apidata name="SafeAccessTokenHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.InvalidHandle" />
+        <element api="P:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />
+      </containers>
+      <file name="5e7ebbcb-f059-a809-828d-656bce71db13" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.#ctor(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="handle">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" ref="true" />
+      </containers>
+      <file name="8e82f60a-53c2-7e73-25e7-7aed2584910b" />
+    </api>
+    <api id="P:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.InvalidHandle">
+      <topicdata group="api" />
+      <apidata name="InvalidHandle" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InvalidHandle">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" ref="true" />
+      </containers>
+      <file name="9d9a1e72-3b01-72c6-4b27-a200ea71a5e9" />
+    </api>
+    <api id="P:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle.IsInvalid">
+      <topicdata group="api" />
+      <apidata name="IsInvalid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.InteropServices.SafeHandle.IsInvalid">
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsInvalid">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" ref="true" />
+      </containers>
+      <file name="f2a00713-7b12-5423-933b-caa99d382c94" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeFileHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeFileHandle" />
+      <apidata name="SafeFileHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0f21089b-e73b-2055-aae1-6217b12e53fb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeFileHandle">
+      <topicdata name="SafeFileHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeFileHandle" />
+      <apidata name="SafeFileHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Win32.SafeHandles.SafeFileHandle.#ctor(System.IntPtr,System.Boolean)" />
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeFileHandle" />
+      </containers>
+      <file name="eab395cd-6de9-17af-d9ab-6e7f08ceb1f7" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeFileHandle">
+      <topicdata name="SafeFileHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeFileHandle" />
+      <apidata name="SafeFileHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeFileHandle" />
+      </containers>
+      <file name="d67e4ff0-ad9f-8cf8-8f04-2f9187ddab8c" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeFileHandle">
+      <topicdata name="SafeFileHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeFileHandle" />
+      <apidata name="SafeFileHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeFileHandle" />
+      </containers>
+      <file name="e62e09bb-27a5-0876-058a-4cdce15d82c6" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeFileHandle.#ctor(System.IntPtr,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="preexistingHandle">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="ownsHandle">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeFileHandle" ref="true" />
+      </containers>
+      <file name="3b543706-0d1a-5e58-ba99-1c733289d242" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      <apidata name="SafeHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="5c0a87c1-55e8-f98e-7e9e-95e5b0f9997c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid">
+      <topicdata name="SafeHandleMinusOneIsInvalid" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      <apidata name="SafeHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid.#ctor(System.Boolean)" />
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid.Dispose">
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Finalize" />
+        <element api="F:System.Runtime.InteropServices.SafeHandle.handle" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      </containers>
+      <file name="9f1a4392-8328-b888-8510-6a00a347f183" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid">
+      <topicdata name="SafeHandleMinusOneIsInvalid" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      <apidata name="SafeHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid.Dispose">
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Finalize" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      </containers>
+      <file name="ead41cb1-0d8c-8b28-01c4-9b5e0d7b65d0" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid">
+      <topicdata name="SafeHandleMinusOneIsInvalid" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      <apidata name="SafeHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      </containers>
+      <file name="9c4de982-3022-d8ef-6795-909b09972432" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid">
+      <topicdata name="SafeHandleMinusOneIsInvalid" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      <apidata name="SafeHandleMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.SafeHandle.handle" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" />
+      </containers>
+      <file name="0b2b3853-4611-69be-7e25-6f5768af9471" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="ownsHandle">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" ref="true" />
+      </containers>
+      <file name="a71d4ecb-6e28-dd11-66c6-a698a5d00f78" />
+    </api>
+    <api id="P:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid.IsInvalid">
+      <topicdata group="api" />
+      <apidata name="IsInvalid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.InteropServices.SafeHandle.IsInvalid">
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsInvalid">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleMinusOneIsInvalid" ref="true" />
+      </containers>
+      <file name="309ccf06-03d2-1512-1fc6-81c3980a07ff" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="SafeHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeFileHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafePipeHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeBuffer" ref="true" />
+          <type api="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e89224b6-375f-d730-9de1-90c0b67c55ec" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid">
+      <topicdata name="SafeHandleZeroOrMinusOneIsInvalid" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="SafeHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.#ctor(System.Boolean)" />
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.Dispose">
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Finalize" />
+        <element api="F:System.Runtime.InteropServices.SafeHandle.handle" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      </containers>
+      <file name="d38f9ab3-293d-a9da-6a09-279d1bf15b46" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid">
+      <topicdata name="SafeHandleZeroOrMinusOneIsInvalid" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="SafeHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.Dispose">
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Finalize" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.ReleaseHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      </containers>
+      <file name="4e8a8a4f-a320-fb56-a17e-1286dbeb6ac3" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid">
+      <topicdata name="SafeHandleZeroOrMinusOneIsInvalid" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="SafeHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      </containers>
+      <file name="c05d4e25-90b8-c267-0e6a-9c21935f3396" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid">
+      <topicdata name="SafeHandleZeroOrMinusOneIsInvalid" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      <apidata name="SafeHandleZeroOrMinusOneIsInvalid" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.SafeHandle.handle" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" />
+      </containers>
+      <file name="773e75e2-6b32-b2af-086e-03b4c9a87463" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="ownsHandle">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+      </containers>
+      <file name="101318ab-9d1a-57ef-0eb9-e772fa3e187c" />
+    </api>
+    <api id="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid">
+      <topicdata group="api" />
+      <apidata name="IsInvalid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.InteropServices.SafeHandle.IsInvalid">
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsInvalid">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+      </containers>
+      <file name="99ef64da-f21b-34e5-e502-1c7077801b14" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" />
+      <apidata name="SafeMemoryMappedFileHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.SecurityCriticalScope" ref="false" />
+            <enumValue>
+              <field name="Everything" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="06631d73-2793-e6b8-d1e1-881bcc690eff" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle">
+      <topicdata name="SafeMemoryMappedFileHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" />
+      <apidata name="SafeMemoryMappedFileHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" />
+      </containers>
+      <file name="7e726cc0-b076-11c3-4b2c-193cee122896" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle">
+      <topicdata name="SafeMemoryMappedFileHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" />
+      <apidata name="SafeMemoryMappedFileHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" />
+      </containers>
+      <file name="89c1a145-bf88-366f-6fd7-fcf52e9375b9" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle">
+      <topicdata name="SafeMemoryMappedFileHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" />
+      <apidata name="SafeMemoryMappedFileHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" />
+      </containers>
+      <file name="f664b024-bcd0-722e-ce23-834622cac165" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" />
+      <apidata name="SafeMemoryMappedViewHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.InteropServices.SafeBuffer" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.SecurityCriticalScope" ref="false" />
+            <enumValue>
+              <field name="Everything" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6052e8fb-7a61-ea73-d71c-521f29bca707" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle">
+      <topicdata name="SafeMemoryMappedViewHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" />
+      <apidata name="SafeMemoryMappedViewHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.AcquirePointer(System.Byte*@)" />
+        <element api="P:System.Runtime.InteropServices.SafeBuffer.ByteLength" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle.Initialize">
+          <element api="M:System.Runtime.InteropServices.SafeBuffer.Initialize``1(System.UInt32)" />
+          <element api="M:System.Runtime.InteropServices.SafeBuffer.Initialize(System.UInt64)" />
+          <element api="M:System.Runtime.InteropServices.SafeBuffer.Initialize(System.UInt32,System.UInt32)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.Read``1(System.UInt64)" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.ReadArray``1(System.UInt64,``0[],System.Int32,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.ReleasePointer" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.Write``1(System.UInt64,``0)" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.WriteArray``1(System.UInt64,``0[],System.Int32,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" />
+      </containers>
+      <file name="f4793f7c-3603-cc55-3c3b-28c63e75456a" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle">
+      <topicdata name="SafeMemoryMappedViewHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" />
+      <apidata name="SafeMemoryMappedViewHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.AcquirePointer(System.Byte*@)" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle.Initialize">
+          <element api="M:System.Runtime.InteropServices.SafeBuffer.Initialize``1(System.UInt32)" />
+          <element api="M:System.Runtime.InteropServices.SafeBuffer.Initialize(System.UInt64)" />
+          <element api="M:System.Runtime.InteropServices.SafeBuffer.Initialize(System.UInt32,System.UInt32)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.Read``1(System.UInt64)" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.ReadArray``1(System.UInt64,``0[],System.Int32,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.ReleasePointer" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.Write``1(System.UInt64,``0)" />
+        <element api="M:System.Runtime.InteropServices.SafeBuffer.WriteArray``1(System.UInt64,``0[],System.Int32,System.Int32)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" />
+      </containers>
+      <file name="eafb25e5-4cb7-bc92-2c2f-781c4e1ea10e" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle">
+      <topicdata name="SafeMemoryMappedViewHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" />
+      <apidata name="SafeMemoryMappedViewHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeBuffer.ByteLength" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" />
+      </containers>
+      <file name="0faa697a-c3b6-eefe-6439-9bae13190015" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      <apidata name="SafeNCryptHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.SecurityCriticalScope" ref="false" />
+            <enumValue>
+              <field name="Everything" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="fc6f5ca8-441b-fa0f-1130-b951657b011f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <topicdata name="SafeNCryptHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      <apidata name="SafeNCryptHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseHandle" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseNativeHandle" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.SafeNCryptHandle.Dispose">
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Finalize" />
+        <element api="F:System.Runtime.InteropServices.SafeHandle.handle" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      </containers>
+      <file name="8d4bbd0c-fee1-ead3-4ba8-1d15a0596fb4" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <topicdata name="SafeNCryptHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      <apidata name="SafeNCryptHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseHandle" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseNativeHandle" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="Overload:Microsoft.Win32.SafeHandles.SafeNCryptHandle.Dispose">
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+          <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Finalize" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandle(System.IntPtr)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      </containers>
+      <file name="e07d5893-d202-c303-0821-f9eb2d1c770c" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <topicdata name="SafeNCryptHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      <apidata name="SafeNCryptHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      </containers>
+      <file name="882c5bf9-8ba5-9113-6c6e-2da376656b35" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <topicdata name="SafeNCryptHandle" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      <apidata name="SafeNCryptHandle" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.SafeHandle.handle" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />
+      </containers>
+      <file name="93c60d3c-4000-6238-eddc-188ce7fd9d24" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" ref="true" />
+      </containers>
+      <file name="778e9e56-a66b-6818-dd8a-467e50ad561b" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseHandle">
+      <topicdata group="api" />
+      <apidata name="ReleaseHandle" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Runtime.InteropServices.SafeHandle.ReleaseHandle">
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" ref="true" />
+      </containers>
+      <file name="5c00b6f4-3544-4528-2ee9-bf28ef27ac81" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseNativeHandle">
+      <topicdata group="api" />
+      <apidata name="ReleaseNativeHandle" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" ref="true" />
+      </containers>
+      <file name="07103060-c6da-f3e6-6992-68d642281482" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />
+      <apidata name="SafeNCryptKeyHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.SecurityCriticalScope" ref="false" />
+            <enumValue>
+              <field name="Everything" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b85a7ad3-77fc-39ae-55b6-07e38b0d6b9e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle">
+      <topicdata name="SafeNCryptKeyHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />
+      <apidata name="SafeNCryptKeyHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />
+      </containers>
+      <file name="9c88630f-2ddf-9794-0133-bb38c63a33d3" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle">
+      <topicdata name="SafeNCryptKeyHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />
+      <apidata name="SafeNCryptKeyHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />
+      </containers>
+      <file name="bcc43a16-5c30-6e90-42c4-e6425edb4df6" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle">
+      <topicdata name="SafeNCryptKeyHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />
+      <apidata name="SafeNCryptKeyHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />
+      </containers>
+      <file name="8595c0cd-cc49-a720-59d9-e9b85cf9caf8" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" ref="true" />
+      </containers>
+      <file name="a6df1319-4c1f-dfe6-3b56-a8cc75aefa9c" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />
+      <apidata name="SafeNCryptProviderHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.SecurityCriticalScope" ref="false" />
+            <enumValue>
+              <field name="Everything" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="794ad548-9cee-2efd-fb80-233211f2d1b4" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle">
+      <topicdata name="SafeNCryptProviderHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />
+      <apidata name="SafeNCryptProviderHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />
+      </containers>
+      <file name="309fb388-9dd2-c769-3c05-77018ead35ea" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle">
+      <topicdata name="SafeNCryptProviderHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />
+      <apidata name="SafeNCryptProviderHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />
+      </containers>
+      <file name="bd078d42-d4e8-f422-7048-a41ffbf74793" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle">
+      <topicdata name="SafeNCryptProviderHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />
+      <apidata name="SafeNCryptProviderHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />
+      </containers>
+      <file name="52256453-30f4-8d57-6ac9-7dc7db564856" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" ref="true" />
+      </containers>
+      <file name="5eb2356d-2f09-5359-d5b2-e154b1a28523" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />
+      <apidata name="SafeNCryptSecretHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" ref="true" />
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.SecurityCriticalScope" ref="false" />
+            <enumValue>
+              <field name="Everything" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="088ed040-f6de-094f-861a-82432d6274f7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle">
+      <topicdata name="SafeNCryptSecretHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />
+      <apidata name="SafeNCryptSecretHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />
+      </containers>
+      <file name="d70785a6-d6be-1f49-d2b3-fdbabb352be2" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle">
+      <topicdata name="SafeNCryptSecretHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />
+      <apidata name="SafeNCryptSecretHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />
+      </containers>
+      <file name="b38c5238-cf4e-0be9-5391-8892ea6cf26d" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle">
+      <topicdata name="SafeNCryptSecretHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />
+      <apidata name="SafeNCryptSecretHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />
+      </containers>
+      <file name="ce683fee-825e-0d87-402d-46e8e58a0fec" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" ref="true" />
+      </containers>
+      <file name="bd1a3eae-d2e2-e0a6-787c-5e432950c31c" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafePipeHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafePipeHandle" />
+      <apidata name="SafePipeHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.SecurityCriticalScope" ref="false" />
+            <enumValue>
+              <field name="Everything" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6793abaa-b40b-267c-3f96-a55b3a8b300c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafePipeHandle">
+      <topicdata name="SafePipeHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafePipeHandle" />
+      <apidata name="SafePipeHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafePipeHandle.#ctor(System.IntPtr,System.Boolean)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafePipeHandle" />
+      </containers>
+      <file name="0cdc6ebb-4554-417c-b4f5-44bbbbd3cc26" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafePipeHandle">
+      <topicdata name="SafePipeHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafePipeHandle" />
+      <apidata name="SafePipeHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafePipeHandle" />
+      </containers>
+      <file name="a1e97de0-921b-f179-305a-8a95c6d9e107" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafePipeHandle">
+      <topicdata name="SafePipeHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafePipeHandle" />
+      <apidata name="SafePipeHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafePipeHandle" />
+      </containers>
+      <file name="816ae24a-261c-e1d6-f96a-5df1d837605e" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafePipeHandle.#ctor(System.IntPtr,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="preexistingHandle">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="ownsHandle">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafePipeHandle" ref="true" />
+      </containers>
+      <file name="560b8894-5385-584e-e9d5-e8698c6c34c9" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeProcessHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />
+      <apidata name="SafeProcessHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <file name="2d721d20-0f50-ed76-53be-3669373d2260" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeProcessHandle">
+      <topicdata name="SafeProcessHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />
+      <apidata name="SafeProcessHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeProcessHandle.#ctor(System.IntPtr,System.Boolean)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />
+      </containers>
+      <file name="77e38ffa-eacd-b8ee-8a31-e9cb6e9ffa21" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeProcessHandle">
+      <topicdata name="SafeProcessHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />
+      <apidata name="SafeProcessHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />
+      </containers>
+      <file name="c213c5da-b2e3-419e-1934-37db52e649c2" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeProcessHandle">
+      <topicdata name="SafeProcessHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />
+      <apidata name="SafeProcessHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />
+      </containers>
+      <file name="c44d097d-8f92-480f-107b-edcacf3e53ce" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeProcessHandle.#ctor(System.IntPtr,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="existingHandle">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="ownsHandle">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" ref="true" />
+      </containers>
+      <file name="e0605c86-4e2c-b1a2-914f-a213e856c138" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />
+      <apidata name="SafeRegistryHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ff70301a-e1dd-b1eb-76f7-35238fdffb7b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeRegistryHandle">
+      <topicdata name="SafeRegistryHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />
+      <apidata name="SafeRegistryHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeRegistryHandle.#ctor(System.IntPtr,System.Boolean)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />
+      </containers>
+      <file name="6282bc4e-516e-783c-08a3-c08f28ac4796" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeRegistryHandle">
+      <topicdata name="SafeRegistryHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />
+      <apidata name="SafeRegistryHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />
+      </containers>
+      <file name="c2d5b14a-0b60-4aba-7c29-f53d83748870" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeRegistryHandle">
+      <topicdata name="SafeRegistryHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />
+      <apidata name="SafeRegistryHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />
+      </containers>
+      <file name="daf1f28b-f3bf-eacd-593f-104694c64859" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeRegistryHandle.#ctor(System.IntPtr,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="preexistingHandle">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="ownsHandle">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="979b9355-f6bf-1bb3-0c9f-86370320c343" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeWaitHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeWaitHandle" />
+      <apidata name="SafeWaitHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c5e7283e-3aec-2233-b3c2-cdc858371c19" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeWaitHandle">
+      <topicdata name="SafeWaitHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" />
+      <apidata name="SafeWaitHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:Microsoft.Win32.SafeHandles.SafeWaitHandle.#ctor(System.IntPtr,System.Boolean)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" />
+      </containers>
+      <file name="66f7fab5-1de2-41c0-dd2b-3d05b10868e1" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeWaitHandle">
+      <topicdata name="SafeWaitHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" />
+      <apidata name="SafeWaitHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" />
+      </containers>
+      <file name="78a862c4-3aff-65d0-7ecc-242c43a9709b" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeWaitHandle">
+      <topicdata name="SafeWaitHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" />
+      <apidata name="SafeWaitHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" />
+      </containers>
+      <file name="1757ccdc-a172-0278-b0aa-3d4f264d91e4" />
+    </api>
+    <api id="M:Microsoft.Win32.SafeHandles.SafeWaitHandle.#ctor(System.IntPtr,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="existingHandle">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="ownsHandle">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeWaitHandle" ref="true" />
+      </containers>
+      <file name="739080f4-0a68-ae4e-2bd5-33f27aa0db37" />
+    </api>
+    <api id="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" />
+      <apidata name="SafeX509ChainHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" ref="true" />
+          <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+          <type api="T:System.Runtime.ConstrainedExecution.CriticalFinalizerObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0bee44e7-580c-5ca1-6a1e-48cd938bc944" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle">
+      <topicdata name="SafeX509ChainHandle" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" />
+      <apidata name="SafeX509ChainHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" />
+      </containers>
+      <file name="4af2eb45-c058-160c-383d-44d601c011f1" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle">
+      <topicdata name="SafeX509ChainHandle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" />
+      <apidata name="SafeX509ChainHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Close" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousGetHandle" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.DangerousRelease" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.Dispose" />
+        <element api="M:System.Runtime.InteropServices.SafeHandle.SetHandleAsInvalid" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" />
+      </containers>
+      <file name="f93f16d0-449a-0452-49d2-1f813933288d" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle">
+      <topicdata name="SafeX509ChainHandle" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" />
+      <apidata name="SafeX509ChainHandle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid.IsInvalid" />
+        <element api="P:System.Runtime.InteropServices.SafeHandle.IsClosed" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Win32.SafeHandles" />
+        <type api="T:Microsoft.Win32.SafeHandles.SafeX509ChainHandle" />
+      </containers>
+      <file name="824358ce-4c47-4f4e-1c62-32b8fbecca46" />
+    </api>
+  </apis>
+</reflection>

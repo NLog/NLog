@@ -1,64 +1,84 @@
-﻿<Project DefaultTargets="Transform" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
-  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.XslTransform"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+﻿<Project ToolsVersion="12.0" DefaultTargets="Transform" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Sandcastle Tools MSBuild Tasks.  https://GitHub.com/EWSoftware/SHFB -->
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.AddNamespaceGroups"
+    AssemblyFile="{@SHFBFolder}\AddNamespaceGroups.exe" />
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.XslTransform"
+    AssemblyFile="{@SHFBFolder}\XslTransform.exe" />
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.VersionBuilder"
+    AssemblyFile="{@SHFBFolder}\VersionBuilder.exe" />
 
-  <!-- Task properties -->
-  <PropertyGroup>
-    <PresentationStyle>{@PresentationParam}</PresentationStyle>
-    <ProjectNodeParam>{@IncludeProjectNode}</ProjectNodeParam>
-    <SandcastlePath>{@SandcastlePath}</SandcastlePath>
-    <WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
-  </PropertyGroup>
+	<!-- Task properties -->
+	<PropertyGroup>
+		<WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
+		<DocModelTransformation>{@DocModelTransformation}</DocModelTransformation>
+		<DocModelTransformationParameters>{@DocModelTransformationParameters}</DocModelTransformationParameters>
+		<NamingMethod>{@NamingMethod}</NamingMethod>
+		<NamespaceGrouping>{@NamespaceGrouping}</NamespaceGrouping>
+		<MaximumParts>{@MaximumGroupParts}</MaximumParts>
+		<VersionBuilderConfigurationFile></VersionBuilderConfigurationFile>
+		<RipOldApis>false</RipOldApis>
+	</PropertyGroup>
 
-  <!-- This defines the dependencies for the Transform target -->
-  <PropertyGroup>
-    <TransformDependsOn>
-      BeforeTransformManifest;
-      TransformManifest;
-      AfterTransformManifest
-    </TransformDependsOn>
-  </PropertyGroup>
+	<!-- This defines the dependencies for the Transform target -->
+	<PropertyGroup>
+		<TransformDependsOn>
+			BeforeTransformManifest;
+			TransformManifest;
+			AfterTransformManifest
+		</TransformDependsOn>
+	</PropertyGroup>
 
-  <Target Name="Transform" DependsOnTargets="$(TransformDependsOn)" />
+	<Target Name="Transform" DependsOnTargets="$(TransformDependsOn)" />
 
-  <!-- The Transform Manifest target -->
-  <Target Name="TransformManifest">
-    <!-- Transform the reflection output based on the presentation style -->
-    <XslTransform Condition="'$(PresentationStyle)' == 'vs2005'"
-      SandcastlePath="$(SandcastlePath)"
-      WorkingFolder="$(WorkingFolder)"
-      Transformations="ProductionTransforms\ApplyVSDocModel.xsl;ProductionTransforms\AddGuidFilenames.xsl"
-      Arguments="IncludeAllMembersTopic=true;IncludeInheritedOverloadTopics=true;$(ProjectNodeParam)"
-      InputFile="reflection.org"
-      OutputFile="reflection.xml" />
+	<!-- The Transform Manifest target -->
+	<Target Name="TransformManifest">
+		<!-- If a Version Builder configuration has been specified, run version builder first to merge the
+				 information from each version. -->
+		<Microsoft.Ddue.Tools.MSBuild.VersionBuilder
+			WorkingFolder="$(WorkingFolder)"
+			ConfigurationFile="$(VersionBuilderConfigurationFile)"
+			OutputFile="reflection.org"
+			RipOldApis="$(RipOldApis)"
+			Condition=" '$(VersionBuilderConfigurationFile)' != '' " />
+		
+		<!-- Transform the reflection output based on the presentation style -->
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
+			WorkingFolder="$(WorkingFolder)"
+			Transformations="$(DocModelTransformation)"
+			Arguments="$(DocModelTransformationParameters)"
+			InputFile="reflection.org"
+			OutputFile="reflection.xml" />
 
-    <XslTransform Condition="'$(PresentationStyle)' == 'hana'"
-      SandcastlePath="$(SandcastlePath)"
-      WorkingFolder="$(WorkingFolder)"
-      Transformations="ProductionTransforms\ApplyVSDocModel.xsl;ProductionTransforms\AddGuidFilenames.xsl"
-      Arguments="IncludeAllMembersTopic=false;IncludeInheritedOverloadTopics=true;$(ProjectNodeParam)"
-      InputFile="reflection.org"
-      OutputFile="reflection.xml" />
+		<!-- Add namespace group topics if enabled -->
+		<Copy SourceFiles="reflection.xml" DestinationFiles="reflection.ungrouped"
+			Condition=" '$(NamespaceGrouping)' == 'true' " />
 
-    <XslTransform Condition="'$(PresentationStyle)' == 'prototype'"
-      SandcastlePath="$(SandcastlePath)"
-      WorkingFolder="$(WorkingFolder)"
-      Transformations="ProductionTransforms\ApplyPrototypeDocModel.xsl;ProductionTransforms\AddGuidFilenames.xsl"
-      InputFile="reflection.org"
-      OutputFile="reflection.xml" />
+		<Microsoft.Ddue.Tools.MSBuild.AddNamespaceGroups
+			WorkingFolder="$(WorkingFolder)"
+			MaximumParts="$(MaximumParts)"
+			InputFile="reflection.ungrouped"
+			OutputFile="reflection.xml"
+			Condition=" '$(NamespaceGrouping)' == 'true' " />
 
-    <!-- Generate the topic manifest -->
-    <XslTransform
-      SandcastlePath="$(SandcastlePath)"
-      WorkingFolder="$(WorkingFolder)"
-      Transformations="ProductionTransforms\ReflectionToManifest.xsl"
-      InputFile="reflection.xml"
-      OutputFile="manifest.xml" />
-  </Target>
+		<!-- Add filenames to the topics.  This needs to happen after grouping if it was enabled. -->
+		<Copy SourceFiles="reflection.xml" DestinationFiles="reflection.nofilenames" />
 
-  <!-- The following targets may be overridden or replaced to perform
-       additional processing. -->
-  <Target Name="BeforeTransformManifest" />
-  <Target Name="AfterTransformManifest" />
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
+			WorkingFolder="$(WorkingFolder)"
+			Transformations="~\ProductionTransforms\AddFilenames.xsl"
+			Arguments="namingMethod=$(NamingMethod)"
+			InputFile="reflection.nofilenames"
+			OutputFile="reflection.xml" />
+
+		<!-- Generate the topic manifest -->
+		<Microsoft.Ddue.Tools.MSBuild.XslTransform
+			WorkingFolder="$(WorkingFolder)"
+			Transformations="~\ProductionTransforms\ReflectionToManifest.xsl"
+			InputFile="reflection.xml"
+			OutputFile="manifest.xml" />
+	</Target>
+
+	<!-- The following targets may be overridden or replaced to perform additional processing. -->
+	<Target Name="BeforeTransformManifest" />
+	<Target Name="AfterTransformManifest" />
 </Project>

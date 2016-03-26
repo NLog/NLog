@@ -1,0 +1,1777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceProcess.ServiceController">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceProcess.ServiceController</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceProcess.ServiceController</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceProcess.ServiceController</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceProcess">
+      <topicdata group="api" />
+      <apidata name="System.ServiceProcess" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceProcess.ServiceController" />
+        <element api="T:System.ServiceProcess.ServiceControllerStatus" />
+        <element api="T:System.ServiceProcess.ServiceStartMode" />
+        <element api="T:System.ServiceProcess.ServiceType" />
+        <element api="T:System.ServiceProcess.TimeoutException" />
+      </elements>
+      <file name="0c052f44-7b46-06e3-55ef-0cb620c02c46" />
+    </api>
+    <api id="T:System.ServiceProcess.ServiceController">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceController" />
+      <apidata name="ServiceController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+      </containers>
+      <file name="92ca053e-c68f-f9fa-c50b-ff7a178b94ed" />
+    </api>
+    <api id="AllMembers.T:System.ServiceProcess.ServiceController">
+      <topicdata name="ServiceController" group="list" subgroup="members" typeTopicId="T:System.ServiceProcess.ServiceController" />
+      <apidata name="ServiceController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceProcess.ServiceController.#ctor">
+          <element api="M:System.ServiceProcess.ServiceController.#ctor(System.String)" />
+          <element api="M:System.ServiceProcess.ServiceController.#ctor(System.String,System.String)" />
+        </element>
+        <element api="P:System.ServiceProcess.ServiceController.CanPauseAndContinue" />
+        <element api="P:System.ServiceProcess.ServiceController.CanShutdown" />
+        <element api="P:System.ServiceProcess.ServiceController.CanStop" />
+        <element api="M:System.ServiceProcess.ServiceController.Continue" />
+        <element api="P:System.ServiceProcess.ServiceController.DependentServices" />
+        <element api="P:System.ServiceProcess.ServiceController.DisplayName" />
+        <element api="Overload:System.ServiceProcess.ServiceController.Dispose">
+          <element api="M:System.ServiceProcess.ServiceController.Dispose" />
+          <element api="M:System.ServiceProcess.ServiceController.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.ServiceController.GetDevices">
+          <element api="M:System.ServiceProcess.ServiceController.GetDevices" />
+          <element api="M:System.ServiceProcess.ServiceController.GetDevices(System.String)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.ServiceController.GetServices">
+          <element api="M:System.ServiceProcess.ServiceController.GetServices" />
+          <element api="M:System.ServiceProcess.ServiceController.GetServices(System.String)" />
+        </element>
+        <element api="P:System.ServiceProcess.ServiceController.MachineName" />
+        <element api="M:System.ServiceProcess.ServiceController.Pause" />
+        <element api="M:System.ServiceProcess.ServiceController.Refresh" />
+        <element api="P:System.ServiceProcess.ServiceController.ServiceHandle" />
+        <element api="P:System.ServiceProcess.ServiceController.ServiceName" />
+        <element api="P:System.ServiceProcess.ServiceController.ServicesDependedOn" />
+        <element api="P:System.ServiceProcess.ServiceController.ServiceType" />
+        <element api="Overload:System.ServiceProcess.ServiceController.Start">
+          <element api="M:System.ServiceProcess.ServiceController.Start" />
+          <element api="M:System.ServiceProcess.ServiceController.Start(System.String[])" />
+        </element>
+        <element api="P:System.ServiceProcess.ServiceController.Status" />
+        <element api="M:System.ServiceProcess.ServiceController.Stop" />
+        <element api="Overload:System.ServiceProcess.ServiceController.WaitForStatus">
+          <element api="M:System.ServiceProcess.ServiceController.WaitForStatus(System.ServiceProcess.ServiceControllerStatus)" />
+          <element api="M:System.ServiceProcess.ServiceController.WaitForStatus(System.ServiceProcess.ServiceControllerStatus,System.TimeSpan)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" />
+      </containers>
+      <file name="33e8e289-4d97-5d62-73c9-3d0c6750d102" />
+    </api>
+    <api id="Methods.T:System.ServiceProcess.ServiceController">
+      <topicdata name="ServiceController" group="list" subgroup="Methods" typeTopicId="T:System.ServiceProcess.ServiceController" />
+      <apidata name="ServiceController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceProcess.ServiceController.Continue" />
+        <element api="Overload:System.ServiceProcess.ServiceController.Dispose">
+          <element api="M:System.ServiceProcess.ServiceController.Dispose" />
+          <element api="M:System.ServiceProcess.ServiceController.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.ServiceController.GetDevices">
+          <element api="M:System.ServiceProcess.ServiceController.GetDevices" />
+          <element api="M:System.ServiceProcess.ServiceController.GetDevices(System.String)" />
+        </element>
+        <element api="Overload:System.ServiceProcess.ServiceController.GetServices">
+          <element api="M:System.ServiceProcess.ServiceController.GetServices" />
+          <element api="M:System.ServiceProcess.ServiceController.GetServices(System.String)" />
+        </element>
+        <element api="M:System.ServiceProcess.ServiceController.Pause" />
+        <element api="M:System.ServiceProcess.ServiceController.Refresh" />
+        <element api="Overload:System.ServiceProcess.ServiceController.Start">
+          <element api="M:System.ServiceProcess.ServiceController.Start" />
+          <element api="M:System.ServiceProcess.ServiceController.Start(System.String[])" />
+        </element>
+        <element api="M:System.ServiceProcess.ServiceController.Stop" />
+        <element api="Overload:System.ServiceProcess.ServiceController.WaitForStatus">
+          <element api="M:System.ServiceProcess.ServiceController.WaitForStatus(System.ServiceProcess.ServiceControllerStatus)" />
+          <element api="M:System.ServiceProcess.ServiceController.WaitForStatus(System.ServiceProcess.ServiceControllerStatus,System.TimeSpan)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" />
+      </containers>
+      <file name="304af23a-cb23-9402-2912-42be6e2b9405" />
+    </api>
+    <api id="Properties.T:System.ServiceProcess.ServiceController">
+      <topicdata name="ServiceController" group="list" subgroup="Properties" typeTopicId="T:System.ServiceProcess.ServiceController" />
+      <apidata name="ServiceController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceProcess.ServiceController.CanPauseAndContinue" />
+        <element api="P:System.ServiceProcess.ServiceController.CanShutdown" />
+        <element api="P:System.ServiceProcess.ServiceController.CanStop" />
+        <element api="P:System.ServiceProcess.ServiceController.DependentServices" />
+        <element api="P:System.ServiceProcess.ServiceController.DisplayName" />
+        <element api="P:System.ServiceProcess.ServiceController.MachineName" />
+        <element api="P:System.ServiceProcess.ServiceController.ServiceHandle" />
+        <element api="P:System.ServiceProcess.ServiceController.ServiceName" />
+        <element api="P:System.ServiceProcess.ServiceController.ServicesDependedOn" />
+        <element api="P:System.ServiceProcess.ServiceController.ServiceType" />
+        <element api="P:System.ServiceProcess.ServiceController.Status" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" />
+      </containers>
+      <file name="0af41fa8-287d-5d3c-9317-5c1a6101f18c" />
+    </api>
+    <api id="Overload:System.ServiceProcess.ServiceController.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceController" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceProcess.ServiceController.#ctor(System.String)" />
+        <element api="M:System.ServiceProcess.ServiceController.#ctor(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="fb53690c-d3d0-9fea-3660-b2fe5b4c818b" />
+    </api>
+    <api id="Overload:System.ServiceProcess.ServiceController.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceController" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceProcess.ServiceController.Dispose" />
+        <element api="M:System.ServiceProcess.ServiceController.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="2c74f2cc-6994-4b2c-3400-0dccadb11862" />
+    </api>
+    <api id="Overload:System.ServiceProcess.ServiceController.GetDevices">
+      <topicdata name="GetDevices" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceController" />
+      <apidata name="GetDevices" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceProcess.ServiceController.GetDevices" />
+        <element api="M:System.ServiceProcess.ServiceController.GetDevices(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="20a5e70d-3071-098c-6019-ac166d135f23" />
+    </api>
+    <api id="Overload:System.ServiceProcess.ServiceController.GetServices">
+      <topicdata name="GetServices" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceController" />
+      <apidata name="GetServices" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceProcess.ServiceController.GetServices" />
+        <element api="M:System.ServiceProcess.ServiceController.GetServices(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="c42255b6-43f1-7622-96a0-4593e3176ba4" />
+    </api>
+    <api id="Overload:System.ServiceProcess.ServiceController.Start">
+      <topicdata name="Start" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceController" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceProcess.ServiceController.Start" />
+        <element api="M:System.ServiceProcess.ServiceController.Start(System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="483a0491-327f-0d82-992b-d73282f925c8" />
+    </api>
+    <api id="Overload:System.ServiceProcess.ServiceController.WaitForStatus">
+      <topicdata name="WaitForStatus" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceController" />
+      <apidata name="WaitForStatus" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceProcess.ServiceController.WaitForStatus(System.ServiceProcess.ServiceControllerStatus)" />
+        <element api="M:System.ServiceProcess.ServiceController.WaitForStatus(System.ServiceProcess.ServiceControllerStatus,System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="fd8bea5f-a417-d5d4-9774-f753d69a265f" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceProcess.ServiceController.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="7a0195e2-2c31-63e5-323b-589e21d78099" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceProcess.ServiceController.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="machineName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="b591070a-2ecc-f594-2aaf-2ba6edb318c2" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.CanPauseAndContinue">
+      <topicdata group="api" />
+      <apidata name="CanPauseAndContinue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CanPauseAndContinue" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="6df5d038-8806-d5b9-2eda-b0d7f6fd1b1b" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.CanShutdown">
+      <topicdata group="api" />
+      <apidata name="CanShutdown" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CanShutdown" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="06a42379-29d0-6a40-1d09-6bb8b75ff342" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.CanStop">
+      <topicdata group="api" />
+      <apidata name="CanStop" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CanStop" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="0540077d-5bd2-c010-a318-dd5f1441d38b" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.Continue">
+      <topicdata group="api" />
+      <apidata name="Continue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="3ca5b7de-8508-39df-9d5d-809e5a947318" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.DependentServices">
+      <topicdata group="api" />
+      <apidata name="DependentServices" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DependentServices" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="92320172-1eb5-6d07-8aa3-d7252d5596cc" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="d5dfbaeb-945c-5bb5-d6ed-623d12193c51" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceProcess.ServiceController.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="a1613752-cf27-eec1-1ef7-f258829e5045" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.ServiceProcess.ServiceController.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="1d41b0fd-d094-db56-064f-1dd7db5b2123" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.GetDevices">
+      <topicdata group="api" />
+      <apidata name="GetDevices" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceProcess.ServiceController.GetDevices" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="462294ed-e049-669c-5212-b8cbaf8b42f5" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.GetDevices(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDevices" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceProcess.ServiceController.GetDevices" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="machineName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="8577fb56-81cd-3322-e52d-388d4fc61e25" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.GetServices">
+      <topicdata group="api" />
+      <apidata name="GetServices" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceProcess.ServiceController.GetServices" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="0d2f4c2a-73e3-e6f1-0a8b-ac9d968bb49b" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.GetServices(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetServices" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceProcess.ServiceController.GetServices" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="machineName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="c5aa8fed-696e-4234-e664-a9f9edf139c0" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.MachineName">
+      <topicdata group="api" />
+      <apidata name="MachineName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MachineName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="81ab1269-f764-8c15-ce5b-ca5944d3e313" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.Pause">
+      <topicdata group="api" />
+      <apidata name="Pause" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="db94efc5-09cd-fdf1-44fb-dcc1bff0ae66" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.Refresh">
+      <topicdata group="api" />
+      <apidata name="Refresh" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="8154551f-4336-ca7a-48a9-6415fb9dc144" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.ServiceHandle">
+      <topicdata group="api" />
+      <apidata name="ServiceHandle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ServiceHandle" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.SafeHandle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="4bf66cc9-29a7-a295-6280-637b11de41dc" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.ServiceName">
+      <topicdata group="api" />
+      <apidata name="ServiceName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ServiceName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="61f8b7a3-65c4-95ee-2e1c-f5d092ecbf60" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.ServicesDependedOn">
+      <topicdata group="api" />
+      <apidata name="ServicesDependedOn" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ServicesDependedOn" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="d3085032-7ca3-5246-28ed-4c5addf10e64" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.ServiceType">
+      <topicdata group="api" />
+      <apidata name="ServiceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ServiceType" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="b04e5a71-7d8b-7a8e-aa07-3becfdf1a0be" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceProcess.ServiceController.Start" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="075def1f-3e51-9c66-4be8-9a14e2bde1d5" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.Start(System.String[])">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceProcess.ServiceController.Start" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="args">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="13982bf5-13d6-92ef-6e30-c04c36dbc71d" />
+    </api>
+    <api id="P:System.ServiceProcess.ServiceController.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="c691ffe6-187f-1489-cc54-88ad1f16c7b6" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="a53c68b6-65de-e1cb-5f42-23bfe8df7b8a" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.WaitForStatus(System.ServiceProcess.ServiceControllerStatus)">
+      <topicdata group="api" />
+      <apidata name="WaitForStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceProcess.ServiceController.WaitForStatus" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="desiredStatus">
+          <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="85046968-ec2f-39d7-db90-80dd67ec3deb" />
+    </api>
+    <api id="M:System.ServiceProcess.ServiceController.WaitForStatus(System.ServiceProcess.ServiceControllerStatus,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="WaitForStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceProcess.ServiceController.WaitForStatus" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="desiredStatus">
+          <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceController" ref="true" />
+      </containers>
+      <file name="de3c111e-c4dc-db8b-5b65-09815073086b" />
+    </api>
+    <api id="T:System.ServiceProcess.ServiceControllerStatus">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceControllerStatus" />
+      <apidata name="ServiceControllerStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+      </containers>
+      <file name="f81aae01-d6c3-f1a1-58e3-709e1479d73e" />
+    </api>
+    <api id="AllMembers.T:System.ServiceProcess.ServiceControllerStatus">
+      <topicdata name="ServiceControllerStatus" group="list" subgroup="members" typeTopicId="T:System.ServiceProcess.ServiceControllerStatus" />
+      <apidata name="ServiceControllerStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.ServiceProcess.ServiceControllerStatus.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.ContinuePending" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.Paused" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.PausePending" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.Running" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.StartPending" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.Stopped" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.StopPending" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" />
+      </containers>
+      <file name="8c37fc56-dbb0-115b-c63b-c69253972f01" />
+    </api>
+    <api id="Methods.T:System.ServiceProcess.ServiceControllerStatus">
+      <topicdata name="ServiceControllerStatus" group="list" subgroup="Methods" typeTopicId="T:System.ServiceProcess.ServiceControllerStatus" />
+      <apidata name="ServiceControllerStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.ServiceProcess.ServiceControllerStatus.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" />
+      </containers>
+      <file name="1e0bfa85-a410-f5d1-dcc8-5fd78b492e7e" />
+    </api>
+    <api id="Fields.T:System.ServiceProcess.ServiceControllerStatus">
+      <topicdata name="ServiceControllerStatus" group="list" subgroup="Fields" typeTopicId="T:System.ServiceProcess.ServiceControllerStatus" />
+      <apidata name="ServiceControllerStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.ContinuePending" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.Paused" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.PausePending" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.Running" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.StartPending" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.Stopped" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.StopPending" />
+        <element api="F:System.ServiceProcess.ServiceControllerStatus.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" />
+      </containers>
+      <file name="d150a482-a97e-59e9-d26b-73007a45ffba" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceControllerStatus.ContinuePending">
+      <topicdata group="api" />
+      <apidata name="ContinuePending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </containers>
+      <file name="e69cb50c-fc45-aec4-3b45-bfaed2f5b4bc" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceControllerStatus.Paused">
+      <topicdata group="api" />
+      <apidata name="Paused" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </containers>
+      <file name="c866ef48-d209-8523-5166-732c16eefda3" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceControllerStatus.PausePending">
+      <topicdata group="api" />
+      <apidata name="PausePending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </containers>
+      <file name="357d0159-9794-2603-fafc-cc44cb83fa1c" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceControllerStatus.Running">
+      <topicdata group="api" />
+      <apidata name="Running" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </containers>
+      <file name="1af6cb9f-7ab2-2da4-2ceb-ccd96d73406e" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceControllerStatus.StartPending">
+      <topicdata group="api" />
+      <apidata name="StartPending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </containers>
+      <file name="899cdf46-ae40-5fce-155d-4428f9ec0d4d" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceControllerStatus.Stopped">
+      <topicdata group="api" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </containers>
+      <file name="26d06e68-e382-3248-ea92-62f5d91ba52f" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceControllerStatus.StopPending">
+      <topicdata group="api" />
+      <apidata name="StopPending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </containers>
+      <file name="cb6a5321-1d82-0f9f-abe1-42cc3b6ee632" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceControllerStatus.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceControllerStatus" ref="true" />
+      </containers>
+      <file name="64f1063c-2ccf-b2f4-7127-c02bdb8aee93" />
+    </api>
+    <api id="T:System.ServiceProcess.ServiceStartMode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceStartMode" />
+      <apidata name="ServiceStartMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+      </containers>
+      <file name="29df831b-5293-2be7-0127-1f299f1d3c38" />
+    </api>
+    <api id="AllMembers.T:System.ServiceProcess.ServiceStartMode">
+      <topicdata name="ServiceStartMode" group="list" subgroup="members" typeTopicId="T:System.ServiceProcess.ServiceStartMode" />
+      <apidata name="ServiceStartMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.ServiceProcess.ServiceStartMode.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.ServiceProcess.ServiceStartMode.Automatic" />
+        <element api="F:System.ServiceProcess.ServiceStartMode.Disabled" />
+        <element api="F:System.ServiceProcess.ServiceStartMode.Manual" />
+        <element api="F:System.ServiceProcess.ServiceStartMode.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceStartMode" />
+      </containers>
+      <file name="5ff555e6-9d60-d9d1-1e49-8e9c7cca5e76" />
+    </api>
+    <api id="Methods.T:System.ServiceProcess.ServiceStartMode">
+      <topicdata name="ServiceStartMode" group="list" subgroup="Methods" typeTopicId="T:System.ServiceProcess.ServiceStartMode" />
+      <apidata name="ServiceStartMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.ServiceProcess.ServiceStartMode.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceStartMode" />
+      </containers>
+      <file name="1ad0abe0-2f6c-f92f-6c58-a09aa11ee61d" />
+    </api>
+    <api id="Fields.T:System.ServiceProcess.ServiceStartMode">
+      <topicdata name="ServiceStartMode" group="list" subgroup="Fields" typeTopicId="T:System.ServiceProcess.ServiceStartMode" />
+      <apidata name="ServiceStartMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceProcess.ServiceStartMode.Automatic" />
+        <element api="F:System.ServiceProcess.ServiceStartMode.Disabled" />
+        <element api="F:System.ServiceProcess.ServiceStartMode.Manual" />
+        <element api="F:System.ServiceProcess.ServiceStartMode.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceStartMode" />
+      </containers>
+      <file name="ab927519-f07b-15f2-5ba0-94ac12a5a359" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceStartMode.Automatic">
+      <topicdata group="api" />
+      <apidata name="Automatic" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceStartMode" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceStartMode" ref="true" />
+      </containers>
+      <file name="682822f4-07f5-b6d7-c930-556702cb9c11" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceStartMode.Disabled">
+      <topicdata group="api" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceStartMode" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceStartMode" ref="true" />
+      </containers>
+      <file name="d136b169-4168-04c9-c51f-048a2a7573ab" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceStartMode.Manual">
+      <topicdata group="api" />
+      <apidata name="Manual" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceStartMode" ref="true" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceStartMode" ref="true" />
+      </containers>
+      <file name="61efdaad-1c93-8d03-20cd-62c94e54cd70" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceStartMode.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceStartMode" ref="true" />
+      </containers>
+      <file name="2b622ba8-879a-142a-b717-3ba0efa413c1" />
+    </api>
+    <api id="T:System.ServiceProcess.ServiceType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceProcess.ServiceType" />
+      <apidata name="ServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0f8e56be-6598-8564-c6b6-21324396d7bd" />
+    </api>
+    <api id="AllMembers.T:System.ServiceProcess.ServiceType">
+      <topicdata name="ServiceType" group="list" subgroup="members" typeTopicId="T:System.ServiceProcess.ServiceType" />
+      <apidata name="ServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.ServiceProcess.ServiceType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.ServiceProcess.ServiceType.Adapter" />
+        <element api="F:System.ServiceProcess.ServiceType.FileSystemDriver" />
+        <element api="F:System.ServiceProcess.ServiceType.InteractiveProcess" />
+        <element api="F:System.ServiceProcess.ServiceType.KernelDriver" />
+        <element api="F:System.ServiceProcess.ServiceType.RecognizerDriver" />
+        <element api="F:System.ServiceProcess.ServiceType.value__" />
+        <element api="F:System.ServiceProcess.ServiceType.Win32OwnProcess" />
+        <element api="F:System.ServiceProcess.ServiceType.Win32ShareProcess" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" />
+      </containers>
+      <file name="f562aeb1-9c21-b537-6b69-c8c7e5bb5a9d" />
+    </api>
+    <api id="Methods.T:System.ServiceProcess.ServiceType">
+      <topicdata name="ServiceType" group="list" subgroup="Methods" typeTopicId="T:System.ServiceProcess.ServiceType" />
+      <apidata name="ServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.ServiceProcess.ServiceType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" />
+      </containers>
+      <file name="05b4bcef-d3fb-9977-509c-90469a07766e" />
+    </api>
+    <api id="Fields.T:System.ServiceProcess.ServiceType">
+      <topicdata name="ServiceType" group="list" subgroup="Fields" typeTopicId="T:System.ServiceProcess.ServiceType" />
+      <apidata name="ServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceProcess.ServiceType.Adapter" />
+        <element api="F:System.ServiceProcess.ServiceType.FileSystemDriver" />
+        <element api="F:System.ServiceProcess.ServiceType.InteractiveProcess" />
+        <element api="F:System.ServiceProcess.ServiceType.KernelDriver" />
+        <element api="F:System.ServiceProcess.ServiceType.RecognizerDriver" />
+        <element api="F:System.ServiceProcess.ServiceType.value__" />
+        <element api="F:System.ServiceProcess.ServiceType.Win32OwnProcess" />
+        <element api="F:System.ServiceProcess.ServiceType.Win32ShareProcess" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" />
+      </containers>
+      <file name="e8482679-6e8c-b4bd-347d-5430bf203485" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceType.Adapter">
+      <topicdata group="api" />
+      <apidata name="Adapter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </containers>
+      <file name="62070b7b-4713-2293-0b0a-74013dd5a89a" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceType.FileSystemDriver">
+      <topicdata group="api" />
+      <apidata name="FileSystemDriver" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </containers>
+      <file name="a0dab4e1-febb-5acb-0d61-94a26b528466" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceType.InteractiveProcess">
+      <topicdata group="api" />
+      <apidata name="InteractiveProcess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </containers>
+      <file name="93e1e7ba-6ef5-f26c-e651-03c5ee76e556" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceType.KernelDriver">
+      <topicdata group="api" />
+      <apidata name="KernelDriver" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </containers>
+      <file name="d0552558-60a6-ad40-cf25-a825bca3e824" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceType.RecognizerDriver">
+      <topicdata group="api" />
+      <apidata name="RecognizerDriver" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </containers>
+      <file name="b92095ba-df1b-bba6-5d40-11f106021774" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceType.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </containers>
+      <file name="05528fb6-8388-2f72-531e-02b3f6278471" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceType.Win32OwnProcess">
+      <topicdata group="api" />
+      <apidata name="Win32OwnProcess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </containers>
+      <file name="a2b57c5d-4720-1bc4-8606-338ba83d0710" />
+    </api>
+    <api id="F:System.ServiceProcess.ServiceType.Win32ShareProcess">
+      <topicdata group="api" />
+      <apidata name="Win32ShareProcess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.ServiceType" ref="true" />
+      </containers>
+      <file name="25b26f2a-60b2-d19f-c546-1204cf125efd" />
+    </api>
+    <api id="T:System.ServiceProcess.TimeoutException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceProcess.TimeoutException" />
+      <apidata name="TimeoutException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.TimeoutException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+      </containers>
+      <file name="4d1f2596-0ee1-7b58-06ea-50fa8a7f0399" />
+    </api>
+    <api id="AllMembers.T:System.ServiceProcess.TimeoutException">
+      <topicdata name="TimeoutException" group="list" subgroup="members" typeTopicId="T:System.ServiceProcess.TimeoutException" />
+      <apidata name="TimeoutException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.TimeoutException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.ServiceProcess.TimeoutException.#ctor">
+          <element api="M:System.ServiceProcess.TimeoutException.#ctor" />
+          <element api="M:System.ServiceProcess.TimeoutException.#ctor(System.String)" />
+          <element api="M:System.ServiceProcess.TimeoutException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.TimeoutException" />
+      </containers>
+      <file name="8327f117-ab27-80e0-37de-e607c08c15a4" />
+    </api>
+    <api id="Methods.T:System.ServiceProcess.TimeoutException">
+      <topicdata name="TimeoutException" group="list" subgroup="Methods" typeTopicId="T:System.ServiceProcess.TimeoutException" />
+      <apidata name="TimeoutException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.TimeoutException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.TimeoutException" />
+      </containers>
+      <file name="fda56802-1b27-4739-de2e-2b2de978fb86" />
+    </api>
+    <api id="Properties.T:System.ServiceProcess.TimeoutException">
+      <topicdata name="TimeoutException" group="list" subgroup="Properties" typeTopicId="T:System.ServiceProcess.TimeoutException" />
+      <apidata name="TimeoutException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceProcess.TimeoutException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.TimeoutException" />
+      </containers>
+      <file name="e5a6ec76-0177-cab4-2262-cd83f20506f8" />
+    </api>
+    <api id="Overload:System.ServiceProcess.TimeoutException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceProcess.TimeoutException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceProcess.TimeoutException.#ctor" />
+        <element api="M:System.ServiceProcess.TimeoutException.#ctor(System.String)" />
+        <element api="M:System.ServiceProcess.TimeoutException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.TimeoutException" ref="true" />
+      </containers>
+      <file name="fc7b6a83-4d17-655b-8e43-dff1d8e99ced" />
+    </api>
+    <api id="M:System.ServiceProcess.TimeoutException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceProcess.TimeoutException.#ctor" />
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.TimeoutException" ref="true" />
+      </containers>
+      <file name="7aa95ee8-6ca2-8b8e-d2a3-66b08ed9815f" />
+    </api>
+    <api id="M:System.ServiceProcess.TimeoutException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceProcess.TimeoutException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.TimeoutException" ref="true" />
+      </containers>
+      <file name="ae8996bc-5bda-084c-bc5b-696b5f93cb9d" />
+    </api>
+    <api id="M:System.ServiceProcess.TimeoutException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceProcess.TimeoutException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceProcess.ServiceController" module="System.ServiceProcess.ServiceController" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.ServiceProcess" />
+        <type api="T:System.ServiceProcess.TimeoutException" ref="true" />
+      </containers>
+      <file name="77328dc5-2dce-5ee2-e9ff-cf8c5be96c19" />
+    </api>
+  </apis>
+</reflection>

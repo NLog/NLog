@@ -1,0 +1,1238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Custom">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Custom" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Custom.KnownDeviceTypes" />
+        <element api="T:Windows.Devices.Custom.IOControlAccessMode" />
+        <element api="T:Windows.Devices.Custom.IOControlBufferingMethod" />
+        <element api="T:Windows.Devices.Custom.IIOControlCode" />
+        <element api="T:Windows.Devices.Custom.IOControlCode" />
+        <element api="T:Windows.Devices.Custom.DeviceAccessMode" />
+        <element api="T:Windows.Devices.Custom.DeviceSharingMode" />
+        <element api="T:Windows.Devices.Custom.CustomDevice" />
+      </elements>
+      <file name="32ff86f5-b616-fecb-9f82-009b51cb56e5" />
+    </api>
+    <api id="T:Windows.Devices.Custom.CustomDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Custom.CustomDevice" />
+      <apidata name="CustomDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Custom.ICustomDevice" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a15d7e2f-3ced-b464-ef0f-ff16cbe6a01c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Custom.CustomDevice">
+      <topicdata name="CustomDevice" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Custom.CustomDevice" />
+      <apidata name="CustomDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Custom.CustomDevice.FromIdAsync(System.String,Windows.Devices.Custom.DeviceAccessMode,Windows.Devices.Custom.DeviceSharingMode)" />
+        <element api="M:Windows.Devices.Custom.CustomDevice.GetDeviceSelector(System.Guid)" />
+        <element api="P:Windows.Devices.Custom.CustomDevice.InputStream" />
+        <element api="P:Windows.Devices.Custom.CustomDevice.OutputStream" />
+        <element api="M:Windows.Devices.Custom.CustomDevice.SendIOControlAsync(Windows.Devices.Custom.IIOControlCode,Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Devices.Custom.CustomDevice.TrySendIOControlAsync(Windows.Devices.Custom.IIOControlCode,Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" />
+      </containers>
+      <file name="b8d0846f-2139-389d-f87d-ba96bda943c3" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Custom.CustomDevice">
+      <topicdata name="CustomDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Custom.CustomDevice" />
+      <apidata name="CustomDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Custom.CustomDevice.FromIdAsync(System.String,Windows.Devices.Custom.DeviceAccessMode,Windows.Devices.Custom.DeviceSharingMode)" />
+        <element api="M:Windows.Devices.Custom.CustomDevice.GetDeviceSelector(System.Guid)" />
+        <element api="M:Windows.Devices.Custom.CustomDevice.SendIOControlAsync(Windows.Devices.Custom.IIOControlCode,Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Devices.Custom.CustomDevice.TrySendIOControlAsync(Windows.Devices.Custom.IIOControlCode,Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" />
+      </containers>
+      <file name="54719095-5320-3dfa-85c7-7c627273ecd1" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Custom.CustomDevice">
+      <topicdata name="CustomDevice" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Custom.CustomDevice" />
+      <apidata name="CustomDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Custom.CustomDevice.InputStream" />
+        <element api="P:Windows.Devices.Custom.CustomDevice.OutputStream" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" />
+      </containers>
+      <file name="925d42eb-97e9-ce81-1378-71eb8e8a0d23" />
+    </api>
+    <api id="M:Windows.Devices.Custom.CustomDevice.FromIdAsync(System.String,Windows.Devices.Custom.DeviceAccessMode,Windows.Devices.Custom.DeviceSharingMode)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="desiredAccess" in="true">
+          <type api="T:Windows.Devices.Custom.DeviceAccessMode" ref="false" />
+        </parameter>
+        <parameter name="sharingMode" in="true">
+          <type api="T:Windows.Devices.Custom.DeviceSharingMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Custom.CustomDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" ref="true" />
+      </containers>
+      <file name="86edde9d-3c38-0a8e-ae21-60497a7d1977" />
+    </api>
+    <api id="M:Windows.Devices.Custom.CustomDevice.GetDeviceSelector(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="classGuid" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" ref="true" />
+      </containers>
+      <file name="066f9c1a-44f3-f2f7-cde8-1868d7ddd9c7" />
+    </api>
+    <api id="P:Windows.Devices.Custom.CustomDevice.InputStream">
+      <topicdata group="api" />
+      <apidata name="InputStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InputStream" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" ref="true" />
+      </containers>
+      <file name="e0b2b45e-c739-0dcc-458c-36df5a6dea78" />
+    </api>
+    <api id="P:Windows.Devices.Custom.CustomDevice.OutputStream">
+      <topicdata group="api" />
+      <apidata name="OutputStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OutputStream" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" ref="true" />
+      </containers>
+      <file name="8af28b7e-459c-07ac-fcbf-6b6dd4f5f93e" />
+    </api>
+    <api id="M:Windows.Devices.Custom.CustomDevice.SendIOControlAsync(Windows.Devices.Custom.IIOControlCode,Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="SendIOControlAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="ioControlCode" in="true">
+          <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+        </parameter>
+        <parameter name="inputBuffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="outputBuffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" ref="true" />
+      </containers>
+      <file name="e628c8cc-515e-a367-70e4-fed2e9c437de" />
+    </api>
+    <api id="M:Windows.Devices.Custom.CustomDevice.TrySendIOControlAsync(Windows.Devices.Custom.IIOControlCode,Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="TrySendIOControlAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="ioControlCode" in="true">
+          <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+        </parameter>
+        <parameter name="inputBuffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="outputBuffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.CustomDevice" ref="true" />
+      </containers>
+      <file name="18db5346-c6e2-8dbd-f11e-4483b1331a4f" />
+    </api>
+    <api id="T:Windows.Devices.Custom.DeviceAccessMode">
+      <topicdata group="api" />
+      <apidata name="DeviceAccessMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Custom.DeviceAccessMode.Read" />
+        <element api="F:Windows.Devices.Custom.DeviceAccessMode.Write" />
+        <element api="F:Windows.Devices.Custom.DeviceAccessMode.ReadWrite" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="49a9d12a-7b1e-4860-016f-836b08d74695" />
+    </api>
+    <api id="F:Windows.Devices.Custom.DeviceAccessMode.Read">
+      <topicdata group="api" notopic="" />
+      <apidata name="Read" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.DeviceAccessMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.DeviceAccessMode" ref="false" />
+      </containers>
+      <file name="3ad4d0bf-2388-788a-ec17-46b081c8100e" />
+    </api>
+    <api id="F:Windows.Devices.Custom.DeviceAccessMode.ReadWrite">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReadWrite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.DeviceAccessMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.DeviceAccessMode" ref="false" />
+      </containers>
+      <file name="e4edacc2-e183-32ca-dcbf-76f29dbda434" />
+    </api>
+    <api id="F:Windows.Devices.Custom.DeviceAccessMode.Write">
+      <topicdata group="api" notopic="" />
+      <apidata name="Write" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.DeviceAccessMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.DeviceAccessMode" ref="false" />
+      </containers>
+      <file name="c4c7e240-df9f-7d7c-bfa8-f5c443ef0927" />
+    </api>
+    <api id="T:Windows.Devices.Custom.DeviceSharingMode">
+      <topicdata group="api" />
+      <apidata name="DeviceSharingMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Custom.DeviceSharingMode.Shared" />
+        <element api="F:Windows.Devices.Custom.DeviceSharingMode.Exclusive" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aacd6272-20ec-0b65-b881-9111f2788880" />
+    </api>
+    <api id="F:Windows.Devices.Custom.DeviceSharingMode.Exclusive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Exclusive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.DeviceSharingMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.DeviceSharingMode" ref="false" />
+      </containers>
+      <file name="6a91da63-af65-6c20-8207-74fa42c08053" />
+    </api>
+    <api id="F:Windows.Devices.Custom.DeviceSharingMode.Shared">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shared" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.DeviceSharingMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.DeviceSharingMode" ref="false" />
+      </containers>
+      <file name="b62c3921-d87d-5701-5ba2-5650464a32fc" />
+    </api>
+    <api id="T:Windows.Devices.Custom.IIOControlCode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Custom.IIOControlCode" />
+      <apidata name="IIOControlCode" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Devices.Custom.IOControlCode" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>244668903</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>24776</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17269</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>167</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>97</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>127</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>136</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>8</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>6</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>108</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>96</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0c64dd66-a12e-16f9-219c-42a3fe207a3c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Custom.IIOControlCode">
+      <topicdata name="IIOControlCode" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Custom.IIOControlCode" />
+      <apidata name="IIOControlCode" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Custom.IIOControlCode.AccessMode" />
+        <element api="P:Windows.Devices.Custom.IIOControlCode.BufferingMethod" />
+        <element api="P:Windows.Devices.Custom.IIOControlCode.ControlCode" />
+        <element api="P:Windows.Devices.Custom.IIOControlCode.DeviceType" />
+        <element api="P:Windows.Devices.Custom.IIOControlCode.Function" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IIOControlCode" />
+      </containers>
+      <file name="c8783e79-30f5-deac-da63-3aa166b7a63b" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Custom.IIOControlCode">
+      <topicdata name="IIOControlCode" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Custom.IIOControlCode" />
+      <apidata name="IIOControlCode" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Custom.IIOControlCode.AccessMode" />
+        <element api="P:Windows.Devices.Custom.IIOControlCode.BufferingMethod" />
+        <element api="P:Windows.Devices.Custom.IIOControlCode.ControlCode" />
+        <element api="P:Windows.Devices.Custom.IIOControlCode.DeviceType" />
+        <element api="P:Windows.Devices.Custom.IIOControlCode.Function" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IIOControlCode" />
+      </containers>
+      <file name="6ec3a3c0-9409-1fc7-ead0-43d39bc39d6b" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IIOControlCode.AccessMode">
+      <topicdata group="api" />
+      <apidata name="AccessMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_AccessMode" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+      </containers>
+      <file name="38e73647-4269-9508-a5a1-fbdbc725dcab" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IIOControlCode.BufferingMethod">
+      <topicdata group="api" />
+      <apidata name="BufferingMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_BufferingMethod" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+      </containers>
+      <file name="0a7ff6cd-73fb-e15d-712e-c9142cc0dca0" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IIOControlCode.ControlCode">
+      <topicdata group="api" />
+      <apidata name="ControlCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ControlCode" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+      </containers>
+      <file name="85d17187-822b-9581-6972-cc9858269a71" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IIOControlCode.DeviceType">
+      <topicdata group="api" />
+      <apidata name="DeviceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceType" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+      </containers>
+      <file name="862025a6-9e2c-2ddf-c8ab-401d7daec8e3" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IIOControlCode.Function">
+      <topicdata group="api" />
+      <apidata name="Function" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Function" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+      </containers>
+      <file name="03a0de6f-46c5-c93f-53c7-90d0180d2c69" />
+    </api>
+    <api id="T:Windows.Devices.Custom.IOControlAccessMode">
+      <topicdata group="api" />
+      <apidata name="IOControlAccessMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Custom.IOControlAccessMode.Any" />
+        <element api="F:Windows.Devices.Custom.IOControlAccessMode.Read" />
+        <element api="F:Windows.Devices.Custom.IOControlAccessMode.Write" />
+        <element api="F:Windows.Devices.Custom.IOControlAccessMode.ReadWrite" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c8e5f70f-0521-e57f-7347-5ab36a371769" />
+    </api>
+    <api id="F:Windows.Devices.Custom.IOControlAccessMode.Any">
+      <topicdata group="api" notopic="" />
+      <apidata name="Any" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </containers>
+      <file name="455a95ed-7493-0c66-f038-7acc132ceb28" />
+    </api>
+    <api id="F:Windows.Devices.Custom.IOControlAccessMode.Read">
+      <topicdata group="api" notopic="" />
+      <apidata name="Read" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </containers>
+      <file name="35ff9e02-59f7-91ea-6839-4bc090b9a6bf" />
+    </api>
+    <api id="F:Windows.Devices.Custom.IOControlAccessMode.ReadWrite">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReadWrite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </containers>
+      <file name="c264e1e9-d459-60f3-9aa0-3160a76ddcf5" />
+    </api>
+    <api id="F:Windows.Devices.Custom.IOControlAccessMode.Write">
+      <topicdata group="api" notopic="" />
+      <apidata name="Write" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </containers>
+      <file name="efb0a86f-8ed3-c836-3b19-fd7adbc10d3e" />
+    </api>
+    <api id="T:Windows.Devices.Custom.IOControlBufferingMethod">
+      <topicdata group="api" />
+      <apidata name="IOControlBufferingMethod" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Custom.IOControlBufferingMethod.Buffered" />
+        <element api="F:Windows.Devices.Custom.IOControlBufferingMethod.DirectInput" />
+        <element api="F:Windows.Devices.Custom.IOControlBufferingMethod.DirectOutput" />
+        <element api="F:Windows.Devices.Custom.IOControlBufferingMethod.Neither" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b3a9b4b2-c943-15be-f7de-1b17eff13279" />
+    </api>
+    <api id="F:Windows.Devices.Custom.IOControlBufferingMethod.Buffered">
+      <topicdata group="api" notopic="" />
+      <apidata name="Buffered" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </containers>
+      <file name="5fe54491-4d79-802d-385c-c14c3d4c1635" />
+    </api>
+    <api id="F:Windows.Devices.Custom.IOControlBufferingMethod.DirectInput">
+      <topicdata group="api" notopic="" />
+      <apidata name="DirectInput" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </containers>
+      <file name="61a2860d-b912-8a77-74e4-c509b2b1c16e" />
+    </api>
+    <api id="F:Windows.Devices.Custom.IOControlBufferingMethod.DirectOutput">
+      <topicdata group="api" notopic="" />
+      <apidata name="DirectOutput" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </containers>
+      <file name="f0e45bd1-1c2c-c999-2849-4378cffd5133" />
+    </api>
+    <api id="F:Windows.Devices.Custom.IOControlBufferingMethod.Neither">
+      <topicdata group="api" notopic="" />
+      <apidata name="Neither" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </containers>
+      <file name="bb48df87-a913-36cc-966d-bf8bd61c00db" />
+    </api>
+    <api id="T:Windows.Devices.Custom.IOControlCode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Custom.IOControlCode" />
+      <apidata name="IOControlCode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="68a66b03-743d-8ce0-04a1-065f8883b871" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Custom.IOControlCode">
+      <topicdata name="IOControlCode" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Custom.IOControlCode" />
+      <apidata name="IOControlCode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Custom.IOControlCode.#ctor(System.UInt16,System.UInt16,Windows.Devices.Custom.IOControlAccessMode,Windows.Devices.Custom.IOControlBufferingMethod)" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.AccessMode" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.BufferingMethod" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.ControlCode" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.DeviceType" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.Function" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" />
+      </containers>
+      <file name="077b32c7-21ae-8b83-8af6-d2c54d6eeca8" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Custom.IOControlCode">
+      <topicdata name="IOControlCode" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Custom.IOControlCode" />
+      <apidata name="IOControlCode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" />
+      </containers>
+      <file name="862a7fe2-4a3b-df6f-77da-7dc8c6f9a84d" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Custom.IOControlCode">
+      <topicdata name="IOControlCode" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Custom.IOControlCode" />
+      <apidata name="IOControlCode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Custom.IOControlCode.AccessMode" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.BufferingMethod" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.ControlCode" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.DeviceType" />
+        <element api="P:Windows.Devices.Custom.IOControlCode.Function" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" />
+      </containers>
+      <file name="75ab2670-17f2-0d7b-2faf-0bb6289ff0d1" />
+    </api>
+    <api id="M:Windows.Devices.Custom.IOControlCode.#ctor(System.UInt16,System.UInt16,Windows.Devices.Custom.IOControlAccessMode,Windows.Devices.Custom.IOControlBufferingMethod)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="deviceType" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="function" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="accessMode" in="true">
+          <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+        </parameter>
+        <parameter name="bufferingMethod" in="true">
+          <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" ref="true" />
+      </containers>
+      <file name="8f0d174c-b03e-991c-6939-30c51bc524c5" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IOControlCode.AccessMode">
+      <topicdata group="api" />
+      <apidata name="AccessMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AccessMode" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlAccessMode" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Devices.Custom.IIOControlCode.AccessMode">
+          <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" ref="true" />
+      </containers>
+      <file name="87fa7585-3782-d697-cad6-808b9f252658" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IOControlCode.BufferingMethod">
+      <topicdata group="api" />
+      <apidata name="BufferingMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BufferingMethod" />
+      <returns>
+        <type api="T:Windows.Devices.Custom.IOControlBufferingMethod" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Devices.Custom.IIOControlCode.BufferingMethod">
+          <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" ref="true" />
+      </containers>
+      <file name="5f3aae3c-d38a-2229-1fcc-059d9a91c18d" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IOControlCode.ControlCode">
+      <topicdata group="api" />
+      <apidata name="ControlCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ControlCode" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Devices.Custom.IIOControlCode.ControlCode">
+          <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" ref="true" />
+      </containers>
+      <file name="40d8d33a-5179-7061-2a00-27d104c4b0c4" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IOControlCode.DeviceType">
+      <topicdata group="api" />
+      <apidata name="DeviceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceType" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Devices.Custom.IIOControlCode.DeviceType">
+          <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" ref="true" />
+      </containers>
+      <file name="5cecb392-8073-a71a-68a9-fe6be9190613" />
+    </api>
+    <api id="P:Windows.Devices.Custom.IOControlCode.Function">
+      <topicdata group="api" />
+      <apidata name="Function" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Function" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Devices.Custom.IIOControlCode.Function">
+          <type api="T:Windows.Devices.Custom.IIOControlCode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.IOControlCode" ref="true" />
+      </containers>
+      <file name="d15dad3a-47a0-6591-526c-5ea2affeba69" />
+    </api>
+    <api id="T:Windows.Devices.Custom.KnownDeviceTypes">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Custom.KnownDeviceTypes" />
+      <apidata name="KnownDeviceTypes" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="49e2b46a-fe12-c736-4da7-f87f4145fa20" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Custom.KnownDeviceTypes">
+      <topicdata name="KnownDeviceTypes" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Custom.KnownDeviceTypes" />
+      <apidata name="KnownDeviceTypes" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Custom.KnownDeviceTypes.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.KnownDeviceTypes" />
+      </containers>
+      <file name="81313d33-2ef2-a94b-55b1-16f461d6bd4a" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Custom.KnownDeviceTypes">
+      <topicdata name="KnownDeviceTypes" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Custom.KnownDeviceTypes" />
+      <apidata name="KnownDeviceTypes" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Custom.KnownDeviceTypes.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.KnownDeviceTypes" />
+      </containers>
+      <file name="9023926f-17c8-5263-3009-8fd80cc116c6" />
+    </api>
+    <api id="P:Windows.Devices.Custom.KnownDeviceTypes.Unknown">
+      <topicdata group="api" />
+      <apidata name="Unknown" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Unknown" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Custom" />
+        <type api="T:Windows.Devices.Custom.KnownDeviceTypes" ref="true" />
+      </containers>
+      <file name="ab256b3c-8bc1-a4e6-939f-c061654d35c1" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2960 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Accessibility">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Accessibility.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Accessibility.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Accessibility.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1EA4DBF0-3C3B-11CF-810C-00AA00389B71</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Accessibility">
+      <topicdata group="api" />
+      <apidata name="Accessibility" group="namespace" />
+      <elements>
+        <element api="T:Accessibility.IAccPropServices" />
+        <element api="T:Accessibility.IAccPropServer" />
+        <element api="T:Accessibility.AnnoScope" />
+        <element api="T:Accessibility._RemotableHandle" />
+        <element api="T:Accessibility.CAccPropServices" />
+        <element api="T:Accessibility.CAccPropServicesClass" />
+        <element api="T:Accessibility.__MIDL_IWinTypes_0009" />
+        <element api="T:Accessibility.IAccessible" />
+        <element api="T:Accessibility.IAccessibleHandler" />
+        <element api="T:Accessibility.IAccIdentity" />
+      </elements>
+      <file name="e605596a-8dac-3da0-613a-843f6e488528" />
+    </api>
+    <api id="T:Accessibility.__MIDL_IWinTypes_0009">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility.__MIDL_IWinTypes_0009" />
+      <apidata name="__MIDL_IWinTypes_0009" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" layout="explicit" size="4" pack="4" format="ansi" noSettableProperties="true" />
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <file name="e7fcdf03-0473-07ef-54ff-e5f1d86ce5aa" />
+    </api>
+    <api id="AllMembers.T:Accessibility.__MIDL_IWinTypes_0009">
+      <topicdata name="__MIDL_IWinTypes_0009" group="list" subgroup="members" typeTopicId="T:Accessibility.__MIDL_IWinTypes_0009" />
+      <apidata name="__MIDL_IWinTypes_0009" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" layout="explicit" size="4" pack="4" format="ansi" noSettableProperties="true" />
+      <elements>
+        <element api="F:Accessibility.__MIDL_IWinTypes_0009.hInproc" />
+        <element api="F:Accessibility.__MIDL_IWinTypes_0009.hRemote" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.__MIDL_IWinTypes_0009" />
+      </containers>
+      <file name="a8bf8d4d-d433-d53c-9b7c-def1f59781ac" />
+    </api>
+    <api id="Methods.T:Accessibility.__MIDL_IWinTypes_0009">
+      <topicdata name="__MIDL_IWinTypes_0009" group="list" subgroup="Methods" typeTopicId="T:Accessibility.__MIDL_IWinTypes_0009" />
+      <apidata name="__MIDL_IWinTypes_0009" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" layout="explicit" size="4" pack="4" format="ansi" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.__MIDL_IWinTypes_0009" />
+      </containers>
+      <file name="02985ab5-e9c9-be46-5f51-a158b5fc1bc8" />
+    </api>
+    <api id="Fields.T:Accessibility.__MIDL_IWinTypes_0009">
+      <topicdata name="__MIDL_IWinTypes_0009" group="list" subgroup="Fields" typeTopicId="T:Accessibility.__MIDL_IWinTypes_0009" />
+      <apidata name="__MIDL_IWinTypes_0009" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" layout="explicit" size="4" pack="4" format="ansi" noSettableProperties="true" />
+      <elements>
+        <element api="F:Accessibility.__MIDL_IWinTypes_0009.hInproc" />
+        <element api="F:Accessibility.__MIDL_IWinTypes_0009.hRemote" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.__MIDL_IWinTypes_0009" />
+      </containers>
+      <file name="fc2d1b09-3fbc-2369-7042-e4134cbebde5" />
+    </api>
+    <api id="F:Accessibility.__MIDL_IWinTypes_0009.hInproc">
+      <topicdata group="api" />
+      <apidata name="hInproc" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" offset="0" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.__MIDL_IWinTypes_0009" ref="false" />
+      </containers>
+      <file name="d843e93a-d831-2eb0-50a7-4cee55fbd38c" />
+    </api>
+    <api id="F:Accessibility.__MIDL_IWinTypes_0009.hRemote">
+      <topicdata group="api" />
+      <apidata name="hRemote" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" offset="0" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.__MIDL_IWinTypes_0009" ref="false" />
+      </containers>
+      <file name="32e97faa-aa69-f88f-1af0-d2995d4d40af" />
+    </api>
+    <api id="T:Accessibility._RemotableHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility._RemotableHandle" />
+      <apidata name="_RemotableHandle" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <file name="57c0f81a-702e-347b-8c35-26f1068f233f" />
+    </api>
+    <api id="AllMembers.T:Accessibility._RemotableHandle">
+      <topicdata name="_RemotableHandle" group="list" subgroup="members" typeTopicId="T:Accessibility._RemotableHandle" />
+      <apidata name="_RemotableHandle" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Accessibility._RemotableHandle.fContext" />
+        <element api="F:Accessibility._RemotableHandle.u" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility._RemotableHandle" />
+      </containers>
+      <file name="36c1b612-f0ce-59e6-6234-5ed016762271" />
+    </api>
+    <api id="Methods.T:Accessibility._RemotableHandle">
+      <topicdata name="_RemotableHandle" group="list" subgroup="Methods" typeTopicId="T:Accessibility._RemotableHandle" />
+      <apidata name="_RemotableHandle" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility._RemotableHandle" />
+      </containers>
+      <file name="d04e4fd9-8d04-9457-d2a0-639851698822" />
+    </api>
+    <api id="Fields.T:Accessibility._RemotableHandle">
+      <topicdata name="_RemotableHandle" group="list" subgroup="Fields" typeTopicId="T:Accessibility._RemotableHandle" />
+      <apidata name="_RemotableHandle" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Accessibility._RemotableHandle.fContext" />
+        <element api="F:Accessibility._RemotableHandle.u" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility._RemotableHandle" />
+      </containers>
+      <file name="203d0385-f2b5-786d-ddbe-7c5ab65a8e5a" />
+    </api>
+    <api id="F:Accessibility._RemotableHandle.fContext">
+      <topicdata group="api" />
+      <apidata name="fContext" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility._RemotableHandle" ref="false" />
+      </containers>
+      <file name="3a0b8219-8673-6681-fcca-388e73bf9e06" />
+    </api>
+    <api id="F:Accessibility._RemotableHandle.u">
+      <topicdata group="api" />
+      <apidata name="u" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Accessibility.__MIDL_IWinTypes_0009" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility._RemotableHandle" ref="false" />
+      </containers>
+      <file name="8262caad-b756-8aa7-e632-e21010bcb9f5" />
+    </api>
+    <api id="T:Accessibility.AnnoScope">
+      <topicdata group="api" />
+      <apidata name="AnnoScope" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Accessibility.AnnoScope.ANNO_THIS" />
+        <element api="F:Accessibility.AnnoScope.ANNO_CONTAINER" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <file name="28144d7c-e5f5-2e68-4421-fb15073a9752" />
+    </api>
+    <api id="F:Accessibility.AnnoScope.ANNO_CONTAINER">
+      <topicdata group="api" notopic="" />
+      <apidata name="ANNO_CONTAINER" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Accessibility.AnnoScope" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.AnnoScope" ref="false" />
+      </containers>
+      <file name="a699a622-39d8-5579-4571-f15935d75486" />
+    </api>
+    <api id="F:Accessibility.AnnoScope.ANNO_THIS">
+      <topicdata group="api" notopic="" />
+      <apidata name="ANNO_THIS" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Accessibility.AnnoScope" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.AnnoScope" ref="false" />
+      </containers>
+      <file name="464efb9f-9a66-2989-dfb9-252187e8e37e" />
+    </api>
+    <api id="T:Accessibility.CAccPropServices">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility.CAccPropServices" />
+      <apidata name="CAccPropServices" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <implements>
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>6E26E776-04F0-495D-80E4-3330352E3169</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="334aa53a-e49b-f538-d0af-43bf03666028" />
+    </api>
+    <api id="AllMembers.T:Accessibility.CAccPropServices">
+      <topicdata name="CAccPropServices" group="list" subgroup="members" typeTopicId="T:Accessibility.CAccPropServices" />
+      <apidata name="CAccPropServices" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccPropServices.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.IAccPropServices.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServices" />
+      </containers>
+      <file name="24843945-b461-b892-f8a1-5c4d874c07dc" />
+    </api>
+    <api id="Methods.T:Accessibility.CAccPropServices">
+      <topicdata name="CAccPropServices" group="list" subgroup="Methods" typeTopicId="T:Accessibility.CAccPropServices" />
+      <apidata name="CAccPropServices" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccPropServices.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.IAccPropServices.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServices" />
+      </containers>
+      <file name="d755dfc8-4730-d0a1-6224-06dd145cb542" />
+    </api>
+    <api id="T:Accessibility.CAccPropServicesClass">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility.CAccPropServicesClass" />
+      <apidata name="CAccPropServicesClass" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" comimport="true" defaultConstructor="M:Accessibility.CAccPropServicesClass.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+        <type api="T:Accessibility.CAccPropServices" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>B5F8350B-0548-48B1-A6EE-88BD00B4A5E7</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ClassInterfaceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Runtime.InteropServices.ClassInterfaceType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="04d89c67-68fc-b010-fc31-d870dc850288" />
+    </api>
+    <api id="AllMembers.T:Accessibility.CAccPropServicesClass">
+      <topicdata name="CAccPropServicesClass" group="list" subgroup="members" typeTopicId="T:Accessibility.CAccPropServicesClass" />
+      <apidata name="CAccPropServicesClass" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" comimport="true" defaultConstructor="M:Accessibility.CAccPropServicesClass.#ctor" />
+      <elements>
+        <element api="M:Accessibility.CAccPropServicesClass.#ctor" />
+        <element api="M:Accessibility.CAccPropServicesClass.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.CAccPropServicesClass.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.CAccPropServicesClass.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.CAccPropServicesClass.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.CAccPropServicesClass.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.CAccPropServicesClass.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.CAccPropServicesClass.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" />
+      </containers>
+      <file name="e248da99-1334-d157-5ef3-90410a1ec0dd" />
+    </api>
+    <api id="Methods.T:Accessibility.CAccPropServicesClass">
+      <topicdata name="CAccPropServicesClass" group="list" subgroup="Methods" typeTopicId="T:Accessibility.CAccPropServicesClass" />
+      <apidata name="CAccPropServicesClass" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" comimport="true" defaultConstructor="M:Accessibility.CAccPropServicesClass.#ctor" />
+      <elements>
+        <element api="M:Accessibility.CAccPropServicesClass.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.CAccPropServicesClass.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.CAccPropServicesClass.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.CAccPropServicesClass.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.CAccPropServicesClass.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.CAccPropServicesClass.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.CAccPropServicesClass.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.CAccPropServicesClass.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" />
+      </containers>
+      <file name="d65f2f0a-1d1c-8530-6b75-2be5fde85b91" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="6bd984c9-0ae1-132e-b240-6d18bb396692" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ClearHmenuProps" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="1a58fc49-55a0-9b92-66a3-1d38c9662244" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ClearHwndProps" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="f03aafd7-c8a2-2b13-64d7-1a518eaac9c3" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ClearProps" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="b0e5e7f0-e224-af73-9f8d-fe68bede8d9e" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="ComposeHmenuIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="ppIDString" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pdwIDStringLen" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="5b332ebe-b286-9af5-0d88-8539aee7cee3" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="ComposeHwndIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="ppIDString" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pdwIDStringLen" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="83123a92-b73d-508e-20ed-d953c4b96026" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="DecomposeHmenuIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="phmenu" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pidChild" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="594681b6-e1ca-3100-735a-0451d12810e6" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="DecomposeHwndIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="phwnd" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pidObject" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="pidChild" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="2c889bf4-ba13-d613-695d-2d0a41a89def" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetHmenuProp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="var" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="8124e46c-39ff-ec31-0823-d7f5f36fe533" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+      <topicdata group="api" />
+      <apidata name="SetHmenuPropServer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pServer" in="true">
+          <type api="T:Accessibility.IAccPropServer" ref="true" />
+        </parameter>
+        <parameter name="AnnoScope" in="true">
+          <type api="T:Accessibility.AnnoScope" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="b65bad66-343b-087a-3e6b-b41365b821b8" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetHmenuPropStr" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="str" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="76bff4ed-db2d-1c1a-a44e-95d4ad537b9b" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetHwndProp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="var" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="398dec7f-c387-00e1-9eb1-2a5bba295dd8" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+      <topicdata group="api" />
+      <apidata name="SetHwndPropServer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pServer" in="true">
+          <type api="T:Accessibility.IAccPropServer" ref="true" />
+        </parameter>
+        <parameter name="AnnoScope" in="true">
+          <type api="T:Accessibility.AnnoScope" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="24d6d612-961d-0f15-820c-512d1406429e" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetHwndPropStr" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="str" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="6bd9548c-c3dc-0eb4-77e7-dd4470d07fc2" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+      <topicdata group="api" />
+      <apidata name="SetPropServer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pServer" in="true">
+          <type api="T:Accessibility.IAccPropServer" ref="true" />
+        </parameter>
+        <parameter name="AnnoScope" in="true">
+          <type api="T:Accessibility.AnnoScope" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="e115086d-d9c0-0b2d-3be9-aaeef7fcc08a" />
+    </api>
+    <api id="M:Accessibility.CAccPropServicesClass.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetPropValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="var" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Accessibility.IAccPropServices.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)">
+          <type api="T:Accessibility.IAccPropServices" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </containers>
+      <file name="75574148-430d-de3b-e77f-f713b5703e4c" />
+    </api>
+    <api id="T:Accessibility.IAccessible">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility.IAccessible" />
+      <apidata name="IAccessible" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <implementors>
+        <type api="T:System.Windows.Forms.AccessibleObject" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>618736E0-3C3D-11CF-810C-00AA00389B71</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bba92165-1a0a-dc0a-0562-8f916b832342" />
+    </api>
+    <api id="AllMembers.T:Accessibility.IAccessible">
+      <topicdata name="IAccessible" group="list" subgroup="members" typeTopicId="T:Accessibility.IAccessible" />
+      <apidata name="IAccessible" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="P:Accessibility.IAccessible.accChild(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accChildCount" />
+        <element api="P:Accessibility.IAccessible.accDefaultAction(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accDescription(System.Object)" />
+        <element api="M:Accessibility.IAccessible.accDoDefaultAction(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accFocus" />
+        <element api="P:Accessibility.IAccessible.accHelp(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accHelpTopic(System.String@,System.Object)" />
+        <element api="M:Accessibility.IAccessible.accHitTest(System.Int32,System.Int32)" />
+        <element api="P:Accessibility.IAccessible.accKeyboardShortcut(System.Object)" />
+        <element api="M:Accessibility.IAccessible.accLocation(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Object)" />
+        <element api="P:Accessibility.IAccessible.accName(System.Object)" />
+        <element api="M:Accessibility.IAccessible.accNavigate(System.Int32,System.Object)" />
+        <element api="P:Accessibility.IAccessible.accParent" />
+        <element api="P:Accessibility.IAccessible.accRole(System.Object)" />
+        <element api="M:Accessibility.IAccessible.accSelect(System.Int32,System.Object)" />
+        <element api="P:Accessibility.IAccessible.accSelection" />
+        <element api="P:Accessibility.IAccessible.accState(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accValue(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" />
+      </containers>
+      <file name="ff65dcbf-2e42-6164-b608-8f296c6f9b5e" />
+    </api>
+    <api id="Methods.T:Accessibility.IAccessible">
+      <topicdata name="IAccessible" group="list" subgroup="Methods" typeTopicId="T:Accessibility.IAccessible" />
+      <apidata name="IAccessible" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccessible.accDoDefaultAction(System.Object)" />
+        <element api="M:Accessibility.IAccessible.accHitTest(System.Int32,System.Int32)" />
+        <element api="M:Accessibility.IAccessible.accLocation(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Object)" />
+        <element api="M:Accessibility.IAccessible.accNavigate(System.Int32,System.Object)" />
+        <element api="M:Accessibility.IAccessible.accSelect(System.Int32,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" />
+      </containers>
+      <file name="433edb76-2783-098b-07d1-a841408341f1" />
+    </api>
+    <api id="Properties.T:Accessibility.IAccessible">
+      <topicdata name="IAccessible" group="list" subgroup="Properties" typeTopicId="T:Accessibility.IAccessible" />
+      <apidata name="IAccessible" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="P:Accessibility.IAccessible.accChild(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accChildCount" />
+        <element api="P:Accessibility.IAccessible.accDefaultAction(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accDescription(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accFocus" />
+        <element api="P:Accessibility.IAccessible.accHelp(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accHelpTopic(System.String@,System.Object)" />
+        <element api="P:Accessibility.IAccessible.accKeyboardShortcut(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accName(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accParent" />
+        <element api="P:Accessibility.IAccessible.accRole(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accSelection" />
+        <element api="P:Accessibility.IAccessible.accState(System.Object)" />
+        <element api="P:Accessibility.IAccessible.accValue(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" />
+      </containers>
+      <file name="59422e8a-4834-e7dc-5290-16c665ffbbbe" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accChild(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accChild" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accChild">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5002</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <parameters>
+        <parameter name="varChild" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5002</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="12c114cd-dff5-7b29-4e35-f4f14e3ee26e" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accChildCount">
+      <topicdata group="api" />
+      <apidata name="accChildCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accChildCount">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5001</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5001</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3527af79-11e2-493e-6169-fde6bd73952d" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accDefaultAction(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accDefaultAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accDefaultAction">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5013</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5013</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4f94f2f9-d342-47e3-ed83-bdda7cc1056e" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accDescription(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accDescription">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5005</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5005</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7baaba41-5545-6ffa-6c27-049c3ebec88c" />
+    </api>
+    <api id="M:Accessibility.IAccessible.accDoDefaultAction(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accDoDefaultAction" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5018</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="38cc1742-e721-1026-b2cc-f7bb5eed03c7" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accFocus">
+      <topicdata group="api" />
+      <apidata name="accFocus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accFocus">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5011</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5011</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="35ed1893-1bc0-f0f5-e7e2-e383c719201d" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accHelp(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accHelp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accHelp">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5008</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5008</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9f0391e4-d990-e040-1ce4-333f980f68d4" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accHelpTopic(System.String@,System.Object)">
+      <topicdata group="api" />
+      <apidata name="accHelpTopic" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accHelpTopic">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5009</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <parameters>
+        <parameter name="pszHelpFile" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5009</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4c58bc36-194c-c11e-e2b0-1152fcd67f69" />
+    </api>
+    <api id="M:Accessibility.IAccessible.accHitTest(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="accHitTest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="xLeft" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="yTop" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5017</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b1a2ecc9-f86b-e37c-7f79-37d8cd4d9cd4" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accKeyboardShortcut(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accKeyboardShortcut" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accKeyboardShortcut">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5010</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5010</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5d69c9c1-acaa-4d7c-2aab-69ac5adb3c5c" />
+    </api>
+    <api id="M:Accessibility.IAccessible.accLocation(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Object)">
+      <topicdata group="api" />
+      <apidata name="accLocation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pxLeft" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="pyTop" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="pcxWidth" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="pcyHeight" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5015</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="06429e6a-c805-de7b-5abd-5bdb6823b0eb" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accName(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_accName">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5003</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_accName">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5003</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5003</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4bfb0c20-0477-b97e-8b6f-eed19b070b88" />
+    </api>
+    <api id="M:Accessibility.IAccessible.accNavigate(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="accNavigate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="navDir" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="varStart" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5016</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="54888d4e-cd36-a04a-c182-faba499533aa" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accParent">
+      <topicdata group="api" />
+      <apidata name="accParent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accParent">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5000</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5000</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2074f727-4dd7-e6dc-455d-d1d1d392ada4" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accRole(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accRole" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accRole">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5006</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5006</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cd9f4ec9-293f-db6e-be38-c25be31dc3d1" />
+    </api>
+    <api id="M:Accessibility.IAccessible.accSelect(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="accSelect" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="flagsSelect" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5014</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="baca8309-4405-0dd4-0203-73cf605f7f2f" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accSelection">
+      <topicdata group="api" />
+      <apidata name="accSelection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accSelection">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5012</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5012</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="414547f4-dc76-f20e-df1a-33e114307a28" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accState(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_accState">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5007</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5007</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="106cd415-dfd6-d8e5-6282-07791a395edc" />
+    </api>
+    <api id="P:Accessibility.IAccessible.accValue(System.Object)">
+      <topicdata group="api" />
+      <apidata name="accValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_accValue">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5004</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_accValue">
+        <attributes>
+          <attribute>
+            <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+            <argument>
+              <type api="T:System.Int32" ref="false" />
+              <value>-5004</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <parameters>
+        <parameter name="varChild" in="true" optional="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessible" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-5004</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a126a9a9-06db-078b-2fa5-f01a9edcca7f" />
+    </api>
+    <api id="T:Accessibility.IAccessibleHandler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility.IAccessibleHandler" />
+      <apidata name="IAccessibleHandler" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.InterfaceTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Runtime.InteropServices.ComInterfaceType" ref="false" />
+            <enumValue>
+              <field name="InterfaceIsIUnknown" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>03022430-ABC4-11D0-BDE2-00AA001A1953</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1eff17bf-9059-22ce-8a85-54fe079e4097" />
+    </api>
+    <api id="AllMembers.T:Accessibility.IAccessibleHandler">
+      <topicdata name="IAccessibleHandler" group="list" subgroup="members" typeTopicId="T:Accessibility.IAccessibleHandler" />
+      <apidata name="IAccessibleHandler" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccessibleHandler.AccessibleObjectFromID(System.Int32,System.Int32,Accessibility.IAccessible@)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessibleHandler" />
+      </containers>
+      <file name="f8f2eab8-3644-5976-a0b4-93f4450a6beb" />
+    </api>
+    <api id="Methods.T:Accessibility.IAccessibleHandler">
+      <topicdata name="IAccessibleHandler" group="list" subgroup="Methods" typeTopicId="T:Accessibility.IAccessibleHandler" />
+      <apidata name="IAccessibleHandler" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccessibleHandler.AccessibleObjectFromID(System.Int32,System.Int32,Accessibility.IAccessible@)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessibleHandler" />
+      </containers>
+      <file name="4ff147d5-61d8-281b-23f7-52490ddaca1b" />
+    </api>
+    <api id="M:Accessibility.IAccessibleHandler.AccessibleObjectFromID(System.Int32,System.Int32,Accessibility.IAccessible@)">
+      <topicdata group="api" />
+      <apidata name="AccessibleObjectFromID" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="lObjectID" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pIAccessible" out="true">
+          <referenceTo>
+            <type api="T:Accessibility.IAccessible" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccessibleHandler" ref="true" />
+      </containers>
+      <file name="b857e2a7-d9b4-60bc-3a18-96f8c935e69a" />
+    </api>
+    <api id="T:Accessibility.IAccIdentity">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility.IAccIdentity" />
+      <apidata name="IAccIdentity" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.InterfaceTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Runtime.InteropServices.ComInterfaceType" ref="false" />
+            <enumValue>
+              <field name="InterfaceIsIUnknown" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>7852B78D-1CFD-41C1-A615-9C0C85960B5F</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6d4cdfa9-5a12-bfee-9ba0-385bc37293e4" />
+    </api>
+    <api id="AllMembers.T:Accessibility.IAccIdentity">
+      <topicdata name="IAccIdentity" group="list" subgroup="members" typeTopicId="T:Accessibility.IAccIdentity" />
+      <apidata name="IAccIdentity" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccIdentity.GetIdentityString(System.UInt32,System.IntPtr,System.UInt32@)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccIdentity" />
+      </containers>
+      <file name="6dc740d1-6619-4432-0eaa-f1a3f1482196" />
+    </api>
+    <api id="Methods.T:Accessibility.IAccIdentity">
+      <topicdata name="IAccIdentity" group="list" subgroup="Methods" typeTopicId="T:Accessibility.IAccIdentity" />
+      <apidata name="IAccIdentity" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccIdentity.GetIdentityString(System.UInt32,System.IntPtr,System.UInt32@)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccIdentity" />
+      </containers>
+      <file name="aebdbc90-79bf-f996-c0d1-fde6fc622e55" />
+    </api>
+    <api id="M:Accessibility.IAccIdentity.GetIdentityString(System.UInt32,System.IntPtr,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="GetIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dwIDChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="ppIDString" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pdwIDStringLen" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccIdentity" ref="true" />
+      </containers>
+      <file name="2566cca4-4941-26f8-61a4-2323b14f1091" />
+    </api>
+    <api id="T:Accessibility.IAccPropServer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility.IAccPropServer" />
+      <apidata name="IAccPropServer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.InterfaceTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Runtime.InteropServices.ComInterfaceType" ref="false" />
+            <enumValue>
+              <field name="InterfaceIsIUnknown" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>76C0DBBB-15E0-4E7B-B61B-20EEEA2001E0</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bedb3a0f-ae69-8327-3148-756d23e1a331" />
+    </api>
+    <api id="AllMembers.T:Accessibility.IAccPropServer">
+      <topicdata name="IAccPropServer" group="list" subgroup="members" typeTopicId="T:Accessibility.IAccPropServer" />
+      <apidata name="IAccPropServer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccPropServer.GetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object@,System.Int32@)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServer" />
+      </containers>
+      <file name="bd71258f-5989-e894-356c-b7fe2bf24bc8" />
+    </api>
+    <api id="Methods.T:Accessibility.IAccPropServer">
+      <topicdata name="IAccPropServer" group="list" subgroup="Methods" typeTopicId="T:Accessibility.IAccPropServer" />
+      <apidata name="IAccPropServer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccPropServer.GetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object@,System.Int32@)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServer" />
+      </containers>
+      <file name="a6ce115f-84b7-c3b4-ef59-7a17b90aee9c" />
+    </api>
+    <api id="M:Accessibility.IAccPropServer.GetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object@,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="GetPropValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="pvarValue" out="true">
+          <referenceTo>
+            <type api="T:System.Object" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="pfHasProp" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServer" ref="true" />
+      </containers>
+      <file name="8df4ac1b-f1c2-4a3d-1d20-4f55d9d1beab" />
+    </api>
+    <api id="T:Accessibility.IAccPropServices">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Accessibility.IAccPropServices" />
+      <apidata name="IAccPropServices" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <implementors>
+        <type api="T:Accessibility.CAccPropServices" ref="true" />
+        <type api="T:Accessibility.CAccPropServicesClass" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>6E26E776-04F0-495D-80E4-3330352E3169</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.InterfaceTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Runtime.InteropServices.ComInterfaceType" ref="false" />
+            <enumValue>
+              <field name="InterfaceIsIUnknown" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="27e8e472-3fad-d42b-c09d-bd1f48cfb9f4" />
+    </api>
+    <api id="AllMembers.T:Accessibility.IAccPropServices">
+      <topicdata name="IAccPropServices" group="list" subgroup="members" typeTopicId="T:Accessibility.IAccPropServices" />
+      <apidata name="IAccPropServices" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccPropServices.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.IAccPropServices.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" />
+      </containers>
+      <file name="5ac1995e-3fcc-e87f-1917-36825413fb0d" />
+    </api>
+    <api id="Methods.T:Accessibility.IAccPropServices">
+      <topicdata name="IAccPropServices" group="list" subgroup="Methods" typeTopicId="T:Accessibility.IAccPropServices" />
+      <apidata name="IAccPropServices" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:Accessibility.IAccPropServices.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)" />
+        <element api="M:Accessibility.IAccPropServices.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)" />
+        <element api="M:Accessibility.IAccPropServices.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)" />
+        <element api="M:Accessibility.IAccPropServices.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" />
+      </containers>
+      <file name="3600d060-a427-dbc9-1e1b-d24cc6ed0f75" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.ClearHmenuProps(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ClearHmenuProps" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="f756a762-2d01-c938-9e66-e4430903073d" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.ClearHwndProps(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ClearHwndProps" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="4659bbd9-3664-18f4-7629-ecec2c2ed045" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.ClearProps(System.Byte@,System.UInt32,System.Guid@,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ClearProps" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="2566c41f-9fa0-dbf0-c2c3-5f5e89d1c9f1" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.ComposeHmenuIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.IntPtr,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="ComposeHmenuIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="ppIDString" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pdwIDStringLen" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="066080c4-27dc-6713-b890-19f30780bd6a" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.ComposeHwndIdentityString(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.IntPtr,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="ComposeHwndIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="ppIDString" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pdwIDStringLen" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="6c3529cf-78d4-f8e0-c2be-45db7f5305ab" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.DecomposeHmenuIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="DecomposeHmenuIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="phmenu" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pidChild" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="9d8bcb7d-be64-f0d4-188a-c5c156e14d9c" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.DecomposeHwndIdentityString(System.Byte@,System.UInt32,System.IntPtr,System.UInt32@,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="DecomposeHwndIdentityString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="phwnd" out="true">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+        <parameter name="pidObject" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="pidChild" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="d4fdd044-5273-c8fe-4f19-eceb040331ee" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.SetHmenuProp(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetHmenuProp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="var" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="6b1ea978-a79f-0d01-a614-c76654d0b452" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.SetHmenuPropServer(Accessibility._RemotableHandle@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+      <topicdata group="api" />
+      <apidata name="SetHmenuPropServer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pServer" in="true">
+          <type api="T:Accessibility.IAccPropServer" ref="true" />
+        </parameter>
+        <parameter name="AnnoScope" in="true">
+          <type api="T:Accessibility.AnnoScope" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="17f40276-3482-3340-2ee7-e4bf6a39818c" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.SetHmenuPropStr(Accessibility._RemotableHandle@,System.UInt32,System.Guid,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetHmenuPropStr" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hmenu" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="str" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="3f53ee73-faea-cacc-6b46-17b2de6a7a98" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.SetHwndProp(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetHwndProp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="var" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="35c7a4b1-c854-bb42-70ac-a690787dc6c4" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.SetHwndPropServer(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+      <topicdata group="api" />
+      <apidata name="SetHwndPropServer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pServer" in="true">
+          <type api="T:Accessibility.IAccPropServer" ref="true" />
+        </parameter>
+        <parameter name="AnnoScope" in="true">
+          <type api="T:Accessibility.AnnoScope" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="38165fe9-3d66-9b15-6408-5b93674907a8" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.SetHwndPropStr(Accessibility._RemotableHandle@,System.UInt32,System.UInt32,System.Guid,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetHwndPropStr" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="hwnd" in="true">
+          <referenceTo>
+            <type api="T:Accessibility._RemotableHandle" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="idObject" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idChild" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="str" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="29a0c9f1-0ccc-0de2-137f-4404f8fab3a1" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.SetPropServer(System.Byte@,System.UInt32,System.Guid@,System.Int32,Accessibility.IAccPropServer,Accessibility.AnnoScope)">
+      <topicdata group="api" />
+      <apidata name="SetPropServer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="paProps" in="true">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="cProps" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pServer" in="true">
+          <type api="T:Accessibility.IAccPropServer" ref="true" />
+        </parameter>
+        <parameter name="AnnoScope" in="true">
+          <type api="T:Accessibility.AnnoScope" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="aa3ae156-720d-26cd-6179-56ae8d71f07c" />
+    </api>
+    <api id="M:Accessibility.IAccPropServices.SetPropValue(System.Byte@,System.UInt32,System.Guid,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetPropValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pIDString" in="true">
+          <referenceTo>
+            <type api="T:System.Byte" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dwIDStringLen" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="idProp" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="var" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Accessibility" module="Accessibility" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Accessibility" />
+        <type api="T:Accessibility.IAccPropServices" ref="true" />
+      </containers>
+      <file name="9674a77d-8416-9475-86f9-767b8f71ce6b" />
+    </api>
+  </apis>
+</reflection>

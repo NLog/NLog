@@ -1,0 +1,721 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Data.Linq">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Linq.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Linq.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Linq.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Data.Linq.SqlClient.Implementation">
+      <topicdata group="api" />
+      <apidata name="System.Data.Linq.SqlClient.Implementation" group="namespace" />
+      <elements>
+        <element api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      </elements>
+      <file name="fc5920be-bb12-45b5-f1e4-4d79a357f7fd" />
+    </api>
+    <api id="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      <apidata name="ObjectMaterializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" defaultConstructor="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="TDataReader">
+          <constrained>
+            <type api="T:System.Data.Common.DbDataReader" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+      </containers>
+      <file name="e41a4b67-f051-c1e8-fe48-495ec05da99b" />
+    </api>
+    <api id="AllMembers.T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1">
+      <topicdata name="ObjectMaterializer" group="list" subgroup="members" typeTopicId="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      <apidata name="ObjectMaterializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" defaultConstructor="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.#ctor" />
+      <templates>
+        <template name="TDataReader">
+          <constrained>
+            <type api="T:System.Data.Common.DbDataReader" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.#ctor" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Arguments" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.BufferReader" />
+        <element api="P:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CanDeferLoad" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Convert``1(System.Collections.IEnumerable)" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateGroup``2(``0,System.Collections.Generic.IEnumerable{``1})" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateOrderedEnumerable``1(System.Collections.Generic.IEnumerable{``0})" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.DataReader" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.ErrorAssignmentToNull(System.Type)" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.ExecuteSubQuery(System.Int32,System.Object[])" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.GetLinkSource``1(System.Int32,System.Int32,System.Object[])" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.GetNestedLinkSource``1(System.Int32,System.Int32,System.Object)" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Globals" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.InsertLookup(System.Int32,System.Object)" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Locals" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Ordinals" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Read" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.SendEntityMaterialized(System.Int32,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      </containers>
+      <file name="1efa900e-2f37-7f79-2394-f4fd9cb09239" />
+    </api>
+    <api id="Methods.T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1">
+      <topicdata name="ObjectMaterializer" group="list" subgroup="Methods" typeTopicId="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      <apidata name="ObjectMaterializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" defaultConstructor="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.#ctor" />
+      <templates>
+        <template name="TDataReader">
+          <constrained>
+            <type api="T:System.Data.Common.DbDataReader" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Convert``1(System.Collections.IEnumerable)" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateGroup``2(``0,System.Collections.Generic.IEnumerable{``1})" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateOrderedEnumerable``1(System.Collections.Generic.IEnumerable{``0})" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.ErrorAssignmentToNull(System.Type)" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.ExecuteSubQuery(System.Int32,System.Object[])" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.GetLinkSource``1(System.Int32,System.Int32,System.Object[])" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.GetNestedLinkSource``1(System.Int32,System.Int32,System.Object)" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.InsertLookup(System.Int32,System.Object)" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Read" />
+        <element api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.SendEntityMaterialized(System.Int32,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      </containers>
+      <file name="57845e5a-dc00-9b15-96db-c0cb3ee4a4d7" />
+    </api>
+    <api id="Properties.T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1">
+      <topicdata name="ObjectMaterializer" group="list" subgroup="Properties" typeTopicId="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      <apidata name="ObjectMaterializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" defaultConstructor="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.#ctor" />
+      <templates>
+        <template name="TDataReader">
+          <constrained>
+            <type api="T:System.Data.Common.DbDataReader" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="P:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CanDeferLoad" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      </containers>
+      <file name="3f0d6f32-0058-64aa-25eb-5ddfd3f8ee5a" />
+    </api>
+    <api id="Fields.T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1">
+      <topicdata name="ObjectMaterializer" group="list" subgroup="Fields" typeTopicId="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      <apidata name="ObjectMaterializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" defaultConstructor="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.#ctor" />
+      <templates>
+        <template name="TDataReader">
+          <constrained>
+            <type api="T:System.Data.Common.DbDataReader" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Arguments" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.BufferReader" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.DataReader" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Globals" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Locals" />
+        <element api="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Ordinals" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      </containers>
+      <file name="c41eca76-c340-e49d-8652-8dffbe1aefbf" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="3499b62d-9d05-6265-11e8-1038aaa6b856" />
+    </api>
+    <api id="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Arguments">
+      <topicdata group="api" />
+      <apidata name="Arguments" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="0faf68bb-584e-c1d9-0e7c-4600d141dae7" />
+    </api>
+    <api id="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.BufferReader">
+      <topicdata group="api" />
+      <apidata name="BufferReader" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Common.DbDataReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="4211254d-2903-c10f-82df-1f0e725b4ca7" />
+    </api>
+    <api id="P:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CanDeferLoad">
+      <topicdata group="api" />
+      <apidata name="CanDeferLoad" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CanDeferLoad" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="69320229-4089-8574-9fc4-118b340d72f3" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Convert``1(System.Collections.IEnumerable)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TOutput" />
+      </templates>
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <template name="TOutput" index="0" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Convert``1(System.Collections.IEnumerable)" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="6ef90a9b-5d87-a0f7-95c7-298938ddde85" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateGroup``2(``0,System.Collections.Generic.IEnumerable{``1})">
+      <topicdata group="api" />
+      <apidata name="CreateGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TKey" />
+        <template name="TElement" />
+      </templates>
+      <parameters>
+        <parameter name="key">
+          <template name="TKey" index="0" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateGroup``2(``0,System.Collections.Generic.IEnumerable{``1})" />
+        </parameter>
+        <parameter name="items">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <template name="TElement" index="1" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateGroup``2(``0,System.Collections.Generic.IEnumerable{``1})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Linq.IGrouping`2" ref="true">
+          <specialization>
+            <template name="TKey" index="0" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateGroup``2(``0,System.Collections.Generic.IEnumerable{``1})" />
+            <template name="TElement" index="1" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateGroup``2(``0,System.Collections.Generic.IEnumerable{``1})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="fc5d2247-862c-9b71-4515-b59c5e017957" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateOrderedEnumerable``1(System.Collections.Generic.IEnumerable{``0})">
+      <topicdata group="api" />
+      <apidata name="CreateOrderedEnumerable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TElement" />
+      </templates>
+      <parameters>
+        <parameter name="items">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <template name="TElement" index="0" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateOrderedEnumerable``1(System.Collections.Generic.IEnumerable{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Linq.IOrderedEnumerable`1" ref="true">
+          <specialization>
+            <template name="TElement" index="0" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.CreateOrderedEnumerable``1(System.Collections.Generic.IEnumerable{``0})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="5d0749e8-7b8e-d4ef-6c1c-7df84d3c3ce4" />
+    </api>
+    <api id="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.DataReader">
+      <topicdata group="api" />
+      <apidata name="DataReader" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <template name="TDataReader" index="0" api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="d263204f-1ae2-32f0-2047-ac3d3d0c1ac5" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.ErrorAssignmentToNull(System.Type)">
+      <topicdata group="api" />
+      <apidata name="ErrorAssignmentToNull" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="77fa2adb-ae52-7ac8-df6d-487c6f13093c" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.ExecuteSubQuery(System.Int32,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="ExecuteSubQuery" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="iSubQuery">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="args">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="e2b4d114-d6a4-bba4-009b-8883b3da583c" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.GetLinkSource``1(System.Int32,System.Int32,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="GetLinkSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="globalLink">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="localFactory">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="keyValues">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.GetLinkSource``1(System.Int32,System.Int32,System.Object[])" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="6fabe009-9fd2-003e-7671-824a012dcc9d" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.GetNestedLinkSource``1(System.Int32,System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetNestedLinkSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="globalLink">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="localFactory">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.GetNestedLinkSource``1(System.Int32,System.Int32,System.Object)" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="cb644017-0bf8-40fa-4d27-dbfba1669dc6" />
+    </api>
+    <api id="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Globals">
+      <topicdata group="api" />
+      <apidata name="Globals" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="ace37ad0-a9e9-6bd5-6395-dc25c2f101f9" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.InsertLookup(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="InsertLookup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="globalMetaType">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="3fa7fdd6-c4a6-a573-34f1-5e95f84a8707" />
+    </api>
+    <api id="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Locals">
+      <topicdata group="api" />
+      <apidata name="Locals" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="c115da5e-e8d5-f871-1cff-8b4846cc5ecf" />
+    </api>
+    <api id="F:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Ordinals">
+      <topicdata group="api" />
+      <apidata name="Ordinals" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Int32" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="2788bfe8-95fb-b65e-7381-36b26327d717" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.Read">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="27481897-687e-f8db-da9b-1ac935754e79" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1.SendEntityMaterialized(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SendEntityMaterialized" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="globalMetaType">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient.Implementation" />
+        <type api="T:System.Data.Linq.SqlClient.Implementation.ObjectMaterializer`1" ref="true" />
+      </containers>
+      <file name="acfa902d-7674-581c-3643-ed5c4473e962" />
+    </api>
+  </apis>
+</reflection>

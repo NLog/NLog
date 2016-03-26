@@ -51,6 +51,12 @@
         <xs:documentation>Pass NLog internal exceptions to the application. Default value is: false.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="internalLogToTrace" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>Write internal NLog messages to the the System.Diagnostics.Trace. Default value is: false</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+
   </xs:complexType>
 
   <xs:complexType name="NLogTargets">

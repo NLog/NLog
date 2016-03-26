@@ -1,0 +1,910 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Web.Http.Filters">
+      <topicdata group="api" />
+      <apidata name="Windows.Web.Http.Filters" group="namespace" />
+      <elements>
+        <element api="T:Windows.Web.Http.Filters.IHttpFilter" />
+        <element api="T:Windows.Web.Http.Filters.HttpCacheReadBehavior" />
+        <element api="T:Windows.Web.Http.Filters.HttpCacheWriteBehavior" />
+        <element api="T:Windows.Web.Http.Filters.HttpCacheControl" />
+        <element api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" />
+      </elements>
+      <file name="4e8b7a98-569e-aa57-c1f5-4e4e1c67ecb8" />
+    </api>
+    <api id="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" />
+      <apidata name="HttpBaseProtocolFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Web.Http.Filters.IHttpBaseProtocolFilter" ref="true" />
+        <type api="T:Windows.Web.Http.Filters.IHttpFilter" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="491c3f19-f566-a872-b09e-3c7dfc61b537" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Filters.HttpBaseProtocolFilter">
+      <topicdata name="HttpBaseProtocolFilter" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" />
+      <apidata name="HttpBaseProtocolFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.#ctor" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AllowAutoRedirect" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AllowUI" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AutomaticDecompression" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.CacheControl" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ClientCertificate" />
+        <element api="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.Close" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.CookieManager" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.IgnorableServerCertificateErrors" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.MaxConnectionsPerServer" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ProxyCredential" />
+        <element api="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.SendRequestAsync(Windows.Web.Http.HttpRequestMessage)" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ServerCredential" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.UseProxy" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" />
+      </containers>
+      <file name="682ff5eb-dff2-354c-cf7b-086448d08175" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Filters.HttpBaseProtocolFilter">
+      <topicdata name="HttpBaseProtocolFilter" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" />
+      <apidata name="HttpBaseProtocolFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.Close" />
+        <element api="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.SendRequestAsync(Windows.Web.Http.HttpRequestMessage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" />
+      </containers>
+      <file name="66bd705c-4e34-4178-f2d5-f1c2be4d17dc" />
+    </api>
+    <api id="Properties.T:Windows.Web.Http.Filters.HttpBaseProtocolFilter">
+      <topicdata name="HttpBaseProtocolFilter" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" />
+      <apidata name="HttpBaseProtocolFilter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.#ctor" />
+      <elements>
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AllowAutoRedirect" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AllowUI" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AutomaticDecompression" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.CacheControl" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ClientCertificate" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.CookieManager" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.IgnorableServerCertificateErrors" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.MaxConnectionsPerServer" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ProxyCredential" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ServerCredential" />
+        <element api="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.UseProxy" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" />
+      </containers>
+      <file name="05475c13-10f5-33cf-3deb-c44bb4c2d2ad" />
+    </api>
+    <api id="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="0ea6b61b-fa42-eb04-26ed-c6fcce737aa8" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AllowAutoRedirect">
+      <topicdata group="api" />
+      <apidata name="AllowAutoRedirect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllowAutoRedirect" />
+      <setter name="set_AllowAutoRedirect" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="dc2ca415-f1f9-19b4-dd5b-9566f890e5e1" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AllowUI">
+      <topicdata group="api" />
+      <apidata name="AllowUI" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllowUI" />
+      <setter name="set_AllowUI" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="5a35e5a9-9bbb-367b-69f2-b023023f34f0" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.AutomaticDecompression">
+      <topicdata group="api" />
+      <apidata name="AutomaticDecompression" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AutomaticDecompression" />
+      <setter name="set_AutomaticDecompression" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="7dc02371-69b0-fabf-0a35-aff589172154" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.CacheControl">
+      <topicdata group="api" />
+      <apidata name="CacheControl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CacheControl" />
+      <returns>
+        <type api="T:Windows.Web.Http.Filters.HttpCacheControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="8a4b52a3-71db-0a84-640b-d7583a73df4e" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ClientCertificate">
+      <topicdata group="api" />
+      <apidata name="ClientCertificate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ClientCertificate" />
+      <setter name="set_ClientCertificate" />
+      <returns>
+        <type api="T:Windows.Security.Cryptography.Certificates.Certificate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="c1601d3a-d568-9a93-518d-7dbab9caf08c" />
+    </api>
+    <api id="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="bbd7b317-ba24-58bb-087c-19b6d5f82785" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.CookieManager">
+      <topicdata group="api" />
+      <apidata name="CookieManager" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CookieManager" />
+      <returns>
+        <type api="T:Windows.Web.Http.HttpCookieManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="1c344af6-af62-d51a-f626-93ae7dd9c037" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.IgnorableServerCertificateErrors">
+      <topicdata group="api" />
+      <apidata name="IgnorableServerCertificateErrors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IgnorableServerCertificateErrors" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Cryptography.Certificates.ChainValidationResult" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="e06b11a9-fda0-6533-9299-425313d51dd6" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.MaxConnectionsPerServer">
+      <topicdata group="api" />
+      <apidata name="MaxConnectionsPerServer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxConnectionsPerServer" />
+      <setter name="set_MaxConnectionsPerServer" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="584089d5-37e3-3006-4bb8-f0741527a0ca" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ProxyCredential">
+      <topicdata group="api" />
+      <apidata name="ProxyCredential" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProxyCredential" />
+      <setter name="set_ProxyCredential" />
+      <returns>
+        <type api="T:Windows.Security.Credentials.PasswordCredential" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="31a7e842-7903-1998-b526-820f0dd03556" />
+    </api>
+    <api id="M:Windows.Web.Http.Filters.HttpBaseProtocolFilter.SendRequestAsync(Windows.Web.Http.HttpRequestMessage)">
+      <topicdata group="api" />
+      <apidata name="SendRequestAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="request" in="true">
+          <type api="T:Windows.Web.Http.HttpRequestMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Http.HttpResponseMessage" ref="true" />
+            <type api="T:Windows.Web.Http.HttpProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Web.Http.Filters.IHttpFilter.SendRequestAsync(Windows.Web.Http.HttpRequestMessage)">
+          <type api="T:Windows.Web.Http.Filters.IHttpFilter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="4b12ed65-cebb-8c49-3eaa-eccb6aa704bb" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.ServerCredential">
+      <topicdata group="api" />
+      <apidata name="ServerCredential" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ServerCredential" />
+      <setter name="set_ServerCredential" />
+      <returns>
+        <type api="T:Windows.Security.Credentials.PasswordCredential" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="e4c37eea-a994-7538-e8ca-5cda6ccdb0c7" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpBaseProtocolFilter.UseProxy">
+      <topicdata group="api" />
+      <apidata name="UseProxy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UseProxy" />
+      <setter name="set_UseProxy" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </containers>
+      <file name="cfcb605a-6827-e259-7af7-5febc6531a97" />
+    </api>
+    <api id="T:Windows.Web.Http.Filters.HttpCacheControl">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Filters.HttpCacheControl" />
+      <apidata name="HttpCacheControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Web.Http.Filters.IHttpCacheControl" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d6e0d080-23b3-89ca-b266-8c5b6f4a052f" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Filters.HttpCacheControl">
+      <topicdata name="HttpCacheControl" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Filters.HttpCacheControl" />
+      <apidata name="HttpCacheControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Web.Http.Filters.HttpCacheControl.ReadBehavior" />
+        <element api="P:Windows.Web.Http.Filters.HttpCacheControl.WriteBehavior" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheControl" />
+      </containers>
+      <file name="55d94eda-f112-4fc0-d84c-cb19a52ffc98" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Filters.HttpCacheControl">
+      <topicdata name="HttpCacheControl" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Filters.HttpCacheControl" />
+      <apidata name="HttpCacheControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheControl" />
+      </containers>
+      <file name="d98d866f-ba88-ce4a-485d-25c9e7e35473" />
+    </api>
+    <api id="Properties.T:Windows.Web.Http.Filters.HttpCacheControl">
+      <topicdata name="HttpCacheControl" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.Http.Filters.HttpCacheControl" />
+      <apidata name="HttpCacheControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.Http.Filters.HttpCacheControl.ReadBehavior" />
+        <element api="P:Windows.Web.Http.Filters.HttpCacheControl.WriteBehavior" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheControl" />
+      </containers>
+      <file name="3df7119a-9dbe-d56f-7b6b-bb93e9b4608d" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpCacheControl.ReadBehavior">
+      <topicdata group="api" />
+      <apidata name="ReadBehavior" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReadBehavior" />
+      <setter name="set_ReadBehavior" />
+      <returns>
+        <type api="T:Windows.Web.Http.Filters.HttpCacheReadBehavior" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheControl" ref="true" />
+      </containers>
+      <file name="413059ce-2757-2a91-b55f-c3540a1b41ab" />
+    </api>
+    <api id="P:Windows.Web.Http.Filters.HttpCacheControl.WriteBehavior">
+      <topicdata group="api" />
+      <apidata name="WriteBehavior" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WriteBehavior" />
+      <setter name="set_WriteBehavior" />
+      <returns>
+        <type api="T:Windows.Web.Http.Filters.HttpCacheWriteBehavior" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheControl" ref="true" />
+      </containers>
+      <file name="5982db40-bd9c-00e5-70b4-12c441bb96c2" />
+    </api>
+    <api id="T:Windows.Web.Http.Filters.HttpCacheReadBehavior">
+      <topicdata group="api" />
+      <apidata name="HttpCacheReadBehavior" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Web.Http.Filters.HttpCacheReadBehavior.Default" />
+        <element api="F:Windows.Web.Http.Filters.HttpCacheReadBehavior.MostRecent" />
+        <element api="F:Windows.Web.Http.Filters.HttpCacheReadBehavior.OnlyFromCache" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="19fb827d-de2c-4e46-3104-676f58e2ddbe" />
+    </api>
+    <api id="F:Windows.Web.Http.Filters.HttpCacheReadBehavior.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Filters.HttpCacheReadBehavior" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheReadBehavior" ref="false" />
+      </containers>
+      <file name="a1543718-4811-0ee2-5de8-6109db85158f" />
+    </api>
+    <api id="F:Windows.Web.Http.Filters.HttpCacheReadBehavior.MostRecent">
+      <topicdata group="api" notopic="" />
+      <apidata name="MostRecent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Filters.HttpCacheReadBehavior" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheReadBehavior" ref="false" />
+      </containers>
+      <file name="40e655c8-7205-2beb-9047-c83e69a1764b" />
+    </api>
+    <api id="F:Windows.Web.Http.Filters.HttpCacheReadBehavior.OnlyFromCache">
+      <topicdata group="api" notopic="" />
+      <apidata name="OnlyFromCache" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Filters.HttpCacheReadBehavior" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheReadBehavior" ref="false" />
+      </containers>
+      <file name="b25c63f0-bccb-9f12-d325-edb34a423972" />
+    </api>
+    <api id="T:Windows.Web.Http.Filters.HttpCacheWriteBehavior">
+      <topicdata group="api" />
+      <apidata name="HttpCacheWriteBehavior" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Web.Http.Filters.HttpCacheWriteBehavior.Default" />
+        <element api="F:Windows.Web.Http.Filters.HttpCacheWriteBehavior.NoCache" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a8edf422-abe3-c5b6-75b1-d649e37f8f19" />
+    </api>
+    <api id="F:Windows.Web.Http.Filters.HttpCacheWriteBehavior.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Filters.HttpCacheWriteBehavior" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheWriteBehavior" ref="false" />
+      </containers>
+      <file name="c5010f2d-f7cc-7d6e-a0bb-9e5140de249f" />
+    </api>
+    <api id="F:Windows.Web.Http.Filters.HttpCacheWriteBehavior.NoCache">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoCache" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Web.Http.Filters.HttpCacheWriteBehavior" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.HttpCacheWriteBehavior" ref="false" />
+      </containers>
+      <file name="2a7280b6-35cb-823b-7516-c181a056a26d" />
+    </api>
+    <api id="T:Windows.Web.Http.Filters.IHttpFilter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.Http.Filters.IHttpFilter" />
+      <apidata name="IHttpFilter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:Windows.Web.Http.Filters.HttpBaseProtocolFilter" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2764795349</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>2306</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17310</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>191</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>215</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>225</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>37</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>82</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>177</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>101</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>206</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="66991d70-21c5-2155-be16-ce9094b6139c" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.Http.Filters.IHttpFilter">
+      <topicdata name="IHttpFilter" group="list" subgroup="members" typeTopicId="T:Windows.Web.Http.Filters.IHttpFilter" />
+      <apidata name="IHttpFilter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="M:Windows.Web.Http.Filters.IHttpFilter.SendRequestAsync(Windows.Web.Http.HttpRequestMessage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.IHttpFilter" />
+      </containers>
+      <file name="2cb09f08-e49a-8511-726f-dc41cc9453cb" />
+    </api>
+    <api id="Methods.T:Windows.Web.Http.Filters.IHttpFilter">
+      <topicdata name="IHttpFilter" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.Http.Filters.IHttpFilter" />
+      <apidata name="IHttpFilter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="M:Windows.Web.Http.Filters.IHttpFilter.SendRequestAsync(Windows.Web.Http.HttpRequestMessage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.IHttpFilter" />
+      </containers>
+      <file name="20b9e057-dd5f-996a-3bef-f07cb1bff93d" />
+    </api>
+    <api id="M:Windows.Web.Http.Filters.IHttpFilter.SendRequestAsync(Windows.Web.Http.HttpRequestMessage)">
+      <topicdata group="api" />
+      <apidata name="SendRequestAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="request" in="true">
+          <type api="T:Windows.Web.Http.HttpRequestMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Http.HttpResponseMessage" ref="true" />
+            <type api="T:Windows.Web.Http.HttpProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.Http.Filters" />
+        <type api="T:Windows.Web.Http.Filters.IHttpFilter" ref="true" />
+      </containers>
+      <file name="b8dd0a7a-a5b3-f502-c91f-b9fe789899ff" />
+    </api>
+  </apis>
+</reflection>

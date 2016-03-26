@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Display">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Display" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Display.DisplayRequest" />
+      </elements>
+      <file name="a1f40bd4-1241-a650-522a-20d2ecf990f4" />
+    </api>
+    <api id="T:Windows.System.Display.DisplayRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Display.DisplayRequest" />
+      <apidata name="DisplayRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.System.Display.DisplayRequest.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.System.Display.IDisplayRequest" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Display" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="STA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4f235524-8539-5f45-d7bf-87b998de7c75" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Display.DisplayRequest">
+      <topicdata name="DisplayRequest" group="list" subgroup="members" typeTopicId="T:Windows.System.Display.DisplayRequest" />
+      <apidata name="DisplayRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.System.Display.DisplayRequest.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.System.Display.DisplayRequest.#ctor" />
+        <element api="M:Windows.System.Display.DisplayRequest.RequestActive" />
+        <element api="M:Windows.System.Display.DisplayRequest.RequestRelease" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Display" />
+        <type api="T:Windows.System.Display.DisplayRequest" />
+      </containers>
+      <file name="a0c29922-2b6f-2889-aa41-c89037018126" />
+    </api>
+    <api id="Methods.T:Windows.System.Display.DisplayRequest">
+      <topicdata name="DisplayRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Display.DisplayRequest" />
+      <apidata name="DisplayRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.System.Display.DisplayRequest.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.System.Display.DisplayRequest.RequestActive" />
+        <element api="M:Windows.System.Display.DisplayRequest.RequestRelease" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Display" />
+        <type api="T:Windows.System.Display.DisplayRequest" />
+      </containers>
+      <file name="7bec255b-7bf6-bdbf-2c55-b27463bd16ab" />
+    </api>
+    <api id="M:Windows.System.Display.DisplayRequest.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Display" />
+        <type api="T:Windows.System.Display.DisplayRequest" ref="true" />
+      </containers>
+      <file name="e163f585-31d3-d93d-77f1-6deafc37e645" />
+    </api>
+    <api id="M:Windows.System.Display.DisplayRequest.RequestActive">
+      <topicdata group="api" />
+      <apidata name="RequestActive" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Display" />
+        <type api="T:Windows.System.Display.DisplayRequest" ref="true" />
+      </containers>
+      <file name="7511c25f-a6c4-6250-fa90-9b719bbb5ed6" />
+    </api>
+    <api id="M:Windows.System.Display.DisplayRequest.RequestRelease">
+      <topicdata group="api" />
+      <apidata name="RequestRelease" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Display" />
+        <type api="T:Windows.System.Display.DisplayRequest" ref="true" />
+      </containers>
+      <file name="34d91cab-053f-ad19-4d41-d4209178b623" />
+    </api>
+  </apis>
+</reflection>

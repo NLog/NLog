@@ -1,38 +1,35 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
-  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.BuildAssembler"
-    AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Sandcastle Tools MSBuild Tasks.  https://GitHub.com/EWSoftware/SHFB -->
+	<UsingTask TaskName="Microsoft.Ddue.Tools.MSBuild.BuildAssembler"
+    AssemblyFile="{@SHFBFolder}\BuildAssembler.exe" />
 
-  <!-- Task properties -->
-  <PropertyGroup>
-    <SandcastlePath>{@SandcastlePath}</SandcastlePath>
-    <ConfigurationFile>sandcastle.config</ConfigurationFile>
-    <ManifestFile>manifest.xml</ManifestFile>
-    <WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
-  </PropertyGroup>
+	<!-- Task properties -->
+	<PropertyGroup>
+		<ConfigurationFile>sandcastle.config</ConfigurationFile>
+		<ManifestFile>manifest.xml</ManifestFile>
+		<WorkingFolder>{@HtmlEncWorkingFolder}</WorkingFolder>
+	</PropertyGroup>
 
-  <!-- This defines the dependencies for the Build target -->
-  <PropertyGroup>
-    <BuildDependsOn>
-      BeforeBuildReferenceTopics;
-      BuildReferenceTopics;
-      AfterBuildReferenceTopics
-    </BuildDependsOn>
-  </PropertyGroup>
+	<!-- This defines the dependencies for the Build target -->
+	<PropertyGroup>
+		<BuildDependsOn>
+			BeforeBuildReferenceTopics;
+			BuildReferenceTopics;
+			AfterBuildReferenceTopics
+		</BuildDependsOn>
+	</PropertyGroup>
 
-  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
+	<Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
 
-  <!-- The Build Conceptual Topics target -->
-  <Target Name="BuildReferenceTopics">
-    <BuildAssembler
-      SandcastlePath="$(SandcastlePath)"
+	<!-- The Build Conceptual Topics target -->
+	<Target Name="BuildReferenceTopics">
+		<Microsoft.Ddue.Tools.MSBuild.BuildAssembler
       WorkingFolder="$(WorkingFolder)"
       ConfigurationFile="$(ConfigurationFile)"
       ManifestFile="$(ManifestFile)" />
-  </Target>
+	</Target>
 
-  <!-- The following targets may be overridden or replaced to perform
-       additional processing. -->
-  <Target Name="BeforeBuildReferenceTopics" />
-  <Target Name="AfterBuildReferenceTopics" />
+	<!-- The following targets may be overridden or replaced to perform additional processing -->
+	<Target Name="BeforeBuildReferenceTopics" />
+	<Target Name="AfterBuildReferenceTopics" />
 </Project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Alex Sherman, verifications Sergey Zhurikhin -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+	<item id="devlang_F#">F#</item>
+	<item id="devlang_FSharp">F#</item>
+	<item id="devlang_fs">F#</item>
+	<item id="devlang_fsscript">F#</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+	<item id="metaLang_F#">FSharp</item>
+	<item id="metaLang_FSharp">FSharp</item>
+	<item id="metaLang_fs">FSharp</item>
+	<item id="metaLang_fsscript">FSharp</item>
+
+	<!-- F# syntax section messages -->
+	<item id="UnsupportedUnsafe_FSharp">F# не поддерживает интерфейсы API, которые принимают или возвращают небезопасные типы.</item>
+	<item id="UnsupportedOperator_FSharp">F# не поддерживает этот оператор.</item>
+	<item id="UnsupportedCast_FSharp">F# не поддерживает объявление новых операторов приведения.</item>
+	<item id="UnsupportedVarargs_FSharp">F# не поддерживает методы, использующие аргументы переменной длины
+(<span class="code">varargs</span>).  Компилятор автоматически разрешает вызовы этого метода в такой же метод,
+использующий массив параметров.</item>
+
+</content>

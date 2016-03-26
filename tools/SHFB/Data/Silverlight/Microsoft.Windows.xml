@@ -1,0 +1,2699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Controls.Toolkit">
+      <assemblydata version="5.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight™ Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Controls.Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Silverlight Toolkit Common Controls.Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation 2010</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.60818.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Windows">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Windows" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Windows.IDataObject" />
+        <element api="T:Microsoft.Windows.DataObject" />
+        <element api="T:Microsoft.Windows.DragAction" />
+        <element api="T:Microsoft.Windows.DragDrop" />
+        <element api="T:Microsoft.Windows.DragDropEffects" />
+        <element api="T:Microsoft.Windows.DragDropKeyStates" />
+        <element api="T:Microsoft.Windows.IAcceptDrop" />
+        <element api="T:Microsoft.Windows.ExtendedRoutedEventArgs" />
+        <element api="T:Microsoft.Windows.DragEventArgs" />
+        <element api="T:Microsoft.Windows.DragEventHandler" />
+        <element api="T:Microsoft.Windows.ExtendedRoutedEvent" />
+        <element api="T:Microsoft.Windows.GiveFeedbackEventArgs" />
+        <element api="T:Microsoft.Windows.GiveFeedbackEventHandler" />
+        <element api="T:Microsoft.Windows.QueryContinueDragEventArgs" />
+        <element api="T:Microsoft.Windows.QueryContinueDragEventHandler" />
+        <element api="T:Microsoft.Windows.SystemParameters" />
+      </elements>
+      <file name="1b06bf4f-58d4-a843-bef5-9d67da5bf0cf" />
+    </api>
+    <api id="T:Microsoft.Windows.DataObject">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.DataObject" />
+      <apidata name="DataObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Windows.DataObject.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="fcbed194-5732-a56c-2ba1-f31db04e5e2c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.DataObject">
+      <topicdata name="DataObject" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.DataObject" />
+      <apidata name="DataObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Windows.DataObject.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Windows.DataObject.#ctor">
+          <element api="M:Microsoft.Windows.DataObject.#ctor" />
+          <element api="M:Microsoft.Windows.DataObject.#ctor(System.Object)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.DataObject.GetData">
+          <element api="M:Microsoft.Windows.DataObject.GetData(System.String)" />
+          <element api="M:Microsoft.Windows.DataObject.GetData(System.Type)" />
+          <element api="M:Microsoft.Windows.DataObject.GetData(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.DataObject.GetDataPresent">
+          <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.String)" />
+          <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.Type)" />
+          <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.DataObject.GetFormats">
+          <element api="M:Microsoft.Windows.DataObject.GetFormats" />
+          <element api="M:Microsoft.Windows.DataObject.GetFormats(System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.DataObject.SetData">
+          <element api="M:Microsoft.Windows.DataObject.SetData(System.Object)" />
+          <element api="M:Microsoft.Windows.DataObject.SetData(System.String,System.Object)" />
+          <element api="M:Microsoft.Windows.DataObject.SetData(System.Type,System.Object)" />
+          <element api="M:Microsoft.Windows.DataObject.SetData(System.String,System.Object,System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" />
+      </containers>
+      <file name="9d23754a-4dce-bfa1-c0f9-cfdffda018b0" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.DataObject">
+      <topicdata name="DataObject" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.DataObject" />
+      <apidata name="DataObject" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Windows.DataObject.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Windows.DataObject.GetData">
+          <element api="M:Microsoft.Windows.DataObject.GetData(System.String)" />
+          <element api="M:Microsoft.Windows.DataObject.GetData(System.Type)" />
+          <element api="M:Microsoft.Windows.DataObject.GetData(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.DataObject.GetDataPresent">
+          <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.String)" />
+          <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.Type)" />
+          <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.DataObject.GetFormats">
+          <element api="M:Microsoft.Windows.DataObject.GetFormats" />
+          <element api="M:Microsoft.Windows.DataObject.GetFormats(System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.DataObject.SetData">
+          <element api="M:Microsoft.Windows.DataObject.SetData(System.Object)" />
+          <element api="M:Microsoft.Windows.DataObject.SetData(System.String,System.Object)" />
+          <element api="M:Microsoft.Windows.DataObject.SetData(System.Type,System.Object)" />
+          <element api="M:Microsoft.Windows.DataObject.SetData(System.String,System.Object,System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" />
+      </containers>
+      <file name="a9de4381-7222-185e-e7e9-a29f0f0a0adc" />
+    </api>
+    <api id="Overload:Microsoft.Windows.DataObject.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.DataObject" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Windows.DataObject.#ctor" />
+        <element api="M:Microsoft.Windows.DataObject.#ctor(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="4bfa7b6d-5743-bcdb-c4b0-ebe62cd9980c" />
+    </api>
+    <api id="Overload:Microsoft.Windows.DataObject.GetData">
+      <topicdata name="GetData" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.DataObject" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Windows.DataObject.GetData(System.String)" />
+        <element api="M:Microsoft.Windows.DataObject.GetData(System.Type)" />
+        <element api="M:Microsoft.Windows.DataObject.GetData(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="a8472f78-3a48-987f-3cd2-f1e2da65457b" />
+    </api>
+    <api id="Overload:Microsoft.Windows.DataObject.GetDataPresent">
+      <topicdata name="GetDataPresent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.DataObject" />
+      <apidata name="GetDataPresent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.String)" />
+        <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.Type)" />
+        <element api="M:Microsoft.Windows.DataObject.GetDataPresent(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="2c4331d7-4cce-8da1-4d17-33348a3b5f4f" />
+    </api>
+    <api id="Overload:Microsoft.Windows.DataObject.GetFormats">
+      <topicdata name="GetFormats" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.DataObject" />
+      <apidata name="GetFormats" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Windows.DataObject.GetFormats" />
+        <element api="M:Microsoft.Windows.DataObject.GetFormats(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="ef1351a6-8814-7d19-f39b-b24724a9247a" />
+    </api>
+    <api id="Overload:Microsoft.Windows.DataObject.SetData">
+      <topicdata name="SetData" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.DataObject" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Windows.DataObject.SetData(System.Object)" />
+        <element api="M:Microsoft.Windows.DataObject.SetData(System.String,System.Object)" />
+        <element api="M:Microsoft.Windows.DataObject.SetData(System.Type,System.Object)" />
+        <element api="M:Microsoft.Windows.DataObject.SetData(System.String,System.Object,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="d9466b05-7518-d9b8-3881-ed87e347eed1" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Windows.DataObject.#ctor" />
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="926d9faf-2f81-3d07-a281-da62f544e4c1" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.#ctor(System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Windows.DataObject.#ctor" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="5df72e86-73b2-a7c6-b007-112faae5271a" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.GetData(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.GetData" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.GetData(System.String)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="411a92e2-a20d-0734-0444-b59058539968" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.GetData(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.GetData" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="autoConvert">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.GetData(System.String,System.Boolean)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="4d1c336d-1cd5-5b26-82c4-68dff6f69815" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.GetData(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.GetData" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.GetData(System.Type)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="25af8c94-52e2-da7e-22f6-f32e5ba4a6de" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.GetDataPresent(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDataPresent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.GetDataPresent" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="9ae7dcc1-2260-638f-f2e0-5401f9ea7d6d" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.GetDataPresent(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetDataPresent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.GetDataPresent" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="autoConvert">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String,System.Boolean)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="50547925-2dba-b57f-f846-bde23179d599" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.GetDataPresent(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetDataPresent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.GetDataPresent" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.Type)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="77105d1f-a65c-a317-b21e-fb046b5339bc" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.GetFormats">
+      <topicdata group="api" />
+      <apidata name="GetFormats" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.GetFormats" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.GetFormats">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="dcdfde50-8c33-8167-e293-9c2e8dd928ee" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.GetFormats(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetFormats" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.GetFormats" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="autoConvert">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.GetFormats(System.Boolean)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="c0995b6e-85ad-bfad-f571-41823abbd875" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.SetData(System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.SetData" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.SetData(System.Object)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="d490d6f2-2da4-bc00-a6aa-bb22f0998664" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.SetData(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.SetData" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="d8e632f7-7788-2d7b-196d-c69c5f3798b7" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.SetData(System.String,System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.SetData" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="autoConvert">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object,System.Boolean)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="73f40777-6ec3-af66-140a-035e4c5a29c7" />
+    </api>
+    <api id="M:Microsoft.Windows.DataObject.SetData(System.Type,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.DataObject.SetData" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Windows.IDataObject.SetData(System.Type,System.Object)">
+          <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </containers>
+      <file name="4ada92f7-0dc0-6b21-558a-ecd861ac65e5" />
+    </api>
+    <api id="T:Microsoft.Windows.DragAction">
+      <topicdata group="api" />
+      <apidata name="DragAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Windows.DragAction.Continue" />
+        <element api="F:Microsoft.Windows.DragAction.Drop" />
+        <element api="F:Microsoft.Windows.DragAction.Cancel" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="9c4b098d-6333-56fe-66bd-843e4eb2f70b" />
+    </api>
+    <api id="F:Microsoft.Windows.DragAction.Cancel">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cancel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragAction" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragAction" ref="false" />
+      </containers>
+      <file name="230562b1-d2fb-083e-23bd-0da4826744a9" />
+    </api>
+    <api id="F:Microsoft.Windows.DragAction.Continue">
+      <topicdata group="api" notopic="" />
+      <apidata name="Continue" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragAction" ref="false" />
+      </containers>
+      <file name="94957586-5328-11b3-1220-fe75f2a822ec" />
+    </api>
+    <api id="F:Microsoft.Windows.DragAction.Drop">
+      <topicdata group="api" notopic="" />
+      <apidata name="Drop" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragAction" ref="false" />
+      </containers>
+      <file name="32c45979-0444-cc64-6099-32073bd4bcc8" />
+    </api>
+    <api id="T:Microsoft.Windows.DragDrop">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.DragDrop" />
+      <apidata name="DragDrop" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0e3738e4-5d83-e590-e4fe-855604c9eb64" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.DragDrop">
+      <topicdata name="DragDrop" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.DragDrop" />
+      <apidata name="DragDrop" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Windows.DragDrop.DoDragDrop(System.Windows.DependencyObject,System.Object,Microsoft.Windows.DragDropEffects,Microsoft.Windows.DragDropKeyStates)" />
+        <element api="E:Microsoft.Windows.DragDrop.DragDropCompleted" />
+        <element api="F:Microsoft.Windows.DragDrop.DragEnterEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.DragLeaveEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.DragOverEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.DropEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.GiveFeedbackEvent" />
+        <element api="P:Microsoft.Windows.DragDrop.IsDragInProgress" />
+        <element api="F:Microsoft.Windows.DragDrop.QueryContinueDragEvent" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" />
+      </containers>
+      <file name="bb1c0513-6c79-e168-aba2-90cbd409d6af" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.DragDrop">
+      <topicdata name="DragDrop" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.DragDrop" />
+      <apidata name="DragDrop" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Windows.DragDrop.DoDragDrop(System.Windows.DependencyObject,System.Object,Microsoft.Windows.DragDropEffects,Microsoft.Windows.DragDropKeyStates)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" />
+      </containers>
+      <file name="9c28d86a-956b-7c25-134b-b9d94ecf1415" />
+    </api>
+    <api id="Properties.T:Microsoft.Windows.DragDrop">
+      <topicdata name="DragDrop" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Windows.DragDrop" />
+      <apidata name="DragDrop" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.DragDrop.IsDragInProgress" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" />
+      </containers>
+      <file name="cd9f77ed-7e39-ec8a-4830-15a7bb266c44" />
+    </api>
+    <api id="Events.T:Microsoft.Windows.DragDrop">
+      <topicdata name="DragDrop" group="list" subgroup="Events" typeTopicId="T:Microsoft.Windows.DragDrop" />
+      <apidata name="DragDrop" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Windows.DragDrop.DragDropCompleted" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" />
+      </containers>
+      <file name="05bf4bd7-c03a-8995-14b5-53b1005ed09b" />
+    </api>
+    <api id="Fields.T:Microsoft.Windows.DragDrop">
+      <topicdata name="DragDrop" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Windows.DragDrop" />
+      <apidata name="DragDrop" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Windows.DragDrop.DragEnterEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.DragLeaveEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.DragOverEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.DropEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.GiveFeedbackEvent" />
+        <element api="F:Microsoft.Windows.DragDrop.QueryContinueDragEvent" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" />
+      </containers>
+      <file name="6ba48b8d-fa93-c3f4-9dec-2e22e71558fe" />
+    </api>
+    <api id="M:Microsoft.Windows.DragDrop.DoDragDrop(System.Windows.DependencyObject,System.Object,Microsoft.Windows.DragDropEffects,Microsoft.Windows.DragDropKeyStates)">
+      <topicdata group="api" />
+      <apidata name="DoDragDrop" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dragSource">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="allowedEffects">
+          <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+        </parameter>
+        <parameter name="initialKeyState">
+          <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="df4d8936-b39c-1bb7-06a7-e5bf9554b867" />
+    </api>
+    <api id="E:Microsoft.Windows.DragDrop.DragDropCompleted">
+      <topicdata group="api" />
+      <apidata name="DragDropCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DragDropCompleted" />
+      <remover name="remove_DragDropCompleted" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.DragDropCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.DragDropCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="9473243a-7dec-b6bc-1a79-17762258c4d9" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDrop.DragEnterEvent">
+      <topicdata group="api" />
+      <apidata name="DragEnterEvent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="189d0f13-89fa-7360-9c11-a702cbed10bf" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDrop.DragLeaveEvent">
+      <topicdata group="api" />
+      <apidata name="DragLeaveEvent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="b58364f0-69b8-d3f0-bd88-8d4cfb9b66fb" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDrop.DragOverEvent">
+      <topicdata group="api" />
+      <apidata name="DragOverEvent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="337c3921-a4c1-803c-8923-df89d0c30344" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDrop.DropEvent">
+      <topicdata group="api" />
+      <apidata name="DropEvent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="034e3bad-2749-1678-30dd-17bab8a92ec8" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDrop.GiveFeedbackEvent">
+      <topicdata group="api" />
+      <apidata name="GiveFeedbackEvent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="6b670c6b-ea5b-408c-7b90-c849801dd10e" />
+    </api>
+    <api id="P:Microsoft.Windows.DragDrop.IsDragInProgress">
+      <topicdata group="api" />
+      <apidata name="IsDragInProgress" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsDragInProgress" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="56cdf639-ea2d-6606-1497-0a38f8be8439" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDrop.QueryContinueDragEvent">
+      <topicdata group="api" />
+      <apidata name="QueryContinueDragEvent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.ExtendedRoutedEvent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDrop" ref="true" />
+      </containers>
+      <file name="529e5d49-4ddb-0ed3-1662-c01373184835" />
+    </api>
+    <api id="T:Microsoft.Windows.DragDropEffects">
+      <topicdata group="api" />
+      <apidata name="DragDropEffects" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Windows.DragDropEffects.Scroll" />
+        <element api="F:Microsoft.Windows.DragDropEffects.All" />
+        <element api="F:Microsoft.Windows.DragDropEffects.None" />
+        <element api="F:Microsoft.Windows.DragDropEffects.Copy" />
+        <element api="F:Microsoft.Windows.DragDropEffects.Move" />
+        <element api="F:Microsoft.Windows.DragDropEffects.Link" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="74b43247-77cf-6b7a-65ff-2bf7f19f50d2" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropEffects.All">
+      <topicdata group="api" notopic="" />
+      <apidata name="All" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <value>-2147483645</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </containers>
+      <file name="93b9b774-c7f4-92b8-0304-ec4410349c58" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropEffects.Copy">
+      <topicdata group="api" notopic="" />
+      <apidata name="Copy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </containers>
+      <file name="34205968-7fb3-f466-30a9-dfb889c1885e" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropEffects.Link">
+      <topicdata group="api" notopic="" />
+      <apidata name="Link" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </containers>
+      <file name="29848252-5aa2-400f-db15-12917e5396c1" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropEffects.Move">
+      <topicdata group="api" notopic="" />
+      <apidata name="Move" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </containers>
+      <file name="833572fc-567c-6362-649c-52cf2e22472c" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropEffects.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </containers>
+      <file name="4dd1a383-4c5c-7850-1000-8f06a5d8ac14" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropEffects.Scroll">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scroll" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <value>-2147483648</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </containers>
+      <file name="0000d56d-c66b-ad3d-d1d1-1cf72a597ca0" />
+    </api>
+    <api id="T:Microsoft.Windows.DragDropKeyStates">
+      <topicdata group="api" />
+      <apidata name="DragDropKeyStates" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Windows.DragDropKeyStates.None" />
+        <element api="F:Microsoft.Windows.DragDropKeyStates.LeftMouseButton" />
+        <element api="F:Microsoft.Windows.DragDropKeyStates.RightMouseButton" />
+        <element api="F:Microsoft.Windows.DragDropKeyStates.ShiftKey" />
+        <element api="F:Microsoft.Windows.DragDropKeyStates.ControlKey" />
+        <element api="F:Microsoft.Windows.DragDropKeyStates.MiddleMouseButton" />
+        <element api="F:Microsoft.Windows.DragDropKeyStates.AltKey" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="adfaee6d-9504-aec5-db8f-b68f70281597" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropKeyStates.AltKey">
+      <topicdata group="api" notopic="" />
+      <apidata name="AltKey" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </containers>
+      <file name="3979bf0b-7705-84ea-3b5f-d5ec3741d15a" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropKeyStates.ControlKey">
+      <topicdata group="api" notopic="" />
+      <apidata name="ControlKey" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </containers>
+      <file name="b8cbeb05-f6cd-d2f9-4734-10eb2e780b14" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropKeyStates.LeftMouseButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftMouseButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </containers>
+      <file name="92b8a0cc-feda-f895-a89e-0036f11ffd40" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropKeyStates.MiddleMouseButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="MiddleMouseButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </containers>
+      <file name="08d231b5-2a01-cb37-2316-ee65021c630c" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropKeyStates.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </containers>
+      <file name="db4430dd-3796-f679-f3d6-51716e678154" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropKeyStates.RightMouseButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightMouseButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </containers>
+      <file name="c7f4904a-5aca-f20a-dd14-3c97d5f039be" />
+    </api>
+    <api id="F:Microsoft.Windows.DragDropKeyStates.ShiftKey">
+      <topicdata group="api" notopic="" />
+      <apidata name="ShiftKey" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </containers>
+      <file name="5918f05f-2d7d-3bfc-20b1-ce9c70a7deea" />
+    </api>
+    <api id="T:Microsoft.Windows.DragEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.DragEventArgs" />
+      <apidata name="DragEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Windows.ExtendedRoutedEventArgs" ref="true" />
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="79d8f715-618e-b716-06b2-91605e1336c9" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.DragEventArgs">
+      <topicdata name="DragEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.DragEventArgs" />
+      <apidata name="DragEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.DragEventArgs.AllowedEffects" />
+        <element api="P:Microsoft.Windows.DragEventArgs.Data" />
+        <element api="P:Microsoft.Windows.DragEventArgs.Effects" />
+        <element api="M:Microsoft.Windows.DragEventArgs.GetPosition(System.Windows.UIElement)" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragEventArgs" />
+      </containers>
+      <file name="037b1494-79d7-54d0-ffb6-8fa034d6665a" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.DragEventArgs">
+      <topicdata name="DragEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.DragEventArgs" />
+      <apidata name="DragEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Windows.DragEventArgs.GetPosition(System.Windows.UIElement)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragEventArgs" />
+      </containers>
+      <file name="9936ee89-35fa-4fda-3ea2-21559768c598" />
+    </api>
+    <api id="Properties.T:Microsoft.Windows.DragEventArgs">
+      <topicdata name="DragEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Windows.DragEventArgs" />
+      <apidata name="DragEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.DragEventArgs.AllowedEffects" />
+        <element api="P:Microsoft.Windows.DragEventArgs.Data" />
+        <element api="P:Microsoft.Windows.DragEventArgs.Effects" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragEventArgs" />
+      </containers>
+      <file name="d703da0b-df3d-c8e5-a964-c34e91854c4d" />
+    </api>
+    <api id="P:Microsoft.Windows.DragEventArgs.AllowedEffects">
+      <topicdata group="api" />
+      <apidata name="AllowedEffects" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllowedEffects" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+      </containers>
+      <file name="9a71c79c-cec6-fdd6-f0a7-8a2147e88389" />
+    </api>
+    <api id="P:Microsoft.Windows.DragEventArgs.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Data" />
+      <returns>
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+      </containers>
+      <file name="ca879565-7682-370e-614c-0f162a8ce1f3" />
+    </api>
+    <api id="P:Microsoft.Windows.DragEventArgs.Effects">
+      <topicdata group="api" />
+      <apidata name="Effects" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Effects" />
+      <setter name="set_Effects" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+      </containers>
+      <file name="64356254-1ab7-3e16-9f2c-7184f6a3c2f8" />
+    </api>
+    <api id="M:Microsoft.Windows.DragEventArgs.GetPosition(System.Windows.UIElement)">
+      <topicdata group="api" />
+      <apidata name="GetPosition" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="relativeTo">
+          <type api="T:System.Windows.UIElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+      </containers>
+      <file name="bd910a63-e34d-b3af-6ad1-681821f74ec7" />
+    </api>
+    <api id="T:Microsoft.Windows.DragEventHandler">
+      <topicdata group="api" />
+      <apidata name="DragEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="397b6506-b411-ae14-43fc-8767d971ae72" />
+    </api>
+    <api id="T:Microsoft.Windows.ExtendedRoutedEvent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.ExtendedRoutedEvent" />
+      <apidata name="ExtendedRoutedEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="070073c3-f3e5-8238-5f54-ba3bd2aa5b27" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.ExtendedRoutedEvent">
+      <topicdata name="ExtendedRoutedEvent" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.ExtendedRoutedEvent" />
+      <apidata name="ExtendedRoutedEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.ExtendedRoutedEvent" />
+      </containers>
+      <file name="ac9b1c24-d2ad-832a-349f-b2f540d7b159" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.ExtendedRoutedEvent">
+      <topicdata name="ExtendedRoutedEvent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.ExtendedRoutedEvent" />
+      <apidata name="ExtendedRoutedEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.ExtendedRoutedEvent" />
+      </containers>
+      <file name="bc57cc88-8e58-9029-91e7-6447f6740805" />
+    </api>
+    <api id="T:Microsoft.Windows.ExtendedRoutedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.ExtendedRoutedEventArgs" />
+      <apidata name="ExtendedRoutedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Controls.IndicatingInsertionLocationEventArgs`1" ref="true" />
+          <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+          <type api="T:Microsoft.Windows.GiveFeedbackEventArgs" ref="true" />
+          <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="c57472d8-2ed6-cb15-314c-8a13651e8138" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.ExtendedRoutedEventArgs">
+      <topicdata name="ExtendedRoutedEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.ExtendedRoutedEventArgs" />
+      <apidata name="ExtendedRoutedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.ExtendedRoutedEventArgs" />
+      </containers>
+      <file name="0c15eddb-21d3-3dd3-2d55-ad24f7ef704a" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.ExtendedRoutedEventArgs">
+      <topicdata name="ExtendedRoutedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.ExtendedRoutedEventArgs" />
+      <apidata name="ExtendedRoutedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.ExtendedRoutedEventArgs" />
+      </containers>
+      <file name="b74b818b-829e-86b8-a5f3-7d7940388ece" />
+    </api>
+    <api id="Properties.T:Microsoft.Windows.ExtendedRoutedEventArgs">
+      <topicdata name="ExtendedRoutedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Windows.ExtendedRoutedEventArgs" />
+      <apidata name="ExtendedRoutedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.ExtendedRoutedEventArgs" />
+      </containers>
+      <file name="e0faed99-31b3-99cf-ee13-b6139ca84854" />
+    </api>
+    <api id="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled">
+      <topicdata group="api" />
+      <apidata name="Handled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Handled" />
+      <setter name="set_Handled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.ExtendedRoutedEventArgs" ref="true" />
+      </containers>
+      <file name="fca34fa4-0fdf-66a8-7bcb-3c394a9b796b" />
+    </api>
+    <api id="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource">
+      <topicdata group="api" />
+      <apidata name="OriginalSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginalSource" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.ExtendedRoutedEventArgs" ref="true" />
+      </containers>
+      <file name="85aa02c4-da0f-b00d-7bd9-d5ad8078da88" />
+    </api>
+    <api id="T:Microsoft.Windows.GiveFeedbackEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.GiveFeedbackEventArgs" />
+      <apidata name="GiveFeedbackEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Windows.ExtendedRoutedEventArgs" ref="true" />
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="f7b41b50-c9fd-c592-a488-2117bf6d6706" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.GiveFeedbackEventArgs">
+      <topicdata name="GiveFeedbackEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.GiveFeedbackEventArgs" />
+      <apidata name="GiveFeedbackEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource" />
+        <element api="P:Microsoft.Windows.GiveFeedbackEventArgs.Effects" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.GiveFeedbackEventArgs" />
+      </containers>
+      <file name="aed4c840-d091-ceed-df65-297ed18331d6" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.GiveFeedbackEventArgs">
+      <topicdata name="GiveFeedbackEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.GiveFeedbackEventArgs" />
+      <apidata name="GiveFeedbackEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.GiveFeedbackEventArgs" />
+      </containers>
+      <file name="fe89d21c-707e-7793-a67c-f2050ba6893a" />
+    </api>
+    <api id="Properties.T:Microsoft.Windows.GiveFeedbackEventArgs">
+      <topicdata name="GiveFeedbackEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Windows.GiveFeedbackEventArgs" />
+      <apidata name="GiveFeedbackEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource" />
+        <element api="P:Microsoft.Windows.GiveFeedbackEventArgs.Effects" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.GiveFeedbackEventArgs" />
+      </containers>
+      <file name="081b8c8f-261f-feea-6e23-1b976b62e71c" />
+    </api>
+    <api id="P:Microsoft.Windows.GiveFeedbackEventArgs.Effects">
+      <topicdata group="api" />
+      <apidata name="Effects" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Effects" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropEffects" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.GiveFeedbackEventArgs" ref="true" />
+      </containers>
+      <file name="ffe891dd-3b2f-3b91-419f-fe2e0de2d85c" />
+    </api>
+    <api id="T:Microsoft.Windows.GiveFeedbackEventHandler">
+      <topicdata group="api" />
+      <apidata name="GiveFeedbackEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Windows.GiveFeedbackEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="c17c1da0-b713-10be-19dd-01ecd408790c" />
+    </api>
+    <api id="T:Microsoft.Windows.IAcceptDrop">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.IAcceptDrop" />
+      <apidata name="IAcceptDrop" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Controls.DragDropTarget`2" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="bd042259-c39d-374c-a58e-cb722b8c16eb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.IAcceptDrop">
+      <topicdata name="IAcceptDrop" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.IAcceptDrop" />
+      <apidata name="IAcceptDrop" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnDragEnter(Microsoft.Windows.DragEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnDragLeave(Microsoft.Windows.DragEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnDragOver(Microsoft.Windows.DragEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnDrop(Microsoft.Windows.DragEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnGiveFeedback(Microsoft.Windows.GiveFeedbackEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnQueryContinueDrag(Microsoft.Windows.QueryContinueDragEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IAcceptDrop" />
+      </containers>
+      <file name="ac9ec98f-fbd3-dfdc-0c39-16367d0ae08a" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.IAcceptDrop">
+      <topicdata name="IAcceptDrop" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.IAcceptDrop" />
+      <apidata name="IAcceptDrop" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnDragEnter(Microsoft.Windows.DragEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnDragLeave(Microsoft.Windows.DragEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnDragOver(Microsoft.Windows.DragEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnDrop(Microsoft.Windows.DragEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnGiveFeedback(Microsoft.Windows.GiveFeedbackEventArgs)" />
+        <element api="M:Microsoft.Windows.IAcceptDrop.OnQueryContinueDrag(Microsoft.Windows.QueryContinueDragEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IAcceptDrop" />
+      </containers>
+      <file name="560796f4-6e84-52bd-605e-3f3f3510ccb9" />
+    </api>
+    <api id="M:Microsoft.Windows.IAcceptDrop.OnDragEnter(Microsoft.Windows.DragEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnDragEnter" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IAcceptDrop" ref="true" />
+      </containers>
+      <file name="ee0d0d8b-39c2-dd5e-2be5-c5715ec96458" />
+    </api>
+    <api id="M:Microsoft.Windows.IAcceptDrop.OnDragLeave(Microsoft.Windows.DragEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnDragLeave" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IAcceptDrop" ref="true" />
+      </containers>
+      <file name="f8bdf5ff-9da9-04a5-5fa8-b573166e8027" />
+    </api>
+    <api id="M:Microsoft.Windows.IAcceptDrop.OnDragOver(Microsoft.Windows.DragEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnDragOver" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IAcceptDrop" ref="true" />
+      </containers>
+      <file name="e0cd8c40-ea32-4f62-1c7c-78fd845275f0" />
+    </api>
+    <api id="M:Microsoft.Windows.IAcceptDrop.OnDrop(Microsoft.Windows.DragEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnDrop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Windows.DragEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IAcceptDrop" ref="true" />
+      </containers>
+      <file name="6ecb1053-6810-bbf4-abe1-bc150bf0dd7a" />
+    </api>
+    <api id="M:Microsoft.Windows.IAcceptDrop.OnGiveFeedback(Microsoft.Windows.GiveFeedbackEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnGiveFeedback" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Windows.GiveFeedbackEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IAcceptDrop" ref="true" />
+      </containers>
+      <file name="14b7e663-3569-af0a-4eb9-16d7885786c9" />
+    </api>
+    <api id="M:Microsoft.Windows.IAcceptDrop.OnQueryContinueDrag(Microsoft.Windows.QueryContinueDragEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnQueryContinueDrag" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IAcceptDrop" ref="true" />
+      </containers>
+      <file name="180b9d96-9dc9-4bdb-9383-0d1c7445e920" />
+    </api>
+    <api id="T:Microsoft.Windows.IDataObject">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.IDataObject" />
+      <apidata name="IDataObject" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Microsoft.Windows.DataObject" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="d6afd070-203d-fae6-0a84-f10620e30954" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.IDataObject">
+      <topicdata name="IDataObject" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.IDataObject" />
+      <apidata name="IDataObject" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Windows.IDataObject.GetData">
+          <element api="M:Microsoft.Windows.IDataObject.GetData(System.String)" />
+          <element api="M:Microsoft.Windows.IDataObject.GetData(System.Type)" />
+          <element api="M:Microsoft.Windows.IDataObject.GetData(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.IDataObject.GetDataPresent">
+          <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String)" />
+          <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.Type)" />
+          <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.IDataObject.GetFormats">
+          <element api="M:Microsoft.Windows.IDataObject.GetFormats" />
+          <element api="M:Microsoft.Windows.IDataObject.GetFormats(System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.IDataObject.SetData">
+          <element api="M:Microsoft.Windows.IDataObject.SetData(System.Object)" />
+          <element api="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object)" />
+          <element api="M:Microsoft.Windows.IDataObject.SetData(System.Type,System.Object)" />
+          <element api="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" />
+      </containers>
+      <file name="53133990-7516-a182-b9ab-07c3fb2058ae" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.IDataObject">
+      <topicdata name="IDataObject" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.IDataObject" />
+      <apidata name="IDataObject" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Windows.IDataObject.GetData">
+          <element api="M:Microsoft.Windows.IDataObject.GetData(System.String)" />
+          <element api="M:Microsoft.Windows.IDataObject.GetData(System.Type)" />
+          <element api="M:Microsoft.Windows.IDataObject.GetData(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.IDataObject.GetDataPresent">
+          <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String)" />
+          <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.Type)" />
+          <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.IDataObject.GetFormats">
+          <element api="M:Microsoft.Windows.IDataObject.GetFormats" />
+          <element api="M:Microsoft.Windows.IDataObject.GetFormats(System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Windows.IDataObject.SetData">
+          <element api="M:Microsoft.Windows.IDataObject.SetData(System.Object)" />
+          <element api="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object)" />
+          <element api="M:Microsoft.Windows.IDataObject.SetData(System.Type,System.Object)" />
+          <element api="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object,System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" />
+      </containers>
+      <file name="5c272cfb-6e8b-e8da-db68-9de3f1aebf4e" />
+    </api>
+    <api id="Overload:Microsoft.Windows.IDataObject.GetData">
+      <topicdata name="GetData" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.IDataObject" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Windows.IDataObject.GetData(System.String)" />
+        <element api="M:Microsoft.Windows.IDataObject.GetData(System.Type)" />
+        <element api="M:Microsoft.Windows.IDataObject.GetData(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="e5297a19-20c3-87cc-bef2-4811d4c1b274" />
+    </api>
+    <api id="Overload:Microsoft.Windows.IDataObject.GetDataPresent">
+      <topicdata name="GetDataPresent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.IDataObject" />
+      <apidata name="GetDataPresent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String)" />
+        <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.Type)" />
+        <element api="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="b22f2dbd-3364-52c3-1c85-4a6082cecc5c" />
+    </api>
+    <api id="Overload:Microsoft.Windows.IDataObject.GetFormats">
+      <topicdata name="GetFormats" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.IDataObject" />
+      <apidata name="GetFormats" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Windows.IDataObject.GetFormats" />
+        <element api="M:Microsoft.Windows.IDataObject.GetFormats(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="158a7300-41b1-9748-8894-6f18efd32379" />
+    </api>
+    <api id="Overload:Microsoft.Windows.IDataObject.SetData">
+      <topicdata name="SetData" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Windows.IDataObject" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Windows.IDataObject.SetData(System.Object)" />
+        <element api="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object)" />
+        <element api="M:Microsoft.Windows.IDataObject.SetData(System.Type,System.Object)" />
+        <element api="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="1c1e422e-c6f9-1e35-3aa3-bb7e5050f54c" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.GetData(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.GetData" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="98455a7d-2d39-4a8f-4a10-6219f75d6c20" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.GetData(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.GetData" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="autoConvert">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="5f8bb7ab-00f4-ba46-8091-cfef322c243b" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.GetData(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.GetData" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="e4bbccda-0d01-5883-3ea7-6dcd646b3c40" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDataPresent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.GetDataPresent" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="3a03500c-a1b5-e880-9c40-74371ae0bf88" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.GetDataPresent(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetDataPresent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.GetDataPresent" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="autoConvert">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="af3d612d-4d86-08f4-0376-90dc0e962b4f" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.GetDataPresent(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetDataPresent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.GetDataPresent" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="db2fac79-4852-6ddf-4161-dc348922dd8f" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.GetFormats">
+      <topicdata group="api" />
+      <apidata name="GetFormats" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.GetFormats" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="a48fa39e-9db5-26e5-de65-d77e6b26d7f4" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.GetFormats(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetFormats" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.GetFormats" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="autoConvert">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="adbe0389-a5e0-e562-7f19-b5222c53090d" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.SetData(System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.SetData" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="03721228-55ec-b560-3f25-863c28bf1a8e" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.SetData" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="473de305-db68-cdbb-d7c3-3e14108f3e71" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.SetData(System.String,System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.SetData" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="autoConvert">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="c804326f-4626-639c-b650-7379541942c2" />
+    </api>
+    <api id="M:Microsoft.Windows.IDataObject.SetData(System.Type,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Windows.IDataObject.SetData" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.IDataObject" ref="true" />
+      </containers>
+      <file name="0a59c384-72b2-669b-c39e-53c6e02b4e79" />
+    </api>
+    <api id="T:Microsoft.Windows.QueryContinueDragEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.QueryContinueDragEventArgs" />
+      <apidata name="QueryContinueDragEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Windows.ExtendedRoutedEventArgs" ref="true" />
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="65e94ca6-a986-001a-54b2-4cae2caac692" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.QueryContinueDragEventArgs">
+      <topicdata name="QueryContinueDragEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.QueryContinueDragEventArgs" />
+      <apidata name="QueryContinueDragEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource" />
+        <element api="P:Microsoft.Windows.QueryContinueDragEventArgs.Action" />
+        <element api="P:Microsoft.Windows.QueryContinueDragEventArgs.EscapePressed" />
+        <element api="P:Microsoft.Windows.QueryContinueDragEventArgs.KeyStates" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" />
+      </containers>
+      <file name="cd6bde68-b14e-83a3-2589-53d35738c90b" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.QueryContinueDragEventArgs">
+      <topicdata name="QueryContinueDragEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.QueryContinueDragEventArgs" />
+      <apidata name="QueryContinueDragEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" />
+      </containers>
+      <file name="0ac0e580-027c-004a-40e3-166dc17b0d24" />
+    </api>
+    <api id="Properties.T:Microsoft.Windows.QueryContinueDragEventArgs">
+      <topicdata name="QueryContinueDragEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Windows.QueryContinueDragEventArgs" />
+      <apidata name="QueryContinueDragEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.Handled" />
+        <element api="P:Microsoft.Windows.ExtendedRoutedEventArgs.OriginalSource" />
+        <element api="P:Microsoft.Windows.QueryContinueDragEventArgs.Action" />
+        <element api="P:Microsoft.Windows.QueryContinueDragEventArgs.EscapePressed" />
+        <element api="P:Microsoft.Windows.QueryContinueDragEventArgs.KeyStates" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" />
+      </containers>
+      <file name="2610deba-73ae-ab60-fca8-e36d18e3b871" />
+    </api>
+    <api id="P:Microsoft.Windows.QueryContinueDragEventArgs.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Action" />
+      <setter name="set_Action" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" ref="true" />
+      </containers>
+      <file name="8acb4be9-f89f-dc41-f5f1-991a90c70211" />
+    </api>
+    <api id="P:Microsoft.Windows.QueryContinueDragEventArgs.EscapePressed">
+      <topicdata group="api" />
+      <apidata name="EscapePressed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EscapePressed" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" ref="true" />
+      </containers>
+      <file name="0bfd0b43-695a-ebfc-efad-4b7e78cdf3b5" />
+    </api>
+    <api id="P:Microsoft.Windows.QueryContinueDragEventArgs.KeyStates">
+      <topicdata group="api" />
+      <apidata name="KeyStates" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_KeyStates" />
+      <returns>
+        <type api="T:Microsoft.Windows.DragDropKeyStates" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" ref="true" />
+      </containers>
+      <file name="2b8be9f5-4dca-02c2-3d20-f39c7f1fd1c4" />
+    </api>
+    <api id="T:Microsoft.Windows.QueryContinueDragEventHandler">
+      <topicdata group="api" />
+      <apidata name="QueryContinueDragEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Windows.QueryContinueDragEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="8b8e5386-93bc-a49e-274f-c30c54d8e1da" />
+    </api>
+    <api id="T:Microsoft.Windows.SystemParameters">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.SystemParameters" />
+      <apidata name="SystemParameters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+      </containers>
+      <file name="9171e648-331a-a24d-7ad2-b9053a57f04a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.SystemParameters">
+      <topicdata name="SystemParameters" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.SystemParameters" />
+      <apidata name="SystemParameters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.SystemParameters.MinimumHorizontalDragDistance" />
+        <element api="P:Microsoft.Windows.SystemParameters.MinimumVerticalDragDistance" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.SystemParameters" />
+      </containers>
+      <file name="cb0f800d-1fa1-bba1-7502-6e44abf0359e" />
+    </api>
+    <api id="Properties.T:Microsoft.Windows.SystemParameters">
+      <topicdata name="SystemParameters" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Windows.SystemParameters" />
+      <apidata name="SystemParameters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.SystemParameters.MinimumHorizontalDragDistance" />
+        <element api="P:Microsoft.Windows.SystemParameters.MinimumVerticalDragDistance" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.SystemParameters" />
+      </containers>
+      <file name="0b8f496d-2c7c-a7b4-ca24-aaf147fe77b3" />
+    </api>
+    <api id="P:Microsoft.Windows.SystemParameters.MinimumHorizontalDragDistance">
+      <topicdata group="api" />
+      <apidata name="MinimumHorizontalDragDistance" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MinimumHorizontalDragDistance" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.SystemParameters" ref="true" />
+      </containers>
+      <file name="85288109-56ca-da26-def6-f790a927fcdb" />
+    </api>
+    <api id="P:Microsoft.Windows.SystemParameters.MinimumVerticalDragDistance">
+      <topicdata group="api" />
+      <apidata name="MinimumVerticalDragDistance" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MinimumVerticalDragDistance" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.60818.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows" />
+        <type api="T:Microsoft.Windows.SystemParameters" ref="true" />
+      </containers>
+      <file name="d268448b-fe1e-12b6-1239-82acab4891cd" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Presentation.Converters">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Presentation.Converters" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" />
+        <element api="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" />
+        <element api="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" />
+        <element api="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" />
+        <element api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" />
+        <element api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" />
+      </elements>
+      <file name="f7842583-45f4-4594-6fb0-1ffe4e7a45f0" />
+    </api>
+    <api id="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" />
+      <apidata name="ArgumentToExpressionConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+      </containers>
+      <file name="2033fe15-ea6b-3f10-1ba1-03ad918fec10" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter">
+      <topicdata name="ArgumentToExpressionConverter" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" />
+      <apidata name="ArgumentToExpressionConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.#ctor" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" />
+      </containers>
+      <file name="80fa84f7-4408-76d8-8245-d26507146ebb" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter">
+      <topicdata name="ArgumentToExpressionConverter" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" />
+      <apidata name="ArgumentToExpressionConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" />
+      </containers>
+      <file name="0f2888ea-e730-b37b-02a9-7aae34339113" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" ref="true" />
+      </containers>
+      <file name="61779d3c-e759-307f-9e52-aa9873568716" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" ref="true" />
+      </containers>
+      <file name="e2a17efe-c620-0f36-f7ea-e8aa9f6a5506" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ArgumentToExpressionConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionConverter" ref="true" />
+      </containers>
+      <file name="112173b7-0684-7d6f-ede2-26fbf2e4a7b8" />
+    </api>
+    <api id="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" />
+      <apidata name="ArgumentToExpressionModelItemConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+      </containers>
+      <file name="682342bc-fdd5-74d0-1754-352167f6e75b" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter">
+      <topicdata name="ArgumentToExpressionModelItemConverter" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" />
+      <apidata name="ArgumentToExpressionModelItemConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.#ctor" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" />
+      </containers>
+      <file name="fe3bcad1-b8ca-8564-e714-37c7b96eca9d" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter">
+      <topicdata name="ArgumentToExpressionModelItemConverter" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" />
+      <apidata name="ArgumentToExpressionModelItemConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" />
+      </containers>
+      <file name="07311163-3bb6-3ba0-c2c6-bab654ffefae" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" ref="true" />
+      </containers>
+      <file name="b9b0f364-7772-344e-4e1f-2271544f6376" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="values">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IMultiValueConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" ref="true" />
+      </containers>
+      <file name="a5f4ec88-3be9-fe1e-6a7c-8f48a1a77434" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetTypes">
+          <arrayOf rank="1">
+            <type api="T:System.Type" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IMultiValueConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ArgumentToExpressionModelItemConverter" ref="true" />
+      </containers>
+      <file name="e64f6a37-aaea-7167-b63a-06bb1a0e7322" />
+    </api>
+    <api id="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" />
+      <apidata name="ModelPropertyEntryToModelItemConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+      </containers>
+      <file name="09ae951c-59f7-f0d9-f6cc-b43df6c2e6d0" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter">
+      <topicdata name="ModelPropertyEntryToModelItemConverter" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" />
+      <apidata name="ModelPropertyEntryToModelItemConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.#ctor" />
+        <element api="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert">
+          <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+          <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)" />
+        </element>
+        <element api="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack">
+          <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+          <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" />
+      </containers>
+      <file name="6e84d914-3ff4-3868-a41b-7f0a1336e32e" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter">
+      <topicdata name="ModelPropertyEntryToModelItemConverter" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" />
+      <apidata name="ModelPropertyEntryToModelItemConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert">
+          <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+          <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)" />
+        </element>
+        <element api="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack">
+          <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+          <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" />
+      </containers>
+      <file name="01eccc12-5758-cd27-d572-8c99fb967626" />
+    </api>
+    <api id="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert">
+      <topicdata name="Convert" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" ref="true" />
+      </containers>
+      <file name="cfcefd53-94e6-92de-14d2-16582634939e" />
+    </api>
+    <api id="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack">
+      <topicdata name="ConvertBack" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" ref="true" />
+      </containers>
+      <file name="12d3194a-fae3-a724-2c71-c8def7bf0dfc" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" ref="true" />
+      </containers>
+      <file name="82364b31-82b6-186a-9416-632dccfc8fb1" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" ref="true" />
+      </containers>
+      <file name="54c51123-36bd-6a39-dce7-bc031c34014f" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.Convert" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="values">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IMultiValueConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" ref="true" />
+      </containers>
+      <file name="7a77b844-4706-f2c1-bae0-d8ea46d3e457" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" ref="true" />
+      </containers>
+      <file name="6e0be871-8312-52ab-0400-dc0c8b7fe01d" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter.ConvertBack" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetTypes">
+          <arrayOf rank="1">
+            <type api="T:System.Type" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IMultiValueConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToModelItemConverter" ref="true" />
+      </containers>
+      <file name="a002e087-56c9-dcc1-1565-f573d19d0ed8" />
+    </api>
+    <api id="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" />
+      <apidata name="ModelPropertyEntryToOwnerActivityConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+      </containers>
+      <file name="d9248741-0083-8387-fb02-862f6c0f1056" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter">
+      <topicdata name="ModelPropertyEntryToOwnerActivityConverter" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" />
+      <apidata name="ModelPropertyEntryToOwnerActivityConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.#ctor" />
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" />
+      </containers>
+      <file name="6df17748-3d46-3e81-4afb-43a5690e7f9e" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter">
+      <topicdata name="ModelPropertyEntryToOwnerActivityConverter" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" />
+      <apidata name="ModelPropertyEntryToOwnerActivityConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" />
+      </containers>
+      <file name="a58fb235-9579-4a6e-6f9d-80cb60b5e481" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" ref="true" />
+      </containers>
+      <file name="0b997f8a-d353-5f0d-4d29-441258fc175d" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" ref="true" />
+      </containers>
+      <file name="5541fcf7-186c-20ce-6aba-3c7ac3a70379" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelPropertyEntryToOwnerActivityConverter" ref="true" />
+      </containers>
+      <file name="ed260e2f-7ae9-de6a-871b-267960fabfc1" />
+    </api>
+    <api id="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" />
+      <apidata name="ModelToObjectValueConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+      </containers>
+      <file name="9216cee3-c695-40e3-2589-08d0e4c21474" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Converters.ModelToObjectValueConverter">
+      <topicdata name="ModelToObjectValueConverter" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" />
+      <apidata name="ModelToObjectValueConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.#ctor" />
+        <element api="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" />
+      </containers>
+      <file name="519e220b-3ffb-247e-c16c-2f301eb8333f" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Converters.ModelToObjectValueConverter">
+      <topicdata name="ModelToObjectValueConverter" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" />
+      <apidata name="ModelToObjectValueConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" />
+      </containers>
+      <file name="a39bbffc-47da-993c-3eb6-d4da04027a36" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" ref="true" />
+      </containers>
+      <file name="d1c60134-bdfc-75ab-be1e-ec189e40576b" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" ref="true" />
+      </containers>
+      <file name="52c58448-0103-e4c9-b6d1-d30c5cee7fe5" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ModelToObjectValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ModelToObjectValueConverter" ref="true" />
+      </containers>
+      <file name="175f3d45-a6ca-6779-a9a5-123617393122" />
+    </api>
+    <api id="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" />
+      <apidata name="ObjectToModelValueConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+      </containers>
+      <file name="067c9917-4f80-ea81-3a02-236a5b3986f0" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Converters.ObjectToModelValueConverter">
+      <topicdata name="ObjectToModelValueConverter" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" />
+      <apidata name="ObjectToModelValueConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.#ctor" />
+        <element api="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" />
+      </containers>
+      <file name="0bb733b6-9107-c95d-8a88-7d7c35985705" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Converters.ObjectToModelValueConverter">
+      <topicdata name="ObjectToModelValueConverter" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" />
+      <apidata name="ObjectToModelValueConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" />
+      </containers>
+      <file name="965a8086-7548-7eb0-b836-de8575f7e6c6" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" ref="true" />
+      </containers>
+      <file name="535cd207-f521-7c13-0975-6c19944e8307" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="values">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IMultiValueConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" ref="true" />
+      </containers>
+      <file name="453f8dbd-07e5-5e7e-1eda-650285fa2a2f" />
+    </api>
+    <api id="M:System.Activities.Presentation.Converters.ObjectToModelValueConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetTypes">
+          <arrayOf rank="1">
+            <type api="T:System.Type" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IMultiValueConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IMultiValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Converters" />
+        <type api="T:System.Activities.Presentation.Converters.ObjectToModelValueConverter" ref="true" />
+      </containers>
+      <file name="a4216901-8c5f-3100-6568-430994550ca6" />
+    </api>
+  </apis>
+</reflection>

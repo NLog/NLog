@@ -1,0 +1,1176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Xna.Framework.Toolkit">
+      <assemblydata version="1.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010041E75A3E3B19253E235F794FBB5A8E7C6C9B41F3BFCD829B8EB2289E64436A428418440B08F398D2B067F39DD0905450E717FC9ABA4258484282FF38A2DB4BC11E984DFA89B83771FB79EF572F0CC65897558FC14D8E4A5A425959C90DBBB73921F30642067B6252E02F8875327BA093C3F4A259E20741894872EA80E125FEE3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Xna.Framework.Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright © Microsoft 2011</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Xna.Framework.Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>d13685b9-24a6-46cd-bbf4-e5bfa55b7950</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Xna.Framework.Input">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Xna.Framework.Input" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Xna.Framework.Input.ButtonState" />
+        <element api="T:Microsoft.Xna.Framework.Input.Keyboard" />
+        <element api="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+        <element api="T:Microsoft.Xna.Framework.Input.KeyState" />
+        <element api="T:Microsoft.Xna.Framework.Input.Mouse" />
+        <element api="T:Microsoft.Xna.Framework.Input.MouseState" />
+      </elements>
+      <file name="cc4632dd-67ab-826b-2ba0-84a85a8dab44" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Input.ButtonState">
+      <topicdata group="api" />
+      <apidata name="ButtonState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Xna.Framework.Input.ButtonState.Released" />
+        <element api="F:Microsoft.Xna.Framework.Input.ButtonState.Pressed" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+      </containers>
+      <file name="22b97ffc-0b7f-6e7a-8885-836b494670fb" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Input.ButtonState.Pressed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pressed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </containers>
+      <file name="089f08b5-4ff1-145a-9836-3ac3af081619" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Input.ButtonState.Released">
+      <topicdata group="api" notopic="" />
+      <apidata name="Released" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </containers>
+      <file name="32627e5a-1c6f-dd8b-91d9-2b0ed1c49acd" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Input.Keyboard">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Input.Keyboard" />
+      <apidata name="Keyboard" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+      </containers>
+      <file name="4bc1c0eb-7408-6e5c-0738-c1218f9c4b08" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Input.Keyboard">
+      <topicdata name="Keyboard" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Input.Keyboard" />
+      <apidata name="Keyboard" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.Keyboard.GetState" />
+        <element api="P:Microsoft.Xna.Framework.Input.Keyboard.RootControl" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Keyboard" />
+      </containers>
+      <file name="80920bc2-876b-db76-9c03-40dc65fe0f04" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Input.Keyboard">
+      <topicdata name="Keyboard" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Input.Keyboard" />
+      <apidata name="Keyboard" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.Keyboard.GetState" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Keyboard" />
+      </containers>
+      <file name="89f8caf4-decb-27fe-5e70-ca5652a61744" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Input.Keyboard">
+      <topicdata name="Keyboard" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Input.Keyboard" />
+      <apidata name="Keyboard" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Input.Keyboard.RootControl" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Keyboard" />
+      </containers>
+      <file name="d728bdcb-ee27-c227-fe5a-4b44f90a9a1a" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.Keyboard.GetState">
+      <topicdata group="api" />
+      <apidata name="GetState" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Keyboard" ref="true" />
+      </containers>
+      <file name="b7e40a75-6294-7db4-8e6e-65a6e40df6aa" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.Keyboard.RootControl">
+      <topicdata group="api" />
+      <apidata name="RootControl" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RootControl" />
+      <setter name="set_RootControl" />
+      <returns>
+        <type api="T:System.Windows.Controls.Control" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Keyboard" ref="true" />
+      </containers>
+      <file name="40766f66-4fb0-a90e-b9f2-b38bb026f90e" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Input.KeyboardState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      <apidata name="KeyboardState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+      </containers>
+      <file name="05e33d81-9a23-da21-64df-769730392784" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Input.KeyboardState">
+      <topicdata name="KeyboardState" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      <apidata name="KeyboardState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.#ctor(System.Windows.Input.Key[])" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.Equals(System.Object)" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.GetHashCode" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.GetPressedKeys" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(System.Windows.Input.Key)" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(System.Windows.Input.Key)" />
+        <element api="P:Microsoft.Xna.Framework.Input.KeyboardState.Item(System.Windows.Input.Key)" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.op_Equality(Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState)" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.op_Inequality(Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      </containers>
+      <file name="2ff34291-ff7a-7082-67db-45394b64ae07" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Input.KeyboardState">
+      <topicdata name="KeyboardState" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      <apidata name="KeyboardState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.Equals(System.Object)" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.GetHashCode" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.GetPressedKeys" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(System.Windows.Input.Key)" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(System.Windows.Input.Key)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      </containers>
+      <file name="552f3a14-71b7-f671-4537-1211e19dfda5" />
+    </api>
+    <api id="Operators.T:Microsoft.Xna.Framework.Input.KeyboardState">
+      <topicdata name="KeyboardState" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      <apidata name="KeyboardState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.op_Equality(Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState)" />
+        <element api="M:Microsoft.Xna.Framework.Input.KeyboardState.op_Inequality(Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      </containers>
+      <file name="400be995-01af-6c14-f24f-9dc0d2c5fcd7" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Input.KeyboardState">
+      <topicdata name="KeyboardState" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      <apidata name="KeyboardState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Input.KeyboardState.Item(System.Windows.Input.Key)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" />
+      </containers>
+      <file name="878bd15f-d057-556f-b447-143101df18d1" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.KeyboardState.#ctor(System.Windows.Input.Key[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="keys" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Windows.Input.Key" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="6f8f8ba4-8008-65c3-246d-0a6634ac5196" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.KeyboardState.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.Equals(System.Object)">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="7ac6de70-1ec7-177c-d5a2-e2b4f3f615ff" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.KeyboardState.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.GetHashCode">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="f9e970c3-dbc9-fc96-a594-754e7650fadb" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.KeyboardState.GetPressedKeys">
+      <topicdata group="api" />
+      <apidata name="GetPressedKeys" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Input.Key" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="888bbfc2-63b9-bf6e-3d62-1faa9d85fe30" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(System.Windows.Input.Key)">
+      <topicdata group="api" />
+      <apidata name="IsKeyDown" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Windows.Input.Key" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="17ff00ee-e5a8-be65-a424-5858cd1ea6d6" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(System.Windows.Input.Key)">
+      <topicdata group="api" />
+      <apidata name="IsKeyUp" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Windows.Input.Key" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="d1b17c40-7fcf-0840-63cb-69f962f83e69" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.KeyboardState.Item(System.Windows.Input.Key)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Windows.Input.Key" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.KeyState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="c4d7f86a-93d7-1d3e-3dec-d04e139bbf14" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.KeyboardState.op_Equality(Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="a">
+          <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+        </parameter>
+        <parameter name="b">
+          <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="ff3b47e8-0102-741b-0baa-9dff2aec2689" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.KeyboardState.op_Inequality(Microsoft.Xna.Framework.Input.KeyboardState,Microsoft.Xna.Framework.Input.KeyboardState)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="a">
+          <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+        </parameter>
+        <parameter name="b">
+          <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyboardState" ref="false" />
+      </containers>
+      <file name="ed042958-ca4f-b953-aca4-70900dce03c9" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Input.KeyState">
+      <topicdata group="api" />
+      <apidata name="KeyState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Xna.Framework.Input.KeyState.Down" />
+        <element api="F:Microsoft.Xna.Framework.Input.KeyState.Up" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+      </containers>
+      <file name="dbedd847-e445-01b2-683a-94f32de569dd" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Input.KeyState.Down">
+      <topicdata group="api" notopic="" />
+      <apidata name="Down" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.KeyState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyState" ref="false" />
+      </containers>
+      <file name="94cc0f15-ede3-2f7a-cd52-8c2670f514b3" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Input.KeyState.Up">
+      <topicdata group="api" notopic="" />
+      <apidata name="Up" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.KeyState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.KeyState" ref="false" />
+      </containers>
+      <file name="ef23963e-9d83-c67f-f113-db7f8aad8ed5" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Input.Mouse">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Input.Mouse" />
+      <apidata name="Mouse" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+      </containers>
+      <file name="a1cdc7b9-521e-2723-64eb-bcfd9d1b90a3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Input.Mouse">
+      <topicdata name="Mouse" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Input.Mouse" />
+      <apidata name="Mouse" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.Mouse.GetState" />
+        <element api="P:Microsoft.Xna.Framework.Input.Mouse.RootControl" />
+        <element api="M:Microsoft.Xna.Framework.Input.Mouse.SetPosition(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Mouse" />
+      </containers>
+      <file name="277aa67d-e9b8-c3d4-f12e-d71d1d195bbb" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Input.Mouse">
+      <topicdata name="Mouse" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Input.Mouse" />
+      <apidata name="Mouse" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.Mouse.GetState" />
+        <element api="M:Microsoft.Xna.Framework.Input.Mouse.SetPosition(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Mouse" />
+      </containers>
+      <file name="e1974b3f-51ef-f187-4ee9-805d5077e7da" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Input.Mouse">
+      <topicdata name="Mouse" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Input.Mouse" />
+      <apidata name="Mouse" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Input.Mouse.RootControl" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Mouse" />
+      </containers>
+      <file name="7bf30322-89f5-ffa8-7109-d8fc8dba75f5" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.Mouse.GetState">
+      <topicdata group="api" />
+      <apidata name="GetState" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Mouse" ref="true" />
+      </containers>
+      <file name="47fc92e9-86cc-9547-78db-d1c982cf4bd5" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.Mouse.RootControl">
+      <topicdata group="api" />
+      <apidata name="RootControl" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RootControl" />
+      <setter name="set_RootControl" />
+      <returns>
+        <type api="T:System.Windows.Controls.Control" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Mouse" ref="true" />
+      </containers>
+      <file name="a8fe0029-e6ef-3f54-b752-867217ec11a4" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.Mouse.SetPosition(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetPosition" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.Mouse" ref="true" />
+      </containers>
+      <file name="980a43f2-013b-a09a-ce41-d08e49f191fe" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Input.MouseState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Input.MouseState" />
+      <apidata name="MouseState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+      </containers>
+      <file name="c262f648-ad7a-a2ed-e5b3-1d09708a65be" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Input.MouseState">
+      <topicdata name="MouseState" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Input.MouseState" />
+      <apidata name="MouseState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.#ctor(System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Input.ButtonState,Microsoft.Xna.Framework.Input.ButtonState,Microsoft.Xna.Framework.Input.ButtonState,Microsoft.Xna.Framework.Input.ButtonState,Microsoft.Xna.Framework.Input.ButtonState)" />
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.Equals(System.Object)" />
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.GetHashCode" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.LeftButton" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.MiddleButton" />
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.op_Equality(Microsoft.Xna.Framework.Input.MouseState,Microsoft.Xna.Framework.Input.MouseState)" />
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.op_Inequality(Microsoft.Xna.Framework.Input.MouseState,Microsoft.Xna.Framework.Input.MouseState)" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.RightButton" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue" />
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.ToString" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.X" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.XButton1" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.XButton2" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.Y" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" />
+      </containers>
+      <file name="7e20b221-9e90-0476-f5b8-ce794c80f425" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Input.MouseState">
+      <topicdata name="MouseState" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Input.MouseState" />
+      <apidata name="MouseState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.Equals(System.Object)" />
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.GetHashCode" />
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.ToString" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" />
+      </containers>
+      <file name="a84d7732-fa32-e375-a249-37a6bc7d1ec2" />
+    </api>
+    <api id="Operators.T:Microsoft.Xna.Framework.Input.MouseState">
+      <topicdata name="MouseState" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:Microsoft.Xna.Framework.Input.MouseState" />
+      <apidata name="MouseState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.op_Equality(Microsoft.Xna.Framework.Input.MouseState,Microsoft.Xna.Framework.Input.MouseState)" />
+        <element api="M:Microsoft.Xna.Framework.Input.MouseState.op_Inequality(Microsoft.Xna.Framework.Input.MouseState,Microsoft.Xna.Framework.Input.MouseState)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" />
+      </containers>
+      <file name="835139d4-8f4f-a6fa-7860-6785c88a20ac" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Input.MouseState">
+      <topicdata name="MouseState" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Input.MouseState" />
+      <apidata name="MouseState" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.LeftButton" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.MiddleButton" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.RightButton" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.X" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.XButton1" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.XButton2" />
+        <element api="P:Microsoft.Xna.Framework.Input.MouseState.Y" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" />
+      </containers>
+      <file name="66ab62ff-fb63-c84a-f08c-efb4acbf58f4" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.MouseState.#ctor(System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Input.ButtonState,Microsoft.Xna.Framework.Input.ButtonState,Microsoft.Xna.Framework.Input.ButtonState,Microsoft.Xna.Framework.Input.ButtonState,Microsoft.Xna.Framework.Input.ButtonState)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="scrollWheel">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="leftButton">
+          <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+        </parameter>
+        <parameter name="middleButton">
+          <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+        </parameter>
+        <parameter name="rightButton">
+          <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+        </parameter>
+        <parameter name="xButton1">
+          <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+        </parameter>
+        <parameter name="xButton2">
+          <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="a3e9d220-dcab-2870-48d1-a1f8b35f024c" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.MouseState.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.Equals(System.Object)">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="63e426bc-8806-fa7b-9c10-aaa267a3ba1d" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.MouseState.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.GetHashCode">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="610496f7-3b74-cee9-09cc-cf64ffc1ea7b" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.MouseState.LeftButton">
+      <topicdata group="api" />
+      <apidata name="LeftButton" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LeftButton" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="76bf9b6f-d165-cba2-2b38-972e35ebd160" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.MouseState.MiddleButton">
+      <topicdata group="api" />
+      <apidata name="MiddleButton" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MiddleButton" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="94e0d5eb-7d57-5171-39be-b86f072c6583" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.MouseState.op_Equality(Microsoft.Xna.Framework.Input.MouseState,Microsoft.Xna.Framework.Input.MouseState)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+        </parameter>
+        <parameter name="right">
+          <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="d57cb1b7-89d3-dcb8-ba62-7ea5361d5e96" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.MouseState.op_Inequality(Microsoft.Xna.Framework.Input.MouseState,Microsoft.Xna.Framework.Input.MouseState)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+        </parameter>
+        <parameter name="right">
+          <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="950a2c1a-36c5-c243-b813-945284811ae3" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.MouseState.RightButton">
+      <topicdata group="api" />
+      <apidata name="RightButton" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RightButton" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="633ba7f7-7a4e-22ac-2f99-937ced6eb8ac" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue">
+      <topicdata group="api" />
+      <apidata name="ScrollWheelValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ScrollWheelValue" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="adc4405f-fbc8-be2d-d944-8e587cfa1df9" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Input.MouseState.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.ToString">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="16d6d78f-7c1d-d059-04ac-186e232b4f66" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.MouseState.X">
+      <topicdata group="api" />
+      <apidata name="X" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_X" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="c3b777d1-03a6-c414-1277-84a32e8bdccd" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.MouseState.XButton1">
+      <topicdata group="api" />
+      <apidata name="XButton1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_XButton1" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="0a41108e-15e3-703b-d625-e09d02dd4a76" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.MouseState.XButton2">
+      <topicdata group="api" />
+      <apidata name="XButton2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_XButton2" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Input.ButtonState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="79bd675d-f081-8eaa-7051-ba8ecf3fd212" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Input.MouseState.Y">
+      <topicdata group="api" />
+      <apidata name="Y" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Y" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.Toolkit" module="Microsoft.Xna.Framework.Toolkit" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Input" />
+        <type api="T:Microsoft.Xna.Framework.Input.MouseState" ref="false" />
+      </containers>
+      <file name="eea4a77a-f160-60c8-5955-6122efc0391d" />
+    </api>
+  </apis>
+</reflection>

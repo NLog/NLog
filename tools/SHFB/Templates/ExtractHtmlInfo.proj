@@ -1,15 +1,14 @@
-﻿<Project DefaultTargets="Extract" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
+﻿<Project ToolsVersion="12.0" DefaultTargets="Extract" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Sandcastle Help File Builder Tasks.  https://GitHub.com/EWSoftware/SHFB -->
   <UsingTask TaskName="SandcastleBuilder.HtmlExtract.SandcastleHtmlExtract"
-    AssemblyFile="$(SHFBROOT)\SandcastleHtmlExtract.exe" />
+    AssemblyFile="{@SHFBFolder}\SandcastleHtmlExtract.exe" />
 
   <!-- Task properties -->
   <PropertyGroup>
     <ProjectName>{@HTMLEncHelpName}</ProjectName>
     <LanguageId>{@LangID}</LanguageId>
-    <GenerateHelp1Files>{@GenerateHelp1Files}</GenerateHelp1Files>
-    <GenerateWebFiles>{@GenerateWebFiles}</GenerateWebFiles>
-    <HtmlFolder />
+    <Help1Folder>{@Help1Folder}</Help1Folder>
+    <WebsiteFolder>{@WebsiteFolder}</WebsiteFolder>
     <LocalizedFolder />
     <OutputFolder />
     <TocFile />
@@ -31,12 +30,11 @@
     <!-- Extract title and keyword index info.  This will also alter the
          encoding of the files if localizing them for use with the HTML
          Help 1 compiler. -->
-    <SandcastleHtmlExtract
+    <SandcastleBuilder.HtmlExtract.SandcastleHtmlExtract
       ProjectName="$(ProjectName)"
       LanguageId="$(LanguageId)"
-      GenerateHelp1Files="$(GenerateHelp1Files)"
-      GenerateWebFiles="$(GenerateWebFiles)"
-      HtmlFolder="$(HtmlFolder)"
+      Help1Folder="$(Help1Folder)"
+      WebsiteFolder="$(WebsiteFolder)"
       LocalizedFolder="$(LocalizedFolder)"
       OutputFolder="$(OutputFolder)"
       TocFile="$(TocFile)" />

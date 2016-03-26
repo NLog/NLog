@@ -1,0 +1,1880 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Routing">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Routing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Routing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Routing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Routing">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Routing" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Routing.IDuplexSessionRouter" />
+        <element api="T:System.ServiceModel.Routing.IRequestReplyRouter" />
+        <element api="T:System.ServiceModel.Routing.ISimplexDatagramRouter" />
+        <element api="T:System.ServiceModel.Routing.ISimplexSessionRouter" />
+        <element api="T:System.ServiceModel.Routing.RoutingBehavior" />
+        <element api="T:System.ServiceModel.Routing.RoutingConfiguration" />
+        <element api="T:System.ServiceModel.Routing.RoutingExtension" />
+        <element api="T:System.ServiceModel.Routing.RoutingService" />
+        <element api="T:System.ServiceModel.Routing.SoapProcessingBehavior" />
+      </elements>
+      <file name="67bfdd78-0420-35a3-ed44-33b4377cabf8" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.IDuplexSessionRouter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.IDuplexSessionRouter" />
+      <apidata name="IDuplexSessionRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <file name="0035f935-0a12-b565-45cb-77a859291be5" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.IDuplexSessionRouter">
+      <topicdata name="IDuplexSessionRouter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.IDuplexSessionRouter" />
+      <apidata name="IDuplexSessionRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.IDuplexSessionRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.IDuplexSessionRouter.EndProcessMessage(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.IDuplexSessionRouter" />
+      </containers>
+      <file name="ec0c8f18-951a-e568-3e9c-83118695fed9" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.IDuplexSessionRouter">
+      <topicdata name="IDuplexSessionRouter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.IDuplexSessionRouter" />
+      <apidata name="IDuplexSessionRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.IDuplexSessionRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.IDuplexSessionRouter.EndProcessMessage(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.IDuplexSessionRouter" />
+      </containers>
+      <file name="e86789df-af91-42bb-ee8d-7cb96bd01c9f" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.IDuplexSessionRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.IDuplexSessionRouter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="AsyncPattern">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>*</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="30f29347-89fd-d493-18a2-f9898c85bedf" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.IDuplexSessionRouter.EndProcessMessage(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.IDuplexSessionRouter" ref="true" />
+      </containers>
+      <file name="7de579cb-9092-5079-206e-4ce1b5e0ed2f" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.IRequestReplyRouter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.IRequestReplyRouter" />
+      <apidata name="IRequestReplyRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceContractAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/netfx/2009/05/routing</value>
+          </assignment>
+          <assignment name="SessionMode">
+            <type api="T:System.ServiceModel.SessionMode" ref="false" />
+            <enumValue>
+              <field name="Allowed" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="cc6a72b3-a16d-5d30-c11f-3130c1d1c756" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.IRequestReplyRouter">
+      <topicdata name="IRequestReplyRouter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.IRequestReplyRouter" />
+      <apidata name="IRequestReplyRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.IRequestReplyRouter.BeginProcessRequest(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.IRequestReplyRouter.EndProcessRequest(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.IRequestReplyRouter" />
+      </containers>
+      <file name="25a5a176-2252-09cc-d256-c4c72854a8f3" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.IRequestReplyRouter">
+      <topicdata name="IRequestReplyRouter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.IRequestReplyRouter" />
+      <apidata name="IRequestReplyRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.IRequestReplyRouter.BeginProcessRequest(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.IRequestReplyRouter.EndProcessRequest(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.IRequestReplyRouter" />
+      </containers>
+      <file name="706a13c5-a429-eb45-0fab-87f0e362ac41" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.IRequestReplyRouter.BeginProcessRequest(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginProcessRequest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.IRequestReplyRouter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="AsyncPattern">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>*</value>
+          </assignment>
+          <assignment name="ReplyAction">
+            <type api="T:System.String" ref="true" />
+            <value>*</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="0ae94dc9-7692-c20a-eae2-8c3bf3383065" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.IRequestReplyRouter.EndProcessRequest(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndProcessRequest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.IRequestReplyRouter" ref="true" />
+      </containers>
+      <file name="4155f2ce-2e0f-3be3-6fed-6a50c320962b" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.ISimplexDatagramRouter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.ISimplexDatagramRouter" />
+      <apidata name="ISimplexDatagramRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceContractAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/netfx/2009/05/routing</value>
+          </assignment>
+          <assignment name="SessionMode">
+            <type api="T:System.ServiceModel.SessionMode" ref="false" />
+            <enumValue>
+              <field name="Allowed" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8e6a38bc-2ede-3f24-d4b7-09ce452b8021" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.ISimplexDatagramRouter">
+      <topicdata name="ISimplexDatagramRouter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.ISimplexDatagramRouter" />
+      <apidata name="ISimplexDatagramRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.ISimplexDatagramRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.ISimplexDatagramRouter.EndProcessMessage(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.ISimplexDatagramRouter" />
+      </containers>
+      <file name="7d1cfdb8-41c9-18e6-df26-593ea8b6c196" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.ISimplexDatagramRouter">
+      <topicdata name="ISimplexDatagramRouter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.ISimplexDatagramRouter" />
+      <apidata name="ISimplexDatagramRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.ISimplexDatagramRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.ISimplexDatagramRouter.EndProcessMessage(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.ISimplexDatagramRouter" />
+      </containers>
+      <file name="a355dd5c-112f-76c2-3508-340def6fefc4" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.ISimplexDatagramRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.ISimplexDatagramRouter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="AsyncPattern">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>*</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="355d2bc7-b5a0-032e-1e81-abaa741694a8" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.ISimplexDatagramRouter.EndProcessMessage(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.ISimplexDatagramRouter" ref="true" />
+      </containers>
+      <file name="af9da13f-6ed9-bfd9-b4ba-8e2567d66cce" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.ISimplexSessionRouter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.ISimplexSessionRouter" />
+      <apidata name="ISimplexSessionRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceContractAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/netfx/2009/05/routing</value>
+          </assignment>
+          <assignment name="SessionMode">
+            <type api="T:System.ServiceModel.SessionMode" ref="false" />
+            <enumValue>
+              <field name="Required" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ead264e0-54ea-9d53-3f4f-a8265aa77813" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.ISimplexSessionRouter">
+      <topicdata name="ISimplexSessionRouter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.ISimplexSessionRouter" />
+      <apidata name="ISimplexSessionRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.ISimplexSessionRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.ISimplexSessionRouter.EndProcessMessage(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.ISimplexSessionRouter" />
+      </containers>
+      <file name="e8584f4a-d7a4-4165-4019-2a730b7a5b9f" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.ISimplexSessionRouter">
+      <topicdata name="ISimplexSessionRouter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.ISimplexSessionRouter" />
+      <apidata name="ISimplexSessionRouter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.ISimplexSessionRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.ISimplexSessionRouter.EndProcessMessage(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.ISimplexSessionRouter" />
+      </containers>
+      <file name="252d17a7-29c8-163a-0e45-78669dccd788" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.ISimplexSessionRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.ISimplexSessionRouter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="AsyncPattern">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>*</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="82c5b0bb-9116-97c9-ad50-183aadcdadb6" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.ISimplexSessionRouter.EndProcessMessage(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.ISimplexSessionRouter" ref="true" />
+      </containers>
+      <file name="84e3407f-1786-d0cd-5a5c-b8e57e736f05" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.RoutingBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.RoutingBehavior" />
+      <apidata name="RoutingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <file name="e92ff951-0101-cabf-7a53-7742dddcb748" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.RoutingBehavior">
+      <topicdata name="RoutingBehavior" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.RoutingBehavior" />
+      <apidata name="RoutingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.#ctor(System.ServiceModel.Routing.RoutingConfiguration)" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.GetContractForDescription(System.ServiceModel.Description.ContractDescription)" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingBehavior" />
+      </containers>
+      <file name="c30ade48-a761-0ab4-665b-cdbd755968a6" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.RoutingBehavior">
+      <topicdata name="RoutingBehavior" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.RoutingBehavior" />
+      <apidata name="RoutingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.GetContractForDescription(System.ServiceModel.Description.ContractDescription)" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingBehavior" />
+      </containers>
+      <file name="95aaf0f2-7506-d1aa-68a1-a2324859dd93" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingBehavior.#ctor(System.ServiceModel.Routing.RoutingConfiguration)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="routingConfiguration">
+          <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingBehavior" ref="true" />
+      </containers>
+      <file name="29793cde-feb6-69e1-bd87-1227c1f54f1c" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingBehavior.GetContractForDescription(System.ServiceModel.Description.ContractDescription)">
+      <topicdata group="api" />
+      <apidata name="GetContractForDescription" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="description">
+          <type api="T:System.ServiceModel.Description.ContractDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingBehavior" ref="true" />
+      </containers>
+      <file name="f6a2f688-cd20-edb5-f724-a77b7088e6ce" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" eiiName="IServiceBehavior.AddBindingParameters" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+        <parameter name="endpoints">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingBehavior" ref="true" />
+      </containers>
+      <file name="d1ee8670-eefe-a0d2-6585-fb5fc314afb5" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" eiiName="IServiceBehavior.ApplyDispatchBehavior" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingBehavior" ref="true" />
+      </containers>
+      <file name="dc34d653-842d-74a1-84a1-de6403809816" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingBehavior.System#ServiceModel#Description#IServiceBehavior#Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" eiiName="IServiceBehavior.Validate" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingBehavior" ref="true" />
+      </containers>
+      <file name="b4f2922d-8f62-d887-0103-f8f334c1e700" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.RoutingConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.RoutingConfiguration" />
+      <apidata name="RoutingConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <file name="46a1d56b-6d0c-922c-92f9-2ce287928814" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.RoutingConfiguration">
+      <topicdata name="RoutingConfiguration" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.RoutingConfiguration" />
+      <apidata name="RoutingConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Routing.RoutingConfiguration.#ctor">
+          <element api="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor" />
+          <element api="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor(System.ServiceModel.Dispatcher.MessageFilterTable{System.Collections.Generic.IEnumerable{System.ServiceModel.Description.ServiceEndpoint}},System.Boolean)" />
+        </element>
+        <element api="P:System.ServiceModel.Routing.RoutingConfiguration.EnsureOrderedDispatch" />
+        <element api="P:System.ServiceModel.Routing.RoutingConfiguration.FilterTable" />
+        <element api="P:System.ServiceModel.Routing.RoutingConfiguration.RouteOnHeadersOnly" />
+        <element api="P:System.ServiceModel.Routing.RoutingConfiguration.SoapProcessingEnabled" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" />
+      </containers>
+      <file name="5135873f-9933-ba36-7d08-9223ea4479e9" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.RoutingConfiguration">
+      <topicdata name="RoutingConfiguration" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.RoutingConfiguration" />
+      <apidata name="RoutingConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" />
+      </containers>
+      <file name="20942cec-f8f9-8a02-a136-2c493faba69d" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Routing.RoutingConfiguration">
+      <topicdata name="RoutingConfiguration" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Routing.RoutingConfiguration" />
+      <apidata name="RoutingConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Routing.RoutingConfiguration.EnsureOrderedDispatch" />
+        <element api="P:System.ServiceModel.Routing.RoutingConfiguration.FilterTable" />
+        <element api="P:System.ServiceModel.Routing.RoutingConfiguration.RouteOnHeadersOnly" />
+        <element api="P:System.ServiceModel.Routing.RoutingConfiguration.SoapProcessingEnabled" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" />
+      </containers>
+      <file name="ca6035b3-de41-8177-c4b1-93ba900873cc" />
+    </api>
+    <api id="Overload:System.ServiceModel.Routing.RoutingConfiguration.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.RoutingConfiguration" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor" />
+        <element api="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor(System.ServiceModel.Dispatcher.MessageFilterTable{System.Collections.Generic.IEnumerable{System.ServiceModel.Description.ServiceEndpoint}},System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+      </containers>
+      <file name="1a7759ab-3112-54b2-bb08-cfcbfc01a9aa" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Routing.RoutingConfiguration.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+      </containers>
+      <file name="ac372210-6655-098c-3f66-60ae89ed4aa0" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingConfiguration.#ctor(System.ServiceModel.Dispatcher.MessageFilterTable{System.Collections.Generic.IEnumerable{System.ServiceModel.Description.ServiceEndpoint}},System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Routing.RoutingConfiguration.#ctor" />
+      <parameters>
+        <parameter name="filterTable">
+          <type api="T:System.ServiceModel.Dispatcher.MessageFilterTable`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+                <specialization>
+                  <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="routeOnHeadersOnly">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+      </containers>
+      <file name="a5f24984-feb3-9857-f7bf-4c5670bbf35b" />
+    </api>
+    <api id="P:System.ServiceModel.Routing.RoutingConfiguration.EnsureOrderedDispatch">
+      <topicdata group="api" />
+      <apidata name="EnsureOrderedDispatch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnsureOrderedDispatch" />
+      <setter name="set_EnsureOrderedDispatch" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+      </containers>
+      <file name="3fbe7072-c8d2-edce-cb3f-b0ab3923c486" />
+    </api>
+    <api id="P:System.ServiceModel.Routing.RoutingConfiguration.FilterTable">
+      <topicdata group="api" />
+      <apidata name="FilterTable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FilterTable" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.MessageFilterTable`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+      </containers>
+      <file name="9b793885-a278-5275-b7ca-350cd5b2a981" />
+    </api>
+    <api id="P:System.ServiceModel.Routing.RoutingConfiguration.RouteOnHeadersOnly">
+      <topicdata group="api" />
+      <apidata name="RouteOnHeadersOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RouteOnHeadersOnly" />
+      <setter name="set_RouteOnHeadersOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+      </containers>
+      <file name="b7a6f838-ad15-5e40-4b51-5c8edc0949d2" />
+    </api>
+    <api id="P:System.ServiceModel.Routing.RoutingConfiguration.SoapProcessingEnabled">
+      <topicdata group="api" />
+      <apidata name="SoapProcessingEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SoapProcessingEnabled" />
+      <setter name="set_SoapProcessingEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+      </containers>
+      <file name="5d2be542-be54-aba7-a009-73f3a628c83d" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.RoutingExtension">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.RoutingExtension" />
+      <apidata name="RoutingExtension" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.IExtension`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <file name="3476a790-a9ed-0f0c-f2fe-49ebb4b73ba1" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.RoutingExtension">
+      <topicdata name="RoutingExtension" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.RoutingExtension" />
+      <apidata name="RoutingExtension" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Routing.RoutingExtension.ApplyConfiguration(System.ServiceModel.Routing.RoutingConfiguration)" />
+        <element api="M:System.ServiceModel.Routing.RoutingExtension.System#ServiceModel#IExtension{System#ServiceModel#ServiceHostBase}#Attach(System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Routing.RoutingExtension.System#ServiceModel#IExtension{System#ServiceModel#ServiceHostBase}#Detach(System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingExtension" />
+      </containers>
+      <file name="508017ca-802d-c25d-3479-dd36472677a6" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.RoutingExtension">
+      <topicdata name="RoutingExtension" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.RoutingExtension" />
+      <apidata name="RoutingExtension" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Routing.RoutingExtension.ApplyConfiguration(System.ServiceModel.Routing.RoutingConfiguration)" />
+        <element api="M:System.ServiceModel.Routing.RoutingExtension.System#ServiceModel#IExtension{System#ServiceModel#ServiceHostBase}#Attach(System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Routing.RoutingExtension.System#ServiceModel#IExtension{System#ServiceModel#ServiceHostBase}#Detach(System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingExtension" />
+      </containers>
+      <file name="102a36aa-9f8f-2b44-c178-c0fcb4a0394b" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingExtension.ApplyConfiguration(System.ServiceModel.Routing.RoutingConfiguration)">
+      <topicdata group="api" />
+      <apidata name="ApplyConfiguration" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="routingConfiguration">
+          <type api="T:System.ServiceModel.Routing.RoutingConfiguration" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingExtension" ref="true" />
+      </containers>
+      <file name="d4174e16-c7bb-65bf-f903-af639c9eb366" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingExtension.System#ServiceModel#IExtension{System#ServiceModel#ServiceHostBase}#Attach(System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" eiiName="IExtension.Attach" />
+      <apidata name="Attach" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="owner">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.IExtension`1.Attach(`0)">
+          <type api="T:System.ServiceModel.IExtension`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingExtension" ref="true" />
+      </containers>
+      <file name="834f2296-ddf3-3686-3b21-6b965da070e3" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingExtension.System#ServiceModel#IExtension{System#ServiceModel#ServiceHostBase}#Detach(System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" eiiName="IExtension.Detach" />
+      <apidata name="Detach" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="owner">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.IExtension`1.Detach(`0)">
+          <type api="T:System.ServiceModel.IExtension`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingExtension" ref="true" />
+      </containers>
+      <file name="d7f2ec7c-96ec-b4b4-0a11-c3416f6d1b06" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.RoutingService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.RoutingService" />
+      <apidata name="RoutingService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Routing.ISimplexDatagramRouter" ref="true" />
+        <type api="T:System.ServiceModel.Routing.ISimplexSessionRouter" ref="true" />
+        <type api="T:System.ServiceModel.Routing.IRequestReplyRouter" ref="true" />
+        <type api="T:System.ServiceModel.Routing.IDuplexSessionRouter" ref="true" />
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceBehaviorAttribute" ref="true" />
+          <assignment name="AddressFilterMode">
+            <type api="T:System.ServiceModel.AddressFilterMode" ref="false" />
+            <enumValue>
+              <field name="Any" />
+            </enumValue>
+          </assignment>
+          <assignment name="InstanceContextMode">
+            <type api="T:System.ServiceModel.InstanceContextMode" ref="false" />
+            <enumValue>
+              <field name="PerSession" />
+            </enumValue>
+          </assignment>
+          <assignment name="UseSynchronizationContext">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="ValidateMustUnderstand">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+          <assignment name="RequirementsMode">
+            <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+            <enumValue>
+              <field name="Allowed" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d3850547-37a3-5276-49e4-3f90500bd5bf" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.RoutingService">
+      <topicdata name="RoutingService" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.RoutingService" />
+      <apidata name="RoutingService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#IDisposable#Dispose" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IDuplexSessionRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IDuplexSessionRouter#EndProcessMessage(System.IAsyncResult)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IRequestReplyRouter#BeginProcessRequest(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IRequestReplyRouter#EndProcessRequest(System.IAsyncResult)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexDatagramRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexDatagramRouter#EndProcessMessage(System.IAsyncResult)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexSessionRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexSessionRouter#EndProcessMessage(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" />
+      </containers>
+      <file name="7c69b525-81da-82cd-a4c1-ed3ae826e2f9" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.RoutingService">
+      <topicdata name="RoutingService" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.RoutingService" />
+      <apidata name="RoutingService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#IDisposable#Dispose" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IDuplexSessionRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IDuplexSessionRouter#EndProcessMessage(System.IAsyncResult)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IRequestReplyRouter#BeginProcessRequest(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IRequestReplyRouter#EndProcessRequest(System.IAsyncResult)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexDatagramRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexDatagramRouter#EndProcessMessage(System.IAsyncResult)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexSessionRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)" />
+        <element api="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexSessionRouter#EndProcessMessage(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" />
+      </containers>
+      <file name="d9570d44-c705-03b2-4e25-5dc441146d53" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#IDisposable#Dispose">
+      <topicdata group="api" eiiName="IDisposable.Dispose" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <file name="234187f9-f5ea-703c-9efe-225541d7ac8e" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IDuplexSessionRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+      <topicdata group="api" eiiName="IDuplexSessionRouter.BeginProcessMessage" />
+      <apidata name="BeginProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.Routing.IDuplexSessionRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+          <type api="T:System.ServiceModel.Routing.IDuplexSessionRouter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationBehaviorAttribute" ref="true" />
+          <assignment name="Impersonation">
+            <type api="T:System.ServiceModel.ImpersonationOption" ref="false" />
+            <enumValue>
+              <field name="Allowed" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="557f106e-074c-bf82-98ca-75b00e3c7349" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IDuplexSessionRouter#EndProcessMessage(System.IAsyncResult)">
+      <topicdata group="api" eiiName="IDuplexSessionRouter.EndProcessMessage" />
+      <apidata name="EndProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Routing.IDuplexSessionRouter.EndProcessMessage(System.IAsyncResult)">
+          <type api="T:System.ServiceModel.Routing.IDuplexSessionRouter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <file name="8abf6a61-6c5f-c373-2005-79ce14ea86ec" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IRequestReplyRouter#BeginProcessRequest(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+      <topicdata group="api" eiiName="IRequestReplyRouter.BeginProcessRequest" />
+      <apidata name="BeginProcessRequest" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.Routing.IRequestReplyRouter.BeginProcessRequest(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+          <type api="T:System.ServiceModel.Routing.IRequestReplyRouter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationBehaviorAttribute" ref="true" />
+          <assignment name="Impersonation">
+            <type api="T:System.ServiceModel.ImpersonationOption" ref="false" />
+            <enumValue>
+              <field name="Allowed" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a1cc5820-cc72-da4f-87d6-34728112f470" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#IRequestReplyRouter#EndProcessRequest(System.IAsyncResult)">
+      <topicdata group="api" eiiName="IRequestReplyRouter.EndProcessRequest" />
+      <apidata name="EndProcessRequest" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.Routing.IRequestReplyRouter.EndProcessRequest(System.IAsyncResult)">
+          <type api="T:System.ServiceModel.Routing.IRequestReplyRouter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <file name="a7bd21ac-203f-7341-5c2c-4f265a065d61" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexDatagramRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+      <topicdata group="api" eiiName="ISimplexDatagramRouter.BeginProcessMessage" />
+      <apidata name="BeginProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.Routing.ISimplexDatagramRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+          <type api="T:System.ServiceModel.Routing.ISimplexDatagramRouter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationBehaviorAttribute" ref="true" />
+          <assignment name="Impersonation">
+            <type api="T:System.ServiceModel.ImpersonationOption" ref="false" />
+            <enumValue>
+              <field name="Allowed" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="50c6f9cd-16b8-945f-0fca-90a9859492cb" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexDatagramRouter#EndProcessMessage(System.IAsyncResult)">
+      <topicdata group="api" eiiName="ISimplexDatagramRouter.EndProcessMessage" />
+      <apidata name="EndProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Routing.ISimplexDatagramRouter.EndProcessMessage(System.IAsyncResult)">
+          <type api="T:System.ServiceModel.Routing.ISimplexDatagramRouter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <file name="93333782-ff3f-5278-5d05-c34c3801f7bd" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexSessionRouter#BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+      <topicdata group="api" eiiName="ISimplexSessionRouter.BeginProcessMessage" />
+      <apidata name="BeginProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.Routing.ISimplexSessionRouter.BeginProcessMessage(System.ServiceModel.Channels.Message,System.AsyncCallback,System.Object)">
+          <type api="T:System.ServiceModel.Routing.ISimplexSessionRouter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationBehaviorAttribute" ref="true" />
+          <assignment name="Impersonation">
+            <type api="T:System.ServiceModel.ImpersonationOption" ref="false" />
+            <enumValue>
+              <field name="Allowed" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f3450164-d345-e3da-bfc7-1ca1ddd63042" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.RoutingService.System#ServiceModel#Routing#ISimplexSessionRouter#EndProcessMessage(System.IAsyncResult)">
+      <topicdata group="api" eiiName="ISimplexSessionRouter.EndProcessMessage" />
+      <apidata name="EndProcessMessage" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Routing.ISimplexSessionRouter.EndProcessMessage(System.IAsyncResult)">
+          <type api="T:System.ServiceModel.Routing.ISimplexSessionRouter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.RoutingService" ref="true" />
+      </containers>
+      <file name="fcab996e-4fed-b7c2-f132-29a5bb0db17c" />
+    </api>
+    <api id="T:System.ServiceModel.Routing.SoapProcessingBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Routing.SoapProcessingBehavior" />
+      <apidata name="SoapProcessingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Routing.SoapProcessingBehavior.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IEndpointBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+      </containers>
+      <file name="48b0439b-01cd-b275-069d-a7acbf32c394" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Routing.SoapProcessingBehavior">
+      <topicdata name="SoapProcessingBehavior" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Routing.SoapProcessingBehavior" />
+      <apidata name="SoapProcessingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Routing.SoapProcessingBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.#ctor" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)" />
+        <element api="P:System.ServiceModel.Routing.SoapProcessingBehavior.ProcessMessages" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" />
+      </containers>
+      <file name="699779c5-b19d-3bd8-1116-a5ee9dc88360" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Routing.SoapProcessingBehavior">
+      <topicdata name="SoapProcessingBehavior" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Routing.SoapProcessingBehavior" />
+      <apidata name="SoapProcessingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Routing.SoapProcessingBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)" />
+        <element api="M:System.ServiceModel.Routing.SoapProcessingBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" />
+      </containers>
+      <file name="05f0e6e1-2d4e-dd64-0562-146959ae2f39" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Routing.SoapProcessingBehavior">
+      <topicdata name="SoapProcessingBehavior" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Routing.SoapProcessingBehavior" />
+      <apidata name="SoapProcessingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Routing.SoapProcessingBehavior.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Routing.SoapProcessingBehavior.ProcessMessages" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" />
+      </containers>
+      <file name="eddcd601-5376-3ccc-1f1a-6859cf52c7d3" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.SoapProcessingBehavior.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" ref="true" />
+      </containers>
+      <file name="c0c3223d-cc4c-d5a9-0056-283c16ed364d" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.SoapProcessingBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="endpoint">
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IEndpointBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IEndpointBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" ref="true" />
+      </containers>
+      <file name="5e9d4881-c7cb-0039-8040-468f0dab6f59" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.SoapProcessingBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+      <topicdata group="api" />
+      <apidata name="ApplyClientBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="endpoint">
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+        </parameter>
+        <parameter name="clientRuntime">
+          <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IEndpointBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+          <type api="T:System.ServiceModel.Description.IEndpointBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" ref="true" />
+      </containers>
+      <file name="2fb040e9-2d4b-e07d-c822-f9489f5ea453" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.SoapProcessingBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+      <topicdata group="api" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="endpoint">
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+        </parameter>
+        <parameter name="endpointDispatcher">
+          <type api="T:System.ServiceModel.Dispatcher.EndpointDispatcher" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IEndpointBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+          <type api="T:System.ServiceModel.Description.IEndpointBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" ref="true" />
+      </containers>
+      <file name="212f740a-c6f2-8c89-b61b-9157d415acc9" />
+    </api>
+    <api id="P:System.ServiceModel.Routing.SoapProcessingBehavior.ProcessMessages">
+      <topicdata group="api" />
+      <apidata name="ProcessMessages" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProcessMessages" />
+      <setter name="set_ProcessMessages" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" ref="true" />
+      </containers>
+      <file name="d5f741c5-ac01-0000-6b11-e6a88a8fdbad" />
+    </api>
+    <api id="M:System.ServiceModel.Routing.SoapProcessingBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="endpoint">
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IEndpointBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+          <type api="T:System.ServiceModel.Description.IEndpointBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Routing" module="System.ServiceModel.Routing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Routing" />
+        <type api="T:System.ServiceModel.Routing.SoapProcessingBehavior" ref="true" />
+      </containers>
+      <file name="59d44288-d33d-3ad1-37f8-7e64f66a1335" />
+    </api>
+  </apis>
+</reflection>

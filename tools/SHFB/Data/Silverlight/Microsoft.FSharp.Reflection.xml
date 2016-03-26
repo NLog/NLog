@@ -1,0 +1,1903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="FSharp.Core">
+      <assemblydata version="2.3.5.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.FSharpInterfaceDataVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>2</value>
+          </argument>
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </argument>
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Core.LanguagePrimitives.IntrinsicOperators</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Core</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Collections</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Control</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Visual Studio® 2012</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.3.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.3.60315.1</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.3.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.3.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.FSharp.Reflection">
+      <topicdata group="api" />
+      <apidata name="Microsoft.FSharp.Reflection" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+        <element api="T:Microsoft.FSharp.Reflection.FSharpType" />
+        <element api="T:Microsoft.FSharp.Reflection.FSharpValue" />
+      </elements>
+      <file name="0b24baca-e2c1-0276-7046-0a7ba337595b" />
+    </api>
+    <api id="T:Microsoft.FSharp.Reflection.FSharpType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Reflection.FSharpType" />
+      <apidata name="FSharpType" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AbstractClassAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.SealedAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="09026722-fb45-ea74-12f4-1c10d7c968eb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Reflection.FSharpType">
+      <topicdata name="FSharpType" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Reflection.FSharpType" />
+      <apidata name="FSharpType" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetExceptionFields(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetFunctionElements(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetRecordFields(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetTupleElements(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetUnionCases(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsExceptionRepresentation(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsFunction(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsModule(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsRecord(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsTuple(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsUnion(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.MakeFunctionType(System.Type,System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.MakeTupleType(System.Type[])" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" />
+      </containers>
+      <file name="700d768b-46b4-8d47-d10f-df620e62a4aa" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Reflection.FSharpType">
+      <topicdata name="FSharpType" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Reflection.FSharpType" />
+      <apidata name="FSharpType" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetExceptionFields(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetFunctionElements(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetRecordFields(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetTupleElements(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.GetUnionCases(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsExceptionRepresentation(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsFunction(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsModule(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsRecord(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsTuple(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.IsUnion(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.MakeFunctionType(System.Type,System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpType.MakeTupleType(System.Type[])" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" />
+      </containers>
+      <file name="fc942cd5-e5c1-8d17-2d35-a13f9605bf74" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.GetExceptionFields(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="GetExceptionFields" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="exceptionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Reflection.PropertyInfo" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="41873852-c48d-29db-a0a1-b27b1a4ecf1a" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.GetFunctionElements(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetFunctionElements" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="functionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Tuple`2" ref="true">
+          <specialization>
+            <type api="T:System.Type" ref="true" />
+            <type api="T:System.Type" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="4c6f6b28-bd46-5fb0-d4cf-aac88a7225bf" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.GetRecordFields(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="GetRecordFields" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="recordType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Reflection.PropertyInfo" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="01d5b356-8c7a-7a0a-0133-d6e91012054a" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.GetTupleElements(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetTupleElements" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tupleType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Type" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="e159d0c4-b401-024a-7401-f863ef2b6e57" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.GetUnionCases(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="GetUnionCases" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="unionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="7b4babc4-f3e4-0531-9501-72af6cc72218" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.IsExceptionRepresentation(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="IsExceptionRepresentation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="exceptionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="d8caf8c1-b22d-a445-18bc-de0ec21f24fd" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.IsFunction(System.Type)">
+      <topicdata group="api" />
+      <apidata name="IsFunction" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typ">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="3bf38443-13ea-d2b6-fa15-29d8f8649cd6" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.IsModule(System.Type)">
+      <topicdata group="api" />
+      <apidata name="IsModule" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typ">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="c75166bd-be0e-10be-6652-0c6cad3e4e71" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.IsRecord(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="IsRecord" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typ">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="ca330ec5-8162-e18d-0d97-85c03ea1d990" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.IsTuple(System.Type)">
+      <topicdata group="api" />
+      <apidata name="IsTuple" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typ">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="eb5d7835-8aad-6ab6-429c-832a4e356d54" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.IsUnion(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="IsUnion" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="typ">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="ae453975-22d3-79b3-a545-e72e93b2b8f3" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.MakeFunctionType(System.Type,System.Type)">
+      <topicdata group="api" />
+      <apidata name="MakeFunctionType" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="domain">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="range">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="982b4b98-c379-718f-1617-eeaecec5b755" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpType.MakeTupleType(System.Type[])">
+      <topicdata group="api" />
+      <apidata name="MakeTupleType" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="types">
+          <arrayOf rank="1">
+            <type api="T:System.Type" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpType" ref="true" />
+      </containers>
+      <file name="6a677edb-1d2c-5451-dcd9-22015d5cf17d" />
+    </api>
+    <api id="T:Microsoft.FSharp.Reflection.FSharpValue">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Reflection.FSharpValue" />
+      <apidata name="FSharpValue" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AbstractClassAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.SealedAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="57434012-c58a-d6b5-b8be-1c86971a1a29" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Reflection.FSharpValue">
+      <topicdata name="FSharpValue" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Reflection.FSharpValue" />
+      <apidata name="FSharpValue" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetExceptionFields(System.Object,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetRecordField(System.Object,System.Reflection.PropertyInfo)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetRecordFields(System.Object,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetTupleField(System.Object,System.Int32)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetTupleFields(System.Object)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetUnionFields(System.Object,System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.MakeFunction(System.Type,Microsoft.FSharp.Core.FSharpFunc{System.Object,System.Object})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.MakeRecord(System.Type,System.Object[],Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.MakeTuple(System.Object[],System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.MakeUnion(Microsoft.FSharp.Reflection.UnionCaseInfo,System.Object[],Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordConstructor(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordConstructorInfo(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordFieldReader(System.Reflection.PropertyInfo)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordReader(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleConstructor(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleConstructorInfo(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTuplePropertyInfo(System.Type,System.Int32)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleReader(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionConstructor(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionConstructorInfo(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionReader(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionTagMemberInfo(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionTagReader(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" />
+      </containers>
+      <file name="4619943f-a063-8a7d-a60e-13a833461a25" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Reflection.FSharpValue">
+      <topicdata name="FSharpValue" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Reflection.FSharpValue" />
+      <apidata name="FSharpValue" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetExceptionFields(System.Object,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetRecordField(System.Object,System.Reflection.PropertyInfo)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetRecordFields(System.Object,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetTupleField(System.Object,System.Int32)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetTupleFields(System.Object)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.GetUnionFields(System.Object,System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.MakeFunction(System.Type,Microsoft.FSharp.Core.FSharpFunc{System.Object,System.Object})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.MakeRecord(System.Type,System.Object[],Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.MakeTuple(System.Object[],System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.MakeUnion(Microsoft.FSharp.Reflection.UnionCaseInfo,System.Object[],Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordConstructor(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordConstructorInfo(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordFieldReader(System.Reflection.PropertyInfo)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordReader(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleConstructor(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleConstructorInfo(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTuplePropertyInfo(System.Type,System.Int32)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleReader(System.Type)" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionConstructor(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionConstructorInfo(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionReader(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionTagMemberInfo(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+        <element api="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionTagReader(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" />
+      </containers>
+      <file name="5527c329-2e68-8242-a9b5-38b73408112b" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.GetExceptionFields(System.Object,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="GetExceptionFields" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="exn">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="6445b768-f043-c1f2-2849-aead36e88988" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.GetRecordField(System.Object,System.Reflection.PropertyInfo)">
+      <topicdata group="api" />
+      <apidata name="GetRecordField" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="record">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="info">
+          <type api="T:System.Reflection.PropertyInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="17195a1e-a07e-ed13-771a-f05636eb2d72" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.GetRecordFields(System.Object,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="GetRecordFields" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="record">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="94d7ccac-217e-f774-b631-266992fee99c" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.GetTupleField(System.Object,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetTupleField" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tuple">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="77acd258-1177-0b39-70fc-92c1f74f1f20" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.GetTupleFields(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetTupleFields" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tuple">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="00a2ec19-927e-2b66-c94a-65dd265e7493" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.GetUnionFields(System.Object,System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="GetUnionFields" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="unionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Tuple`2" ref="true">
+          <specialization>
+            <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+            <arrayOf rank="1">
+              <type api="T:System.Object" ref="true" />
+            </arrayOf>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="d3695dd0-48ae-6db1-5d2e-016f379c9bc7" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.MakeFunction(System.Type,Microsoft.FSharp.Core.FSharpFunc{System.Object,System.Object})">
+      <topicdata group="api" />
+      <apidata name="MakeFunction" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="functionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="implementation">
+          <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+            <specialization>
+              <type api="T:System.Object" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="c277f6ea-0a9e-c1ec-676e-36e4b6049ede" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.MakeRecord(System.Type,System.Object[],Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="MakeRecord" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="recordType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="values">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="c00da772-55be-09d7-c435-802f4b8b1c89" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.MakeTuple(System.Object[],System.Type)">
+      <topicdata group="api" />
+      <apidata name="MakeTuple" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tupleElements">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="tupleType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="1d4b39fa-680d-32d9-f140-94e663d02f85" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.MakeUnion(Microsoft.FSharp.Reflection.UnionCaseInfo,System.Object[],Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="MakeUnion" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="unionCase">
+          <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="028c9b87-d943-60ad-176c-9079ddaaf969" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordConstructor(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="PreComputeRecordConstructor" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="recordType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+          <specialization>
+            <arrayOf rank="1">
+              <type api="T:System.Object" ref="true" />
+            </arrayOf>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="216df553-be07-dfeb-c71e-40de74d8e292" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordConstructorInfo(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="PreComputeRecordConstructorInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="recordType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.ConstructorInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="50aff4ff-1eeb-9dfd-ed11-cc5e1561783a" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordFieldReader(System.Reflection.PropertyInfo)">
+      <topicdata group="api" />
+      <apidata name="PreComputeRecordFieldReader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Reflection.PropertyInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="51323f1d-dab3-8971-f9db-64d7669cb3f0" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeRecordReader(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="PreComputeRecordReader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="recordType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <arrayOf rank="1">
+              <type api="T:System.Object" ref="true" />
+            </arrayOf>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="18df1f94-3860-9a14-dadd-730e0da2c84a" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleConstructor(System.Type)">
+      <topicdata group="api" />
+      <apidata name="PreComputeTupleConstructor" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tupleType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+          <specialization>
+            <arrayOf rank="1">
+              <type api="T:System.Object" ref="true" />
+            </arrayOf>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="e40f40cf-fc7a-fd75-9a50-24ceeb715a50" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleConstructorInfo(System.Type)">
+      <topicdata group="api" />
+      <apidata name="PreComputeTupleConstructorInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tupleType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Tuple`2" ref="true">
+          <specialization>
+            <type api="T:System.Reflection.ConstructorInfo" ref="true" />
+            <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+              <specialization>
+                <type api="T:System.Type" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="2fc44032-361a-cb4d-6a71-6c69a8af40e5" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTuplePropertyInfo(System.Type,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="PreComputeTuplePropertyInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tupleType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Tuple`2" ref="true">
+          <specialization>
+            <type api="T:System.Reflection.PropertyInfo" ref="true" />
+            <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+              <specialization>
+                <type api="T:System.Tuple`2" ref="true">
+                  <specialization>
+                    <type api="T:System.Type" ref="true" />
+                    <type api="T:System.Int32" ref="false" />
+                  </specialization>
+                </type>
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="2b98b6cd-3030-c60c-dcff-119020a24e5e" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeTupleReader(System.Type)">
+      <topicdata group="api" />
+      <apidata name="PreComputeTupleReader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tupleType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <arrayOf rank="1">
+              <type api="T:System.Object" ref="true" />
+            </arrayOf>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="45493d5d-3a99-9d17-3742-0a11eef55650" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionConstructor(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="PreComputeUnionConstructor" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="unionCase">
+          <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+          <specialization>
+            <arrayOf rank="1">
+              <type api="T:System.Object" ref="true" />
+            </arrayOf>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="62882580-5df4-3423-0971-e1a78869bdb5" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionConstructorInfo(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="PreComputeUnionConstructorInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="unionCase">
+          <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.MethodInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="f8e0f230-e0fb-3414-1750-e9a790724cd8" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionReader(Microsoft.FSharp.Reflection.UnionCaseInfo,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="PreComputeUnionReader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="unionCase">
+          <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <arrayOf rank="1">
+              <type api="T:System.Object" ref="true" />
+            </arrayOf>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="6af2c427-e2a5-de44-b3c7-d4555010116a" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionTagMemberInfo(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="PreComputeUnionTagMemberInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="unionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.MemberInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="4ccb77e9-52e4-a408-3b43-533019f630e4" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.FSharpValue.PreComputeUnionTagReader(System.Type,Microsoft.FSharp.Core.FSharpOption{System.Reflection.BindingFlags})">
+      <topicdata group="api" />
+      <apidata name="PreComputeUnionTagReader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="unionType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="bindingFlags">
+          <type api="T:Microsoft.FSharp.Core.FSharpOption`1" ref="true">
+            <specialization>
+              <type api="T:System.Reflection.BindingFlags" ref="false" />
+            </specialization>
+          </type>
+          <attributes>
+            <attribute>
+              <type api="T:Microsoft.FSharp.Core.OptionalArgumentAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.FSharp.Core.FSharpFunc`2" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.FSharpValue" ref="true" />
+      </containers>
+      <file name="fa6946c9-5f66-0e3a-f8eb-5d973ef7b57e" />
+    </api>
+    <api id="T:Microsoft.FSharp.Reflection.UnionCaseInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+      <apidata name="UnionCaseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.SealedAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f17b7b4b-ac67-1403-4034-939fd0a86297" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Reflection.UnionCaseInfo">
+      <topicdata name="UnionCaseInfo" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+      <apidata name="UnionCaseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.FSharp.Reflection.UnionCaseInfo.DeclaringType" />
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.Equals(System.Object)" />
+        <element api="Overload:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes">
+          <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes" />
+          <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes(System.Type)" />
+        </element>
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetFields" />
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetHashCode" />
+        <element api="P:Microsoft.FSharp.Reflection.UnionCaseInfo.Name" />
+        <element api="P:Microsoft.FSharp.Reflection.UnionCaseInfo.Tag" />
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.ToString" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+      </containers>
+      <file name="94a38c16-f141-52eb-6e46-315520d263ac" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Reflection.UnionCaseInfo">
+      <topicdata name="UnionCaseInfo" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+      <apidata name="UnionCaseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.Equals(System.Object)" />
+        <element api="Overload:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes">
+          <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes" />
+          <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes(System.Type)" />
+        </element>
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetFields" />
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetHashCode" />
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.ToString" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+      </containers>
+      <file name="ebadaa57-b86c-10db-4dd1-0e5e7d5270fe" />
+    </api>
+    <api id="Properties.T:Microsoft.FSharp.Reflection.UnionCaseInfo">
+      <topicdata name="UnionCaseInfo" group="list" subgroup="Properties" typeTopicId="T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+      <apidata name="UnionCaseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.FSharp.Reflection.UnionCaseInfo.DeclaringType" />
+        <element api="P:Microsoft.FSharp.Reflection.UnionCaseInfo.Name" />
+        <element api="P:Microsoft.FSharp.Reflection.UnionCaseInfo.Tag" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+      </containers>
+      <file name="4ef98846-6709-27e8-da33-345daec571a6" />
+    </api>
+    <api id="Overload:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes">
+      <topicdata name="GetCustomAttributes" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Reflection.UnionCaseInfo" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes" />
+        <element api="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="22a40c28-f5c0-a022-bd80-12399e43a70d" />
+    </api>
+    <api id="P:Microsoft.FSharp.Reflection.UnionCaseInfo.DeclaringType">
+      <topicdata group="api" />
+      <apidata name="DeclaringType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeclaringType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="78da96a3-44f6-795a-ec5d-838ed348186c" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.UnionCaseInfo.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="a287cf31-3bb6-8c67-40a8-923e1f5fe11b" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes">
+      <topicdata group="api" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="e21705ea-7a01-48c1-680f-9e55c2756acf" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetCustomAttributes" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.FSharp.Reflection.UnionCaseInfo.GetCustomAttributes" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="attributeType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="3fc16585-83e8-e6bb-09dc-0a9ab39c1fea" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetFields">
+      <topicdata group="api" />
+      <apidata name="GetFields" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Reflection.PropertyInfo" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="717b25f3-a3df-6952-a01a-bbdd19c3fe83" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.UnionCaseInfo.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="b2b85ead-be30-af7a-80af-5f0318e10a44" />
+    </api>
+    <api id="P:Microsoft.FSharp.Reflection.UnionCaseInfo.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="27a7a79c-d7cc-56c9-2e44-f5748049425e" />
+    </api>
+    <api id="P:Microsoft.FSharp.Reflection.UnionCaseInfo.Tag">
+      <topicdata group="api" />
+      <apidata name="Tag" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Tag" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="22f9bc68-b1ed-7d30-0c0a-1335792f47f8" />
+    </api>
+    <api id="M:Microsoft.FSharp.Reflection.UnionCaseInfo.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Reflection" />
+        <type api="T:Microsoft.FSharp.Reflection.UnionCaseInfo" ref="true" />
+      </containers>
+      <file name="c17d19eb-9c9a-3a80-16b7-c63ee8a6a9b5" />
+    </api>
+  </apis>
+</reflection>

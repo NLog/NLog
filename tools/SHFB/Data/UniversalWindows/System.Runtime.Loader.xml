@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.Loader">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Loader</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Loader</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Loader</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Loader">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Loader" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Loader.AssemblyLoadContext" />
+      </elements>
+      <file name="67e5eb3c-baa7-afae-f932-56abaa8cd6e4" />
+    </api>
+    <api id="T:System.Runtime.Loader.AssemblyLoadContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Loader.AssemblyLoadContext" />
+      <apidata name="AssemblyLoadContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+      </containers>
+      <file name="ddc66c8d-b6a0-6489-3921-853d5c9f0225" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Loader.AssemblyLoadContext">
+      <topicdata name="AssemblyLoadContext" group="list" subgroup="members" typeTopicId="T:System.Runtime.Loader.AssemblyLoadContext" />
+      <apidata name="AssemblyLoadContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.#ctor" />
+        <element api="P:System.Runtime.Loader.AssemblyLoadContext.Default" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(System.String)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.GetLoadContext(System.Reflection.Assembly)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.InitializeDefaultContext(System.Runtime.Loader.AssemblyLoadContext)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyPath(System.String)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromNativeImagePath(System.String,System.String)" />
+        <element api="Overload:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream">
+          <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream)" />
+          <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream,System.IO.Stream)" />
+        </element>
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll(System.String)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.SetProfileOptimizationRoot(System.String)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.StartProfileOptimization(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" />
+      </containers>
+      <file name="5b9d60c0-2ae7-48ce-6731-25374113eee8" />
+    </api>
+    <api id="Methods.T:System.Runtime.Loader.AssemblyLoadContext">
+      <topicdata name="AssemblyLoadContext" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Loader.AssemblyLoadContext" />
+      <apidata name="AssemblyLoadContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(System.String)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.GetLoadContext(System.Reflection.Assembly)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.InitializeDefaultContext(System.Runtime.Loader.AssemblyLoadContext)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyPath(System.String)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromNativeImagePath(System.String,System.String)" />
+        <element api="Overload:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream">
+          <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream)" />
+          <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream,System.IO.Stream)" />
+        </element>
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll(System.String)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.SetProfileOptimizationRoot(System.String)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.StartProfileOptimization(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" />
+      </containers>
+      <file name="8d1368c5-bab4-0b87-080b-a36f94ba2769" />
+    </api>
+    <api id="Properties.T:System.Runtime.Loader.AssemblyLoadContext">
+      <topicdata name="AssemblyLoadContext" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Loader.AssemblyLoadContext" />
+      <apidata name="AssemblyLoadContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Loader.AssemblyLoadContext.Default" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" />
+      </containers>
+      <file name="5e56de12-ba38-6560-69f5-0b61e2146d47" />
+    </api>
+    <api id="Overload:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream">
+      <topicdata name="LoadFromStream" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Loader.AssemblyLoadContext" />
+      <apidata name="LoadFromStream" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream)" />
+        <element api="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream,System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="1c86c343-2dc5-4003-db20-48437e28d42a" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="5ced36fe-af7b-62c8-a09c-5151b713d175" />
+    </api>
+    <api id="P:System.Runtime.Loader.AssemblyLoadContext.Default">
+      <topicdata group="api" />
+      <apidata name="Default" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Default" />
+      <returns>
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="0b25d4d8-bc70-68b4-f264-0bfbdb6f78fa" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetAssemblyName" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assemblyPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.AssemblyName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="13480f53-1a94-5f77-f85b-42be8d09f70c" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.GetLoadContext(System.Reflection.Assembly)">
+      <topicdata group="api" />
+      <apidata name="GetLoadContext" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assembly">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="ba76105d-150a-877c-1603-71fc65e970d2" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.InitializeDefaultContext(System.Runtime.Loader.AssemblyLoadContext)">
+      <topicdata group="api" />
+      <apidata name="InitializeDefaultContext" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="3f350427-98f3-e133-4406-3a30093662bd" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.Reflection.AssemblyName" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="d0bf1451-bdec-7868-a8ec-9c99f7d71989" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)">
+      <topicdata group="api" />
+      <apidata name="LoadFromAssemblyName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.Reflection.AssemblyName" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="02ccdd16-f25e-d3aa-f0de-4709b81fb420" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyPath(System.String)">
+      <topicdata group="api" />
+      <apidata name="LoadFromAssemblyPath" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assemblyPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="fe00a3f9-d7b1-1837-aa3f-c9b51c4393f8" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromNativeImagePath(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="LoadFromNativeImagePath" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="nativeImagePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="assemblyPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="a99012d6-f236-a5dc-636b-f8fe4f79985c" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="LoadFromStream" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assembly">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="f744840c-ae03-b486-3256-019b81b96112" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream,System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="LoadFromStream" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="assembly">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="assemblySymbols">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="4f9690a4-095f-c3bb-1f0c-a519a01ea20e" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll(System.String)">
+      <topicdata group="api" />
+      <apidata name="LoadUnmanagedDll" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="unmanagedDllName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="84b70eb6-5d3e-5012-a803-a315b13c28d0" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.SetProfileOptimizationRoot(System.String)">
+      <topicdata group="api" />
+      <apidata name="SetProfileOptimizationRoot" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="directoryPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="87d27c7a-0d9e-388c-22c0-559bea43a298" />
+    </api>
+    <api id="M:System.Runtime.Loader.AssemblyLoadContext.StartProfileOptimization(System.String)">
+      <topicdata group="api" />
+      <apidata name="StartProfileOptimization" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="profile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Loader" module="System.Runtime.Loader" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Loader" />
+        <type api="T:System.Runtime.Loader.AssemblyLoadContext" ref="true" />
+      </containers>
+      <file name="c07885c3-5516-1598-44d1-6553a4d2dc3b" />
+    </api>
+  </apis>
+</reflection>

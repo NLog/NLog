@@ -1,0 +1,1609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.VisualBasic.Activities">
+      <topicdata group="api" />
+      <apidata name="Microsoft.VisualBasic.Activities" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.VisualBasic.Activities.VisualBasic" />
+        <element api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" />
+        <element api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+        <element api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+        <element api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" />
+        <element api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      </elements>
+      <file name="8cedbb07-637b-545b-743a-2c3df02bdc41" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Activities.VisualBasic">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasic" />
+      <apidata name="VisualBasic" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+      </containers>
+      <file name="70c8aa97-c47a-c9eb-3ade-b2eaba4eb18c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasic">
+      <topicdata name="VisualBasic" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasic" />
+      <apidata name="VisualBasic" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasic.GetSettings(System.Object)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasic.SetSettings(System.Object,Microsoft.VisualBasic.Activities.VisualBasicSettings)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasic.SetSettingsForImplementation(System.Object,Microsoft.VisualBasic.Activities.VisualBasicSettings)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasic.ShouldSerializeSettings(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasic" />
+      </containers>
+      <file name="df563e74-4510-ce60-3229-ef88a2e25f67" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Activities.VisualBasic">
+      <topicdata name="VisualBasic" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasic" />
+      <apidata name="VisualBasic" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasic.GetSettings(System.Object)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasic.SetSettings(System.Object,Microsoft.VisualBasic.Activities.VisualBasicSettings)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasic.SetSettingsForImplementation(System.Object,Microsoft.VisualBasic.Activities.VisualBasicSettings)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasic.ShouldSerializeSettings(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasic" />
+      </containers>
+      <file name="0dc424ed-f5ac-adc4-f996-93493cdf67ae" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasic.GetSettings(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetSettings" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasic" ref="true" />
+      </containers>
+      <file name="fe460647-ca77-da40-109a-2195048d17f1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasic.SetSettings(System.Object,Microsoft.VisualBasic.Activities.VisualBasicSettings)">
+      <topicdata group="api" />
+      <apidata name="SetSettings" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasic" ref="true" />
+      </containers>
+      <file name="4ba91dd4-15a9-2838-36a6-e9656c04e3d3" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasic.SetSettingsForImplementation(System.Object,Microsoft.VisualBasic.Activities.VisualBasicSettings)">
+      <topicdata group="api" />
+      <apidata name="SetSettingsForImplementation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasic" ref="true" />
+      </containers>
+      <file name="3151499e-b92c-6a89-03d7-8e10b4848050" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasic.ShouldSerializeSettings(System.Object)">
+      <topicdata group="api" />
+      <apidata name="ShouldSerializeSettings" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasic" ref="true" />
+      </containers>
+      <file name="ebe49475-4277-6551-3a31-d4ae62c2829d" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" />
+      <apidata name="VisualBasicDesignerHelper" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+      </containers>
+      <file name="5a044074-f536-7969-2bd7-f2344fbe981f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper">
+      <topicdata name="VisualBasicDesignerHelper" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" />
+      <apidata name="VisualBasicDesignerHelper" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.CreatePrecompiledVisualBasicReference(System.Type,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Activities.LocationReferenceEnvironment,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.CreatePrecompiledVisualBasicValue(System.Type,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Activities.LocationReferenceEnvironment,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.NameShadowingConstraint" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.RecompileVisualBasicReference(System.Activities.ActivityWithResult,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.RecompileVisualBasicValue(System.Activities.ActivityWithResult,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" />
+      </containers>
+      <file name="b11a4433-5a51-206f-7e98-7e463b1abb4e" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper">
+      <topicdata name="VisualBasicDesignerHelper" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" />
+      <apidata name="VisualBasicDesignerHelper" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.CreatePrecompiledVisualBasicReference(System.Type,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Activities.LocationReferenceEnvironment,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.CreatePrecompiledVisualBasicValue(System.Type,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Activities.LocationReferenceEnvironment,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.RecompileVisualBasicReference(System.Activities.ActivityWithResult,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.RecompileVisualBasicValue(System.Activities.ActivityWithResult,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" />
+      </containers>
+      <file name="93c04815-ce69-9d10-5956-12b7548dbf28" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper">
+      <topicdata name="VisualBasicDesignerHelper" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" />
+      <apidata name="VisualBasicDesignerHelper" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.NameShadowingConstraint" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" />
+      </containers>
+      <file name="d2b24f91-759c-af0f-dbdd-66fdfe8c6114" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.CreatePrecompiledVisualBasicReference(System.Type,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Activities.LocationReferenceEnvironment,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)">
+      <topicdata group="api" />
+      <apidata name="CreatePrecompiledVisualBasicReference" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="expressionText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaces">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="referencedAssemblies">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="environment">
+          <type api="T:System.Activities.LocationReferenceEnvironment" ref="true" />
+        </parameter>
+        <parameter name="returnType" out="true">
+          <referenceTo>
+            <type api="T:System.Type" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="compileError" out="true">
+          <referenceTo>
+            <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="vbSettings" out="true">
+          <referenceTo>
+            <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" ref="true" />
+      </containers>
+      <file name="5eb9ff61-9ea2-a0b0-d7fc-c8519487172f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.CreatePrecompiledVisualBasicValue(System.Type,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Activities.LocationReferenceEnvironment,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)">
+      <topicdata group="api" />
+      <apidata name="CreatePrecompiledVisualBasicValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="expressionText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaces">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="referencedAssemblies">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="environment">
+          <type api="T:System.Activities.LocationReferenceEnvironment" ref="true" />
+        </parameter>
+        <parameter name="returnType" out="true">
+          <referenceTo>
+            <type api="T:System.Type" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="compileError" out="true">
+          <referenceTo>
+            <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="vbSettings" out="true">
+          <referenceTo>
+            <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" ref="true" />
+      </containers>
+      <file name="a7594af5-8d70-b6b6-3826-6c970b361ff6" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.NameShadowingConstraint">
+      <topicdata group="api" />
+      <apidata name="NameShadowingConstraint" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NameShadowingConstraint" />
+      <returns>
+        <type api="T:System.Activities.Validation.Constraint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" ref="true" />
+      </containers>
+      <file name="200c1e72-b9d6-62f6-4aea-2c15f1b4b74f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.RecompileVisualBasicReference(System.Activities.ActivityWithResult,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)">
+      <topicdata group="api" />
+      <apidata name="RecompileVisualBasicReference" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="visualBasicReference">
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+        </parameter>
+        <parameter name="returnType" out="true">
+          <referenceTo>
+            <type api="T:System.Type" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="compileError" out="true">
+          <referenceTo>
+            <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="vbSettings" out="true">
+          <referenceTo>
+            <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" ref="true" />
+      </containers>
+      <file name="abc63829-404b-4ca4-b6e4-59a9136fc6e1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper.RecompileVisualBasicValue(System.Activities.ActivityWithResult,System.Type@,System.Activities.ExpressionParser.SourceExpressionException@,Microsoft.VisualBasic.Activities.VisualBasicSettings@)">
+      <topicdata group="api" />
+      <apidata name="RecompileVisualBasicValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="visualBasicValue">
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+        </parameter>
+        <parameter name="returnType" out="true">
+          <referenceTo>
+            <type api="T:System.Type" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="compileError" out="true">
+          <referenceTo>
+            <type api="T:System.Activities.ExpressionParser.SourceExpressionException" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="vbSettings" out="true">
+          <referenceTo>
+            <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicDesignerHelper" ref="true" />
+      </containers>
+      <file name="6c43d06e-5bcf-7229-4170-383ddfc183f6" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+      <apidata name="VisualBasicImportReference" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IEquatable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+      </containers>
+      <file name="11694e04-39a0-164b-a806-6f1b22a0fb16" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicImportReference">
+      <topicdata name="VisualBasicImportReference" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+      <apidata name="VisualBasicImportReference" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.#ctor" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Assembly" />
+        <element api="Overload:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Equals">
+          <element api="M:System.Object.Equals(System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Equals(Microsoft.VisualBasic.Activities.VisualBasicImportReference)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.GetHashCode" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Import" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+      </containers>
+      <file name="eafd21af-e14e-de90-3505-c684aab47c67" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Activities.VisualBasicImportReference">
+      <topicdata name="VisualBasicImportReference" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+      <apidata name="VisualBasicImportReference" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Equals">
+          <element api="M:System.Object.Equals(System.Object)" />
+          <element api="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Equals(Microsoft.VisualBasic.Activities.VisualBasicImportReference)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.GetHashCode" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+      </containers>
+      <file name="ddef6dca-7523-7786-388d-5c7871283f30" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Activities.VisualBasicImportReference">
+      <topicdata name="VisualBasicImportReference" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+      <apidata name="VisualBasicImportReference" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Assembly" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Import" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+      </containers>
+      <file name="4ca241d7-1506-2c5b-d5d1-56060f6de4dd" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Equals">
+      <topicdata name="Equals" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Equals(Microsoft.VisualBasic.Activities.VisualBasicImportReference)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+      </containers>
+      <file name="d9fa3b69-12a5-8f18-9f6c-15daefe201eb" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+      </containers>
+      <file name="4da3bc1a-6a55-0cca-2e9b-86004e787ec3" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Assembly">
+      <topicdata group="api" />
+      <apidata name="Assembly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Assembly" />
+      <setter name="set_Assembly" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+      </containers>
+      <file name="c3832a8c-6190-5928-214c-5c02f26bb3a5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Equals(Microsoft.VisualBasic.Activities.VisualBasicImportReference)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Equals" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="other">
+          <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.IEquatable`1.Equals(`0)">
+          <type api="T:System.IEquatable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+      </containers>
+      <file name="3db5551a-c9a7-dd71-f65b-d2bd62a509ed" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicImportReference.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+      </containers>
+      <file name="3cd03c4b-e00d-e711-0d9d-159d1daf6abb" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicImportReference.Import">
+      <topicdata group="api" />
+      <apidata name="Import" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Import" />
+      <setter name="set_Import" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+      </containers>
+      <file name="ea7ca5db-bec7-fe25-6145-904231d6cc1f" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+      <apidata name="VisualBasicReference" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.Location`1" ref="true">
+                <specialization>
+                  <template name="TResult" index="0" api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.Activity`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.Location`1" ref="true">
+                <specialization>
+                  <template name="TResult" index="0" api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" contentProperty="P:System.Activities.Activity.Implementation" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <implements>
+        <type api="T:System.Activities.XamlIntegration.IValueSerializableExpression" ref="true" />
+        <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+      </containers>
+      <file name="57a7b937-32d4-6ae5-6ef8-791f9fe4da3f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicReference`1">
+      <topicdata name="VisualBasicReference" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+      <apidata name="VisualBasicReference" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor">
+          <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor" />
+          <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor(System.String)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.CanConvertToString(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.ConvertToString(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.ExpressionText" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.GetExpressionTree" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.Language" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.RequiresCompilation" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+      </containers>
+      <file name="0fd8b004-a702-63b1-6ba1-33239723ef04" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Activities.VisualBasicReference`1">
+      <topicdata name="VisualBasicReference" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+      <apidata name="VisualBasicReference" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.CanConvertToString(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.ConvertToString(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.GetExpressionTree" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+      </containers>
+      <file name="833c73b2-3167-4446-fe59-02e471a35ac4" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Activities.VisualBasicReference`1">
+      <topicdata name="VisualBasicReference" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+      <apidata name="VisualBasicReference" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.ExpressionText" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.Language" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.RequiresCompilation" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+      </containers>
+      <file name="4f804a58-ee19-9152-c70e-ff952c660d35" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <file name="5b35e6e7-a794-c6a8-655f-e81fa0e18047" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <file name="b5e15fd5-e447-d510-7609-9dd905351c0f" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Activities.VisualBasicReference`1.#ctor" />
+      <parameters>
+        <parameter name="expressionText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <file name="6010326a-cf80-1f68-e224-2fe3519f147b" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.CanConvertToString(System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.XamlIntegration.IValueSerializableExpression.CanConvertToString(System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Activities.XamlIntegration.IValueSerializableExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <file name="5f31dbe5-02e3-2938-119b-920074748d09" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.ConvertToString(System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.XamlIntegration.IValueSerializableExpression.ConvertToString(System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Activities.XamlIntegration.IValueSerializableExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <file name="8da752a5-f345-0a54-a93b-5f2cf2c53b8f" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.ExpressionText">
+      <topicdata group="api" />
+      <apidata name="ExpressionText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExpressionText" />
+      <setter name="set_ExpressionText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.ExpressionText">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <file name="f14d5df1-ca59-c7b3-4a9b-4c4a4b063c02" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicReference`1.GetExpressionTree">
+      <topicdata group="api" />
+      <apidata name="GetExpressionTree" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Linq.Expressions.Expression" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Expressions.ITextExpression.GetExpressionTree">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <file name="b10a3259-3af4-95bf-c7e8-7357b6ba9dd4" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.Language">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2693a180-5372-7c2f-fa1d-42d278e09cac" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicReference`1.RequiresCompilation">
+      <topicdata group="api" />
+      <apidata name="RequiresCompilation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequiresCompilation" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.RequiresCompilation">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicReference`1" ref="true" />
+      </containers>
+      <file name="57fad61a-7fbb-11ea-644f-2a7f2150f933" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Activities.VisualBasicSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicSettings" />
+      <apidata name="VisualBasicSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.TypeConverterAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Microsoft.VisualBasic.Activities.XamlIntegration.VisualBasicSettingsConverter" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bc3d3c38-17d7-f3a6-f6d9-677dd5c9fce5" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicSettings">
+      <topicdata name="VisualBasicSettings" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" />
+      <apidata name="VisualBasicSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicSettings.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicSettings.#ctor" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicSettings.Default" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicSettings.ImportReferences" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" />
+      </containers>
+      <file name="2303ee2e-2da2-76a4-e219-84de41aeb22f" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Activities.VisualBasicSettings">
+      <topicdata name="VisualBasicSettings" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" />
+      <apidata name="VisualBasicSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" />
+      </containers>
+      <file name="4a02dba8-5102-d402-5705-bf4c496e1a16" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Activities.VisualBasicSettings">
+      <topicdata name="VisualBasicSettings" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" />
+      <apidata name="VisualBasicSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicSettings.#ctor" />
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicSettings.Default" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicSettings.ImportReferences" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" />
+      </containers>
+      <file name="710b4ac3-565a-4cc2-5a04-0cecd4d81b35" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+      </containers>
+      <file name="51421090-f465-c4c2-48bd-fc31767e305f" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicSettings.Default">
+      <topicdata group="api" />
+      <apidata name="Default" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Default" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+      </containers>
+      <file name="f9a2f48f-f850-9407-f41c-b153f8aad1fc" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicSettings.ImportReferences">
+      <topicdata group="api" />
+      <apidata name="ImportReferences" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ImportReferences" />
+      <returns>
+        <type api="T:System.Collections.Generic.ISet`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.VisualBasic.Activities.VisualBasicImportReference" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicSettings" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cfe1dacb-7d96-9af0-36f4-e735143a0f9e" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      <apidata name="VisualBasicValue" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <template name="TResult" index="0" api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+            </specialization>
+          </type>
+          <type api="T:System.Activities.Activity`1" ref="true">
+            <specialization>
+              <template name="TResult" index="0" api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+            </specialization>
+          </type>
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" contentProperty="P:System.Activities.Activity.Implementation" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <implements>
+        <type api="T:System.Activities.XamlIntegration.IValueSerializableExpression" ref="true" />
+        <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+      </containers>
+      <file name="f9dd834e-293e-62b3-7483-d04d731b4460" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicValue`1">
+      <topicdata name="VisualBasicValue" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      <apidata name="VisualBasicValue" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor">
+          <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor" />
+          <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor(System.String)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.CanConvertToString(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.ConvertToString(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.ExpressionText" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.GetExpressionTree" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.Language" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.RequiresCompilation" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      </containers>
+      <file name="c0d3961e-8bb7-354a-0bfa-4eaa0b0afa72" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Activities.VisualBasicValue`1">
+      <topicdata name="VisualBasicValue" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      <apidata name="VisualBasicValue" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.CanConvertToString(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.ConvertToString(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.GetExpressionTree" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      </containers>
+      <file name="7f04204c-d00b-5d94-724b-b8a10497da71" />
+    </api>
+    <api id="Properties.T:Microsoft.VisualBasic.Activities.VisualBasicValue`1">
+      <topicdata name="VisualBasicValue" group="list" subgroup="Properties" typeTopicId="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      <apidata name="VisualBasicValue" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.ExpressionText" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.Language" />
+        <element api="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.RequiresCompilation" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      </containers>
+      <file name="39a0d2fb-3065-89a9-b090-8d3308b5545b" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor" />
+        <element api="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <file name="0fdd2774-1e2a-b8f8-afca-be0563f13557" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <file name="e2b70251-2c0f-c65f-f548-ae155ef4a228" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.VisualBasic.Activities.VisualBasicValue`1.#ctor" />
+      <parameters>
+        <parameter name="expressionText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <file name="63849a64-325d-bb4c-fdb2-0915cc2d031e" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.CanConvertToString(System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.XamlIntegration.IValueSerializableExpression.CanConvertToString(System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Activities.XamlIntegration.IValueSerializableExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <file name="9a69e3c3-6b66-519e-02c9-76d806703455" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.ConvertToString(System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.XamlIntegration.IValueSerializableExpression.ConvertToString(System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Activities.XamlIntegration.IValueSerializableExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <file name="489154fc-cb7e-0582-806d-4996442d0cc9" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.ExpressionText">
+      <topicdata group="api" />
+      <apidata name="ExpressionText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExpressionText" />
+      <setter name="set_ExpressionText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.ExpressionText">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <file name="1b641357-fdb9-2cbf-3915-c932986cd6b5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Activities.VisualBasicValue`1.GetExpressionTree">
+      <topicdata group="api" />
+      <apidata name="GetExpressionTree" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Linq.Expressions.Expression" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Expressions.ITextExpression.GetExpressionTree">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <file name="8116531d-e593-0cab-3768-e1eaa16542d2" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.Language">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d527e03-6638-ee89-b8e8-cbfdd2ad9ee3" />
+    </api>
+    <api id="P:Microsoft.VisualBasic.Activities.VisualBasicValue`1.RequiresCompilation">
+      <topicdata group="api" />
+      <apidata name="RequiresCompilation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequiresCompilation" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.RequiresCompilation">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic.Activities" />
+        <type api="T:Microsoft.VisualBasic.Activities.VisualBasicValue`1" ref="true" />
+      </containers>
+      <file name="28e5c244-6328-9d76-c6f9-e6b556782810" />
+    </api>
+  </apis>
+</reflection>

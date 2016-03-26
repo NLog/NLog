@@ -1,0 +1,916 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Transcoding">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Transcoding" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Transcoding.TranscodeFailureReason" />
+        <element api="T:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm" />
+        <element api="T:Windows.Media.Transcoding.PrepareTranscodeResult" />
+        <element api="T:Windows.Media.Transcoding.MediaTranscoder" />
+      </elements>
+      <file name="9e5c90d6-935e-0a08-6571-18e8d5a8570c" />
+    </api>
+    <api id="T:Windows.Media.Transcoding.MediaTranscoder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Transcoding.MediaTranscoder" />
+      <apidata name="MediaTranscoder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Transcoding.MediaTranscoder.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Transcoding.IMediaTranscoder" ref="true" />
+        <type api="T:Windows.Media.Transcoding.IMediaTranscoder2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0b40024c-bd16-4b49-9e7f-3cb4e8b739e3" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Transcoding.MediaTranscoder">
+      <topicdata name="MediaTranscoder" group="list" subgroup="members" typeTopicId="T:Windows.Media.Transcoding.MediaTranscoder" />
+      <apidata name="MediaTranscoder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Transcoding.MediaTranscoder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.#ctor" />
+        <element api="Overload:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect">
+          <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect(System.String)" />
+          <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect(System.String,System.Boolean,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect">
+          <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect(System.String)" />
+          <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect(System.String,System.Boolean,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.AlwaysReencode" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.ClearEffects" />
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.HardwareAccelerationEnabled" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.PrepareFileTranscodeAsync(Windows.Storage.IStorageFile,Windows.Storage.IStorageFile,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.PrepareMediaStreamSourceTranscodeAsync(Windows.Media.Core.IMediaSource,Windows.Storage.Streams.IRandomAccessStream,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.PrepareStreamTranscodeAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.TrimStartTime" />
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.TrimStopTime" />
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.VideoProcessingAlgorithm" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" />
+      </containers>
+      <file name="c2e5036b-ee13-0719-7a52-d3f107d59783" />
+    </api>
+    <api id="Methods.T:Windows.Media.Transcoding.MediaTranscoder">
+      <topicdata name="MediaTranscoder" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Transcoding.MediaTranscoder" />
+      <apidata name="MediaTranscoder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Transcoding.MediaTranscoder.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect">
+          <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect(System.String)" />
+          <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect(System.String,System.Boolean,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="Overload:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect">
+          <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect(System.String)" />
+          <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect(System.String,System.Boolean,Windows.Foundation.Collections.IPropertySet)" />
+        </element>
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.ClearEffects" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.PrepareFileTranscodeAsync(Windows.Storage.IStorageFile,Windows.Storage.IStorageFile,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.PrepareMediaStreamSourceTranscodeAsync(Windows.Media.Core.IMediaSource,Windows.Storage.Streams.IRandomAccessStream,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.PrepareStreamTranscodeAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" />
+      </containers>
+      <file name="5a7f6273-abf0-812c-157e-e121fbe3e05f" />
+    </api>
+    <api id="Properties.T:Windows.Media.Transcoding.MediaTranscoder">
+      <topicdata name="MediaTranscoder" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Transcoding.MediaTranscoder" />
+      <apidata name="MediaTranscoder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Transcoding.MediaTranscoder.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.AlwaysReencode" />
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.HardwareAccelerationEnabled" />
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.TrimStartTime" />
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.TrimStopTime" />
+        <element api="P:Windows.Media.Transcoding.MediaTranscoder.VideoProcessingAlgorithm" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" />
+      </containers>
+      <file name="39bdace2-17f2-eb44-4a44-adc1f3af37fc" />
+    </api>
+    <api id="Overload:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect">
+      <topicdata name="AddAudioEffect" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Transcoding.MediaTranscoder" />
+      <apidata name="AddAudioEffect" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect(System.String)" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect(System.String,System.Boolean,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="18794684-97db-9b17-79f8-f75a8e24a0d2" />
+    </api>
+    <api id="Overload:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect">
+      <topicdata name="AddVideoEffect" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Transcoding.MediaTranscoder" />
+      <apidata name="AddVideoEffect" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect(System.String)" />
+        <element api="M:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect(System.String,System.Boolean,Windows.Foundation.Collections.IPropertySet)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="fdbf0ed0-af7b-3034-00e7-404b382c1a0b" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="978a091d-f6af-d526-60f5-e9feca7fabee" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddAudioEffect" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddAudioEffect</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="757a926a-33a3-05ca-a182-7c54a0c4023b" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect(System.String,System.Boolean,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="AddAudioEffect" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Transcoding.MediaTranscoder.AddAudioEffect" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="effectRequired" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddAudioEffectWithSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="93dda53d-c76b-bef3-892c-f8f4d71f32b1" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddVideoEffect" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddVideoEffect</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="39776ddd-3f1d-0d78-f27a-22877ed5d424" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect(System.String,System.Boolean,Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name="AddVideoEffect" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Transcoding.MediaTranscoder.AddVideoEffect" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="activatableClassId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="effectRequired" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="configuration" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddVideoEffectWithSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="107ec93e-2353-ee9c-8f64-1066aa824f35" />
+    </api>
+    <api id="P:Windows.Media.Transcoding.MediaTranscoder.AlwaysReencode">
+      <topicdata group="api" />
+      <apidata name="AlwaysReencode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlwaysReencode" />
+      <setter name="set_AlwaysReencode" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="e643c76b-125e-41ef-b3a1-cbe4c5d0bd24" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.ClearEffects">
+      <topicdata group="api" />
+      <apidata name="ClearEffects" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="5d8f7e4f-c769-a746-4847-8de14241c7bb" />
+    </api>
+    <api id="P:Windows.Media.Transcoding.MediaTranscoder.HardwareAccelerationEnabled">
+      <topicdata group="api" />
+      <apidata name="HardwareAccelerationEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HardwareAccelerationEnabled" />
+      <setter name="set_HardwareAccelerationEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="92ef7ac4-a42e-8e28-75f4-657505715c2a" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.PrepareFileTranscodeAsync(Windows.Storage.IStorageFile,Windows.Storage.IStorageFile,Windows.Media.MediaProperties.MediaEncodingProfile)">
+      <topicdata group="api" />
+      <apidata name="PrepareFileTranscodeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="destination" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="profile" in="true">
+          <type api="T:Windows.Media.MediaProperties.MediaEncodingProfile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="5916b4be-f874-6ba6-3330-da344a10d8d7" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.PrepareMediaStreamSourceTranscodeAsync(Windows.Media.Core.IMediaSource,Windows.Storage.Streams.IRandomAccessStream,Windows.Media.MediaProperties.MediaEncodingProfile)">
+      <topicdata group="api" />
+      <apidata name="PrepareMediaStreamSourceTranscodeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Media.Core.IMediaSource" ref="true" />
+        </parameter>
+        <parameter name="destination" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+        <parameter name="profile" in="true">
+          <type api="T:Windows.Media.MediaProperties.MediaEncodingProfile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="9c87e1f0-fa42-bc19-ae6c-0c6b1e423df4" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.MediaTranscoder.PrepareStreamTranscodeAsync(Windows.Storage.Streams.IRandomAccessStream,Windows.Storage.Streams.IRandomAccessStream,Windows.Media.MediaProperties.MediaEncodingProfile)">
+      <topicdata group="api" />
+      <apidata name="PrepareStreamTranscodeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+        <parameter name="destination" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </parameter>
+        <parameter name="profile" in="true">
+          <type api="T:Windows.Media.MediaProperties.MediaEncodingProfile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="2db74452-6007-2c05-5450-75c0a35f9c5f" />
+    </api>
+    <api id="P:Windows.Media.Transcoding.MediaTranscoder.TrimStartTime">
+      <topicdata group="api" />
+      <apidata name="TrimStartTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TrimStartTime" />
+      <setter name="set_TrimStartTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="7dba3ac7-de93-48ed-b77d-c301d19d7b84" />
+    </api>
+    <api id="P:Windows.Media.Transcoding.MediaTranscoder.TrimStopTime">
+      <topicdata group="api" />
+      <apidata name="TrimStopTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TrimStopTime" />
+      <setter name="set_TrimStopTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="675fe25d-45b8-c81d-990e-d0e03e07ead8" />
+    </api>
+    <api id="P:Windows.Media.Transcoding.MediaTranscoder.VideoProcessingAlgorithm">
+      <topicdata group="api" />
+      <apidata name="VideoProcessingAlgorithm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_VideoProcessingAlgorithm" />
+      <setter name="set_VideoProcessingAlgorithm" />
+      <returns>
+        <type api="T:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaTranscoder" ref="true" />
+      </containers>
+      <file name="0b5513c0-5906-a9db-0e1e-be44062bad1a" />
+    </api>
+    <api id="T:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm">
+      <topicdata group="api" />
+      <apidata name="MediaVideoProcessingAlgorithm" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm.Default" />
+        <element api="F:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm.MrfCrf444" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e6084907-c13e-3248-8b5c-1afd1744a8f3" />
+    </api>
+    <api id="F:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm" ref="false" />
+      </containers>
+      <file name="511ec213-3c24-a055-8798-f17e5afe659d" />
+    </api>
+    <api id="F:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm.MrfCrf444">
+      <topicdata group="api" notopic="" />
+      <apidata name="MrfCrf444" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.MediaVideoProcessingAlgorithm" ref="false" />
+      </containers>
+      <file name="37c4ca66-7ac7-0c22-c927-8e83a2091760" />
+    </api>
+    <api id="T:Windows.Media.Transcoding.PrepareTranscodeResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Transcoding.PrepareTranscodeResult" />
+      <apidata name="PrepareTranscodeResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Transcoding.IPrepareTranscodeResult" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6d47e458-fcf6-f0f4-7385-0c0424caf61f" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Transcoding.PrepareTranscodeResult">
+      <topicdata name="PrepareTranscodeResult" group="list" subgroup="members" typeTopicId="T:Windows.Media.Transcoding.PrepareTranscodeResult" />
+      <apidata name="PrepareTranscodeResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Transcoding.PrepareTranscodeResult.CanTranscode" />
+        <element api="P:Windows.Media.Transcoding.PrepareTranscodeResult.FailureReason" />
+        <element api="M:Windows.Media.Transcoding.PrepareTranscodeResult.TranscodeAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" />
+      </containers>
+      <file name="ffc5b7a7-c156-f724-e2bf-4db428910dda" />
+    </api>
+    <api id="Methods.T:Windows.Media.Transcoding.PrepareTranscodeResult">
+      <topicdata name="PrepareTranscodeResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Transcoding.PrepareTranscodeResult" />
+      <apidata name="PrepareTranscodeResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Transcoding.PrepareTranscodeResult.TranscodeAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" />
+      </containers>
+      <file name="a0b894ea-a8e3-41aa-5daa-a89daa79d892" />
+    </api>
+    <api id="Properties.T:Windows.Media.Transcoding.PrepareTranscodeResult">
+      <topicdata name="PrepareTranscodeResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Transcoding.PrepareTranscodeResult" />
+      <apidata name="PrepareTranscodeResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Transcoding.PrepareTranscodeResult.CanTranscode" />
+        <element api="P:Windows.Media.Transcoding.PrepareTranscodeResult.FailureReason" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" />
+      </containers>
+      <file name="77515c3c-c27c-47f1-173b-fe91368c8e57" />
+    </api>
+    <api id="P:Windows.Media.Transcoding.PrepareTranscodeResult.CanTranscode">
+      <topicdata group="api" />
+      <apidata name="CanTranscode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CanTranscode" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" ref="true" />
+      </containers>
+      <file name="e8bd02dc-ca56-6aec-7d82-4519a5b93f8f" />
+    </api>
+    <api id="P:Windows.Media.Transcoding.PrepareTranscodeResult.FailureReason">
+      <topicdata group="api" />
+      <apidata name="FailureReason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FailureReason" />
+      <returns>
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" ref="true" />
+      </containers>
+      <file name="be329f12-f1e5-455e-c62c-324f9ceaaa99" />
+    </api>
+    <api id="M:Windows.Media.Transcoding.PrepareTranscodeResult.TranscodeAsync">
+      <topicdata group="api" />
+      <apidata name="TranscodeAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:System.Double" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.PrepareTranscodeResult" ref="true" />
+      </containers>
+      <file name="509f7955-631a-7ef6-471a-7e45147a26ad" />
+    </api>
+    <api id="T:Windows.Media.Transcoding.TranscodeFailureReason">
+      <topicdata group="api" />
+      <apidata name="TranscodeFailureReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Transcoding.TranscodeFailureReason.None" />
+        <element api="F:Windows.Media.Transcoding.TranscodeFailureReason.Unknown" />
+        <element api="F:Windows.Media.Transcoding.TranscodeFailureReason.InvalidProfile" />
+        <element api="F:Windows.Media.Transcoding.TranscodeFailureReason.CodecNotFound" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f4c47f88-b94f-3fa6-e602-4c65a06c722f" />
+    </api>
+    <api id="F:Windows.Media.Transcoding.TranscodeFailureReason.CodecNotFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="CodecNotFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </containers>
+      <file name="04f49fdf-cdab-e355-67cf-5eed87ac562e" />
+    </api>
+    <api id="F:Windows.Media.Transcoding.TranscodeFailureReason.InvalidProfile">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidProfile" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </containers>
+      <file name="5fe8892a-e608-56fc-40e7-f9a22c9b347a" />
+    </api>
+    <api id="F:Windows.Media.Transcoding.TranscodeFailureReason.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </containers>
+      <file name="ee8238eb-5b6f-24c2-7db7-795bf14b926e" />
+    </api>
+    <api id="F:Windows.Media.Transcoding.TranscodeFailureReason.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Transcoding" />
+        <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+      </containers>
+      <file name="9c7e6b64-3f9e-ef54-84d2-8019bcb41195" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,667 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="PresentationCore">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="PresentationFramework">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="ExternalAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Resources">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Resources" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" />
+        <element api="T:System.Windows.Resources.StreamResourceInfo" />
+        <element api="T:System.Windows.Resources.ContentTypes" />
+      </elements>
+      <file name="a0f81ba6-6e00-c0f6-2951-7422d550644f" />
+    </api>
+    <api id="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" />
+      <apidata name="AssemblyAssociatedContentFileAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b662c4a1-167a-049f-7ce6-cd5829296746" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute">
+      <topicdata name="AssemblyAssociatedContentFileAttribute" group="list" subgroup="members" typeTopicId="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" />
+      <apidata name="AssemblyAssociatedContentFileAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Resources.AssemblyAssociatedContentFileAttribute.#ctor(System.String)" />
+        <element api="P:System.Windows.Resources.AssemblyAssociatedContentFileAttribute.RelativeContentFilePath" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" />
+      </containers>
+      <file name="f233303e-cb75-8083-c2ee-cd906e307c9f" />
+    </api>
+    <api id="Methods.T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute">
+      <topicdata name="AssemblyAssociatedContentFileAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" />
+      <apidata name="AssemblyAssociatedContentFileAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" />
+      </containers>
+      <file name="34af0162-4e79-543c-7e87-44d7a15bd31b" />
+    </api>
+    <api id="Properties.T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute">
+      <topicdata name="AssemblyAssociatedContentFileAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" />
+      <apidata name="AssemblyAssociatedContentFileAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Windows.Resources.AssemblyAssociatedContentFileAttribute.RelativeContentFilePath" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" />
+      </containers>
+      <file name="a2546220-2eb1-9465-0b1c-b2afe550f0f7" />
+    </api>
+    <api id="M:System.Windows.Resources.AssemblyAssociatedContentFileAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="relativeContentFilePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" ref="true" />
+      </containers>
+      <file name="f9cef368-89d4-9836-7eca-ce547c867b97" />
+    </api>
+    <api id="P:System.Windows.Resources.AssemblyAssociatedContentFileAttribute.RelativeContentFilePath">
+      <topicdata group="api" />
+      <apidata name="RelativeContentFilePath" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RelativeContentFilePath" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.AssemblyAssociatedContentFileAttribute" ref="true" />
+      </containers>
+      <file name="22b06754-2de3-add9-33f9-c831f9cbb0bf" />
+    </api>
+    <api id="T:System.Windows.Resources.ContentTypes">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Resources.ContentTypes" />
+      <apidata name="ContentTypes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Resources.ContentTypes.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+      </containers>
+      <file name="82c6d431-0d06-9003-2e4c-15382bb2c209" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Resources.ContentTypes">
+      <topicdata name="ContentTypes" group="list" subgroup="members" typeTopicId="T:System.Windows.Resources.ContentTypes" />
+      <apidata name="ContentTypes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Resources.ContentTypes.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Resources.ContentTypes.#ctor" />
+        <element api="F:System.Windows.Resources.ContentTypes.XamlContentType" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.ContentTypes" />
+      </containers>
+      <file name="9dcfc385-fac6-a5b0-c769-47d26730a136" />
+    </api>
+    <api id="Methods.T:System.Windows.Resources.ContentTypes">
+      <topicdata name="ContentTypes" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Resources.ContentTypes" />
+      <apidata name="ContentTypes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Resources.ContentTypes.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.ContentTypes" />
+      </containers>
+      <file name="e035921f-f5ca-856d-a82f-4315bf64a4d8" />
+    </api>
+    <api id="Fields.T:System.Windows.Resources.ContentTypes">
+      <topicdata name="ContentTypes" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Resources.ContentTypes" />
+      <apidata name="ContentTypes" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Resources.ContentTypes.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Resources.ContentTypes.XamlContentType" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.ContentTypes" />
+      </containers>
+      <file name="d75c8207-192f-a4b9-c882-05338436adea" />
+    </api>
+    <api id="M:System.Windows.Resources.ContentTypes.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.ContentTypes" ref="true" />
+      </containers>
+      <file name="f5effea0-b255-aa53-8843-2a67d50705c8" />
+    </api>
+    <api id="F:System.Windows.Resources.ContentTypes.XamlContentType">
+      <topicdata group="api" />
+      <apidata name="XamlContentType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>applicaton/xaml+xml</value>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.ContentTypes" ref="true" />
+      </containers>
+      <file name="9229283b-2ddd-f695-4482-6eea52ac603d" />
+    </api>
+    <api id="T:System.Windows.Resources.StreamResourceInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name="StreamResourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Resources.StreamResourceInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+      </containers>
+      <file name="c2212159-f67f-1b06-decd-a1af73d61c37" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Resources.StreamResourceInfo">
+      <topicdata name="StreamResourceInfo" group="list" subgroup="members" typeTopicId="T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name="StreamResourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Resources.StreamResourceInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Resources.StreamResourceInfo.#ctor">
+          <element api="M:System.Windows.Resources.StreamResourceInfo.#ctor" />
+          <element api="M:System.Windows.Resources.StreamResourceInfo.#ctor(System.IO.Stream,System.String)" />
+        </element>
+        <element api="P:System.Windows.Resources.StreamResourceInfo.ContentType" />
+        <element api="P:System.Windows.Resources.StreamResourceInfo.Stream" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" />
+      </containers>
+      <file name="60c1936a-778a-d229-046e-a9c539dad0d2" />
+    </api>
+    <api id="Methods.T:System.Windows.Resources.StreamResourceInfo">
+      <topicdata name="StreamResourceInfo" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name="StreamResourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Resources.StreamResourceInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" />
+      </containers>
+      <file name="9034e2bf-30c3-a825-ac32-34928e7cc73e" />
+    </api>
+    <api id="Properties.T:System.Windows.Resources.StreamResourceInfo">
+      <topicdata name="StreamResourceInfo" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name="StreamResourceInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Resources.StreamResourceInfo.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Resources.StreamResourceInfo.ContentType" />
+        <element api="P:System.Windows.Resources.StreamResourceInfo.Stream" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" />
+      </containers>
+      <file name="bccdff0e-81a4-3d1d-6210-85a14a6891a8" />
+    </api>
+    <api id="Overload:System.Windows.Resources.StreamResourceInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Resources.StreamResourceInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Resources.StreamResourceInfo.#ctor" />
+        <element api="M:System.Windows.Resources.StreamResourceInfo.#ctor(System.IO.Stream,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" ref="true" />
+      </containers>
+      <file name="c8d7c41d-06d6-a3ff-5701-1bb08fd03eff" />
+    </api>
+    <api id="M:System.Windows.Resources.StreamResourceInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Resources.StreamResourceInfo.#ctor" />
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" ref="true" />
+      </containers>
+      <file name="a713767f-128b-14f0-6b80-f612b90f730f" />
+    </api>
+    <api id="M:System.Windows.Resources.StreamResourceInfo.#ctor(System.IO.Stream,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Resources.StreamResourceInfo.#ctor" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="contentType">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" ref="true" />
+      </containers>
+      <file name="9565d773-5d08-39ca-11fd-67694b15b304" />
+    </api>
+    <api id="P:System.Windows.Resources.StreamResourceInfo.ContentType">
+      <topicdata group="api" />
+      <apidata name="ContentType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ContentType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" ref="true" />
+      </containers>
+      <file name="f7c854d9-9608-89fb-5267-679fea06d786" />
+    </api>
+    <api id="P:System.Windows.Resources.StreamResourceInfo.Stream">
+      <topicdata group="api" />
+      <apidata name="Stream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Stream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Resources" />
+        <type api="T:System.Windows.Resources.StreamResourceInfo" ref="true" />
+      </containers>
+      <file name="c51a1e37-448c-5db3-e128-410e4a08af74" />
+    </api>
+  </apis>
+</reflection>

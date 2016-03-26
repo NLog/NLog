@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Alex Sherman, verifications Sergey Zhurikhin -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_Visual Basic Usage">VB Использование</item>
+  <item id="devlang_VisualBasicUsage">VB Использование</item>
+  <item id="devlang_vbusage">VB Использование</item>
+  <item id="devlang_vbnetusage">VB Использование</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_Visual Basic Usage">VB</item>
+  <item id="metaLang_VisualBasicUsage">VB</item>
+  <item id="metaLang_vbusage">VB</item>
+  <item id="metaLang_vbnetusage">VB</item>
+
+	<!-- VB usage syntax section messages -->
+	<item id="UnsupportedUnsafe_VisualBasicUsage">Visual Basic не поддерживает интерфейсы API, которые принимают или возвращают небезопасные типы.</item>
+	<item id="UnsupportedOperator_VisualBasicUsage">Visual Basic не поддерживает этот оператор.</item>
+	<item id="UnsupportedStaticClass_VisualBasicUsage">Вам не нужно создавать экземпляр статического класса для доступа к его членам.</item>
+	<item id="UnsupportedVarargs_VisualBasicUsage">Visual Basic не поддерживает методы, использующие аргументы переменной длины
+(<span class="code">varargs</span>).  Компилятор автоматически разрешает вызовы этого метода в такой же метод,
+использующий массив параметров.</item>
+
+</content>

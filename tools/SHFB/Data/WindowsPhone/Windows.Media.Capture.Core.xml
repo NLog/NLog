@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Capture.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Capture.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" />
+        <element api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" />
+      </elements>
+      <file name="6c534c7f-6ad5-de31-fa31-9757e21fa960" />
+    </api>
+    <api id="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" />
+      <apidata name="VariablePhotoCapturedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Capture.Core.IVariablePhotoCapturedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="99f86fe6-c114-1ddf-2518-0d6b0855d098" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs">
+      <topicdata name="VariablePhotoCapturedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" />
+      <apidata name="VariablePhotoCapturedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.CapturedFrameControlValues" />
+        <element api="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.CaptureTimeOffset" />
+        <element api="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.Frame" />
+        <element api="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.UsedFrameControllerIndex" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" />
+      </containers>
+      <file name="77c2f23e-5685-70b5-3f4a-bec91615a7ec" />
+    </api>
+    <api id="Methods.T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs">
+      <topicdata name="VariablePhotoCapturedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" />
+      <apidata name="VariablePhotoCapturedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" />
+      </containers>
+      <file name="a9ad7abc-3156-14ab-a3a8-44351ecfc7a3" />
+    </api>
+    <api id="Properties.T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs">
+      <topicdata name="VariablePhotoCapturedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" />
+      <apidata name="VariablePhotoCapturedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.CapturedFrameControlValues" />
+        <element api="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.CaptureTimeOffset" />
+        <element api="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.Frame" />
+        <element api="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.UsedFrameControllerIndex" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" />
+      </containers>
+      <file name="81cb71bf-5e84-f6f8-5505-5954d1c9f8b3" />
+    </api>
+    <api id="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.CapturedFrameControlValues">
+      <topicdata group="api" />
+      <apidata name="CapturedFrameControlValues" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CapturedFrameControlValues" />
+      <returns>
+        <type api="T:Windows.Media.Capture.CapturedFrameControlValues" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" ref="true" />
+      </containers>
+      <file name="30d679b7-6533-e46f-62ca-dadad710346f" />
+    </api>
+    <api id="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.CaptureTimeOffset">
+      <topicdata group="api" />
+      <apidata name="CaptureTimeOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CaptureTimeOffset" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" ref="true" />
+      </containers>
+      <file name="bb67b12f-1919-e6ec-c51c-f9cc801e8906" />
+    </api>
+    <api id="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.Frame">
+      <topicdata group="api" />
+      <apidata name="Frame" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Frame" />
+      <returns>
+        <type api="T:Windows.Media.Capture.CapturedFrame" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" ref="true" />
+      </containers>
+      <file name="3bcdacc1-8d77-e1ca-29ee-fef09db0b52c" />
+    </api>
+    <api id="P:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs.UsedFrameControllerIndex">
+      <topicdata group="api" />
+      <apidata name="UsedFrameControllerIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsedFrameControllerIndex" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" ref="true" />
+      </containers>
+      <file name="a02f49dc-1023-a361-2f5a-4c3c8f457166" />
+    </api>
+    <api id="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" />
+      <apidata name="VariablePhotoSequenceCapture" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Capture.Core.IVariablePhotoSequenceCapture" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="64c7156d-a522-948c-acaf-646f2bf980f4" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture">
+      <topicdata name="VariablePhotoSequenceCapture" group="list" subgroup="members" typeTopicId="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" />
+      <apidata name="VariablePhotoSequenceCapture" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.FinishAsync" />
+        <element api="E:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.PhotoCaptured" />
+        <element api="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.StartAsync" />
+        <element api="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.StopAsync" />
+        <element api="E:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.Stopped" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" />
+      </containers>
+      <file name="25b700d5-9009-236f-35d1-62d5051db2b8" />
+    </api>
+    <api id="Methods.T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture">
+      <topicdata name="VariablePhotoSequenceCapture" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" />
+      <apidata name="VariablePhotoSequenceCapture" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.FinishAsync" />
+        <element api="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.StartAsync" />
+        <element api="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.StopAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" />
+      </containers>
+      <file name="6ebde887-9ea6-4e11-4247-4b7ea24e5f08" />
+    </api>
+    <api id="Events.T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture">
+      <topicdata name="VariablePhotoSequenceCapture" group="list" subgroup="Events" typeTopicId="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" />
+      <apidata name="VariablePhotoSequenceCapture" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.PhotoCaptured" />
+        <element api="E:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.Stopped" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" />
+      </containers>
+      <file name="e535552a-9172-6501-c4b8-8539183d706a" />
+    </api>
+    <api id="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.FinishAsync">
+      <topicdata group="api" />
+      <apidata name="FinishAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" ref="true" />
+      </containers>
+      <file name="1be112ad-df0a-9b8b-c6b8-191e1a9d2801" />
+    </api>
+    <api id="E:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.PhotoCaptured">
+      <topicdata group="api" />
+      <apidata name="PhotoCaptured" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PhotoCaptured" />
+      <remover name="remove_PhotoCaptured" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" ref="true" />
+            <type api="T:Windows.Media.Capture.Core.VariablePhotoCapturedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" ref="true" />
+      </containers>
+      <file name="efc680d2-cd42-0d7b-5f14-bbb903fce3f5" />
+    </api>
+    <api id="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.StartAsync">
+      <topicdata group="api" />
+      <apidata name="StartAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" ref="true" />
+      </containers>
+      <file name="4dcbc99d-d883-b29e-25d1-af5f09d76acb" />
+    </api>
+    <api id="M:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.StopAsync">
+      <topicdata group="api" />
+      <apidata name="StopAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" ref="true" />
+      </containers>
+      <file name="1dccc1ec-7cd3-1cc4-9346-1ced5bb72054" />
+    </api>
+    <api id="E:Windows.Media.Capture.Core.VariablePhotoSequenceCapture.Stopped">
+      <topicdata group="api" />
+      <apidata name="Stopped" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Stopped" />
+      <remover name="remove_Stopped" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Capture.Core" />
+        <type api="T:Windows.Media.Capture.Core.VariablePhotoSequenceCapture" ref="true" />
+      </containers>
+      <file name="8a5b819e-4e96-9075-d8d6-d7569254a1f4" />
+    </api>
+  </apis>
+</reflection>

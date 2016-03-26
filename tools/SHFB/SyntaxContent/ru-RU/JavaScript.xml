@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Alex Sherman, verifications Sergey Zhurikhin -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_JavaScript">JavaScript</item>
+  <item id="devlang_js">JavaScript</item>
+  <item id="devlang_ecmascript">JavaScript</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_JavaScript">JavaScript</item>
+  <item id="metaLang_js">JavaScript</item>
+  <item id="metaLang_ecmascript">JavaScript</item>
+
+	<!-- JavaScript (Script#) syntax section messages -->
+	<item id="UnsupportedType_ScriptSharp">Этот тип относится к Script# инфраструктуре и не может быть использован непосредственно в JavaScript.</item>
+	<item id="UnsupportedUnsafe_JavaScript">JavaScript не поддерживает интерфейсы API, которые принимают или возвращают небезопасные типы.</item>
+	<item id="UnsupportedGeneric_JavaScript">JavaScript не поддерживает универсальные типы и методы.</item>
+	<item id="UnsupportedExplicit_JavaScript">JavaScript не поддерживает явные реализации интерфейса.</item>
+	<item id="UnsupportedOperator_JavaScript">JavaScript не поддерживает перегруженные операторы.</item>
+	<item id="UnsupportedStructure_JavaScript">JavaScript поддерживает использование структур, но не объявление новых структур.</item>
+	<item id="UnsupportedIndex_JavaScript">JavaScript не поддерживает индексированные свойства.</item>
+	<item id="UnsupportedCast_JavaScript">JavaScript не поддерживает объявление новых операторов приведения.</item>
+
+</content>

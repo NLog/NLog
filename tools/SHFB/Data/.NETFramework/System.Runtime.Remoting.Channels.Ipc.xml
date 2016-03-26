@@ -1,0 +1,1371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.Remoting">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Remoting.Channels.Ipc">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Remoting.Channels.Ipc" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+        <element api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+        <element api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      </elements>
+      <file name="1716ce06-1000-464d-cb8c-28e5281f1101" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+      <apidata name="IpcChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannelSender" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+      </containers>
+      <file name="c53fb442-64a6-e73d-1cf8-7b544b0e184b" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcChannel">
+      <topicdata name="IpcChannel" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+      <apidata name="IpcChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor">
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.String)" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider,System.Security.AccessControl.CommonSecurityDescriptor)" />
+        </element>
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelData" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelPriority" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.CreateMessageSink(System.String,System.Object,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.GetUrlsForUri(System.String)" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.IsSecured" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.Parse(System.String,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.StartListening(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.StopListening(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+      </containers>
+      <file name="d82f2e60-f43e-191b-1b53-8ac91dd27fc7" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Channels.Ipc.IpcChannel">
+      <topicdata name="IpcChannel" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+      <apidata name="IpcChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.CreateMessageSink(System.String,System.Object,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.GetUrlsForUri(System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.Parse(System.String,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.StartListening(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.StopListening(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+      </containers>
+      <file name="57e200ba-c042-e912-aade-d7c1b521ff77" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Channels.Ipc.IpcChannel">
+      <topicdata name="IpcChannel" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+      <apidata name="IpcChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelData" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelPriority" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.IsSecured" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+      </containers>
+      <file name="94afe8e2-751a-403e-9231-57bb8ff3f11d" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider,System.Security.AccessControl.CommonSecurityDescriptor)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="518f62fc-5cc1-a984-63e0-d6b0c68c25bb" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="1d20132d-e2ed-973a-db7b-5e11022d2a41" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="clientSinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IClientChannelSinkProvider" ref="true" />
+        </parameter>
+        <parameter name="serverSinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="10ec9e77-9bd4-2e24-7a15-674aa44ff4d7" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider,System.Security.AccessControl.CommonSecurityDescriptor)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="clientSinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IClientChannelSinkProvider" ref="true" />
+        </parameter>
+        <parameter name="serverSinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </parameter>
+        <parameter name="securityDescriptor">
+          <type api="T:System.Security.AccessControl.CommonSecurityDescriptor" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="a181434a-ebac-90c0-ff5c-cb9c1019717a" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcChannel.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="91c7a1d6-21cb-e8ba-61b9-3e7b93b8c875" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelData">
+      <topicdata group="api" />
+      <apidata name="ChannelData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelData" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiver.ChannelData">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="7c84a5b4-66ad-9774-df91-e9fc798c52de" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelName">
+      <topicdata group="api" />
+      <apidata name="ChannelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelName">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="8c3fc5f3-71c4-c00e-2994-97b03b90114f" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.ChannelPriority">
+      <topicdata group="api" />
+      <apidata name="ChannelPriority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelPriority" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelPriority">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="1011f122-9d05-980a-98e5-5f4e35639ae0" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.CreateMessageSink(System.String,System.Object,System.String@)">
+      <topicdata group="api" />
+      <apidata name="CreateMessageSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="remoteChannelData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelSender.CreateMessageSink(System.String,System.Object,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelSender" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="83ffdf45-4457-aba8-49dc-b3df6f556d17" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.GetUrlsForUri(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetUrlsForUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="objectURI">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.GetUrlsForUri(System.String)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="6aa11a52-6365-c5fc-11ab-05ae3ec6f92f" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcChannel.IsSecured">
+      <topicdata group="api" />
+      <apidata name="IsSecured" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsSecured" />
+      <setter name="set_IsSecured" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.ISecurableChannel.IsSecured">
+          <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="1f063f9e-6d7d-f147-06fd-817860dc7d44" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.Parse(System.String,System.String@)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannel.Parse(System.String,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="f827cdd7-b431-4d9c-a66f-19d27f6f6c61" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.StartListening(System.Object)">
+      <topicdata group="api" />
+      <apidata name="StartListening" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.StartListening(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="1619f8e9-afaa-8437-d482-f71e540643ad" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcChannel.StopListening(System.Object)">
+      <topicdata group="api" />
+      <apidata name="StopListening" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.StopListening(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcChannel" ref="true" />
+      </containers>
+      <file name="d6c11ec3-5a4b-eb00-40fb-59b34f99a79c" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      <apidata name="IpcClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Channels.IChannelSender" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+      </containers>
+      <file name="87dbf594-094d-1233-2d79-6f78cc49b1b2" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel">
+      <topicdata name="IpcClientChannel" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      <apidata name="IpcClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor">
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor(System.String,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)" />
+        </element>
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.ChannelPriority" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.CreateMessageSink(System.String,System.Object,System.String@)" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.IsSecured" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.Parse(System.String,System.String@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      </containers>
+      <file name="5bf185dc-ba41-cfa8-cf37-86e8798d177f" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel">
+      <topicdata name="IpcClientChannel" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      <apidata name="IpcClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.CreateMessageSink(System.String,System.Object,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.Parse(System.String,System.String@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      </containers>
+      <file name="22861660-97cd-fe37-9a5c-395130e0c71b" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel">
+      <topicdata name="IpcClientChannel" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      <apidata name="IpcClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.ChannelPriority" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.IsSecured" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      </containers>
+      <file name="b7c60492-1474-3d24-c49c-49c9f6a54dde" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor(System.String,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="60e92644-686d-ac9c-9fe5-12327da18b4d" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="b16b2888-e185-2e16-13c5-97d6c8fe2713" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IClientChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="4c6e6a58-b066-13d9-8a0f-9ee1b52f2599" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor(System.String,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IClientChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="44bfcb49-e3b7-981b-7dad-bcb600dcdcce" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.ChannelName">
+      <topicdata group="api" />
+      <apidata name="ChannelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelName">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="7bc4040a-5f8b-75ee-a038-74ebbdbb0c03" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.ChannelPriority">
+      <topicdata group="api" />
+      <apidata name="ChannelPriority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelPriority" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelPriority">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="1223f1b5-c14c-cb7c-d148-2dd5ff195880" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.CreateMessageSink(System.String,System.Object,System.String@)">
+      <topicdata group="api" />
+      <apidata name="CreateMessageSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="remoteChannelData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelSender.CreateMessageSink(System.String,System.Object,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelSender" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="711d749c-9417-6750-9bc7-404f7048cddb" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.IsSecured">
+      <topicdata group="api" />
+      <apidata name="IsSecured" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsSecured" />
+      <setter name="set_IsSecured" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.ISecurableChannel.IsSecured">
+          <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="aa2307e6-0993-4796-d1d0-2bb7988281b5" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel.Parse(System.String,System.String@)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannel.Parse(System.String,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcClientChannel" ref="true" />
+      </containers>
+      <file name="711ad20b-9153-1b0a-8f28-a5897f0f4ef4" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+      <apidata name="IpcServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+      </containers>
+      <file name="a90ab65c-48d7-d1df-5a35-b530c39cf705" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel">
+      <topicdata name="IpcServerChannel" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+      <apidata name="IpcServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor">
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String)" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String,System.String)" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider,System.Security.AccessControl.CommonSecurityDescriptor)" />
+          <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String,System.String,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+        </element>
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelData" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelPriority" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.GetChannelUri" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.GetUrlsForUri(System.String)" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.IsSecured" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.Parse(System.String,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StartListening(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StopListening(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+      </containers>
+      <file name="307b8324-62d5-b8eb-e605-e0473f9d46d2" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel">
+      <topicdata name="IpcServerChannel" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+      <apidata name="IpcServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.GetChannelUri" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.GetUrlsForUri(System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.Parse(System.String,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StartListening(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StopListening(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+      </containers>
+      <file name="067e522e-8345-f682-58f4-13fafdc11b69" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel">
+      <topicdata name="IpcServerChannel" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+      <apidata name="IpcServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelData" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelPriority" />
+        <element api="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.IsSecured" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+      </containers>
+      <file name="337d5c74-299f-1b31-cbad-9e761038318b" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String,System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider,System.Security.AccessControl.CommonSecurityDescriptor)" />
+        <element api="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String,System.String,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="f3281836-d08f-a6c7-e2c3-c196c60a3042" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="00d77dce-07d7-069c-cbdb-2a9cf78a8bcc" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider,System.Security.AccessControl.CommonSecurityDescriptor)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </parameter>
+        <parameter name="securityDescriptor">
+          <type api="T:System.Security.AccessControl.CommonSecurityDescriptor" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="1a87092e-8472-e01a-b17d-70c6b3fb45a2" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor" />
+      <parameters>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="2e43f74e-6605-2aef-4911-4175b604ab37" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="9c8810cd-33e7-0252-e394-3e4bc4fb69db" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor(System.String,System.String,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="portName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="34fc493f-f205-fc5c-6eac-5ed8320c61c6" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelData">
+      <topicdata group="api" />
+      <apidata name="ChannelData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelData" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiver.ChannelData">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="27e52823-a0c9-ddf7-266d-bb57b4457ff0" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelName">
+      <topicdata group="api" />
+      <apidata name="ChannelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelName">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="7845eead-646c-c1b6-a910-3293c144bbe0" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.ChannelPriority">
+      <topicdata group="api" />
+      <apidata name="ChannelPriority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelPriority" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelPriority">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="9d876ab8-6869-f50c-d689-677c0e5bdecb" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.GetChannelUri">
+      <topicdata group="api" />
+      <apidata name="GetChannelUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="98606730-0628-5059-a34d-4b477019fb0a" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.GetUrlsForUri(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetUrlsForUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="objectUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.GetUrlsForUri(System.String)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="4fd518ea-6126-5178-ab2e-c5a54d6b315e" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.IsSecured">
+      <topicdata group="api" />
+      <apidata name="IsSecured" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsSecured" />
+      <setter name="set_IsSecured" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.ISecurableChannel.IsSecured">
+          <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="889d9f64-1768-ee32-c73d-fc2b97cdc8e9" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.Parse(System.String,System.String@)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannel.Parse(System.String,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="89cb7185-8930-a4e4-4fb9-7906f7d2546f" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StartListening(System.Object)">
+      <topicdata group="api" />
+      <apidata name="StartListening" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.StartListening(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="9279cb4e-1961-f364-f6fc-b1ce8c521730" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel.StopListening(System.Object)">
+      <topicdata group="api" />
+      <apidata name="StopListening" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.StopListening(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Ipc" />
+        <type api="T:System.Runtime.Remoting.Channels.Ipc.IpcServerChannel" ref="true" />
+      </containers>
+      <file name="6cc5bca7-a6d7-ce57-8f8b-39892539c0c9" />
+    </api>
+  </apis>
+</reflection>

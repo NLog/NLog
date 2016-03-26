@@ -1,0 +1,1565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BED7F4EA-1A96-11d2-8F08-00A0C9A6186D</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Runtime.Remoting">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Remoting.Services">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Remoting.Services" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" />
+        <element api="T:System.Runtime.Remoting.Services.ITrackingHandler" />
+        <element api="T:System.Runtime.Remoting.Services.TrackingServices" />
+        <element api="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+        <element api="T:System.Runtime.Remoting.Services.RemotingService" />
+      </elements>
+      <file name="4a5be6d3-b6ae-01e1-25a5-147839e64b72" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" />
+      <apidata name="EnterpriseServicesHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b1ff6292-99fa-f868-356d-8d28e33602fc" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Services.EnterpriseServicesHelper">
+      <topicdata name="EnterpriseServicesHelper" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" />
+      <apidata name="EnterpriseServicesHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.#ctor" />
+        <element api="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.CreateConstructionReturnMessage(System.Runtime.Remoting.Activation.IConstructionCallMessage,System.MarshalByRefObject)" />
+        <element api="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.SwitchWrappers(System.Runtime.Remoting.Proxies.RealProxy,System.Runtime.Remoting.Proxies.RealProxy)" />
+        <element api="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" />
+      </containers>
+      <file name="9c0505e0-bb91-bb2f-9fda-b89635e2874c" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Services.EnterpriseServicesHelper">
+      <topicdata name="EnterpriseServicesHelper" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" />
+      <apidata name="EnterpriseServicesHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.CreateConstructionReturnMessage(System.Runtime.Remoting.Activation.IConstructionCallMessage,System.MarshalByRefObject)" />
+        <element api="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.SwitchWrappers(System.Runtime.Remoting.Proxies.RealProxy,System.Runtime.Remoting.Proxies.RealProxy)" />
+        <element api="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject(System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" />
+      </containers>
+      <file name="77c0ec90-9b68-45b6-e98e-b26091b21744" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" ref="true" />
+      </containers>
+      <file name="e30c62f4-3585-cb8b-38df-ab8438261f87" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.CreateConstructionReturnMessage(System.Runtime.Remoting.Activation.IConstructionCallMessage,System.MarshalByRefObject)">
+      <topicdata group="api" />
+      <apidata name="CreateConstructionReturnMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ctorMsg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+        <parameter name="retObj">
+          <type api="T:System.MarshalByRefObject" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Activation.IConstructionReturnMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e02523ae-d3fc-dded-c722-6a8da550c787" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.SwitchWrappers(System.Runtime.Remoting.Proxies.RealProxy,System.Runtime.Remoting.Proxies.RealProxy)">
+      <topicdata group="api" />
+      <apidata name="SwitchWrappers" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="oldcp">
+          <type api="T:System.Runtime.Remoting.Proxies.RealProxy" ref="true" />
+        </parameter>
+        <parameter name="newcp">
+          <type api="T:System.Runtime.Remoting.Proxies.RealProxy" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="259d28ae-9208-0064-c7b2-135720534940" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject(System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="WrapIUnknownWithComObject" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="punk">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.EnterpriseServicesHelper" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e2a2f28c-10ed-557d-004a-c2204aa57aea" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Services.ITrackingHandler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Services.ITrackingHandler" />
+      <apidata name="ITrackingHandler" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="455db33e-1b72-1d88-7dad-7433dd10623a" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Services.ITrackingHandler">
+      <topicdata name="ITrackingHandler" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Services.ITrackingHandler" />
+      <apidata name="ITrackingHandler" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Services.ITrackingHandler.DisconnectedObject(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Services.ITrackingHandler.MarshaledObject(System.Object,System.Runtime.Remoting.ObjRef)" />
+        <element api="M:System.Runtime.Remoting.Services.ITrackingHandler.UnmarshaledObject(System.Object,System.Runtime.Remoting.ObjRef)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.ITrackingHandler" />
+      </containers>
+      <file name="915946e5-931f-6ae7-d9af-1407416d0d0f" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Services.ITrackingHandler">
+      <topicdata name="ITrackingHandler" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Services.ITrackingHandler" />
+      <apidata name="ITrackingHandler" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Services.ITrackingHandler.DisconnectedObject(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Services.ITrackingHandler.MarshaledObject(System.Object,System.Runtime.Remoting.ObjRef)" />
+        <element api="M:System.Runtime.Remoting.Services.ITrackingHandler.UnmarshaledObject(System.Object,System.Runtime.Remoting.ObjRef)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.ITrackingHandler" />
+      </containers>
+      <file name="12e19a00-7576-a035-af0f-a01a600cea6b" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.ITrackingHandler.DisconnectedObject(System.Object)">
+      <topicdata group="api" />
+      <apidata name="DisconnectedObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.ITrackingHandler" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="daf60ec0-be1c-0873-1405-7cd78d5eb88f" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.ITrackingHandler.MarshaledObject(System.Object,System.Runtime.Remoting.ObjRef)">
+      <topicdata group="api" />
+      <apidata name="MarshaledObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="or">
+          <type api="T:System.Runtime.Remoting.ObjRef" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.ITrackingHandler" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="60dbe762-a1ed-b0c2-140c-7419c0db108d" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.ITrackingHandler.UnmarshaledObject(System.Object,System.Runtime.Remoting.ObjRef)">
+      <topicdata group="api" />
+      <apidata name="UnmarshaledObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="or">
+          <type api="T:System.Runtime.Remoting.ObjRef" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.ITrackingHandler" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e34ab4b9-c1ef-20c1-77c1-ab77a21f0bd4" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Services.RemotingClientProxy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      <apidata name="RemotingClientProxy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="547778cb-a68d-97cd-d5c4-8f25a181aed3" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Services.RemotingClientProxy">
+      <topicdata name="RemotingClientProxy" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      <apidata name="RemotingClientProxy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Runtime.Remoting.Services.RemotingClientProxy.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.Runtime.Remoting.Services.RemotingClientProxy.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Runtime.Remoting.Services.RemotingClientProxy.#ctor" />
+        <element api="F:System.Runtime.Remoting.Services.RemotingClientProxy._tp" />
+        <element api="F:System.Runtime.Remoting.Services.RemotingClientProxy._type" />
+        <element api="F:System.Runtime.Remoting.Services.RemotingClientProxy._url" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.AllowAutoRedirect" />
+        <element api="M:System.Runtime.Remoting.Services.RemotingClientProxy.ConfigureProxy(System.Type,System.String)" />
+        <element api="M:System.Runtime.Remoting.Services.RemotingClientProxy.ConnectProxy" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Cookies" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Domain" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.EnableCookies" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Password" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Path" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.PreAuthenticate" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.ProxyName" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.ProxyPort" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Timeout" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Url" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.UserAgent" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Username" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      </containers>
+      <file name="af424c4e-3252-5848-aa87-9336acecf374" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Services.RemotingClientProxy">
+      <topicdata name="RemotingClientProxy" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      <apidata name="RemotingClientProxy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Runtime.Remoting.Services.RemotingClientProxy.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Runtime.Remoting.Services.RemotingClientProxy.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Runtime.Remoting.Services.RemotingClientProxy.ConfigureProxy(System.Type,System.String)" />
+        <element api="M:System.Runtime.Remoting.Services.RemotingClientProxy.ConnectProxy" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      </containers>
+      <file name="932fd4d9-1f7b-94fa-d22d-7b10dbb89f4d" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Services.RemotingClientProxy">
+      <topicdata name="RemotingClientProxy" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      <apidata name="RemotingClientProxy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.AllowAutoRedirect" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Cookies" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Domain" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.EnableCookies" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Password" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Path" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.PreAuthenticate" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.ProxyName" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.ProxyPort" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Timeout" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Url" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.UserAgent" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingClientProxy.Username" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      </containers>
+      <file name="dacb2527-fdf9-9797-ba3f-f8979a93dfd6" />
+    </api>
+    <api id="Events.T:System.Runtime.Remoting.Services.RemotingClientProxy">
+      <topicdata name="RemotingClientProxy" group="list" subgroup="Events" typeTopicId="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      <apidata name="RemotingClientProxy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      </containers>
+      <file name="58dfa06b-b318-ae8f-fa6a-637145e4d38a" />
+    </api>
+    <api id="Fields.T:System.Runtime.Remoting.Services.RemotingClientProxy">
+      <topicdata name="RemotingClientProxy" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      <apidata name="RemotingClientProxy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Services.RemotingClientProxy._tp" />
+        <element api="F:System.Runtime.Remoting.Services.RemotingClientProxy._type" />
+        <element api="F:System.Runtime.Remoting.Services.RemotingClientProxy._url" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" />
+      </containers>
+      <file name="750e558d-9858-8356-5eaa-c3f9791454a5" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.RemotingClientProxy.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="c26e0e66-003e-9e48-fb41-759c7c8c8a13" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Services.RemotingClientProxy._tp">
+      <topicdata group="api" />
+      <apidata name="_tp" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="7634a41e-7dfb-7183-661c-d477750a015f" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Services.RemotingClientProxy._type">
+      <topicdata group="api" />
+      <apidata name="_type" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="0cea32a3-f614-ea81-91f4-04278a509d34" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Services.RemotingClientProxy._url">
+      <topicdata group="api" />
+      <apidata name="_url" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="a91aac5d-29f3-4c42-a038-4395a71af99d" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.AllowAutoRedirect">
+      <topicdata group="api" />
+      <apidata name="AllowAutoRedirect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllowAutoRedirect" />
+      <setter name="set_AllowAutoRedirect" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="8e3642dc-ac6d-c58a-8365-bbd646aec206" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.RemotingClientProxy.ConfigureProxy(System.Type,System.String)">
+      <topicdata group="api" />
+      <apidata name="ConfigureProxy" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="01dc7e2b-eace-20bf-272f-f99a5e160fa1" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.RemotingClientProxy.ConnectProxy">
+      <topicdata group="api" />
+      <apidata name="ConnectProxy" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="7596d954-2b25-cf2b-73c6-2c665efe6c87" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.Cookies">
+      <topicdata group="api" />
+      <apidata name="Cookies" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Cookies" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="f933a744-eb96-d28c-f3d7-b7d90bc3ee02" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.Domain">
+      <topicdata group="api" />
+      <apidata name="Domain" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Domain" />
+      <setter name="set_Domain" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="65651273-0b3b-1713-2ac5-dd36362e2ea3" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.EnableCookies">
+      <topicdata group="api" />
+      <apidata name="EnableCookies" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnableCookies" />
+      <setter name="set_EnableCookies" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="5db1f198-cbba-207a-fc52-234a881d6016" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.Password">
+      <topicdata group="api" />
+      <apidata name="Password" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Password" />
+      <setter name="set_Password" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="ec5b92b9-fdde-41bc-194a-68e54bf16e0d" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.Path">
+      <topicdata group="api" />
+      <apidata name="Path" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Path" />
+      <setter name="set_Path" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="f2fe862c-bb6f-9508-3a02-fc75083b0999" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.PreAuthenticate">
+      <topicdata group="api" />
+      <apidata name="PreAuthenticate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PreAuthenticate" />
+      <setter name="set_PreAuthenticate" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="e458b6af-72fe-0181-f5f7-2c6b81b74811" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.ProxyName">
+      <topicdata group="api" />
+      <apidata name="ProxyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProxyName" />
+      <setter name="set_ProxyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="ce40a7af-c7d0-9352-a09e-e4fcd0250efe" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.ProxyPort">
+      <topicdata group="api" />
+      <apidata name="ProxyPort" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProxyPort" />
+      <setter name="set_ProxyPort" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="454e4d98-b638-7e81-81a8-4492f8fe3944" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.Timeout">
+      <topicdata group="api" />
+      <apidata name="Timeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Timeout" />
+      <setter name="set_Timeout" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="7fb553ac-923d-a027-f533-ae7e570b4294" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.Url">
+      <topicdata group="api" />
+      <apidata name="Url" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Url" />
+      <setter name="set_Url" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="164a1f62-8d34-07cb-f868-d280bb003eb6" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.UserAgent">
+      <topicdata group="api" />
+      <apidata name="UserAgent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UserAgent" />
+      <setter name="set_UserAgent" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="4d0025cd-0bd6-3422-c5a5-ff3314410af0" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingClientProxy.Username">
+      <topicdata group="api" />
+      <apidata name="Username" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Username" />
+      <setter name="set_Username" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingClientProxy" ref="true" />
+      </containers>
+      <file name="4ca5a35b-448a-2adf-cef3-1d31dff65e51" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Services.RemotingService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Services.RemotingService" />
+      <apidata name="RemotingService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.RemotingService.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Component" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+      </containers>
+      <file name="3e1a13b7-9211-a0f7-f551-7e016b1fef88" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Services.RemotingService">
+      <topicdata name="RemotingService" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Services.RemotingService" />
+      <apidata name="RemotingService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.RemotingService.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Runtime.Remoting.Services.RemotingService.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="Overload:System.Runtime.Remoting.Services.RemotingService.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+        <element api="M:System.Runtime.Remoting.Services.RemotingService.#ctor" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.Application" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.Context" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.Server" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.Session" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.User" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" />
+      </containers>
+      <file name="5c64ee9a-e9bf-72dc-2e0a-59625f2a197b" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Services.RemotingService">
+      <topicdata name="RemotingService" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Services.RemotingService" />
+      <apidata name="RemotingService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.RemotingService.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Runtime.Remoting.Services.RemotingService.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Runtime.Remoting.Services.RemotingService.Dispose">
+          <element api="M:System.ComponentModel.Component.Dispose" />
+          <element api="M:System.ComponentModel.Component.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Component.Finalize" />
+        <element api="M:System.ComponentModel.Component.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Component.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" />
+      </containers>
+      <file name="b9b83bca-add3-5c3a-5aaa-6dc9ab6c4df9" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Services.RemotingService">
+      <topicdata name="RemotingService" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Services.RemotingService" />
+      <apidata name="RemotingService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.RemotingService.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Component.CanRaiseEvents" />
+        <element api="P:System.ComponentModel.Component.Container" />
+        <element api="P:System.ComponentModel.Component.DesignMode" />
+        <element api="P:System.ComponentModel.Component.Events" />
+        <element api="P:System.ComponentModel.Component.Site" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.Application" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.Context" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.Server" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.Session" />
+        <element api="P:System.Runtime.Remoting.Services.RemotingService.User" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" />
+      </containers>
+      <file name="e96930df-e398-3532-8432-874e891f022b" />
+    </api>
+    <api id="Events.T:System.Runtime.Remoting.Services.RemotingService">
+      <topicdata name="RemotingService" group="list" subgroup="Events" typeTopicId="T:System.Runtime.Remoting.Services.RemotingService" />
+      <apidata name="RemotingService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.RemotingService.#ctor" />
+      <elements>
+        <element api="E:System.ComponentModel.Component.Disposed" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" />
+      </containers>
+      <file name="d8854388-ab61-7a55-48c3-7554411b7888" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.RemotingService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" ref="true" />
+      </containers>
+      <file name="06e7e101-0c34-d515-88e8-b555fae88a66" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingService.Application">
+      <topicdata group="api" />
+      <apidata name="Application" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Application" />
+      <returns>
+        <type api="T:System.Web.HttpApplicationState" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" ref="true" />
+      </containers>
+      <file name="3f465804-d12e-c1a5-e596-997cb4315b2f" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingService.Context">
+      <topicdata group="api" />
+      <apidata name="Context" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Context" />
+      <returns>
+        <type api="T:System.Web.HttpContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" ref="true" />
+      </containers>
+      <file name="30aee230-3820-d0eb-8eca-2773cf915f7f" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingService.Server">
+      <topicdata group="api" />
+      <apidata name="Server" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Server" />
+      <returns>
+        <type api="T:System.Web.HttpServerUtility" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" ref="true" />
+      </containers>
+      <file name="dae1b5ff-0a11-6185-d26c-e2ebf3d2fc66" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingService.Session">
+      <topicdata group="api" />
+      <apidata name="Session" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Session" />
+      <returns>
+        <type api="T:System.Web.SessionState.HttpSessionState" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" ref="true" />
+      </containers>
+      <file name="87614dd3-1b4e-3556-04f4-69a612e4200e" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.RemotingService.User">
+      <topicdata group="api" />
+      <apidata name="User" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_User" />
+      <returns>
+        <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.RemotingService" ref="true" />
+      </containers>
+      <file name="16e20caa-e181-1e6e-907d-27a2eef1fa21" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Services.TrackingServices">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Services.TrackingServices" />
+      <apidata name="TrackingServices" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.TrackingServices.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="86d9aad8-4a4f-b4f7-5945-125ee55e3ad7" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Services.TrackingServices">
+      <topicdata name="TrackingServices" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Services.TrackingServices" />
+      <apidata name="TrackingServices" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.TrackingServices.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Services.TrackingServices.#ctor" />
+        <element api="P:System.Runtime.Remoting.Services.TrackingServices.RegisteredHandlers" />
+        <element api="M:System.Runtime.Remoting.Services.TrackingServices.RegisterTrackingHandler(System.Runtime.Remoting.Services.ITrackingHandler)" />
+        <element api="M:System.Runtime.Remoting.Services.TrackingServices.UnregisterTrackingHandler(System.Runtime.Remoting.Services.ITrackingHandler)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.TrackingServices" />
+      </containers>
+      <file name="15dd4e58-c00b-b905-50f9-8019a60be1c4" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Services.TrackingServices">
+      <topicdata name="TrackingServices" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Services.TrackingServices" />
+      <apidata name="TrackingServices" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.TrackingServices.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Services.TrackingServices.RegisterTrackingHandler(System.Runtime.Remoting.Services.ITrackingHandler)" />
+        <element api="M:System.Runtime.Remoting.Services.TrackingServices.UnregisterTrackingHandler(System.Runtime.Remoting.Services.ITrackingHandler)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.TrackingServices" />
+      </containers>
+      <file name="3183c27e-a5f8-2581-bbfb-a70fc994c203" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Services.TrackingServices">
+      <topicdata name="TrackingServices" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Services.TrackingServices" />
+      <apidata name="TrackingServices" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Services.TrackingServices.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Services.TrackingServices.RegisteredHandlers" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.TrackingServices" />
+      </containers>
+      <file name="8f2e2032-bd89-0100-779b-af81483068a6" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.TrackingServices.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.TrackingServices" ref="true" />
+      </containers>
+      <file name="58025405-a4d8-8c37-cb10-b27b31d3513d" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Services.TrackingServices.RegisteredHandlers">
+      <topicdata group="api" />
+      <apidata name="RegisteredHandlers" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RegisteredHandlers">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Runtime.Remoting.Services.ITrackingHandler" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.TrackingServices" ref="true" />
+      </containers>
+      <file name="8e858de5-8f56-adf9-dce5-460f26b4d4bf" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.TrackingServices.RegisterTrackingHandler(System.Runtime.Remoting.Services.ITrackingHandler)">
+      <topicdata group="api" />
+      <apidata name="RegisterTrackingHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler">
+          <type api="T:System.Runtime.Remoting.Services.ITrackingHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.TrackingServices" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="621b3b7e-788a-8eaf-e387-b47a82c76dec" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Services.TrackingServices.UnregisterTrackingHandler(System.Runtime.Remoting.Services.ITrackingHandler)">
+      <topicdata group="api" />
+      <apidata name="UnregisterTrackingHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler">
+          <type api="T:System.Runtime.Remoting.Services.ITrackingHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Services" />
+        <type api="T:System.Runtime.Remoting.Services.TrackingServices" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="983505a5-7de3-ca7a-0ba3-e084f6ddbb47" />
+    </api>
+  </apis>
+</reflection>

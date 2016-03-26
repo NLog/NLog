@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Devices.DevicesLowLevelContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Pwm.Provider">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Pwm.Provider" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" />
+        <element api="T:Windows.Devices.Pwm.Provider.IPwmProvider" />
+      </elements>
+      <file name="dd7c0964-5050-56c7-64e0-3b5680b161c3" />
+    </api>
+    <api id="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" />
+      <apidata name="IPwmControllerProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>318789947</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>58083</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16548</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>183</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>217</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>72</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>223</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>240</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>55</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>122</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>82</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d9bb1284-18ef-19f0-cb75-d55b5f0f31cf" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Pwm.Provider.IPwmControllerProvider">
+      <topicdata name="IPwmControllerProvider" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" />
+      <apidata name="IPwmControllerProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.AcquirePin(System.Int32)" />
+        <element api="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.ActualFrequency" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.DisablePin(System.Int32)" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.EnablePin(System.Int32)" />
+        <element api="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.MaxFrequency" />
+        <element api="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.MinFrequency" />
+        <element api="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.PinCount" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.ReleasePin(System.Int32)" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.SetDesiredFrequency(System.Double)" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.SetPulseParameters(System.Int32,System.Double,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" />
+      </containers>
+      <file name="ad7d4262-131e-9dfb-6cce-1467375d8ff8" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Pwm.Provider.IPwmControllerProvider">
+      <topicdata name="IPwmControllerProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" />
+      <apidata name="IPwmControllerProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.AcquirePin(System.Int32)" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.DisablePin(System.Int32)" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.EnablePin(System.Int32)" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.ReleasePin(System.Int32)" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.SetDesiredFrequency(System.Double)" />
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.SetPulseParameters(System.Int32,System.Double,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" />
+      </containers>
+      <file name="2651a2ac-cdfc-8427-108b-7565cc5ac1ad" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Pwm.Provider.IPwmControllerProvider">
+      <topicdata name="IPwmControllerProvider" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" />
+      <apidata name="IPwmControllerProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.ActualFrequency" />
+        <element api="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.MaxFrequency" />
+        <element api="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.MinFrequency" />
+        <element api="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.PinCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" />
+      </containers>
+      <file name="ec2b6ed2-59af-c466-6f85-7ed606cdb6ab" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.AcquirePin(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="AcquirePin" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pin" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="6641dfa2-b6e0-2050-6213-2675d1bb6794" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.ActualFrequency">
+      <topicdata group="api" />
+      <apidata name="ActualFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ActualFrequency" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="2903cbff-d20b-2739-6fc2-c9ded0091117" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.DisablePin(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="DisablePin" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pin" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="81aacc1d-4a18-07d9-ca09-ae12db140ffb" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.EnablePin(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="EnablePin" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pin" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="259a8177-7f8c-8ec1-3c65-ec49ae7fc476" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.MaxFrequency">
+      <topicdata group="api" />
+      <apidata name="MaxFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxFrequency" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="e7502a47-f424-cfec-7a23-a1d28e286e73" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.MinFrequency">
+      <topicdata group="api" />
+      <apidata name="MinFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_MinFrequency" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="cc23f44e-332d-2435-747b-5775a35419f6" />
+    </api>
+    <api id="P:Windows.Devices.Pwm.Provider.IPwmControllerProvider.PinCount">
+      <topicdata group="api" />
+      <apidata name="PinCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_PinCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="2aaa4e43-f514-1963-fb1c-6a80f180cb84" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.ReleasePin(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ReleasePin" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pin" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="a0b0aebc-826c-3e69-a9af-9c3b79fb3910" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.SetDesiredFrequency(System.Double)">
+      <topicdata group="api" />
+      <apidata name="SetDesiredFrequency" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="frequency" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="b9b32d63-d591-3888-f9fe-187ec8e449cb" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.Provider.IPwmControllerProvider.SetPulseParameters(System.Int32,System.Double,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SetPulseParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="pin" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="dutyCycle" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="invertPolarity" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+      </containers>
+      <file name="1eff7c9a-b900-9143-a797-abd2ee731b04" />
+    </api>
+    <api id="T:Windows.Devices.Pwm.Provider.IPwmProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Pwm.Provider.IPwmProvider" />
+      <apidata name="IPwmProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2737836584</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>21233</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18352</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>147</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>102</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>186</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>67</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>210</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>89</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>2</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8b428e0f-e1bb-6655-85f2-57eff112b302" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Pwm.Provider.IPwmProvider">
+      <topicdata name="IPwmProvider" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Pwm.Provider.IPwmProvider" />
+      <apidata name="IPwmProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmProvider.GetControllers" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmProvider" />
+      </containers>
+      <file name="1e15b137-bf11-a43d-9c06-a1af6551d9d5" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Pwm.Provider.IPwmProvider">
+      <topicdata name="IPwmProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Pwm.Provider.IPwmProvider" />
+      <apidata name="IPwmProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Pwm.Provider.IPwmProvider.GetControllers" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmProvider" />
+      </containers>
+      <file name="859fe010-e1ca-982a-2f75-754f5baacdfa" />
+    </api>
+    <api id="M:Windows.Devices.Pwm.Provider.IPwmProvider.GetControllers">
+      <topicdata group="api" />
+      <apidata name="GetControllers" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Pwm.Provider.IPwmControllerProvider" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Pwm.Provider" />
+        <type api="T:Windows.Devices.Pwm.Provider.IPwmProvider" ref="true" />
+      </containers>
+      <file name="cfe844d1-e5d2-ccd1-04c1-88a805b58d43" />
+    </api>
+  </apis>
+</reflection>

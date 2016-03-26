@@ -1,0 +1,1376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Resources.Management">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Resources.Management" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" />
+        <element api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType" />
+        <element api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" />
+        <element api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" />
+        <element api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" />
+      </elements>
+      <file name="6639e6b9-7fd3-b378-c00b-e10285ebab63" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" />
+      <apidata name="IndexedResourceCandidate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b6ab8c41-a16f-a9b4-db93-aa527222c30c" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate">
+      <topicdata name="IndexedResourceCandidate" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" />
+      <apidata name="IndexedResourceCandidate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.GetQualifierValue(System.String)" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Metadata" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Qualifiers" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Type" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Uri" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.ValueAsString" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" />
+      </containers>
+      <file name="9c093e7d-48b2-358c-c929-f61d3e36c6e2" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate">
+      <topicdata name="IndexedResourceCandidate" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" />
+      <apidata name="IndexedResourceCandidate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.GetQualifierValue(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" />
+      </containers>
+      <file name="b96989ac-094e-1039-e084-78fe1ce74db2" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate">
+      <topicdata name="IndexedResourceCandidate" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" />
+      <apidata name="IndexedResourceCandidate" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Metadata" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Qualifiers" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Type" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Uri" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.ValueAsString" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" />
+      </containers>
+      <file name="cacde5d1-4320-de82-3c05-0ab8ff7fa6f6" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.GetQualifierValue(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetQualifierValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="qualifierName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" ref="true" />
+      </containers>
+      <file name="915a700e-bdc0-ccf3-51f7-ae05a4505246" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Metadata">
+      <topicdata group="api" />
+      <apidata name="Metadata" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Metadata" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" ref="true" />
+      </containers>
+      <file name="c825050d-de9a-ef12-1658-dff125e1083f" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Qualifiers">
+      <topicdata group="api" />
+      <apidata name="Qualifiers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Qualifiers" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" ref="true" />
+      </containers>
+      <file name="7ec8c547-fc3e-265e-70d4-af1d6c35e5b6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" ref="true" />
+      </containers>
+      <file name="ec7ed373-ae7f-b0bc-71f8-cd4c05d5c266" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" ref="true" />
+      </containers>
+      <file name="5414d150-2ff9-1702-45df-5f1f9176ef77" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate.ValueAsString">
+      <topicdata group="api" />
+      <apidata name="ValueAsString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ValueAsString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" ref="true" />
+      </containers>
+      <file name="1f44f94e-49e1-0ce7-d40f-b1bedad42b1f" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" />
+      <apidata name="IndexedResourceQualifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7de46fd1-a5f2-576d-33ab-05f164022c07" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier">
+      <topicdata name="IndexedResourceQualifier" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" />
+      <apidata name="IndexedResourceQualifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier.QualifierName" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier.QualifierValue" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" />
+      </containers>
+      <file name="f96c561e-1596-4d93-9b70-cc7bdf368395" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier">
+      <topicdata name="IndexedResourceQualifier" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" />
+      <apidata name="IndexedResourceQualifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" />
+      </containers>
+      <file name="a9ad74ce-81ce-0a40-1567-4723d5ec1d0a" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier">
+      <topicdata name="IndexedResourceQualifier" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" />
+      <apidata name="IndexedResourceQualifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier.QualifierName" />
+        <element api="P:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier.QualifierValue" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" />
+      </containers>
+      <file name="ac63712e-cbb3-19ed-8c51-9bfad4d54b21" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier.QualifierName">
+      <topicdata group="api" />
+      <apidata name="QualifierName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_QualifierName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" ref="true" />
+      </containers>
+      <file name="dc90f19a-2624-6f04-2745-dd3dda2d04a0" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier.QualifierValue">
+      <topicdata group="api" />
+      <apidata name="QualifierValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_QualifierValue" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceQualifier" ref="true" />
+      </containers>
+      <file name="a2f17a29-cb9b-1782-a7b1-067b5af4a886" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType">
+      <topicdata group="api" />
+      <apidata name="IndexedResourceType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Resources.Management.IndexedResourceType.String" />
+        <element api="F:Windows.ApplicationModel.Resources.Management.IndexedResourceType.Path" />
+        <element api="F:Windows.ApplicationModel.Resources.Management.IndexedResourceType.EmbeddedData" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b4afcd2a-980c-094a-55a2-36a62a632d52" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Resources.Management.IndexedResourceType.EmbeddedData">
+      <topicdata group="api" notopic="" />
+      <apidata name="EmbeddedData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dd819aea-5c3a-437e-d160-166bfd254f76" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Resources.Management.IndexedResourceType.Path">
+      <topicdata group="api" notopic="" />
+      <apidata name="Path" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType" ref="false" />
+      </containers>
+      <file name="005e5059-31da-b1f4-b67d-65554c8dfe6b" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Resources.Management.IndexedResourceType.String">
+      <topicdata group="api" notopic="" />
+      <apidata name="String" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceType" ref="false" />
+      </containers>
+      <file name="cc01baa1-e8f7-b7af-6294-34ddf1e67caa" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" />
+      <apidata name="ResourceIndexer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e2db89eb-8158-e032-f581-aff883c1fe4f" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Resources.Management.ResourceIndexer">
+      <topicdata name="ResourceIndexer" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" />
+      <apidata name="ResourceIndexer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor">
+          <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor">
+            <libraries>
+              <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor(Windows.Foundation.Uri)" />
+          <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor(Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.IndexFileContentsAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.IndexFilePath(Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" />
+      </containers>
+      <file name="7c501cd9-1079-7b1a-63ff-ed100b40a034" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Resources.Management.ResourceIndexer">
+      <topicdata name="ResourceIndexer" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" />
+      <apidata name="ResourceIndexer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.IndexFileContentsAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.IndexFilePath(Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" />
+      </containers>
+      <file name="27b02297-70db-f94c-e05e-5d8e1fe3f185" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor(Windows.Foundation.Uri)" />
+        <element api="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor(Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" ref="true" />
+      </containers>
+      <file name="e317e73f-bdce-6838-12d8-cae6d450cd53" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor" />
+      <parameters>
+        <parameter name="projectRoot" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" ref="true" />
+      </containers>
+      <file name="c60fee64-56de-8461-f015-cc3cdeaa12bc" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor(Windows.Foundation.Uri,Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor" />
+      <parameters>
+        <parameter name="projectRoot" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="extensionDllPath" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" ref="true" />
+      </containers>
+      <file name="ad18506c-97fc-2e6e-ea39-a3c9ee6a3b25" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.IndexFileContentsAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="IndexFileContentsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c9b7fb05-7ad5-7618-c259-f9bbde73ed72" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.IndexFilePath(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="IndexFilePath" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="filePath" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" ref="true" />
+      </containers>
+      <file name="b487992d-54ec-a5cb-fcfa-f72621d9164e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.ApplicationModel.Resources.Management.ResourceIndexer.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexer" ref="true" />
+      </containers>
+      <file name="f2849ad4-28e7-3623-1386-54f3851edda5" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" />
+      <apidata name="ResourceIndexerContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d3bfcf5b-5674-a6d6-fba6-d649b02f932a" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract">
+      <topicdata name="ResourceIndexerContract" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" />
+      <apidata name="ResourceIndexerContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" />
+      </containers>
+      <file name="77d32be3-5f32-a04e-9413-93a45f12b3f5" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract">
+      <topicdata name="ResourceIndexerContract" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" />
+      <apidata name="ResourceIndexerContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" module="Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Resources.Management" />
+        <type api="T:Windows.ApplicationModel.Resources.Management.ResourceIndexerContract" />
+      </containers>
+      <file name="8103cd85-7408-58e8-61fe-348e27b4db91" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Devices.DevicesLowLevelContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Adc.Provider">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Adc.Provider" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Adc.Provider.ProviderAdcChannelMode" />
+        <element api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" />
+        <element api="T:Windows.Devices.Adc.Provider.IAdcProvider" />
+      </elements>
+      <file name="5859b960-c5fb-49e7-ebea-afcb8f63bad8" />
+    </api>
+    <api id="T:Windows.Devices.Adc.Provider.IAdcControllerProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Adc.Provider.IAdcControllerProvider" />
+      <apidata name="IAdcControllerProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3193198632</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>33133</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19941</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>160</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>72</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>171</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>160</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>105</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>88</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>170</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>168</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dbee38a6-7a9f-3bb0-8325-93530d70e71e" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Adc.Provider.IAdcControllerProvider">
+      <topicdata name="IAdcControllerProvider" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" />
+      <apidata name="IAdcControllerProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.AcquireChannel(System.Int32)" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ChannelCount" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ChannelMode" />
+        <element api="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.IsChannelModeSupported(Windows.Devices.Adc.Provider.ProviderAdcChannelMode)" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.MaxValue" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.MinValue" />
+        <element api="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.ReadValue(System.Int32)" />
+        <element api="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.ReleaseChannel(System.Int32)" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ResolutionInBits" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" />
+      </containers>
+      <file name="588fb0b5-619e-ff75-7a3b-260c0422ccd3" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Adc.Provider.IAdcControllerProvider">
+      <topicdata name="IAdcControllerProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" />
+      <apidata name="IAdcControllerProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.AcquireChannel(System.Int32)" />
+        <element api="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.IsChannelModeSupported(Windows.Devices.Adc.Provider.ProviderAdcChannelMode)" />
+        <element api="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.ReadValue(System.Int32)" />
+        <element api="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.ReleaseChannel(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" />
+      </containers>
+      <file name="70fc5bc3-bb48-e94e-5684-60db9174db5b" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Adc.Provider.IAdcControllerProvider">
+      <topicdata name="IAdcControllerProvider" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" />
+      <apidata name="IAdcControllerProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ChannelCount" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ChannelMode" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.MaxValue" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.MinValue" />
+        <element api="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ResolutionInBits" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" />
+      </containers>
+      <file name="27da725e-c9ab-2734-c3f7-784ccba380b1" />
+    </api>
+    <api id="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.AcquireChannel(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="AcquireChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="channel" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="699eada1-f06c-bb0d-6169-11da1b047ca8" />
+    </api>
+    <api id="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ChannelCount">
+      <topicdata group="api" />
+      <apidata name="ChannelCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="0e171b5e-467d-eab5-b8fd-dab43399acd9" />
+    </api>
+    <api id="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ChannelMode">
+      <topicdata group="api" />
+      <apidata name="ChannelMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ChannelMode" />
+      <setter name="set_ChannelMode" />
+      <returns>
+        <type api="T:Windows.Devices.Adc.Provider.ProviderAdcChannelMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="8f88d7e6-f369-9e94-53fc-83ae415850b8" />
+    </api>
+    <api id="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.IsChannelModeSupported(Windows.Devices.Adc.Provider.ProviderAdcChannelMode)">
+      <topicdata group="api" />
+      <apidata name="IsChannelModeSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="channelMode" in="true">
+          <type api="T:Windows.Devices.Adc.Provider.ProviderAdcChannelMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="bdbc837d-3b4e-9289-1fc3-583154d0ad03" />
+    </api>
+    <api id="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.MaxValue">
+      <topicdata group="api" />
+      <apidata name="MaxValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxValue" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="6f3ed6ee-842f-59e3-d015-e434aee5f5d9" />
+    </api>
+    <api id="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.MinValue">
+      <topicdata group="api" />
+      <apidata name="MinValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_MinValue" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="6b314c50-732d-7bd1-fb16-99ed469e6cc0" />
+    </api>
+    <api id="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.ReadValue(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ReadValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="channelNumber" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="93ff6ede-c4cc-debd-7052-58ed04721bcf" />
+    </api>
+    <api id="M:Windows.Devices.Adc.Provider.IAdcControllerProvider.ReleaseChannel(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ReleaseChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="channel" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="5f49b669-3c01-c0c8-b9f8-9a29d4b050f4" />
+    </api>
+    <api id="P:Windows.Devices.Adc.Provider.IAdcControllerProvider.ResolutionInBits">
+      <topicdata group="api" />
+      <apidata name="ResolutionInBits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ResolutionInBits" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+      </containers>
+      <file name="7d21c96c-a3c2-fc5f-1664-158282aabba1" />
+    </api>
+    <api id="T:Windows.Devices.Adc.Provider.IAdcProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Adc.Provider.IAdcProvider" />
+      <apidata name="IAdcProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>680867432</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>37721</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19543</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>188</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>136</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>226</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>117</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>232</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>22</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>56</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>201</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="889b918f-01dc-224f-7a03-4416b54e2605" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Adc.Provider.IAdcProvider">
+      <topicdata name="IAdcProvider" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Adc.Provider.IAdcProvider" />
+      <apidata name="IAdcProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Adc.Provider.IAdcProvider.GetControllers" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcProvider" />
+      </containers>
+      <file name="8a89306b-7fc6-a831-c0e5-995057a0f3cd" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Adc.Provider.IAdcProvider">
+      <topicdata name="IAdcProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Adc.Provider.IAdcProvider" />
+      <apidata name="IAdcProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Adc.Provider.IAdcProvider.GetControllers" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcProvider" />
+      </containers>
+      <file name="66154a64-a3f5-9b73-e404-531a622f8969" />
+    </api>
+    <api id="M:Windows.Devices.Adc.Provider.IAdcProvider.GetControllers">
+      <topicdata group="api" />
+      <apidata name="GetControllers" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Adc.Provider.IAdcControllerProvider" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.IAdcProvider" ref="true" />
+      </containers>
+      <file name="a1b86f9a-5ef6-62ce-3928-7738c1fd7540" />
+    </api>
+    <api id="T:Windows.Devices.Adc.Provider.ProviderAdcChannelMode">
+      <topicdata group="api" />
+      <apidata name="ProviderAdcChannelMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Adc.Provider.ProviderAdcChannelMode.SingleEnded" />
+        <element api="F:Windows.Devices.Adc.Provider.ProviderAdcChannelMode.Differential" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Devices.DevicesLowLevelContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="472b8b1c-1fdb-f6e2-4034-83c5f39bacae" />
+    </api>
+    <api id="F:Windows.Devices.Adc.Provider.ProviderAdcChannelMode.Differential">
+      <topicdata group="api" notopic="" />
+      <apidata name="Differential" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Adc.Provider.ProviderAdcChannelMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.ProviderAdcChannelMode" ref="false" />
+      </containers>
+      <file name="f6f49f0c-38c3-07e2-9610-c7ffa4e2f558" />
+    </api>
+    <api id="F:Windows.Devices.Adc.Provider.ProviderAdcChannelMode.SingleEnded">
+      <topicdata group="api" notopic="" />
+      <apidata name="SingleEnded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Adc.Provider.ProviderAdcChannelMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Devices.DevicesLowLevelContract" module="Windows.Devices.DevicesLowLevelContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Adc.Provider" />
+        <type api="T:Windows.Devices.Adc.Provider.ProviderAdcChannelMode" ref="false" />
+      </containers>
+      <file name="075d71b4-f886-c8bd-fe60-5438b69de96e" />
+    </api>
+  </apis>
+</reflection>

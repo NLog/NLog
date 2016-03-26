@@ -35,6 +35,7 @@ namespace NLog.Internal
 {
     using System;
     using NLog.Config;
+    using System.Diagnostics;
 
     /// <summary>
     /// Utilities for dealing with <see cref="StackTraceUsage"/> values.
@@ -45,5 +46,18 @@ namespace NLog.Internal
         {
             return (StackTraceUsage)Math.Max((int)u1, (int)u2);
         }
+
+#if !DOTNET5_4
+
+        /// <summary>
+        /// Get this stacktrace for inline unit test
+        /// </summary>
+        /// <param name="loggerType"></param>
+        /// <returns></returns>
+        internal static StackTrace GetWriteStackTrace(Type loggerType)
+        {
+            return new StackTrace();
+        }
+#endif
     }
 }

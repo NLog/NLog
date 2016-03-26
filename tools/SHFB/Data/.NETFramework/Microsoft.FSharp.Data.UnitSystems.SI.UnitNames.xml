@@ -1,0 +1,720 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="FSharp.Core">
+      <assemblydata version="4.4.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.FSharpInterfaceDataVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>2</value>
+          </argument>
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </argument>
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Core.LanguagePrimitives.IntrinsicOperators</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Core</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Collections</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Control</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Visual Studio® [Version] [Release]</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.4.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.40.23020.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.4.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.4.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames">
+      <topicdata group="api" />
+      <apidata name="Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre" />
+        <element api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram" />
+        <element api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second" />
+        <element api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere" />
+        <element api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin" />
+        <element api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole" />
+        <element api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela" />
+      </elements>
+      <file name="f850e787-c749-5c32-d77c-b24f0107e6ed" />
+    </api>
+    <api id="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere" />
+      <apidata name="ampere" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.MeasureAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="576a5602-d73a-f09c-6a1b-3544105c5b4e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere">
+      <topicdata name="ampere" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere" />
+      <apidata name="ampere" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere" />
+      </containers>
+      <file name="e0de3a7b-49f4-8271-2e27-8a923bd04392" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere">
+      <topicdata name="ampere" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere" />
+      <apidata name="ampere" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.ampere" />
+      </containers>
+      <file name="e707092b-a184-6c3d-61eb-f6ed81c7a09e" />
+    </api>
+    <api id="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela" />
+      <apidata name="candela" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.MeasureAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e2290539-e970-9959-5530-686bd2f5b463" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela">
+      <topicdata name="candela" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela" />
+      <apidata name="candela" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela" />
+      </containers>
+      <file name="f50e2edf-4842-4c5a-a29c-cf09901923f6" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela">
+      <topicdata name="candela" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela" />
+      <apidata name="candela" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.candela" />
+      </containers>
+      <file name="ab30773f-0a84-bb89-7fa5-12cc286f1cee" />
+    </api>
+    <api id="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin" />
+      <apidata name="kelvin" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.MeasureAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0ed75a06-0b20-87b8-91ae-6be5c9e813ac" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin">
+      <topicdata name="kelvin" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin" />
+      <apidata name="kelvin" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin" />
+      </containers>
+      <file name="d6935758-f237-c1dd-2a51-6fbee9abc14e" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin">
+      <topicdata name="kelvin" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin" />
+      <apidata name="kelvin" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kelvin" />
+      </containers>
+      <file name="d6b9734d-3693-65f7-36c7-793ad3819c12" />
+    </api>
+    <api id="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram" />
+      <apidata name="kilogram" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.MeasureAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="054ab226-2ea4-a2db-f364-945a88e15135" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram">
+      <topicdata name="kilogram" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram" />
+      <apidata name="kilogram" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram" />
+      </containers>
+      <file name="cfbdf691-2af2-193d-46e1-07204d151bed" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram">
+      <topicdata name="kilogram" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram" />
+      <apidata name="kilogram" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.kilogram" />
+      </containers>
+      <file name="52eb996d-11a1-8555-c820-23e5e5543d24" />
+    </api>
+    <api id="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre" />
+      <apidata name="metre" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.MeasureAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f2a956fe-a251-6078-7d67-c0fbce6bd3ec" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre">
+      <topicdata name="metre" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre" />
+      <apidata name="metre" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre" />
+      </containers>
+      <file name="ca315fa4-95fb-509a-4f58-ddc702568bfe" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre">
+      <topicdata name="metre" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre" />
+      <apidata name="metre" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.metre" />
+      </containers>
+      <file name="6c938eb0-33ec-a16d-c61f-f04909900595" />
+    </api>
+    <api id="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole" />
+      <apidata name="mole" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.MeasureAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d6a20589-71d3-b8cf-194d-e1c6e9497a54" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole">
+      <topicdata name="mole" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole" />
+      <apidata name="mole" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole" />
+      </containers>
+      <file name="b90cbbd3-2c65-fbd1-1583-92f84ce79189" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole">
+      <topicdata name="mole" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole" />
+      <apidata name="mole" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.mole" />
+      </containers>
+      <file name="be1e0285-0d30-7cf1-b4ab-33d2afba674d" />
+    </api>
+    <api id="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second" />
+      <apidata name="second" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.MeasureAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="ObjectType" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="adba49ac-5850-4158-5a63-b7b9b643ac97" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second">
+      <topicdata name="second" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second" />
+      <apidata name="second" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second" />
+      </containers>
+      <file name="da26a4f7-7a1f-2e72-7634-c469611ae5c1" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second">
+      <topicdata name="second" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second" />
+      <apidata name="second" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.4.0.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames" />
+        <type api="T:Microsoft.FSharp.Data.UnitSystems.SI.UnitNames.second" />
+      </containers>
+      <file name="634c00c1-5302-386d-22c4-f5be474b002e" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1996 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Scheduler">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Scheduler" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" />
+        <element api="T:Microsoft.Phone.Scheduler.AgentExitReason" />
+        <element api="T:Microsoft.Phone.Scheduler.ScheduledAction" />
+        <element api="T:Microsoft.Phone.Scheduler.ScheduledTask" />
+        <element api="T:Microsoft.Phone.Scheduler.ScheduledActionService" />
+        <element api="T:Microsoft.Phone.Scheduler.ScheduledNotification" />
+        <element api="T:Microsoft.Phone.Scheduler.Alarm" />
+        <element api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" />
+        <element api="T:Microsoft.Phone.Scheduler.Reminder" />
+        <element api="T:Microsoft.Phone.Scheduler.SchedulerServiceException" />
+        <element api="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" />
+        <element api="T:Microsoft.Phone.Scheduler.PeriodicTask" />
+      </elements>
+      <file name="6a1137a2-7917-f1f4-76c5-6a77224704fb" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.AgentExitReason">
+      <topicdata group="api" />
+      <apidata name="AgentExitReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Scheduler.AgentExitReason.None" />
+        <element api="F:Microsoft.Phone.Scheduler.AgentExitReason.Completed" />
+        <element api="F:Microsoft.Phone.Scheduler.AgentExitReason.Aborted" />
+        <element api="F:Microsoft.Phone.Scheduler.AgentExitReason.MemoryQuotaExceeded" />
+        <element api="F:Microsoft.Phone.Scheduler.AgentExitReason.ExecutionTimeExceeded" />
+        <element api="F:Microsoft.Phone.Scheduler.AgentExitReason.UnhandledException" />
+        <element api="F:Microsoft.Phone.Scheduler.AgentExitReason.Terminated" />
+        <element api="F:Microsoft.Phone.Scheduler.AgentExitReason.Other" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="ec897cd3-a352-8d55-c661-4f5c32dcd07f" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.AgentExitReason.Aborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </containers>
+      <file name="6c9f0500-d484-5484-5130-4133571d3064" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.AgentExitReason.Completed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Completed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </containers>
+      <file name="47612109-41e2-b99b-4eb2-98189482824c" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.AgentExitReason.ExecutionTimeExceeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="ExecutionTimeExceeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </containers>
+      <file name="6560dd2e-7227-185d-c068-1114e01172be" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.AgentExitReason.MemoryQuotaExceeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="MemoryQuotaExceeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </containers>
+      <file name="b803a546-d034-83cf-6eca-95dfb6ae68d4" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.AgentExitReason.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </containers>
+      <file name="fa6f9f4f-965e-8d62-9f6c-c5b56e697034" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.AgentExitReason.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </containers>
+      <file name="30271224-35f8-210c-f1d1-961dfcf8a62d" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.AgentExitReason.Terminated">
+      <topicdata group="api" notopic="" />
+      <apidata name="Terminated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </containers>
+      <file name="f0cbdac2-7319-3a93-eb34-1aa89efffc77" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.AgentExitReason.UnhandledException">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnhandledException" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </containers>
+      <file name="d923c544-5219-3394-cdd2-efbd7a5ac67f" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.Alarm">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.Alarm" />
+      <apidata name="Alarm" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="42c58bd6-0d37-6ec6-165b-26384a5d80f2" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.Alarm">
+      <topicdata name="Alarm" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.Alarm" />
+      <apidata name="Alarm" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Scheduler.Alarm.#ctor(System.String)" />
+        <element api="P:Microsoft.Phone.Scheduler.Alarm.Sound" />
+        <element api="P:Microsoft.Phone.Scheduler.Alarm.Title" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Content" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.RecurrenceType" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Alarm" />
+      </containers>
+      <file name="8dab6ba8-dee3-7c80-78f2-aa32d30e2b08" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.Alarm">
+      <topicdata name="Alarm" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.Alarm" />
+      <apidata name="Alarm" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Alarm" />
+      </containers>
+      <file name="c5a282d3-884b-c970-e611-5a01e4063327" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Scheduler.Alarm">
+      <topicdata name="Alarm" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Scheduler.Alarm" />
+      <apidata name="Alarm" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.Alarm.Sound" />
+        <element api="P:Microsoft.Phone.Scheduler.Alarm.Title" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Content" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.RecurrenceType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Alarm" />
+      </containers>
+      <file name="92ed1f7b-f61a-8fd9-9ae9-c2e35b5a8a86" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.Alarm.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Alarm" ref="true" />
+      </containers>
+      <file name="c2305eed-de31-0a32-e0b9-608e1d94e386" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.Alarm.Sound">
+      <topicdata group="api" />
+      <apidata name="Sound" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Sound" />
+      <setter name="set_Sound" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Alarm" ref="true" />
+      </containers>
+      <file name="bfda4334-8a8e-31ad-a84e-e29e75ece4f6" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.Alarm.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Title">
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Alarm" ref="true" />
+      </containers>
+      <file name="2403beee-b353-0784-3974-c6c3c4eacd43" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.PeriodicTask">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.PeriodicTask" />
+      <apidata name="PeriodicTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="d34539e9-42fa-bd76-8484-068b059c4a99" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.PeriodicTask">
+      <topicdata name="PeriodicTask" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.PeriodicTask" />
+      <apidata name="PeriodicTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Scheduler.PeriodicTask.#ctor(System.String)" />
+        <element api="P:Microsoft.Phone.Scheduler.PeriodicTask.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.PeriodicTask" />
+      </containers>
+      <file name="d81bc703-6915-04e4-9008-3d02ceef18e0" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.PeriodicTask">
+      <topicdata name="PeriodicTask" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.PeriodicTask" />
+      <apidata name="PeriodicTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.PeriodicTask" />
+      </containers>
+      <file name="344d048e-13e9-feb1-9979-bb4b4e946fa5" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Scheduler.PeriodicTask">
+      <topicdata name="PeriodicTask" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Scheduler.PeriodicTask" />
+      <apidata name="PeriodicTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.PeriodicTask.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.PeriodicTask" />
+      </containers>
+      <file name="9b2cb9a8-543d-8f15-d08b-7307587ea65e" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.PeriodicTask.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.PeriodicTask" ref="true" />
+      </containers>
+      <file name="3fc3b14e-4980-c5a0-a7a9-f3bbdae516ba" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.PeriodicTask.ExpirationTime">
+      <topicdata group="api" />
+      <apidata name="ExpirationTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime">
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_ExpirationTime" />
+      <setter name="set_ExpirationTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.PeriodicTask" ref="true" />
+      </containers>
+      <file name="3a18bbef-b602-a011-fba0-a8b122613267" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.RecurrenceInterval">
+      <topicdata group="api" />
+      <apidata name="RecurrenceInterval" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Scheduler.RecurrenceInterval.None" />
+        <element api="F:Microsoft.Phone.Scheduler.RecurrenceInterval.Daily" />
+        <element api="F:Microsoft.Phone.Scheduler.RecurrenceInterval.Weekly" />
+        <element api="F:Microsoft.Phone.Scheduler.RecurrenceInterval.Monthly" />
+        <element api="F:Microsoft.Phone.Scheduler.RecurrenceInterval.EndOfMonth" />
+        <element api="F:Microsoft.Phone.Scheduler.RecurrenceInterval.Yearly" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="2bdc5b9c-a58f-349d-5c50-6772f14e3c95" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.RecurrenceInterval.Daily">
+      <topicdata group="api" notopic="" />
+      <apidata name="Daily" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </containers>
+      <file name="d70f34f6-73cf-5c1a-9b92-3769c0d78b7d" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.RecurrenceInterval.EndOfMonth">
+      <topicdata group="api" notopic="" />
+      <apidata name="EndOfMonth" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </containers>
+      <file name="cc39eedf-bf18-e92d-d0d7-664c4f4e1f06" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.RecurrenceInterval.Monthly">
+      <topicdata group="api" notopic="" />
+      <apidata name="Monthly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </containers>
+      <file name="858c5407-f1fb-00c5-b1d1-f2af1a70e30a" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.RecurrenceInterval.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </containers>
+      <file name="cd0b8dff-a9ab-aeae-6ec4-9a8ec4e77cbe" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.RecurrenceInterval.Weekly">
+      <topicdata group="api" notopic="" />
+      <apidata name="Weekly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </containers>
+      <file name="6711df9e-b278-6ade-0c4b-d0484b57cc2f" />
+    </api>
+    <api id="F:Microsoft.Phone.Scheduler.RecurrenceInterval.Yearly">
+      <topicdata group="api" notopic="" />
+      <apidata name="Yearly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </containers>
+      <file name="b16abcb8-ac78-c4ef-05b7-715dff9bbfda" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.Reminder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.Reminder" />
+      <apidata name="Reminder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="ef3e09d8-14fd-44c6-44f1-ad082c2cb555" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.Reminder">
+      <topicdata name="Reminder" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.Reminder" />
+      <apidata name="Reminder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Scheduler.Reminder.#ctor(System.String)" />
+        <element api="P:Microsoft.Phone.Scheduler.Reminder.NavigationUri" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Content" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.RecurrenceType" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Title" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Reminder" />
+      </containers>
+      <file name="315f1af5-ee01-7953-2756-c1eb1097de29" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.Reminder">
+      <topicdata name="Reminder" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.Reminder" />
+      <apidata name="Reminder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Reminder" />
+      </containers>
+      <file name="62ef9e27-7756-88dd-973c-8b0a0d602e37" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Scheduler.Reminder">
+      <topicdata name="Reminder" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Scheduler.Reminder" />
+      <apidata name="Reminder" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.Reminder.NavigationUri" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Content" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.RecurrenceType" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Title" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Reminder" />
+      </containers>
+      <file name="ca6b5a83-be75-031a-dc7c-bfe2831ff3ec" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.Reminder.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Reminder" ref="true" />
+      </containers>
+      <file name="3eb96ca7-f0a8-a7d7-5396-4eca8fc66faa" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.Reminder.NavigationUri">
+      <topicdata group="api" />
+      <apidata name="NavigationUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NavigationUri" />
+      <setter name="set_NavigationUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.Reminder" ref="true" />
+      </containers>
+      <file name="164fed56-1e48-1bec-ac3f-0d122c7b0b4f" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" />
+      <apidata name="ResourceIntensiveTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="cbe603fd-373a-d607-37e5-12d926807aa0" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.ResourceIntensiveTask">
+      <topicdata name="ResourceIntensiveTask" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" />
+      <apidata name="ResourceIntensiveTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Scheduler.ResourceIntensiveTask.#ctor(System.String)" />
+        <element api="P:Microsoft.Phone.Scheduler.ResourceIntensiveTask.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" />
+      </containers>
+      <file name="0b8f33ba-556a-0f8b-aa62-d2d7efd01197" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.ResourceIntensiveTask">
+      <topicdata name="ResourceIntensiveTask" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" />
+      <apidata name="ResourceIntensiveTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" />
+      </containers>
+      <file name="cac481a9-c6a5-42bb-2aee-9b046ae1ccb1" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Scheduler.ResourceIntensiveTask">
+      <topicdata name="ResourceIntensiveTask" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" />
+      <apidata name="ResourceIntensiveTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.ResourceIntensiveTask.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" />
+      </containers>
+      <file name="79244509-a8e8-b547-922b-e1520af22202" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ResourceIntensiveTask.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" ref="true" />
+      </containers>
+      <file name="c2047901-0b57-9c73-b4c4-7749efc1c0c7" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ResourceIntensiveTask.ExpirationTime">
+      <topicdata group="api" />
+      <apidata name="ExpirationTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime">
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_ExpirationTime" />
+      <setter name="set_ExpirationTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" ref="true" />
+      </containers>
+      <file name="98020f82-f7d1-f4ce-5164-0a3744c70b8a" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.ScheduledAction">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledAction" />
+      <apidata name="ScheduledAction" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="bddb1034-0435-57a2-8524-2f48edef4796" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledAction">
+      <topicdata name="ScheduledAction" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledAction" />
+      <apidata name="ScheduledAction" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" />
+      </containers>
+      <file name="a0a3689c-c3a4-fe9d-da40-73284b3962ea" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.ScheduledAction">
+      <topicdata name="ScheduledAction" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledAction" />
+      <apidata name="ScheduledAction" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" />
+      </containers>
+      <file name="17fda539-ed7f-f1bf-0a5e-083033eaabef" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Scheduler.ScheduledAction">
+      <topicdata name="ScheduledAction" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledAction" />
+      <apidata name="ScheduledAction" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" />
+      </containers>
+      <file name="c59d3782-75bb-9769-d41e-30200bcdb7d1" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime">
+      <topicdata group="api" />
+      <apidata name="BeginTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BeginTime" />
+      <setter name="set_BeginTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+      </containers>
+      <file name="64db2a53-b0d7-61a4-dee6-88764c9bb83a" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime">
+      <topicdata group="api" />
+      <apidata name="ExpirationTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExpirationTime" />
+      <setter name="set_ExpirationTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+      </containers>
+      <file name="f2798827-eb31-fa64-43d6-2bda37449f88" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled">
+      <topicdata group="api" />
+      <apidata name="IsEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+      </containers>
+      <file name="366942bb-7c0c-b3fc-30aa-f23c0bd386e7" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled">
+      <topicdata group="api" />
+      <apidata name="IsScheduled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsScheduled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+      </containers>
+      <file name="1231bd65-3c75-f6af-e404-ca9cfdf984a8" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledAction.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+      </containers>
+      <file name="163c3352-9c3b-e50c-6ee0-bc78060d3123" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.ScheduledActionService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledActionService" />
+      <apidata name="ScheduledActionService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="ff95fbf9-1ee3-7989-4a22-464140b26f89" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledActionService">
+      <topicdata name="ScheduledActionService" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledActionService" />
+      <apidata name="ScheduledActionService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.Add(Microsoft.Phone.Scheduler.ScheduledAction)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.Find(System.String)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.GetActions``1" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.LaunchForTest(System.String,System.TimeSpan)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.LaunchVoipHttpIncomingCallTask" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.Remove(System.String)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.Replace(Microsoft.Phone.Scheduler.ScheduledAction)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" />
+      </containers>
+      <file name="4ecd78b3-d82a-55f7-9e90-2db7d0d3e2f1" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.ScheduledActionService">
+      <topicdata name="ScheduledActionService" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledActionService" />
+      <apidata name="ScheduledActionService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.Add(Microsoft.Phone.Scheduler.ScheduledAction)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.Find(System.String)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.GetActions``1" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.LaunchForTest(System.String,System.TimeSpan)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.LaunchVoipHttpIncomingCallTask" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.Remove(System.String)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledActionService.Replace(Microsoft.Phone.Scheduler.ScheduledAction)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" />
+      </containers>
+      <file name="4344bb1a-38a9-8a94-ca66-2beebccbb3dd" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledActionService.Add(Microsoft.Phone.Scheduler.ScheduledAction)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" ref="true" />
+      </containers>
+      <file name="343b5bc1-144d-f55c-29a2-b4f56c227f35" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledActionService.Find(System.String)">
+      <topicdata group="api" />
+      <apidata name="Find" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" ref="true" />
+      </containers>
+      <file name="1adaea11-2553-ef78-ba9b-29278f03739a" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledActionService.GetActions``1">
+      <topicdata group="api" />
+      <apidata name="GetActions" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T">
+          <constrained>
+            <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:Microsoft.Phone.Scheduler.ScheduledActionService.GetActions``1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" ref="true" />
+      </containers>
+      <file name="890a0dfb-518b-ae49-a4d7-c30b3bce28de" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledActionService.LaunchForTest(System.String,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="LaunchForTest" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="delay">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" ref="true" />
+      </containers>
+      <file name="28172c62-5ed6-2b96-1198-8789bcd32e9a" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledActionService.LaunchVoipHttpIncomingCallTask">
+      <topicdata group="api" />
+      <apidata name="LaunchVoipHttpIncomingCallTask" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" ref="true" />
+      </containers>
+      <file name="6ecdfcd6-a1d0-bcee-357b-f04edda45722" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledActionService.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" ref="true" />
+      </containers>
+      <file name="39f4d9d8-2058-546a-27b2-3df51b18686f" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledActionService.Replace(Microsoft.Phone.Scheduler.ScheduledAction)">
+      <topicdata group="api" />
+      <apidata name="Replace" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="action">
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledActionService" ref="true" />
+      </containers>
+      <file name="0d4dec81-6f4f-0061-7d9e-a5b924918abb" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.ScheduledNotification">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledNotification" />
+      <apidata name="ScheduledNotification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Phone.Scheduler.Alarm" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.Reminder" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="37f9ba99-f886-02af-11a0-d9c5363a4e4c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledNotification">
+      <topicdata name="ScheduledNotification" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledNotification" />
+      <apidata name="ScheduledNotification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Content" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.RecurrenceType" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Title" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" />
+      </containers>
+      <file name="97c7a65d-3dee-2236-5eeb-8e136da7df20" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.ScheduledNotification">
+      <topicdata name="ScheduledNotification" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledNotification" />
+      <apidata name="ScheduledNotification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" />
+      </containers>
+      <file name="3ac45ad6-412b-6479-b97b-6df26b67cfc8" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Scheduler.ScheduledNotification">
+      <topicdata name="ScheduledNotification" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledNotification" />
+      <apidata name="ScheduledNotification" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Content" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.RecurrenceType" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledNotification.Title" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" />
+      </containers>
+      <file name="c256e70c-0162-28cd-7b1f-862a37b7a8e5" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledNotification.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Content" />
+      <setter name="set_Content" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" ref="true" />
+      </containers>
+      <file name="124f56fa-5ec2-f460-2251-6ba9b5526bf6" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledNotification.RecurrenceType">
+      <topicdata group="api" />
+      <apidata name="RecurrenceType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RecurrenceType" />
+      <setter name="set_RecurrenceType" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.RecurrenceInterval" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" ref="true" />
+      </containers>
+      <file name="ab02aa60-3ec4-8941-db54-ebc0c588563e" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledNotification.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledNotification" ref="true" />
+      </containers>
+      <file name="0f1f866f-65bf-0c71-61f1-bffe92c7e60c" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.ScheduledTask">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledTask" />
+      <apidata name="ScheduledTask" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Phone.Scheduler.ResourceIntensiveTask" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.PeriodicTask" ref="true" />
+          <type api="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" ref="true" />
+          <type api="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" ref="true" />
+          <type api="T:Microsoft.Phone.NetworkOperators.IncomingMobileNetworkMessageTask" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="e5ea417f-f2bc-2dc4-5bee-46534e83c6f4" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledTask">
+      <topicdata name="ScheduledTask" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledTask" />
+      <apidata name="ScheduledTask" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" />
+      </containers>
+      <file name="1cf4199d-54f6-016a-92dc-c2932741eabf" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.ScheduledTask">
+      <topicdata name="ScheduledTask" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledTask" />
+      <apidata name="ScheduledTask" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" />
+      </containers>
+      <file name="15357ac7-9f0e-f48a-85e4-7a02b7520c95" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Scheduler.ScheduledTask">
+      <topicdata name="ScheduledTask" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledTask" />
+      <apidata name="ScheduledTask" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" />
+      </containers>
+      <file name="3edb37d4-b60d-e361-1c0a-6d5c603d1e18" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime">
+      <topicdata group="api" />
+      <apidata name="BeginTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Microsoft.Phone.Scheduler.ScheduledAction.BeginTime">
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_BeginTime" />
+      <setter name="set_BeginTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+      </containers>
+      <file name="bfa8b1f9-3b1f-3029-7897-4d514db935a2" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledTask.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Description" />
+      <setter name="set_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+      </containers>
+      <file name="670994ab-b19a-85f0-adf4-28374925379f" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason">
+      <topicdata group="api" />
+      <apidata name="LastExitReason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LastExitReason" />
+      <returns>
+        <type api="T:Microsoft.Phone.Scheduler.AgentExitReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+      </containers>
+      <file name="5bedff0f-099e-8809-30fe-47b944e50e5d" />
+    </api>
+    <api id="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime">
+      <topicdata group="api" />
+      <apidata name="LastScheduledTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LastScheduledTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+      </containers>
+      <file name="c4a5b1a6-924d-d2de-5737-31de344cc7c4" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" />
+      <apidata name="ScheduledTaskAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="4453607a-9337-fdd9-75c9-3c85815dd8d7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.ScheduledTaskAgent">
+      <topicdata name="ScheduledTaskAgent" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" />
+      <apidata name="ScheduledTaskAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledTaskAgent.#ctor" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledTaskAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledTaskAgent.OnInvoke(Microsoft.Phone.Scheduler.ScheduledTask)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" />
+      </containers>
+      <file name="389b9d3f-1e92-42d0-f39c-90ab7ff7e97d" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.ScheduledTaskAgent">
+      <topicdata name="ScheduledTaskAgent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" />
+      <apidata name="ScheduledTaskAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledTaskAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.Scheduler.ScheduledTaskAgent.OnInvoke(Microsoft.Phone.Scheduler.ScheduledTask)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" />
+      </containers>
+      <file name="c32f8bb9-0afc-9ce2-58dc-64ac6a2c2da1" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledTaskAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" ref="true" />
+      </containers>
+      <file name="eb47cbfa-a75d-f642-ccbc-552012d7f310" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledTaskAgent.OnCancel">
+      <topicdata group="api" />
+      <apidata name="OnCancel" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Phone.BackgroundAgent.OnCancel">
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" ref="true" />
+      </containers>
+      <file name="0c063424-5ecc-2aa4-c1cf-a6c10e57cdff" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.ScheduledTaskAgent.OnInvoke(Microsoft.Phone.Scheduler.ScheduledTask)">
+      <topicdata group="api" />
+      <apidata name="OnInvoke" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="task">
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" ref="true" />
+      </containers>
+      <file name="66b76984-137f-b534-8561-a7f779bb67de" />
+    </api>
+    <api id="T:Microsoft.Phone.Scheduler.SchedulerServiceException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Scheduler.SchedulerServiceException" />
+      <apidata name="SchedulerServiceException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+      </containers>
+      <file name="97efab2d-f301-0282-fd51-b8bcaddf3a2d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Scheduler.SchedulerServiceException">
+      <topicdata name="SchedulerServiceException" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Scheduler.SchedulerServiceException" />
+      <apidata name="SchedulerServiceException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Scheduler.SchedulerServiceException.#ctor(System.Int32,System.String)" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.SchedulerServiceException" />
+      </containers>
+      <file name="37dd67c4-a511-f1d6-e90c-65d9b0da4313" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Scheduler.SchedulerServiceException">
+      <topicdata name="SchedulerServiceException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Scheduler.SchedulerServiceException" />
+      <apidata name="SchedulerServiceException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.SchedulerServiceException" />
+      </containers>
+      <file name="d4ad0da5-39f7-9420-85aa-aedc29b2adc5" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Scheduler.SchedulerServiceException">
+      <topicdata name="SchedulerServiceException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Scheduler.SchedulerServiceException" />
+      <apidata name="SchedulerServiceException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.SchedulerServiceException" />
+      </containers>
+      <file name="92b2e89f-04bc-9ced-c001-76f73ab3ee90" />
+    </api>
+    <api id="M:Microsoft.Phone.Scheduler.SchedulerServiceException.#ctor(System.Int32,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="hResult">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Scheduler" />
+        <type api="T:Microsoft.Phone.Scheduler.SchedulerServiceException" ref="true" />
+      </containers>
+      <file name="ad657f02-2dbf-7c1b-05a9-ea32ec5d0b0d" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:maml="http://ddue.schemas.microsoft.com/authoring/2003/5"
+		xmlns:doc="http://ddue.schemas.microsoft.com/authoring/internal"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"
+		elementFormDefault="qualified"
+		attributeFormDefault="unqualified"
+		>
+
+	<!-- Schema documentation -->
+	<annotation>
+		<documentation>
+			This schema defines attributes and simpleTypes that can be referenced
+			from any other part of Maml.
+		</documentation>
+	</annotation>
+
+	<import schemaLocation="../xlink.xsd" namespace="http://www.w3.org/1999/xlink" />
+
+	<!-- simpleType declarations -->
+	<simpleType name="mediaFileFormatsType">
+		<annotation>
+			<documentation>
+				The mediaFileFormatsType simpleType provides a list of commonly
+				used media formats.
+			</documentation>
+		</annotation>
+		<restriction base="token">
+			<enumeration value="asx"/>
+			<enumeration value="bmp"/>
+			<enumeration value="eps"/>
+			<enumeration value="flash"/>
+			<enumeration value="gif"/>
+			<enumeration value="png"/>
+			<enumeration value="jpeg"/>
+			<enumeration value="shockwave"/>
+			<enumeration value="quicktime"/>
+			<enumeration value="wma"/>
+			<enumeration value="wmf"/>
+			<enumeration value="mpeg"/>
+			<enumeration value="mp3"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="alertTypesType">
+		<annotation>
+			<documentation>
+				The alertTypesType simpleType provides a list of the various types
+				of alerts that can be used to describe alerts.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="note"/>
+			<enumeration value="caution"/>
+			<enumeration value="important"/>
+			<enumeration value="tip"/>
+			<enumeration value="warning"/>
+			<enumeration value="security note"/>
+			<enumeration value="visual basic note"/>
+			<enumeration value="visual c# note"/>
+			<enumeration value="visual c++ note"/>
+			<enumeration value="visual j# note"/>
+			<!-- Sandcastle extension.  Added additional note types. -->
+			<enumeration value="implement"/>
+			<enumeration value="caller"/>
+			<enumeration value="inherit"/>
+			<enumeration value="security"/>
+			<enumeration value="cs"/>
+			<enumeration value="CSharp"/>
+			<enumeration value="c#"/>
+			<enumeration value="C#"/>
+			<enumeration value="cpp"/>
+			<enumeration value="CPP"/>
+			<enumeration value="c++"/>
+			<enumeration value="C++"/>
+			<enumeration value="vb"/>
+			<enumeration value="VB"/>
+			<enumeration value="VisualBasic"/>
+			<enumeration value="JSharp"/>
+			<enumeration value="j#"/>
+			<enumeration value="J#"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="devLanguagesType">
+		<restriction base="token">
+			<enumeration value="cpp" />
+			<enumeration value="vb" />
+			<enumeration value="vbs" />
+			<enumeration value="js" />
+			<enumeration value="c#" />
+			<enumeration value="j#" />
+			<enumeration value="jscript#" />
+			<enumeration value="cpp#"/>
+			<enumeration value="vb#" />
+			<enumeration value="xml"/>
+			<enumeration value="html" />
+			<!-- the following 3 were entered for DDUELocTools bug 1858 -->
+			<enumeration value="unstlib"/>
+			<enumeration value="minterastlib"/>
+			<enumeration value="mintraastlib"/>
+			<!-- CAS: added the following for DDUE -->
+			<enumeration value="vb-c#"/>
+			<enumeration value="jscript"/>
+			<enumeration value="scr"/>
+			<!-- Sandcastle extension values -->
+			<enumeration value="csharp" />
+			<enumeration value="cs" />
+			<enumeration value="c++" />
+			<enumeration value="cplusplus" />
+			<enumeration value="f#" />
+			<enumeration value="fsharp" />
+			<enumeration value="fsscript" />
+			<enumeration value="fs" />
+			<enumeration value="jsharp" />
+			<enumeration value="ecmascript" />
+			<enumeration value="javascript" />
+			<enumeration value="js" />
+			<enumeration value="jscriptnet" />
+			<enumeration value="jscript.net" />
+			<enumeration value="vbnet" />
+			<enumeration value="vb.net" />
+			<enumeration value="vb#" />
+			<enumeration value="htm" />
+			<enumeration value="aspnet" />
+			<enumeration value="asp.net" />
+			<enumeration value="xaml" />
+			<enumeration value="xsd" />
+			<enumeration value="xsl" />
+			<enumeration value="sql" />
+			<enumeration value="sql server" />
+			<enumeration value="pshell" />
+			<enumeration value="powershell" />
+			<enumeration value="ps1" />
+			<enumeration value="py" />
+			<enumeration value="python" />
+			<enumeration value="ruby" />
+			<enumeration value="pascal" />
+			<enumeration value="none" />
+		</restriction>
+	</simpleType>
+
+	<!-- attribute declarations -->
+	<attributeGroup name="contentFlavourGroup">
+		<annotation>
+			<documentation>
+				The contentFlavourGroup attribute group provides a set of attributes for describing the
+				general flavour of content.
+			</documentation>
+		</annotation>
+
+		<attribute name="language" type="token">
+			<annotation>
+				<documentation>
+					The language attribute describes the natural language of a particular part of a document.
+				</documentation>
+				<documentation>
+					This attribute should eventually use a simpleType that provides the list of natural languages.
+				</documentation>
+			</annotation>
+		</attribute>
+
+		<attribute name="userLevel" type="token">
+			<annotation>
+				<documentation>
+					The userLevel attribute describes the level of user that is appropriate for a
+					particular part of a document. The level may map to personas or to levels of
+					knowledge.
+				</documentation>
+			</annotation>
+		</attribute>
+
+		<attribute name="technology" type="token">
+			<annotation>
+				<documentation>
+					The technology attribute describes one or more technologies to which the
+					content applies.
+				</documentation>
+			</annotation>
+		</attribute>
+
+		<attribute name="textType" default="normal">
+			<annotation>
+				<documentation>
+					The class attribute is used to select the type of content.
+				</documentation>
+			</annotation>
+			<simpleType>
+				<restriction base="token">
+					<enumeration value="normal" />
+					<enumeration value="overview" />
+					<enumeration value="prescriptive" />
+					<enumeration value="abstract" />
+					<enumeration value="conclusion"/>
+					<enumeration value="legal"/>
+					<enumeration value="prerequisite"/>
+					<enumeration value="advertisement"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</attributeGroup>
+
+	<simpleType name="conditionStringType">
+		<restriction base="anyURI">
+		</restriction>
+	</simpleType>
+
+	<attributeGroup name="addressAttributeGroup">
+		<attribute name="address" type="ID">
+			<annotation>
+				<documentation>
+					The address attribute describes the attached content with a unique ID/GUID/URI that
+					can be referenced for sharing, hyperlinking or other purposes.
+				</documentation>
+			</annotation>
+		</attribute>
+	</attributeGroup>
+
+	<attributeGroup name="contentIdentificationSharingAndConditionGroup">
+		<annotation>
+			<documentation>
+				The contentIdentificationSharingAndConditionGroup provides a set of attributes for
+				identifying content and for marking it for sharing and conditional filtering.
+			</documentation>
+		</annotation>
+
+		<attributeGroup ref="maml:addressAttributeGroup"/>
+
+		<!--<attribute name="condition" type="maml:conditionStringType">
+            <annotation>
+                <documentation>
+                    The value of this attribute is a reference to a condition set that holds one
+                    or more conditions that must be met if the element to which this attribute is applied
+                    is to be considered 'relevant'. (Relevance may be a build-time or a run-time concept).
+                </documentation>
+            </annotation>
+        </attribute>-->
+
+	</attributeGroup>
+
+	<attributeGroup name="linkingGroup">
+		<attribute ref="xlink:href"/>
+	</attributeGroup>
+
+	<!-- complexType declarations -->
+	<complexType name="textType">
+		<annotation>
+			<documentation>
+				This type includes the common attributes and allows character data.
+			</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="normalizedString">
+				<attributeGroup ref="maml:contentIdentificationSharingAndConditionGroup"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="emptyType">
+		<annotation>
+			<documentation>
+				The emptyType type is intended for empty element w/o attributes.
+				There is no schema type for empty.
+			</documentation>
+		</annotation>
+	</complexType>
+
+</schema>

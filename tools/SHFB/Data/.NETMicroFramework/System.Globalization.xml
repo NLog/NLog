@@ -1,0 +1,1388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Globalization">
+      <topicdata group="api" />
+      <apidata name="System.Globalization" group="namespace" />
+      <elements>
+        <element api="T:System.Globalization.CultureInfo" />
+        <element api="T:System.Globalization.CultureTypes" />
+        <element api="T:System.Globalization.DateTimeFormatInfo" />
+        <element api="T:System.Globalization.DaylightTime" />
+        <element api="T:System.Globalization.NumberFormatInfo" />
+      </elements>
+      <file name="39ea9970-4de4-a65c-2013-3268606ed3e2" />
+    </api>
+    <api id="T:System.Globalization.CultureInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Globalization.CultureInfo" />
+      <apidata name="CultureInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+      </containers>
+      <file name="63c619e3-0969-2f01-a2d4-79d0868a98c6" />
+    </api>
+    <api id="AllMembers.T:System.Globalization.CultureInfo">
+      <topicdata name="CultureInfo" group="list" subgroup="members" typeTopicId="T:System.Globalization.CultureInfo" />
+      <apidata name="CultureInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Globalization.CultureInfo.#ctor(System.String)" />
+        <element api="P:System.Globalization.CultureInfo.CurrentUICulture" />
+        <element api="P:System.Globalization.CultureInfo.DateTimeFormat" />
+        <element api="M:System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes)" />
+        <element api="P:System.Globalization.CultureInfo.Name" />
+        <element api="P:System.Globalization.CultureInfo.NumberFormat" />
+        <element api="P:System.Globalization.CultureInfo.Parent" />
+        <element api="M:System.Globalization.CultureInfo.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" />
+      </containers>
+      <file name="d5453f86-8f8e-0bd5-faaf-da7b31f9c9fc" />
+    </api>
+    <api id="Methods.T:System.Globalization.CultureInfo">
+      <topicdata name="CultureInfo" group="list" subgroup="Methods" typeTopicId="T:System.Globalization.CultureInfo" />
+      <apidata name="CultureInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes)" />
+        <element api="M:System.Globalization.CultureInfo.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" />
+      </containers>
+      <file name="df9a15de-d28e-6b3e-f4b9-17d95014aa15" />
+    </api>
+    <api id="Properties.T:System.Globalization.CultureInfo">
+      <topicdata name="CultureInfo" group="list" subgroup="Properties" typeTopicId="T:System.Globalization.CultureInfo" />
+      <apidata name="CultureInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Globalization.CultureInfo.CurrentUICulture" />
+        <element api="P:System.Globalization.CultureInfo.DateTimeFormat" />
+        <element api="P:System.Globalization.CultureInfo.Name" />
+        <element api="P:System.Globalization.CultureInfo.NumberFormat" />
+        <element api="P:System.Globalization.CultureInfo.Parent" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" />
+      </containers>
+      <file name="8af49a92-745a-7d75-c8d1-c7fa68ace56f" />
+    </api>
+    <api id="M:System.Globalization.CultureInfo.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </containers>
+      <file name="1bd2f5b7-c058-18f1-4a58-58eb597e59fd" />
+    </api>
+    <api id="P:System.Globalization.CultureInfo.CurrentUICulture">
+      <topicdata group="api" />
+      <apidata name="CurrentUICulture" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentUICulture" />
+      <returns>
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </containers>
+      <file name="bdd08fff-b4cc-4e79-cdeb-7b2300c6a93d" />
+    </api>
+    <api id="P:System.Globalization.CultureInfo.DateTimeFormat">
+      <topicdata group="api" />
+      <apidata name="DateTimeFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DateTimeFormat" />
+      <returns>
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </containers>
+      <file name="8ddc04c3-569f-87cc-ccb5-d17d41ece10e" />
+    </api>
+    <api id="M:System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes)">
+      <topicdata group="api" />
+      <apidata name="GetCultures" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="types">
+          <type api="T:System.Globalization.CultureTypes" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </containers>
+      <file name="b2a65918-a3d0-f179-9974-334986e5f2ae" />
+    </api>
+    <api id="P:System.Globalization.CultureInfo.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </containers>
+      <file name="86fd9da9-01b8-4a4a-b92b-ede522f70bd5" />
+    </api>
+    <api id="P:System.Globalization.CultureInfo.NumberFormat">
+      <topicdata group="api" />
+      <apidata name="NumberFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_NumberFormat" />
+      <returns>
+        <type api="T:System.Globalization.NumberFormatInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </containers>
+      <file name="167b1aba-6278-3522-89bc-088fdd5c357b" />
+    </api>
+    <api id="P:System.Globalization.CultureInfo.Parent">
+      <topicdata group="api" />
+      <apidata name="Parent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Parent" />
+      <returns>
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </containers>
+      <file name="d3aba6ff-020a-12fd-15da-8062a5aa08f1" />
+    </api>
+    <api id="M:System.Globalization.CultureInfo.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </containers>
+      <file name="5453df28-984a-f234-d47f-b6c7630c9638" />
+    </api>
+    <api id="T:System.Globalization.CultureTypes">
+      <topicdata group="api" />
+      <apidata name="CultureTypes" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Globalization.CultureTypes.AllCultures" />
+        <element api="F:System.Globalization.CultureTypes.FrameworkCultures" />
+        <element api="F:System.Globalization.CultureTypes.InstalledWin32Cultures" />
+        <element api="F:System.Globalization.CultureTypes.NeutralCultures" />
+        <element api="F:System.Globalization.CultureTypes.ReplacementCultures" />
+        <element api="F:System.Globalization.CultureTypes.SpecificCultures" />
+        <element api="F:System.Globalization.CultureTypes.UserCustomCulture" />
+        <element api="F:System.Globalization.CultureTypes.WindowsOnlyCultures" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+      </containers>
+      <file name="0d528531-1b46-0f42-391e-84888bec72cd" />
+    </api>
+    <api id="F:System.Globalization.CultureTypes.AllCultures">
+      <topicdata group="api" notopic="" />
+      <apidata name="AllCultures" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </containers>
+      <file name="2e6b59d9-3846-0e6a-0d6e-fee185d775c3" />
+    </api>
+    <api id="F:System.Globalization.CultureTypes.FrameworkCultures">
+      <topicdata group="api" notopic="" />
+      <apidata name="FrameworkCultures" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </containers>
+      <file name="02ae00cc-02a4-c73b-a14a-17df32364467" />
+    </api>
+    <api id="F:System.Globalization.CultureTypes.InstalledWin32Cultures">
+      <topicdata group="api" notopic="" />
+      <apidata name="InstalledWin32Cultures" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </containers>
+      <file name="152c029c-db68-ab8e-2877-86bb910258b9" />
+    </api>
+    <api id="F:System.Globalization.CultureTypes.NeutralCultures">
+      <topicdata group="api" notopic="" />
+      <apidata name="NeutralCultures" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </containers>
+      <file name="5dbcfe52-f93b-8c4b-e349-e59cbc2c887b" />
+    </api>
+    <api id="F:System.Globalization.CultureTypes.ReplacementCultures">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReplacementCultures" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </containers>
+      <file name="f147fd2e-5ea4-155f-654d-c3266b98463f" />
+    </api>
+    <api id="F:System.Globalization.CultureTypes.SpecificCultures">
+      <topicdata group="api" notopic="" />
+      <apidata name="SpecificCultures" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </containers>
+      <file name="e07e470e-a8a9-a83c-c18e-0bb1dd6ab842" />
+    </api>
+    <api id="F:System.Globalization.CultureTypes.UserCustomCulture">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserCustomCulture" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </containers>
+      <file name="13230b56-f256-3def-947a-39bbefd2ad84" />
+    </api>
+    <api id="F:System.Globalization.CultureTypes.WindowsOnlyCultures">
+      <topicdata group="api" notopic="" />
+      <apidata name="WindowsOnlyCultures" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.CultureTypes" ref="false" />
+      </containers>
+      <file name="1b3c7d96-0839-2adf-2e4e-d0ebfef61b54" />
+    </api>
+    <api id="T:System.Globalization.DateTimeFormatInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Globalization.DateTimeFormatInfo" />
+      <apidata name="DateTimeFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+      </containers>
+      <file name="c593daa1-a8a4-e3c4-4047-abce8c1ecb64" />
+    </api>
+    <api id="AllMembers.T:System.Globalization.DateTimeFormatInfo">
+      <topicdata name="DateTimeFormatInfo" group="list" subgroup="members" typeTopicId="T:System.Globalization.DateTimeFormatInfo" />
+      <apidata name="DateTimeFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.AbbreviatedDayNames" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.AbbreviatedMonthNames" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.AMDesignator" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.CurrentInfo" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.DateSeparator" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.DayNames" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.FullDateTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.LongDatePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.LongTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.MonthDayPattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.MonthNames" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.PMDesignator" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.RFC1123Pattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.ShortDatePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.ShortTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.SortableDateTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.TimeSeparator" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.UniversalSortableDateTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.YearMonthPattern" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" />
+      </containers>
+      <file name="82c058cc-aae2-7b97-659f-ce677e46af5d" />
+    </api>
+    <api id="Methods.T:System.Globalization.DateTimeFormatInfo">
+      <topicdata name="DateTimeFormatInfo" group="list" subgroup="Methods" typeTopicId="T:System.Globalization.DateTimeFormatInfo" />
+      <apidata name="DateTimeFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" />
+      </containers>
+      <file name="0f00b3e7-a990-29a0-321f-ea6e29ae0cb9" />
+    </api>
+    <api id="Properties.T:System.Globalization.DateTimeFormatInfo">
+      <topicdata name="DateTimeFormatInfo" group="list" subgroup="Properties" typeTopicId="T:System.Globalization.DateTimeFormatInfo" />
+      <apidata name="DateTimeFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Globalization.DateTimeFormatInfo.AbbreviatedDayNames" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.AbbreviatedMonthNames" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.AMDesignator" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.CurrentInfo" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.DateSeparator" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.DayNames" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.FullDateTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.LongDatePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.LongTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.MonthDayPattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.MonthNames" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.PMDesignator" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.RFC1123Pattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.ShortDatePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.ShortTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.SortableDateTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.TimeSeparator" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.UniversalSortableDateTimePattern" />
+        <element api="P:System.Globalization.DateTimeFormatInfo.YearMonthPattern" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" />
+      </containers>
+      <file name="fe29e1fb-4daa-efcd-7b37-ef1dfd460e6d" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.AbbreviatedDayNames">
+      <topicdata group="api" />
+      <apidata name="AbbreviatedDayNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AbbreviatedDayNames" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="20c26182-e2b1-5512-cdb7-94707874fdc4" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.AbbreviatedMonthNames">
+      <topicdata group="api" />
+      <apidata name="AbbreviatedMonthNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AbbreviatedMonthNames" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="9e34297d-d959-cd51-d337-c0a29a686909" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.AMDesignator">
+      <topicdata group="api" />
+      <apidata name="AMDesignator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AMDesignator" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="7a4b5721-e846-c2ca-4c58-8dbcb15bb926" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.CurrentInfo">
+      <topicdata group="api" />
+      <apidata name="CurrentInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentInfo" />
+      <returns>
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="6796a7d8-2e80-0261-523b-96dbbf859564" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.DateSeparator">
+      <topicdata group="api" />
+      <apidata name="DateSeparator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DateSeparator" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="c127b5fd-5778-4b47-3823-6440d5e2514f" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.DayNames">
+      <topicdata group="api" />
+      <apidata name="DayNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DayNames" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="9623cde7-9446-623a-04e6-905d705c4a1f" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.FullDateTimePattern">
+      <topicdata group="api" />
+      <apidata name="FullDateTimePattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FullDateTimePattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="09e6355c-64d9-d06e-e615-188aa73c5add" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.LongDatePattern">
+      <topicdata group="api" />
+      <apidata name="LongDatePattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LongDatePattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="fb64cd16-b102-652b-6efa-ee7ed1c06452" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.LongTimePattern">
+      <topicdata group="api" />
+      <apidata name="LongTimePattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LongTimePattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="69c8a6f0-4607-8282-e041-c09e84cb7db8" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.MonthDayPattern">
+      <topicdata group="api" />
+      <apidata name="MonthDayPattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MonthDayPattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="d5075171-d5d3-7c4c-0b66-d4f0f6bc9a5d" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.MonthNames">
+      <topicdata group="api" />
+      <apidata name="MonthNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MonthNames" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="473246b5-3ac9-9801-54fa-c5e3886e5485" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.PMDesignator">
+      <topicdata group="api" />
+      <apidata name="PMDesignator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PMDesignator" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="25626b70-4499-b2c4-c63a-f3ccc64e27af" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.RFC1123Pattern">
+      <topicdata group="api" />
+      <apidata name="RFC1123Pattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RFC1123Pattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="10487083-53c3-8da6-e82d-872c21de7110" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.ShortDatePattern">
+      <topicdata group="api" />
+      <apidata name="ShortDatePattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ShortDatePattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="7c12735d-43b4-bc92-530c-f5f075ffff70" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.ShortTimePattern">
+      <topicdata group="api" />
+      <apidata name="ShortTimePattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ShortTimePattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="35ae98cb-3dca-4edc-8995-65f300f94824" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.SortableDateTimePattern">
+      <topicdata group="api" />
+      <apidata name="SortableDateTimePattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SortableDateTimePattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="f86811cd-6ed0-ebd8-c5da-b5345aa1592c" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.TimeSeparator">
+      <topicdata group="api" />
+      <apidata name="TimeSeparator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TimeSeparator" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="82a14665-16d0-a52b-b83a-089f7ba0698c" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.UniversalSortableDateTimePattern">
+      <topicdata group="api" />
+      <apidata name="UniversalSortableDateTimePattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UniversalSortableDateTimePattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="a21dedbc-711a-b039-8aa1-50adeed1c347" />
+    </api>
+    <api id="P:System.Globalization.DateTimeFormatInfo.YearMonthPattern">
+      <topicdata group="api" />
+      <apidata name="YearMonthPattern" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YearMonthPattern" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DateTimeFormatInfo" ref="true" />
+      </containers>
+      <file name="c2b18503-aba8-ea2e-0f2f-08f13f11084c" />
+    </api>
+    <api id="T:System.Globalization.DaylightTime">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Globalization.DaylightTime" />
+      <apidata name="DaylightTime" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+      </containers>
+      <file name="997fa0f9-5aee-5102-7b99-ba38dd3386e7" />
+    </api>
+    <api id="AllMembers.T:System.Globalization.DaylightTime">
+      <topicdata name="DaylightTime" group="list" subgroup="members" typeTopicId="T:System.Globalization.DaylightTime" />
+      <apidata name="DaylightTime" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Globalization.DaylightTime.#ctor(System.DateTime,System.DateTime,System.TimeSpan)" />
+        <element api="P:System.Globalization.DaylightTime.Delta" />
+        <element api="P:System.Globalization.DaylightTime.End" />
+        <element api="P:System.Globalization.DaylightTime.Start" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DaylightTime" />
+      </containers>
+      <file name="922774fe-c2ed-c4dc-bcfa-5ddca0afaf57" />
+    </api>
+    <api id="Methods.T:System.Globalization.DaylightTime">
+      <topicdata name="DaylightTime" group="list" subgroup="Methods" typeTopicId="T:System.Globalization.DaylightTime" />
+      <apidata name="DaylightTime" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DaylightTime" />
+      </containers>
+      <file name="faf930be-91e0-9ef1-e61f-a0f6b5658487" />
+    </api>
+    <api id="Properties.T:System.Globalization.DaylightTime">
+      <topicdata name="DaylightTime" group="list" subgroup="Properties" typeTopicId="T:System.Globalization.DaylightTime" />
+      <apidata name="DaylightTime" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Globalization.DaylightTime.Delta" />
+        <element api="P:System.Globalization.DaylightTime.End" />
+        <element api="P:System.Globalization.DaylightTime.Start" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DaylightTime" />
+      </containers>
+      <file name="9f4ace10-3487-c3de-e9c2-8d282d0f0287" />
+    </api>
+    <api id="M:System.Globalization.DaylightTime.#ctor(System.DateTime,System.DateTime,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="start">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="end">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="delta">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DaylightTime" ref="true" />
+      </containers>
+      <file name="faabee63-e45c-c05c-51d6-666195b23f07" />
+    </api>
+    <api id="P:System.Globalization.DaylightTime.Delta">
+      <topicdata group="api" />
+      <apidata name="Delta" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Delta" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DaylightTime" ref="true" />
+      </containers>
+      <file name="8d3b147f-37d2-90b6-8662-8ebcbe9d4856" />
+    </api>
+    <api id="P:System.Globalization.DaylightTime.End">
+      <topicdata group="api" />
+      <apidata name="End" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_End" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DaylightTime" ref="true" />
+      </containers>
+      <file name="a016978a-ac12-9b83-5a59-2df41bbf95e5" />
+    </api>
+    <api id="P:System.Globalization.DaylightTime.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Start" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.DaylightTime" ref="true" />
+      </containers>
+      <file name="16d0bafd-6692-410d-7249-2502589e059d" />
+    </api>
+    <api id="T:System.Globalization.NumberFormatInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Globalization.NumberFormatInfo" />
+      <apidata name="NumberFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+      </containers>
+      <file name="b42c00a5-84e5-51a1-b7e4-6aaae8dac25b" />
+    </api>
+    <api id="AllMembers.T:System.Globalization.NumberFormatInfo">
+      <topicdata name="NumberFormatInfo" group="list" subgroup="members" typeTopicId="T:System.Globalization.NumberFormatInfo" />
+      <apidata name="NumberFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Globalization.NumberFormatInfo.CurrentInfo" />
+        <element api="P:System.Globalization.NumberFormatInfo.NegativeSign" />
+        <element api="P:System.Globalization.NumberFormatInfo.NumberDecimalSeparator" />
+        <element api="P:System.Globalization.NumberFormatInfo.NumberGroupSeparator" />
+        <element api="P:System.Globalization.NumberFormatInfo.NumberGroupSizes" />
+        <element api="P:System.Globalization.NumberFormatInfo.PositiveSign" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" />
+      </containers>
+      <file name="57463b7b-96b2-88f4-03e8-6e812ce5c0ac" />
+    </api>
+    <api id="Methods.T:System.Globalization.NumberFormatInfo">
+      <topicdata name="NumberFormatInfo" group="list" subgroup="Methods" typeTopicId="T:System.Globalization.NumberFormatInfo" />
+      <apidata name="NumberFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" />
+      </containers>
+      <file name="3d1fd1f3-5192-1248-c188-e1d2337d652f" />
+    </api>
+    <api id="Properties.T:System.Globalization.NumberFormatInfo">
+      <topicdata name="NumberFormatInfo" group="list" subgroup="Properties" typeTopicId="T:System.Globalization.NumberFormatInfo" />
+      <apidata name="NumberFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="P:System.Globalization.NumberFormatInfo.CurrentInfo" />
+        <element api="P:System.Globalization.NumberFormatInfo.NegativeSign" />
+        <element api="P:System.Globalization.NumberFormatInfo.NumberDecimalSeparator" />
+        <element api="P:System.Globalization.NumberFormatInfo.NumberGroupSeparator" />
+        <element api="P:System.Globalization.NumberFormatInfo.NumberGroupSizes" />
+        <element api="P:System.Globalization.NumberFormatInfo.PositiveSign" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" />
+      </containers>
+      <file name="844c8129-9569-80dd-46f9-525e295bf1cb" />
+    </api>
+    <api id="P:System.Globalization.NumberFormatInfo.CurrentInfo">
+      <topicdata group="api" />
+      <apidata name="CurrentInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentInfo" />
+      <returns>
+        <type api="T:System.Globalization.NumberFormatInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" ref="true" />
+      </containers>
+      <file name="9daf9aa4-75b9-0eca-6ef7-990839fb62db" />
+    </api>
+    <api id="P:System.Globalization.NumberFormatInfo.NegativeSign">
+      <topicdata group="api" />
+      <apidata name="NegativeSign" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NegativeSign" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" ref="true" />
+      </containers>
+      <file name="9053e828-b0cb-f685-0b06-4ec0e0f894b5" />
+    </api>
+    <api id="P:System.Globalization.NumberFormatInfo.NumberDecimalSeparator">
+      <topicdata group="api" />
+      <apidata name="NumberDecimalSeparator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NumberDecimalSeparator" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" ref="true" />
+      </containers>
+      <file name="02881534-2020-f59f-085e-7889f0401817" />
+    </api>
+    <api id="P:System.Globalization.NumberFormatInfo.NumberGroupSeparator">
+      <topicdata group="api" />
+      <apidata name="NumberGroupSeparator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NumberGroupSeparator" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" ref="true" />
+      </containers>
+      <file name="c1287a58-46e1-2413-ebcf-95e9bb330b78" />
+    </api>
+    <api id="P:System.Globalization.NumberFormatInfo.NumberGroupSizes">
+      <topicdata group="api" />
+      <apidata name="NumberGroupSizes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NumberGroupSizes" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Int32" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" ref="true" />
+      </containers>
+      <file name="cf582f51-d88b-088f-a1f8-c64d92fea99d" />
+    </api>
+    <api id="P:System.Globalization.NumberFormatInfo.PositiveSign">
+      <topicdata group="api" />
+      <apidata name="PositiveSign" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PositiveSign" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Globalization" />
+        <type api="T:System.Globalization.NumberFormatInfo" ref="true" />
+      </containers>
+      <file name="1134fec4-3f43-79a3-e9cf-44efb7b9c634" />
+    </api>
+  </apis>
+</reflection>

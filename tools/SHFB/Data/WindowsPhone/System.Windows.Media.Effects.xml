@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="2.0.6.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.6.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Media.Effects">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Media.Effects" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Media.Effects.SamplingMode" />
+      </elements>
+      <file name="ed327ce5-929d-3f88-7199-130a1abca819" />
+    </api>
+    <api id="T:System.Windows.Media.Effects.SamplingMode">
+      <topicdata group="api" />
+      <apidata name="SamplingMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Media.Effects.SamplingMode.Auto" />
+        <element api="F:System.Windows.Media.Effects.SamplingMode.NearestNeighbor" />
+        <element api="F:System.Windows.Media.Effects.SamplingMode.Bilinear" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+      </containers>
+      <file name="662e531a-aed5-67c0-b1b6-90f5db60eb52" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.SamplingMode.Auto">
+      <topicdata group="api" notopic="" />
+      <apidata name="Auto" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </containers>
+      <file name="e40e07af-4cbd-bea6-12e5-04347a334e7c" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.SamplingMode.Bilinear">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bilinear" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </containers>
+      <file name="86f62395-1af4-6d51-3697-01c37f65e128" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.SamplingMode.NearestNeighbor">
+      <topicdata group="api" notopic="" />
+      <apidata name="NearestNeighbor" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </containers>
+      <file name="04eb36a5-c230-1def-4e03-ba94bb5d6297" />
+    </api>
+  </apis>
+</reflection>

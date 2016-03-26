@@ -1,0 +1,929 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.ApplicationModel.SocialInfo.SocialInfoContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.SocialInfo.Provider">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.SocialInfo.Provider" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" />
+        <element api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" />
+        <element api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" />
+      </elements>
+      <file name="ddde814c-1d0d-0c8d-2373-574ef73f9f2f" />
+    </api>
+    <api id="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" />
+      <apidata name="SocialDashboardItemUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.SocialInfo.SocialInfoContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7792884f-d3ee-beef-25d8-641b7be6f7df" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater">
+      <topicdata name="SocialDashboardItemUpdater" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" />
+      <apidata name="SocialDashboardItemUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.CommitAsync" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Content" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.OwnerRemoteId" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.TargetUri" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Thumbnail" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" />
+      </containers>
+      <file name="0b169b6a-bd06-ef0b-cd75-44da7c6bdda9" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater">
+      <topicdata name="SocialDashboardItemUpdater" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" />
+      <apidata name="SocialDashboardItemUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.CommitAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" />
+      </containers>
+      <file name="77f521be-23ac-a209-c297-e62d78cd03e8" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater">
+      <topicdata name="SocialDashboardItemUpdater" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" />
+      <apidata name="SocialDashboardItemUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Content" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.OwnerRemoteId" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.TargetUri" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Thumbnail" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" />
+      </containers>
+      <file name="9034945d-dbe2-3f9a-1adb-4fc7fcb64781" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.CommitAsync">
+      <topicdata group="api" />
+      <apidata name="CommitAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="90f1d30e-80c6-c897-ab45-db6c07d00909" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Content" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.SocialInfo.SocialFeedContent" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" ref="true" />
+      </containers>
+      <file name="2e29a509-eaa5-33df-dc7f-26c8bf47b154" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.OwnerRemoteId">
+      <topicdata group="api" />
+      <apidata name="OwnerRemoteId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OwnerRemoteId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" ref="true" />
+      </containers>
+      <file name="3b2f2679-c94b-3d01-7023-7cd20c1546de" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.TargetUri">
+      <topicdata group="api" />
+      <apidata name="TargetUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TargetUri" />
+      <setter name="set_TargetUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" ref="true" />
+      </containers>
+      <file name="65a26ce0-8794-e7fa-43df-1c517f514009" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Thumbnail">
+      <topicdata group="api" />
+      <apidata name="Thumbnail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Thumbnail" />
+      <setter name="set_Thumbnail" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.SocialInfo.SocialItemThumbnail" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" ref="true" />
+      </containers>
+      <file name="2bbc7164-8973-f8dc-07ed-8a4c94b1f299" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Timestamp" />
+      <setter name="set_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" ref="true" />
+      </containers>
+      <file name="405aac97-5d32-7d65-f2e5-61292f76bbb1" />
+    </api>
+    <api id="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" />
+      <apidata name="SocialFeedUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.SocialInfo.SocialInfoContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d38d9a42-8d05-c9ec-77e2-f70457c8527f" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater">
+      <topicdata name="SocialFeedUpdater" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" />
+      <apidata name="SocialFeedUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.CommitAsync" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.Items" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.Kind" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.OwnerRemoteId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" />
+      </containers>
+      <file name="c44c5a19-ace4-3d4d-7d88-131bc8d673ca" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater">
+      <topicdata name="SocialFeedUpdater" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" />
+      <apidata name="SocialFeedUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.CommitAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" />
+      </containers>
+      <file name="89d8bd4c-5a16-2868-e1ee-39f222f6ebfd" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater">
+      <topicdata name="SocialFeedUpdater" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" />
+      <apidata name="SocialFeedUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.Items" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.Kind" />
+        <element api="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.OwnerRemoteId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" />
+      </containers>
+      <file name="9e71b3f9-2d60-1b82-e219-fc2bdb996fd1" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.CommitAsync">
+      <topicdata group="api" />
+      <apidata name="CommitAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="df44bc6f-9370-35a7-ee0d-76171125db40" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.Items">
+      <topicdata group="api" />
+      <apidata name="Items" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Items" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.SocialInfo.SocialFeedItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" ref="true" />
+      </containers>
+      <file name="9daa8d21-99c8-1b50-fb30-608443d74e11" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Kind" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.SocialInfo.SocialFeedKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" ref="true" />
+      </containers>
+      <file name="8589a6b0-d3b3-f6d3-9eef-5d00bb44eef3" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater.OwnerRemoteId">
+      <topicdata group="api" />
+      <apidata name="OwnerRemoteId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OwnerRemoteId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" ref="true" />
+      </containers>
+      <file name="b367054a-ee73-d891-ebb8-e0f51f74413c" />
+    </api>
+    <api id="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" />
+      <apidata name="SocialInfoProviderManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.SocialInfo.SocialInfoContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="93f13418-41eb-dafa-c432-6091c6cc2543" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager">
+      <topicdata name="SocialInfoProviderManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" />
+      <apidata name="SocialInfoProviderManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.CreateDashboardItemUpdaterAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.CreateSocialFeedUpdaterAsync(Windows.ApplicationModel.SocialInfo.SocialFeedKind,Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode,System.String)" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.DeprovisionAsync" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.ProvisionAsync" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.ReportNewContentAvailable(System.String,Windows.ApplicationModel.SocialInfo.SocialFeedKind)" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.UpdateBadgeCountValue(System.String,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" />
+      </containers>
+      <file name="36b55a39-7dfb-1e80-7333-87c022451bfa" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager">
+      <topicdata name="SocialInfoProviderManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" />
+      <apidata name="SocialInfoProviderManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.CreateDashboardItemUpdaterAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.CreateSocialFeedUpdaterAsync(Windows.ApplicationModel.SocialInfo.SocialFeedKind,Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode,System.String)" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.DeprovisionAsync" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.ProvisionAsync" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.ReportNewContentAvailable(System.String,Windows.ApplicationModel.SocialInfo.SocialFeedKind)" />
+        <element api="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.UpdateBadgeCountValue(System.String,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" />
+      </containers>
+      <file name="0b5836d4-a5a1-156b-1f94-44a693d9105b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.CreateDashboardItemUpdaterAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateDashboardItemUpdaterAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ownerRemoteId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialDashboardItemUpdater" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d57d5ecf-0f93-b25c-9ebe-a11321f27909" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.CreateSocialFeedUpdaterAsync(Windows.ApplicationModel.SocialInfo.SocialFeedKind,Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode,System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateSocialFeedUpdaterAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="kind" in="true">
+          <type api="T:Windows.ApplicationModel.SocialInfo.SocialFeedKind" ref="false" />
+        </parameter>
+        <parameter name="mode" in="true">
+          <type api="T:Windows.ApplicationModel.SocialInfo.SocialFeedUpdateMode" ref="false" />
+        </parameter>
+        <parameter name="ownerRemoteId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialFeedUpdater" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7e7304b4-d179-66c0-20dc-d6c053e057ba" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.DeprovisionAsync">
+      <topicdata group="api" />
+      <apidata name="DeprovisionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a30f7c2a-1dec-c41a-e6ab-96fa6494f214" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.ProvisionAsync">
+      <topicdata group="api" />
+      <apidata name="ProvisionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b00e81e4-d439-b5b8-41a4-c0ecfd90761b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.ReportNewContentAvailable(System.String,Windows.ApplicationModel.SocialInfo.SocialFeedKind)">
+      <topicdata group="api" />
+      <apidata name="ReportNewContentAvailable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="contactRemoteId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="kind" in="true">
+          <type api="T:Windows.ApplicationModel.SocialInfo.SocialFeedKind" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" ref="true" />
+      </containers>
+      <file name="bab36b6e-0da9-cb70-b137-758e4f70466a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager.UpdateBadgeCountValue(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="UpdateBadgeCountValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="itemRemoteId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="newCount" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.SocialInfo.SocialInfoContract" module="Windows.ApplicationModel.SocialInfo.SocialInfoContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.SocialInfo.Provider" />
+        <type api="T:Windows.ApplicationModel.SocialInfo.Provider.SocialInfoProviderManager" ref="true" />
+      </containers>
+      <file name="d0ffc38e-10af-7be5-1454-9ade14f0e35d" />
+    </api>
+  </apis>
+</reflection>

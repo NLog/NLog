@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="2.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime">
+      <topicdata group="api" />
+      <apidata name="System.Runtime" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.GCLatencyMode" />
+        <element api="T:System.Runtime.GCSettings" />
+      </elements>
+      <file name="dafa66b9-812f-571b-eb27-88f247a9d530" />
+    </api>
+    <api id="T:System.Runtime.GCLatencyMode">
+      <topicdata group="api" />
+      <apidata name="GCLatencyMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.GCLatencyMode.Batch" />
+        <element api="F:System.Runtime.GCLatencyMode.Interactive" />
+        <element api="F:System.Runtime.GCLatencyMode.LowLatency" />
+        <element api="F:System.Runtime.GCLatencyMode.SustainedLowLatency" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+      </containers>
+      <file name="1bc284b3-edbe-9f97-8476-c4cd84ba7d3e" />
+    </api>
+    <api id="F:System.Runtime.GCLatencyMode.Batch">
+      <topicdata group="api" notopic="" />
+      <apidata name="Batch" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </containers>
+      <file name="29446059-61d5-7e7d-1b00-4673ba62c3ee" />
+    </api>
+    <api id="F:System.Runtime.GCLatencyMode.Interactive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Interactive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </containers>
+      <file name="384b2084-06f6-a5f6-a197-090dcf26ba99" />
+    </api>
+    <api id="F:System.Runtime.GCLatencyMode.LowLatency">
+      <topicdata group="api" notopic="" />
+      <apidata name="LowLatency" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </containers>
+      <file name="41f5d3ea-63e7-8cb9-434c-668ccc291fff" />
+    </api>
+    <api id="F:System.Runtime.GCLatencyMode.SustainedLowLatency">
+      <topicdata group="api" notopic="" />
+      <apidata name="SustainedLowLatency" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </containers>
+      <file name="94cbf576-71ae-b8f5-aa78-332ee9d78d50" />
+    </api>
+    <api id="T:System.Runtime.GCSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.GCSettings" />
+      <apidata name="GCSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+      </containers>
+      <file name="a407dae4-8344-31ae-0e61-beab3299cee8" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.GCSettings">
+      <topicdata name="GCSettings" group="list" subgroup="members" typeTopicId="T:System.Runtime.GCSettings" />
+      <apidata name="GCSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.GCSettings.IsServerGC" />
+        <element api="P:System.Runtime.GCSettings.LatencyMode" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+        <type api="T:System.Runtime.GCSettings" />
+      </containers>
+      <file name="a3a9bbfa-2335-0897-f160-22fc18f832b4" />
+    </api>
+    <api id="Properties.T:System.Runtime.GCSettings">
+      <topicdata name="GCSettings" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.GCSettings" />
+      <apidata name="GCSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.GCSettings.IsServerGC" />
+        <element api="P:System.Runtime.GCSettings.LatencyMode" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+        <type api="T:System.Runtime.GCSettings" />
+      </containers>
+      <file name="76ef984e-b7b8-ee39-b694-88bfb8f5d036" />
+    </api>
+    <api id="P:System.Runtime.GCSettings.IsServerGC">
+      <topicdata group="api" />
+      <apidata name="IsServerGC" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsServerGC" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+        <type api="T:System.Runtime.GCSettings" ref="true" />
+      </containers>
+      <file name="3184df3d-0ea1-f152-e94f-f11d33f201e2" />
+    </api>
+    <api id="P:System.Runtime.GCSettings.LatencyMode">
+      <topicdata group="api" />
+      <apidata name="LatencyMode" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LatencyMode" />
+      <setter name="set_LatencyMode">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.Runtime.GCLatencyMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime" />
+        <type api="T:System.Runtime.GCSettings" ref="true" />
+      </containers>
+      <file name="95ac8db5-31c2-2dbd-087a-2859b74f4e74" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,3270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.AddIn.Contract">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.Contract.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.Contract.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.Contract.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.AddIn.Contract">
+      <topicdata group="api" />
+      <apidata name="System.AddIn.Contract" group="namespace" />
+      <elements>
+        <element api="T:System.AddIn.Contract.IContract" />
+        <element api="T:System.AddIn.Contract.IExecutorExtensionContract" />
+        <element api="T:System.AddIn.Contract.ISerializableObjectContract" />
+        <element api="T:System.AddIn.Contract.RemoteArgumentKind" />
+        <element api="T:System.AddIn.Contract.RemoteArgument" />
+        <element api="T:System.AddIn.Contract.IServiceProviderContract" />
+        <element api="T:System.AddIn.Contract.IProfferServiceContract" />
+        <element api="T:System.AddIn.Contract.IListContract`1" />
+        <element api="T:System.AddIn.Contract.IEnumeratorContract`1" />
+        <element api="T:System.AddIn.Contract.INativeHandleContract" />
+        <element api="T:System.AddIn.Contract.SerializableObjectData" />
+      </elements>
+      <file name="36a7a3fa-3ca8-bb5f-7c89-a4d2560bafa1" />
+    </api>
+    <api id="T:System.AddIn.Contract.IContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.IContract" />
+      <apidata name="IContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" ref="true" />
+        <type api="T:System.AddIn.Contract.ISerializableObjectContract" ref="true" />
+        <type api="T:System.AddIn.Contract.IServiceProviderContract" ref="true" />
+        <type api="T:System.AddIn.Contract.IProfferServiceContract" ref="true" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+        <type api="T:System.AddIn.Contract.INativeHandleContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Automation.IRemoteObjectContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Automation.IRemoteTypeContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Automation.IRemoteEventInfoContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Automation.IRemoteFieldInfoContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Automation.IRemoteMethodInfoContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Automation.IRemotePropertyInfoContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Automation.IRemoteDelegateContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentEnumerableContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentCollectionContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentEnumeratorContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentArrayContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentArrayListContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryEnumeratorContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IEnumerableContract`1" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.ICollectionContract`1" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IEnumeratorContract`1" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IArrayContract`1" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IListContract`1" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="1836a8ed-6b52-a95e-f87f-9533ed9c2485" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.IContract">
+      <topicdata name="IContract" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.IContract" />
+      <apidata name="IContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IContract" />
+      </containers>
+      <file name="da3b5493-e5b1-e158-93db-65e3ed5e2037" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.IContract">
+      <topicdata name="IContract" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.IContract" />
+      <apidata name="IContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IContract" />
+      </containers>
+      <file name="0b4832af-78fb-0b18-0a8b-c0b7bbeb0f66" />
+    </api>
+    <api id="M:System.AddIn.Contract.IContract.AcquireLifetimeToken">
+      <topicdata group="api" />
+      <apidata name="AcquireLifetimeToken" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </containers>
+      <file name="736e1bf7-d121-2498-a5c7-036f9a75b36a" />
+    </api>
+    <api id="M:System.AddIn.Contract.IContract.GetRemoteHashCode">
+      <topicdata group="api" />
+      <apidata name="GetRemoteHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </containers>
+      <file name="d4de9e9e-7612-3a18-8b94-945136f40d37" />
+    </api>
+    <api id="M:System.AddIn.Contract.IContract.QueryContract(System.String)">
+      <topicdata group="api" />
+      <apidata name="QueryContract" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="contractIdentifier">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </containers>
+      <file name="39d28fa9-24ea-017d-317b-6ac36720ab3d" />
+    </api>
+    <api id="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)">
+      <topicdata group="api" />
+      <apidata name="RemoteEquals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="contract">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </containers>
+      <file name="f023b8d7-1560-ee4c-fa96-08a29d9427a8" />
+    </api>
+    <api id="M:System.AddIn.Contract.IContract.RemoteToString">
+      <topicdata group="api" />
+      <apidata name="RemoteToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </containers>
+      <file name="0ac1c6ab-99f4-1082-8540-65d0f379859c" />
+    </api>
+    <api id="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RevokeLifetimeToken" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="token">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </containers>
+      <file name="5a777022-9d66-b2fe-88e8-7499a44f5c88" />
+    </api>
+    <api id="T:System.AddIn.Contract.IEnumeratorContract`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.IEnumeratorContract`1" />
+      <apidata name="IEnumeratorContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="a5469258-61f4-482d-2432-8813d9f1411c" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.IEnumeratorContract`1">
+      <topicdata name="IEnumeratorContract" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.IEnumeratorContract`1" />
+      <apidata name="IEnumeratorContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.IDisposable.Dispose" />
+        <element api="M:System.AddIn.Contract.IEnumeratorContract`1.GetCurrent" />
+        <element api="M:System.AddIn.Contract.IEnumeratorContract`1.MoveNext" />
+        <element api="M:System.AddIn.Contract.IEnumeratorContract`1.Reset" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IEnumeratorContract`1" />
+      </containers>
+      <file name="19260b95-54a9-b760-b656-50fe504636f0" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.IEnumeratorContract`1">
+      <topicdata name="IEnumeratorContract" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.IEnumeratorContract`1" />
+      <apidata name="IEnumeratorContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.IDisposable.Dispose" />
+        <element api="M:System.AddIn.Contract.IEnumeratorContract`1.GetCurrent" />
+        <element api="M:System.AddIn.Contract.IEnumeratorContract`1.MoveNext" />
+        <element api="M:System.AddIn.Contract.IEnumeratorContract`1.Reset" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IEnumeratorContract`1" />
+      </containers>
+      <file name="615b9c8b-566c-6046-4daa-78fb3d8c401a" />
+    </api>
+    <api id="M:System.AddIn.Contract.IEnumeratorContract`1.GetCurrent">
+      <topicdata group="api" />
+      <apidata name="GetCurrent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <template name="T" index="0" api="T:System.AddIn.Contract.IEnumeratorContract`1" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IEnumeratorContract`1" ref="true" />
+      </containers>
+      <file name="837eb86f-9cab-9d01-88e0-70c12cc5404e" />
+    </api>
+    <api id="M:System.AddIn.Contract.IEnumeratorContract`1.MoveNext">
+      <topicdata group="api" />
+      <apidata name="MoveNext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IEnumeratorContract`1" ref="true" />
+      </containers>
+      <file name="44b5c26e-2b4b-7557-8d20-effb21e68213" />
+    </api>
+    <api id="M:System.AddIn.Contract.IEnumeratorContract`1.Reset">
+      <topicdata group="api" />
+      <apidata name="Reset" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IEnumeratorContract`1" ref="true" />
+      </containers>
+      <file name="812c65ba-9e55-f33f-6a81-34c7ab2b3186" />
+    </api>
+    <api id="T:System.AddIn.Contract.IExecutorExtensionContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.IExecutorExtensionContract" />
+      <apidata name="IExecutorExtensionContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="52265408-afa2-a953-705e-5f0473d0558d" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.IExecutorExtensionContract">
+      <topicdata name="IExecutorExtensionContract" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.IExecutorExtensionContract" />
+      <apidata name="IExecutorExtensionContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoaded(System.String)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoadedFrom(System.String)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoading(System.String)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoadingFrom(System.String)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.EntryPointStarted(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.EntryPointStarting(System.String,System.String,System.AddIn.Contract.Collections.IRemoteArgumentArrayContract)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.ExecutorCreated" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" />
+      </containers>
+      <file name="ec57d77e-1f3f-7160-fb94-e5f353bdfd67" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.IExecutorExtensionContract">
+      <topicdata name="IExecutorExtensionContract" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.IExecutorExtensionContract" />
+      <apidata name="IExecutorExtensionContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoaded(System.String)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoadedFrom(System.String)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoading(System.String)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoadingFrom(System.String)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.EntryPointStarted(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.EntryPointStarting(System.String,System.String,System.AddIn.Contract.Collections.IRemoteArgumentArrayContract)" />
+        <element api="M:System.AddIn.Contract.IExecutorExtensionContract.ExecutorCreated" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" />
+      </containers>
+      <file name="d2e8406c-ed54-e4b4-39d2-74078892a917" />
+    </api>
+    <api id="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoaded(System.String)">
+      <topicdata group="api" />
+      <apidata name="AssemblyLoaded" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" ref="true" />
+      </containers>
+      <file name="53be743c-7bc6-c3e9-42cc-7bcb556f9baa" />
+    </api>
+    <api id="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoadedFrom(System.String)">
+      <topicdata group="api" />
+      <apidata name="AssemblyLoadedFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="assemblyFile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" ref="true" />
+      </containers>
+      <file name="ef4da571-419b-dea9-d782-7fa3cffcf29b" />
+    </api>
+    <api id="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoading(System.String)">
+      <topicdata group="api" />
+      <apidata name="AssemblyLoading" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" ref="true" />
+      </containers>
+      <file name="8a0d3ae1-6303-6997-7f7e-c56122349e14" />
+    </api>
+    <api id="M:System.AddIn.Contract.IExecutorExtensionContract.AssemblyLoadingFrom(System.String)">
+      <topicdata group="api" />
+      <apidata name="AssemblyLoadingFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="assemblyFile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" ref="true" />
+      </containers>
+      <file name="8573510b-c21b-4b8a-2f87-bfe2e6f842ed" />
+    </api>
+    <api id="M:System.AddIn.Contract.IExecutorExtensionContract.EntryPointStarted(System.AddIn.Contract.IContract)">
+      <topicdata group="api" />
+      <apidata name="EntryPointStarted" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="entryPoint">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" ref="true" />
+      </containers>
+      <file name="86d9b7d7-fb0d-c3d7-55c6-bd11dd9bf36a" />
+    </api>
+    <api id="M:System.AddIn.Contract.IExecutorExtensionContract.EntryPointStarting(System.String,System.String,System.AddIn.Contract.Collections.IRemoteArgumentArrayContract)">
+      <topicdata group="api" />
+      <apidata name="EntryPointStarting" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="assemblyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="startupClass">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="initArgs">
+          <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentArrayContract" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" ref="true" />
+      </containers>
+      <file name="5c264311-f4f2-2521-f6e9-ad69f411fd19" />
+    </api>
+    <api id="M:System.AddIn.Contract.IExecutorExtensionContract.ExecutorCreated">
+      <topicdata group="api" />
+      <apidata name="ExecutorCreated" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IExecutorExtensionContract" ref="true" />
+      </containers>
+      <file name="884297df-450c-e7d0-33d8-657027d68ba6" />
+    </api>
+    <api id="T:System.AddIn.Contract.IListContract`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.IListContract`1" />
+      <apidata name="IListContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <implements>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="e7ca900b-b44d-cc62-2208-8921205f4c17" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.IListContract`1">
+      <topicdata name="IListContract" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.IListContract`1" />
+      <apidata name="IListContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Add(`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Clear" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Contains(`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.GetCount" />
+        <element api="M:System.AddIn.Contract.IListContract`1.GetEnumeratorContract" />
+        <element api="M:System.AddIn.Contract.IListContract`1.GetIsReadOnly" />
+        <element api="M:System.AddIn.Contract.IListContract`1.GetItem(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.IndexOf(`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Insert(System.Int32,`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Remove(`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.RemoveAt(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.SetItem(System.Int32,`0)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" />
+      </containers>
+      <file name="273f6cb3-60ee-3a7b-e963-b9408c7a0cc5" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.IListContract`1">
+      <topicdata name="IListContract" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.IListContract`1" />
+      <apidata name="IListContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Add(`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Clear" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Contains(`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.GetCount" />
+        <element api="M:System.AddIn.Contract.IListContract`1.GetEnumeratorContract" />
+        <element api="M:System.AddIn.Contract.IListContract`1.GetIsReadOnly" />
+        <element api="M:System.AddIn.Contract.IListContract`1.GetItem(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.IndexOf(`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Insert(System.Int32,`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.Remove(`0)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.RemoveAt(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IListContract`1.SetItem(System.Int32,`0)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" />
+      </containers>
+      <file name="c1f8500f-4823-2346-6d8e-8c65ec67b216" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.Add(`0)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="item">
+          <template name="T" index="0" api="T:System.AddIn.Contract.IListContract`1" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="cf276a1c-155b-0d14-db28-72cf740f6a84" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="99933c8f-6af8-b9c6-2b60-2cceb9ccda1a" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.Contains(`0)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="item">
+          <template name="T" index="0" api="T:System.AddIn.Contract.IListContract`1" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="db57b63c-2db2-7878-cfc9-d6195afee588" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.GetCount">
+      <topicdata group="api" />
+      <apidata name="GetCount" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="61753dfc-83b7-9d54-bdd4-b60d3c48b230" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.GetEnumeratorContract">
+      <topicdata group="api" />
+      <apidata name="GetEnumeratorContract" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.AddIn.Contract.IEnumeratorContract`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.AddIn.Contract.IListContract`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="dbdfa3dc-1f0a-0ff0-feb7-a4012f36e454" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.GetIsReadOnly">
+      <topicdata group="api" />
+      <apidata name="GetIsReadOnly" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="4df8f64b-5e2d-b4b8-f465-34970fa402ca" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.GetItem(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="T:System.AddIn.Contract.IListContract`1" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="8f6ec646-76e3-6913-7cea-d8488b78e779" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.IndexOf(`0)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="item">
+          <template name="T" index="0" api="T:System.AddIn.Contract.IListContract`1" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="cd91c3e2-ab91-0629-b18d-8737daba0282" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.Insert(System.Int32,`0)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="item">
+          <template name="T" index="0" api="T:System.AddIn.Contract.IListContract`1" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="7ffc38d7-ac96-819c-f0ca-407e7838fc66" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.Remove(`0)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="item">
+          <template name="T" index="0" api="T:System.AddIn.Contract.IListContract`1" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="8a361721-8fe5-2e20-de80-4b7ed2e2c45d" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="6b82ab20-b088-00c7-a377-59e38a621c8f" />
+    </api>
+    <api id="M:System.AddIn.Contract.IListContract`1.SetItem(System.Int32,`0)">
+      <topicdata group="api" />
+      <apidata name="SetItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="item">
+          <template name="T" index="0" api="T:System.AddIn.Contract.IListContract`1" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true" />
+      </containers>
+      <file name="6be4b076-4205-c214-f2bc-e55fbd7c7e4c" />
+    </api>
+    <api id="T:System.AddIn.Contract.INativeHandleContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.INativeHandleContract" />
+      <apidata name="INativeHandleContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="7a17e227-1761-a705-1147-4804a3e36c37" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.INativeHandleContract">
+      <topicdata name="INativeHandleContract" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.INativeHandleContract" />
+      <apidata name="INativeHandleContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.INativeHandleContract.GetHandle" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.INativeHandleContract" />
+      </containers>
+      <file name="636febbd-9d47-35d1-d1c5-027bd2bd9401" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.INativeHandleContract">
+      <topicdata name="INativeHandleContract" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.INativeHandleContract" />
+      <apidata name="INativeHandleContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.INativeHandleContract.GetHandle" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.INativeHandleContract" />
+      </containers>
+      <file name="769596ba-798a-d78a-3a7b-f5c9cccf2bef" />
+    </api>
+    <api id="M:System.AddIn.Contract.INativeHandleContract.GetHandle">
+      <topicdata group="api" />
+      <apidata name="GetHandle" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.IntPtr" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.INativeHandleContract" ref="true" />
+      </containers>
+      <file name="75baa211-34c2-be12-3943-11ac56a64778" />
+    </api>
+    <api id="T:System.AddIn.Contract.IProfferServiceContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.IProfferServiceContract" />
+      <apidata name="IProfferServiceContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="eb35ddbd-e5dc-c690-8804-8bfc20d4cad6" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.IProfferServiceContract">
+      <topicdata name="IProfferServiceContract" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.IProfferServiceContract" />
+      <apidata name="IProfferServiceContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IProfferServiceContract.ProfferService(System.String,System.AddIn.Contract.IServiceProviderContract)" />
+        <element api="M:System.AddIn.Contract.IProfferServiceContract.RevokeService(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IProfferServiceContract" />
+      </containers>
+      <file name="9e94316e-6835-8339-11b0-658ad7761edc" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.IProfferServiceContract">
+      <topicdata name="IProfferServiceContract" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.IProfferServiceContract" />
+      <apidata name="IProfferServiceContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IProfferServiceContract.ProfferService(System.String,System.AddIn.Contract.IServiceProviderContract)" />
+        <element api="M:System.AddIn.Contract.IProfferServiceContract.RevokeService(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IProfferServiceContract" />
+      </containers>
+      <file name="96b535dc-1ac1-cfe4-80f6-875627098a90" />
+    </api>
+    <api id="M:System.AddIn.Contract.IProfferServiceContract.ProfferService(System.String,System.AddIn.Contract.IServiceProviderContract)">
+      <topicdata group="api" />
+      <apidata name="ProfferService" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="serviceIdentifier">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="service">
+          <type api="T:System.AddIn.Contract.IServiceProviderContract" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IProfferServiceContract" ref="true" />
+      </containers>
+      <file name="af3dfe15-a9cf-8766-49ca-05e6976796e8" />
+    </api>
+    <api id="M:System.AddIn.Contract.IProfferServiceContract.RevokeService(System.String)">
+      <topicdata group="api" />
+      <apidata name="RevokeService" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="serviceIdentifier">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IProfferServiceContract" ref="true" />
+      </containers>
+      <file name="9951db22-384f-2ac2-ffec-85466e454d3f" />
+    </api>
+    <api id="T:System.AddIn.Contract.ISerializableObjectContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.ISerializableObjectContract" />
+      <apidata name="ISerializableObjectContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentCollectionContract" ref="true" />
+        <type api="T:System.AddIn.Contract.Collections.IRemoteArgumentEnumerableContract" ref="true" />
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="02095df0-83bc-cc8b-8cc5-73bd400b00a6" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.ISerializableObjectContract">
+      <topicdata name="ISerializableObjectContract" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.ISerializableObjectContract" />
+      <apidata name="ISerializableObjectContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.ISerializableObjectContract.GetCanonicalName" />
+        <element api="M:System.AddIn.Contract.ISerializableObjectContract.GetSerializableObjectData" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentCollectionContract.GetCount" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.Add(System.AddIn.Contract.RemoteArgument,System.AddIn.Contract.RemoteArgument)" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.Clear" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.ContainsKey(System.AddIn.Contract.RemoteArgument)" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.GetEnumeratorContract" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.GetItem(System.AddIn.Contract.RemoteArgument)" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.GetKeys" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.GetValues" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.Remove(System.AddIn.Contract.RemoteArgument)" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.SetItem(System.AddIn.Contract.RemoteArgument,System.AddIn.Contract.RemoteArgument)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.ISerializableObjectContract" />
+      </containers>
+      <file name="4912906a-2e85-8115-27d6-0c93a2077719" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.ISerializableObjectContract">
+      <topicdata name="ISerializableObjectContract" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.ISerializableObjectContract" />
+      <apidata name="ISerializableObjectContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.ISerializableObjectContract.GetCanonicalName" />
+        <element api="M:System.AddIn.Contract.ISerializableObjectContract.GetSerializableObjectData" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentCollectionContract.GetCount" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.Add(System.AddIn.Contract.RemoteArgument,System.AddIn.Contract.RemoteArgument)" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.Clear" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.ContainsKey(System.AddIn.Contract.RemoteArgument)" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.GetEnumeratorContract" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.GetItem(System.AddIn.Contract.RemoteArgument)" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.GetKeys" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.GetValues" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.Remove(System.AddIn.Contract.RemoteArgument)" />
+        <element api="M:System.AddIn.Contract.Collections.IRemoteArgumentDictionaryContract.SetItem(System.AddIn.Contract.RemoteArgument,System.AddIn.Contract.RemoteArgument)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.ISerializableObjectContract" />
+      </containers>
+      <file name="00f2ce64-387b-ca3e-dde9-26a7a585c7c8" />
+    </api>
+    <api id="M:System.AddIn.Contract.ISerializableObjectContract.GetCanonicalName">
+      <topicdata group="api" />
+      <apidata name="GetCanonicalName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.ISerializableObjectContract" ref="true" />
+      </containers>
+      <file name="f9419832-f697-e867-1b85-1e965e57fb97" />
+    </api>
+    <api id="M:System.AddIn.Contract.ISerializableObjectContract.GetSerializableObjectData">
+      <topicdata group="api" />
+      <apidata name="GetSerializableObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.ISerializableObjectContract" ref="true" />
+      </containers>
+      <file name="07417643-2715-ff9a-6a63-7291e8ae9943" />
+    </api>
+    <api id="T:System.AddIn.Contract.IServiceProviderContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.IServiceProviderContract" />
+      <apidata name="IServiceProviderContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="bf5f9500-b1f1-2c33-48bc-d6b481e309e2" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.IServiceProviderContract">
+      <topicdata name="IServiceProviderContract" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.IServiceProviderContract" />
+      <apidata name="IServiceProviderContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IServiceProviderContract.QueryService(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IServiceProviderContract" />
+      </containers>
+      <file name="77d17a3d-e88d-9184-2ab5-aca0c35e2a3b" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.IServiceProviderContract">
+      <topicdata name="IServiceProviderContract" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.IServiceProviderContract" />
+      <apidata name="IServiceProviderContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Contract.IContract.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Contract.IContract.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.IContract.RemoteToString" />
+        <element api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)" />
+        <element api="M:System.AddIn.Contract.IServiceProviderContract.QueryService(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IServiceProviderContract" />
+      </containers>
+      <file name="777bf96f-c6d4-7620-9865-7cbf5e783f0d" />
+    </api>
+    <api id="M:System.AddIn.Contract.IServiceProviderContract.QueryService(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="QueryService" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="serviceIdentifier">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="serviceContractIdentifier">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.IServiceProviderContract" ref="true" />
+      </containers>
+      <file name="f6fc57a9-f81f-06c6-026c-1285aa108f44" />
+    </api>
+    <api id="T:System.AddIn.Contract.RemoteArgument">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.RemoteArgument" />
+      <apidata name="RemoteArgument" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="8c8e9370-1fb8-36e0-6e16-066ec4df82c3" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.RemoteArgument">
+      <topicdata name="RemoteArgument" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.RemoteArgument" />
+      <apidata name="RemoteArgument" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="Overload:System.AddIn.Contract.RemoteArgument.#ctor">
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Array)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Byte)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Char)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DateTime)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DBNull)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Decimal)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Double)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.IContract)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int16)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int32)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int64)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.SByte)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Single)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.String)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt16)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt32)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt64)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Array,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Boolean,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Byte,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Char,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DateTime,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DBNull,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Decimal,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Double,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.IContract,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int16,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int32,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int64,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.RemoteArgumentKind,System.TypeCode)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.SByte,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Single,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.String,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt16,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt32,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt64,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.RemoteArgumentKind,System.TypeCode,System.Boolean)" />
+        </element>
+        <element api="P:System.AddIn.Contract.RemoteArgument.ArrayValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.BooleanValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.ByteValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.CharValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.ContractValue" />
+        <element api="Overload:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument">
+          <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object,System.Boolean,System.TypeCode)" />
+        </element>
+        <element api="P:System.AddIn.Contract.RemoteArgument.DateTimeValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.DBNullValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.DecimalValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.DoubleValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.Int16Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.Int32Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.Int64Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.IsByRef" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.MissingValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.RemoteArgumentKind" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.SByteValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.SingleValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.StringValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.TypeCode" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.UInt16Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.UInt32Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.UInt64Value" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" />
+      </containers>
+      <file name="8d21f5c3-ad6f-5288-6863-49738b3c1526" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.RemoteArgument">
+      <topicdata name="RemoteArgument" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.RemoteArgument" />
+      <apidata name="RemoteArgument" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="Overload:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument">
+          <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object,System.Boolean)" />
+          <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object,System.Boolean,System.TypeCode)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" />
+      </containers>
+      <file name="371ec843-c421-d814-b8ae-7e9c82c58e44" />
+    </api>
+    <api id="Properties.T:System.AddIn.Contract.RemoteArgument">
+      <topicdata name="RemoteArgument" group="list" subgroup="Properties" typeTopicId="T:System.AddIn.Contract.RemoteArgument" />
+      <apidata name="RemoteArgument" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="P:System.AddIn.Contract.RemoteArgument.ArrayValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.BooleanValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.ByteValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.CharValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.ContractValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.DateTimeValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.DBNullValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.DecimalValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.DoubleValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.Int16Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.Int32Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.Int64Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.IsByRef" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.MissingValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.RemoteArgumentKind" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.SByteValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.SingleValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.StringValue" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.TypeCode" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.UInt16Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.UInt32Value" />
+        <element api="P:System.AddIn.Contract.RemoteArgument.UInt64Value" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" />
+      </containers>
+      <file name="7cbc4d0d-d413-ecd6-0ee6-058255bced39" />
+    </api>
+    <api id="Overload:System.AddIn.Contract.RemoteArgument.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.AddIn.Contract.RemoteArgument" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Array)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Byte)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Char)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DateTime)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DBNull)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Decimal)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Double)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int16)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int32)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int64)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.SByte)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Single)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.String)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt16)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt32)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt64)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Array,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Boolean,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Byte,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Char,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DateTime,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DBNull,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Decimal,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Double,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.IContract,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int16,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int32,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int64,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.RemoteArgumentKind,System.TypeCode)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.SByte,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Single,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.String,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt16,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt32,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt64,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.RemoteArgumentKind,System.TypeCode,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="6c92dba5-438a-e7c4-7acd-8c0fc165ff69" />
+    </api>
+    <api id="Overload:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument">
+      <topicdata name="CreateRemoteArgument" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.AddIn.Contract.RemoteArgument" />
+      <apidata name="CreateRemoteArgument" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object,System.Boolean)" />
+        <element api="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object,System.Boolean,System.TypeCode)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="7f8fcedb-83b7-61ee-3893-512e704a0dbf" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.IContract)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="c6876144-3691-e644-a270-a4795d18a042" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.IContract,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="e7345dad-ac78-899d-3793-f2a62d54c5e3" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.RemoteArgumentKind,System.TypeCode)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="remoteArgKind">
+          <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+        </parameter>
+        <parameter name="typeCode">
+          <type api="T:System.TypeCode" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="b917d8d1-6bbb-82cf-a2bf-aa303abe63f2" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.AddIn.Contract.RemoteArgumentKind,System.TypeCode,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="remoteArgKind">
+          <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+        </parameter>
+        <parameter name="typeCode">
+          <type api="T:System.TypeCode" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="96655f15-5df4-19bb-c49d-b6fb376d9e25" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Array)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="64b7396b-0139-41bb-34cc-85df11a9b040" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Array,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="330e4e79-2cf9-fa62-6954-f73fda858e6d" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="0d2d43dc-c47d-6112-75a6-ff495f166bdb" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="8269bf81-1811-9bf1-044f-f758f1b16b3c" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Byte)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="af61c6d4-671a-9eac-4597-f3cc52389bd7" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Byte,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="fd62bd0e-c9a6-2663-5d52-ac8400750dea" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Char)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="139125bd-ec67-8e10-8792-9b1884888055" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Char,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="f528034e-909a-ecb4-7cda-a6a73f74a0d0" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DateTime)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="55f9a4a7-ccf1-de6f-755a-f14577264db7" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DateTime,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="5a4ea4cf-3be4-a6d5-6fe6-78f2aa87e1ec" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DBNull)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.DBNull" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="37c10bb7-21c6-45da-5ab9-766a9a13f727" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.DBNull,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.DBNull" ref="true" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="f8ae849b-2c8f-bda0-57a9-b878049859ac" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Decimal)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Decimal" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="217e0b72-34fa-fe93-bd4c-703b1c46d4de" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Decimal,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Decimal" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="7fe5ecf8-8d84-0f92-17b0-ecd411290a28" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Double)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="052c1f4c-d09e-d02f-5cba-9102cc5cc883" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Double,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="0b04eebf-7e15-6657-038b-ea335deb682d" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int16)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="40f0df2c-7490-e34e-541c-b80aad8b3c57" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int16,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int16" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="a0e92c96-65ce-102a-3c3f-546120bfc8c8" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="421534c8-b920-be20-dd73-1b06f73cfa0d" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="8ba57029-6832-1836-bc91-58d134787644" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int64)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="e40270a5-1512-592c-2c15-6bc0c8a34d10" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Int64,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="4182b884-6855-b3d0-6081-cc1cb90abc10" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.SByte)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.SByte" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fad09e6a-162f-c8c3-c009-b51b255873a5" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.SByte,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.SByte" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f2cb2f30-9915-8cf2-b417-b8d906582632" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Single)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="8e30b4d4-8e63-0361-6d4c-60b0c139b726" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.Single,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="457a1cc5-6503-a00a-c060-6b545f1f6589" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="3cab0181-2e22-09e8-4073-86e9945c8741" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="195255b0-c8ef-0681-bafc-5ac290f9b792" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt16)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d7c2386-8fb2-e344-842f-12825b8f6f31" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt16,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="564bebe2-681f-b373-cb73-3ff5cafe8452" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0d779e5d-6135-5317-9a38-382b3e2d895a" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="40ed38ed-e0f4-7e13-b3b4-11c84f5ee26b" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2065b62e-72a3-dccf-737b-aaaefda8a18c" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.#ctor(System.UInt64,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.AddIn.Contract.RemoteArgument.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b1885fb1-8804-6e64-3656-f2d20b271ebf" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.ArrayValue">
+      <topicdata group="api" />
+      <apidata name="ArrayValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ArrayValue" />
+      <setter name="set_ArrayValue" />
+      <returns>
+        <type api="T:System.Array" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="e323ce6a-a6e4-9d80-2788-6ebbb1a1c8e4" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.BooleanValue">
+      <topicdata group="api" />
+      <apidata name="BooleanValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BooleanValue" />
+      <setter name="set_BooleanValue" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="2035e6f3-3cc4-4b42-ea94-80a433428ce9" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.ByteValue">
+      <topicdata group="api" />
+      <apidata name="ByteValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ByteValue" />
+      <setter name="set_ByteValue" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="3f8e3637-8bc7-60eb-2778-e38c3ce75017" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.CharValue">
+      <topicdata group="api" />
+      <apidata name="CharValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CharValue" />
+      <setter name="set_CharValue" />
+      <returns>
+        <type api="T:System.Char" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="633302cf-2547-fd65-518a-d3af6bfc6e0c" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.ContractValue">
+      <topicdata group="api" />
+      <apidata name="ContractValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContractValue" />
+      <setter name="set_ContractValue" />
+      <returns>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="a257bb48-00b9-d93d-44fc-867619ec2713" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object)">
+      <topicdata group="api" />
+      <apidata name="CreateRemoteArgument" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="7cd507e5-6e92-fc33-5882-44aa408600fb" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CreateRemoteArgument" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="3a144ce6-d23c-a037-bb80-acbf6ec1349a" />
+    </api>
+    <api id="M:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument(System.Object,System.Boolean,System.TypeCode)">
+      <topicdata group="api" />
+      <apidata name="CreateRemoteArgument" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Contract.RemoteArgument.CreateRemoteArgument" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="isByRef">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="typeCodeToUse">
+          <type api="T:System.TypeCode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="3a6e70c9-3c5b-0189-7757-b552eb5aff3e" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.DateTimeValue">
+      <topicdata group="api" />
+      <apidata name="DateTimeValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DateTimeValue" />
+      <setter name="set_DateTimeValue" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="8fad5463-ba9f-1ce7-2aa9-907effb005a7" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.DBNullValue">
+      <topicdata group="api" />
+      <apidata name="DBNullValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DBNullValue" />
+      <setter name="set_DBNullValue" />
+      <returns>
+        <type api="T:System.DBNull" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="ee440702-5156-f14b-ae15-52101010ded9" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.DecimalValue">
+      <topicdata group="api" />
+      <apidata name="DecimalValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DecimalValue" />
+      <setter name="set_DecimalValue" />
+      <returns>
+        <type api="T:System.Decimal" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="a7fbc79a-9025-b4f6-e03c-56bdefa3a7ce" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.DoubleValue">
+      <topicdata group="api" />
+      <apidata name="DoubleValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DoubleValue" />
+      <setter name="set_DoubleValue" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="814f1777-ed85-1f33-675d-02a79b8c4e31" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.Int16Value">
+      <topicdata group="api" />
+      <apidata name="Int16Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Int16Value" />
+      <setter name="set_Int16Value" />
+      <returns>
+        <type api="T:System.Int16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="bc02408f-7085-41d0-d645-4cb4b603d829" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.Int32Value">
+      <topicdata group="api" />
+      <apidata name="Int32Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Int32Value" />
+      <setter name="set_Int32Value" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="f47f4c2e-6fec-d499-a616-845fdfdd8a92" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.Int64Value">
+      <topicdata group="api" />
+      <apidata name="Int64Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Int64Value" />
+      <setter name="set_Int64Value" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="0abefe81-0fee-4788-8385-dc61a62a39c9" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.IsByRef">
+      <topicdata group="api" />
+      <apidata name="IsByRef" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsByRef" />
+      <setter name="set_IsByRef" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="19931095-520f-edf5-ef96-38a77e40caad" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.MissingValue">
+      <topicdata group="api" />
+      <apidata name="MissingValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MissingValue" />
+      <returns>
+        <type api="T:System.Reflection.Missing" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="d36e6b6b-2516-3523-4285-7948562c9035" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.RemoteArgumentKind">
+      <topicdata group="api" />
+      <apidata name="RemoteArgumentKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RemoteArgumentKind" />
+      <returns>
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="c79a4284-5714-b25e-3c9f-1c24f10b327d" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.SByteValue">
+      <topicdata group="api" />
+      <apidata name="SByteValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SByteValue" />
+      <setter name="set_SByteValue" />
+      <returns>
+        <type api="T:System.SByte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="79b69227-a524-19e8-c070-827afe6a0e62" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.SingleValue">
+      <topicdata group="api" />
+      <apidata name="SingleValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SingleValue" />
+      <setter name="set_SingleValue" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="9daf135b-aa0c-c6ba-459c-f0e4354f987e" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.StringValue">
+      <topicdata group="api" />
+      <apidata name="StringValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StringValue" />
+      <setter name="set_StringValue" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="ffdb3584-dc42-4811-86f5-15c4f21306e1" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.TypeCode">
+      <topicdata group="api" />
+      <apidata name="TypeCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TypeCode" />
+      <returns>
+        <type api="T:System.TypeCode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <file name="b1e789e5-759b-bfef-b217-38ee32a9f1c9" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.UInt16Value">
+      <topicdata group="api" />
+      <apidata name="UInt16Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UInt16Value" />
+      <setter name="set_UInt16Value" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="63bd7b62-d74f-f771-035c-b26de28f7c83" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.UInt32Value">
+      <topicdata group="api" />
+      <apidata name="UInt32Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UInt32Value" />
+      <setter name="set_UInt32Value" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9f5be980-e444-210a-043c-d9e797ee5887" />
+    </api>
+    <api id="P:System.AddIn.Contract.RemoteArgument.UInt64Value">
+      <topicdata group="api" />
+      <apidata name="UInt64Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UInt64Value" />
+      <setter name="set_UInt64Value" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgument" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="05bb6ab5-274a-ed8e-5a11-fdd7fa64398f" />
+    </api>
+    <api id="T:System.AddIn.Contract.RemoteArgumentKind">
+      <topicdata group="api" />
+      <apidata name="RemoteArgumentKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.AddIn.Contract.RemoteArgumentKind.Missing" />
+        <element api="F:System.AddIn.Contract.RemoteArgumentKind.Intrinsic" />
+        <element api="F:System.AddIn.Contract.RemoteArgumentKind.IntrinsicArray" />
+        <element api="F:System.AddIn.Contract.RemoteArgumentKind.Contract" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="e87283c9-5a55-8867-7937-f263315770a2" />
+    </api>
+    <api id="F:System.AddIn.Contract.RemoteArgumentKind.Contract">
+      <topicdata group="api" notopic="" />
+      <apidata name="Contract" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </containers>
+      <file name="8e250918-b603-e273-b3ac-c7df0a157f91" />
+    </api>
+    <api id="F:System.AddIn.Contract.RemoteArgumentKind.Intrinsic">
+      <topicdata group="api" notopic="" />
+      <apidata name="Intrinsic" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </containers>
+      <file name="7eb4b2eb-09e0-4923-440d-2e1f5a853a74" />
+    </api>
+    <api id="F:System.AddIn.Contract.RemoteArgumentKind.IntrinsicArray">
+      <topicdata group="api" notopic="" />
+      <apidata name="IntrinsicArray" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </containers>
+      <file name="4ca4ccd5-da40-f8ad-edf9-75fe23dd1a01" />
+    </api>
+    <api id="F:System.AddIn.Contract.RemoteArgumentKind.Missing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Missing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.RemoteArgumentKind" ref="false" />
+      </containers>
+      <file name="22854e68-6203-b285-9b80-0dffbde971e5" />
+    </api>
+    <api id="T:System.AddIn.Contract.SerializableObjectData">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Contract.SerializableObjectData" />
+      <apidata name="SerializableObjectData" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" noSettableProperties="true" />
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+      </containers>
+      <file name="7a7b1e82-5c79-b3c8-389b-e0d6315efec7" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Contract.SerializableObjectData">
+      <topicdata name="SerializableObjectData" group="list" subgroup="members" typeTopicId="T:System.AddIn.Contract.SerializableObjectData" />
+      <apidata name="SerializableObjectData" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.DimensionLengths" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.DimensionLowerBounds" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.ElementIndexes" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.IsArray" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.IsArrayElement" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.MemberName" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.ObjectId" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.ParentId" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" />
+      </containers>
+      <file name="a6e7a985-6f63-7b8d-453d-3fab1bc69216" />
+    </api>
+    <api id="Methods.T:System.AddIn.Contract.SerializableObjectData">
+      <topicdata name="SerializableObjectData" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Contract.SerializableObjectData" />
+      <apidata name="SerializableObjectData" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" />
+      </containers>
+      <file name="29582db8-c22a-18e8-f09a-af821f6f2142" />
+    </api>
+    <api id="Fields.T:System.AddIn.Contract.SerializableObjectData">
+      <topicdata name="SerializableObjectData" group="list" subgroup="Fields" typeTopicId="T:System.AddIn.Contract.SerializableObjectData" />
+      <apidata name="SerializableObjectData" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" noSettableProperties="true" />
+      <elements>
+        <element api="F:System.AddIn.Contract.SerializableObjectData.DimensionLengths" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.DimensionLowerBounds" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.ElementIndexes" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.IsArray" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.IsArrayElement" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.MemberName" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.ObjectId" />
+        <element api="F:System.AddIn.Contract.SerializableObjectData.ParentId" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" />
+      </containers>
+      <file name="4a60cd19-240b-cf01-cfaa-6bc5343885f5" />
+    </api>
+    <api id="F:System.AddIn.Contract.SerializableObjectData.DimensionLengths">
+      <topicdata group="api" />
+      <apidata name="DimensionLengths" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Int32" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </containers>
+      <file name="e88dc5ee-4aa6-9016-34fe-5398d111c4eb" />
+    </api>
+    <api id="F:System.AddIn.Contract.SerializableObjectData.DimensionLowerBounds">
+      <topicdata group="api" />
+      <apidata name="DimensionLowerBounds" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Int32" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </containers>
+      <file name="a622465b-44b1-9e6a-ea11-a7c84f984fce" />
+    </api>
+    <api id="F:System.AddIn.Contract.SerializableObjectData.ElementIndexes">
+      <topicdata group="api" />
+      <apidata name="ElementIndexes" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Int32" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </containers>
+      <file name="b5a62222-7a5b-5e10-3a8b-6dc475ceaa24" />
+    </api>
+    <api id="F:System.AddIn.Contract.SerializableObjectData.IsArray">
+      <topicdata group="api" />
+      <apidata name="IsArray" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </containers>
+      <file name="fc102ce5-0030-4e3b-d60d-b401133c7c91" />
+    </api>
+    <api id="F:System.AddIn.Contract.SerializableObjectData.IsArrayElement">
+      <topicdata group="api" />
+      <apidata name="IsArrayElement" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </containers>
+      <file name="5ca05bc2-4908-47f5-365a-8fef7b3008ea" />
+    </api>
+    <api id="F:System.AddIn.Contract.SerializableObjectData.MemberName">
+      <topicdata group="api" />
+      <apidata name="MemberName" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </containers>
+      <file name="002fc09f-25d2-bc63-c3e5-825da0a6dada" />
+    </api>
+    <api id="F:System.AddIn.Contract.SerializableObjectData.ObjectId">
+      <topicdata group="api" />
+      <apidata name="ObjectId" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </containers>
+      <file name="cf744e12-c546-687d-d1e1-d809a84296b7" />
+    </api>
+    <api id="F:System.AddIn.Contract.SerializableObjectData.ParentId">
+      <topicdata group="api" />
+      <apidata name="ParentId" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Contract" />
+        <type api="T:System.AddIn.Contract.SerializableObjectData" ref="false" />
+      </containers>
+      <file name="ce4266e3-0bdc-c907-322f-cec3f9fdf9c9" />
+    </api>
+  </apis>
+</reflection>

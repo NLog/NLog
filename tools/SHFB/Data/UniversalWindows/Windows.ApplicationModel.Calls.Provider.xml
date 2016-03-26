@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.ApplicationModel.Calls.CallsPhoneContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Calls.Provider">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Calls.Provider" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" />
+        <element api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" />
+      </elements>
+      <file name="4f6c6fbb-cd26-d997-30c9-437c118f7d72" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" />
+      <apidata name="PhoneCallOrigin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="80658578-462c-5855-fd78-6fa9bbe460f8" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin">
+      <topicdata name="PhoneCallOrigin" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" />
+      <apidata name="PhoneCallOrigin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.#ctor" />
+        <element api="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.Category" />
+        <element api="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.CategoryDescription" />
+        <element api="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.Location" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" />
+      </containers>
+      <file name="ad256101-57d3-38af-b076-fb7a88468f44" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin">
+      <topicdata name="PhoneCallOrigin" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" />
+      <apidata name="PhoneCallOrigin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" />
+      </containers>
+      <file name="f041488f-15c0-8109-76c7-7d900d4e20f6" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin">
+      <topicdata name="PhoneCallOrigin" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" />
+      <apidata name="PhoneCallOrigin" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.Category" />
+        <element api="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.CategoryDescription" />
+        <element api="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.Location" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" />
+      </containers>
+      <file name="27b1b6da-c4ff-0052-f8ba-b22ff916ff61" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" ref="true" />
+      </containers>
+      <file name="046806bd-a16f-bee8-4476-5fe30a6269c8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.Category">
+      <topicdata group="api" />
+      <apidata name="Category" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Category" />
+      <setter name="set_Category" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" ref="true" />
+      </containers>
+      <file name="77dd74f6-66e1-237a-ec7e-40de6eb6a58c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.CategoryDescription">
+      <topicdata group="api" />
+      <apidata name="CategoryDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CategoryDescription" />
+      <setter name="set_CategoryDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" ref="true" />
+      </containers>
+      <file name="4394e83b-778c-7af5-4004-606fbb4c6137" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin.Location">
+      <topicdata group="api" />
+      <apidata name="Location" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Location" />
+      <setter name="set_Location" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" ref="true" />
+      </containers>
+      <file name="e3ed626a-d593-0ed3-cb50-729a4a963409" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" />
+      <apidata name="PhoneCallOriginManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Calls.CallsPhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="64e261cf-13b5-117b-e773-4156a280ef6b" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager">
+      <topicdata name="PhoneCallOriginManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" />
+      <apidata name="PhoneCallOriginManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.IsCurrentAppActiveCallOriginApp" />
+        <element api="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.SetCallOrigin(System.Guid,Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin)" />
+        <element api="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.ShowPhoneCallOriginSettingsUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" />
+      </containers>
+      <file name="4961e463-00ed-d10b-3f8d-b7e668d2f640" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager">
+      <topicdata name="PhoneCallOriginManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" />
+      <apidata name="PhoneCallOriginManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.SetCallOrigin(System.Guid,Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin)" />
+        <element api="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.ShowPhoneCallOriginSettingsUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" />
+      </containers>
+      <file name="27f70ac9-7b3c-3515-e3dd-f2cca2637fb7" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager">
+      <topicdata name="PhoneCallOriginManager" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" />
+      <apidata name="PhoneCallOriginManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.IsCurrentAppActiveCallOriginApp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" />
+      </containers>
+      <file name="2938c70c-1823-9452-26bb-56555a1fab27" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.IsCurrentAppActiveCallOriginApp">
+      <topicdata group="api" />
+      <apidata name="IsCurrentAppActiveCallOriginApp" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsCurrentAppActiveCallOriginApp" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" ref="true" />
+      </containers>
+      <file name="926ddaac-8471-386d-ccdc-1528dc299918" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.SetCallOrigin(System.Guid,Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin)">
+      <topicdata group="api" />
+      <apidata name="SetCallOrigin" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requestId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="callOrigin" in="true">
+          <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" ref="true" />
+      </containers>
+      <file name="a71e1fd6-ef12-9905-987a-bc5cd2cb63c8" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager.ShowPhoneCallOriginSettingsUI">
+      <topicdata group="api" />
+      <apidata name="ShowPhoneCallOriginSettingsUI" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.Calls.CallsPhoneContract" module="Windows.ApplicationModel.Calls.CallsPhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls.Provider" />
+        <type api="T:Windows.ApplicationModel.Calls.Provider.PhoneCallOriginManager" ref="true" />
+      </containers>
+      <file name="ce75d1e3-087a-97c2-e416-a761410084d3" />
+    </api>
+  </apis>
+</reflection>

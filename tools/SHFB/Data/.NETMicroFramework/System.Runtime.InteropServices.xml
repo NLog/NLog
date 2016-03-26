@@ -1,0 +1,860 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.InteropServices">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.InteropServices" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.InteropServices.ComVisibleAttribute" />
+        <element api="T:System.Runtime.InteropServices.GuidAttribute" />
+        <element api="T:System.Runtime.InteropServices.OutAttribute" />
+        <element api="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+        <element api="T:System.Runtime.InteropServices.CharSet" />
+        <element api="T:System.Runtime.InteropServices.LayoutKind" />
+      </elements>
+      <file name="631b2c0f-028f-0651-fc58-388b10162272" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.CharSet">
+      <topicdata group="api" />
+      <apidata name="CharSet" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.CharSet.None" />
+        <element api="F:System.Runtime.InteropServices.CharSet.Ansi" />
+        <element api="F:System.Runtime.InteropServices.CharSet.Unicode" />
+        <element api="F:System.Runtime.InteropServices.CharSet.Auto" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+      </containers>
+      <file name="ebea0967-a30e-cc84-aa1c-3c55334728a6" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.CharSet.Ansi">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ansi" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </containers>
+      <file name="2d5adc73-7621-25e3-bdf8-41d15b213569" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.CharSet.Auto">
+      <topicdata group="api" notopic="" />
+      <apidata name="Auto" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </containers>
+      <file name="f818a5f9-d9d0-35ba-54ed-b646655c8d36" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.CharSet.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </containers>
+      <file name="5f702b1c-b7b9-6f23-0498-0bc5a51027a8" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.CharSet.Unicode">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unicode" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </containers>
+      <file name="cec77375-1a6a-ef72-69b8-86db8eb94598" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.ComVisibleAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.ComVisibleAttribute" />
+      <apidata name="ComVisibleAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Enum" />
+              <field name="Method" />
+              <field name="Property" />
+              <field name="Field" />
+              <field name="Interface" />
+              <field name="Delegate" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8e4ce761-0046-a632-34a3-7ee613652c87" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.ComVisibleAttribute">
+      <topicdata name="ComVisibleAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.ComVisibleAttribute" />
+      <apidata name="ComVisibleAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.ComVisibleAttribute.#ctor(System.Boolean)" />
+        <element api="P:System.Runtime.InteropServices.ComVisibleAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" />
+      </containers>
+      <file name="fc0259f1-ce00-941a-235f-3c1461afe816" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.ComVisibleAttribute">
+      <topicdata name="ComVisibleAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.ComVisibleAttribute" />
+      <apidata name="ComVisibleAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" />
+      </containers>
+      <file name="517bbdc9-8a89-a344-ece4-9a1f64499584" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.ComVisibleAttribute">
+      <topicdata name="ComVisibleAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.ComVisibleAttribute" />
+      <apidata name="ComVisibleAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.ComVisibleAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" />
+      </containers>
+      <file name="36a76315-957f-4b71-ae0f-e7edfb1d6416" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.ComVisibleAttribute.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="visibility">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+      </containers>
+      <file name="61263e8a-9fd7-a045-7a78-e49cde71caec" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.ComVisibleAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+      </containers>
+      <file name="f36ac3be-4d18-5709-804e-bd09bd0cc20a" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.GuidAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.GuidAttribute" />
+      <apidata name="GuidAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Enum" />
+              <field name="Interface" />
+              <field name="Delegate" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b9eb03e8-b7a4-6864-5b25-5f1592ec882a" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.GuidAttribute">
+      <topicdata name="GuidAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.GuidAttribute" />
+      <apidata name="GuidAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.GuidAttribute.#ctor(System.String)" />
+        <element api="P:System.Runtime.InteropServices.GuidAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.GuidAttribute" />
+      </containers>
+      <file name="d3d1c973-4591-5ffb-66c4-f11e43b84234" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.GuidAttribute">
+      <topicdata name="GuidAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.GuidAttribute" />
+      <apidata name="GuidAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.GuidAttribute" />
+      </containers>
+      <file name="3a46d0c6-6b25-0587-e907-a01340f1d9b1" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.GuidAttribute">
+      <topicdata name="GuidAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.GuidAttribute" />
+      <apidata name="GuidAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.GuidAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.GuidAttribute" />
+      </containers>
+      <file name="af97fec1-566b-4d54-76e6-8ef7c318d19e" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.GuidAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="guid">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+      </containers>
+      <file name="e7c7657a-c41e-11cc-bf92-c0b3b3bc1358" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.GuidAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+      </containers>
+      <file name="2f27fc06-4059-9469-1b7f-94456004d1cf" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.LayoutKind">
+      <topicdata group="api" />
+      <apidata name="LayoutKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.LayoutKind.Sequential" />
+        <element api="F:System.Runtime.InteropServices.LayoutKind.Explicit" />
+        <element api="F:System.Runtime.InteropServices.LayoutKind.Auto" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+      </containers>
+      <file name="32186fbb-0709-0612-885e-fb6c0409dc2d" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.LayoutKind.Auto">
+      <topicdata group="api" notopic="" />
+      <apidata name="Auto" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.LayoutKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.LayoutKind" ref="false" />
+      </containers>
+      <file name="2586b2b0-cb01-101c-acd6-e65a63d8f006" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.LayoutKind.Explicit">
+      <topicdata group="api" notopic="" />
+      <apidata name="Explicit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.LayoutKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.LayoutKind" ref="false" />
+      </containers>
+      <file name="733c9c8d-1199-f9af-af12-1e0d2924fc9a" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.LayoutKind.Sequential">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sequential" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.LayoutKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.LayoutKind" ref="false" />
+      </containers>
+      <file name="170861ae-43b1-90ae-ee8b-fd22b9a0f94f" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.OutAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.OutAttribute" />
+      <apidata name="OutAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.OutAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b4bab92a-304c-03ab-801a-2907c2e1c70e" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.OutAttribute">
+      <topicdata name="OutAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.OutAttribute" />
+      <apidata name="OutAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.OutAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.InteropServices.OutAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.OutAttribute" />
+      </containers>
+      <file name="fda107f3-ed6e-0b85-072e-9fd13eeae845" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.OutAttribute">
+      <topicdata name="OutAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.OutAttribute" />
+      <apidata name="OutAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.InteropServices.OutAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.OutAttribute" />
+      </containers>
+      <file name="529b9c66-70ef-0137-cdfa-2f037c3a05c1" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.OutAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.OutAttribute" ref="true" />
+      </containers>
+      <file name="bf8e4988-55f9-d58c-6dc3-f39cd550ff16" />
+    </api>
+    <api id="T:System.Runtime.InteropServices.StructLayoutAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      <apidata name="StructLayoutAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ec274271-5348-ef7e-b8e2-a07867e2401f" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.InteropServices.StructLayoutAttribute">
+      <topicdata name="StructLayoutAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      <apidata name="StructLayoutAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.InteropServices.StructLayoutAttribute.#ctor">
+          <element api="M:System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Int16)" />
+          <element api="M:System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Runtime.InteropServices.LayoutKind)" />
+        </element>
+        <element api="F:System.Runtime.InteropServices.StructLayoutAttribute.CharSet" />
+        <element api="F:System.Runtime.InteropServices.StructLayoutAttribute.Pack" />
+        <element api="F:System.Runtime.InteropServices.StructLayoutAttribute.Size" />
+        <element api="P:System.Runtime.InteropServices.StructLayoutAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      </containers>
+      <file name="04065125-b5a6-0b62-28ef-5b755208ac54" />
+    </api>
+    <api id="Methods.T:System.Runtime.InteropServices.StructLayoutAttribute">
+      <topicdata name="StructLayoutAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      <apidata name="StructLayoutAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      </containers>
+      <file name="71401201-2e8a-c861-1945-17c69c782649" />
+    </api>
+    <api id="Properties.T:System.Runtime.InteropServices.StructLayoutAttribute">
+      <topicdata name="StructLayoutAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      <apidata name="StructLayoutAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.InteropServices.StructLayoutAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      </containers>
+      <file name="456a6208-99ee-8557-fc84-b86c5112e002" />
+    </api>
+    <api id="Fields.T:System.Runtime.InteropServices.StructLayoutAttribute">
+      <topicdata name="StructLayoutAttribute" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      <apidata name="StructLayoutAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Runtime.InteropServices.StructLayoutAttribute.CharSet" />
+        <element api="F:System.Runtime.InteropServices.StructLayoutAttribute.Pack" />
+        <element api="F:System.Runtime.InteropServices.StructLayoutAttribute.Size" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      </containers>
+      <file name="56a1893a-a403-2dbe-af0e-ca07a49779c5" />
+    </api>
+    <api id="Overload:System.Runtime.InteropServices.StructLayoutAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.InteropServices.StructLayoutAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Int16)" />
+        <element api="M:System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Runtime.InteropServices.LayoutKind)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" ref="true" />
+      </containers>
+      <file name="4ba6ae1a-8d46-4b9e-eb37-db231e500811" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Int16)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.InteropServices.StructLayoutAttribute.#ctor" />
+      <parameters>
+        <parameter name="layoutKind">
+          <type api="T:System.Int16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" ref="true" />
+      </containers>
+      <file name="f5e49daf-0892-bd9e-c51c-052c28f1e2bb" />
+    </api>
+    <api id="M:System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Runtime.InteropServices.LayoutKind)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.InteropServices.StructLayoutAttribute.#ctor" />
+      <parameters>
+        <parameter name="layoutKind">
+          <type api="T:System.Runtime.InteropServices.LayoutKind" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" ref="true" />
+      </containers>
+      <file name="780b1499-18a9-efd7-74da-65c1f31fd01c" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.StructLayoutAttribute.CharSet">
+      <topicdata group="api" />
+      <apidata name="CharSet" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.CharSet" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" ref="true" />
+      </containers>
+      <file name="b24ba6c0-09ca-b5d2-e082-a547230f701e" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.StructLayoutAttribute.Pack">
+      <topicdata group="api" />
+      <apidata name="Pack" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" ref="true" />
+      </containers>
+      <file name="b934496e-4204-c00b-9863-22323672ea91" />
+    </api>
+    <api id="F:System.Runtime.InteropServices.StructLayoutAttribute.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" ref="true" />
+      </containers>
+      <file name="a431487e-1ab9-8b65-d173-b7e850a0f62d" />
+    </api>
+    <api id="P:System.Runtime.InteropServices.StructLayoutAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Runtime.InteropServices.LayoutKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.InteropServices" />
+        <type api="T:System.Runtime.InteropServices.StructLayoutAttribute" ref="true" />
+      </containers>
+      <file name="9c3b0590-9bd9-5d1b-a145-54f74b68cec5" />
+    </api>
+  </apis>
+</reflection>

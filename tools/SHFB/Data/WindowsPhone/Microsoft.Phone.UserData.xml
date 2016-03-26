@@ -1,0 +1,3747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.UserData">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.UserData" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.UserData.Account" />
+        <element api="T:Microsoft.Phone.UserData.AddressKind" />
+        <element api="T:Microsoft.Phone.UserData.Appointment" />
+        <element api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" />
+        <element api="T:Microsoft.Phone.UserData.Appointments" />
+        <element api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" />
+        <element api="T:Microsoft.Phone.UserData.AppointmentStatus" />
+        <element api="T:Microsoft.Phone.UserData.Attendee" />
+        <element api="T:Microsoft.Phone.UserData.CompleteName" />
+        <element api="T:Microsoft.Phone.UserData.Contact" />
+        <element api="T:Microsoft.Phone.UserData.ContactAddress" />
+        <element api="T:Microsoft.Phone.UserData.ContactCompanyInformation" />
+        <element api="T:Microsoft.Phone.UserData.ContactEmailAddress" />
+        <element api="T:Microsoft.Phone.UserData.ContactPhoneNumber" />
+        <element api="T:Microsoft.Phone.UserData.Contacts" />
+        <element api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" />
+        <element api="T:Microsoft.Phone.UserData.EmailAddressKind" />
+        <element api="T:Microsoft.Phone.UserData.FilterKind" />
+        <element api="T:Microsoft.Phone.UserData.PhoneNumberKind" />
+        <element api="T:Microsoft.Phone.UserData.StorageKind" />
+      </elements>
+      <file name="52ae17b5-fb45-8df9-0a51-36f6f81f496f" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.Account">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.Account" />
+      <apidata name="Account" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="8274b659-86fb-50e1-6b5d-f47c90bee76d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.Account">
+      <topicdata name="Account" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.Account" />
+      <apidata name="Account" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Account.Kind" />
+        <element api="P:Microsoft.Phone.UserData.Account.Name" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Account" />
+      </containers>
+      <file name="a3ae8e7f-645c-feb6-84e0-c9c885c04671" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.Account">
+      <topicdata name="Account" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.Account" />
+      <apidata name="Account" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Account" />
+      </containers>
+      <file name="7a866e6e-e5ed-c868-049d-19c15a7a8a29" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.Account">
+      <topicdata name="Account" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.Account" />
+      <apidata name="Account" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Account.Kind" />
+        <element api="P:Microsoft.Phone.UserData.Account.Name" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Account" />
+      </containers>
+      <file name="6feed092-7a46-7794-b8d5-c289b72f0130" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Account.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Kind" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+      </containers>
+      <file name="92b26913-e03f-430b-6da8-64d0f04ca659" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Account.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+      </containers>
+      <file name="9a93cbdf-21e9-2968-88da-fe90ac67a907" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.AddressKind">
+      <topicdata group="api" />
+      <apidata name="AddressKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.UserData.AddressKind.Home" />
+        <element api="F:Microsoft.Phone.UserData.AddressKind.Work" />
+        <element api="F:Microsoft.Phone.UserData.AddressKind.Other" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="471f1fe3-07eb-71fc-4ec1-173dab94f0e2" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.AddressKind.Home">
+      <topicdata group="api" notopic="" />
+      <apidata name="Home" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AddressKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AddressKind" ref="false" />
+      </containers>
+      <file name="64884dcc-d69f-b7c3-3c5d-3fe8ec2d5aa7" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.AddressKind.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AddressKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AddressKind" ref="false" />
+      </containers>
+      <file name="99ab42e7-51bc-609f-4982-8b96485ae2ea" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.AddressKind.Work">
+      <topicdata group="api" notopic="" />
+      <apidata name="Work" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AddressKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AddressKind" ref="false" />
+      </containers>
+      <file name="bc97045d-cc7c-320f-8bae-740b377dbbf0" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.Appointment">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.Appointment" />
+      <apidata name="Appointment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="6f8d3501-18e5-f112-73ea-b55088ca4499" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.Appointment">
+      <topicdata name="Appointment" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.Appointment" />
+      <apidata name="Appointment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Appointment.Account" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Attendees" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Details" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.EndTime" />
+        <element api="M:Microsoft.Phone.UserData.Appointment.Equals(System.Object)" />
+        <element api="M:Microsoft.Phone.UserData.Appointment.GetHashCode" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.IsAllDayEvent" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.IsPrivate" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Location" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Organizer" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.StartTime" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Status" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Subject" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" />
+      </containers>
+      <file name="47f8e243-8f65-9344-ffba-aa5d78f6f41b" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.Appointment">
+      <topicdata name="Appointment" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.Appointment" />
+      <apidata name="Appointment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.Appointment.Equals(System.Object)" />
+        <element api="M:Microsoft.Phone.UserData.Appointment.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" />
+      </containers>
+      <file name="9af15016-e901-f32c-9047-30845c681e45" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.Appointment">
+      <topicdata name="Appointment" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.Appointment" />
+      <apidata name="Appointment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Appointment.Account" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Attendees" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Details" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.EndTime" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.IsAllDayEvent" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.IsPrivate" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Location" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Organizer" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.StartTime" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Status" />
+        <element api="P:Microsoft.Phone.UserData.Appointment.Subject" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" />
+      </containers>
+      <file name="4b58b75b-a167-7d3e-6f0f-ea460209f1da" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.Account">
+      <topicdata group="api" />
+      <apidata name="Account" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Account" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="f0366bf5-010a-6432-3137-39fc789428cc" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.Attendees">
+      <topicdata group="api" />
+      <apidata name="Attendees" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Attendees" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Attendee" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="269705b6-4276-75be-836c-4e68f7cf3fc0" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.Details">
+      <topicdata group="api" />
+      <apidata name="Details" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Details" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="a93eb70e-1f1c-79de-783e-fe8c9cc5fdac" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.EndTime">
+      <topicdata group="api" />
+      <apidata name="EndTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="e229a18a-e656-d1c9-7319-a6bb9ec7c4dc" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Appointment.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="6caca723-f3d7-901d-0324-a17d2682ab82" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Appointment.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="4607e337-f29f-5903-edef-93432df30f72" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.IsAllDayEvent">
+      <topicdata group="api" />
+      <apidata name="IsAllDayEvent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsAllDayEvent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="2d414f53-2a52-aa99-b1c7-47f305be5873" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.IsPrivate">
+      <topicdata group="api" />
+      <apidata name="IsPrivate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsPrivate" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="89e53cef-6d0b-bf99-a0f0-e4d3c67913e9" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.Location">
+      <topicdata group="api" />
+      <apidata name="Location" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Location" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="58e4545c-8e9b-135c-fc9b-cea2a562ff05" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.Organizer">
+      <topicdata group="api" />
+      <apidata name="Organizer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Organizer" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.Attendee" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="c63572a0-39fb-53c4-4536-78d56eb03a56" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.StartTime">
+      <topicdata group="api" />
+      <apidata name="StartTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StartTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="6fe1269b-0bed-3503-86bd-2e16d3f92cd4" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="542e9cff-15ab-bf18-07e3-bda64bf1378d" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointment.Subject">
+      <topicdata group="api" />
+      <apidata name="Subject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Subject" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+      </containers>
+      <file name="a6a2df6f-0952-39e1-cd70-6da509242f5c" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.Appointments">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.Appointments" />
+      <apidata name="Appointments" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Appointments.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="ef77c013-fc58-e6b9-e3f4-27d436964795" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.Appointments">
+      <topicdata name="Appointments" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.Appointments" />
+      <apidata name="Appointments" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Appointments.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.Appointments.#ctor" />
+        <element api="P:Microsoft.Phone.UserData.Appointments.Accounts" />
+        <element api="F:Microsoft.Phone.UserData.Appointments.DefaultMaximumItems" />
+        <element api="Overload:Microsoft.Phone.UserData.Appointments.SearchAsync">
+          <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Object)" />
+          <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,Microsoft.Phone.UserData.Account,System.Object)" />
+          <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Int32,System.Object)" />
+          <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Int32,Microsoft.Phone.UserData.Account,System.Object)" />
+        </element>
+        <element api="E:Microsoft.Phone.UserData.Appointments.SearchCompleted" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" />
+      </containers>
+      <file name="5e4bec63-bc55-391d-9193-cdc82d69b1f9" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.Appointments">
+      <topicdata name="Appointments" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.Appointments" />
+      <apidata name="Appointments" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Appointments.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.UserData.Appointments.SearchAsync">
+          <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Object)" />
+          <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,Microsoft.Phone.UserData.Account,System.Object)" />
+          <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Int32,System.Object)" />
+          <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Int32,Microsoft.Phone.UserData.Account,System.Object)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" />
+      </containers>
+      <file name="688e01c2-47dd-3cc7-f64d-e511e712c2a7" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.Appointments">
+      <topicdata name="Appointments" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.Appointments" />
+      <apidata name="Appointments" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Appointments.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Appointments.Accounts" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" />
+      </containers>
+      <file name="38328702-5432-3e2c-eaac-7e185d6f82ca" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.UserData.Appointments">
+      <topicdata name="Appointments" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.UserData.Appointments" />
+      <apidata name="Appointments" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Appointments.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Phone.UserData.Appointments.SearchCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" />
+      </containers>
+      <file name="d3f2fed8-a839-5bc4-7791-ce3760b81ffb" />
+    </api>
+    <api id="Fields.T:Microsoft.Phone.UserData.Appointments">
+      <topicdata name="Appointments" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Phone.UserData.Appointments" />
+      <apidata name="Appointments" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Appointments.#ctor" />
+      <elements>
+        <element api="F:Microsoft.Phone.UserData.Appointments.DefaultMaximumItems" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" />
+      </containers>
+      <file name="aada54ec-cc5d-3cc4-dcba-3974617ce22a" />
+    </api>
+    <api id="Overload:Microsoft.Phone.UserData.Appointments.SearchAsync">
+      <topicdata name="SearchAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.Appointments" />
+      <apidata name="SearchAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Object)" />
+        <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,Microsoft.Phone.UserData.Account,System.Object)" />
+        <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Int32,System.Object)" />
+        <element api="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Int32,Microsoft.Phone.UserData.Account,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="93f504fb-6655-2aae-21ed-65b68014fa06" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Appointments.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="980d528e-0155-270d-083a-87bd5cfd16c8" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Appointments.Accounts">
+      <topicdata group="api" />
+      <apidata name="Accounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Accounts" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="fe301e11-7486-0255-959f-6ede4fcc5195" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.Appointments.DefaultMaximumItems">
+      <topicdata group="api" />
+      <apidata name="DefaultMaximumItems" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>100</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="56e7af05-4f8a-9e09-1002-a19ef4de353f" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,Microsoft.Phone.UserData.Account,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SearchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.UserData.Appointments.SearchAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startTimeInclusive">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endTimeInclusive">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="account">
+          <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="7890015a-be11-1358-5c68-95d9f99628cd" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Int32,Microsoft.Phone.UserData.Account,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SearchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.UserData.Appointments.SearchAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startTimeInclusive">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endTimeInclusive">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="maximumItems">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="account">
+          <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="6a24ed38-8ae3-7729-4497-a1cee9c58483" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SearchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.UserData.Appointments.SearchAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startTimeInclusive">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endTimeInclusive">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="maximumItems">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="67bd8c6c-d1e0-bf05-16d5-26555949762e" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Appointments.SearchAsync(System.DateTime,System.DateTime,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SearchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.UserData.Appointments.SearchAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startTimeInclusive">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endTimeInclusive">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="666ed777-1b52-93aa-8edc-e0a2f502d931" />
+    </api>
+    <api id="E:Microsoft.Phone.UserData.Appointments.SearchCompleted">
+      <topicdata group="api" />
+      <apidata name="SearchCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SearchCompleted" />
+      <remover name="remove_SearchCompleted" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+      </containers>
+      <file name="51d0a2e4-3852-b0ff-0c8e-eac979fb0a21" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" />
+      <apidata name="AppointmentsSearchEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="72f96961-5d6c-7161-002c-a6e0a4bc1fd7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs">
+      <topicdata name="AppointmentsSearchEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" />
+      <apidata name="AppointmentsSearchEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.EndTimeInclusive" />
+        <element api="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.Results" />
+        <element api="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.StartTimeInclusive" />
+        <element api="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.State" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" />
+      </containers>
+      <file name="ddb94a62-6b0f-7f53-5eff-4300ce9daa6c" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs">
+      <topicdata name="AppointmentsSearchEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" />
+      <apidata name="AppointmentsSearchEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" />
+      </containers>
+      <file name="71513d40-faa3-ec53-c1bf-dbb7309f82ed" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs">
+      <topicdata name="AppointmentsSearchEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" />
+      <apidata name="AppointmentsSearchEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.EndTimeInclusive" />
+        <element api="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.Results" />
+        <element api="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.StartTimeInclusive" />
+        <element api="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.State" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" />
+      </containers>
+      <file name="559d5bf1-dd44-a425-a142-25dd05b040a2" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.EndTimeInclusive">
+      <topicdata group="api" />
+      <apidata name="EndTimeInclusive" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndTimeInclusive" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" ref="true" />
+      </containers>
+      <file name="50ada985-b2a3-dd3c-0f88-6e826966bac9" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.Results">
+      <topicdata group="api" />
+      <apidata name="Results" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Results" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Appointment" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" ref="true" />
+      </containers>
+      <file name="f2926742-8974-4e09-9cb7-a0217b367f0f" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.StartTimeInclusive">
+      <topicdata group="api" />
+      <apidata name="StartTimeInclusive" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StartTimeInclusive" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" ref="true" />
+      </containers>
+      <file name="5b51f472-806c-9fc0-004b-7f75594bbf9f" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.AppointmentsSearchEventArgs.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentsSearchEventArgs" ref="true" />
+      </containers>
+      <file name="8edbc4de-9299-c31e-a4c1-b0f056c2ad47" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.AppointmentStatus">
+      <topicdata group="api" />
+      <apidata name="AppointmentStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.UserData.AppointmentStatus.Free" />
+        <element api="F:Microsoft.Phone.UserData.AppointmentStatus.Tentative" />
+        <element api="F:Microsoft.Phone.UserData.AppointmentStatus.Busy" />
+        <element api="F:Microsoft.Phone.UserData.AppointmentStatus.OutOfOffice" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="c51f386b-3a7d-54ac-cfef-04d0f79c7194" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.AppointmentStatus.Busy">
+      <topicdata group="api" notopic="" />
+      <apidata name="Busy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </containers>
+      <file name="31a80a29-479d-5f36-149e-98f06d640bcd" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.AppointmentStatus.Free">
+      <topicdata group="api" notopic="" />
+      <apidata name="Free" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </containers>
+      <file name="9b68b9d5-dce9-4c0c-e8c9-cc30344f8f97" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.AppointmentStatus.OutOfOffice">
+      <topicdata group="api" notopic="" />
+      <apidata name="OutOfOffice" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </containers>
+      <file name="8d72950e-e9d5-8867-0deb-4247950150aa" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.AppointmentStatus.Tentative">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tentative" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.AppointmentStatus" ref="false" />
+      </containers>
+      <file name="d553ead6-312c-2256-028f-61e8950b2a76" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.Attendee">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.Attendee" />
+      <apidata name="Attendee" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="1a8b5a71-617e-8585-a2b3-98be26085ece" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.Attendee">
+      <topicdata name="Attendee" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.Attendee" />
+      <apidata name="Attendee" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Attendee.DisplayName" />
+        <element api="P:Microsoft.Phone.UserData.Attendee.EmailAddress" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Attendee" />
+      </containers>
+      <file name="0f5cf344-5fdc-420d-d199-5eb5877ff45c" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.Attendee">
+      <topicdata name="Attendee" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.Attendee" />
+      <apidata name="Attendee" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Attendee" />
+      </containers>
+      <file name="eeb0bedb-0512-80a9-a7c9-cd1c8fd607c0" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.Attendee">
+      <topicdata name="Attendee" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.Attendee" />
+      <apidata name="Attendee" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Attendee.DisplayName" />
+        <element api="P:Microsoft.Phone.UserData.Attendee.EmailAddress" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Attendee" />
+      </containers>
+      <file name="450f00f8-e9c7-ea6f-c1e2-7c5ee5739acc" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Attendee.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Attendee" ref="true" />
+      </containers>
+      <file name="569910ab-95de-7200-c89b-5649db12702c" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Attendee.EmailAddress">
+      <topicdata group="api" />
+      <apidata name="EmailAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EmailAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Attendee" ref="true" />
+      </containers>
+      <file name="961cab48-c137-2914-56c7-a6bd214eb0f5" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.CompleteName">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.CompleteName" />
+      <apidata name="CompleteName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="9e6eaf17-9b17-9a07-651b-aa63c3618284" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.CompleteName">
+      <topicdata name="CompleteName" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.CompleteName" />
+      <apidata name="CompleteName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.CompleteName.FirstName" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.LastName" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.MiddleName" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.Nickname" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.Suffix" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.Title" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.YomiFirstName" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.YomiLastName" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" />
+      </containers>
+      <file name="5a8768cb-fe75-c937-6b68-b38901ae2a2e" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.CompleteName">
+      <topicdata name="CompleteName" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.CompleteName" />
+      <apidata name="CompleteName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" />
+      </containers>
+      <file name="b64bc967-b402-f243-6a45-b3c8e75c8751" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.CompleteName">
+      <topicdata name="CompleteName" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.CompleteName" />
+      <apidata name="CompleteName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.CompleteName.FirstName" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.LastName" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.MiddleName" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.Nickname" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.Suffix" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.Title" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.YomiFirstName" />
+        <element api="P:Microsoft.Phone.UserData.CompleteName.YomiLastName" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" />
+      </containers>
+      <file name="33668aa8-28d4-56c1-b2f3-7b35a84493e4" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.CompleteName.FirstName">
+      <topicdata group="api" />
+      <apidata name="FirstName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FirstName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </containers>
+      <file name="a0bf7140-aad3-e44e-3ffd-288ef154b1e6" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.CompleteName.LastName">
+      <topicdata group="api" />
+      <apidata name="LastName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LastName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </containers>
+      <file name="fb43fe08-19b4-ba08-a68a-2f3852a577b4" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.CompleteName.MiddleName">
+      <topicdata group="api" />
+      <apidata name="MiddleName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MiddleName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </containers>
+      <file name="b99904fe-1597-dcf5-e6b2-0b06a6aa079d" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.CompleteName.Nickname">
+      <topicdata group="api" />
+      <apidata name="Nickname" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Nickname" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </containers>
+      <file name="92aa9f92-d50a-3bf4-5573-6048b1485c52" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.CompleteName.Suffix">
+      <topicdata group="api" />
+      <apidata name="Suffix" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Suffix" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </containers>
+      <file name="4f79b8f3-e8fa-fecd-7c3a-3e6770ae416b" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.CompleteName.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </containers>
+      <file name="4b1c314d-eeff-1c0f-04af-46fc7985b81a" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.CompleteName.YomiFirstName">
+      <topicdata group="api" />
+      <apidata name="YomiFirstName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YomiFirstName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </containers>
+      <file name="c9460be6-f134-df9c-69c8-4deb1068b9c9" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.CompleteName.YomiLastName">
+      <topicdata group="api" />
+      <apidata name="YomiLastName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YomiLastName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </containers>
+      <file name="7e287b7c-790b-3828-2a65-57b9806a8912" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.Contact">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.Contact" />
+      <apidata name="Contact" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="ed52ca34-640f-1f67-981e-2c6116b3c1d6" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.Contact">
+      <topicdata name="Contact" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.Contact" />
+      <apidata name="Contact" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Contact.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Addresses" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Birthdays" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Children" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Companies" />
+        <element api="P:Microsoft.Phone.UserData.Contact.CompleteName" />
+        <element api="P:Microsoft.Phone.UserData.Contact.DisplayName" />
+        <element api="P:Microsoft.Phone.UserData.Contact.EmailAddresses" />
+        <element api="M:Microsoft.Phone.UserData.Contact.Equals(System.Object)" />
+        <element api="M:Microsoft.Phone.UserData.Contact.GetHashCode" />
+        <element api="M:Microsoft.Phone.UserData.Contact.GetPicture" />
+        <element api="P:Microsoft.Phone.UserData.Contact.IsPinnedToStart" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Notes" />
+        <element api="P:Microsoft.Phone.UserData.Contact.PhoneNumbers" />
+        <element api="P:Microsoft.Phone.UserData.Contact.SignificantOthers" />
+        <element api="M:Microsoft.Phone.UserData.Contact.ToString" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Websites" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" />
+      </containers>
+      <file name="37b8ab36-db28-bbf0-5fdb-695bd7cfb084" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.Contact">
+      <topicdata name="Contact" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.Contact" />
+      <apidata name="Contact" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.Contact.Equals(System.Object)" />
+        <element api="M:Microsoft.Phone.UserData.Contact.GetHashCode" />
+        <element api="M:Microsoft.Phone.UserData.Contact.GetPicture" />
+        <element api="M:Microsoft.Phone.UserData.Contact.ToString" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" />
+      </containers>
+      <file name="3a845da0-3d96-801a-5195-3732da5808e8" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.Contact">
+      <topicdata name="Contact" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.Contact" />
+      <apidata name="Contact" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Contact.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Addresses" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Birthdays" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Children" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Companies" />
+        <element api="P:Microsoft.Phone.UserData.Contact.CompleteName" />
+        <element api="P:Microsoft.Phone.UserData.Contact.DisplayName" />
+        <element api="P:Microsoft.Phone.UserData.Contact.EmailAddresses" />
+        <element api="P:Microsoft.Phone.UserData.Contact.IsPinnedToStart" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Notes" />
+        <element api="P:Microsoft.Phone.UserData.Contact.PhoneNumbers" />
+        <element api="P:Microsoft.Phone.UserData.Contact.SignificantOthers" />
+        <element api="P:Microsoft.Phone.UserData.Contact.Websites" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" />
+      </containers>
+      <file name="92a4e837-4cdd-d479-b00f-990695f3c814" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.Accounts">
+      <topicdata group="api" />
+      <apidata name="Accounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Accounts" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="c930aabf-5286-ceec-35c4-40d415ab7d4f" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.Addresses">
+      <topicdata group="api" />
+      <apidata name="Addresses" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Addresses" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.ContactAddress" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="b7441e55-d1c7-2cb8-6ea5-cb50b58e7604" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.Birthdays">
+      <topicdata group="api" />
+      <apidata name="Birthdays" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Birthdays" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTime" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="a69fa2d0-b026-fd55-90a7-3ae941da82ce" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.Children">
+      <topicdata group="api" />
+      <apidata name="Children" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Children" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="bba6f3c3-97cb-4fd3-2dd4-c8103cd73f11" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.Companies">
+      <topicdata group="api" />
+      <apidata name="Companies" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Companies" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="26c1c9a5-24fc-d776-c0b5-6181e22ebc45" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.CompleteName">
+      <topicdata group="api" />
+      <apidata name="CompleteName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CompleteName" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.CompleteName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="8d4f80bb-b59f-5bf4-d3cb-d0cdb4d7ea1a" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="068e66c2-1774-1eb2-29b3-79dcced4539f" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.EmailAddresses">
+      <topicdata group="api" />
+      <apidata name="EmailAddresses" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EmailAddresses" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.ContactEmailAddress" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="c28f37f7-169e-5132-6c5b-471adbadc2be" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Contact.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="2f5b55f2-552b-0c80-1965-4b0334b349a8" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Contact.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="ddbe2f08-fcb4-2540-3ead-3900cbf9e021" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Contact.GetPicture">
+      <topicdata group="api" />
+      <apidata name="GetPicture" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="8dc7ea7a-440b-356a-ad76-e4f4556b6f7a" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.IsPinnedToStart">
+      <topicdata group="api" />
+      <apidata name="IsPinnedToStart" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsPinnedToStart" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="626b907c-6384-c168-0010-c4ee9d8c982c" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.Notes">
+      <topicdata group="api" />
+      <apidata name="Notes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Notes" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="5ca9ab21-d13f-ac44-a753-bf8d0189f4dc" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.PhoneNumbers">
+      <topicdata group="api" />
+      <apidata name="PhoneNumbers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PhoneNumbers" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.ContactPhoneNumber" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="013050ef-7ffc-126b-c63f-5078aaadfb55" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.SignificantOthers">
+      <topicdata group="api" />
+      <apidata name="SignificantOthers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SignificantOthers" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="f2831ee9-b5ec-5fed-2c06-7c76d34a00ca" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Contact.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="967a3177-2f8c-35cb-f4e2-b21a69513f8d" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contact.Websites">
+      <topicdata group="api" />
+      <apidata name="Websites" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Websites" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+      </containers>
+      <file name="da573a54-3927-6ce9-cb60-98a19b7a8227" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.ContactAddress">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.ContactAddress" />
+      <apidata name="ContactAddress" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="c5bf819a-812b-9760-d4e3-1c2d612d9aa7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.ContactAddress">
+      <topicdata name="ContactAddress" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.ContactAddress" />
+      <apidata name="ContactAddress" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactAddress.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.ContactAddress.Kind" />
+        <element api="P:Microsoft.Phone.UserData.ContactAddress.PhysicalAddress" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactAddress" />
+      </containers>
+      <file name="cbd91109-8a72-3277-7fda-046714dea38e" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.ContactAddress">
+      <topicdata name="ContactAddress" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.ContactAddress" />
+      <apidata name="ContactAddress" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactAddress" />
+      </containers>
+      <file name="33d9cd43-e7ac-969e-876b-28c0cb42d465" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.ContactAddress">
+      <topicdata name="ContactAddress" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.ContactAddress" />
+      <apidata name="ContactAddress" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactAddress.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.ContactAddress.Kind" />
+        <element api="P:Microsoft.Phone.UserData.ContactAddress.PhysicalAddress" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactAddress" />
+      </containers>
+      <file name="33b490c7-184e-b3f1-ea31-84db94363f41" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactAddress.Accounts">
+      <topicdata group="api" />
+      <apidata name="Accounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Accounts" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactAddress" ref="true" />
+      </containers>
+      <file name="59be5a80-30fd-f3ae-6156-249b6a7db34c" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactAddress.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Kind" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.AddressKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactAddress" ref="true" />
+      </containers>
+      <file name="fc26ce61-0f67-b7d7-63c9-eff99d742ae7" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactAddress.PhysicalAddress">
+      <topicdata group="api" />
+      <apidata name="PhysicalAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PhysicalAddress" />
+      <returns>
+        <type api="T:System.Device.Location.CivicAddress" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactAddress" ref="true" />
+      </containers>
+      <file name="328baa0d-420f-333e-3663-ef991925c8c4" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.ContactCompanyInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.ContactCompanyInformation" />
+      <apidata name="ContactCompanyInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="b53891ef-de31-c0a2-86dc-43492bdd57bb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.ContactCompanyInformation">
+      <topicdata name="ContactCompanyInformation" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.ContactCompanyInformation" />
+      <apidata name="ContactCompanyInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.CompanyName" />
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.JobTitle" />
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.OfficeLocation" />
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.YomiCompanyName" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" />
+      </containers>
+      <file name="91c1e740-ed35-0a9b-8299-68ba5a595f36" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.ContactCompanyInformation">
+      <topicdata name="ContactCompanyInformation" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.ContactCompanyInformation" />
+      <apidata name="ContactCompanyInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" />
+      </containers>
+      <file name="34c4d286-b91c-150a-ee48-d68f8a90191d" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.ContactCompanyInformation">
+      <topicdata name="ContactCompanyInformation" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.ContactCompanyInformation" />
+      <apidata name="ContactCompanyInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.CompanyName" />
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.JobTitle" />
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.OfficeLocation" />
+        <element api="P:Microsoft.Phone.UserData.ContactCompanyInformation.YomiCompanyName" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" />
+      </containers>
+      <file name="4fda486d-20bd-5a33-d195-bc2972bf98eb" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactCompanyInformation.Accounts">
+      <topicdata group="api" />
+      <apidata name="Accounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Accounts" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" ref="true" />
+      </containers>
+      <file name="b790b9da-de2f-1a87-8a53-c57ce7d15282" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactCompanyInformation.CompanyName">
+      <topicdata group="api" />
+      <apidata name="CompanyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CompanyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" ref="true" />
+      </containers>
+      <file name="a88f9121-1345-e65b-9ac9-61595e2981d2" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactCompanyInformation.JobTitle">
+      <topicdata group="api" />
+      <apidata name="JobTitle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_JobTitle" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" ref="true" />
+      </containers>
+      <file name="213f5a94-32e7-abe4-ac87-6fe01ba3244a" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactCompanyInformation.OfficeLocation">
+      <topicdata group="api" />
+      <apidata name="OfficeLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OfficeLocation" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" ref="true" />
+      </containers>
+      <file name="92e72bfa-6a89-85b5-0c1a-70082a24d9fe" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactCompanyInformation.YomiCompanyName">
+      <topicdata group="api" />
+      <apidata name="YomiCompanyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YomiCompanyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactCompanyInformation" ref="true" />
+      </containers>
+      <file name="3d27edb5-be5d-bf6e-3a8e-c8c639402d49" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.ContactEmailAddress">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.ContactEmailAddress" />
+      <apidata name="ContactEmailAddress" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="efef4100-990c-763b-3e81-dd032623c0c0" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.ContactEmailAddress">
+      <topicdata name="ContactEmailAddress" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.ContactEmailAddress" />
+      <apidata name="ContactEmailAddress" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactEmailAddress.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.ContactEmailAddress.EmailAddress" />
+        <element api="P:Microsoft.Phone.UserData.ContactEmailAddress.Kind" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactEmailAddress" />
+      </containers>
+      <file name="5c372912-b63a-a487-9880-46d802808b8d" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.ContactEmailAddress">
+      <topicdata name="ContactEmailAddress" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.ContactEmailAddress" />
+      <apidata name="ContactEmailAddress" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactEmailAddress" />
+      </containers>
+      <file name="8c5e49b8-7bd8-0c68-1999-3cfcec1528cb" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.ContactEmailAddress">
+      <topicdata name="ContactEmailAddress" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.ContactEmailAddress" />
+      <apidata name="ContactEmailAddress" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactEmailAddress.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.ContactEmailAddress.EmailAddress" />
+        <element api="P:Microsoft.Phone.UserData.ContactEmailAddress.Kind" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactEmailAddress" />
+      </containers>
+      <file name="c2acc004-e9dd-bdbd-c3bf-92c31b2e5ccf" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactEmailAddress.Accounts">
+      <topicdata group="api" />
+      <apidata name="Accounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Accounts" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactEmailAddress" ref="true" />
+      </containers>
+      <file name="ca514232-3a27-f8a4-4410-0684fd2bcdcb" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactEmailAddress.EmailAddress">
+      <topicdata group="api" />
+      <apidata name="EmailAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EmailAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactEmailAddress" ref="true" />
+      </containers>
+      <file name="ec1fa06f-4fae-b3b0-002a-bda217cd61c8" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactEmailAddress.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Kind" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.EmailAddressKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactEmailAddress" ref="true" />
+      </containers>
+      <file name="3d03c4ae-22d1-a2cc-46ef-a62a5b32c750" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.ContactPhoneNumber">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.ContactPhoneNumber" />
+      <apidata name="ContactPhoneNumber" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="95d71804-1cab-d6a4-7cc8-88f1be95aa0d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.ContactPhoneNumber">
+      <topicdata name="ContactPhoneNumber" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.ContactPhoneNumber" />
+      <apidata name="ContactPhoneNumber" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactPhoneNumber.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.ContactPhoneNumber.Kind" />
+        <element api="P:Microsoft.Phone.UserData.ContactPhoneNumber.PhoneNumber" />
+        <element api="M:Microsoft.Phone.UserData.ContactPhoneNumber.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactPhoneNumber" />
+      </containers>
+      <file name="d34e67ed-33d9-6925-74ca-f6504fe8fc81" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.ContactPhoneNumber">
+      <topicdata name="ContactPhoneNumber" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.ContactPhoneNumber" />
+      <apidata name="ContactPhoneNumber" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.ContactPhoneNumber.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactPhoneNumber" />
+      </containers>
+      <file name="299e6124-f08c-c65e-4102-f20ac205f0dc" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.ContactPhoneNumber">
+      <topicdata name="ContactPhoneNumber" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.ContactPhoneNumber" />
+      <apidata name="ContactPhoneNumber" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactPhoneNumber.Accounts" />
+        <element api="P:Microsoft.Phone.UserData.ContactPhoneNumber.Kind" />
+        <element api="P:Microsoft.Phone.UserData.ContactPhoneNumber.PhoneNumber" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactPhoneNumber" />
+      </containers>
+      <file name="0df6c4fa-d7a7-4301-2000-c0a71c2ac66d" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactPhoneNumber.Accounts">
+      <topicdata group="api" />
+      <apidata name="Accounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Accounts" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactPhoneNumber" ref="true" />
+      </containers>
+      <file name="d33dd75c-a37d-6529-1526-29fb4f3fef87" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactPhoneNumber.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Kind" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactPhoneNumber" ref="true" />
+      </containers>
+      <file name="18e870fb-696e-db6e-bfdc-e06c25bd90ca" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactPhoneNumber.PhoneNumber">
+      <topicdata group="api" />
+      <apidata name="PhoneNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PhoneNumber" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactPhoneNumber" ref="true" />
+      </containers>
+      <file name="f0cffdec-aeb5-c7e8-8657-80e7b038823b" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.ContactPhoneNumber.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactPhoneNumber" ref="true" />
+      </containers>
+      <file name="33209303-5c22-c5a5-6cfc-04a1f8ff0735" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.Contacts">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.Contacts" />
+      <apidata name="Contacts" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Contacts.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="ea40dda1-1081-c1c8-644c-aff0c01858cf" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.Contacts">
+      <topicdata name="Contacts" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.Contacts" />
+      <apidata name="Contacts" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Contacts.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.Contacts.#ctor" />
+        <element api="P:Microsoft.Phone.UserData.Contacts.Accounts" />
+        <element api="M:Microsoft.Phone.UserData.Contacts.SearchAsync(System.String,Microsoft.Phone.UserData.FilterKind,System.Object)" />
+        <element api="E:Microsoft.Phone.UserData.Contacts.SearchCompleted" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contacts" />
+      </containers>
+      <file name="d5ed2bf4-a2c8-4a50-2ca9-7a43f6417abc" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.Contacts">
+      <topicdata name="Contacts" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.Contacts" />
+      <apidata name="Contacts" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Contacts.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.Contacts.SearchAsync(System.String,Microsoft.Phone.UserData.FilterKind,System.Object)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contacts" />
+      </containers>
+      <file name="3c385a47-c011-0af1-ee0a-6296126cee61" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.Contacts">
+      <topicdata name="Contacts" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.Contacts" />
+      <apidata name="Contacts" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Contacts.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.Contacts.Accounts" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contacts" />
+      </containers>
+      <file name="8f5696d0-0e4a-c2e8-9eab-9400acdb3d93" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.UserData.Contacts">
+      <topicdata name="Contacts" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.UserData.Contacts" />
+      <apidata name="Contacts" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.UserData.Contacts.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Phone.UserData.Contacts.SearchCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contacts" />
+      </containers>
+      <file name="d3c8d035-3886-c17b-5e5e-80c1c5cedaaf" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Contacts.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contacts" ref="true" />
+      </containers>
+      <file name="d1e9bdcd-87d1-6b3f-0ff7-b02ff1dfb075" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.Contacts.Accounts">
+      <topicdata group="api" />
+      <apidata name="Accounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Accounts" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Account" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contacts" ref="true" />
+      </containers>
+      <file name="0b086498-1633-0e2c-621a-def2ba8bbec2" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.Contacts.SearchAsync(System.String,Microsoft.Phone.UserData.FilterKind,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SearchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="filter">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="filterKind">
+          <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contacts" ref="true" />
+      </containers>
+      <file name="72c2b985-9e44-98dc-cdb5-f635ee0fddb0" />
+    </api>
+    <api id="E:Microsoft.Phone.UserData.Contacts.SearchCompleted">
+      <topicdata group="api" />
+      <apidata name="SearchCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SearchCompleted" />
+      <remover name="remove_SearchCompleted" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.Contacts" ref="true" />
+      </containers>
+      <file name="88b6460f-ac96-d7bf-79f6-05d2521f92c1" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.ContactsSearchEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.ContactsSearchEventArgs" />
+      <apidata name="ContactsSearchEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="d2d1017d-c53d-fb3f-b19a-ca3fe65517ab" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.ContactsSearchEventArgs">
+      <topicdata name="ContactsSearchEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" />
+      <apidata name="ContactsSearchEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.Filter" />
+        <element api="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.FilterKind" />
+        <element api="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.Results" />
+        <element api="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.State" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" />
+      </containers>
+      <file name="4f206db8-6977-2c59-3818-8caf24b183a4" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.ContactsSearchEventArgs">
+      <topicdata name="ContactsSearchEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" />
+      <apidata name="ContactsSearchEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" />
+      </containers>
+      <file name="b33a31c1-13c7-91aa-0be1-62402798e940" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.ContactsSearchEventArgs">
+      <topicdata name="ContactsSearchEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" />
+      <apidata name="ContactsSearchEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.Filter" />
+        <element api="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.FilterKind" />
+        <element api="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.Results" />
+        <element api="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.State" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" />
+      </containers>
+      <file name="9572e00b-e111-4610-fbfe-767adc28562d" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.Filter">
+      <topicdata group="api" />
+      <apidata name="Filter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Filter" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" ref="true" />
+      </containers>
+      <file name="3655fb0b-08e5-7309-dc91-594c465c33e1" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.FilterKind">
+      <topicdata group="api" />
+      <apidata name="FilterKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FilterKind" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" ref="true" />
+      </containers>
+      <file name="afcdfcff-8b19-16ae-67d6-865ed78ccf8d" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.Results">
+      <topicdata group="api" />
+      <apidata name="Results" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Results" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.UserData.Contact" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" ref="true" />
+      </containers>
+      <file name="b6a30fb3-76a9-9753-4468-167b082dc58c" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.ContactsSearchEventArgs.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.ContactsSearchEventArgs" ref="true" />
+      </containers>
+      <file name="389d69f7-4cd5-b0c2-cdcf-93905f7486bc" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.EmailAddressKind">
+      <topicdata group="api" />
+      <apidata name="EmailAddressKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.UserData.EmailAddressKind.Personal" />
+        <element api="F:Microsoft.Phone.UserData.EmailAddressKind.Work" />
+        <element api="F:Microsoft.Phone.UserData.EmailAddressKind.Other" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="4508d5c6-0853-a147-8405-ddf3db6232e3" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.EmailAddressKind.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.EmailAddressKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.EmailAddressKind" ref="false" />
+      </containers>
+      <file name="e8500684-28bf-417f-6d90-06e8e1168516" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.EmailAddressKind.Personal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Personal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.EmailAddressKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.EmailAddressKind" ref="false" />
+      </containers>
+      <file name="40850fa2-ea12-881c-afaf-9e9ed2c742db" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.EmailAddressKind.Work">
+      <topicdata group="api" notopic="" />
+      <apidata name="Work" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.EmailAddressKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.EmailAddressKind" ref="false" />
+      </containers>
+      <file name="261cab03-7c83-f34d-4877-43cd5e38848e" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.FilterKind">
+      <topicdata group="api" />
+      <apidata name="FilterKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.UserData.FilterKind.None" />
+        <element api="F:Microsoft.Phone.UserData.FilterKind.PinnedToStart" />
+        <element api="F:Microsoft.Phone.UserData.FilterKind.EmailAddress" />
+        <element api="F:Microsoft.Phone.UserData.FilterKind.PhoneNumber" />
+        <element api="F:Microsoft.Phone.UserData.FilterKind.DisplayName" />
+        <element api="F:Microsoft.Phone.UserData.FilterKind.Identifier" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="d119ab4c-eb54-4633-e418-75eee6a521af" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.FilterKind.DisplayName">
+      <topicdata group="api" notopic="" />
+      <apidata name="DisplayName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </containers>
+      <file name="fbbb6867-c0b4-e885-b372-efdb0818d4e2" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.FilterKind.EmailAddress">
+      <topicdata group="api" notopic="" />
+      <apidata name="EmailAddress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </containers>
+      <file name="6b697e9e-9210-30d6-afa9-f38e1f6d0634" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.FilterKind.Identifier">
+      <topicdata group="api" notopic="" />
+      <apidata name="Identifier" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </containers>
+      <file name="f29a5b62-9faa-08d3-0299-9d0775b1f89a" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.FilterKind.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </containers>
+      <file name="9bc35f5c-d6ab-fa93-4512-8390d0d39a05" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.FilterKind.PhoneNumber">
+      <topicdata group="api" notopic="" />
+      <apidata name="PhoneNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </containers>
+      <file name="9ff12af3-943e-4b9f-07ff-051dceb681d9" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.FilterKind.PinnedToStart">
+      <topicdata group="api" notopic="" />
+      <apidata name="PinnedToStart" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.FilterKind" ref="false" />
+      </containers>
+      <file name="aeb0d669-8792-c68a-62bb-c479cfdd7502" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.PhoneDataSharingContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.UserData.PhoneDataSharingContext" />
+      <apidata name="PhoneDataSharingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Phone.UserData.Appointments" ref="true" />
+          <type api="T:Microsoft.Phone.UserData.Contacts" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="c7eda071-423e-bc00-437e-073d95aa6e71" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.UserData.PhoneDataSharingContext">
+      <topicdata name="PhoneDataSharingContext" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.UserData.PhoneDataSharingContext" />
+      <apidata name="PhoneDataSharingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.PhoneDataSharingContext.#ctor(System.String)" />
+        <element api="P:Microsoft.Phone.UserData.PhoneDataSharingContext.BaseUri" />
+        <element api="M:Microsoft.Phone.UserData.PhoneDataSharingContext.ExecuteRequest``1(System.String)" />
+        <element api="M:Microsoft.Phone.UserData.PhoneDataSharingContext.InitializeInteropContext" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" />
+      </containers>
+      <file name="6a661078-3911-6119-bfa6-79105ab38146" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.UserData.PhoneDataSharingContext">
+      <topicdata name="PhoneDataSharingContext" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.UserData.PhoneDataSharingContext" />
+      <apidata name="PhoneDataSharingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.UserData.PhoneDataSharingContext.ExecuteRequest``1(System.String)" />
+        <element api="M:Microsoft.Phone.UserData.PhoneDataSharingContext.InitializeInteropContext" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" />
+      </containers>
+      <file name="a63a52e8-d0f3-61d3-896d-2739503231e7" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.UserData.PhoneDataSharingContext">
+      <topicdata name="PhoneDataSharingContext" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.UserData.PhoneDataSharingContext" />
+      <apidata name="PhoneDataSharingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.UserData.PhoneDataSharingContext.BaseUri" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" />
+      </containers>
+      <file name="2c3bacd8-c9ec-c85c-112d-efb4493e5572" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.PhoneDataSharingContext.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="baseUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" ref="true" />
+      </containers>
+      <file name="c80d28ac-caa6-1f09-78e8-d98bd9235092" />
+    </api>
+    <api id="P:Microsoft.Phone.UserData.PhoneDataSharingContext.BaseUri">
+      <topicdata group="api" />
+      <apidata name="BaseUri" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BaseUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" ref="true" />
+      </containers>
+      <file name="3910ca81-e52e-55cc-2d49-28c184309ab0" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.PhoneDataSharingContext.ExecuteRequest``1(System.String)">
+      <topicdata group="api" />
+      <apidata name="ExecuteRequest" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="query">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:Microsoft.Phone.UserData.PhoneDataSharingContext.ExecuteRequest``1(System.String)" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" ref="true" />
+      </containers>
+      <file name="c2ba99e9-83a9-1ce6-4c99-23cb5d6f802e" />
+    </api>
+    <api id="M:Microsoft.Phone.UserData.PhoneDataSharingContext.InitializeInteropContext">
+      <topicdata group="api" />
+      <apidata name="InitializeInteropContext" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneDataSharingContext" ref="true" />
+      </containers>
+      <file name="c5d31983-db33-0fec-b0b6-db0d85e262d7" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.PhoneNumberKind">
+      <topicdata group="api" />
+      <apidata name="PhoneNumberKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.UserData.PhoneNumberKind.Mobile" />
+        <element api="F:Microsoft.Phone.UserData.PhoneNumberKind.Home" />
+        <element api="F:Microsoft.Phone.UserData.PhoneNumberKind.Work" />
+        <element api="F:Microsoft.Phone.UserData.PhoneNumberKind.Company" />
+        <element api="F:Microsoft.Phone.UserData.PhoneNumberKind.Pager" />
+        <element api="F:Microsoft.Phone.UserData.PhoneNumberKind.HomeFax" />
+        <element api="F:Microsoft.Phone.UserData.PhoneNumberKind.WorkFax" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="b096214b-b96c-3e58-2fe7-c28e4e2e51bb" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.PhoneNumberKind.Company">
+      <topicdata group="api" notopic="" />
+      <apidata name="Company" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </containers>
+      <file name="e56b90b9-93a0-d057-2eec-03b41735cb11" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.PhoneNumberKind.Home">
+      <topicdata group="api" notopic="" />
+      <apidata name="Home" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </containers>
+      <file name="02281e06-2fe3-8fe2-8a16-74e35e9cbb4b" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.PhoneNumberKind.HomeFax">
+      <topicdata group="api" notopic="" />
+      <apidata name="HomeFax" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </containers>
+      <file name="587c39b7-bb19-ebef-0a89-3500cbc85d03" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.PhoneNumberKind.Mobile">
+      <topicdata group="api" notopic="" />
+      <apidata name="Mobile" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </containers>
+      <file name="3a308b3e-f232-795b-2102-0b0a4e20d85f" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.PhoneNumberKind.Pager">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pager" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </containers>
+      <file name="3de876a1-8c5b-fae6-906b-adb91269f82e" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.PhoneNumberKind.Work">
+      <topicdata group="api" notopic="" />
+      <apidata name="Work" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </containers>
+      <file name="aec9dc4a-fbb6-6031-e106-1e9f9bfda789" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.PhoneNumberKind.WorkFax">
+      <topicdata group="api" notopic="" />
+      <apidata name="WorkFax" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.PhoneNumberKind" ref="false" />
+      </containers>
+      <file name="59500f3d-91a7-2f6d-9620-60af7b701481" />
+    </api>
+    <api id="T:Microsoft.Phone.UserData.StorageKind">
+      <topicdata group="api" />
+      <apidata name="StorageKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.UserData.StorageKind.Phone" />
+        <element api="F:Microsoft.Phone.UserData.StorageKind.WindowsLive" />
+        <element api="F:Microsoft.Phone.UserData.StorageKind.Outlook" />
+        <element api="F:Microsoft.Phone.UserData.StorageKind.Facebook" />
+        <element api="F:Microsoft.Phone.UserData.StorageKind.Other" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+      </containers>
+      <file name="f8fb2213-6e4d-7a5e-24b9-4e66c25e7455" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.StorageKind.Facebook">
+      <topicdata group="api" notopic="" />
+      <apidata name="Facebook" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </containers>
+      <file name="297a7e8c-de2e-05f5-3a69-006279d0f0c1" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.StorageKind.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </containers>
+      <file name="cff4295d-af69-4b35-e635-17ad63d4a730" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.StorageKind.Outlook">
+      <topicdata group="api" notopic="" />
+      <apidata name="Outlook" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </containers>
+      <file name="4015b630-bc3e-04c6-4fce-61e2e8935c03" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.StorageKind.Phone">
+      <topicdata group="api" notopic="" />
+      <apidata name="Phone" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </containers>
+      <file name="780c1e94-57e3-c3b0-dc7e-77528fe22094" />
+    </api>
+    <api id="F:Microsoft.Phone.UserData.StorageKind.WindowsLive">
+      <topicdata group="api" notopic="" />
+      <apidata name="WindowsLive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.UserData" />
+        <type api="T:Microsoft.Phone.UserData.StorageKind" ref="false" />
+      </containers>
+      <file name="078ce21a-8991-5e99-57e5-5820125aef22" />
+    </api>
+  </apis>
+</reflection>

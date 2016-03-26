@@ -1,0 +1,3500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+    <assembly name="Windows.Media.Protection.ProtectionRenewalContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Protection">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Protection" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Protection.MediaProtectionManager" />
+        <element api="T:Windows.Media.Protection.ServiceRequestedEventArgs" />
+        <element api="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" />
+        <element api="T:Windows.Media.Protection.MediaProtectionServiceCompletion" />
+        <element api="T:Windows.Media.Protection.RevocationAndRenewalInformation" />
+        <element api="T:Windows.Media.Protection.RevocationAndRenewalItem" />
+        <element api="T:Windows.Media.Protection.MediaProtectionPMPServer" />
+        <element api="T:Windows.Media.Protection.ServiceRequestedEventHandler" />
+        <element api="T:Windows.Media.Protection.RebootNeededEventHandler" />
+        <element api="T:Windows.Media.Protection.ComponentLoadFailedEventHandler" />
+        <element api="T:Windows.Media.Protection.IMediaProtectionServiceRequest" />
+        <element api="T:Windows.Media.Protection.RevocationAndRenewalReasons" />
+        <element api="T:Windows.Media.Protection.GraphicsTrustStatus" />
+        <element api="T:Windows.Media.Protection.ProtectionRenewalContract" />
+        <element api="T:Windows.Media.Protection.ComponentRenewal" />
+        <element api="T:Windows.Media.Protection.RenewalStatus" />
+      </elements>
+      <file name="08cb3b73-25cc-88a0-4d71-1c49681c88e8" />
+    </api>
+    <api id="T:Windows.Media.Protection.ComponentLoadFailedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.ComponentLoadFailedEventArgs" />
+      <apidata name="ComponentLoadFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="da928807-98e0-1bf6-d1d8-ac37c6c6f6a2" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.ComponentLoadFailedEventArgs">
+      <topicdata name="ComponentLoadFailedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" />
+      <apidata name="ComponentLoadFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Protection.ComponentLoadFailedEventArgs.Completion" />
+        <element api="P:Windows.Media.Protection.ComponentLoadFailedEventArgs.Information" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" />
+      </containers>
+      <file name="748b2034-cbb1-636e-ef58-0d95d73e83ea" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.ComponentLoadFailedEventArgs">
+      <topicdata name="ComponentLoadFailedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" />
+      <apidata name="ComponentLoadFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" />
+      </containers>
+      <file name="840c6d55-5f17-c9ec-f8f5-858dbbfe15cc" />
+    </api>
+    <api id="Properties.T:Windows.Media.Protection.ComponentLoadFailedEventArgs">
+      <topicdata name="ComponentLoadFailedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" />
+      <apidata name="ComponentLoadFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Protection.ComponentLoadFailedEventArgs.Completion" />
+        <element api="P:Windows.Media.Protection.ComponentLoadFailedEventArgs.Information" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" />
+      </containers>
+      <file name="70822655-d723-6c54-028c-9c19ff075ae1" />
+    </api>
+    <api id="P:Windows.Media.Protection.ComponentLoadFailedEventArgs.Completion">
+      <topicdata group="api" />
+      <apidata name="Completion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Completion" />
+      <returns>
+        <type api="T:Windows.Media.Protection.MediaProtectionServiceCompletion" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" ref="true" />
+      </containers>
+      <file name="d15ac908-b111-c461-e249-5831730d1882" />
+    </api>
+    <api id="P:Windows.Media.Protection.ComponentLoadFailedEventArgs.Information">
+      <topicdata group="api" />
+      <apidata name="Information" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Information" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" ref="true" />
+      </containers>
+      <file name="26c07bad-c61a-4b8b-2407-5761678b2a5b" />
+    </api>
+    <api id="T:Windows.Media.Protection.ComponentLoadFailedEventHandler">
+      <topicdata group="api" />
+      <apidata name="ComponentLoadFailedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Media.Protection.MediaProtectionManager" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.Media.Protection.ComponentLoadFailedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2514117692</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>28089</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16971</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>134</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>202</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>9</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>26</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>244</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>50</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>8</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>28</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0c61ec47-07d8-0f4d-46cf-256504279ff0" />
+    </api>
+    <api id="T:Windows.Media.Protection.ComponentRenewal">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.ComponentRenewal" />
+      <apidata name="ComponentRenewal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Media.Protection.ProtectionRenewalContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3da375e8-95a6-2bdd-7007-8b83d1f2f495" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.ComponentRenewal">
+      <topicdata name="ComponentRenewal" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.ComponentRenewal" />
+      <apidata name="ComponentRenewal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Media.Protection.ComponentRenewal.RenewSystemComponentsAsync(Windows.Media.Protection.RevocationAndRenewalInformation)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ComponentRenewal" />
+      </containers>
+      <file name="cb7bc491-fbc5-9a25-f102-012a568ae73c" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.ComponentRenewal">
+      <topicdata name="ComponentRenewal" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.ComponentRenewal" />
+      <apidata name="ComponentRenewal" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Media.Protection.ComponentRenewal.RenewSystemComponentsAsync(Windows.Media.Protection.RevocationAndRenewalInformation)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ComponentRenewal" />
+      </containers>
+      <file name="3b0c03fa-96b9-e56c-7896-75df5ea4b483" />
+    </api>
+    <api id="M:Windows.Media.Protection.ComponentRenewal.RenewSystemComponentsAsync(Windows.Media.Protection.RevocationAndRenewalInformation)">
+      <topicdata group="api" />
+      <apidata name="RenewSystemComponentsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="information" in="true">
+          <type api="T:Windows.Media.Protection.RevocationAndRenewalInformation" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ComponentRenewal" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c4f66aa1-ce55-6b5b-b3da-130dfe3c7ba2" />
+    </api>
+    <api id="T:Windows.Media.Protection.GraphicsTrustStatus">
+      <topicdata group="api" />
+      <apidata name="GraphicsTrustStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Protection.GraphicsTrustStatus.TrustNotRequired" />
+        <element api="F:Windows.Media.Protection.GraphicsTrustStatus.TrustEstablished" />
+        <element api="F:Windows.Media.Protection.GraphicsTrustStatus.EnvironmentNotSupported" />
+        <element api="F:Windows.Media.Protection.GraphicsTrustStatus.DriverNotSupported" />
+        <element api="F:Windows.Media.Protection.GraphicsTrustStatus.DriverSigningFailure" />
+        <element api="F:Windows.Media.Protection.GraphicsTrustStatus.UnknownFailure" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bb0d7896-fb7a-799b-3383-7ec783847559" />
+    </api>
+    <api id="F:Windows.Media.Protection.GraphicsTrustStatus.DriverNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="DriverNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </containers>
+      <file name="735e0ad2-d449-17a8-3a0b-b235df6fdb7d" />
+    </api>
+    <api id="F:Windows.Media.Protection.GraphicsTrustStatus.DriverSigningFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="DriverSigningFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </containers>
+      <file name="458323ea-dd31-99ed-f768-9f63095d93be" />
+    </api>
+    <api id="F:Windows.Media.Protection.GraphicsTrustStatus.EnvironmentNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnvironmentNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </containers>
+      <file name="b895c4ea-44db-4fa5-ac40-365ee31d3a31" />
+    </api>
+    <api id="F:Windows.Media.Protection.GraphicsTrustStatus.TrustEstablished">
+      <topicdata group="api" notopic="" />
+      <apidata name="TrustEstablished" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </containers>
+      <file name="aa68f266-28a1-d960-6133-587f132b795f" />
+    </api>
+    <api id="F:Windows.Media.Protection.GraphicsTrustStatus.TrustNotRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="TrustNotRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </containers>
+      <file name="69923ca1-3b2c-d054-4f32-43fc4c24bbd3" />
+    </api>
+    <api id="F:Windows.Media.Protection.GraphicsTrustStatus.UnknownFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnknownFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.GraphicsTrustStatus" ref="false" />
+      </containers>
+      <file name="4c2002ae-c674-b440-e9b5-2be8fe4268de" />
+    </api>
+    <api id="T:Windows.Media.Protection.IMediaProtectionServiceRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.IMediaProtectionServiceRequest" />
+      <apidata name="IMediaProtectionServiceRequest" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Media.Protection.PlayReady.PlayReadyIndividualizationServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.PlayReadyDomainJoinServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.PlayReadyDomainLeaveServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.PlayReadyLicenseAcquisitionServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.PlayReadyMeteringReportServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.PlayReadyRevocationServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.PlayReadySecureStopServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest" ref="true" />
+        <type api="T:Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2984119974</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>8340</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18317</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>135</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>164</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>139</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>149</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>32</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>15</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>133</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>198</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ac5fe39c-9ebd-cb87-cf34-572cbb8a85f7" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.IMediaProtectionServiceRequest">
+      <topicdata name="IMediaProtectionServiceRequest" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.IMediaProtectionServiceRequest" />
+      <apidata name="IMediaProtectionServiceRequest" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Protection.IMediaProtectionServiceRequest.ProtectionSystem" />
+        <element api="P:Windows.Media.Protection.IMediaProtectionServiceRequest.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.IMediaProtectionServiceRequest" />
+      </containers>
+      <file name="6509c49e-f1c5-e669-a83b-9b81593c6571" />
+    </api>
+    <api id="Properties.T:Windows.Media.Protection.IMediaProtectionServiceRequest">
+      <topicdata name="IMediaProtectionServiceRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Protection.IMediaProtectionServiceRequest" />
+      <apidata name="IMediaProtectionServiceRequest" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Protection.IMediaProtectionServiceRequest.ProtectionSystem" />
+        <element api="P:Windows.Media.Protection.IMediaProtectionServiceRequest.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.IMediaProtectionServiceRequest" />
+      </containers>
+      <file name="57a6e18b-f88b-eb8d-c03a-272271a0bd05" />
+    </api>
+    <api id="P:Windows.Media.Protection.IMediaProtectionServiceRequest.ProtectionSystem">
+      <topicdata group="api" />
+      <apidata name="ProtectionSystem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ProtectionSystem" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.IMediaProtectionServiceRequest" ref="true" />
+      </containers>
+      <file name="f9f64403-9112-7665-a2d2-d812bfb1268d" />
+    </api>
+    <api id="P:Windows.Media.Protection.IMediaProtectionServiceRequest.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.IMediaProtectionServiceRequest" ref="true" />
+      </containers>
+      <file name="16026404-b8f4-f0ed-8a3e-5ae5ca469ab7" />
+    </api>
+    <api id="T:Windows.Media.Protection.MediaProtectionManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.MediaProtectionManager" />
+      <apidata name="MediaProtectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Protection.MediaProtectionManager.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0f7d578a-a8e2-da0d-8f53-cc7a770228f4" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.MediaProtectionManager">
+      <topicdata name="MediaProtectionManager" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.MediaProtectionManager" />
+      <apidata name="MediaProtectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Protection.MediaProtectionManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Protection.MediaProtectionManager.#ctor" />
+        <element api="E:Windows.Media.Protection.MediaProtectionManager.ComponentLoadFailed" />
+        <element api="P:Windows.Media.Protection.MediaProtectionManager.Properties" />
+        <element api="E:Windows.Media.Protection.MediaProtectionManager.RebootNeeded" />
+        <element api="E:Windows.Media.Protection.MediaProtectionManager.ServiceRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" />
+      </containers>
+      <file name="4c6e340f-942b-9d63-d5e8-4086bab844c5" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.MediaProtectionManager">
+      <topicdata name="MediaProtectionManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.MediaProtectionManager" />
+      <apidata name="MediaProtectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Protection.MediaProtectionManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" />
+      </containers>
+      <file name="bcb9c52b-fea9-74ab-4956-b4b1c523e8c0" />
+    </api>
+    <api id="Properties.T:Windows.Media.Protection.MediaProtectionManager">
+      <topicdata name="MediaProtectionManager" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Protection.MediaProtectionManager" />
+      <apidata name="MediaProtectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Protection.MediaProtectionManager.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.Protection.MediaProtectionManager.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" />
+      </containers>
+      <file name="43903a52-4b09-cb19-0692-c5ddb33312b4" />
+    </api>
+    <api id="Events.T:Windows.Media.Protection.MediaProtectionManager">
+      <topicdata name="MediaProtectionManager" group="list" subgroup="Events" typeTopicId="T:Windows.Media.Protection.MediaProtectionManager" />
+      <apidata name="MediaProtectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Protection.MediaProtectionManager.#ctor" />
+      <elements>
+        <element api="E:Windows.Media.Protection.MediaProtectionManager.ComponentLoadFailed" />
+        <element api="E:Windows.Media.Protection.MediaProtectionManager.RebootNeeded" />
+        <element api="E:Windows.Media.Protection.MediaProtectionManager.ServiceRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" />
+      </containers>
+      <file name="d1356f4d-c26e-9f2f-fd27-70cfb10a31b3" />
+    </api>
+    <api id="M:Windows.Media.Protection.MediaProtectionManager.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" ref="true" />
+      </containers>
+      <file name="67687484-39ed-0be4-64c9-d10040352c11" />
+    </api>
+    <api id="E:Windows.Media.Protection.MediaProtectionManager.ComponentLoadFailed">
+      <topicdata group="api" />
+      <apidata name="ComponentLoadFailed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ComponentLoadFailed" />
+      <remover name="remove_ComponentLoadFailed" />
+      <eventhandler>
+        <type api="T:Windows.Media.Protection.ComponentLoadFailedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" ref="true" />
+      </containers>
+      <file name="da63b0ab-5ba9-e718-e616-f916de2bc0c6" />
+    </api>
+    <api id="P:Windows.Media.Protection.MediaProtectionManager.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" ref="true" />
+      </containers>
+      <file name="d1ddb31b-bf81-5d6a-9319-0dfa5b216418" />
+    </api>
+    <api id="E:Windows.Media.Protection.MediaProtectionManager.RebootNeeded">
+      <topicdata group="api" />
+      <apidata name="RebootNeeded" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RebootNeeded" />
+      <remover name="remove_RebootNeeded" />
+      <eventhandler>
+        <type api="T:Windows.Media.Protection.RebootNeededEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" ref="true" />
+      </containers>
+      <file name="bfe4e38b-4aed-f83b-0002-01c774a935c1" />
+    </api>
+    <api id="E:Windows.Media.Protection.MediaProtectionManager.ServiceRequested">
+      <topicdata group="api" />
+      <apidata name="ServiceRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ServiceRequested" />
+      <remover name="remove_ServiceRequested" />
+      <eventhandler>
+        <type api="T:Windows.Media.Protection.ServiceRequestedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionManager" ref="true" />
+      </containers>
+      <file name="e526ad74-b1ce-574e-7f87-61e06903f61f" />
+    </api>
+    <api id="T:Windows.Media.Protection.MediaProtectionPMPServer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.MediaProtectionPMPServer" />
+      <apidata name="MediaProtectionPMPServer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fe40de3e-59a0-4c51-09cb-733848a9d3cd" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.MediaProtectionPMPServer">
+      <topicdata name="MediaProtectionPMPServer" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.MediaProtectionPMPServer" />
+      <apidata name="MediaProtectionPMPServer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Protection.MediaProtectionPMPServer.#ctor(Windows.Foundation.Collections.IPropertySet)" />
+        <element api="P:Windows.Media.Protection.MediaProtectionPMPServer.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionPMPServer" />
+      </containers>
+      <file name="7842affc-7fae-d481-3429-b09ee94e183d" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.MediaProtectionPMPServer">
+      <topicdata name="MediaProtectionPMPServer" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.MediaProtectionPMPServer" />
+      <apidata name="MediaProtectionPMPServer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionPMPServer" />
+      </containers>
+      <file name="703f8c9a-8509-562d-86f5-7cb3f89a612e" />
+    </api>
+    <api id="Properties.T:Windows.Media.Protection.MediaProtectionPMPServer">
+      <topicdata name="MediaProtectionPMPServer" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Protection.MediaProtectionPMPServer" />
+      <apidata name="MediaProtectionPMPServer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Protection.MediaProtectionPMPServer.Properties" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionPMPServer" />
+      </containers>
+      <file name="8c7448a4-4f6d-3ee2-bc37-da032e9f6c44" />
+    </api>
+    <api id="M:Windows.Media.Protection.MediaProtectionPMPServer.#ctor(Windows.Foundation.Collections.IPropertySet)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="pProperties" in="true">
+          <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionPMPServer" ref="true" />
+      </containers>
+      <file name="b4cfacd5-47e1-9c13-4ab6-1f58be36e773" />
+    </api>
+    <api id="P:Windows.Media.Protection.MediaProtectionPMPServer.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionPMPServer" ref="true" />
+      </containers>
+      <file name="cc7018e4-1f57-d6eb-729f-2ff1f13f44a0" />
+    </api>
+    <api id="T:Windows.Media.Protection.MediaProtectionServiceCompletion">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.MediaProtectionServiceCompletion" />
+      <apidata name="MediaProtectionServiceCompletion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9c0e1440-3c0c-784b-872d-a0b92e77a0ce" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.MediaProtectionServiceCompletion">
+      <topicdata name="MediaProtectionServiceCompletion" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.MediaProtectionServiceCompletion" />
+      <apidata name="MediaProtectionServiceCompletion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Protection.MediaProtectionServiceCompletion.Complete(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionServiceCompletion" />
+      </containers>
+      <file name="2c7ab48e-166e-b042-08d7-f711d10f1255" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.MediaProtectionServiceCompletion">
+      <topicdata name="MediaProtectionServiceCompletion" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.MediaProtectionServiceCompletion" />
+      <apidata name="MediaProtectionServiceCompletion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.Protection.MediaProtectionServiceCompletion.Complete(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionServiceCompletion" />
+      </containers>
+      <file name="0e58aee8-35fe-59f1-8474-dc15222d732b" />
+    </api>
+    <api id="M:Windows.Media.Protection.MediaProtectionServiceCompletion.Complete(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="success" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.MediaProtectionServiceCompletion" ref="true" />
+      </containers>
+      <file name="9f88b90f-7e4e-d823-3ce5-eed7e53975e1" />
+    </api>
+    <api id="T:Windows.Media.Protection.ProtectionRenewalContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.ProtectionRenewalContract" />
+      <apidata name="ProtectionRenewalContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="42bfc86c-ef26-63ed-5958-6f5b73d2ad87" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.ProtectionRenewalContract">
+      <topicdata name="ProtectionRenewalContract" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.ProtectionRenewalContract" />
+      <apidata name="ProtectionRenewalContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ProtectionRenewalContract" />
+      </containers>
+      <file name="3239bc3e-f0bd-822a-b8e0-61e4a0e44c66" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.ProtectionRenewalContract">
+      <topicdata name="ProtectionRenewalContract" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.ProtectionRenewalContract" />
+      <apidata name="ProtectionRenewalContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ProtectionRenewalContract" />
+      </containers>
+      <file name="2d6fc812-3cf5-f3ef-d19f-f1d9f85c0ee9" />
+    </api>
+    <api id="T:Windows.Media.Protection.RebootNeededEventHandler">
+      <topicdata group="api" />
+      <apidata name="RebootNeededEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Media.Protection.MediaProtectionManager" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1692478021</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>38715</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19002</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>178</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>96</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>145</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>137</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>138</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>168</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>44</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="33e05e6f-1d17-0fe7-eced-c18e724ec733" />
+    </api>
+    <api id="T:Windows.Media.Protection.RenewalStatus">
+      <topicdata group="api" />
+      <apidata name="RenewalStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Protection.RenewalStatus.NotStarted" />
+        <element api="F:Windows.Media.Protection.RenewalStatus.UpdatesInProgress" />
+        <element api="F:Windows.Media.Protection.RenewalStatus.UserCancelled" />
+        <element api="F:Windows.Media.Protection.RenewalStatus.AppComponentsMayNeedUpdating" />
+        <element api="F:Windows.Media.Protection.RenewalStatus.NoComponentsFound" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Media.Protection.ProtectionRenewalContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bf46cd59-ffdf-8aeb-5873-93de67680acf" />
+    </api>
+    <api id="F:Windows.Media.Protection.RenewalStatus.AppComponentsMayNeedUpdating">
+      <topicdata group="api" notopic="" />
+      <apidata name="AppComponentsMayNeedUpdating" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </containers>
+      <file name="0155ea73-a916-f7e5-b743-f377c5696503" />
+    </api>
+    <api id="F:Windows.Media.Protection.RenewalStatus.NoComponentsFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoComponentsFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </containers>
+      <file name="5e4acb34-a525-44e9-2a13-9ade677a3012" />
+    </api>
+    <api id="F:Windows.Media.Protection.RenewalStatus.NotStarted">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotStarted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </containers>
+      <file name="e7b07c8a-df88-7488-610e-dce7a77e3853" />
+    </api>
+    <api id="F:Windows.Media.Protection.RenewalStatus.UpdatesInProgress">
+      <topicdata group="api" notopic="" />
+      <apidata name="UpdatesInProgress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </containers>
+      <file name="db026ae6-381f-c770-a4c3-470de19b14bb" />
+    </api>
+    <api id="F:Windows.Media.Protection.RenewalStatus.UserCancelled">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserCancelled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Media.Protection.ProtectionRenewalContract" module="Windows.Media.Protection.ProtectionRenewalContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RenewalStatus" ref="false" />
+      </containers>
+      <file name="130c9ed4-cb14-13bb-7361-961cc6931577" />
+    </api>
+    <api id="T:Windows.Media.Protection.RevocationAndRenewalInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.RevocationAndRenewalInformation" />
+      <apidata name="RevocationAndRenewalInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2eafea74-2c00-fff8-5aa8-577fd568314a" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.RevocationAndRenewalInformation">
+      <topicdata name="RevocationAndRenewalInformation" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.RevocationAndRenewalInformation" />
+      <apidata name="RevocationAndRenewalInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalInformation.Items" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalInformation" />
+      </containers>
+      <file name="6ef53a57-10d7-09a9-bdd8-3fcacac65048" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.RevocationAndRenewalInformation">
+      <topicdata name="RevocationAndRenewalInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.RevocationAndRenewalInformation" />
+      <apidata name="RevocationAndRenewalInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalInformation" />
+      </containers>
+      <file name="6e76230e-2817-7b97-f71c-2028b0966f06" />
+    </api>
+    <api id="Properties.T:Windows.Media.Protection.RevocationAndRenewalInformation">
+      <topicdata name="RevocationAndRenewalInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Protection.RevocationAndRenewalInformation" />
+      <apidata name="RevocationAndRenewalInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalInformation.Items" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalInformation" />
+      </containers>
+      <file name="fde5f27c-f8b1-39d2-4adb-c704b2bc48c0" />
+    </api>
+    <api id="P:Windows.Media.Protection.RevocationAndRenewalInformation.Items">
+      <topicdata group="api" />
+      <apidata name="Items" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Items" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalInformation" ref="true" />
+      </containers>
+      <file name="3e172e3a-aafc-5a14-a55b-201920a513f6" />
+    </api>
+    <api id="T:Windows.Media.Protection.RevocationAndRenewalItem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.RevocationAndRenewalItem" />
+      <apidata name="RevocationAndRenewalItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a3c35227-741d-a753-33bb-9b210eb90623" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.RevocationAndRenewalItem">
+      <topicdata name="RevocationAndRenewalItem" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.RevocationAndRenewalItem" />
+      <apidata name="RevocationAndRenewalItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.HeaderHash" />
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.Name" />
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.PublicKeyHash" />
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.Reasons" />
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.RenewalId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" />
+      </containers>
+      <file name="074bb75c-e35b-32f3-e34c-2c31db67ba4e" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.RevocationAndRenewalItem">
+      <topicdata name="RevocationAndRenewalItem" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.RevocationAndRenewalItem" />
+      <apidata name="RevocationAndRenewalItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" />
+      </containers>
+      <file name="9bc97479-c317-e7b7-1685-3ccff3cb148c" />
+    </api>
+    <api id="Properties.T:Windows.Media.Protection.RevocationAndRenewalItem">
+      <topicdata name="RevocationAndRenewalItem" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Protection.RevocationAndRenewalItem" />
+      <apidata name="RevocationAndRenewalItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.HeaderHash" />
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.Name" />
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.PublicKeyHash" />
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.Reasons" />
+        <element api="P:Windows.Media.Protection.RevocationAndRenewalItem.RenewalId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" />
+      </containers>
+      <file name="3f5863cf-8bb4-4d06-e525-6ed5d73c4a4b" />
+    </api>
+    <api id="P:Windows.Media.Protection.RevocationAndRenewalItem.HeaderHash">
+      <topicdata group="api" />
+      <apidata name="HeaderHash" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HeaderHash" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" ref="true" />
+      </containers>
+      <file name="c84eb019-fbec-9af8-1006-0ed1f5f4184f" />
+    </api>
+    <api id="P:Windows.Media.Protection.RevocationAndRenewalItem.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" ref="true" />
+      </containers>
+      <file name="6ccc8f6e-2dcc-d2d7-bc71-c6d304998059" />
+    </api>
+    <api id="P:Windows.Media.Protection.RevocationAndRenewalItem.PublicKeyHash">
+      <topicdata group="api" />
+      <apidata name="PublicKeyHash" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PublicKeyHash" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" ref="true" />
+      </containers>
+      <file name="8182b9d2-e500-c10a-e518-1151a65d56a6" />
+    </api>
+    <api id="P:Windows.Media.Protection.RevocationAndRenewalItem.Reasons">
+      <topicdata group="api" />
+      <apidata name="Reasons" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Reasons" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" ref="true" />
+      </containers>
+      <file name="a0f4f9b3-94b7-69b5-e5fc-4f5475f7941b" />
+    </api>
+    <api id="P:Windows.Media.Protection.RevocationAndRenewalItem.RenewalId">
+      <topicdata group="api" />
+      <apidata name="RenewalId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RenewalId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalItem" ref="true" />
+      </containers>
+      <file name="de3cb604-7f7c-0506-a07f-ae65906ac3d1" />
+    </api>
+    <api id="T:Windows.Media.Protection.RevocationAndRenewalReasons">
+      <topicdata group="api" />
+      <apidata name="RevocationAndRenewalReasons" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.UserModeComponentLoad" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.KernelModeComponentLoad" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.AppComponent" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.GlobalRevocationListLoadFailed" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.InvalidGlobalRevocationListSignature" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.GlobalRevocationListAbsent" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentRevoked" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.InvalidComponentCertificateExtendedKeyUse" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentCertificateRevoked" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.InvalidComponentCertificateRoot" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentHighSecurityCertificateRevoked" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentLowSecurityCertificateRevoked" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.BootDriverVerificationFailed" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentSignedWithTestCertificate" />
+        <element api="F:Windows.Media.Protection.RevocationAndRenewalReasons.EncryptionFailure" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="83468c8a-5d07-7d62-c629-2e1b64985f17" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.AppComponent">
+      <topicdata group="api" notopic="" />
+      <apidata name="AppComponent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="20a1bfea-5c33-6cd9-f431-fc43c5933c96" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.BootDriverVerificationFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="BootDriverVerificationFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>1048576</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="8d93f8d1-0528-c09f-8a5f-853aa7cb651e" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentCertificateRevoked">
+      <topicdata group="api" notopic="" />
+      <apidata name="ComponentCertificateRevoked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>32768</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="caf03353-3661-2b3b-69d5-af3b5f6446af" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentHighSecurityCertificateRevoked">
+      <topicdata group="api" notopic="" />
+      <apidata name="ComponentHighSecurityCertificateRevoked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>131072</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="46b3a2f1-8f27-c602-7993-59423c0b2434" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentLowSecurityCertificateRevoked">
+      <topicdata group="api" notopic="" />
+      <apidata name="ComponentLowSecurityCertificateRevoked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>262144</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="29731fec-003f-ac9d-6d8d-59957da5372d" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentRevoked">
+      <topicdata group="api" notopic="" />
+      <apidata name="ComponentRevoked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>8192</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="38966370-9d21-81dc-ba31-174a75739aa3" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.ComponentSignedWithTestCertificate">
+      <topicdata group="api" notopic="" />
+      <apidata name="ComponentSignedWithTestCertificate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>16777216</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="93f8a826-d967-c7ca-8334-f0ed26d62499" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.EncryptionFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="EncryptionFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>268435456</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="5ddd021c-f131-0525-622a-660c248bf4cf" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.GlobalRevocationListAbsent">
+      <topicdata group="api" notopic="" />
+      <apidata name="GlobalRevocationListAbsent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>4096</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="cd180da6-f45f-69db-13dd-88665272bc5f" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.GlobalRevocationListLoadFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="GlobalRevocationListLoadFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="9c53e25d-7dcf-f175-cebb-0680b2cfd1e6" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.InvalidComponentCertificateExtendedKeyUse">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidComponentCertificateExtendedKeyUse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>16384</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="e5dd067b-3ef2-da65-b67a-cbb52be3c3ae" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.InvalidComponentCertificateRoot">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidComponentCertificateRoot" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>65536</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="a88269a1-b4c5-3af9-270d-96f6cdd9be25" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.InvalidGlobalRevocationListSignature">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidGlobalRevocationListSignature" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="782c7724-8e37-5689-2bb1-a613ea613395" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.KernelModeComponentLoad">
+      <topicdata group="api" notopic="" />
+      <apidata name="KernelModeComponentLoad" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="b7efe0df-0d83-8635-3752-b8a643bcf5a6" />
+    </api>
+    <api id="F:Windows.Media.Protection.RevocationAndRenewalReasons.UserModeComponentLoad">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserModeComponentLoad" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.RevocationAndRenewalReasons" ref="false" />
+      </containers>
+      <file name="4646d496-f3c3-1613-16a4-8399bba62b80" />
+    </api>
+    <api id="T:Windows.Media.Protection.ServiceRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Protection.ServiceRequestedEventArgs" />
+      <apidata name="ServiceRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a0164906-0cb4-6f27-b2be-a9aab62515ab" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Protection.ServiceRequestedEventArgs">
+      <topicdata name="ServiceRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.Protection.ServiceRequestedEventArgs" />
+      <apidata name="ServiceRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.Protection.ServiceRequestedEventArgs.Completion" />
+        <element api="P:Windows.Media.Protection.ServiceRequestedEventArgs.MediaPlaybackItem">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.Media.Protection.ServiceRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ServiceRequestedEventArgs" />
+      </containers>
+      <file name="ddad41cf-4155-f839-138c-d99f9c19303b" />
+    </api>
+    <api id="Methods.T:Windows.Media.Protection.ServiceRequestedEventArgs">
+      <topicdata name="ServiceRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Protection.ServiceRequestedEventArgs" />
+      <apidata name="ServiceRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ServiceRequestedEventArgs" />
+      </containers>
+      <file name="71a292b6-6dbc-cf09-0cb0-15c3345b9bb6" />
+    </api>
+    <api id="Properties.T:Windows.Media.Protection.ServiceRequestedEventArgs">
+      <topicdata name="ServiceRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Protection.ServiceRequestedEventArgs" />
+      <apidata name="ServiceRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Protection.ServiceRequestedEventArgs.Completion" />
+        <element api="P:Windows.Media.Protection.ServiceRequestedEventArgs.MediaPlaybackItem">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.Media.Protection.ServiceRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ServiceRequestedEventArgs" />
+      </containers>
+      <file name="1f8f6ca8-64e1-fdf2-e832-a777f5fbacac" />
+    </api>
+    <api id="P:Windows.Media.Protection.ServiceRequestedEventArgs.Completion">
+      <topicdata group="api" />
+      <apidata name="Completion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Completion" />
+      <returns>
+        <type api="T:Windows.Media.Protection.MediaProtectionServiceCompletion" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ServiceRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="4932199c-65d3-d5fb-03ec-dc23fce1e0c2" />
+    </api>
+    <api id="P:Windows.Media.Protection.ServiceRequestedEventArgs.MediaPlaybackItem">
+      <topicdata group="api" />
+      <apidata name="MediaPlaybackItem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MediaPlaybackItem" />
+      <returns>
+        <type api="T:Windows.Media.Playback.MediaPlaybackItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ServiceRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="c1369c61-599a-5a90-9baf-accd5a581953" />
+    </api>
+    <api id="P:Windows.Media.Protection.ServiceRequestedEventArgs.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Request" />
+      <returns>
+        <type api="T:Windows.Media.Protection.IMediaProtectionServiceRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+        <type api="T:Windows.Media.Protection.ServiceRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="51f11ff5-a77b-4b47-1f9e-5192b70b9db5" />
+    </api>
+    <api id="T:Windows.Media.Protection.ServiceRequestedEventHandler">
+      <topicdata group="api" />
+      <apidata name="ServiceRequestedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:Windows.Media.Protection.MediaProtectionManager" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.Media.Protection.ServiceRequestedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Protection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3537277114</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>51913</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18657</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>149</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>192</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>211</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>132</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>149</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>168</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>64</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>85</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="838b84fb-6eea-3f74-58ad-2140a5c98557" />
+    </api>
+  </apis>
+</reflection>

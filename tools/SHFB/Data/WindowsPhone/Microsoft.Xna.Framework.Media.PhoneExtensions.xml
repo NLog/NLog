@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Xna.Framework.MediaLibraryExtensions">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100C7835D93A2BF56C5649C2A0B9AF5806803B7A4D0845E70C70F4B57D0D98D308301707D61625955BF0AA34590999324F362AEDB9875EC9535A507399CF7DCAF41AB3672A6F2D2DE1654FD3BDA94C2AC80F7EBF73641C4D57F853A792BA33B442AE010895109171903D1B628CAF31D1370FDD8774B3CE58FB2809FBFDB0CFDDC7C0FE6CA9EE904C1C001DB280B9D583CE3F586A6D7F412104A06A7F183A0C263BB0D9A5984E3C76D2052AD01E0F743AE4B5E19FCC1B2D6C9692DE99699B0F7972F4B466F0A53E0CA18DE547BE55ADF43A36564165BFC28DE25F8A7B43038B22C07FE211D33CB24AD93FEF0DE4D67B28236BEE129B08B943B1DBF702A6A305A6AB6" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Xna.Framework.Media.PhoneExtensions">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Xna.Framework.Media.PhoneExtensions" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" />
+        <element api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation" />
+        <element api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" />
+      </elements>
+      <file name="d2dd1c83-50e6-b66c-afee-b76bf8973b9d" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" />
+      <apidata name="MediaLibraryExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="5ac9ce02-1fef-a387-f4e1-1320e149e0a3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions">
+      <topicdata name="MediaLibraryExtensions" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" />
+      <apidata name="MediaLibraryExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.Delete(Microsoft.Xna.Framework.Media.MediaLibrary,Microsoft.Xna.Framework.Media.Song)" />
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPath(Microsoft.Xna.Framework.Media.Picture)" />
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPathFromToken(Microsoft.Xna.Framework.Media.MediaLibrary,System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPreviewImage(Microsoft.Xna.Framework.Media.Picture)" />
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.SaveSong(Microsoft.Xna.Framework.Media.MediaLibrary,System.Uri,Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata,Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" />
+      </containers>
+      <file name="989b35b3-d342-cfff-5cd8-6a075ec482dd" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions">
+      <topicdata name="MediaLibraryExtensions" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" />
+      <apidata name="MediaLibraryExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.Delete(Microsoft.Xna.Framework.Media.MediaLibrary,Microsoft.Xna.Framework.Media.Song)" />
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPath(Microsoft.Xna.Framework.Media.Picture)" />
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPathFromToken(Microsoft.Xna.Framework.Media.MediaLibrary,System.String)" />
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPreviewImage(Microsoft.Xna.Framework.Media.Picture)" />
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.SaveSong(Microsoft.Xna.Framework.Media.MediaLibrary,System.Uri,Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata,Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" />
+      </containers>
+      <file name="4f8e3b39-f081-7bbe-3249-5e83e6372fa1" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.Delete(Microsoft.Xna.Framework.Media.MediaLibrary,Microsoft.Xna.Framework.Media.Song)">
+      <topicdata group="api" />
+      <apidata name="Delete" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="library">
+          <type api="T:Microsoft.Xna.Framework.Media.MediaLibrary" ref="true" />
+        </parameter>
+        <parameter name="song">
+          <type api="T:Microsoft.Xna.Framework.Media.Song" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fc531cea-a9cc-f583-6683-492490f34983" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPath(Microsoft.Xna.Framework.Media.Picture)">
+      <topicdata group="api" />
+      <apidata name="GetPath" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="picture">
+          <type api="T:Microsoft.Xna.Framework.Media.Picture" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="62c55df1-45f3-444c-062b-f3681b7604e1" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPathFromToken(Microsoft.Xna.Framework.Media.MediaLibrary,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetPathFromToken" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="library">
+          <type api="T:Microsoft.Xna.Framework.Media.MediaLibrary" ref="true" />
+        </parameter>
+        <parameter name="token">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="75830a3f-35ff-10de-941c-c2d91fa3e29a" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.GetPreviewImage(Microsoft.Xna.Framework.Media.Picture)">
+      <topicdata group="api" />
+      <apidata name="GetPreviewImage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="picture">
+          <type api="T:Microsoft.Xna.Framework.Media.Picture" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="23669070-77af-4710-83a6-0e28c03f8848" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions.SaveSong(Microsoft.Xna.Framework.Media.MediaLibrary,System.Uri,Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata,Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation)">
+      <topicdata group="api" />
+      <apidata name="SaveSong" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="library">
+          <type api="T:Microsoft.Xna.Framework.Media.MediaLibrary" ref="true" />
+        </parameter>
+        <parameter name="filename">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="songMetadata">
+          <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+        </parameter>
+        <parameter name="operation">
+          <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Media.Song" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.MediaLibraryExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ae15861a-023b-543a-038d-d644a7a9d3b9" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation">
+      <topicdata group="api" />
+      <apidata name="SaveSongOperation" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation.CopyToLibrary" />
+        <element api="F:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation.MoveToLibrary" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+      </containers>
+      <file name="cdd2bd8f-9be2-81ce-4d0b-3ec90f736597" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation.CopyToLibrary">
+      <topicdata group="api" notopic="" />
+      <apidata name="CopyToLibrary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation" ref="false" />
+      </containers>
+      <file name="1b743dda-8165-a7d9-3a95-39b6a4650249" />
+    </api>
+    <api id="F:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation.MoveToLibrary">
+      <topicdata group="api" notopic="" />
+      <apidata name="MoveToLibrary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SaveSongOperation" ref="false" />
+      </containers>
+      <file name="db1878c0-0eac-8038-27d6-a56d65d22e36" />
+    </api>
+    <api id="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" />
+      <apidata name="SongMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+      </containers>
+      <file name="6c764a25-e5be-622a-bc92-3cc0a31e189e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata">
+      <topicdata name="SongMetadata" group="list" subgroup="members" typeTopicId="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" />
+      <apidata name="SongMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.#ctor" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtistBackgroundUri" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtistName" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtUri" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumName" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumReleaseDate" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.ArtistBackgroundUri" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.ArtistName" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.Duration" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.GenreName" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.Name" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.TrackNumber" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" />
+      </containers>
+      <file name="60f2ea30-7017-6201-5f86-72c06754d4bb" />
+    </api>
+    <api id="Methods.T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata">
+      <topicdata name="SongMetadata" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" />
+      <apidata name="SongMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" />
+      </containers>
+      <file name="40699410-347b-f196-c764-69fe86054a20" />
+    </api>
+    <api id="Properties.T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata">
+      <topicdata name="SongMetadata" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" />
+      <apidata name="SongMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtistBackgroundUri" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtistName" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtUri" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumName" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumReleaseDate" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.ArtistBackgroundUri" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.ArtistName" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.Duration" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.GenreName" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.Name" />
+        <element api="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.TrackNumber" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" />
+      </containers>
+      <file name="2d54bdce-7125-4e2a-2aad-0eebe7428666" />
+    </api>
+    <api id="M:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="12d8e8b0-2586-2b10-d530-37557da091b2" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtistBackgroundUri">
+      <topicdata group="api" />
+      <apidata name="AlbumArtistBackgroundUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlbumArtistBackgroundUri" />
+      <setter name="set_AlbumArtistBackgroundUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="0433edaa-d8fd-dfad-50c0-a4fba3d42296" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtistName">
+      <topicdata group="api" />
+      <apidata name="AlbumArtistName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlbumArtistName" />
+      <setter name="set_AlbumArtistName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="5bc244c6-0fd1-100e-85a9-39d3e4ba2650" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumArtUri">
+      <topicdata group="api" />
+      <apidata name="AlbumArtUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlbumArtUri" />
+      <setter name="set_AlbumArtUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="54f2e81d-6848-9c76-b0ba-abde2d225d31" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumName">
+      <topicdata group="api" />
+      <apidata name="AlbumName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlbumName" />
+      <setter name="set_AlbumName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="a0e62e23-893f-7806-716e-929f594f2507" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.AlbumReleaseDate">
+      <topicdata group="api" />
+      <apidata name="AlbumReleaseDate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlbumReleaseDate" />
+      <setter name="set_AlbumReleaseDate" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="b137e7e7-8b81-b5a5-5986-ce747e037257" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.ArtistBackgroundUri">
+      <topicdata group="api" />
+      <apidata name="ArtistBackgroundUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ArtistBackgroundUri" />
+      <setter name="set_ArtistBackgroundUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="e7bb6670-5bfd-08ec-dc20-735459cea5ae" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.ArtistName">
+      <topicdata group="api" />
+      <apidata name="ArtistName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ArtistName" />
+      <setter name="set_ArtistName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="1deb5247-c6eb-97f6-c015-9fe5d55cbc5c" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Duration" />
+      <setter name="set_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="e5bf3bfe-b55c-0810-87b0-02d87d83058c" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.GenreName">
+      <topicdata group="api" />
+      <apidata name="GenreName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_GenreName" />
+      <setter name="set_GenreName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="e035c5e6-152d-d574-5eaa-273202f0f341" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="8ef15f67-29bd-6a99-1dd3-3447e475e0ae" />
+    </api>
+    <api id="P:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata.TrackNumber">
+      <topicdata group="api" />
+      <apidata name="TrackNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TrackNumber" />
+      <setter name="set_TrackNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Xna.Framework.MediaLibraryExtensions" module="Microsoft.Xna.Framework.MediaLibraryExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Xna.Framework.Media.PhoneExtensions" />
+        <type api="T:Microsoft.Xna.Framework.Media.PhoneExtensions.SongMetadata" ref="true" />
+      </containers>
+      <file name="bc641f86-cd3c-bd92-8f1e-a55a1a278f5a" />
+    </api>
+  </apis>
+</reflection>

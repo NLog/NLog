@@ -1,0 +1,3088 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="2.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Collections">
+      <topicdata group="api" />
+      <apidata name="System.Collections" group="namespace" />
+      <elements>
+        <element api="T:System.Collections.IEnumerable" />
+        <element api="T:System.Collections.ICollection" />
+        <element api="T:System.Collections.IList" />
+        <element api="T:System.Collections.IStructuralComparable" />
+        <element api="T:System.Collections.IStructuralEquatable" />
+        <element api="T:System.Collections.IComparer" />
+        <element api="T:System.Collections.IEqualityComparer" />
+        <element api="T:System.Collections.BitArray" />
+        <element api="T:System.Collections.DictionaryEntry" />
+        <element api="T:System.Collections.IDictionary" />
+        <element api="T:System.Collections.IEnumerator" />
+        <element api="T:System.Collections.IDictionaryEnumerator" />
+        <element api="T:System.Collections.StructuralComparisons" />
+      </elements>
+      <file name="e874655c-0d14-d5c4-2c6a-42435dcd71dc" />
+    </api>
+    <api id="T:System.Collections.BitArray">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.BitArray" />
+      <apidata name="BitArray" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.ICollection" ref="true" />
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="493fad19-0d4f-f6c7-d0d8-1f570929aeda" />
+    </api>
+    <api id="AllMembers.T:System.Collections.BitArray">
+      <topicdata name="BitArray" group="list" subgroup="members" typeTopicId="T:System.Collections.BitArray" />
+      <apidata name="BitArray" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.Collections.BitArray.#ctor">
+          <element api="M:System.Collections.BitArray.#ctor(System.Collections.BitArray)" />
+          <element api="M:System.Collections.BitArray.#ctor(System.Boolean[])" />
+          <element api="M:System.Collections.BitArray.#ctor(System.Byte[])" />
+          <element api="M:System.Collections.BitArray.#ctor(System.Int32)" />
+          <element api="M:System.Collections.BitArray.#ctor(System.Int32[])" />
+          <element api="M:System.Collections.BitArray.#ctor(System.Int32,System.Boolean)" />
+        </element>
+        <element api="M:System.Collections.BitArray.And(System.Collections.BitArray)" />
+        <element api="M:System.Collections.BitArray.Clone" />
+        <element api="M:System.Collections.BitArray.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Collections.BitArray.Count" />
+        <element api="M:System.Collections.BitArray.Get(System.Int32)" />
+        <element api="M:System.Collections.BitArray.GetEnumerator" />
+        <element api="P:System.Collections.BitArray.IsReadOnly" />
+        <element api="P:System.Collections.BitArray.IsSynchronized" />
+        <element api="P:System.Collections.BitArray.Item(System.Int32)" />
+        <element api="P:System.Collections.BitArray.Length" />
+        <element api="M:System.Collections.BitArray.Not" />
+        <element api="M:System.Collections.BitArray.Or(System.Collections.BitArray)" />
+        <element api="M:System.Collections.BitArray.Set(System.Int32,System.Boolean)" />
+        <element api="M:System.Collections.BitArray.SetAll(System.Boolean)" />
+        <element api="P:System.Collections.BitArray.SyncRoot" />
+        <element api="M:System.Collections.BitArray.Xor(System.Collections.BitArray)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" />
+      </containers>
+      <file name="757f3698-a43d-e8da-444b-fdf25c7c69af" />
+    </api>
+    <api id="Methods.T:System.Collections.BitArray">
+      <topicdata name="BitArray" group="list" subgroup="Methods" typeTopicId="T:System.Collections.BitArray" />
+      <apidata name="BitArray" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.BitArray.And(System.Collections.BitArray)" />
+        <element api="M:System.Collections.BitArray.Clone" />
+        <element api="M:System.Collections.BitArray.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Collections.BitArray.Get(System.Int32)" />
+        <element api="M:System.Collections.BitArray.GetEnumerator" />
+        <element api="M:System.Collections.BitArray.Not" />
+        <element api="M:System.Collections.BitArray.Or(System.Collections.BitArray)" />
+        <element api="M:System.Collections.BitArray.Set(System.Int32,System.Boolean)" />
+        <element api="M:System.Collections.BitArray.SetAll(System.Boolean)" />
+        <element api="M:System.Collections.BitArray.Xor(System.Collections.BitArray)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" />
+      </containers>
+      <file name="d3209353-bc2e-114b-d2fb-5d7ac61dd12a" />
+    </api>
+    <api id="Properties.T:System.Collections.BitArray">
+      <topicdata name="BitArray" group="list" subgroup="Properties" typeTopicId="T:System.Collections.BitArray" />
+      <apidata name="BitArray" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.BitArray.Count" />
+        <element api="P:System.Collections.BitArray.IsReadOnly" />
+        <element api="P:System.Collections.BitArray.IsSynchronized" />
+        <element api="P:System.Collections.BitArray.Item(System.Int32)" />
+        <element api="P:System.Collections.BitArray.Length" />
+        <element api="P:System.Collections.BitArray.SyncRoot" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" />
+      </containers>
+      <file name="e7b29bbe-f19e-31a7-bbba-52f02ad25c53" />
+    </api>
+    <api id="Overload:System.Collections.BitArray.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Collections.BitArray" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Collections.BitArray.#ctor(System.Collections.BitArray)" />
+        <element api="M:System.Collections.BitArray.#ctor(System.Boolean[])" />
+        <element api="M:System.Collections.BitArray.#ctor(System.Byte[])" />
+        <element api="M:System.Collections.BitArray.#ctor(System.Int32)" />
+        <element api="M:System.Collections.BitArray.#ctor(System.Int32[])" />
+        <element api="M:System.Collections.BitArray.#ctor(System.Int32,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="f537a314-dcfe-9afc-1a31-2345065e8c4d" />
+    </api>
+    <api id="M:System.Collections.BitArray.#ctor(System.Boolean[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.BitArray.#ctor" />
+      <parameters>
+        <parameter name="values">
+          <arrayOf rank="1">
+            <type api="T:System.Boolean" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="5608beb0-da1a-c486-ad44-9987604b0ab6" />
+    </api>
+    <api id="M:System.Collections.BitArray.#ctor(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.BitArray.#ctor" />
+      <parameters>
+        <parameter name="bytes">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="4e639882-723c-1297-47db-a18c532cfc66" />
+    </api>
+    <api id="M:System.Collections.BitArray.#ctor(System.Collections.BitArray)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.BitArray.#ctor" />
+      <parameters>
+        <parameter name="bits">
+          <type api="T:System.Collections.BitArray" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="a799942a-a32a-475b-df57-53cd14c6cddb" />
+    </api>
+    <api id="M:System.Collections.BitArray.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.BitArray.#ctor" />
+      <parameters>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="80ab92e1-ecc8-da4f-64f4-6eae40de8280" />
+    </api>
+    <api id="M:System.Collections.BitArray.#ctor(System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.BitArray.#ctor" />
+      <parameters>
+        <parameter name="length">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="defaultValue">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="748cf39a-ece4-eb5b-4e63-182173be75c9" />
+    </api>
+    <api id="M:System.Collections.BitArray.#ctor(System.Int32[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Collections.BitArray.#ctor" />
+      <parameters>
+        <parameter name="values">
+          <arrayOf rank="1">
+            <type api="T:System.Int32" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="d3009c7d-6fee-2ab5-8aad-df1d49c1a8a0" />
+    </api>
+    <api id="M:System.Collections.BitArray.And(System.Collections.BitArray)">
+      <topicdata group="api" />
+      <apidata name="And" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Collections.BitArray" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="7e099d0a-7a05-32f9-76ba-e0c85154eec6" />
+    </api>
+    <api id="M:System.Collections.BitArray.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="b10ce16c-ee78-3d30-3665-4afa9ef4c5fb" />
+    </api>
+    <api id="M:System.Collections.BitArray.CopyTo(System.Array,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="2f832d72-0f62-3e9a-5bee-fd477366932f" />
+    </api>
+    <api id="P:System.Collections.BitArray.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.Count">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="8ec6fe1e-1383-8d80-6018-b41759397c83" />
+    </api>
+    <api id="M:System.Collections.BitArray.Get(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Get" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="18a1d10e-9f96-4669-f7ad-5977ef507db0" />
+    </api>
+    <api id="M:System.Collections.BitArray.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IEnumerable.GetEnumerator">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="f994d9be-70ff-42b9-1325-12fa3ebdbb2d" />
+    </api>
+    <api id="P:System.Collections.BitArray.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="76dc5dab-2074-d596-5b89-cef39e0324f9" />
+    </api>
+    <api id="P:System.Collections.BitArray.IsSynchronized">
+      <topicdata group="api" />
+      <apidata name="IsSynchronized" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsSynchronized" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.IsSynchronized">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="7bac6ca2-7da8-86ba-5f72-05b6634e4eac" />
+    </api>
+    <api id="P:System.Collections.BitArray.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="f6224eb5-fc4b-3e47-76f4-4a9f3045ff67" />
+    </api>
+    <api id="P:System.Collections.BitArray.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Length" />
+      <setter name="set_Length" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="b1956995-161d-2153-de9b-73cfbf017b96" />
+    </api>
+    <api id="M:System.Collections.BitArray.Not">
+      <topicdata group="api" />
+      <apidata name="Not" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="6d521ae7-4e81-576d-9fc1-4f77edbf5992" />
+    </api>
+    <api id="M:System.Collections.BitArray.Or(System.Collections.BitArray)">
+      <topicdata group="api" />
+      <apidata name="Or" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Collections.BitArray" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="d38db9d6-9ed3-6e34-efa2-d99a0d066e20" />
+    </api>
+    <api id="M:System.Collections.BitArray.Set(System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Set" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="ae4ee75c-e4a1-7b4c-7d7d-bf1e95e25b12" />
+    </api>
+    <api id="M:System.Collections.BitArray.SetAll(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SetAll" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="d0918178-9102-f8fc-4ada-474818b0e7cb" />
+    </api>
+    <api id="P:System.Collections.BitArray.SyncRoot">
+      <topicdata group="api" />
+      <apidata name="SyncRoot" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SyncRoot" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.SyncRoot">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="70fb9dfb-452b-d5e1-e104-f05d3206b8c2" />
+    </api>
+    <api id="M:System.Collections.BitArray.Xor(System.Collections.BitArray)">
+      <topicdata group="api" />
+      <apidata name="Xor" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Collections.BitArray" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+      </containers>
+      <file name="1bef908f-624d-3284-e452-b09b325afff8" />
+    </api>
+    <api id="T:System.Collections.DictionaryEntry">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.DictionaryEntry" />
+      <apidata name="DictionaryEntry" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="3c9717bc-350d-e668-9674-d3338a7206c2" />
+    </api>
+    <api id="AllMembers.T:System.Collections.DictionaryEntry">
+      <topicdata name="DictionaryEntry" group="list" subgroup="members" typeTopicId="T:System.Collections.DictionaryEntry" />
+      <apidata name="DictionaryEntry" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Collections.DictionaryEntry.#ctor(System.Object,System.Object)" />
+        <element api="P:System.Collections.DictionaryEntry.Key" />
+        <element api="P:System.Collections.DictionaryEntry.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.DictionaryEntry" />
+      </containers>
+      <file name="5a1bcbc4-0cd0-f5c6-ad3b-58d82af14111" />
+    </api>
+    <api id="Methods.T:System.Collections.DictionaryEntry">
+      <topicdata name="DictionaryEntry" group="list" subgroup="Methods" typeTopicId="T:System.Collections.DictionaryEntry" />
+      <apidata name="DictionaryEntry" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.DictionaryEntry" />
+      </containers>
+      <file name="2c78d1f3-2a5a-5b4b-b9b1-d5b4e9408c63" />
+    </api>
+    <api id="Properties.T:System.Collections.DictionaryEntry">
+      <topicdata name="DictionaryEntry" group="list" subgroup="Properties" typeTopicId="T:System.Collections.DictionaryEntry" />
+      <apidata name="DictionaryEntry" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.DictionaryEntry.Key" />
+        <element api="P:System.Collections.DictionaryEntry.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.DictionaryEntry" />
+      </containers>
+      <file name="95e6a86f-7b9c-92eb-0a5f-6e4caae8fcd3" />
+    </api>
+    <api id="M:System.Collections.DictionaryEntry.#ctor(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.DictionaryEntry" ref="false" />
+      </containers>
+      <file name="c510779c-9cb2-ad4d-2dc1-14587caba81c" />
+    </api>
+    <api id="P:System.Collections.DictionaryEntry.Key">
+      <topicdata group="api" />
+      <apidata name="Key" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Key" />
+      <setter name="set_Key" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.DictionaryEntry" ref="false" />
+      </containers>
+      <file name="168df6e1-363a-297e-39a5-9d10ade8fdba" />
+    </api>
+    <api id="P:System.Collections.DictionaryEntry.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value" />
+      <setter name="set_Value" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.DictionaryEntry" ref="false" />
+      </containers>
+      <file name="5c44e563-8429-8845-960e-9a468606c322" />
+    </api>
+    <api id="T:System.Collections.ICollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.ICollection" />
+      <apidata name="ICollection" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:System.Array" ref="true" />
+        <type api="T:System.Collections.IList" ref="true" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        <type api="T:System.Collections.Generic.Dictionary`2.KeyCollection" ref="true">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.Dictionary`2.ValueCollection" ref="true">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.List`1" ref="true" />
+        <type api="T:System.Collections.Generic.LinkedList`1" ref="true" />
+        <type api="T:System.Collections.Generic.Queue`1" ref="true" />
+        <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        <type api="T:System.Collections.Generic.SortedDictionary`2.KeyCollection" ref="true">
+          <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.SortedDictionary`2.ValueCollection" ref="true">
+          <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.SortedSet`1" ref="true" />
+        <type api="T:System.Collections.Generic.Stack`1" ref="true" />
+        <type api="T:System.Collections.Generic.SynchronizedReadOnlyCollection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection" ref="true">
+          <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection" ref="true">
+          <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageSettings" ref="true" />
+        <type api="T:System.Net.CookieCollection" ref="true" />
+        <type api="T:System.Text.RegularExpressions.CaptureCollection" ref="true" />
+        <type api="T:System.Text.RegularExpressions.GroupCollection" ref="true" />
+        <type api="T:System.Text.RegularExpressions.MatchCollection" ref="true" />
+        <type api="T:System.Data.Linq.ChangeConflictCollection" ref="true" />
+        <type api="T:System.Data.Linq.EntitySet`1" ref="true" />
+        <type api="T:System.Windows.PresentationFrameworkCollection`1" ref="true" />
+        <type api="T:System.Windows.DependencyObjectCollection`1" ref="true" />
+        <type api="T:System.Windows.ResourceDictionary" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlAnyElementAttributes" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlArrayItemAttributes" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlElementAttributes" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="2b02e8cd-686e-400e-9fdf-90e9629dcc1e" />
+    </api>
+    <api id="AllMembers.T:System.Collections.ICollection">
+      <topicdata name="ICollection" group="list" subgroup="members" typeTopicId="T:System.Collections.ICollection" />
+      <apidata name="ICollection" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Collections.ICollection.Count" />
+        <element api="P:System.Collections.ICollection.IsSynchronized" />
+        <element api="P:System.Collections.ICollection.SyncRoot" />
+        <element api="M:System.Collections.IEnumerable.GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.ICollection" />
+      </containers>
+      <file name="f9b1d3f9-7cfd-e896-7cb8-8d8f79727ae6" />
+    </api>
+    <api id="Methods.T:System.Collections.ICollection">
+      <topicdata name="ICollection" group="list" subgroup="Methods" typeTopicId="T:System.Collections.ICollection" />
+      <apidata name="ICollection" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Collections.IEnumerable.GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.ICollection" />
+      </containers>
+      <file name="52dde736-fd0f-e6a6-e41d-c78199206d2a" />
+    </api>
+    <api id="Properties.T:System.Collections.ICollection">
+      <topicdata name="ICollection" group="list" subgroup="Properties" typeTopicId="T:System.Collections.ICollection" />
+      <apidata name="ICollection" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.ICollection.Count" />
+        <element api="P:System.Collections.ICollection.IsSynchronized" />
+        <element api="P:System.Collections.ICollection.SyncRoot" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.ICollection" />
+      </containers>
+      <file name="64b37fff-e3c8-9c52-7336-96518b275aff" />
+    </api>
+    <api id="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </containers>
+      <file name="2d7d4939-b350-63f6-9126-c257652da621" />
+    </api>
+    <api id="P:System.Collections.ICollection.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </containers>
+      <file name="a0ab61e9-3d05-07b1-400a-dff035879ca0" />
+    </api>
+    <api id="P:System.Collections.ICollection.IsSynchronized">
+      <topicdata group="api" />
+      <apidata name="IsSynchronized" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsSynchronized" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </containers>
+      <file name="69844399-a7a9-4f7b-4fea-b5612cb9aca4" />
+    </api>
+    <api id="P:System.Collections.ICollection.SyncRoot">
+      <topicdata group="api" />
+      <apidata name="SyncRoot" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SyncRoot" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </containers>
+      <file name="04213267-93fb-5235-faaf-fb88afa83f2f" />
+    </api>
+    <api id="T:System.Collections.IComparer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IComparer" />
+      <apidata name="IComparer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.StringComparer" ref="true" />
+        <type api="T:System.Collections.Generic.Comparer`1" ref="true" />
+        <type api="T:System.Xml.Linq.XNodeDocumentOrderComparer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="fbd8c271-9930-4114-782d-8a1df2136439" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IComparer">
+      <topicdata name="IComparer" group="list" subgroup="members" typeTopicId="T:System.Collections.IComparer" />
+      <apidata name="IComparer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IComparer.Compare(System.Object,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IComparer" />
+      </containers>
+      <file name="b102a191-92b8-cb05-7fa3-0d625428f2a6" />
+    </api>
+    <api id="Methods.T:System.Collections.IComparer">
+      <topicdata name="IComparer" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IComparer" />
+      <apidata name="IComparer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IComparer.Compare(System.Object,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IComparer" />
+      </containers>
+      <file name="305b2c60-f8ec-185c-035d-e5eece354568" />
+    </api>
+    <api id="M:System.Collections.IComparer.Compare(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Compare" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="x">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IComparer" ref="true" />
+      </containers>
+      <file name="0c121289-4b71-9bee-ad7d-9e2e711e87eb" />
+    </api>
+    <api id="T:System.Collections.IDictionary">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IDictionary" />
+      <apidata name="IDictionary" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Collections.ICollection" ref="true" />
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" ref="true" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageSettings" ref="true" />
+        <type api="T:System.Windows.ResourceDictionary" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="74366bea-a55f-081e-82f3-2ebfd070e22b" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IDictionary">
+      <topicdata name="IDictionary" group="list" subgroup="members" typeTopicId="T:System.Collections.IDictionary" />
+      <apidata name="IDictionary" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Collections.ICollection.Count" />
+        <element api="P:System.Collections.ICollection.IsSynchronized" />
+        <element api="P:System.Collections.ICollection.SyncRoot" />
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.IDictionary.Add(System.Object,System.Object)" />
+        <element api="M:System.Collections.IDictionary.Clear" />
+        <element api="M:System.Collections.IDictionary.Contains(System.Object)" />
+        <element api="M:System.Collections.IDictionary.GetEnumerator" />
+        <element api="P:System.Collections.IDictionary.IsFixedSize" />
+        <element api="P:System.Collections.IDictionary.IsReadOnly" />
+        <element api="P:System.Collections.IDictionary.Item(System.Object)" />
+        <element api="P:System.Collections.IDictionary.Keys" />
+        <element api="M:System.Collections.IDictionary.Remove(System.Object)" />
+        <element api="P:System.Collections.IDictionary.Values" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" />
+      </containers>
+      <file name="6982642c-c328-efaa-98cc-499d76229ede" />
+    </api>
+    <api id="Methods.T:System.Collections.IDictionary">
+      <topicdata name="IDictionary" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IDictionary" />
+      <apidata name="IDictionary" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.IDictionary.Add(System.Object,System.Object)" />
+        <element api="M:System.Collections.IDictionary.Clear" />
+        <element api="M:System.Collections.IDictionary.Contains(System.Object)" />
+        <element api="M:System.Collections.IDictionary.GetEnumerator" />
+        <element api="M:System.Collections.IDictionary.Remove(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" />
+      </containers>
+      <file name="00af487e-ddab-5e53-a8f9-64cdd6980da3" />
+    </api>
+    <api id="Properties.T:System.Collections.IDictionary">
+      <topicdata name="IDictionary" group="list" subgroup="Properties" typeTopicId="T:System.Collections.IDictionary" />
+      <apidata name="IDictionary" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.ICollection.Count" />
+        <element api="P:System.Collections.ICollection.IsSynchronized" />
+        <element api="P:System.Collections.ICollection.SyncRoot" />
+        <element api="P:System.Collections.IDictionary.IsFixedSize" />
+        <element api="P:System.Collections.IDictionary.IsReadOnly" />
+        <element api="P:System.Collections.IDictionary.Item(System.Object)" />
+        <element api="P:System.Collections.IDictionary.Keys" />
+        <element api="P:System.Collections.IDictionary.Values" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" />
+      </containers>
+      <file name="864b6f73-af57-9e43-c51c-17791051f47f" />
+    </api>
+    <api id="M:System.Collections.IDictionary.Add(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="f6a51e4f-bc81-d1ef-9a18-3e6b0535b5e9" />
+    </api>
+    <api id="M:System.Collections.IDictionary.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="027d37d7-e10c-6e1b-2de9-b0c736d9ae73" />
+    </api>
+    <api id="M:System.Collections.IDictionary.Contains(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="07bdf0ef-36d5-c691-b7be-00a7822d42be" />
+    </api>
+    <api id="M:System.Collections.IDictionary.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="9d0bc16b-65e7-1d2d-c5ce-2a246ec8ccf0" />
+    </api>
+    <api id="P:System.Collections.IDictionary.IsFixedSize">
+      <topicdata group="api" />
+      <apidata name="IsFixedSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsFixedSize" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="31e69801-3927-094f-1fbf-78d6823093ca" />
+    </api>
+    <api id="P:System.Collections.IDictionary.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="aa5f83cf-117c-aea1-56be-903e250dbfd8" />
+    </api>
+    <api id="P:System.Collections.IDictionary.Item(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="d2951912-15df-5a48-40f9-26c7c6659f37" />
+    </api>
+    <api id="P:System.Collections.IDictionary.Keys">
+      <topicdata group="api" />
+      <apidata name="Keys" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Keys" />
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="47b68dd9-c91d-e7e5-a204-ca9f349135dd" />
+    </api>
+    <api id="M:System.Collections.IDictionary.Remove(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="24839e4d-6e82-9f9b-5de5-02e49201adc9" />
+    </api>
+    <api id="P:System.Collections.IDictionary.Values">
+      <topicdata group="api" />
+      <apidata name="Values" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Values" />
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </containers>
+      <file name="86e75823-f29c-66eb-08ab-9e13ceceb83c" />
+    </api>
+    <api id="T:System.Collections.IDictionaryEnumerator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IDictionaryEnumerator" />
+      <apidata name="IDictionaryEnumerator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:System.Collections.Generic.Dictionary`2.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.SortedDictionary`2.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        </type>
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="03337d02-8ec6-00d3-2008-8739296e62dd" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IDictionaryEnumerator">
+      <topicdata name="IDictionaryEnumerator" group="list" subgroup="members" typeTopicId="T:System.Collections.IDictionaryEnumerator" />
+      <apidata name="IDictionaryEnumerator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.IDictionaryEnumerator.Entry" />
+        <element api="P:System.Collections.IDictionaryEnumerator.Key" />
+        <element api="P:System.Collections.IDictionaryEnumerator.Value" />
+        <element api="P:System.Collections.IEnumerator.Current" />
+        <element api="M:System.Collections.IEnumerator.MoveNext" />
+        <element api="M:System.Collections.IEnumerator.Reset" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionaryEnumerator" />
+      </containers>
+      <file name="2b6f5746-4f42-0f09-fc07-3e2bb7c0005a" />
+    </api>
+    <api id="Methods.T:System.Collections.IDictionaryEnumerator">
+      <topicdata name="IDictionaryEnumerator" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IDictionaryEnumerator" />
+      <apidata name="IDictionaryEnumerator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IEnumerator.MoveNext" />
+        <element api="M:System.Collections.IEnumerator.Reset" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionaryEnumerator" />
+      </containers>
+      <file name="68cb8fbd-66e1-1752-c92d-4e4e513f9040" />
+    </api>
+    <api id="Properties.T:System.Collections.IDictionaryEnumerator">
+      <topicdata name="IDictionaryEnumerator" group="list" subgroup="Properties" typeTopicId="T:System.Collections.IDictionaryEnumerator" />
+      <apidata name="IDictionaryEnumerator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.IDictionaryEnumerator.Entry" />
+        <element api="P:System.Collections.IDictionaryEnumerator.Key" />
+        <element api="P:System.Collections.IDictionaryEnumerator.Value" />
+        <element api="P:System.Collections.IEnumerator.Current" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionaryEnumerator" />
+      </containers>
+      <file name="0cfb2f4d-8a9d-8468-3260-58218f6b70f0" />
+    </api>
+    <api id="P:System.Collections.IDictionaryEnumerator.Entry">
+      <topicdata group="api" />
+      <apidata name="Entry" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Entry" />
+      <returns>
+        <type api="T:System.Collections.DictionaryEntry" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="66dab35b-cafb-b31f-9d05-d4d683bd409a" />
+    </api>
+    <api id="P:System.Collections.IDictionaryEnumerator.Key">
+      <topicdata group="api" />
+      <apidata name="Key" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Key" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="5714cf42-0825-f04e-790a-340a9eb4a82e" />
+    </api>
+    <api id="P:System.Collections.IDictionaryEnumerator.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+      </containers>
+      <file name="dd20c910-df02-19ab-5efc-4235ff982734" />
+    </api>
+    <api id="T:System.Collections.IEnumerable">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IEnumerable" />
+      <apidata name="IEnumerable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceList" ref="true" />
+        <type api="T:Microsoft.Phone.Wallet.WalletItemCollection" ref="true" />
+        <type api="T:Microsoft.Phone.Reactive.CompositeDisposable" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.CurveKeyCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.Media.SongCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.Media.AlbumCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.Media.ArtistCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.Media.GenreCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.Media.PlaylistCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.Media.PictureCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.Media.PictureAlbumCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.GamerServices.AchievementCollection" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.GamerServices.GamerCollection`1" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.GamerServices.PropertyDictionary" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.Input.Touch.TouchCollection" ref="false" />
+        <type api="T:System.Array" ref="true" />
+        <type api="T:System.ArraySegment`1" ref="false" />
+        <type api="T:System.String" ref="true" />
+        <type api="T:System.Collections.ICollection" ref="true" />
+        <type api="T:System.Collections.IList" ref="true" />
+        <type api="T:System.Collections.BitArray" ref="true" />
+        <type api="T:System.Collections.IDictionary" ref="true" />
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true" />
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true" />
+        <type api="T:System.Collections.Generic.IList`1" ref="true" />
+        <type api="T:System.Collections.Generic.IReadOnlyCollection`1" ref="true" />
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true" />
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true" />
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true" />
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        <type api="T:System.Collections.Generic.Dictionary`2.KeyCollection" ref="true">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.Dictionary`2.ValueCollection" ref="true">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.List`1" ref="true" />
+        <type api="T:System.Collections.Generic.ISet`1" ref="true" />
+        <type api="T:System.Collections.Generic.LinkedList`1" ref="true" />
+        <type api="T:System.Collections.Generic.Queue`1" ref="true" />
+        <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        <type api="T:System.Collections.Generic.SortedDictionary`2.KeyCollection" ref="true">
+          <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.SortedDictionary`2.ValueCollection" ref="true">
+          <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.SortedSet`1" ref="true" />
+        <type api="T:System.Collections.Generic.Stack`1" ref="true" />
+        <type api="T:System.Collections.Generic.HashSet`1" ref="true" />
+        <type api="T:System.Collections.Generic.SynchronizedReadOnlyCollection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection" ref="true">
+          <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection" ref="true">
+          <type api="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageSettings" ref="true" />
+        <type api="T:System.Resources.IResourceReader" ref="true" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+        <type api="T:System.ComponentModel.ICollectionView" ref="true" />
+        <type api="T:System.Net.CookieCollection" ref="true" />
+        <type api="T:System.Net.CredentialCache" ref="true" />
+        <type api="T:System.Net.WebHeaderCollection" ref="true" />
+        <type api="T:System.Text.RegularExpressions.CaptureCollection" ref="true" />
+        <type api="T:System.Text.RegularExpressions.GroupCollection" ref="true" />
+        <type api="T:System.Text.RegularExpressions.MatchCollection" ref="true" />
+        <type api="T:System.Dynamic.ExpandoObject" ref="true" />
+        <type api="T:System.Linq.IQueryable" ref="true" />
+        <type api="T:System.Linq.IOrderedQueryable" ref="true" />
+        <type api="T:System.Linq.IQueryable`1" ref="true" />
+        <type api="T:System.Linq.IOrderedQueryable`1" ref="true" />
+        <type api="T:System.Linq.EnumerableQuery`1" ref="true" />
+        <type api="T:System.Linq.IGrouping`2" ref="true" />
+        <type api="T:System.Linq.ILookup`2" ref="true" />
+        <type api="T:System.Linq.IOrderedEnumerable`1" ref="true" />
+        <type api="T:System.Linq.Lookup`2" ref="true" />
+        <type api="T:System.Data.Linq.ChangeConflictCollection" ref="true" />
+        <type api="T:System.Data.Linq.ITable`1" ref="true" />
+        <type api="T:System.Data.Linq.ITable" ref="true" />
+        <type api="T:System.Data.Linq.Table`1" ref="true" />
+        <type api="T:System.Data.Linq.EntitySet`1" ref="true" />
+        <type api="T:System.Xml.XmlNamespaceManager" ref="true" />
+        <type api="T:System.ServiceModel.IExtensionCollection`1" ref="true" />
+        <type api="T:System.ServiceModel.Channels.MessageHeaders" ref="true" />
+        <type api="T:System.ServiceModel.Channels.MessageProperties" ref="true" />
+        <type api="T:System.Windows.PresentationFrameworkCollection`1" ref="true" />
+        <type api="T:System.Windows.DependencyObjectCollection`1" ref="true" />
+        <type api="T:System.Windows.ResourceDictionary" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlAnyElementAttributes" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlArrayItemAttributes" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlElementAttributes" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="ac51e49b-d813-976a-7aa4-10b7ec9a703e" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IEnumerable">
+      <topicdata name="IEnumerable" group="list" subgroup="members" typeTopicId="T:System.Collections.IEnumerable" />
+      <apidata name="IEnumerable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.IEnumerable.GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerable" />
+      </containers>
+      <file name="be51828c-fb5c-3897-755f-6c3a8a54a54d" />
+    </api>
+    <api id="Methods.T:System.Collections.IEnumerable">
+      <topicdata name="IEnumerable" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IEnumerable" />
+      <apidata name="IEnumerable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.IEnumerable.GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerable" />
+      </containers>
+      <file name="e01675ba-bc86-6b8e-c598-09853f7f4dd6" />
+    </api>
+    <api id="M:System.Collections.IEnumerable.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.DispIdAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>-4</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="094ba402-6be2-4f96-7329-c6eaf7d52981" />
+    </api>
+    <api id="T:System.Collections.IEnumerator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IEnumerator" />
+      <apidata name="IEnumerator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceList" ref="true" />
+        <type api="T:Microsoft.Xna.Framework.GamerServices.GamerCollection`1.GamerCollectionEnumerator" ref="false">
+          <type api="T:Microsoft.Xna.Framework.GamerServices.GamerCollection`1" ref="true" />
+        </type>
+        <type api="T:Microsoft.Xna.Framework.Input.Touch.TouchCollection.Enumerator" ref="false">
+          <type api="T:Microsoft.Xna.Framework.Input.Touch.TouchCollection" ref="false" />
+        </type>
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+        <type api="T:System.Collections.Generic.Dictionary`2.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.Dictionary`2.KeyCollection.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.Dictionary`2.KeyCollection" ref="true">
+            <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+          </type>
+        </type>
+        <type api="T:System.Collections.Generic.Dictionary`2.ValueCollection.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.Dictionary`2.ValueCollection" ref="true">
+            <type api="T:System.Collections.Generic.Dictionary`2" ref="true" />
+          </type>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerator`1" ref="true" />
+        <type api="T:System.Collections.Generic.List`1.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.List`1" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.LinkedList`1.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.LinkedList`1" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.Queue`1.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.Queue`1" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.SortedDictionary`2.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.SortedDictionary`2.KeyCollection.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.SortedDictionary`2.KeyCollection" ref="true">
+            <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+          </type>
+        </type>
+        <type api="T:System.Collections.Generic.SortedDictionary`2.ValueCollection.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.SortedDictionary`2.ValueCollection" ref="true">
+            <type api="T:System.Collections.Generic.SortedDictionary`2" ref="true" />
+          </type>
+        </type>
+        <type api="T:System.Collections.Generic.SortedSet`1.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.SortedSet`1" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.Stack`1.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.Stack`1" ref="true" />
+        </type>
+        <type api="T:System.Collections.Generic.HashSet`1.Enumerator" ref="false">
+          <type api="T:System.Collections.Generic.HashSet`1" ref="true" />
+        </type>
+        <type api="T:System.Globalization.TextElementEnumerator" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="8cf32466-55b9-e0bf-37eb-39af84aa3021" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IEnumerator">
+      <topicdata name="IEnumerator" group="list" subgroup="members" typeTopicId="T:System.Collections.IEnumerator" />
+      <apidata name="IEnumerator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.IEnumerator.Current" />
+        <element api="M:System.Collections.IEnumerator.MoveNext" />
+        <element api="M:System.Collections.IEnumerator.Reset" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerator" />
+      </containers>
+      <file name="b58987ad-fe6e-eb11-57b6-c55a8790e0d0" />
+    </api>
+    <api id="Methods.T:System.Collections.IEnumerator">
+      <topicdata name="IEnumerator" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IEnumerator" />
+      <apidata name="IEnumerator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IEnumerator.MoveNext" />
+        <element api="M:System.Collections.IEnumerator.Reset" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerator" />
+      </containers>
+      <file name="2cb32215-d4e9-ac4d-45ca-9ce05518344c" />
+    </api>
+    <api id="Properties.T:System.Collections.IEnumerator">
+      <topicdata name="IEnumerator" group="list" subgroup="Properties" typeTopicId="T:System.Collections.IEnumerator" />
+      <apidata name="IEnumerator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.IEnumerator.Current" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerator" />
+      </containers>
+      <file name="0bcf02e9-ae27-538d-e3f2-bc87967320e5" />
+    </api>
+    <api id="P:System.Collections.IEnumerator.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </containers>
+      <file name="6aa8123f-b0a5-2bda-dad6-937bae60fb9a" />
+    </api>
+    <api id="M:System.Collections.IEnumerator.MoveNext">
+      <topicdata group="api" />
+      <apidata name="MoveNext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </containers>
+      <file name="c0286c11-35f6-3f5e-117e-4d835fe569ae" />
+    </api>
+    <api id="M:System.Collections.IEnumerator.Reset">
+      <topicdata group="api" />
+      <apidata name="Reset" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </containers>
+      <file name="6bec8916-4d45-bca8-5248-9d5803ffa4bb" />
+    </api>
+    <api id="T:System.Collections.IEqualityComparer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IEqualityComparer" />
+      <apidata name="IEqualityComparer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.StringComparer" ref="true" />
+        <type api="T:System.Collections.Generic.EqualityComparer`1" ref="true" />
+        <type api="T:System.Xml.Linq.XNodeEqualityComparer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="ab1fe96b-615c-d0f2-deb6-525cf7278701" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IEqualityComparer">
+      <topicdata name="IEqualityComparer" group="list" subgroup="members" typeTopicId="T:System.Collections.IEqualityComparer" />
+      <apidata name="IEqualityComparer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IEqualityComparer.Equals(System.Object,System.Object)" />
+        <element api="M:System.Collections.IEqualityComparer.GetHashCode(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEqualityComparer" />
+      </containers>
+      <file name="4524e701-ac4a-e270-415b-7b80098241ff" />
+    </api>
+    <api id="Methods.T:System.Collections.IEqualityComparer">
+      <topicdata name="IEqualityComparer" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IEqualityComparer" />
+      <apidata name="IEqualityComparer" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IEqualityComparer.Equals(System.Object,System.Object)" />
+        <element api="M:System.Collections.IEqualityComparer.GetHashCode(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEqualityComparer" />
+      </containers>
+      <file name="f2c107ca-9ca8-13e7-9d7f-01da54a56717" />
+    </api>
+    <api id="M:System.Collections.IEqualityComparer.Equals(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="x">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEqualityComparer" ref="true" />
+      </containers>
+      <file name="114d1914-b949-9528-2b71-71ad6aa3acb0" />
+    </api>
+    <api id="M:System.Collections.IEqualityComparer.GetHashCode(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IEqualityComparer" ref="true" />
+      </containers>
+      <file name="36798336-7fd4-0049-ad5d-51861cd88d74" />
+    </api>
+    <api id="T:System.Collections.IList">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IList" />
+      <apidata name="IList" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Collections.ICollection" ref="true" />
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:System.Array" ref="true" />
+        <type api="T:System.Collections.Generic.List`1" ref="true" />
+        <type api="T:System.Collections.Generic.SynchronizedReadOnlyCollection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true" />
+        <type api="T:System.Data.Linq.EntitySet`1" ref="true" />
+        <type api="T:System.Windows.PresentationFrameworkCollection`1" ref="true" />
+        <type api="T:System.Windows.DependencyObjectCollection`1" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlAnyElementAttributes" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlArrayItemAttributes" ref="true" />
+        <type api="T:System.Xml.Serialization.XmlElementAttributes" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="adf6745d-affe-7d6c-2cba-2d9d22ff0521" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IList">
+      <topicdata name="IList" group="list" subgroup="members" typeTopicId="T:System.Collections.IList" />
+      <apidata name="IList" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Collections.ICollection.Count" />
+        <element api="P:System.Collections.ICollection.IsSynchronized" />
+        <element api="P:System.Collections.ICollection.SyncRoot" />
+        <element api="M:System.Collections.IEnumerable.GetEnumerator" />
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.IList.Add(System.Object)" />
+        <element api="M:System.Collections.IList.Clear" />
+        <element api="M:System.Collections.IList.Contains(System.Object)" />
+        <element api="M:System.Collections.IList.IndexOf(System.Object)" />
+        <element api="M:System.Collections.IList.Insert(System.Int32,System.Object)" />
+        <element api="P:System.Collections.IList.IsFixedSize" />
+        <element api="P:System.Collections.IList.IsReadOnly" />
+        <element api="P:System.Collections.IList.Item(System.Int32)" />
+        <element api="M:System.Collections.IList.Remove(System.Object)" />
+        <element api="M:System.Collections.IList.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" />
+      </containers>
+      <file name="d1adda62-9e02-2a30-61e5-ebe00df5d263" />
+    </api>
+    <api id="Methods.T:System.Collections.IList">
+      <topicdata name="IList" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IList" />
+      <apidata name="IList" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Collections.IEnumerable.GetEnumerator" />
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Collections.IList.Add(System.Object)" />
+        <element api="M:System.Collections.IList.Clear" />
+        <element api="M:System.Collections.IList.Contains(System.Object)" />
+        <element api="M:System.Collections.IList.IndexOf(System.Object)" />
+        <element api="M:System.Collections.IList.Insert(System.Int32,System.Object)" />
+        <element api="M:System.Collections.IList.Remove(System.Object)" />
+        <element api="M:System.Collections.IList.RemoveAt(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" />
+      </containers>
+      <file name="ceedf8e5-d64a-c9ee-0622-31943f751e75" />
+    </api>
+    <api id="Properties.T:System.Collections.IList">
+      <topicdata name="IList" group="list" subgroup="Properties" typeTopicId="T:System.Collections.IList" />
+      <apidata name="IList" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.ICollection.Count" />
+        <element api="P:System.Collections.ICollection.IsSynchronized" />
+        <element api="P:System.Collections.ICollection.SyncRoot" />
+        <element api="P:System.Collections.IList.IsFixedSize" />
+        <element api="P:System.Collections.IList.IsReadOnly" />
+        <element api="P:System.Collections.IList.Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" />
+      </containers>
+      <file name="6a631f5c-a252-dd8d-7887-e7e78d57d9c3" />
+    </api>
+    <api id="M:System.Collections.IList.Add(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="039fedbd-3a43-d453-4010-cd9a4cc3cdb4" />
+    </api>
+    <api id="M:System.Collections.IList.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="fee9fe11-02be-7c0c-eb1f-8756eefe045e" />
+    </api>
+    <api id="M:System.Collections.IList.Contains(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="09cccdff-b81f-efc1-ccbd-a7a24298ebc3" />
+    </api>
+    <api id="M:System.Collections.IList.IndexOf(System.Object)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="9de65dde-5ce5-6f39-2bd7-db4660bba604" />
+    </api>
+    <api id="M:System.Collections.IList.Insert(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="96bbf711-6afc-50c3-db9e-027a20de2ee3" />
+    </api>
+    <api id="P:System.Collections.IList.IsFixedSize">
+      <topicdata group="api" />
+      <apidata name="IsFixedSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsFixedSize" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="4fecb762-eaf8-bcbf-b7f0-b08f03ca1d09" />
+    </api>
+    <api id="P:System.Collections.IList.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="35c8ba0c-c22f-c4d8-6e05-973daeef869a" />
+    </api>
+    <api id="P:System.Collections.IList.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="86cac132-a32e-e765-6890-2b7b5d10fc4d" />
+    </api>
+    <api id="M:System.Collections.IList.Remove(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="a062e236-0382-fd71-e262-2990a1df626b" />
+    </api>
+    <api id="M:System.Collections.IList.RemoveAt(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IList" ref="true" />
+      </containers>
+      <file name="c1ba031c-1eb9-0694-3766-3f9eb280f488" />
+    </api>
+    <api id="T:System.Collections.IStructuralComparable">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IStructuralComparable" />
+      <apidata name="IStructuralComparable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Array" ref="true" />
+        <type api="T:System.Tuple`1" ref="true" />
+        <type api="T:System.Tuple`2" ref="true" />
+        <type api="T:System.Tuple`3" ref="true" />
+        <type api="T:System.Tuple`4" ref="true" />
+        <type api="T:System.Tuple`5" ref="true" />
+        <type api="T:System.Tuple`6" ref="true" />
+        <type api="T:System.Tuple`7" ref="true" />
+        <type api="T:System.Tuple`8" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="6aec0ad7-30e3-ab4b-7f02-41000f8b48f9" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IStructuralComparable">
+      <topicdata name="IStructuralComparable" group="list" subgroup="members" typeTopicId="T:System.Collections.IStructuralComparable" />
+      <apidata name="IStructuralComparable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IStructuralComparable.CompareTo(System.Object,System.Collections.IComparer)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IStructuralComparable" />
+      </containers>
+      <file name="9d9a1a5b-9e9e-7180-6d68-13db5f9cfc6e" />
+    </api>
+    <api id="Methods.T:System.Collections.IStructuralComparable">
+      <topicdata name="IStructuralComparable" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IStructuralComparable" />
+      <apidata name="IStructuralComparable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IStructuralComparable.CompareTo(System.Object,System.Collections.IComparer)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IStructuralComparable" />
+      </containers>
+      <file name="fa08dbf9-fdc8-174a-6757-4cc7e9fab963" />
+    </api>
+    <api id="M:System.Collections.IStructuralComparable.CompareTo(System.Object,System.Collections.IComparer)">
+      <topicdata group="api" />
+      <apidata name="CompareTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="comparer">
+          <type api="T:System.Collections.IComparer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IStructuralComparable" ref="true" />
+      </containers>
+      <file name="101a02e2-a3c1-784e-020d-ceaba03ef99f" />
+    </api>
+    <api id="T:System.Collections.IStructuralEquatable">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.IStructuralEquatable" />
+      <apidata name="IStructuralEquatable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Array" ref="true" />
+        <type api="T:System.Tuple`1" ref="true" />
+        <type api="T:System.Tuple`2" ref="true" />
+        <type api="T:System.Tuple`3" ref="true" />
+        <type api="T:System.Tuple`4" ref="true" />
+        <type api="T:System.Tuple`5" ref="true" />
+        <type api="T:System.Tuple`6" ref="true" />
+        <type api="T:System.Tuple`7" ref="true" />
+        <type api="T:System.Tuple`8" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="3de5fa47-9cdb-d4a6-00ff-5dde8567c224" />
+    </api>
+    <api id="AllMembers.T:System.Collections.IStructuralEquatable">
+      <topicdata name="IStructuralEquatable" group="list" subgroup="members" typeTopicId="T:System.Collections.IStructuralEquatable" />
+      <apidata name="IStructuralEquatable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IStructuralEquatable.Equals(System.Object,System.Collections.IEqualityComparer)" />
+        <element api="M:System.Collections.IStructuralEquatable.GetHashCode(System.Collections.IEqualityComparer)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IStructuralEquatable" />
+      </containers>
+      <file name="6a79679c-f92d-7c2b-c3dc-b9d59a781679" />
+    </api>
+    <api id="Methods.T:System.Collections.IStructuralEquatable">
+      <topicdata name="IStructuralEquatable" group="list" subgroup="Methods" typeTopicId="T:System.Collections.IStructuralEquatable" />
+      <apidata name="IStructuralEquatable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Collections.IStructuralEquatable.Equals(System.Object,System.Collections.IEqualityComparer)" />
+        <element api="M:System.Collections.IStructuralEquatable.GetHashCode(System.Collections.IEqualityComparer)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IStructuralEquatable" />
+      </containers>
+      <file name="69f4dcd2-7ce1-0d24-0c5a-3e9360c0c4ae" />
+    </api>
+    <api id="M:System.Collections.IStructuralEquatable.Equals(System.Object,System.Collections.IEqualityComparer)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="comparer">
+          <type api="T:System.Collections.IEqualityComparer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IStructuralEquatable" ref="true" />
+      </containers>
+      <file name="5617fde8-950c-d5ad-2034-3eb093b6660d" />
+    </api>
+    <api id="M:System.Collections.IStructuralEquatable.GetHashCode(System.Collections.IEqualityComparer)">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="comparer">
+          <type api="T:System.Collections.IEqualityComparer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.IStructuralEquatable" ref="true" />
+      </containers>
+      <file name="5140d20c-4c4e-d146-80ae-718187a60aff" />
+    </api>
+    <api id="T:System.Collections.StructuralComparisons">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Collections.StructuralComparisons" />
+      <apidata name="StructuralComparisons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+      </containers>
+      <file name="824b14a8-06f0-1d96-dce0-61cc0f19cbe4" />
+    </api>
+    <api id="AllMembers.T:System.Collections.StructuralComparisons">
+      <topicdata name="StructuralComparisons" group="list" subgroup="members" typeTopicId="T:System.Collections.StructuralComparisons" />
+      <apidata name="StructuralComparisons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.StructuralComparisons.StructuralComparer" />
+        <element api="P:System.Collections.StructuralComparisons.StructuralEqualityComparer" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.StructuralComparisons" />
+      </containers>
+      <file name="a8908375-4ac5-01c8-abbd-d085deb15597" />
+    </api>
+    <api id="Properties.T:System.Collections.StructuralComparisons">
+      <topicdata name="StructuralComparisons" group="list" subgroup="Properties" typeTopicId="T:System.Collections.StructuralComparisons" />
+      <apidata name="StructuralComparisons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.StructuralComparisons.StructuralComparer" />
+        <element api="P:System.Collections.StructuralComparisons.StructuralEqualityComparer" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.StructuralComparisons" />
+      </containers>
+      <file name="e06cfc2c-3b82-4e22-c8e6-f2cad6d84b8e" />
+    </api>
+    <api id="P:System.Collections.StructuralComparisons.StructuralComparer">
+      <topicdata group="api" />
+      <apidata name="StructuralComparer" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StructuralComparer" />
+      <returns>
+        <type api="T:System.Collections.IComparer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.StructuralComparisons" ref="true" />
+      </containers>
+      <file name="73d382f3-89a8-11eb-95d6-1145c76b4935" />
+    </api>
+    <api id="P:System.Collections.StructuralComparisons.StructuralEqualityComparer">
+      <topicdata group="api" />
+      <apidata name="StructuralEqualityComparer" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StructuralEqualityComparer" />
+      <returns>
+        <type api="T:System.Collections.IEqualityComparer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Collections" />
+        <type api="T:System.Collections.StructuralComparisons" ref="true" />
+      </containers>
+      <file name="7fc47557-1200-bff4-66fc-41dc83c7bf99" />
+    </api>
+  </apis>
+</reflection>

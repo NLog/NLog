@@ -1,0 +1,3458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.VoiceCommands">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.VoiceCommands" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+        <element api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" />
+      </elements>
+      <file name="85644c97-c3ee-7620-cc46-c98c9ec9950d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" />
+      <apidata name="VoiceCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c6549d62-853c-3fd8-3b15-72c5e30ac278" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommand">
+      <topicdata name="VoiceCommand" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" />
+      <apidata name="VoiceCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.CommandName" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.Properties" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.SpeechRecognitionResult" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" />
+      </containers>
+      <file name="46f12153-f500-23d6-57f0-4e749f48f938" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommand">
+      <topicdata name="VoiceCommand" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" />
+      <apidata name="VoiceCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" />
+      </containers>
+      <file name="24bf1501-e327-3c9e-c65d-ddb6f8c694ec" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommand">
+      <topicdata name="VoiceCommand" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" />
+      <apidata name="VoiceCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.CommandName" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.Properties" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.SpeechRecognitionResult" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" />
+      </containers>
+      <file name="230abed0-7192-21f8-50a6-30abcb662cf8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.CommandName">
+      <topicdata group="api" />
+      <apidata name="CommandName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CommandName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" ref="true" />
+      </containers>
+      <file name="f3607e81-ad90-4d8e-9ab9-98eb89a7d616" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:System.String" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" ref="true" />
+      </containers>
+      <file name="c9f61536-5842-bd8c-ab5d-4b7f93f53000" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommand.SpeechRecognitionResult">
+      <topicdata group="api" />
+      <apidata name="SpeechRecognitionResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SpeechRecognitionResult" />
+      <returns>
+        <type api="T:Windows.Media.SpeechRecognition.SpeechRecognitionResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" ref="true" />
+      </containers>
+      <file name="e7e4cbc7-29ba-edad-faf1-fc538ea3feab" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" />
+      <apidata name="VoiceCommandCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b14c7447-5962-54ee-d1d6-3cfe8f3cc947" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs">
+      <topicdata name="VoiceCommandCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" />
+      <apidata name="VoiceCommandCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs.Reason" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" />
+      </containers>
+      <file name="1879b3cb-7b19-4328-ca57-19907134b207" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs">
+      <topicdata name="VoiceCommandCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" />
+      <apidata name="VoiceCommandCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" />
+      </containers>
+      <file name="0c8f0e5e-dfd1-972c-11d5-78c4e656a156" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs">
+      <topicdata name="VoiceCommandCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" />
+      <apidata name="VoiceCommandCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs.Reason" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" />
+      </containers>
+      <file name="d243f943-2360-6713-1434-8821a2a496e0" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs.Reason">
+      <topicdata group="api" />
+      <apidata name="Reason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Reason" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="a421d180-f83d-fd21-bced-a1e3037e6ce7" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason">
+      <topicdata group="api" />
+      <apidata name="VoiceCommandCompletionReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.Unknown" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.CommunicationFailed" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.ResourceLimitsExceeded" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.Canceled" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.TimeoutExceeded" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.AppLaunched" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.Completed" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4d04c672-48d2-eb6d-3624-edd13e33aa32" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.AppLaunched">
+      <topicdata group="api" notopic="" />
+      <apidata name="AppLaunched" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </containers>
+      <file name="ceacb9a2-2753-fb06-5a63-c24bf2e43d11" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.Canceled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Canceled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </containers>
+      <file name="437fe63c-4413-d263-8f17-8b532916752d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.CommunicationFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="CommunicationFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </containers>
+      <file name="2ab3a107-bb04-388f-c5cd-66282da479eb" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.Completed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Completed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </containers>
+      <file name="458907c0-7556-ee8d-e0df-4441517faf09" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.ResourceLimitsExceeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="ResourceLimitsExceeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </containers>
+      <file name="332ac509-49d4-e83d-8ccc-8729629cb29f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.TimeoutExceeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="TimeoutExceeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </containers>
+      <file name="b471cd73-3754-554b-70fb-41d0e3ea766a" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletionReason" ref="false" />
+      </containers>
+      <file name="225945ae-25b1-8b41-ed3b-97ebcbdeeb14" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" />
+      <apidata name="VoiceCommandConfirmationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="29387abe-cb8d-9fe0-c7ff-0fb69ed8f329" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult">
+      <topicdata name="VoiceCommandConfirmationResult" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" />
+      <apidata name="VoiceCommandConfirmationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult.Confirmed" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" />
+      </containers>
+      <file name="5304f3e9-42c6-60e9-4908-5f3e4658928a" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult">
+      <topicdata name="VoiceCommandConfirmationResult" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" />
+      <apidata name="VoiceCommandConfirmationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" />
+      </containers>
+      <file name="903811bb-24f4-d535-7631-22c949e9fdce" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult">
+      <topicdata name="VoiceCommandConfirmationResult" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" />
+      <apidata name="VoiceCommandConfirmationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult.Confirmed" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" />
+      </containers>
+      <file name="9bded937-82bf-4282-b975-6bdc4bf3a204" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult.Confirmed">
+      <topicdata group="api" />
+      <apidata name="Confirmed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Confirmed" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" ref="true" />
+      </containers>
+      <file name="4bb2e87c-be39-25d8-cae2-5cd5b7571b1e" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" />
+      <apidata name="VoiceCommandContentTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4f7926d3-569f-bf02-0628-e40ba8e6694e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile">
+      <topicdata name="VoiceCommandContentTile" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" />
+      <apidata name="VoiceCommandContentTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.#ctor" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.AppContext" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.AppLaunchArgument" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.ContentTileType" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.Image" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine1" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine2" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine3" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" />
+      </containers>
+      <file name="e69d3720-ed23-58c9-fa26-c59402eefaec" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile">
+      <topicdata name="VoiceCommandContentTile" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" />
+      <apidata name="VoiceCommandContentTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" />
+      </containers>
+      <file name="70c290ab-c31c-8a57-767b-e2f82c98b0a3" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile">
+      <topicdata name="VoiceCommandContentTile" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" />
+      <apidata name="VoiceCommandContentTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.AppContext" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.AppLaunchArgument" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.ContentTileType" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.Image" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine1" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine2" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine3" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" />
+      </containers>
+      <file name="42ae3348-b12f-61c0-cc06-74804cfc2376" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="5811d2d8-77da-4629-35df-ece4951b1f4e" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.AppContext">
+      <topicdata group="api" />
+      <apidata name="AppContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AppContext" />
+      <setter name="set_AppContext" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="8070d02b-4bf0-de2c-72d0-b6c302f1775d" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.AppLaunchArgument">
+      <topicdata group="api" />
+      <apidata name="AppLaunchArgument" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AppLaunchArgument" />
+      <setter name="set_AppLaunchArgument" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="a8246258-f28c-ded0-e5f9-b01ff34aa5e9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.ContentTileType">
+      <topicdata group="api" />
+      <apidata name="ContentTileType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContentTileType" />
+      <setter name="set_ContentTileType" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="ed799aeb-235e-d4b1-78f5-a10b5c6dc61d" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.Image">
+      <topicdata group="api" />
+      <apidata name="Image" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Image" />
+      <setter name="set_Image" />
+      <returns>
+        <type api="T:Windows.Storage.IStorageFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="6f1217dd-b3db-eae4-d6d7-5fe4dd7f36b2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine1">
+      <topicdata group="api" />
+      <apidata name="TextLine1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TextLine1" />
+      <setter name="set_TextLine1" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="014b2ac5-fe76-26ca-a8e7-4bf1fee8032b" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine2">
+      <topicdata group="api" />
+      <apidata name="TextLine2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TextLine2" />
+      <setter name="set_TextLine2" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="a494eaf4-8c31-a8a5-5083-4dfff366544a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.TextLine3">
+      <topicdata group="api" />
+      <apidata name="TextLine3" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TextLine3" />
+      <setter name="set_TextLine3" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="b50e797d-28ae-f646-0327-e337202b4889" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </containers>
+      <file name="18834748-2201-0357-df0c-804fc6ca69ba" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType">
+      <topicdata group="api" />
+      <apidata name="VoiceCommandContentTileType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleOnly" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWithText" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith68x68Icon" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith68x68IconAndText" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith68x92Icon" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith68x92IconAndText" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith280x140Icon" />
+        <element api="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith280x140IconAndText" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="145cd894-4a42-5a8b-f724-69f573b4cff3" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitleOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </containers>
+      <file name="71f932a6-cd31-9b1f-b9b3-3bf17e5633e2" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith280x140Icon">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitleWith280x140Icon" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </containers>
+      <file name="20a4c44a-2481-977d-bf70-45baa959b729" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith280x140IconAndText">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitleWith280x140IconAndText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </containers>
+      <file name="05fcc006-e4ff-c7ab-3462-c77850da7eed" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith68x68Icon">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitleWith68x68Icon" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </containers>
+      <file name="c4d1a53c-d7b9-0df8-ddb5-8c6e98c0fd35" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith68x68IconAndText">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitleWith68x68IconAndText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </containers>
+      <file name="a0c5dc44-fb03-9b49-442e-770a30ed491e" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith68x92Icon">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitleWith68x92Icon" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </containers>
+      <file name="488d7573-1dda-89c5-9513-d5c4b12be9f5" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWith68x92IconAndText">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitleWith68x92IconAndText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </containers>
+      <file name="b27dfb17-1cf5-c70c-c860-1e061f67c219" />
+    </api>
+    <api id="F:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType.TitleWithText">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitleWithText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTileType" ref="false" />
+      </containers>
+      <file name="18176e1e-cd3c-7565-d963-e03e71431ad1" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" />
+      <apidata name="VoiceCommandDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6b60f880-db9f-0809-120e-9af07cca2af2" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition">
+      <topicdata name="VoiceCommandDefinition" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" />
+      <apidata name="VoiceCommandDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.Language" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.Name" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.SetPhraseListAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" />
+      </containers>
+      <file name="f44e1817-0511-77a5-337e-fab1f8b5c42f" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition">
+      <topicdata name="VoiceCommandDefinition" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" />
+      <apidata name="VoiceCommandDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.SetPhraseListAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" />
+      </containers>
+      <file name="4a9da94e-0fcb-1ef6-2b96-f199d002fbed" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition">
+      <topicdata name="VoiceCommandDefinition" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" />
+      <apidata name="VoiceCommandDefinition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.Language" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" />
+      </containers>
+      <file name="28aeda23-a53b-bcb1-9eac-ab39d2822bb1" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" ref="true" />
+      </containers>
+      <file name="9d65ffc4-86e5-f349-500a-0f7977afc188" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" ref="true" />
+      </containers>
+      <file name="75b0a4ec-7dc6-0fc9-0513-c5cfeef7746e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition.SetPhraseListAsync(System.String,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name="SetPhraseListAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="phraseListName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="phraseList" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e7802296-7790-cacc-e943-41cd18ce3968" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" />
+      <apidata name="VoiceCommandDefinitionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2707078d-5f0b-d855-9972-5dbee839146e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager">
+      <topicdata name="VoiceCommandDefinitionManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" />
+      <apidata name="VoiceCommandDefinitionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(Windows.Storage.StorageFile)" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstalledCommandDefinitions" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" />
+      </containers>
+      <file name="6f6411dd-5364-c976-1653-e8db3eb254ab" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager">
+      <topicdata name="VoiceCommandDefinitionManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" />
+      <apidata name="VoiceCommandDefinitionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(Windows.Storage.StorageFile)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" />
+      </containers>
+      <file name="6a5f2929-a0af-d9c1-582f-2cd66126b1b1" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager">
+      <topicdata name="VoiceCommandDefinitionManager" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" />
+      <apidata name="VoiceCommandDefinitionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstalledCommandDefinitions" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" />
+      </containers>
+      <file name="fafcac3e-d3ec-a398-9176-e882ab36fd72" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(Windows.Storage.StorageFile)">
+      <topicdata group="api" />
+      <apidata name="InstallCommandDefinitionsFromStorageFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.StorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="85c5a323-bdc8-19d2-66f9-3a383357d82a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstalledCommandDefinitions">
+      <topicdata group="api" />
+      <apidata name="InstalledCommandDefinitions" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstalledCommandDefinitions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinition" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager" ref="true" />
+      </containers>
+      <file name="6637ed04-dda1-25c6-b2a0-e86884679408" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" />
+      <apidata name="VoiceCommandDisambiguationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="683b426b-ddea-32db-b474-0bb740a6d416" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult">
+      <topicdata name="VoiceCommandDisambiguationResult" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" />
+      <apidata name="VoiceCommandDisambiguationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult.SelectedItem" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" />
+      </containers>
+      <file name="d46ee7f0-6af7-e880-b679-1a09cc189913" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult">
+      <topicdata name="VoiceCommandDisambiguationResult" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" />
+      <apidata name="VoiceCommandDisambiguationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" />
+      </containers>
+      <file name="8448251c-b383-48c6-e62c-2be00263cff1" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult">
+      <topicdata name="VoiceCommandDisambiguationResult" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" />
+      <apidata name="VoiceCommandDisambiguationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult.SelectedItem" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" />
+      </containers>
+      <file name="30cfd9f1-a832-cd66-f73c-f8868de23857" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult.SelectedItem">
+      <topicdata group="api" />
+      <apidata name="SelectedItem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SelectedItem" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" ref="true" />
+      </containers>
+      <file name="6a75315b-1f29-2fbf-20fc-0c0b58377642" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      <apidata name="VoiceCommandResponse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="08c132d8-e78b-a902-b03d-94f79845a68f" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse">
+      <topicdata name="VoiceCommandResponse" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      <apidata name="VoiceCommandResponse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.AppLaunchArgument" />
+        <element api="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse">
+          <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage)" />
+          <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile})" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt">
+          <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage)" />
+          <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile})" />
+        </element>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.MaxSupportedVoiceCommandContentTiles" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.Message" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.RepeatMessage" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.VoiceCommandContentTiles" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      </containers>
+      <file name="485dd593-2713-1232-1c16-30cc4567815a" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse">
+      <topicdata name="VoiceCommandResponse" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      <apidata name="VoiceCommandResponse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse">
+          <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage)" />
+          <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile})" />
+        </element>
+        <element api="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt">
+          <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage)" />
+          <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      </containers>
+      <file name="b1a0b0a0-7ab0-9740-cfae-6af50395a8b6" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse">
+      <topicdata name="VoiceCommandResponse" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      <apidata name="VoiceCommandResponse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.AppLaunchArgument" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.MaxSupportedVoiceCommandContentTiles" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.Message" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.RepeatMessage" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.VoiceCommandContentTiles" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      </containers>
+      <file name="637f599f-0505-96bf-f1b2-bc31fe49cbcb" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse">
+      <topicdata name="CreateResponse" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      <apidata name="CreateResponse" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile})" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <file name="0d7effd7-f69b-894d-0f21-d3a42eaa188a" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt">
+      <topicdata name="CreateResponseForPrompt" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" />
+      <apidata name="CreateResponseForPrompt" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile})" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <file name="f8d9c246-7a2a-73a6-967e-daa40a667969" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.AppLaunchArgument">
+      <topicdata group="api" />
+      <apidata name="AppLaunchArgument" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AppLaunchArgument" />
+      <setter name="set_AppLaunchArgument" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <file name="099ecfb4-4f7b-fd29-8786-226b4bcc9b5f" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage)">
+      <topicdata group="api" />
+      <apidata name="CreateResponse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="userMessage" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateResponse</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e211e4a6-6808-bbd8-8375-229ad9d1f7b7" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile})">
+      <topicdata group="api" />
+      <apidata name="CreateResponse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponse" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+        </parameter>
+        <parameter name="contentTiles" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateResponseWithTiles</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d464d59e-c27d-e060-f938-551220843ec4" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage)">
+      <topicdata group="api" />
+      <apidata name="CreateResponseForPrompt" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+        </parameter>
+        <parameter name="repeatMessage" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateResponseForPrompt</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d7f96ec-fd21-7be5-6eb7-aa1b5fc478b1" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt(Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage,Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile})">
+      <topicdata group="api" />
+      <apidata name="CreateResponseForPrompt" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.CreateResponseForPrompt" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+        </parameter>
+        <parameter name="repeatMessage" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+        </parameter>
+        <parameter name="contentTiles" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateResponseForPromptWithTiles</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="32f611fa-67e1-464f-f618-265a8d2ede68" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.MaxSupportedVoiceCommandContentTiles">
+      <topicdata group="api" />
+      <apidata name="MaxSupportedVoiceCommandContentTiles" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxSupportedVoiceCommandContentTiles" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <file name="08ed0e77-2992-719d-c379-6a56509ac1cd" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Message" />
+      <setter name="set_Message" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <file name="178a81cb-e73c-212d-0b99-29ca6b080825" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.RepeatMessage">
+      <topicdata group="api" />
+      <apidata name="RepeatMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RepeatMessage" />
+      <setter name="set_RepeatMessage" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <file name="2539d14d-326e-ba28-61ff-ff579429f6d8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse.VoiceCommandContentTiles">
+      <topicdata group="api" />
+      <apidata name="VoiceCommandContentTiles" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VoiceCommandContentTiles" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+      </containers>
+      <file name="1c45d2bb-6b6e-c4c7-93c4-14f38f8aff16" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      <apidata name="VoiceCommandServiceConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4d1839e7-0953-1238-3d2e-3c3ecaa3429e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection">
+      <topicdata name="VoiceCommandServiceConnection" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      <apidata name="VoiceCommandServiceConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.FromAppServiceTriggerDetails(Windows.ApplicationModel.AppService.AppServiceTriggerDetails)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.GetVoiceCommandAsync" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.Language" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportFailureAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportProgressAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportSuccessAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestAppLaunchAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestConfirmationAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestDisambiguationAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="E:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.VoiceCommandCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      </containers>
+      <file name="2745563b-0aff-18ea-d48a-95080c0f76d6" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection">
+      <topicdata name="VoiceCommandServiceConnection" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      <apidata name="VoiceCommandServiceConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.FromAppServiceTriggerDetails(Windows.ApplicationModel.AppService.AppServiceTriggerDetails)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.GetVoiceCommandAsync" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportFailureAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportProgressAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportSuccessAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestAppLaunchAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestConfirmationAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestDisambiguationAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      </containers>
+      <file name="29c3ace9-de56-8a5b-822a-4452b74e995e" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection">
+      <topicdata name="VoiceCommandServiceConnection" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      <apidata name="VoiceCommandServiceConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.Language" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      </containers>
+      <file name="5f0ed128-c082-cff4-c923-5b6f5c66cefe" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection">
+      <topicdata name="VoiceCommandServiceConnection" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      <apidata name="VoiceCommandServiceConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.VoiceCommandCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" />
+      </containers>
+      <file name="03971945-7418-929c-6cd9-73964f004999" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.FromAppServiceTriggerDetails(Windows.ApplicationModel.AppService.AppServiceTriggerDetails)">
+      <topicdata group="api" />
+      <apidata name="FromAppServiceTriggerDetails" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="triggerDetails" in="true">
+          <type api="T:Windows.ApplicationModel.AppService.AppServiceTriggerDetails" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <file name="8932cc4f-7374-4b17-b094-9223881996cb" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.GetVoiceCommandAsync">
+      <topicdata group="api" />
+      <apidata name="GetVoiceCommandAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommand" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="26dafd3c-e34b-cd04-5a92-3891dd16fb79" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Language" />
+      <returns>
+        <type api="T:Windows.Globalization.Language" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <file name="8ced336c-90e7-e9e8-18c9-0b2f79166d5a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportFailureAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)">
+      <topicdata group="api" />
+      <apidata name="ReportFailureAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a495d9b1-dd6c-8e49-4dcc-0e58e86fd6e7" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportProgressAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)">
+      <topicdata group="api" />
+      <apidata name="ReportProgressAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d9c6be7a-9cb2-8629-efe0-f771c6890129" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.ReportSuccessAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)">
+      <topicdata group="api" />
+      <apidata name="ReportSuccessAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d20200f4-7887-e618-0087-8ee891e957d4" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestAppLaunchAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)">
+      <topicdata group="api" />
+      <apidata name="RequestAppLaunchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3b927b9c-555c-4e6c-b52f-f42ddae1b335" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestConfirmationAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)">
+      <topicdata group="api" />
+      <apidata name="RequestConfirmationAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandConfirmationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f09886fe-d463-188d-fa32-d5ecbb532bea" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.RequestDisambiguationAsync(Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse)">
+      <topicdata group="api" />
+      <apidata name="RequestDisambiguationAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="response" in="true">
+          <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandResponse" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandDisambiguationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="83f45d62-2723-5840-7aee-a0d519f4f7ce" />
+    </api>
+    <api id="E:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection.VoiceCommandCompleted">
+      <topicdata group="api" />
+      <apidata name="VoiceCommandCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_VoiceCommandCompleted" />
+      <remover name="remove_VoiceCommandCompleted" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+            <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandServiceConnection" ref="true" />
+      </containers>
+      <file name="0345fbee-3579-ee4e-313d-2051cb5fb07c" />
+    </api>
+    <api id="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" />
+      <apidata name="VoiceCommandUserMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c05e3523-023f-5fbc-273c-f4764daa4285" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage">
+      <topicdata name="VoiceCommandUserMessage" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" />
+      <apidata name="VoiceCommandUserMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.#ctor" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.DisplayMessage" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.SpokenMessage" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" />
+      </containers>
+      <file name="baad41ab-c426-84c8-98c1-57c747b64f2d" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage">
+      <topicdata name="VoiceCommandUserMessage" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" />
+      <apidata name="VoiceCommandUserMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" />
+      </containers>
+      <file name="c007f733-2ffd-cb6f-f8ee-154f47f20140" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage">
+      <topicdata name="VoiceCommandUserMessage" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" />
+      <apidata name="VoiceCommandUserMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.DisplayMessage" />
+        <element api="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.SpokenMessage" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" />
+      </containers>
+      <file name="92bc561f-2289-f0da-8678-64cb23573504" />
+    </api>
+    <api id="M:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+      </containers>
+      <file name="0b5e8cc1-e64d-3018-3336-2de5fcf17a9e" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.DisplayMessage">
+      <topicdata group="api" />
+      <apidata name="DisplayMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayMessage" />
+      <setter name="set_DisplayMessage" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+      </containers>
+      <file name="72554582-98d8-72e7-5595-3b3b2cae66e4" />
+    </api>
+    <api id="P:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage.SpokenMessage">
+      <topicdata group="api" />
+      <apidata name="SpokenMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SpokenMessage" />
+      <setter name="set_SpokenMessage" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.VoiceCommands" />
+        <type api="T:Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage" ref="true" />
+      </containers>
+      <file name="39d5f5ca-c5d3-65e5-b609-86e62986c743" />
+    </api>
+  </apis>
+</reflection>

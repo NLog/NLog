@@ -41,19 +41,19 @@ namespace NLog.UnitTests.Config
         [Fact]
         public void InternalLoggingConfigTest1()
         {
-            InternalLoggingConfigTest(LogLevel.Trace, true, true, LogLevel.Warn, true, true, @"c:\temp\nlog\file.txt");
+            InternalLoggingConfigTest(LogLevel.Trace, true, true, LogLevel.Warn, true, true, @"c:\temp\nlog\file.txt", true);
         }
 
         [Fact]
         public void InternalLoggingConfigTest2()
         {
-            InternalLoggingConfigTest(LogLevel.Error, false, false, LogLevel.Info, false, false, @"c:\temp\nlog\file2.txt");
+            InternalLoggingConfigTest(LogLevel.Error, false, false, LogLevel.Info, false, false, @"c:\temp\nlog\file2.txt", false);
         }
 
         [Fact]
         public void InternalLoggingConfigTes3()
         {
-            InternalLoggingConfigTest(LogLevel.Info, false, false, LogLevel.Trace, false, null, @"c:\temp\nlog\file3.txt");
+            InternalLoggingConfigTest(LogLevel.Info, false, false, LogLevel.Trace, false, null, @"c:\temp\nlog\file3.txt", false);
         }
 
         [Fact]
@@ -69,6 +69,9 @@ namespace NLog.UnitTests.Config
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                InternalLogger.LogToTrace = true;
+#endif
 
                 CreateConfigurationFromString(@"
 <nlog>
@@ -82,11 +85,14 @@ namespace NLog.UnitTests.Config
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                Assert.True(InternalLogger.LogToTrace);
+#endif
             }
         }
 
 
-        private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file)
+        private void InternalLoggingConfigTest(LogLevel logLevel, bool logToConsole, bool logToConsoleError, LogLevel globalThreshold, bool throwExceptions, bool? throwConfigExceptions, string file, bool logToTrace)
         {
             var logLevelString = logLevel.ToString();
             var internalLogToConsoleString = logToConsole.ToString().ToLower();
@@ -94,12 +100,13 @@ namespace NLog.UnitTests.Config
             var globalThresholdString = globalThreshold.ToString();
             var throwExceptionsString = throwExceptions.ToString().ToLower();
             var throwConfigExceptionsString = throwConfigExceptions == null ? "" : throwConfigExceptions.ToString().ToLower();
+            var logToTraceString = logToTrace.ToString().ToLower();
 
             using (new InternalLoggerScope())
             {
                 CreateConfigurationFromString(string.Format(@"
-<nlog internalLogFile='{0}' internalLogLevel='{1}' internalLogToConsole='{2}' internalLogToConsoleError='{3}' globalThreshold='{4}' throwExceptions='{5}' throwConfigExceptions='{6}'>
-</nlog>", file, logLevelString, internalLogToConsoleString, internalLogToConsoleErrorString, globalThresholdString, throwExceptionsString, throwConfigExceptionsString));
+<nlog internalLogFile='{0}' internalLogLevel='{1}' internalLogToConsole='{2}' internalLogToConsoleError='{3}' globalThreshold='{4}' throwExceptions='{5}' throwConfigExceptions='{6}' internalLogToTrace='{7}'>
+</nlog>", file, logLevelString, internalLogToConsoleString, internalLogToConsoleErrorString, globalThresholdString, throwExceptionsString, throwConfigExceptionsString, logToTraceString));
 
                 Assert.Same(logLevel, InternalLogger.LogLevel);
 
@@ -116,6 +123,10 @@ namespace NLog.UnitTests.Config
                 Assert.Equal(throwExceptions, LogManager.ThrowExceptions);
 
                 Assert.Equal(throwConfigExceptions, LogManager.ThrowConfigExceptions);
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                Assert.Equal(logToTrace, InternalLogger.LogToTrace);
+#endif
             }
         }
     }

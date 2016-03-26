@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Utilities">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Utilities" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Utilities.WsDuration" />
+      </elements>
+      <file name="387bc67b-1073-3a59-6a55-30c93897f3f0" />
+    </api>
+    <api id="T:Ws.Services.Utilities.WsDuration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Utilities.WsDuration" />
+      <apidata name="WsDuration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+      </containers>
+      <file name="ebefa45f-4348-ebcf-3a6b-8960c71786f0" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Utilities.WsDuration">
+      <topicdata name="WsDuration" group="list" subgroup="members" typeTopicId="T:Ws.Services.Utilities.WsDuration" />
+      <apidata name="WsDuration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:Ws.Services.Utilities.WsDuration.ToString">
+          <element api="M:System.Object.ToString" />
+          <element api="M:Ws.Services.Utilities.WsDuration.ToString(System.TimeSpan)" />
+        </element>
+        <element api="Overload:Ws.Services.Utilities.WsDuration.#ctor">
+          <element api="M:Ws.Services.Utilities.WsDuration.#ctor(System.Int64)" />
+          <element api="M:Ws.Services.Utilities.WsDuration.#ctor(System.String)" />
+          <element api="M:Ws.Services.Utilities.WsDuration.#ctor(System.TimeSpan)" />
+        </element>
+        <element api="F:Ws.Services.Utilities.WsDuration.DurationInSeconds" />
+        <element api="F:Ws.Services.Utilities.WsDuration.DurationString" />
+        <element api="F:Ws.Services.Utilities.WsDuration.Ticks" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" />
+      </containers>
+      <file name="99129656-8e80-ace4-aa6e-f85b54c620b3" />
+    </api>
+    <api id="Methods.T:Ws.Services.Utilities.WsDuration">
+      <topicdata name="WsDuration" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Utilities.WsDuration" />
+      <apidata name="WsDuration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:Ws.Services.Utilities.WsDuration.ToString">
+          <element api="M:System.Object.ToString" />
+          <element api="M:Ws.Services.Utilities.WsDuration.ToString(System.TimeSpan)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" />
+      </containers>
+      <file name="3cc2765c-9e19-6d89-3e63-e9940219652e" />
+    </api>
+    <api id="Fields.T:Ws.Services.Utilities.WsDuration">
+      <topicdata name="WsDuration" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Utilities.WsDuration" />
+      <apidata name="WsDuration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Utilities.WsDuration.DurationInSeconds" />
+        <element api="F:Ws.Services.Utilities.WsDuration.DurationString" />
+        <element api="F:Ws.Services.Utilities.WsDuration.Ticks" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" />
+      </containers>
+      <file name="ad475f8e-2414-957f-641c-e4e4eaa134d0" />
+    </api>
+    <api id="Overload:Ws.Services.Utilities.WsDuration.ToString">
+      <topicdata name="ToString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Utilities.WsDuration" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Utilities.WsDuration.ToString(System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="81d16a14-cd38-3e6c-0682-ddcba7722e95" />
+    </api>
+    <api id="Overload:Ws.Services.Utilities.WsDuration.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Utilities.WsDuration" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Ws.Services.Utilities.WsDuration.#ctor(System.Int64)" />
+        <element api="M:Ws.Services.Utilities.WsDuration.#ctor(System.String)" />
+        <element api="M:Ws.Services.Utilities.WsDuration.#ctor(System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="16d057e4-489c-9760-b6c8-5ed69e18a585" />
+    </api>
+    <api id="M:Ws.Services.Utilities.WsDuration.#ctor(System.Int64)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Utilities.WsDuration.#ctor" />
+      <parameters>
+        <parameter name="seconds">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="dc240803-6545-6d12-a61f-f91fc4068eda" />
+    </api>
+    <api id="M:Ws.Services.Utilities.WsDuration.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Utilities.WsDuration.#ctor" />
+      <parameters>
+        <parameter name="duration">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="6cc5419a-eb38-9020-7850-a91d2261d869" />
+    </api>
+    <api id="M:Ws.Services.Utilities.WsDuration.#ctor(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Utilities.WsDuration.#ctor" />
+      <parameters>
+        <parameter name="timeSpan">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="f02fa2ee-ce97-57aa-319d-eed388436a71" />
+    </api>
+    <api id="F:Ws.Services.Utilities.WsDuration.DurationInSeconds">
+      <topicdata group="api" />
+      <apidata name="DurationInSeconds" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="9644b99a-9b34-cdac-9d04-fb2e50082c07" />
+    </api>
+    <api id="F:Ws.Services.Utilities.WsDuration.DurationString">
+      <topicdata group="api" />
+      <apidata name="DurationString" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="44a17cd2-b527-4ef5-79bf-a1786313bbcb" />
+    </api>
+    <api id="F:Ws.Services.Utilities.WsDuration.Ticks">
+      <topicdata group="api" />
+      <apidata name="Ticks" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="49561960-8956-3920-7d22-1fe90cebf3ea" />
+    </api>
+    <api id="M:Ws.Services.Utilities.WsDuration.ToString(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.Utilities.WsDuration.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timeSpan">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Utilities" />
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </containers>
+      <file name="c837c6bc-f3c3-3b1a-94f9-642419d355c1" />
+    </api>
+  </apis>
+</reflection>

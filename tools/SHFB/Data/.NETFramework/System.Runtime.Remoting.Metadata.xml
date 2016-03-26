@@ -1,0 +1,1465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BED7F4EA-1A96-11d2-8F08-00A0C9A6186D</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Remoting.Metadata">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Remoting.Metadata" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Remoting.Metadata.SoapOption" />
+        <element api="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption" />
+        <element api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" />
+        <element api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" />
+        <element api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" />
+        <element api="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" />
+        <element api="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      </elements>
+      <file name="ba825742-66f4-5f15-b131-6abae3ddea22" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Metadata.SoapAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      <apidata name="SoapAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+          <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" ref="true" />
+          <type api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" ref="true" />
+          <type api="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e26ceb0f-b31a-bca8-86c8-c3764e13c7dc" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Metadata.SoapAttribute">
+      <topicdata name="SoapAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      <apidata name="SoapAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Metadata.SoapAttribute.#ctor" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="F:System.Runtime.Remoting.Metadata.SoapAttribute.ProtXmlNamespace" />
+        <element api="F:System.Runtime.Remoting.Metadata.SoapAttribute.ReflectInfo" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      </containers>
+      <file name="04181116-3c0e-ce60-e589-4248db703150" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Metadata.SoapAttribute">
+      <topicdata name="SoapAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      <apidata name="SoapAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      </containers>
+      <file name="44a833e1-b079-3e9a-26ae-fef7ac325da2" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Metadata.SoapAttribute">
+      <topicdata name="SoapAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      <apidata name="SoapAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      </containers>
+      <file name="6968a029-9ce8-73c0-1199-a7f52d1768e7" />
+    </api>
+    <api id="Fields.T:System.Runtime.Remoting.Metadata.SoapAttribute">
+      <topicdata name="SoapAttribute" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      <apidata name="SoapAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapAttribute.#ctor" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Metadata.SoapAttribute.ProtXmlNamespace" />
+        <element api="F:System.Runtime.Remoting.Metadata.SoapAttribute.ReflectInfo" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" />
+      </containers>
+      <file name="bc0e96e6-5515-8b40-771d-5179c45dc04b" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Metadata.SoapAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+      </containers>
+      <file name="7bb3f694-fc1f-b8e5-eea0-99981c12d531" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded">
+      <topicdata group="api" />
+      <apidata name="Embedded" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Embedded" />
+      <setter name="set_Embedded" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+      </containers>
+      <file name="da7d376f-d39a-3cde-1b8c-5f96440043d4" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.SoapAttribute.ProtXmlNamespace">
+      <topicdata group="api" />
+      <apidata name="ProtXmlNamespace" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+      </containers>
+      <file name="86098be6-9fbd-ba07-17db-897641cf9b80" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.SoapAttribute.ReflectInfo">
+      <topicdata group="api" />
+      <apidata name="ReflectInfo" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+      </containers>
+      <file name="b74c660f-9cf6-ade2-7c00-edfc2554a060" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute">
+      <topicdata group="api" />
+      <apidata name="UseAttribute" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UseAttribute" />
+      <setter name="set_UseAttribute" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+      </containers>
+      <file name="6879b448-babe-08b0-13d3-608ca4851fc5" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace">
+      <topicdata group="api" />
+      <apidata name="XmlNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlNamespace" />
+      <setter name="set_XmlNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+      </containers>
+      <file name="a24dd400-81ad-7b49-bf55-d37a8522d1e3" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" />
+      <apidata name="SoapFieldAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Field" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0f87535d-b854-6e95-130f-02ad473d60b9" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Metadata.SoapFieldAttribute">
+      <topicdata name="SoapFieldAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" />
+      <apidata name="SoapFieldAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace" />
+        <element api="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.#ctor" />
+        <element api="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.IsInteropXmlElement" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapFieldAttribute.Order" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapFieldAttribute.XmlElementName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" />
+      </containers>
+      <file name="03e990a8-21c2-dbca-b103-922ce39d0061" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Metadata.SoapFieldAttribute">
+      <topicdata name="SoapFieldAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" />
+      <apidata name="SoapFieldAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.IsInteropXmlElement" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" />
+      </containers>
+      <file name="d3e03d9c-0b70-ea8b-b270-a21fa63b75c0" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Metadata.SoapFieldAttribute">
+      <topicdata name="SoapFieldAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" />
+      <apidata name="SoapFieldAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapFieldAttribute.Order" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapFieldAttribute.XmlElementName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" />
+      </containers>
+      <file name="6c192406-388f-f399-b60f-8c1882e840e1" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" ref="true" />
+      </containers>
+      <file name="cd4e775e-680e-d2be-bd25-59bbffe969d2" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Metadata.SoapFieldAttribute.IsInteropXmlElement">
+      <topicdata group="api" />
+      <apidata name="IsInteropXmlElement" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" ref="true" />
+      </containers>
+      <file name="f2089490-6c40-13c3-93fd-86b703dd5168" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapFieldAttribute.Order">
+      <topicdata group="api" />
+      <apidata name="Order" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Order" />
+      <setter name="set_Order" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" ref="true" />
+      </containers>
+      <file name="8237e553-f326-47c7-a11e-88fabf37798b" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapFieldAttribute.XmlElementName">
+      <topicdata group="api" />
+      <apidata name="XmlElementName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlElementName" />
+      <setter name="set_XmlElementName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapFieldAttribute" ref="true" />
+      </containers>
+      <file name="5a3958c7-8558-9c78-2ac8-129b7919ecd6" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" />
+      <apidata name="SoapMethodAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapMethodAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d12c6c16-881d-ee72-f5ef-4c01fd8b49fd" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Metadata.SoapMethodAttribute">
+      <topicdata name="SoapMethodAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" />
+      <apidata name="SoapMethodAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapMethodAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="M:System.Runtime.Remoting.Metadata.SoapMethodAttribute.#ctor" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ResponseXmlElementName" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ResponseXmlNamespace" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ReturnXmlElementName" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.SoapAction" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" />
+      </containers>
+      <file name="672e9f55-142d-1deb-8ea5-e7f69059a8cb" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Metadata.SoapMethodAttribute">
+      <topicdata name="SoapMethodAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" />
+      <apidata name="SoapMethodAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapMethodAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" />
+      </containers>
+      <file name="e052119f-3b77-8310-a244-d4a813f63b63" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Metadata.SoapMethodAttribute">
+      <topicdata name="SoapMethodAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" />
+      <apidata name="SoapMethodAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapMethodAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ResponseXmlElementName" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ResponseXmlNamespace" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ReturnXmlElementName" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.SoapAction" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" />
+      </containers>
+      <file name="b1b7c9d6-153f-3ae8-2708-2cacc2145bb4" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Metadata.SoapMethodAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" ref="true" />
+      </containers>
+      <file name="5d5a4974-33a7-8a03-6c43-8c9ba843a3af" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ResponseXmlElementName">
+      <topicdata group="api" />
+      <apidata name="ResponseXmlElementName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ResponseXmlElementName" />
+      <setter name="set_ResponseXmlElementName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" ref="true" />
+      </containers>
+      <file name="623ce823-6746-7afe-ace6-3691efda708c" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ResponseXmlNamespace">
+      <topicdata group="api" />
+      <apidata name="ResponseXmlNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ResponseXmlNamespace" />
+      <setter name="set_ResponseXmlNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" ref="true" />
+      </containers>
+      <file name="a10f565b-32c8-97ea-947c-b7c5767560cb" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.ReturnXmlElementName">
+      <topicdata group="api" />
+      <apidata name="ReturnXmlElementName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReturnXmlElementName" />
+      <setter name="set_ReturnXmlElementName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" ref="true" />
+      </containers>
+      <file name="808f59c2-a31c-71a9-1ef6-8bb34c3c9c13" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.SoapAction">
+      <topicdata group="api" />
+      <apidata name="SoapAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SoapAction" />
+      <setter name="set_SoapAction" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" ref="true" />
+      </containers>
+      <file name="03c0616a-88de-d1f4-2b51-70d71a90e9b1" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.UseAttribute">
+      <topicdata group="api" />
+      <apidata name="UseAttribute" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute">
+          <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_UseAttribute" />
+      <setter name="set_UseAttribute" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" ref="true" />
+      </containers>
+      <file name="6303e63c-9e84-ab50-0edd-e90e90593996" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapMethodAttribute.XmlNamespace">
+      <topicdata group="api" />
+      <apidata name="XmlNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace">
+          <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlNamespace" />
+      <setter name="set_XmlNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapMethodAttribute" ref="true" />
+      </containers>
+      <file name="176eed8d-7cd0-c4d5-1db0-3265d9b2d498" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Metadata.SoapOption">
+      <topicdata group="api" />
+      <apidata name="SoapOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Metadata.SoapOption.None" />
+        <element api="F:System.Runtime.Remoting.Metadata.SoapOption.AlwaysIncludeTypes" />
+        <element api="F:System.Runtime.Remoting.Metadata.SoapOption.XsdString" />
+        <element api="F:System.Runtime.Remoting.Metadata.SoapOption.EmbedAll" />
+        <element api="F:System.Runtime.Remoting.Metadata.SoapOption.Option1" />
+        <element api="F:System.Runtime.Remoting.Metadata.SoapOption.Option2" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d8101e3-dc49-e552-dd53-f1c52e06a934" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.SoapOption.AlwaysIncludeTypes">
+      <topicdata group="api" notopic="" />
+      <apidata name="AlwaysIncludeTypes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </containers>
+      <file name="583595c3-3fea-3e43-3586-613151c6ffa2" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.SoapOption.EmbedAll">
+      <topicdata group="api" notopic="" />
+      <apidata name="EmbedAll" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </containers>
+      <file name="1628e58d-225b-2a31-8e54-ee96b2c47b7b" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.SoapOption.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </containers>
+      <file name="322e957f-e21a-4194-06c8-543b54aa74bf" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.SoapOption.Option1">
+      <topicdata group="api" notopic="" />
+      <apidata name="Option1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </containers>
+      <file name="c6ce45c9-df8c-f073-7a21-857d2f4cdef7" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.SoapOption.Option2">
+      <topicdata group="api" notopic="" />
+      <apidata name="Option2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </containers>
+      <file name="41f8aa12-a824-62a2-e40e-34a28ddbdbdb" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.SoapOption.XsdString">
+      <topicdata group="api" notopic="" />
+      <apidata name="XsdString" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </containers>
+      <file name="0c10aa78-106c-f43e-8be0-7ee4899c80a0" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" />
+      <apidata name="SoapParameterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapParameterAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c5b60ced-570f-91a6-8ed6-d152594d01e5" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Metadata.SoapParameterAttribute">
+      <topicdata name="SoapParameterAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" />
+      <apidata name="SoapParameterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapParameterAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace" />
+        <element api="M:System.Runtime.Remoting.Metadata.SoapParameterAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" />
+      </containers>
+      <file name="6c62b70b-ff92-d3a8-b606-4c964dbe7fa3" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Metadata.SoapParameterAttribute">
+      <topicdata name="SoapParameterAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" />
+      <apidata name="SoapParameterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapParameterAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" />
+      </containers>
+      <file name="9307cb21-c033-6840-b8f7-46d69defc023" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Metadata.SoapParameterAttribute">
+      <topicdata name="SoapParameterAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" />
+      <apidata name="SoapParameterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapParameterAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" />
+      </containers>
+      <file name="957c662e-7f4e-c164-2bae-d2907c21042c" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Metadata.SoapParameterAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapParameterAttribute" ref="true" />
+      </containers>
+      <file name="ed91f7f6-1ae4-2cc8-ea64-84cf1be46e2e" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" />
+      <apidata name="SoapTypeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapTypeAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Enum" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="805953ee-01de-cf93-d844-b390bf689a07" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Metadata.SoapTypeAttribute">
+      <topicdata name="SoapTypeAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" />
+      <apidata name="SoapTypeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapTypeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="M:System.Runtime.Remoting.Metadata.SoapTypeAttribute.#ctor" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.SoapOptions" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlElementName" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlFieldOrder" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlNamespace" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlTypeName" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlTypeNamespace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" />
+      </containers>
+      <file name="7550f9db-c64c-11a8-dc11-469678ceef49" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Metadata.SoapTypeAttribute">
+      <topicdata name="SoapTypeAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" />
+      <apidata name="SoapTypeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapTypeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" />
+      </containers>
+      <file name="d7406fdb-f794-4a10-995b-2241e1ea1af1" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Metadata.SoapTypeAttribute">
+      <topicdata name="SoapTypeAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" />
+      <apidata name="SoapTypeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Metadata.SoapTypeAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapAttribute.Embedded" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.SoapOptions" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.UseAttribute" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlElementName" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlFieldOrder" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlNamespace" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlTypeName" />
+        <element api="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlTypeNamespace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" />
+      </containers>
+      <file name="62c3c812-a13b-da92-1fe3-d77ce4fe10f5" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Metadata.SoapTypeAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+      </containers>
+      <file name="f418f8b7-2675-5ee8-d72c-c991e99154bb" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.SoapOptions">
+      <topicdata group="api" />
+      <apidata name="SoapOptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SoapOptions" />
+      <setter name="set_SoapOptions" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.SoapOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+      </containers>
+      <file name="65cdc29f-6384-39c7-165c-bd3b2a5b1354" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.UseAttribute">
+      <topicdata group="api" />
+      <apidata name="UseAttribute" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Metadata.SoapAttribute.UseAttribute">
+          <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_UseAttribute" />
+      <setter name="set_UseAttribute" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+      </containers>
+      <file name="ab1b288f-dbc6-8e42-1bb5-679c48d0b44e" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlElementName">
+      <topicdata group="api" />
+      <apidata name="XmlElementName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlElementName" />
+      <setter name="set_XmlElementName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+      </containers>
+      <file name="7249ab34-7091-b9de-1dc0-8d3e284afc15" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlFieldOrder">
+      <topicdata group="api" />
+      <apidata name="XmlFieldOrder" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlFieldOrder" />
+      <setter name="set_XmlFieldOrder" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+      </containers>
+      <file name="07bcdfb5-3db2-3da8-cee5-5a8b0cbc085a" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlNamespace">
+      <topicdata group="api" />
+      <apidata name="XmlNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Metadata.SoapAttribute.XmlNamespace">
+          <type api="T:System.Runtime.Remoting.Metadata.SoapAttribute" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlNamespace" />
+      <setter name="set_XmlNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+      </containers>
+      <file name="36612b68-dd73-c7a2-4df6-b162e14dc6a2" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlTypeName">
+      <topicdata group="api" />
+      <apidata name="XmlTypeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlTypeName" />
+      <setter name="set_XmlTypeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+      </containers>
+      <file name="2275b016-a795-5b8b-5f0a-892a281376c1" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Metadata.SoapTypeAttribute.XmlTypeNamespace">
+      <topicdata group="api" />
+      <apidata name="XmlTypeNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_XmlTypeNamespace" />
+      <setter name="set_XmlTypeNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.SoapTypeAttribute" ref="true" />
+      </containers>
+      <file name="24897d93-3894-762d-6327-c69feabd0a27" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption">
+      <topicdata group="api" />
+      <apidata name="XmlFieldOrderOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Metadata.XmlFieldOrderOption.All" />
+        <element api="F:System.Runtime.Remoting.Metadata.XmlFieldOrderOption.Sequence" />
+        <element api="F:System.Runtime.Remoting.Metadata.XmlFieldOrderOption.Choice" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ac7d4c58-f7d4-c7c2-d980-1d85ed3efc66" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.XmlFieldOrderOption.All">
+      <topicdata group="api" notopic="" />
+      <apidata name="All" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption" ref="false" />
+      </containers>
+      <file name="339bd6a7-d5f7-0ac3-8897-503817ae3356" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.XmlFieldOrderOption.Choice">
+      <topicdata group="api" notopic="" />
+      <apidata name="Choice" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption" ref="false" />
+      </containers>
+      <file name="a15e378b-29d2-0917-1f38-c535011d4dec" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Metadata.XmlFieldOrderOption.Sequence">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sequence" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Metadata" />
+        <type api="T:System.Runtime.Remoting.Metadata.XmlFieldOrderOption" ref="false" />
+      </containers>
+      <file name="b00a7143-605b-7b6c-c8b3-9bf03c0ab3d6" />
+    </api>
+  </apis>
+</reflection>

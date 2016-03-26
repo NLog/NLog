@@ -1,0 +1,1172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.ClosedCaptioning">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.ClosedCaptioning" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" />
+        <element api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" />
+        <element api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" />
+        <element api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" />
+        <element api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" />
+        <element api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" />
+      </elements>
+      <file name="5b13e7ce-b46c-6455-2d70-e69288d72b7c" />
+    </api>
+    <api id="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor">
+      <topicdata group="api" />
+      <apidata name="ClosedCaptionColor" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Default" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.White" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Black" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Red" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Green" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Blue" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Yellow" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Magenta" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Cyan" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5292920d-4118-a2b7-3a7e-435769f84d72" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Black">
+      <topicdata group="api" notopic="" />
+      <apidata name="Black" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="d8f68068-2600-94bc-e489-5484b3e46213" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Blue">
+      <topicdata group="api" notopic="" />
+      <apidata name="Blue" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="d54e6134-c1f5-f995-7cc1-137b3820af39" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Cyan">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cyan" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="f4f421a7-e965-a8f6-756c-e7991341210f" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="666ac565-5212-e065-eb72-903ae225cbc7" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Green">
+      <topicdata group="api" notopic="" />
+      <apidata name="Green" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="dd4350f4-dde7-0be7-20ff-274867527239" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Magenta">
+      <topicdata group="api" notopic="" />
+      <apidata name="Magenta" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="107c5c39-2b73-7d7b-1819-7d7580284a18" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Red">
+      <topicdata group="api" notopic="" />
+      <apidata name="Red" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="2aef88d2-9baa-f64d-d37f-670f0ae97704" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.White">
+      <topicdata group="api" notopic="" />
+      <apidata name="White" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="18e44d07-d18f-b24a-73c2-a48967fdea35" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionColor.Yellow">
+      <topicdata group="api" notopic="" />
+      <apidata name="Yellow" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </containers>
+      <file name="c04196ea-5dce-cdb3-f571-a1d75727cd86" />
+    </api>
+    <api id="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect">
+      <topicdata group="api" />
+      <apidata name="ClosedCaptionEdgeEffect" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.Default" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.None" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.Raised" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.Depressed" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.Uniform" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.DropShadow" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b3104b52-d18d-4240-328b-08e854e652b1" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </containers>
+      <file name="4786d601-1d23-ceae-cc86-500ff1d52a1e" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.Depressed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Depressed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </containers>
+      <file name="35f6f249-4c49-c081-2d13-ac42c8deaa4d" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.DropShadow">
+      <topicdata group="api" notopic="" />
+      <apidata name="DropShadow" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </containers>
+      <file name="9a7df75d-148a-fbd4-6d74-48099c13fa29" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </containers>
+      <file name="c94aeaaa-cd45-3071-da59-0d9e9a54eab5" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.Raised">
+      <topicdata group="api" notopic="" />
+      <apidata name="Raised" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </containers>
+      <file name="dff2271b-627d-8f06-ad07-6ac543937b52" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect.Uniform">
+      <topicdata group="api" notopic="" />
+      <apidata name="Uniform" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </containers>
+      <file name="93e4b4bf-97fd-87af-7ac9-7fe3c97cd686" />
+    </api>
+    <api id="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity">
+      <topicdata group="api" />
+      <apidata name="ClosedCaptionOpacity" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.Default" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.OneHundredPercent" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.SeventyFivePercent" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.TwentyFivePercent" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.ZeroPercent" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1069ea36-bcd7-93df-9046-745f60f3b943" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </containers>
+      <file name="940184ca-d2c0-e5fa-4dae-1a2d631a4770" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.OneHundredPercent">
+      <topicdata group="api" notopic="" />
+      <apidata name="OneHundredPercent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </containers>
+      <file name="e23ff8f2-a2f7-be4d-2ab5-5456de6c06c7" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.SeventyFivePercent">
+      <topicdata group="api" notopic="" />
+      <apidata name="SeventyFivePercent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </containers>
+      <file name="5353e6ae-de04-e131-e93e-388c5b30fe5f" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.TwentyFivePercent">
+      <topicdata group="api" notopic="" />
+      <apidata name="TwentyFivePercent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </containers>
+      <file name="5d550e49-1700-86e2-a50a-0ee06b975811" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity.ZeroPercent">
+      <topicdata group="api" notopic="" />
+      <apidata name="ZeroPercent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </containers>
+      <file name="4473e34e-8e2b-3531-0049-5115e7334071" />
+    </api>
+    <api id="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" />
+      <apidata name="ClosedCaptionProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1419d53c-051b-f5f9-e0cb-b6676bf9aff5" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties">
+      <topicdata name="ClosedCaptionProperties" group="list" subgroup="members" typeTopicId="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" />
+      <apidata name="ClosedCaptionProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.BackgroundColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.BackgroundOpacity" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedBackgroundColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedFontColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedRegionColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontEffect" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontOpacity" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontSize" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontStyle" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.RegionColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.RegionOpacity" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" />
+      </containers>
+      <file name="0da637e0-beeb-9e66-31ae-b278f06fd1d4" />
+    </api>
+    <api id="Properties.T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties">
+      <topicdata name="ClosedCaptionProperties" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" />
+      <apidata name="ClosedCaptionProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.BackgroundColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.BackgroundOpacity" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedBackgroundColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedFontColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedRegionColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontEffect" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontOpacity" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontSize" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontStyle" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.RegionColor" />
+        <element api="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.RegionOpacity" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" />
+      </containers>
+      <file name="573dd089-e924-004f-653d-677ee8323644" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.BackgroundColor">
+      <topicdata group="api" />
+      <apidata name="BackgroundColor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BackgroundColor" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="c2004d94-6357-0af5-ce09-7cf062b8f3c7" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.BackgroundOpacity">
+      <topicdata group="api" />
+      <apidata name="BackgroundOpacity" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BackgroundOpacity" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="954bd44e-bf22-6895-3ac3-c89f2c2ee86b" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedBackgroundColor">
+      <topicdata group="api" />
+      <apidata name="ComputedBackgroundColor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ComputedBackgroundColor" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="2a2cd003-ea40-b67d-226b-5b553fba450d" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedFontColor">
+      <topicdata group="api" />
+      <apidata name="ComputedFontColor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ComputedFontColor" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="13deb4e8-5031-7682-52e7-74faf030a40a" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.ComputedRegionColor">
+      <topicdata group="api" />
+      <apidata name="ComputedRegionColor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ComputedRegionColor" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="54b5df1a-4e3b-e590-4349-a12751805a7a" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontColor">
+      <topicdata group="api" />
+      <apidata name="FontColor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FontColor" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="fa8c76c2-a243-49b8-eccf-a193a84fc24f" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontEffect">
+      <topicdata group="api" />
+      <apidata name="FontEffect" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FontEffect" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionEdgeEffect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="353529d9-5994-8815-a68b-eda81c87767b" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontOpacity">
+      <topicdata group="api" />
+      <apidata name="FontOpacity" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FontOpacity" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="137f16f1-83a9-dab8-3b38-9221e30b7db7" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontSize">
+      <topicdata group="api" />
+      <apidata name="FontSize" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FontSize" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="09a4faa1-0c84-ebac-f151-23c3b9269d57" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.FontStyle">
+      <topicdata group="api" />
+      <apidata name="FontStyle" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FontStyle" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="78c2ef3d-7e9c-cef8-5cc9-146c22718607" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.RegionColor">
+      <topicdata group="api" />
+      <apidata name="RegionColor" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RegionColor" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionColor" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="257cfa93-3fcf-695a-eb82-34944838ddd5" />
+    </api>
+    <api id="P:Windows.Media.ClosedCaptioning.ClosedCaptionProperties.RegionOpacity">
+      <topicdata group="api" />
+      <apidata name="RegionOpacity" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RegionOpacity" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionOpacity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionProperties" ref="true" />
+      </containers>
+      <file name="813bc655-e08b-2d12-ae17-3cfa7740ccb7" />
+    </api>
+    <api id="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize">
+      <topicdata group="api" />
+      <apidata name="ClosedCaptionSize" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.Default" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.FiftyPercent" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.OneHundredPercent" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.OneHundredFiftyPercent" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.TwoHundredPercent" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0c2f4878-ce5b-6e2f-36ad-9f85eb372227" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </containers>
+      <file name="ecbaad5d-d094-2e35-661d-10dcfae2231d" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.FiftyPercent">
+      <topicdata group="api" notopic="" />
+      <apidata name="FiftyPercent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </containers>
+      <file name="d5e59bef-3782-a171-d75e-6f8d752c1f9e" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.OneHundredFiftyPercent">
+      <topicdata group="api" notopic="" />
+      <apidata name="OneHundredFiftyPercent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </containers>
+      <file name="64da7920-e722-3e6a-7023-827875150bc6" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.OneHundredPercent">
+      <topicdata group="api" notopic="" />
+      <apidata name="OneHundredPercent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </containers>
+      <file name="5bac3a88-53d8-fcdc-b726-e398145de15a" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionSize.TwoHundredPercent">
+      <topicdata group="api" notopic="" />
+      <apidata name="TwoHundredPercent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionSize" ref="false" />
+      </containers>
+      <file name="bf795ae3-2a47-111e-eb53-a1aa40fb38d5" />
+    </api>
+    <api id="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle">
+      <topicdata group="api" />
+      <apidata name="ClosedCaptionStyle" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.Default" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.MonospacedWithSerifs" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.ProportionalWithSerifs" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.MonospacedWithoutSerifs" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.ProportionalWithoutSerifs" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.Casual" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.Cursive" />
+        <element api="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.SmallCapitals" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="321a7c28-8439-f323-8aa5-27c707a58e51" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.Casual">
+      <topicdata group="api" notopic="" />
+      <apidata name="Casual" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </containers>
+      <file name="b6ca21fb-9190-8240-44a3-7764540a863b" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.Cursive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cursive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </containers>
+      <file name="4e377265-fc06-62e7-0659-b9cb52e4262d" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </containers>
+      <file name="d4362f7f-5f51-5ffc-735b-218967c655ec" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.MonospacedWithoutSerifs">
+      <topicdata group="api" notopic="" />
+      <apidata name="MonospacedWithoutSerifs" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </containers>
+      <file name="2d960420-8df1-9cd1-724c-8c8f88f3d000" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.MonospacedWithSerifs">
+      <topicdata group="api" notopic="" />
+      <apidata name="MonospacedWithSerifs" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </containers>
+      <file name="2fcb7347-0af6-eb76-10b5-43f83c750e95" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.ProportionalWithoutSerifs">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProportionalWithoutSerifs" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </containers>
+      <file name="8f1ea257-7f2b-3a76-7014-cab3067f4f53" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.ProportionalWithSerifs">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProportionalWithSerifs" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </containers>
+      <file name="6ce9b684-9eca-f22d-d1ff-16ef8eb3d1fe" />
+    </api>
+    <api id="F:Windows.Media.ClosedCaptioning.ClosedCaptionStyle.SmallCapitals">
+      <topicdata group="api" notopic="" />
+      <apidata name="SmallCapitals" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.ClosedCaptioning" />
+        <type api="T:Windows.Media.ClosedCaptioning.ClosedCaptionStyle" ref="false" />
+      </containers>
+      <file name="a3e841e5-ab62-c4ad-46e2-4fdfa31b2763" />
+    </api>
+  </apis>
+</reflection>

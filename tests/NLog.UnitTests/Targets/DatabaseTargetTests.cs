@@ -348,7 +348,7 @@ Dispose()
                     new DatabaseParameterInfo("msg", "${message}"),
                     new DatabaseParameterInfo("lvl", "${level}"),
                     new DatabaseParameterInfo("lg", "${logger}")
-                        
+
                 }
             };
 
@@ -759,10 +759,54 @@ Dispose()
             Assert.Equal(typeof(System.Data.Odbc.OdbcConnection), dt.ConnectionType);
         }
 
+        [Fact]  
+        public void GetProviderNameFromAppConfig()
+        {
+            LogManager.ThrowExceptions = true;
+            var databaseTarget = new DatabaseTarget()
+            {
+                Name = "myTarget",
+                ConnectionStringName = "test_connectionstring_with_providerName",
+                CommandText = "notimportant",
+            };
+            databaseTarget.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
+            {
+                new ConnectionStringSettings("test_connectionstring_without_providerName","some connectionstring"),
+                new ConnectionStringSettings("test_connectionstring_with_providerName","some connectionstring","System.Data.SqlClient"),
+            };
+
+            databaseTarget.Initialize(null);
+            Assert.NotNull(databaseTarget.ProviderFactory);
+            Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
+        }
+
+        [Fact]
+        public void DontRequireProviderNameInAppConfig()
+        {
+            LogManager.ThrowExceptions = true;
+            var databaseTarget = new DatabaseTarget()
+            {
+                Name = "myTarget",
+                ConnectionStringName = "test_connectionstring_without_providerName",
+                CommandText = "notimportant",
+                DBProvider = "System.Data.SqlClient"
+            };
+
+            databaseTarget.ConnectionStringsSettings = new ConnectionStringSettingsCollection()
+            {
+                new ConnectionStringSettings("test_connectionstring_without_providerName","some connectionstring"),
+                new ConnectionStringSettings("test_connectionstring_with_providerName","some connectionstring","System.Data.SqlClient"),
+            };
+
+            databaseTarget.Initialize(null);
+            Assert.NotNull(databaseTarget.ProviderFactory);
+            Assert.Equal(typeof(System.Data.SqlClient.SqlClientFactory), databaseTarget.ProviderFactory.GetType());
+        }
+
         [Theory]
-        [InlineData("usetransactions='false'",true)]
-        [InlineData("usetransactions='true'",true)]
-        [InlineData("",false)]
+        [InlineData("usetransactions='false'", true)]
+        [InlineData("usetransactions='true'", true)]
+        [InlineData("", false)]
         public void WarningForObsoleteUseTransactions(string property, bool printWarning)
         {
             LoggingConfiguration c = CreateConfigurationFromString(string.Format(@"

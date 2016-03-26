@@ -1,0 +1,1587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Data.Text">
+      <topicdata group="api" />
+      <apidata name="Windows.Data.Text" group="namespace" />
+      <elements>
+        <element api="T:Windows.Data.Text.TextSegment" />
+        <element api="T:Windows.Data.Text.SemanticTextQuery" />
+        <element api="T:Windows.Data.Text.UnicodeGeneralCategory" />
+        <element api="T:Windows.Data.Text.UnicodeNumericType" />
+        <element api="T:Windows.Data.Text.UnicodeCharacters" />
+      </elements>
+      <file name="6e305a45-a3a6-7d02-5436-3661e1fd25a3" />
+    </api>
+    <api id="T:Windows.Data.Text.SemanticTextQuery">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Text.SemanticTextQuery" />
+      <apidata name="SemanticTextQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Data.Text.ISemanticTextQuery" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8b52a00d-72b4-7689-6a93-023092bc5796" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Text.SemanticTextQuery">
+      <topicdata name="SemanticTextQuery" group="list" subgroup="members" typeTopicId="T:Windows.Data.Text.SemanticTextQuery" />
+      <apidata name="SemanticTextQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Data.Text.SemanticTextQuery.#ctor">
+          <element api="M:Windows.Data.Text.SemanticTextQuery.#ctor(System.String)" />
+          <element api="M:Windows.Data.Text.SemanticTextQuery.#ctor(System.String,System.String)" />
+        </element>
+        <element api="M:Windows.Data.Text.SemanticTextQuery.Find(System.String)" />
+        <element api="M:Windows.Data.Text.SemanticTextQuery.FindInProperty(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.SemanticTextQuery" />
+      </containers>
+      <file name="9d480989-1672-3ea6-ea32-9bc8817498a6" />
+    </api>
+    <api id="Methods.T:Windows.Data.Text.SemanticTextQuery">
+      <topicdata name="SemanticTextQuery" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Text.SemanticTextQuery" />
+      <apidata name="SemanticTextQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Data.Text.SemanticTextQuery.Find(System.String)" />
+        <element api="M:Windows.Data.Text.SemanticTextQuery.FindInProperty(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.SemanticTextQuery" />
+      </containers>
+      <file name="593fcb86-f0cc-cac2-e332-ef1c5dc934fa" />
+    </api>
+    <api id="Overload:Windows.Data.Text.SemanticTextQuery.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Data.Text.SemanticTextQuery" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Data.Text.SemanticTextQuery.#ctor(System.String)" />
+        <element api="M:Windows.Data.Text.SemanticTextQuery.#ctor(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.SemanticTextQuery" ref="true" />
+      </containers>
+      <file name="d7dd76f8-fac0-dd79-43f3-6d3d16ea2924" />
+    </api>
+    <api id="M:Windows.Data.Text.SemanticTextQuery.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Data.Text.SemanticTextQuery.#ctor" />
+      <parameters>
+        <parameter name="aqsFilter" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.SemanticTextQuery" ref="true" />
+      </containers>
+      <file name="26f54e3f-ee27-b6a8-8922-ac8c8b3d1a8f" />
+    </api>
+    <api id="M:Windows.Data.Text.SemanticTextQuery.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Data.Text.SemanticTextQuery.#ctor" />
+      <parameters>
+        <parameter name="aqsFilter" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="filterLanguage" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.SemanticTextQuery" ref="true" />
+      </containers>
+      <file name="0d249eda-06be-6262-6657-9b68150f4115" />
+    </api>
+    <api id="M:Windows.Data.Text.SemanticTextQuery.Find(System.String)">
+      <topicdata group="api" />
+      <apidata name="Find" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="content" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Text.TextSegment" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.SemanticTextQuery" ref="true" />
+      </containers>
+      <file name="2f7996f5-a7b3-0171-3998-7ab22849f6dd" />
+    </api>
+    <api id="M:Windows.Data.Text.SemanticTextQuery.FindInProperty(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="FindInProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="propertyContent" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="propertyName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Data.Text.TextSegment" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.SemanticTextQuery" ref="true" />
+      </containers>
+      <file name="31f92a75-71de-2ca9-3c34-a46f9549cf72" />
+    </api>
+    <api id="T:Windows.Data.Text.TextSegment">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Text.TextSegment" />
+      <apidata name="TextSegment" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="612a88a7-0f23-f3e9-db6c-fce1749ca17f" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Text.TextSegment">
+      <topicdata name="TextSegment" group="list" subgroup="members" typeTopicId="T:Windows.Data.Text.TextSegment" />
+      <apidata name="TextSegment" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.Data.Text.TextSegment.Length" />
+        <element api="F:Windows.Data.Text.TextSegment.StartPosition" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.TextSegment" />
+      </containers>
+      <file name="9abbd0df-4029-9b7f-d188-fdae8e0d0bbf" />
+    </api>
+    <api id="Methods.T:Windows.Data.Text.TextSegment">
+      <topicdata name="TextSegment" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Text.TextSegment" />
+      <apidata name="TextSegment" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.TextSegment" />
+      </containers>
+      <file name="04f8ae58-f3b3-7eea-4670-e1361808e117" />
+    </api>
+    <api id="Fields.T:Windows.Data.Text.TextSegment">
+      <topicdata name="TextSegment" group="list" subgroup="Fields" typeTopicId="T:Windows.Data.Text.TextSegment" />
+      <apidata name="TextSegment" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Data.Text.TextSegment.Length" />
+        <element api="F:Windows.Data.Text.TextSegment.StartPosition" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.TextSegment" />
+      </containers>
+      <file name="2429758e-319d-9bd1-35f4-8a3d486e80dc" />
+    </api>
+    <api id="F:Windows.Data.Text.TextSegment.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.TextSegment" ref="false" />
+      </containers>
+      <file name="f7a8c161-ea87-4b6b-d03b-8229b4b26f1c" />
+    </api>
+    <api id="F:Windows.Data.Text.TextSegment.StartPosition">
+      <topicdata group="api" />
+      <apidata name="StartPosition" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.TextSegment" ref="false" />
+      </containers>
+      <file name="725970fd-3824-2b8b-26dd-04201074bf66" />
+    </api>
+    <api id="T:Windows.Data.Text.UnicodeCharacters">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Text.UnicodeCharacters" />
+      <apidata name="UnicodeCharacters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4c87f118-3d48-7d76-8d97-799fcfd19250" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Text.UnicodeCharacters">
+      <topicdata name="UnicodeCharacters" group="list" subgroup="members" typeTopicId="T:Windows.Data.Text.UnicodeCharacters" />
+      <apidata name="UnicodeCharacters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Data.Text.UnicodeCharacters.GetCodepointFromSurrogatePair(System.UInt32,System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.GetGeneralCategory(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.GetNumericType(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.GetSurrogatePairFromCodepoint(System.UInt32,System.Char@,System.Char@)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsAlphabetic(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsCased(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsGraphemeBase(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsGraphemeExtend(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsHighSurrogate(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsIdContinue(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsIdStart(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsLowercase(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsLowSurrogate(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsNoncharacter(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsSupplementary(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsUppercase(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsWhitespace(System.UInt32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" />
+      </containers>
+      <file name="aa1ea40e-5c0a-43e8-7a96-4c3cb78fbfa5" />
+    </api>
+    <api id="Methods.T:Windows.Data.Text.UnicodeCharacters">
+      <topicdata name="UnicodeCharacters" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Text.UnicodeCharacters" />
+      <apidata name="UnicodeCharacters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Data.Text.UnicodeCharacters.GetCodepointFromSurrogatePair(System.UInt32,System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.GetGeneralCategory(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.GetNumericType(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.GetSurrogatePairFromCodepoint(System.UInt32,System.Char@,System.Char@)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsAlphabetic(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsCased(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsGraphemeBase(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsGraphemeExtend(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsHighSurrogate(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsIdContinue(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsIdStart(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsLowercase(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsLowSurrogate(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsNoncharacter(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsSupplementary(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsUppercase(System.UInt32)" />
+        <element api="M:Windows.Data.Text.UnicodeCharacters.IsWhitespace(System.UInt32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" />
+      </containers>
+      <file name="53852336-c703-f830-f166-25579188c17b" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.GetCodepointFromSurrogatePair(System.UInt32,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetCodepointFromSurrogatePair" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="highSurrogate" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="lowSurrogate" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="0bc8b390-2697-14cb-5c2c-022d61e6ee15" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.GetGeneralCategory(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetGeneralCategory" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="442b824e-6051-a519-e28a-97a000a57e13" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.GetNumericType(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetNumericType" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="5cd43004-a197-c1a7-e8f2-a7fd9806edc2" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.GetSurrogatePairFromCodepoint(System.UInt32,System.Char@,System.Char@)">
+      <topicdata group="api" />
+      <apidata name="GetSurrogatePairFromCodepoint" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="highSurrogate" out="true">
+          <referenceTo>
+            <type api="T:System.Char" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="lowSurrogate" out="true">
+          <referenceTo>
+            <type api="T:System.Char" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="caedf0a8-b977-d431-4bed-42d0fdd174c9" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsAlphabetic(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsAlphabetic" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="bcd35ae1-7c09-b2de-62a0-2e19fd8c0698" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsCased(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsCased" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="a615b62c-d6eb-4933-fab5-455135f38b70" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsGraphemeBase(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsGraphemeBase" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="ba3ad3ca-87d2-78c1-6b2e-8cf88fb51015" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsGraphemeExtend(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsGraphemeExtend" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="b7e502cb-f447-f3a6-dbf1-6f75ea5bd2a7" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsHighSurrogate(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsHighSurrogate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="a41a29d6-2cd2-2fb7-2a7b-053a2b66acc3" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsIdContinue(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsIdContinue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="c81d080b-0970-f603-6587-8aa110d4a3f9" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsIdStart(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsIdStart" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="fe723929-4e3d-16cc-a3e5-a46773c73528" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsLowercase(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsLowercase" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="6a98eb8a-caf4-2c6e-ce86-8b375993a84e" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsLowSurrogate(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsLowSurrogate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="d8548ee3-357f-5368-02e3-ee20e99071fa" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsNoncharacter(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsNoncharacter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="662e1b7f-508a-7d95-4149-0bdc33bbff6d" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsSupplementary(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsSupplementary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="1e70622b-9688-3f02-c4e5-f9a324a0ce79" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsUppercase(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsUppercase" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="08200a9d-2ea0-bf8e-1138-c5061bfd99ee" />
+    </api>
+    <api id="M:Windows.Data.Text.UnicodeCharacters.IsWhitespace(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="IsWhitespace" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="codepoint" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeCharacters" ref="true" />
+      </containers>
+      <file name="21a1f33f-83da-3931-1cbc-42e9ea07c992" />
+    </api>
+    <api id="T:Windows.Data.Text.UnicodeGeneralCategory">
+      <topicdata group="api" />
+      <apidata name="UnicodeGeneralCategory" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.UppercaseLetter" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.LowercaseLetter" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.TitlecaseLetter" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.ModifierLetter" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.OtherLetter" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.NonspacingMark" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.SpacingCombiningMark" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.EnclosingMark" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.DecimalDigitNumber" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.LetterNumber" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.OtherNumber" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.SpaceSeparator" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.LineSeparator" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.ParagraphSeparator" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.Control" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.Format" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.Surrogate" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.PrivateUse" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.ConnectorPunctuation" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.DashPunctuation" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.OpenPunctuation" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.ClosePunctuation" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.InitialQuotePunctuation" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.FinalQuotePunctuation" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.OtherPunctuation" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.MathSymbol" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.CurrencySymbol" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.ModifierSymbol" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.OtherSymbol" />
+        <element api="F:Windows.Data.Text.UnicodeGeneralCategory.NotAssigned" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8cbbfc3b-59d6-b4c0-63a9-bfc46470a66e" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.ClosePunctuation">
+      <topicdata group="api" notopic="" />
+      <apidata name="ClosePunctuation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="5aaeb23b-e304-1a5d-7a71-31cff248b23f" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.ConnectorPunctuation">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectorPunctuation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="00866722-ebd1-6e32-2fba-c2158463fff7" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.Control">
+      <topicdata group="api" notopic="" />
+      <apidata name="Control" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="a37291ee-b57d-07f0-b985-9b62c24d55e1" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.CurrencySymbol">
+      <topicdata group="api" notopic="" />
+      <apidata name="CurrencySymbol" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>26</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="dd9604e8-bb0b-bcca-e973-d134e5c38819" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.DashPunctuation">
+      <topicdata group="api" notopic="" />
+      <apidata name="DashPunctuation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="13032f76-9e37-0dca-c05f-9f4706dd6e55" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.DecimalDigitNumber">
+      <topicdata group="api" notopic="" />
+      <apidata name="DecimalDigitNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="66ba643d-57e7-cc57-e3f8-42dfd3559b6c" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.EnclosingMark">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnclosingMark" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="dae058c1-e2a1-bcdb-853a-20547e4c7482" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.FinalQuotePunctuation">
+      <topicdata group="api" notopic="" />
+      <apidata name="FinalQuotePunctuation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="9833ef09-9ffd-9127-61ee-648dec930bd3" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.Format">
+      <topicdata group="api" notopic="" />
+      <apidata name="Format" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="5b3c4620-3e4d-fd98-61ef-eb0a92a7a5ea" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.InitialQuotePunctuation">
+      <topicdata group="api" notopic="" />
+      <apidata name="InitialQuotePunctuation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="9602ddcb-a90c-4c60-9fd1-ccf61ce14f8f" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.LetterNumber">
+      <topicdata group="api" notopic="" />
+      <apidata name="LetterNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="5d2fc0f3-3a41-0e79-d192-db7f2afaa943" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.LineSeparator">
+      <topicdata group="api" notopic="" />
+      <apidata name="LineSeparator" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="70e224e1-56ff-800b-26d5-70fdeab8ea65" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.LowercaseLetter">
+      <topicdata group="api" notopic="" />
+      <apidata name="LowercaseLetter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="8fb8e970-ed49-e49f-4de3-9792885aeb3f" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.MathSymbol">
+      <topicdata group="api" notopic="" />
+      <apidata name="MathSymbol" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="00fcdb9e-4fe7-54ff-d913-b7855c335088" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.ModifierLetter">
+      <topicdata group="api" notopic="" />
+      <apidata name="ModifierLetter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="70613cb7-f09b-eb4a-6cfb-121317647714" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.ModifierSymbol">
+      <topicdata group="api" notopic="" />
+      <apidata name="ModifierSymbol" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>27</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="84664747-caeb-2db2-63f5-308102b722bf" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.NonspacingMark">
+      <topicdata group="api" notopic="" />
+      <apidata name="NonspacingMark" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="af3ca9d3-d898-22ab-fc16-f2212457a24f" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.NotAssigned">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotAssigned" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>29</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="6c9a224a-aedd-ee68-286c-6093aa43c806" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.OpenPunctuation">
+      <topicdata group="api" notopic="" />
+      <apidata name="OpenPunctuation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="0b0b7b2a-5672-5d58-88dc-93b84a97b437" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.OtherLetter">
+      <topicdata group="api" notopic="" />
+      <apidata name="OtherLetter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="38d69411-4a50-e16d-9112-1370b196f579" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.OtherNumber">
+      <topicdata group="api" notopic="" />
+      <apidata name="OtherNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="e18d85d0-8c03-6cf6-e2de-d365643e0b10" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.OtherPunctuation">
+      <topicdata group="api" notopic="" />
+      <apidata name="OtherPunctuation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>24</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="a116cfb7-540e-8006-7b22-b5e159632f7f" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.OtherSymbol">
+      <topicdata group="api" notopic="" />
+      <apidata name="OtherSymbol" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>28</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="2acce0b0-c0c0-6f1d-8bd1-c2c0af15292a" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.ParagraphSeparator">
+      <topicdata group="api" notopic="" />
+      <apidata name="ParagraphSeparator" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="187d3dc7-684f-754b-08f8-3668b1d2fbe7" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.PrivateUse">
+      <topicdata group="api" notopic="" />
+      <apidata name="PrivateUse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="ab0d6ec9-228d-54d7-19f2-aa9dde3178c1" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.SpaceSeparator">
+      <topicdata group="api" notopic="" />
+      <apidata name="SpaceSeparator" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="bd92781b-be13-8eba-f2e6-0a5f506995ba" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.SpacingCombiningMark">
+      <topicdata group="api" notopic="" />
+      <apidata name="SpacingCombiningMark" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="e16d868c-94e4-dd82-2ea8-82011ce17785" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.Surrogate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Surrogate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="6f71adb1-8896-3d30-520a-b9bbbbf9e86c" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.TitlecaseLetter">
+      <topicdata group="api" notopic="" />
+      <apidata name="TitlecaseLetter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="f32ff015-41f0-2453-6c88-27affa1deee6" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeGeneralCategory.UppercaseLetter">
+      <topicdata group="api" notopic="" />
+      <apidata name="UppercaseLetter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeGeneralCategory" ref="false" />
+      </containers>
+      <file name="a3998d76-608d-8d38-4c0e-0459f50ce8aa" />
+    </api>
+    <api id="T:Windows.Data.Text.UnicodeNumericType">
+      <topicdata group="api" />
+      <apidata name="UnicodeNumericType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Data.Text.UnicodeNumericType.None" />
+        <element api="F:Windows.Data.Text.UnicodeNumericType.Decimal" />
+        <element api="F:Windows.Data.Text.UnicodeNumericType.Digit" />
+        <element api="F:Windows.Data.Text.UnicodeNumericType.Numeric" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dfdd133c-36a1-a472-8ca6-72b881c4fb68" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeNumericType.Decimal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Decimal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </containers>
+      <file name="4bd97fb9-770f-e874-86ee-66955816b2e7" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeNumericType.Digit">
+      <topicdata group="api" notopic="" />
+      <apidata name="Digit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </containers>
+      <file name="fd3b06c9-8b64-6f4f-7e81-f729554014f3" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeNumericType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </containers>
+      <file name="d2f8200b-8877-9539-bf0c-1de838cd15ce" />
+    </api>
+    <api id="F:Windows.Data.Text.UnicodeNumericType.Numeric">
+      <topicdata group="api" notopic="" />
+      <apidata name="Numeric" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Text" />
+        <type api="T:Windows.Data.Text.UnicodeNumericType" ref="false" />
+      </containers>
+      <file name="1505c308-2665-6782-8ed9-5057e97616c5" />
+    </api>
+  </apis>
+</reflection>

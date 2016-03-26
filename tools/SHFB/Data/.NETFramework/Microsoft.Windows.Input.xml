@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Controls.Ribbon">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Controls.Ribbon.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Controls.Ribbon.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Controls.Ribbon.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Windows.Input">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Windows.Input" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Windows.Input.IPreviewCommand" />
+        <element api="T:Microsoft.Windows.Input.IPreviewCommandSource" />
+      </elements>
+      <file name="0d72e41c-1c40-4723-8e28-05b0d6116021" />
+    </api>
+    <api id="T:Microsoft.Windows.Input.IPreviewCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.Input.IPreviewCommand" />
+      <apidata name="IPreviewCommand" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Windows.Input.ICommand" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+      </containers>
+      <file name="299de8db-ccb6-1f71-1d4c-58797805718a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.Input.IPreviewCommand">
+      <topicdata name="IPreviewCommand" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.Input.IPreviewCommand" />
+      <apidata name="IPreviewCommand" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Windows.Input.IPreviewCommand.CancelPreview" />
+        <element api="M:Microsoft.Windows.Input.IPreviewCommand.Preview(System.Object)" />
+        <element api="M:System.Windows.Input.ICommand.CanExecute(System.Object)" />
+        <element api="E:System.Windows.Input.ICommand.CanExecuteChanged" />
+        <element api="M:System.Windows.Input.ICommand.Execute(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+        <type api="T:Microsoft.Windows.Input.IPreviewCommand" />
+      </containers>
+      <file name="b876829f-ecb6-32c5-ed49-0a1e4ccf80e1" />
+    </api>
+    <api id="Methods.T:Microsoft.Windows.Input.IPreviewCommand">
+      <topicdata name="IPreviewCommand" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Windows.Input.IPreviewCommand" />
+      <apidata name="IPreviewCommand" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Windows.Input.IPreviewCommand.CancelPreview" />
+        <element api="M:Microsoft.Windows.Input.IPreviewCommand.Preview(System.Object)" />
+        <element api="M:System.Windows.Input.ICommand.CanExecute(System.Object)" />
+        <element api="M:System.Windows.Input.ICommand.Execute(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+        <type api="T:Microsoft.Windows.Input.IPreviewCommand" />
+      </containers>
+      <file name="bac2da66-572d-b916-1a3b-ce8e8bd5a1c6" />
+    </api>
+    <api id="Events.T:Microsoft.Windows.Input.IPreviewCommand">
+      <topicdata name="IPreviewCommand" group="list" subgroup="Events" typeTopicId="T:Microsoft.Windows.Input.IPreviewCommand" />
+      <apidata name="IPreviewCommand" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Input.ICommand.CanExecuteChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+        <type api="T:Microsoft.Windows.Input.IPreviewCommand" />
+      </containers>
+      <file name="c06f64ea-b412-f183-622a-b7945efdc43c" />
+    </api>
+    <api id="M:Microsoft.Windows.Input.IPreviewCommand.CancelPreview">
+      <topicdata group="api" />
+      <apidata name="CancelPreview" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+        <type api="T:Microsoft.Windows.Input.IPreviewCommand" ref="true" />
+      </containers>
+      <file name="15373b20-d719-2a40-5e8f-d1ffc7f0cba7" />
+    </api>
+    <api id="M:Microsoft.Windows.Input.IPreviewCommand.Preview(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Preview" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+        <type api="T:Microsoft.Windows.Input.IPreviewCommand" ref="true" />
+      </containers>
+      <file name="062c4d6a-60c7-e8d9-ecad-6ef77f1d6353" />
+    </api>
+    <api id="T:Microsoft.Windows.Input.IPreviewCommandSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Windows.Input.IPreviewCommandSource" />
+      <apidata name="IPreviewCommandSource" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Windows.Input.ICommandSource" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:System.Windows.Controls.Ribbon.RibbonGallery" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+      </containers>
+      <file name="3015c7fa-eff6-9730-d9d9-ea991696e28e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Windows.Input.IPreviewCommandSource">
+      <topicdata name="IPreviewCommandSource" group="list" subgroup="members" typeTopicId="T:Microsoft.Windows.Input.IPreviewCommandSource" />
+      <apidata name="IPreviewCommandSource" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.Input.IPreviewCommandSource.PreviewCommandParameter" />
+        <element api="P:System.Windows.Input.ICommandSource.Command" />
+        <element api="P:System.Windows.Input.ICommandSource.CommandParameter" />
+        <element api="P:System.Windows.Input.ICommandSource.CommandTarget" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+        <type api="T:Microsoft.Windows.Input.IPreviewCommandSource" />
+      </containers>
+      <file name="01b7db34-85c6-d6e0-9b22-01ab21e30d47" />
+    </api>
+    <api id="Properties.T:Microsoft.Windows.Input.IPreviewCommandSource">
+      <topicdata name="IPreviewCommandSource" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Windows.Input.IPreviewCommandSource" />
+      <apidata name="IPreviewCommandSource" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Windows.Input.IPreviewCommandSource.PreviewCommandParameter" />
+        <element api="P:System.Windows.Input.ICommandSource.Command" />
+        <element api="P:System.Windows.Input.ICommandSource.CommandParameter" />
+        <element api="P:System.Windows.Input.ICommandSource.CommandTarget" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+        <type api="T:Microsoft.Windows.Input.IPreviewCommandSource" />
+      </containers>
+      <file name="381e9c52-9411-6030-7ed7-2428dacb9fb2" />
+    </api>
+    <api id="P:Microsoft.Windows.Input.IPreviewCommandSource.PreviewCommandParameter">
+      <topicdata group="api" />
+      <apidata name="PreviewCommandParameter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_PreviewCommandParameter" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Ribbon" module="System.Windows.Controls.Ribbon" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Windows.Input" />
+        <type api="T:Microsoft.Windows.Input.IPreviewCommandSource" ref="true" />
+      </containers>
+      <file name="188fdc92-b38f-60f6-a88b-e438d2d5817d" />
+    </api>
+  </apis>
+</reflection>

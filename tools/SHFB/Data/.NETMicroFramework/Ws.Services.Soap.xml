@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Soap">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Soap" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Soap.WsPrefix" />
+        <element api="T:Ws.Services.Soap.WsAppSequence" />
+        <element api="T:Ws.Services.Soap.WsMessage" />
+      </elements>
+      <file name="863e024f-5abc-a035-6ab2-0920329790c6" />
+    </api>
+    <api id="T:Ws.Services.Soap.WsAppSequence">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Soap.WsAppSequence" />
+      <apidata name="WsAppSequence" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+      </containers>
+      <file name="bea3aa69-c5c5-0371-c29e-25654cd680a9" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Soap.WsAppSequence">
+      <topicdata name="WsAppSequence" group="list" subgroup="members" typeTopicId="T:Ws.Services.Soap.WsAppSequence" />
+      <apidata name="WsAppSequence" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Soap.WsAppSequence.#ctor(System.String,System.String,System.String)" />
+        <element api="F:Ws.Services.Soap.WsAppSequence.InstanceId" />
+        <element api="F:Ws.Services.Soap.WsAppSequence.MessageNumber" />
+        <element api="F:Ws.Services.Soap.WsAppSequence.SequenceId" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsAppSequence" />
+      </containers>
+      <file name="f14441ab-d083-efc4-4c6f-a778c592f699" />
+    </api>
+    <api id="Methods.T:Ws.Services.Soap.WsAppSequence">
+      <topicdata name="WsAppSequence" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Soap.WsAppSequence" />
+      <apidata name="WsAppSequence" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsAppSequence" />
+      </containers>
+      <file name="ee683c0f-95c5-40ba-3b52-4443aebfae22" />
+    </api>
+    <api id="Fields.T:Ws.Services.Soap.WsAppSequence">
+      <topicdata name="WsAppSequence" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Soap.WsAppSequence" />
+      <apidata name="WsAppSequence" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Soap.WsAppSequence.InstanceId" />
+        <element api="F:Ws.Services.Soap.WsAppSequence.MessageNumber" />
+        <element api="F:Ws.Services.Soap.WsAppSequence.SequenceId" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsAppSequence" />
+      </containers>
+      <file name="0dcb6a82-f4c8-b955-1c17-54933370c521" />
+    </api>
+    <api id="M:Ws.Services.Soap.WsAppSequence.#ctor(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="instanceId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="sequenceId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="messageNumber">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsAppSequence" ref="true" />
+      </containers>
+      <file name="a213f549-5ab9-f89f-b0fc-f1a1870c31ba" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsAppSequence.InstanceId">
+      <topicdata group="api" />
+      <apidata name="InstanceId" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsAppSequence" ref="true" />
+      </containers>
+      <file name="82e0f350-46b2-1ea2-c50f-09bcc7328822" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsAppSequence.MessageNumber">
+      <topicdata group="api" />
+      <apidata name="MessageNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsAppSequence" ref="true" />
+      </containers>
+      <file name="43153461-8806-fbea-e371-01551aeb9e32" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsAppSequence.SequenceId">
+      <topicdata group="api" />
+      <apidata name="SequenceId" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsAppSequence" ref="true" />
+      </containers>
+      <file name="17aadcc3-63ee-42dc-28b7-a928a9cbe24d" />
+    </api>
+    <api id="T:Ws.Services.Soap.WsMessage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Soap.WsMessage" />
+      <apidata name="WsMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+      </containers>
+      <file name="5abebbba-e9a8-cd93-77af-5462ee0b9635" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Soap.WsMessage">
+      <topicdata name="WsMessage" group="list" subgroup="members" typeTopicId="T:Ws.Services.Soap.WsMessage" />
+      <apidata name="WsMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Ws.Services.Soap.WsMessage.#ctor">
+          <element api="M:Ws.Services.Soap.WsMessage.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,System.Object,Ws.Services.Soap.WsPrefix)" />
+          <element api="M:Ws.Services.Soap.WsMessage.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,System.Object,Ws.Services.Soap.WsPrefix,Ws.Services.Xml.WsXmlNamespaces,Ws.Services.Soap.WsAppSequence)" />
+        </element>
+        <element api="F:Ws.Services.Soap.WsMessage.AppSequence" />
+        <element api="F:Ws.Services.Soap.WsMessage.Body" />
+        <element api="P:Ws.Services.Soap.WsMessage.BodyParts" />
+        <element api="M:Ws.Services.Soap.WsMessage.CreateOneWayResponse" />
+        <element api="P:Ws.Services.Soap.WsMessage.Deserializer" />
+        <element api="F:Ws.Services.Soap.WsMessage.Header" />
+        <element api="P:Ws.Services.Soap.WsMessage.Method" />
+        <element api="F:Ws.Services.Soap.WsMessage.Namespaces" />
+        <element api="F:Ws.Services.Soap.WsMessage.Prefixes" />
+        <element api="P:Ws.Services.Soap.WsMessage.Reader" />
+        <element api="P:Ws.Services.Soap.WsMessage.Serializer" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" />
+      </containers>
+      <file name="30ef4e4a-4f79-742d-df56-3df5820cecd2" />
+    </api>
+    <api id="Methods.T:Ws.Services.Soap.WsMessage">
+      <topicdata name="WsMessage" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Soap.WsMessage" />
+      <apidata name="WsMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Soap.WsMessage.CreateOneWayResponse" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" />
+      </containers>
+      <file name="ebba642b-6bda-b03b-8c52-2c612a4906f5" />
+    </api>
+    <api id="Properties.T:Ws.Services.Soap.WsMessage">
+      <topicdata name="WsMessage" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.Soap.WsMessage" />
+      <apidata name="WsMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Ws.Services.Soap.WsMessage.BodyParts" />
+        <element api="P:Ws.Services.Soap.WsMessage.Deserializer" />
+        <element api="P:Ws.Services.Soap.WsMessage.Method" />
+        <element api="P:Ws.Services.Soap.WsMessage.Reader" />
+        <element api="P:Ws.Services.Soap.WsMessage.Serializer" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" />
+      </containers>
+      <file name="3f05febe-6623-3084-877d-caadddf278fd" />
+    </api>
+    <api id="Fields.T:Ws.Services.Soap.WsMessage">
+      <topicdata name="WsMessage" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Soap.WsMessage" />
+      <apidata name="WsMessage" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Soap.WsMessage.AppSequence" />
+        <element api="F:Ws.Services.Soap.WsMessage.Body" />
+        <element api="F:Ws.Services.Soap.WsMessage.Header" />
+        <element api="F:Ws.Services.Soap.WsMessage.Namespaces" />
+        <element api="F:Ws.Services.Soap.WsMessage.Prefixes" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" />
+      </containers>
+      <file name="ced48c5c-aada-f8ba-d28f-d66c02b37edd" />
+    </api>
+    <api id="Overload:Ws.Services.Soap.WsMessage.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Soap.WsMessage" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Ws.Services.Soap.WsMessage.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,System.Object,Ws.Services.Soap.WsPrefix)" />
+        <element api="M:Ws.Services.Soap.WsMessage.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,System.Object,Ws.Services.Soap.WsPrefix,Ws.Services.Xml.WsXmlNamespaces,Ws.Services.Soap.WsAppSequence)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="8fd6190e-6d67-d2d6-9524-8808f19c64b2" />
+    </api>
+    <api id="M:Ws.Services.Soap.WsMessage.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,System.Object,Ws.Services.Soap.WsPrefix)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Soap.WsMessage.#ctor" />
+      <parameters>
+        <parameter name="header">
+          <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+        </parameter>
+        <parameter name="body">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="prefixes">
+          <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="24da7e85-a4fb-a99c-a229-d8d822dae9a5" />
+    </api>
+    <api id="M:Ws.Services.Soap.WsMessage.#ctor(Ws.Services.WsaAddressing.WsWsaHeader,System.Object,Ws.Services.Soap.WsPrefix,Ws.Services.Xml.WsXmlNamespaces,Ws.Services.Soap.WsAppSequence)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Ws.Services.Soap.WsMessage.#ctor" />
+      <parameters>
+        <parameter name="header">
+          <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+        </parameter>
+        <parameter name="body">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="prefixes">
+          <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+        </parameter>
+        <parameter name="namespaces">
+          <type api="T:Ws.Services.Xml.WsXmlNamespaces" ref="true" />
+        </parameter>
+        <parameter name="appSequence">
+          <type api="T:Ws.Services.Soap.WsAppSequence" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="e321a9d7-089d-bfdd-6c65-6fd97ab4d77b" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsMessage.AppSequence">
+      <topicdata group="api" />
+      <apidata name="AppSequence" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Soap.WsAppSequence" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="3c75fdec-ed3b-2d5e-b811-568826e63386" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsMessage.Body">
+      <topicdata group="api" />
+      <apidata name="Body" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="a5c4a5ca-d344-8824-6b82-680067f0bc3a" />
+    </api>
+    <api id="P:Ws.Services.Soap.WsMessage.BodyParts">
+      <topicdata group="api" />
+      <apidata name="BodyParts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BodyParts" />
+      <setter name="set_BodyParts" />
+      <returns>
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="732da0bb-03fb-9df7-8861-9c388d61576b" />
+    </api>
+    <api id="M:Ws.Services.Soap.WsMessage.CreateOneWayResponse">
+      <topicdata group="api" />
+      <apidata name="CreateOneWayResponse" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="1f909c72-06ed-46b9-0961-c8a20c2a38f4" />
+    </api>
+    <api id="P:Ws.Services.Soap.WsMessage.Deserializer">
+      <topicdata group="api" />
+      <apidata name="Deserializer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Deserializer" />
+      <setter name="set_Deserializer" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="e524ebca-a547-b772-ebd9-77e89d797916" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsMessage.Header">
+      <topicdata group="api" />
+      <apidata name="Header" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.WsaAddressing.WsWsaHeader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="b6dcd153-ef64-f9f9-960f-4e244c4ad5e9" />
+    </api>
+    <api id="P:Ws.Services.Soap.WsMessage.Method">
+      <topicdata group="api" />
+      <apidata name="Method" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Method" />
+      <setter name="set_Method" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="20a019c8-cd7d-5436-3e2a-492b378c780f" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsMessage.Namespaces">
+      <topicdata group="api" />
+      <apidata name="Namespaces" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Xml.WsXmlNamespaces" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="12a72aa1-5e30-954c-7dda-58963a269242" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsMessage.Prefixes">
+      <topicdata group="api" />
+      <apidata name="Prefixes" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="4ef0e2b9-ba26-ce95-a7db-d10aeea13c92" />
+    </api>
+    <api id="P:Ws.Services.Soap.WsMessage.Reader">
+      <topicdata group="api" />
+      <apidata name="Reader" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Reader" />
+      <setter name="set_Reader" />
+      <returns>
+        <type api="T:System.Xml.XmlReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="a95848f6-0f69-512d-50f4-9b8be5ea780c" />
+    </api>
+    <api id="P:Ws.Services.Soap.WsMessage.Serializer">
+      <topicdata group="api" />
+      <apidata name="Serializer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Serializer" />
+      <setter name="set_Serializer" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </containers>
+      <file name="a597801b-719a-c8e5-4c9b-25ef50836ba5" />
+    </api>
+    <api id="T:Ws.Services.Soap.WsPrefix">
+      <topicdata group="api" />
+      <apidata name="WsPrefix" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Soap.WsPrefix.None" />
+        <element api="F:Ws.Services.Soap.WsPrefix.Wsdp" />
+        <element api="F:Ws.Services.Soap.WsPrefix.Wse" />
+        <element api="F:Ws.Services.Soap.WsPrefix.Wsx" />
+        <element api="F:Ws.Services.Soap.WsPrefix.Wsd" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="5a75d114-c637-dd43-9370-3298984d3e31" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsPrefix.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </containers>
+      <file name="0720e273-4d3f-38e0-661e-9bc5f292424e" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsPrefix.Wsd">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wsd" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </containers>
+      <file name="c381e827-1fea-90fd-169d-cd974e9080df" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsPrefix.Wsdp">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wsdp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </containers>
+      <file name="36a438b1-c0b9-d93b-94c8-f0c60f0e5045" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsPrefix.Wse">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </containers>
+      <file name="bb021cd3-88b1-23ee-4adb-c8c800581cd9" />
+    </api>
+    <api id="F:Ws.Services.Soap.WsPrefix.Wsx">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wsx" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Soap" />
+        <type api="T:Ws.Services.Soap.WsPrefix" ref="false" />
+      </containers>
+      <file name="0ca0517e-2d14-bda6-b28a-8cac0e68e099" />
+    </api>
+  </apis>
+</reflection>

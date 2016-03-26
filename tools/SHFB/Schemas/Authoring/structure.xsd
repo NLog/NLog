@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:maml="http://ddue.schemas.microsoft.com/authoring/2003/5"
+		xmlns:doc="http://ddue.schemas.microsoft.com/authoring/internal"
+		targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"
+		elementFormDefault="qualified"
+		attributeFormDefault="unqualified">
+
+	<!-- Schema documentation -->
+	<annotation>
+		<documentation>
+			This schema definition defines common structure types for the CS Schema.
+			This schema is part of the base layer.
+		</documentation>
+	</annotation>
+
+	<!-- include and import declarations -->
+	<include schemaLocation="conditionSet.xsd"/>
+	<include schemaLocation="structureTable.xsd"/>
+	<include schemaLocation="structureList.xsd"/>
+	<include schemaLocation="structureProcedure.xsd"/>
+	<include schemaLocation="structureMedia.xsd"/>
+
+	<complexType name="conditionalSectionType">
+		<sequence>
+			<element ref="maml:conditions"/>
+			<element name="conditionalContent" type="maml:sectionContentType"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="procedureSectionContentType" mixed="false">
+		<sequence>
+			<choice minOccurs="0" maxOccurs="unbounded">
+				<!-- structureGroup minus procedure START -->
+				<group ref="maml:blockGroup"/>
+				<group ref="maml:structureListGroup"/>
+				<element ref="maml:definitionTable"/>
+				<element ref="maml:table"/>
+				<group ref="maml:structureMediaGroup"/>
+				<!-- structureGroup minus procedure END -->
+				<element name="conditionalSection" type="maml:conditionalSectionType"/>
+			</choice>
+			<element ref="maml:procedure"/>
+			<choice minOccurs="0" maxOccurs="unbounded">
+				<group ref="maml:structureGroup"/>
+				<element name="conditionalSection" type="maml:conditionalSectionType"/>
+			</choice>
+		</sequence>
+		<attributeGroup ref="maml:contentIdentificationSharingAndConditionGroup"/>
+	</complexType>
+
+	<!-- A procedure is required in this section, but not in child sections -->
+	<complexType name="procedureSectionType">
+		<sequence>
+			<element ref="maml:title" minOccurs="0" maxOccurs="1"/>
+			<element name="content" type="maml:procedureSectionContentType"/>
+			<element ref="maml:sections" minOccurs="0" maxOccurs="1"/>
+		</sequence>
+		<attributeGroup ref="maml:contentIdentificationSharingAndConditionGroup"/>
+	</complexType>
+
+	<complexType name="sectionContentType" mixed="false">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<group ref="maml:structureGroup"/>
+			<element name="conditionalSection" type="maml:conditionalSectionType"/>
+			<!-- Sandcastle extension.  Extensibility point. -->
+			<any namespace="##other" processContents="lax">
+				<annotation>
+					<documentation>
+						Extensibility point in the MAML XML Schema. Build components can register
+						additional elements at this point in the schema.
+					</documentation>
+				</annotation>
+			</any>
+		</choice>
+		<attributeGroup ref="maml:contentIdentificationSharingAndConditionGroup"/>
+	</complexType>
+
+	<!-- Sandcastle extension.  Added support for autoOutline element. -->
+	<complexType name="sectionContentWithOutlineType" mixed="false">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<group ref="maml:structureGroup"/>
+			<element name="autoOutline">
+				<complexType>
+					<annotation>
+						<documentation>The autoOutline element creates an automatic list of section titles for quick access to each section.</documentation>
+						<appinfo>
+							<doc:localizable>true</doc:localizable>
+							<doc:type>integer</doc:type>
+						</appinfo>
+					</annotation>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="lead" type="string">
+								<annotation>
+									<documentation>
+										The lead attribute allows the definition of alternate lead-in text for the outline.
+									</documentation>
+								</annotation>
+							</attribute>
+							<attribute name="excludeRelatedTopics" type="boolean">
+								<annotation>
+									<documentation>
+										The excludeRelatedTopics attribute indicates whether or not to include the Related Topics (See Also) link in the outline.
+									</documentation>
+								</annotation>
+							</attribute>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<any namespace="##other" processContents="lax">
+				<annotation>
+					<documentation>
+						Extensibility point in the MAML XML Schema. Build components can register
+						additional elements at this point in the schema.
+					</documentation>
+				</annotation>
+			</any>
+		</choice>
+		<attributeGroup ref="maml:contentIdentificationSharingAndConditionGroup"/>
+	</complexType>
+
+	<element name="content" type="maml:sectionContentWithOutlineType">
+		<annotation>
+			<documentation>
+				This element holds authored content.
+			</documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+				<doc:type>structure</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+
+	<element name="definition" type="maml:sectionContentType">
+		<annotation>
+			<documentation>A single definition that goes with this entry</documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+			</appinfo>
+		</annotation>
+	</element>
+
+	<element name="definedTerm" type="maml:inlineType">
+		<annotation>
+			<documentation>A single item that is being defined</documentation>
+			<appinfo>
+				<doc:localizable>true</doc:localizable>
+			</appinfo>
+		</annotation>
+	</element>
+
+	<complexType name="definitionTableType" mixed="false">
+		<sequence maxOccurs="unbounded">
+			<element ref="maml:definedTerm"/>
+			<element ref="maml:definition"/>
+		</sequence>
+	</complexType>
+
+	<element name="definitionTable" type="maml:definitionTableType">
+		<annotation>
+			<documentation>
+				This element is a two column table without a header or footer.
+				The first column contains the item being defined, the second column
+				contains the definition of the item.
+			</documentation>
+			<appinfo>
+				<doc:localizable>n/a</doc:localizable>
+				<doc:type>structure</doc:type>
+			</appinfo>
+		</annotation>
+	</element>
+
+	<group name="structureGroup">
+		<choice>
+			<group ref="maml:blockGroup"/>
+			<group ref="maml:structureListGroup"/>
+			<element ref="maml:definitionTable"/>
+			<element ref="maml:table"/>
+			<element ref="maml:procedure"/>
+			<group ref="maml:structureMediaGroup"/>
+		</choice>
+	</group>
+
+	<group name="structureBasicGroup">
+		<choice>
+			<group ref="maml:blockGroup"/>
+			<group ref="maml:structureListGroup"/>
+		</choice>
+	</group>
+
+	<group name="structureSimpleGroup">
+		<choice>
+			<element ref="maml:para"/>
+			<element ref="maml:list"/>
+		</choice>
+	</group>
+</schema>

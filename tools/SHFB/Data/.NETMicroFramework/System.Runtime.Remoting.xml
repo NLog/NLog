@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Remoting">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Remoting" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Remoting.RemotingServices" />
+      </elements>
+      <file name="9c56c579-08d0-f58e-39ae-4225f46c62da" />
+    </api>
+    <api id="T:System.Runtime.Remoting.RemotingServices">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.RemotingServices" />
+      <apidata name="RemotingServices" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting" />
+      </containers>
+      <file name="0e89be20-10a0-91a2-e8ae-234f01987d72" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.RemotingServices">
+      <topicdata name="RemotingServices" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.RemotingServices" />
+      <apidata name="RemotingServices" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.RemotingServices.IsTransparentProxy(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting" />
+        <type api="T:System.Runtime.Remoting.RemotingServices" />
+      </containers>
+      <file name="5e2ef484-f76b-9637-cb86-45ea64b129f0" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.RemotingServices">
+      <topicdata name="RemotingServices" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.RemotingServices" />
+      <apidata name="RemotingServices" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.RemotingServices.IsTransparentProxy(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting" />
+        <type api="T:System.Runtime.Remoting.RemotingServices" />
+      </containers>
+      <file name="a061d518-8155-b539-7259-0aa6356951e3" />
+    </api>
+    <api id="M:System.Runtime.Remoting.RemotingServices.IsTransparentProxy(System.Object)">
+      <topicdata group="api" />
+      <apidata name="IsTransparentProxy" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="proxy">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting" />
+        <type api="T:System.Runtime.Remoting.RemotingServices" ref="true" />
+      </containers>
+      <file name="153fb2ff-8dd4-f910-1304-3678e59c9e86" />
+    </api>
+  </apis>
+</reflection>

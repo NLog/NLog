@@ -1,0 +1,2091 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Gaming.Input">
+      <topicdata group="api" />
+      <apidata name="Windows.Gaming.Input" group="namespace" />
+      <elements>
+        <element api="T:Windows.Gaming.Input.GamepadButtons" />
+        <element api="T:Windows.Gaming.Input.GamepadReading" />
+        <element api="T:Windows.Gaming.Input.GamepadVibration" />
+        <element api="T:Windows.Gaming.Input.IGameController" />
+        <element api="T:Windows.Gaming.Input.Headset" />
+        <element api="T:Windows.Gaming.Input.Gamepad" />
+      </elements>
+      <file name="b3e09f30-7210-868f-10f7-d4aa76f2ebc1" />
+    </api>
+    <api id="T:Windows.Gaming.Input.Gamepad">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Gaming.Input.Gamepad" />
+      <apidata name="Gamepad" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7e6a3422-0d1b-4a02-08db-39a31557b16e" />
+    </api>
+    <api id="AllMembers.T:Windows.Gaming.Input.Gamepad">
+      <topicdata name="Gamepad" group="list" subgroup="members" typeTopicId="T:Windows.Gaming.Input.Gamepad" />
+      <apidata name="Gamepad" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="E:Windows.Gaming.Input.Gamepad.GamepadAdded" />
+        <element api="E:Windows.Gaming.Input.Gamepad.GamepadRemoved" />
+        <element api="P:Windows.Gaming.Input.Gamepad.Gamepads" />
+        <element api="M:Windows.Gaming.Input.Gamepad.GetCurrentReading" />
+        <element api="P:Windows.Gaming.Input.Gamepad.Headset" />
+        <element api="E:Windows.Gaming.Input.Gamepad.HeadsetConnected" />
+        <element api="E:Windows.Gaming.Input.Gamepad.HeadsetDisconnected" />
+        <element api="P:Windows.Gaming.Input.Gamepad.IsWireless" />
+        <element api="P:Windows.Gaming.Input.Gamepad.User" />
+        <element api="E:Windows.Gaming.Input.Gamepad.UserChanged" />
+        <element api="P:Windows.Gaming.Input.Gamepad.Vibration" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" />
+      </containers>
+      <file name="be39391f-e9f7-6e85-106d-f4589d155772" />
+    </api>
+    <api id="Methods.T:Windows.Gaming.Input.Gamepad">
+      <topicdata name="Gamepad" group="list" subgroup="Methods" typeTopicId="T:Windows.Gaming.Input.Gamepad" />
+      <apidata name="Gamepad" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Gaming.Input.Gamepad.GetCurrentReading" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" />
+      </containers>
+      <file name="d1bf7758-f938-49f3-1342-08fc997212a1" />
+    </api>
+    <api id="Properties.T:Windows.Gaming.Input.Gamepad">
+      <topicdata name="Gamepad" group="list" subgroup="Properties" typeTopicId="T:Windows.Gaming.Input.Gamepad" />
+      <apidata name="Gamepad" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Gaming.Input.Gamepad.Gamepads" />
+        <element api="P:Windows.Gaming.Input.Gamepad.Headset" />
+        <element api="P:Windows.Gaming.Input.Gamepad.IsWireless" />
+        <element api="P:Windows.Gaming.Input.Gamepad.User" />
+        <element api="P:Windows.Gaming.Input.Gamepad.Vibration" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" />
+      </containers>
+      <file name="2f5314eb-cb2e-d368-e9bd-bb4c9d192f32" />
+    </api>
+    <api id="Events.T:Windows.Gaming.Input.Gamepad">
+      <topicdata name="Gamepad" group="list" subgroup="Events" typeTopicId="T:Windows.Gaming.Input.Gamepad" />
+      <apidata name="Gamepad" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Gaming.Input.Gamepad.GamepadAdded" />
+        <element api="E:Windows.Gaming.Input.Gamepad.GamepadRemoved" />
+        <element api="E:Windows.Gaming.Input.Gamepad.HeadsetConnected" />
+        <element api="E:Windows.Gaming.Input.Gamepad.HeadsetDisconnected" />
+        <element api="E:Windows.Gaming.Input.Gamepad.UserChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" />
+      </containers>
+      <file name="d460edcb-fff2-c332-88b3-b41ac70d36c3" />
+    </api>
+    <api id="E:Windows.Gaming.Input.Gamepad.GamepadAdded">
+      <topicdata group="api" />
+      <apidata name="GamepadAdded" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_GamepadAdded" />
+      <remover name="remove_GamepadAdded" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="4a86edfd-1d74-af25-d392-45b83ef6d215" />
+    </api>
+    <api id="E:Windows.Gaming.Input.Gamepad.GamepadRemoved">
+      <topicdata group="api" />
+      <apidata name="GamepadRemoved" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_GamepadRemoved" />
+      <remover name="remove_GamepadRemoved" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="2dcf5a61-fa62-9c29-eaf5-2a4092c3813f" />
+    </api>
+    <api id="P:Windows.Gaming.Input.Gamepad.Gamepads">
+      <topicdata group="api" />
+      <apidata name="Gamepads" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Gamepads" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="b45308bb-3d4e-6038-0898-405afe46bd20" />
+    </api>
+    <api id="M:Windows.Gaming.Input.Gamepad.GetCurrentReading">
+      <topicdata group="api" />
+      <apidata name="GetCurrentReading" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="45dff863-946c-91c8-6b2c-757ba8fe1506" />
+    </api>
+    <api id="P:Windows.Gaming.Input.Gamepad.Headset">
+      <topicdata group="api" />
+      <apidata name="Headset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Headset" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.Headset" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Gaming.Input.IGameController.Headset">
+          <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="537581dd-e864-8fd5-f2ac-c0f38a6bb8d6" />
+    </api>
+    <api id="E:Windows.Gaming.Input.Gamepad.HeadsetConnected">
+      <topicdata group="api" />
+      <apidata name="HeadsetConnected" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_HeadsetConnected" />
+      <remover name="remove_HeadsetConnected" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+            <type api="T:Windows.Gaming.Input.Headset" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <implements>
+        <member api="E:Windows.Gaming.Input.IGameController.HeadsetConnected">
+          <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="ae42bd9e-4207-0fd0-f43e-7352a99a40be" />
+    </api>
+    <api id="E:Windows.Gaming.Input.Gamepad.HeadsetDisconnected">
+      <topicdata group="api" />
+      <apidata name="HeadsetDisconnected" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_HeadsetDisconnected" />
+      <remover name="remove_HeadsetDisconnected" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+            <type api="T:Windows.Gaming.Input.Headset" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <implements>
+        <member api="E:Windows.Gaming.Input.IGameController.HeadsetDisconnected">
+          <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="48027c8a-823e-d709-d35f-cdabe0fff3fc" />
+    </api>
+    <api id="P:Windows.Gaming.Input.Gamepad.IsWireless">
+      <topicdata group="api" />
+      <apidata name="IsWireless" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsWireless" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Gaming.Input.IGameController.IsWireless">
+          <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="9bec868b-40b9-d99e-4de5-966dfb2f6b6e" />
+    </api>
+    <api id="P:Windows.Gaming.Input.Gamepad.User">
+      <topicdata group="api" />
+      <apidata name="User" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_User" />
+      <returns>
+        <type api="T:Windows.System.User" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Gaming.Input.IGameController.User">
+          <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="e1278bff-eea0-9ee4-22c7-571b65c69128" />
+    </api>
+    <api id="E:Windows.Gaming.Input.Gamepad.UserChanged">
+      <topicdata group="api" />
+      <apidata name="UserChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_UserChanged" />
+      <remover name="remove_UserChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+            <type api="T:Windows.System.UserChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <implements>
+        <member api="E:Windows.Gaming.Input.IGameController.UserChanged">
+          <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="170a8ed2-7dd2-80de-b67a-e0314d6d2c9a" />
+    </api>
+    <api id="P:Windows.Gaming.Input.Gamepad.Vibration">
+      <topicdata group="api" />
+      <apidata name="Vibration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Vibration" />
+      <setter name="set_Vibration" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadVibration" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </containers>
+      <file name="f47f1a4f-b919-5fd6-4f09-c79666d87990" />
+    </api>
+    <api id="T:Windows.Gaming.Input.GamepadButtons">
+      <topicdata group="api" />
+      <apidata name="GamepadButtons" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Gaming.Input.GamepadButtons.None" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.Menu" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.View" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.A" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.B" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.X" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.Y" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.DPadUp" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.DPadDown" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.DPadLeft" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.DPadRight" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.LeftShoulder" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.RightShoulder" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.LeftThumbstick" />
+        <element api="F:Windows.Gaming.Input.GamepadButtons.RightThumbstick" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="42a4bca5-dd88-b7ea-26c5-44bbefbdb3ed" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.A">
+      <topicdata group="api" notopic="" />
+      <apidata name="A" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="267c190c-8d8e-8ecd-5016-e6cdcf84cacd" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.B">
+      <topicdata group="api" notopic="" />
+      <apidata name="B" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="8ed8d24b-6e22-4a15-2dcd-309a6b15cceb" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.DPadDown">
+      <topicdata group="api" notopic="" />
+      <apidata name="DPadDown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="935922ab-490b-190d-f42f-d9908579e767" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.DPadLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="DPadLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="bb57929c-7fa0-eaaa-0f5e-839d1166c33a" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.DPadRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="DPadRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>512</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="c8f160ed-8063-0e61-c643-f1a8ee9b8e7d" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.DPadUp">
+      <topicdata group="api" notopic="" />
+      <apidata name="DPadUp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="a1f79e33-9ac3-b87a-d47b-0f4e351fc71b" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.LeftShoulder">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftShoulder" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>1024</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="efe97787-71c5-db33-6d21-dfdbe85b5cf5" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.LeftThumbstick">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftThumbstick" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>4096</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="a709ad2e-1790-7fe9-fa03-0d72dd5f8558" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.Menu">
+      <topicdata group="api" notopic="" />
+      <apidata name="Menu" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="8f324407-ff85-c98e-334c-d6b8efb2b16f" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="83122bc7-4ec0-4d30-130a-7237fc8f3e02" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.RightShoulder">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightShoulder" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>2048</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="8cbccf54-120a-691a-5a1d-41e87a586069" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.RightThumbstick">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightThumbstick" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>8192</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="e47968d9-3fe0-2205-8a42-5fc75023d65e" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.View">
+      <topicdata group="api" notopic="" />
+      <apidata name="View" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="07d82501-fa37-dcd3-778a-2b8177d77cdf" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.X">
+      <topicdata group="api" notopic="" />
+      <apidata name="X" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="a65edbe3-97b5-c3da-b137-576f44e6af92" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadButtons.Y">
+      <topicdata group="api" notopic="" />
+      <apidata name="Y" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </containers>
+      <file name="16d37702-63ae-097f-f137-76ab756147f8" />
+    </api>
+    <api id="T:Windows.Gaming.Input.GamepadReading">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Gaming.Input.GamepadReading" />
+      <apidata name="GamepadReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3a9470c0-34ee-1263-0e68-f191c9f2a119" />
+    </api>
+    <api id="AllMembers.T:Windows.Gaming.Input.GamepadReading">
+      <topicdata name="GamepadReading" group="list" subgroup="members" typeTopicId="T:Windows.Gaming.Input.GamepadReading" />
+      <apidata name="GamepadReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="F:Windows.Gaming.Input.GamepadReading.Buttons" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.LeftThumbstickX" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.LeftThumbstickY" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.LeftTrigger" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.RightThumbstickX" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.RightThumbstickY" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.RightTrigger" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" />
+      </containers>
+      <file name="fe5715f3-84b0-f915-7828-3727762d836f" />
+    </api>
+    <api id="Methods.T:Windows.Gaming.Input.GamepadReading">
+      <topicdata name="GamepadReading" group="list" subgroup="Methods" typeTopicId="T:Windows.Gaming.Input.GamepadReading" />
+      <apidata name="GamepadReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" />
+      </containers>
+      <file name="fc7cc53d-4a05-00d0-e424-b10efaa973bf" />
+    </api>
+    <api id="Fields.T:Windows.Gaming.Input.GamepadReading">
+      <topicdata name="GamepadReading" group="list" subgroup="Fields" typeTopicId="T:Windows.Gaming.Input.GamepadReading" />
+      <apidata name="GamepadReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Gaming.Input.GamepadReading.Buttons" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.LeftThumbstickX" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.LeftThumbstickY" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.LeftTrigger" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.RightThumbstickX" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.RightThumbstickY" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.RightTrigger" />
+        <element api="F:Windows.Gaming.Input.GamepadReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" />
+      </containers>
+      <file name="ea00ee03-7588-9f79-8e67-89b8c4be6013" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadReading.Buttons">
+      <topicdata group="api" />
+      <apidata name="Buttons" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.GamepadButtons" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </containers>
+      <file name="aade313f-c24d-c6d5-d63c-d8657b4fcc8e" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadReading.LeftThumbstickX">
+      <topicdata group="api" />
+      <apidata name="LeftThumbstickX" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </containers>
+      <file name="0b486431-ba54-5075-8692-9031fe295ea1" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadReading.LeftThumbstickY">
+      <topicdata group="api" />
+      <apidata name="LeftThumbstickY" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </containers>
+      <file name="7f3026d4-fa7b-7c85-19d2-63007d6f8436" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadReading.LeftTrigger">
+      <topicdata group="api" />
+      <apidata name="LeftTrigger" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </containers>
+      <file name="c3a9f1a8-7fb3-2f9e-636d-be300dfea8c8" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadReading.RightThumbstickX">
+      <topicdata group="api" />
+      <apidata name="RightThumbstickX" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </containers>
+      <file name="1dd4c30b-0e3e-76cb-3801-1b23f9ecf4aa" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadReading.RightThumbstickY">
+      <topicdata group="api" />
+      <apidata name="RightThumbstickY" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </containers>
+      <file name="7627699d-134e-1942-fe8c-20d33a13e74a" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadReading.RightTrigger">
+      <topicdata group="api" />
+      <apidata name="RightTrigger" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </containers>
+      <file name="3bf4838a-b1fa-271f-fb62-0148a011f0bd" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadReading.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadReading" ref="false" />
+      </containers>
+      <file name="d2853b4b-b025-ecdb-3d9c-0cbcca4fc803" />
+    </api>
+    <api id="T:Windows.Gaming.Input.GamepadVibration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Gaming.Input.GamepadVibration" />
+      <apidata name="GamepadVibration" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="816b5c24-44d7-7074-7ddd-cf94cdb00e14" />
+    </api>
+    <api id="AllMembers.T:Windows.Gaming.Input.GamepadVibration">
+      <topicdata name="GamepadVibration" group="list" subgroup="members" typeTopicId="T:Windows.Gaming.Input.GamepadVibration" />
+      <apidata name="GamepadVibration" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="F:Windows.Gaming.Input.GamepadVibration.LeftMotor" />
+        <element api="F:Windows.Gaming.Input.GamepadVibration.LeftTrigger" />
+        <element api="F:Windows.Gaming.Input.GamepadVibration.RightMotor" />
+        <element api="F:Windows.Gaming.Input.GamepadVibration.RightTrigger" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadVibration" />
+      </containers>
+      <file name="531ed026-a644-dea6-c4ce-6f295afd97ec" />
+    </api>
+    <api id="Methods.T:Windows.Gaming.Input.GamepadVibration">
+      <topicdata name="GamepadVibration" group="list" subgroup="Methods" typeTopicId="T:Windows.Gaming.Input.GamepadVibration" />
+      <apidata name="GamepadVibration" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadVibration" />
+      </containers>
+      <file name="18deda0f-9a1d-c011-6b44-5ca2122c0c8e" />
+    </api>
+    <api id="Fields.T:Windows.Gaming.Input.GamepadVibration">
+      <topicdata name="GamepadVibration" group="list" subgroup="Fields" typeTopicId="T:Windows.Gaming.Input.GamepadVibration" />
+      <apidata name="GamepadVibration" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.Gaming.Input.GamepadVibration.LeftMotor" />
+        <element api="F:Windows.Gaming.Input.GamepadVibration.LeftTrigger" />
+        <element api="F:Windows.Gaming.Input.GamepadVibration.RightMotor" />
+        <element api="F:Windows.Gaming.Input.GamepadVibration.RightTrigger" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadVibration" />
+      </containers>
+      <file name="334179b2-0693-0a3a-72d6-2e141ba47cae" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadVibration.LeftMotor">
+      <topicdata group="api" />
+      <apidata name="LeftMotor" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadVibration" ref="false" />
+      </containers>
+      <file name="0c7d4324-39d8-e55c-31cf-a81a430d56fb" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadVibration.LeftTrigger">
+      <topicdata group="api" />
+      <apidata name="LeftTrigger" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadVibration" ref="false" />
+      </containers>
+      <file name="a0b5d3a4-89f6-df89-720d-196345622431" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadVibration.RightMotor">
+      <topicdata group="api" />
+      <apidata name="RightMotor" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadVibration" ref="false" />
+      </containers>
+      <file name="b63175e7-74d1-d47e-3e6f-5250d42eda95" />
+    </api>
+    <api id="F:Windows.Gaming.Input.GamepadVibration.RightTrigger">
+      <topicdata group="api" />
+      <apidata name="RightTrigger" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.GamepadVibration" ref="false" />
+      </containers>
+      <file name="30795595-3616-8c79-cb61-cc4529516a49" />
+    </api>
+    <api id="T:Windows.Gaming.Input.Headset">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Gaming.Input.Headset" />
+      <apidata name="Headset" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="75c80cef-fac4-ff4c-9d62-db6d8f174114" />
+    </api>
+    <api id="AllMembers.T:Windows.Gaming.Input.Headset">
+      <topicdata name="Headset" group="list" subgroup="members" typeTopicId="T:Windows.Gaming.Input.Headset" />
+      <apidata name="Headset" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Gaming.Input.Headset.CaptureDeviceId" />
+        <element api="P:Windows.Gaming.Input.Headset.RenderDeviceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Headset" />
+      </containers>
+      <file name="19904d60-1908-769d-876a-49ebd739e493" />
+    </api>
+    <api id="Methods.T:Windows.Gaming.Input.Headset">
+      <topicdata name="Headset" group="list" subgroup="Methods" typeTopicId="T:Windows.Gaming.Input.Headset" />
+      <apidata name="Headset" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Headset" />
+      </containers>
+      <file name="2e1ef36e-c13b-b664-c5f3-de1d591da0a8" />
+    </api>
+    <api id="Properties.T:Windows.Gaming.Input.Headset">
+      <topicdata name="Headset" group="list" subgroup="Properties" typeTopicId="T:Windows.Gaming.Input.Headset" />
+      <apidata name="Headset" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Gaming.Input.Headset.CaptureDeviceId" />
+        <element api="P:Windows.Gaming.Input.Headset.RenderDeviceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Headset" />
+      </containers>
+      <file name="0965c067-36c2-d505-c2b0-ae8f3b446c87" />
+    </api>
+    <api id="P:Windows.Gaming.Input.Headset.CaptureDeviceId">
+      <topicdata group="api" />
+      <apidata name="CaptureDeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CaptureDeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Headset" ref="true" />
+      </containers>
+      <file name="126db320-ce69-91c6-b2f4-c2d665accca1" />
+    </api>
+    <api id="P:Windows.Gaming.Input.Headset.RenderDeviceId">
+      <topicdata group="api" />
+      <apidata name="RenderDeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RenderDeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.Headset" ref="true" />
+      </containers>
+      <file name="21bb3d47-20cc-8169-d138-2615ce726276" />
+    </api>
+    <api id="T:Windows.Gaming.Input.IGameController">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Gaming.Input.IGameController" />
+      <apidata name="IGameController" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Gaming.Input.Gamepad" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>464479522</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>24420</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17093</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>130</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>103</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>185</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>254</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>34</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>21</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>191</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>189</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="942fc908-5302-7af4-241a-c955552af7a0" />
+    </api>
+    <api id="AllMembers.T:Windows.Gaming.Input.IGameController">
+      <topicdata name="IGameController" group="list" subgroup="members" typeTopicId="T:Windows.Gaming.Input.IGameController" />
+      <apidata name="IGameController" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Gaming.Input.IGameController.Headset" />
+        <element api="E:Windows.Gaming.Input.IGameController.HeadsetConnected" />
+        <element api="E:Windows.Gaming.Input.IGameController.HeadsetDisconnected" />
+        <element api="P:Windows.Gaming.Input.IGameController.IsWireless" />
+        <element api="P:Windows.Gaming.Input.IGameController.User" />
+        <element api="E:Windows.Gaming.Input.IGameController.UserChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" />
+      </containers>
+      <file name="ed4d1771-a64f-042c-0be8-e9528f240ecd" />
+    </api>
+    <api id="Properties.T:Windows.Gaming.Input.IGameController">
+      <topicdata name="IGameController" group="list" subgroup="Properties" typeTopicId="T:Windows.Gaming.Input.IGameController" />
+      <apidata name="IGameController" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Gaming.Input.IGameController.Headset" />
+        <element api="P:Windows.Gaming.Input.IGameController.IsWireless" />
+        <element api="P:Windows.Gaming.Input.IGameController.User" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" />
+      </containers>
+      <file name="310bc9c2-71f9-2a91-6880-ea0b44ec5a8d" />
+    </api>
+    <api id="Events.T:Windows.Gaming.Input.IGameController">
+      <topicdata name="IGameController" group="list" subgroup="Events" typeTopicId="T:Windows.Gaming.Input.IGameController" />
+      <apidata name="IGameController" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Gaming.Input.IGameController.HeadsetConnected" />
+        <element api="E:Windows.Gaming.Input.IGameController.HeadsetDisconnected" />
+        <element api="E:Windows.Gaming.Input.IGameController.UserChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" />
+      </containers>
+      <file name="5d2691b3-5197-65b6-6bc9-5906566e9e2f" />
+    </api>
+    <api id="P:Windows.Gaming.Input.IGameController.Headset">
+      <topicdata group="api" />
+      <apidata name="Headset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Headset" />
+      <returns>
+        <type api="T:Windows.Gaming.Input.Headset" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+      </containers>
+      <file name="28a3aec0-7ea0-bf9d-0f5c-89ee963cd793" />
+    </api>
+    <api id="E:Windows.Gaming.Input.IGameController.HeadsetConnected">
+      <topicdata group="api" />
+      <apidata name="HeadsetConnected" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_HeadsetConnected" />
+      <remover name="remove_HeadsetConnected" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+            <type api="T:Windows.Gaming.Input.Headset" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+      </containers>
+      <file name="c5a7dce0-1fe4-905b-319f-d08425be5a11" />
+    </api>
+    <api id="E:Windows.Gaming.Input.IGameController.HeadsetDisconnected">
+      <topicdata group="api" />
+      <apidata name="HeadsetDisconnected" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_HeadsetDisconnected" />
+      <remover name="remove_HeadsetDisconnected" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+            <type api="T:Windows.Gaming.Input.Headset" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+      </containers>
+      <file name="e11a0552-dd4f-2252-0cf1-f2887fc3a708" />
+    </api>
+    <api id="P:Windows.Gaming.Input.IGameController.IsWireless">
+      <topicdata group="api" />
+      <apidata name="IsWireless" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsWireless" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+      </containers>
+      <file name="9ad8e82f-eddb-969b-ec1e-d71d76fca9ab" />
+    </api>
+    <api id="P:Windows.Gaming.Input.IGameController.User">
+      <topicdata group="api" />
+      <apidata name="User" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_User" />
+      <returns>
+        <type api="T:Windows.System.User" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+      </containers>
+      <file name="0126288a-6827-d70d-0f78-21952592b692" />
+    </api>
+    <api id="E:Windows.Gaming.Input.IGameController.UserChanged">
+      <topicdata group="api" />
+      <apidata name="UserChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_UserChanged" />
+      <remover name="remove_UserChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+            <type api="T:Windows.System.UserChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Gaming.Input" />
+        <type api="T:Windows.Gaming.Input.IGameController" ref="true" />
+      </containers>
+      <file name="312e73be-6ab6-7bb7-adb0-d67f3148ec02" />
+    </api>
+  </apis>
+</reflection>

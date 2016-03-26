@@ -1,0 +1,990 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.ComIntegration">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.ComIntegration" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.ComIntegration.DllHostInitializer" />
+        <element api="T:System.ServiceModel.ComIntegration.IChannelCredentials" />
+        <element api="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" />
+        <element api="T:System.ServiceModel.ComIntegration.ServiceMoniker" />
+        <element api="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" />
+      </elements>
+      <file name="1db06f17-046e-01c5-9057-3145f2aa5c1b" />
+    </api>
+    <api id="T:System.ServiceModel.ComIntegration.DllHostInitializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.ComIntegration.DllHostInitializer" />
+      <apidata name="DllHostInitializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.DllHostInitializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.EnterpriseServices.IProcessInitializer" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>59856830-3ECB-4D29-9CFE-DDD0F74B96A2</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8f08d8dd-751a-4b85-fa6f-e267fd404f75" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.ComIntegration.DllHostInitializer">
+      <topicdata name="DllHostInitializer" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.ComIntegration.DllHostInitializer" />
+      <apidata name="DllHostInitializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.DllHostInitializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.ComIntegration.DllHostInitializer.#ctor" />
+        <element api="M:System.ServiceModel.ComIntegration.DllHostInitializer.Shutdown" />
+        <element api="M:System.ServiceModel.ComIntegration.DllHostInitializer.Startup(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.DllHostInitializer" />
+      </containers>
+      <file name="92539b9a-41d1-aee0-d63c-09858f689ce7" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.ComIntegration.DllHostInitializer">
+      <topicdata name="DllHostInitializer" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.ComIntegration.DllHostInitializer" />
+      <apidata name="DllHostInitializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.DllHostInitializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.ComIntegration.DllHostInitializer.Shutdown" />
+        <element api="M:System.ServiceModel.ComIntegration.DllHostInitializer.Startup(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.DllHostInitializer" />
+      </containers>
+      <file name="a7bbcab1-c9d2-f89d-d5e5-1ee5d90aa414" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.DllHostInitializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.DllHostInitializer" ref="true" />
+      </containers>
+      <file name="01710b69-4986-24ec-64dc-2cd69f4513ff" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.DllHostInitializer.Shutdown">
+      <topicdata group="api" />
+      <apidata name="Shutdown" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.EnterpriseServices.IProcessInitializer.Shutdown">
+          <type api="T:System.EnterpriseServices.IProcessInitializer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.DllHostInitializer" ref="true" />
+      </containers>
+      <file name="4f9bd5a9-47ec-76b2-9fc9-6173c731a3a5" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.DllHostInitializer.Startup(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Startup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="punkProcessControl">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.EnterpriseServices.IProcessInitializer.Startup(System.Object)">
+          <type api="T:System.EnterpriseServices.IProcessInitializer" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.DllHostInitializer" ref="true" />
+      </containers>
+      <file name="55784bcd-093c-e472-6256-b2a2c389b75e" />
+    </api>
+    <api id="T:System.ServiceModel.ComIntegration.IChannelCredentials">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.ComIntegration.IChannelCredentials" />
+      <apidata name="IChannelCredentials" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>181b448c-c17c-4b17-ac6d-06699b93198f</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.InterfaceTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Runtime.InteropServices.ComInterfaceType" ref="false" />
+            <enumValue>
+              <field name="InterfaceIsIDispatch" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9e0defa1-a6cf-b1cb-1e13-49eac625781f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.ComIntegration.IChannelCredentials">
+      <topicdata name="IChannelCredentials" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.ComIntegration.IChannelCredentials" />
+      <apidata name="IChannelCredentials" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromFile(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromStore(System.String,System.String,System.String,System.Object)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromStoreByName(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromFile(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromStore(System.String,System.String,System.String,System.Object)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromStoreByName(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetIssuedToken(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetServiceCertificateAuthentication(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetUserNameCredential(System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetWindowsCredential(System.String,System.String,System.String,System.Int32,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" />
+      </containers>
+      <file name="acf0ab87-d3fc-c712-bfa0-514fdc0de755" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.ComIntegration.IChannelCredentials">
+      <topicdata name="IChannelCredentials" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.ComIntegration.IChannelCredentials" />
+      <apidata name="IChannelCredentials" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" comimport="true" />
+      <elements>
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromFile(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromStore(System.String,System.String,System.String,System.Object)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromStoreByName(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromFile(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromStore(System.String,System.String,System.String,System.Object)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromStoreByName(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetIssuedToken(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetServiceCertificateAuthentication(System.String,System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetUserNameCredential(System.String,System.String)" />
+        <element api="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetWindowsCredential(System.String,System.String,System.String,System.Int32,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" />
+      </containers>
+      <file name="887c1295-8adf-c6e1-44b1-3c46093921a6" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromFile(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetClientCertificateFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="keyStorageFlags">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="a84da609-fa2d-3d9c-604e-d19cf4714b74" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromStore(System.String,System.String,System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetClientCertificateFromStore" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="storeLocation">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="storeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="findType">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="findValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="b3bbf320-bb43-2f5f-aa5d-4305be69bfdb" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetClientCertificateFromStoreByName(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetClientCertificateFromStoreByName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="subjectName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="storeLocation">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="storeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="2b55b0c6-befd-b279-c531-258e540f8d57" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromFile(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetDefaultServiceCertificateFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="keyStorageFlags">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="7e7a9edf-a8b2-9111-455d-f6fe20de7ca9" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromStore(System.String,System.String,System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetDefaultServiceCertificateFromStore" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="storeLocation">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="storeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="findType">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="findValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="ee817481-dec9-88ca-1ae5-5eeea68a1a6d" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetDefaultServiceCertificateFromStoreByName(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetDefaultServiceCertificateFromStoreByName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="subjectName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="storeLocation">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="storeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="3eafbf76-078d-0d63-7bfc-10a6c7e6984d" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetIssuedToken(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetIssuedToken" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="localIssuerAddres">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localIssuerBindingType">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localIssuerBinding">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="b90f01d4-5902-b4f4-6fa9-b72d1fa77aeb" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetServiceCertificateAuthentication(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetServiceCertificateAuthentication" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="storeLocation">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="revocationMode">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="certificationValidationMode">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="572024bb-81b2-a8fb-b871-605a48796140" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetUserNameCredential(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetUserNameCredential" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="19f35118-bc3b-ee8b-5583-30327006c185" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.IChannelCredentials.SetWindowsCredential(System.String,System.String,System.String,System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SetWindowsCredential" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="domain">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="userName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="impersonationLevel">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="allowNtlm">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.IChannelCredentials" ref="true" />
+      </containers>
+      <file name="2f17c852-d77b-68f2-cc95-b4e2ca108304" />
+    </api>
+    <api id="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" />
+      <apidata name="PersistStreamTypeWrapper" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Serialization.IExtensibleDataObject" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.Serialization.DataContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1ee837e2-383b-3b47-15c2-588a7039522e" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper">
+      <topicdata name="PersistStreamTypeWrapper" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" />
+      <apidata name="PersistStreamTypeWrapper" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.#ctor" />
+        <element api="P:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.ExtensionData" />
+        <element api="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.GetObject``1(``0@)" />
+        <element api="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.SetObject``1(``0)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" />
+      </containers>
+      <file name="b53f0cae-e29b-de21-22fd-54c152f3d11a" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper">
+      <topicdata name="PersistStreamTypeWrapper" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" />
+      <apidata name="PersistStreamTypeWrapper" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.GetObject``1(``0@)" />
+        <element api="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.SetObject``1(``0)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" />
+      </containers>
+      <file name="07fcd702-bf30-1a05-b7cd-97028e29665a" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper">
+      <topicdata name="PersistStreamTypeWrapper" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" />
+      <apidata name="PersistStreamTypeWrapper" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.ExtensionData" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" />
+      </containers>
+      <file name="d0e0779d-8ea2-e802-de3a-8b8adc1a5921" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" ref="true" />
+      </containers>
+      <file name="ea029c5f-9964-bf75-edbe-3c9daa6ac4ad" />
+    </api>
+    <api id="P:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.ExtensionData">
+      <topicdata group="api" />
+      <apidata name="ExtensionData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExtensionData" />
+      <setter name="set_ExtensionData" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.ExtensionDataObject" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Serialization.IExtensibleDataObject.ExtensionData">
+          <type api="T:System.Runtime.Serialization.IExtensibleDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" ref="true" />
+      </containers>
+      <file name="4f318689-3dba-1d91-854e-25eb8abe2434" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.GetObject``1(``0@)">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="obj">
+          <referenceTo>
+            <template name="T" index="0" api="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.GetObject``1(``0@)" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" ref="true" />
+      </containers>
+      <file name="66477aad-0bf1-c804-22a0-f6237e98b82c" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.SetObject``1(``0)">
+      <topicdata group="api" />
+      <apidata name="SetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="obj">
+          <template name="T" index="0" api="M:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper.SetObject``1(``0)" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.PersistStreamTypeWrapper" ref="true" />
+      </containers>
+      <file name="4c01eb98-c15a-f293-3cd7-b08a9c156542" />
+    </api>
+    <api id="T:System.ServiceModel.ComIntegration.ServiceMoniker">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.ComIntegration.ServiceMoniker" />
+      <apidata name="ServiceMoniker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.ServiceMoniker.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ContextBoundObject" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CE39D6F3-DAB7-41b3-9F7D-BD1CC4E92399</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6c72634c-f649-20a6-81da-b7601f50163f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.ComIntegration.ServiceMoniker">
+      <topicdata name="ServiceMoniker" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.ComIntegration.ServiceMoniker" />
+      <apidata name="ServiceMoniker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.ServiceMoniker.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.ComIntegration.ServiceMoniker.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.ServiceMoniker" />
+      </containers>
+      <file name="85316b19-0695-df46-8e0b-5855e4bc5004" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.ComIntegration.ServiceMoniker">
+      <topicdata name="ServiceMoniker" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.ComIntegration.ServiceMoniker" />
+      <apidata name="ServiceMoniker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.ServiceMoniker.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.ServiceMoniker" />
+      </containers>
+      <file name="99f08797-51c4-9c07-2847-44152c1e8773" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.ServiceMoniker.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.ServiceMoniker" ref="true" />
+      </containers>
+      <file name="89704ed6-0977-4adc-25f1-32306e513ef5" />
+    </api>
+    <api id="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" />
+      <apidata name="WasHostedComPlusFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.WasHostedComPlusFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+      </containers>
+      <file name="555e8562-b3eb-c52e-759f-679a51ed9a80" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory">
+      <topicdata name="WasHostedComPlusFactory" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" />
+      <apidata name="WasHostedComPlusFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.WasHostedComPlusFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.ComIntegration.WasHostedComPlusFactory.#ctor" />
+        <element api="M:System.ServiceModel.ComIntegration.WasHostedComPlusFactory.CreateServiceHost(System.String,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" />
+      </containers>
+      <file name="bd344610-46f3-345d-a97e-fe82dad85b5a" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory">
+      <topicdata name="WasHostedComPlusFactory" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" />
+      <apidata name="WasHostedComPlusFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.ComIntegration.WasHostedComPlusFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.ComIntegration.WasHostedComPlusFactory.CreateServiceHost(System.String,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" />
+      </containers>
+      <file name="e8090248-0013-38eb-dd72-e8a5a05f556b" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.WasHostedComPlusFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" ref="true" />
+      </containers>
+      <file name="8c993414-39f1-d78a-f23f-43953bf5d318" />
+    </api>
+    <api id="M:System.ServiceModel.ComIntegration.WasHostedComPlusFactory.CreateServiceHost(System.String,System.Uri[])">
+      <topicdata group="api" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.Activation.ServiceHostFactoryBase.CreateServiceHost(System.String,System.Uri[])">
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="constructorString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="baseAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.Uri" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.ComIntegration" />
+        <type api="T:System.ServiceModel.ComIntegration.WasHostedComPlusFactory" ref="true" />
+      </containers>
+      <file name="8eafff18-af56-5eac-6404-670527fdf7af" />
+    </api>
+  </apis>
+</reflection>

@@ -1,88 +1,109 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Sandcastle Help File Builder Tasks.  http://SHFB.CodePlex.com -->
-  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.BuildHelp"
+	<!-- Sandcastle Help File Builder Tasks.  https://GitHub.com/EWSoftware/SHFB -->
+	<UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.BuildHelp"
     AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
-  <UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.CleanHelp"
+	<UsingTask TaskName="SandcastleBuilder.Utils.MSBuild.CleanHelp"
     AssemblyFile="$(SHFBROOT)\SandcastleBuilder.Utils.dll" />
 
-  <Import Project="$(CustomBeforeSHFBTargets)" Condition="Exists('$(CustomBeforeSHFBTargets)')" />
+	<!-- Define OutDir if not set already so that it doesn't pick up our project OutputPath setting
+       when the common targets are imported below. -->
+	<PropertyGroup>
+		<OutDir Condition=" '$(OutDir)' == '' ">.\</OutDir>
+	</PropertyGroup>
 
-  <!-- This defines the dependencies for the Build target -->
-  <PropertyGroup>
-    <BuildDependsOn>
-      BeforeBuildHelp;
-      CoreBuildHelp;
-      AfterBuildHelp
-    </BuildDependsOn>
-  </PropertyGroup>
+	<!-- Include common targets to allow use in the VSPackage within Visual Studio -->
+	<Import Project="$(MSBuildBinPath)\Microsoft.Common.Targets" />
 
-  <Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
+	<!-- Override this target to removed it.  Visual Studio tries to run it under certain conditions but
+       we don't contain one of its dependent targets and we don't need this one anyway as far as I
+       can tell. -->
+	<Target Name="AllProjectOutputGroups" />
 
-  <!-- The Core Build Help target -->
-  <Target Name="CoreBuildHelp">
-    <BuildHelp
-        ProjectFile="$(MSBuildProjectFullPath)"
-        Configuration="$(Configuration)"
-        Platform="$(Platform)"
-        OutDir="$(OutDir)"
-        Verbose="$(Verbose)"
-        DumpLogOnFailure="$(DumpLogOnFailure)"
-        AlwaysLoadProject="$(AlwaysLoadProject)">
-      <Output TaskParameter="Help1Files" ItemName="Help1Files" />
-      <Output TaskParameter="Help2Files" ItemName="Help2Files" />
-      <Output TaskParameter="HelpViewerFiles" ItemName="HelpViewerFiles" />
-      <Output TaskParameter="WebsiteFiles" ItemName="WebsiteFiles" />
-      <Output TaskParameter="AllHelpFiles" ItemName="AllHelpFiles" />
-    </BuildHelp>
-  </Target>
+	<!-- Include custom before target overrides if specified -->
+	<Import Project="$(CustomBeforeSHFBTargets)" Condition="Exists('$(CustomBeforeSHFBTargets)')" />
 
-  <!-- The following targets may be overridden in project files to perform
+	<!-- This defines the dependencies for the Build target -->
+	<PropertyGroup>
+		<BuildDependsOn>
+			PreBuildEvent;
+			BeforeBuildHelp;
+			CoreBuildHelp;
+			AfterBuildHelp;
+			PostBuildEvent
+		</BuildDependsOn>
+	</PropertyGroup>
+
+	<Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
+
+	<!-- The Core Build Help target -->
+	<Target Name="CoreBuildHelp">
+		<SandcastleBuilder.Utils.MSBuild.BuildHelp
+				ProjectFile="$(MSBuildProjectFullPath)"
+				Configuration="$(Configuration)"
+				Platform="$(Platform)"
+				OutDir="$(OutDir)"
+				Verbose="$(Verbose)"
+				DumpLogOnFailure="$(DumpLogOnFailure)"
+				AlwaysLoadProject="$(AlwaysLoadProject)">
+			<Output TaskParameter="Help1Files" ItemName="Help1Files" />
+			<Output TaskParameter="HelpViewerFiles" ItemName="HelpViewerFiles" />
+			<Output TaskParameter="WebsiteFiles" ItemName="WebsiteFiles" />
+			<Output TaskParameter="OpenXmlFiles" ItemName="OpenXmlFiles" />
+			<Output TaskParameter="MarkdownFiles" ItemName="MarkdownFiles" />
+			<Output TaskParameter="AllHelpFiles" ItemName="AllHelpFiles" />
+		</SandcastleBuilder.Utils.MSBuild.BuildHelp>
+
+		<OnError ExecuteTargets="PostBuildEvent" Condition="'$(RunPostBuildEvent)'=='Always'"/>
+	</Target>
+
+	<!-- The following targets may be overridden in project files to perform
        additional processing. -->
-  <Target Name="BeforeBuildHelp" />
-  <Target Name="AfterBuildHelp" />
+	<Target Name="BeforeBuildHelp" />
+	<Target Name="AfterBuildHelp" />
 
-  <!-- This defines the dependencies for the Clean target -->
-  <PropertyGroup>
-    <CleanDependsOn>
-      BeforeCleanHelp;
-      CoreCleanHelp;
-      AfterCleanHelp
-    </CleanDependsOn>
-  </PropertyGroup>
+	<!-- This defines the dependencies for the Clean target -->
+	<PropertyGroup>
+		<CleanDependsOn>
+			BeforeCleanHelp;
+			CoreCleanHelp;
+			AfterCleanHelp
+		</CleanDependsOn>
+	</PropertyGroup>
 
-  <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
+	<Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
 
-  <!-- The Core Clean Help target -->
-  <Target Name="CoreCleanHelp">
-    <CleanHelp
+	<!-- The Core Clean Help target -->
+	<Target Name="CoreCleanHelp">
+		<SandcastleBuilder.Utils.MSBuild.CleanHelp
         ProjectFile="$(MSBuildProjectFullPath)"
         OutputPath="$(OutputPath)"
         WorkingPath="$(WorkingPath)"
         LogFileLocation="$(LogFileLocation)" />
-  </Target>
+	</Target>
 
-  <!-- The following targets may be overridden in project files to perform
+	<!-- The following targets may be overridden in project files to perform
        additional processing. -->
-  <Target Name="BeforeCleanHelp" />
-  <Target Name="AfterCleanHelp" />
+	<Target Name="BeforeCleanHelp" />
+	<Target Name="AfterCleanHelp" />
 
-  <!-- This defines the dependencies for the Rebuild target -->
-  <PropertyGroup>
-    <RebuildDependsOn>
-      BeforeRebuildHelp;
-      Clean;
-      Build;
-      AfterRebuildHelp;
-    </RebuildDependsOn>
-  </PropertyGroup>
+	<!-- This defines the dependencies for the Rebuild target -->
+	<PropertyGroup>
+		<RebuildDependsOn>
+			BeforeRebuildHelp;
+			Clean;
+			Build;
+			AfterRebuildHelp;
+		</RebuildDependsOn>
+	</PropertyGroup>
 
-  <Target Name="Rebuild" DependsOnTargets="$(RebuildDependsOn)" />
+	<Target Name="Rebuild" DependsOnTargets="$(RebuildDependsOn)" />
 
-  <!-- The following targets may be overridden in project files to perform
+	<!-- The following targets may be overridden in project files to perform
        additional processing. -->
-  <Target Name="BeforeRebuildHelp" />
-  <Target Name="AfterRebuildHelp" />
+	<Target Name="BeforeRebuildHelp" />
+	<Target Name="AfterRebuildHelp" />
 
-  <Import Project="$(CustomAfterSHFBTargets)" Condition="Exists('$(CustomAfterSHFBTargets)')" />
+	<!-- Include custom after target overrides if specified -->
+	<Import Project="$(CustomAfterSHFBTargets)" Condition="Exists('$(CustomAfterSHFBTargets)')" />
 
 </Project>

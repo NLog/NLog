@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+    <assembly name="Windows.Management.Workplace.WorkplaceSettingsContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Management.Workplace">
+      <topicdata group="api" />
+      <apidata name="Windows.Management.Workplace" group="namespace" />
+      <elements>
+        <element api="T:Windows.Management.Workplace.MdmPolicy" />
+        <element api="T:Windows.Management.Workplace.WorkplaceSettingsContract" />
+        <element api="T:Windows.Management.Workplace.WorkplaceSettings" />
+      </elements>
+      <file name="8df4fa34-efaa-0ebb-6b95-f685a682c854" />
+    </api>
+    <api id="T:Windows.Management.Workplace.MdmPolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Management.Workplace.MdmPolicy" />
+      <apidata name="MdmPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ExperimentalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ce8feac2-f9b5-94be-ffe6-fcadbe9aba73" />
+    </api>
+    <api id="AllMembers.T:Windows.Management.Workplace.MdmPolicy">
+      <topicdata name="MdmPolicy" group="list" subgroup="members" typeTopicId="T:Windows.Management.Workplace.MdmPolicy" />
+      <apidata name="MdmPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Management.Workplace.MdmPolicy.IsBrowserAllowed" />
+        <element api="M:Windows.Management.Workplace.MdmPolicy.IsCameraAllowed" />
+        <element api="M:Windows.Management.Workplace.MdmPolicy.IsMicrosoftAccountAllowed" />
+        <element api="M:Windows.Management.Workplace.MdmPolicy.IsStoreAllowed" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.MdmPolicy" />
+      </containers>
+      <file name="437607ed-1c82-b921-2a9a-8582721a2d3d" />
+    </api>
+    <api id="Methods.T:Windows.Management.Workplace.MdmPolicy">
+      <topicdata name="MdmPolicy" group="list" subgroup="Methods" typeTopicId="T:Windows.Management.Workplace.MdmPolicy" />
+      <apidata name="MdmPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Management.Workplace.MdmPolicy.IsBrowserAllowed" />
+        <element api="M:Windows.Management.Workplace.MdmPolicy.IsCameraAllowed" />
+        <element api="M:Windows.Management.Workplace.MdmPolicy.IsMicrosoftAccountAllowed" />
+        <element api="M:Windows.Management.Workplace.MdmPolicy.IsStoreAllowed" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.MdmPolicy" />
+      </containers>
+      <file name="95a2036a-2a85-f15c-8cb9-4ed1e30fa484" />
+    </api>
+    <api id="M:Windows.Management.Workplace.MdmPolicy.IsBrowserAllowed">
+      <topicdata group="api" />
+      <apidata name="IsBrowserAllowed" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.MdmPolicy" ref="true" />
+      </containers>
+      <file name="42f999c0-0137-2d60-cd37-7ce18937e0b9" />
+    </api>
+    <api id="M:Windows.Management.Workplace.MdmPolicy.IsCameraAllowed">
+      <topicdata group="api" />
+      <apidata name="IsCameraAllowed" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.MdmPolicy" ref="true" />
+      </containers>
+      <file name="428a1985-2737-248a-b940-3929debd577b" />
+    </api>
+    <api id="M:Windows.Management.Workplace.MdmPolicy.IsMicrosoftAccountAllowed">
+      <topicdata group="api" />
+      <apidata name="IsMicrosoftAccountAllowed" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.MdmPolicy" ref="true" />
+      </containers>
+      <file name="19f0093c-ae64-bd69-6400-b360e030598d" />
+    </api>
+    <api id="M:Windows.Management.Workplace.MdmPolicy.IsStoreAllowed">
+      <topicdata group="api" />
+      <apidata name="IsStoreAllowed" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.MdmPolicy" ref="true" />
+      </containers>
+      <file name="8894d727-6ccd-1b6c-0497-ac0d6790f53b" />
+    </api>
+    <api id="T:Windows.Management.Workplace.WorkplaceSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Management.Workplace.WorkplaceSettings" />
+      <apidata name="WorkplaceSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Management.Workplace.WorkplaceSettingsContract" module="Windows.Management.Workplace.WorkplaceSettingsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Management.Workplace.WorkplaceSettingsContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1377a2c8-90ed-61ef-2fac-856fa878dd54" />
+    </api>
+    <api id="AllMembers.T:Windows.Management.Workplace.WorkplaceSettings">
+      <topicdata name="WorkplaceSettings" group="list" subgroup="members" typeTopicId="T:Windows.Management.Workplace.WorkplaceSettings" />
+      <apidata name="WorkplaceSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Management.Workplace.WorkplaceSettings.IsMicrosoftAccountOptional" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Workplace.WorkplaceSettingsContract" module="Windows.Management.Workplace.WorkplaceSettingsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.WorkplaceSettings" />
+      </containers>
+      <file name="8cf66ae1-b394-7599-76a7-72b67e9eeba7" />
+    </api>
+    <api id="Properties.T:Windows.Management.Workplace.WorkplaceSettings">
+      <topicdata name="WorkplaceSettings" group="list" subgroup="Properties" typeTopicId="T:Windows.Management.Workplace.WorkplaceSettings" />
+      <apidata name="WorkplaceSettings" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Management.Workplace.WorkplaceSettings.IsMicrosoftAccountOptional" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Workplace.WorkplaceSettingsContract" module="Windows.Management.Workplace.WorkplaceSettingsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.WorkplaceSettings" />
+      </containers>
+      <file name="78c64d2c-4ac8-367e-8b1a-be43c816dfb0" />
+    </api>
+    <api id="P:Windows.Management.Workplace.WorkplaceSettings.IsMicrosoftAccountOptional">
+      <topicdata group="api" />
+      <apidata name="IsMicrosoftAccountOptional" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsMicrosoftAccountOptional" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Management.Workplace.WorkplaceSettingsContract" module="Windows.Management.Workplace.WorkplaceSettingsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.WorkplaceSettings" ref="true" />
+      </containers>
+      <file name="e3a092c1-17a8-87c6-7441-7fff166655b8" />
+    </api>
+    <api id="T:Windows.Management.Workplace.WorkplaceSettingsContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Management.Workplace.WorkplaceSettingsContract" />
+      <apidata name="WorkplaceSettingsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Management.Workplace.WorkplaceSettingsContract" module="Windows.Management.Workplace.WorkplaceSettingsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dedab00b-ad64-ea97-23ce-7b6f4be2cf4e" />
+    </api>
+    <api id="AllMembers.T:Windows.Management.Workplace.WorkplaceSettingsContract">
+      <topicdata name="WorkplaceSettingsContract" group="list" subgroup="members" typeTopicId="T:Windows.Management.Workplace.WorkplaceSettingsContract" />
+      <apidata name="WorkplaceSettingsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Workplace.WorkplaceSettingsContract" module="Windows.Management.Workplace.WorkplaceSettingsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.WorkplaceSettingsContract" />
+      </containers>
+      <file name="c3573519-55a1-bd13-bcf1-f06ecb85ce40" />
+    </api>
+    <api id="Methods.T:Windows.Management.Workplace.WorkplaceSettingsContract">
+      <topicdata name="WorkplaceSettingsContract" group="list" subgroup="Methods" typeTopicId="T:Windows.Management.Workplace.WorkplaceSettingsContract" />
+      <apidata name="WorkplaceSettingsContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Management.Workplace.WorkplaceSettingsContract" module="Windows.Management.Workplace.WorkplaceSettingsContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Management.Workplace" />
+        <type api="T:Windows.Management.Workplace.WorkplaceSettingsContract" />
+      </containers>
+      <file name="344a1dee-69a5-562d-ae63-d39c2d22cf90" />
+    </api>
+  </apis>
+</reflection>

@@ -31,8 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Runtime.CompilerServices;
-
 namespace NLog.Common
 {
     using JetBrains.Annotations;
@@ -45,8 +43,8 @@ namespace NLog.Common
     using System.IO;
     using System.Reflection;
     using System.Text;
-    using NLog.Internal;
-    using NLog.Time;
+    using Internal;
+    using Time;
 #if !SILVERLIGHT && !UWP10 && !__IOS__ && !__ANDROID__
     using ConfigurationManager = System.Configuration.ConfigurationManager;
     using System.Diagnostics;
@@ -54,12 +52,11 @@ namespace NLog.Common
 
     /// <summary>
     /// NLog internal logger.
-    /// </summary>
     /// Writes to file, console or custom textwriter (see <see cref="InternalLogger.LogWriter"/>)
     /// </summary>
     public static partial class InternalLogger
     {
-        private static object lockObject = new object();
+        private static readonly object LockObject = new object();
         private static string _logFile;
 
         /// <summary>
@@ -82,20 +79,23 @@ namespace NLog.Common
             LogToConsoleError = GetSetting("nlog.internalLogToConsoleError", "NLOG_INTERNAL_LOG_TO_CONSOLE_ERROR", false);
             LogLevel = GetSetting("nlog.internalLogLevel", "NLOG_INTERNAL_LOG_LEVEL", LogLevel.Info);
             LogFile = GetSetting("nlog.internalLogFile", "NLOG_INTERNAL_LOG_FILE", string.Empty);
-			
+            LogToTrace = GetSetting("nlog.internalLogToTrace", "NLOG_INTERNAL_LOG_TO_TRACE", false);
+            IncludeTimestamp = GetSetting("nlog.internalLogIncludeTimestamp", "NLOG_INTERNAL_INCLUDE_TIMESTAMP", true);
             
 #else
             LogLevel = LogLevel.Info;
-            IncludeTimestamp = true;
-            LogWriter = null;
             LogFile = string.Empty;
+            IncludeTimestamp = true;
+
 #if !UWP10
             LogToConsole = false;
             LogToConsoleError = false;
 #endif
 
+            LogWriter = null;
+
 #endif
-            
+
 
         }
 
@@ -118,6 +118,12 @@ namespace NLog.Common
         /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsoleError { get; set; }
 
+#endif
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+
+        /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics.Trace"/>.
+        /// Gets or sets the file path of the internal log file.
+        public static bool LogToTrace { get; set; }
 #endif
 
         /// <summary>
@@ -209,13 +215,13 @@ namespace NLog.Common
         /// <param name="args">optional args for <paramref name="message"/></param>
         private static void Write([CanBeNull]Exception ex, LogLevel level, string message, [CanBeNull]object[] args)
         {
-            if (ex != null && ex.MustBeRethrownImmediately())
+            if (IsSeriousException(ex))
             {
                 //no logging!
                 return;
             }
 
-            if (level == LogLevel.Off)
+            if (!LoggingEnabled(level))
             {
                 return;
             }
@@ -225,18 +231,10 @@ namespace NLog.Common
                 return;
             }
 
-            if (string.IsNullOrEmpty(LogFile)
-#if !UWP10
-                && !LogToConsole && !LogToConsoleError 
-#endif
-                && LogWriter == null)
-            {
-                return;
-            }
 
             try
             {
-                string formattedMessage = message;
+                var formattedMessage = message;
                 if (args != null)
                 {
                     formattedMessage = string.Format(CultureInfo.InvariantCulture, message, args);
@@ -249,16 +247,16 @@ namespace NLog.Common
                     builder.Append(" ");
                 }
 
-                builder.Append(level.ToString());
+                builder.Append(level);
                 builder.Append(" ");
                 builder.Append(formattedMessage);
                 if (ex != null)
                 {
                     ex.MarkAsLoggedToInternalLogger();
                     builder.Append(" Exception: ");
-                    builder.Append(ex.ToString());
+                    builder.Append(ex);
                 }
-                string msg = builder.ToString();
+                var msg = builder.ToString();
 
                 // log to file
                 var logFile = LogFile;
@@ -274,7 +272,7 @@ namespace NLog.Common
                 var writer = LogWriter;
                 if (writer != null)
                 {
-                    lock (lockObject)
+                    lock (LockObject)
                     {
                         writer.WriteLine(msg);
                     }
@@ -292,6 +290,9 @@ namespace NLog.Common
                     Console.Error.WriteLine(msg);
                 }
 #endif
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                WriteToTrace(msg);
+#endif
             }
             catch (Exception exception)
             {
@@ -306,6 +307,61 @@ namespace NLog.Common
         }
 
 
+        /// Determine if logging should be avoided because of exception type. 
+        /// Logs the assembly version and file version of the given Assembly.
+        /// <param name="exception">The exception to check.</param>
+        /// <returns><c>true</c> if logging should be avoided; otherwise, <c>false</c>.</returns>
+        private static bool IsSeriousException(Exception exception)
+        {
+            return exception != null && exception.MustBeRethrownImmediately();
+        }
+
+        /// <summary>
+        /// Determine if logging is enabled.
+        /// </summary>
+        /// <param name="logLevel">The <see cref="LogLevel"/> for the log event.</param>
+        /// <returns><c>true</c> if logging is enabled; otherwise, <c>false</c>.</returns>
+        private static bool LoggingEnabled(LogLevel logLevel)
+        {
+            if (logLevel == LogLevel.Off || logLevel < LogLevel)
+            {
+                return false;
+            }
+
+            return !string.IsNullOrEmpty(LogFile)  ||
+#if !UWP10
+            LogToConsole || LogToConsoleError ||
+#endif
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+            LogToTrace ||
+#endif
+            LogWriter != null;
+        }
+
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+        /// <summary>
+        /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
+        /// </summary>
+        /// <param name="message">A message to write.</param>
+        /// <remarks>
+        /// Works when property <see cref="LogToTrace"/> set to true.
+        /// The <see cref="System.Diagnostics.Trace"/> is used in Debug and Relese configuration. 
+        /// The <see cref="System.Diagnostics.Debug"/> works only in Debug configuration and this is reason why is replaced by <see cref="System.Diagnostics.Trace"/>.
+        /// in DEBUG 
+        /// </remarks>
+        private static void WriteToTrace(string message)
+        {
+
+            if (!LogToTrace)
+            {
+                return;
+            }
+            
+            System.Diagnostics.Trace.WriteLine(message, "NLog");
+        }
+
+#endif
+
         /// <summary>
         /// Logs the assembly version and file version of the given Assembly.
         /// </summary>
@@ -314,7 +370,7 @@ namespace NLog.Common
         {
             try
             {
-#if SILVERLIGHT || __IOS__ || __ANDROID__|| UWP10
+#if SILVERLIGHT || __IOS__ || __ANDROID__ || UWP10
                 Info(assembly.FullName);
 #else
                 var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
@@ -404,7 +460,7 @@ namespace NLog.Common
         {
             try
             {
-                if (InternalLogger.LogLevel == NLog.LogLevel.Off)
+                if (LogLevel == LogLevel.Off)
                 {
                     return;
                 }

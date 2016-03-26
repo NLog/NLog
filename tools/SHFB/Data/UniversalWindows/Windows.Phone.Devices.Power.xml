@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Phone.PhoneContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.Devices.Power">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.Devices.Power" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.Devices.Power.Battery" />
+      </elements>
+      <file name="958de71d-312a-14ea-64e7-2268fd0e8e27" />
+    </api>
+    <api id="T:Windows.Phone.Devices.Power.Battery">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6f9a12e3-07fa-3bb5-dac1-965d3bacdff7" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.Devices.Power.Battery">
+      <topicdata name="Battery" group="list" subgroup="members" typeTopicId="T:Windows.Phone.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Phone.Devices.Power.Battery.GetDefault" />
+        <element api="P:Windows.Phone.Devices.Power.Battery.RemainingChargePercent" />
+        <element api="E:Windows.Phone.Devices.Power.Battery.RemainingChargePercentChanged" />
+        <element api="P:Windows.Phone.Devices.Power.Battery.RemainingDischargeTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+        <type api="T:Windows.Phone.Devices.Power.Battery" />
+      </containers>
+      <file name="62da3d03-26f2-d6e4-793b-4e90e6a79cc0" />
+    </api>
+    <api id="Methods.T:Windows.Phone.Devices.Power.Battery">
+      <topicdata name="Battery" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Phone.Devices.Power.Battery.GetDefault" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+        <type api="T:Windows.Phone.Devices.Power.Battery" />
+      </containers>
+      <file name="94851038-5154-07ed-7fa1-1ab37cb6bf6c" />
+    </api>
+    <api id="Properties.T:Windows.Phone.Devices.Power.Battery">
+      <topicdata name="Battery" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.Devices.Power.Battery.RemainingChargePercent" />
+        <element api="P:Windows.Phone.Devices.Power.Battery.RemainingDischargeTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+        <type api="T:Windows.Phone.Devices.Power.Battery" />
+      </containers>
+      <file name="2a95711c-47d4-0ba0-e822-840c38660837" />
+    </api>
+    <api id="Events.T:Windows.Phone.Devices.Power.Battery">
+      <topicdata name="Battery" group="list" subgroup="Events" typeTopicId="T:Windows.Phone.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Phone.Devices.Power.Battery.RemainingChargePercentChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+        <type api="T:Windows.Phone.Devices.Power.Battery" />
+      </containers>
+      <file name="63a7de6c-ba77-7bb3-10cf-09d7643b67f7" />
+    </api>
+    <api id="M:Windows.Phone.Devices.Power.Battery.GetDefault">
+      <topicdata group="api" />
+      <apidata name="GetDefault" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Phone.Devices.Power.Battery" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+        <type api="T:Windows.Phone.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="91851db9-73d3-8e15-410b-e46067b761d2" />
+    </api>
+    <api id="P:Windows.Phone.Devices.Power.Battery.RemainingChargePercent">
+      <topicdata group="api" />
+      <apidata name="RemainingChargePercent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RemainingChargePercent" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+        <type api="T:Windows.Phone.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="c55f8427-583c-b142-243c-62c4dfb62105" />
+    </api>
+    <api id="E:Windows.Phone.Devices.Power.Battery.RemainingChargePercentChanged">
+      <topicdata group="api" />
+      <apidata name="RemainingChargePercentChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RemainingChargePercentChanged" />
+      <remover name="remove_RemainingChargePercentChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+        <type api="T:Windows.Phone.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="2b99fe3f-c871-d567-5570-c24d5ec707cd" />
+    </api>
+    <api id="P:Windows.Phone.Devices.Power.Battery.RemainingDischargeTime">
+      <topicdata group="api" />
+      <apidata name="RemainingDischargeTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RemainingDischargeTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Devices.Power" />
+        <type api="T:Windows.Phone.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="7aa365b7-5a28-287b-080c-9800adae2917" />
+    </api>
+  </apis>
+</reflection>

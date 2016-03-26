@@ -1,0 +1,1771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.IO.IsolatedStorage">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.IsolatedStorage</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.IsolatedStorage</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.IsolatedStorage</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.IO.IsolatedStorage">
+      <topicdata group="api" />
+      <apidata name="System.IO.IsolatedStorage" group="namespace" />
+      <elements>
+        <element api="T:System.IO.IsolatedStorage.IsolatedStorageException" />
+        <element api="T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+        <element api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      </elements>
+      <file name="4253a989-a6b6-2dc1-b65f-2c5724197e59" />
+    </api>
+    <api id="T:System.IO.IsolatedStorage.IsolatedStorageException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageException" />
+      <apidata name="IsolatedStorageException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+      </containers>
+      <file name="77e73de2-86a3-3c9f-945b-5541a6cc0a9a" />
+    </api>
+    <api id="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageException">
+      <topicdata name="IsolatedStorageException" group="list" subgroup="members" typeTopicId="T:System.IO.IsolatedStorage.IsolatedStorageException" />
+      <apidata name="IsolatedStorageException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageException.#ctor">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.String)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageException" />
+      </containers>
+      <file name="3b56cc1f-e35f-0e84-f785-8aeac6be8ca5" />
+    </api>
+    <api id="Methods.T:System.IO.IsolatedStorage.IsolatedStorageException">
+      <topicdata name="IsolatedStorageException" group="list" subgroup="Methods" typeTopicId="T:System.IO.IsolatedStorage.IsolatedStorageException" />
+      <apidata name="IsolatedStorageException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageException" />
+      </containers>
+      <file name="9e848205-6527-cd48-3dac-cc0a912087c4" />
+    </api>
+    <api id="Properties.T:System.IO.IsolatedStorage.IsolatedStorageException">
+      <topicdata name="IsolatedStorageException" group="list" subgroup="Properties" typeTopicId="T:System.IO.IsolatedStorage.IsolatedStorageException" />
+      <apidata name="IsolatedStorageException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageException" />
+      </containers>
+      <file name="5f99dd2b-cad9-0615-eb87-171492ad0e47" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageException" ref="true" />
+      </containers>
+      <file name="09cd0c1f-2095-6670-19d5-453d742bc6bd" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageException" ref="true" />
+      </containers>
+      <file name="03eb03f7-31a2-5e7a-83b2-1fb60b5b44cc" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageException" ref="true" />
+      </containers>
+      <file name="11e96186-6931-bcb6-3f03-c335a1ebfb4f" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inner">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageException" ref="true" />
+      </containers>
+      <file name="c9b0f221-4c91-6c12-a2ab-5ddbac44584c" />
+    </api>
+    <api id="T:System.IO.IsolatedStorage.IsolatedStorageFile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      <apidata name="IsolatedStorageFile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+      </containers>
+      <file name="23e135a5-7a42-ae84-a8ab-f1919698ffb8" />
+    </api>
+    <api id="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFile">
+      <topicdata name="IsolatedStorageFile" group="list" subgroup="members" typeTopicId="T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      <apidata name="IsolatedStorageFile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String,System.Boolean)" />
+        </element>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CreateFile(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteDirectory(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteFile(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.DirectoryExists(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.Dispose" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.FileExists(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetCreationTime(System.String)" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames(System.String)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames(System.String)" />
+        </element>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetLastAccessTime(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetLastWriteTime(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.MoveDirectory(System.String,System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.MoveFile(System.String,System.String)" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      </containers>
+      <file name="80c1522f-4a9c-dc93-3078-6d60831d68c7" />
+    </api>
+    <api id="Methods.T:System.IO.IsolatedStorage.IsolatedStorageFile">
+      <topicdata name="IsolatedStorageFile" group="list" subgroup="Methods" typeTopicId="T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      <apidata name="IsolatedStorageFile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String,System.Boolean)" />
+        </element>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CreateFile(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteDirectory(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteFile(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.DirectoryExists(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.Dispose" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.FileExists(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetCreationTime(System.String)" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames(System.String)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames(System.String)" />
+        </element>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetLastAccessTime(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetLastWriteTime(System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.MoveDirectory(System.String,System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.MoveFile(System.String,System.String)" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      </containers>
+      <file name="98abab2f-5967-fb82-65de-313a590a0dfb" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile">
+      <topicdata name="CopyFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      <apidata name="CopyFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="43d7f0f5-0437-378d-c674-27fcb47d1113" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames">
+      <topicdata name="GetDirectoryNames" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      <apidata name="GetDirectoryNames" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="cc6432c9-5cb4-133f-e94a-74b45bc66466" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames">
+      <topicdata name="GetFileNames" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      <apidata name="GetFileNames" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="643ba471-22fc-6d68-6e9e-bd81027c949e" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile">
+      <topicdata name="OpenFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFile" />
+      <apidata name="OpenFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="2b625238-c06f-4355-b597-47bc23de6f3b" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CopyFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="7061b627-b2ed-7c19-6702-70bd639d3336" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CopyFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="overwrite">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="4e0b6c33-3791-6830-d6ca-c215378d98cc" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dir">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="797f60b4-d48d-e89e-507e-5b5d8fc342e2" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.CreateFile(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="d4a82ce6-0034-108e-3364-ea0c36824260" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteDirectory(System.String)">
+      <topicdata group="api" />
+      <apidata name="DeleteDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dir">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="fb82f759-08d5-5a30-7e62-309ef8d0eb5a" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteFile(System.String)">
+      <topicdata group="api" />
+      <apidata name="DeleteFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="7d1ac625-d82a-4399-f7d8-7999b54a3163" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.DirectoryExists(System.String)">
+      <topicdata group="api" />
+      <apidata name="DirectoryExists" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="7c6220cd-3748-8c65-891e-087e8a7ca465" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="3ebf12c5-471a-4b4c-fc49-cf3c7c6330cb" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.FileExists(System.String)">
+      <topicdata group="api" />
+      <apidata name="FileExists" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="bf6f4096-3af4-cf24-f173-ec70771aa5e0" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetCreationTime(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetCreationTime" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="26db0ef1-3abb-f613-4de0-bee6efea809f" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames">
+      <topicdata group="api" />
+      <apidata name="GetDirectoryNames" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="778ef285-64ea-4cef-35d9-7182db7dc904" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetDirectoryNames" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="searchPattern">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="38570d8f-fa6e-9c2f-4a61-50b104b6405f" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames">
+      <topicdata group="api" />
+      <apidata name="GetFileNames" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="8bfd4110-efab-59cc-13bc-72c7f2054023" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetFileNames" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="searchPattern">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="82153a8b-a221-88d8-7705-843648576fad" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetLastAccessTime(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetLastAccessTime" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="5cebb91b-4ea8-6309-22f4-9749d98c9daf" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetLastWriteTime(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetLastWriteTime" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="4da8be40-ab80-b1bf-b4d2-aa7bfa3db77b" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication">
+      <topicdata group="api" />
+      <apidata name="GetUserStoreForApplication" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="efaf4ccd-b041-737a-6952-8b6554071a38" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.MoveDirectory(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="MoveDirectory" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationDirectoryName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="bc135c0d-b02c-a111-6caf-6ca8ddfc8943" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.MoveFile(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="MoveFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="destinationFileName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="307962c7-dd00-bc32-e0bd-c95dc7308c9a" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode)">
+      <topicdata group="api" />
+      <apidata name="OpenFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="40753bfa-4c29-6bfe-0b15-12c1d1c3ad9d" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess)">
+      <topicdata group="api" />
+      <apidata name="OpenFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.FileAccess" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="006be28f-9f29-100a-7667-0e73a8f785ff" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+      <topicdata group="api" />
+      <apidata name="OpenFile" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.FileAccess" ref="true" />
+        </parameter>
+        <parameter name="share">
+          <type api="T:System.IO.FileShare" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+      </containers>
+      <file name="57848b7b-87d2-e2dc-4b7b-c3de7a185f5f" />
+    </api>
+    <api id="T:System.IO.IsolatedStorage.IsolatedStorageFileStream">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name="IsolatedStorageFileStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.IO.Stream" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+      </containers>
+      <file name="5ada7031-2680-3949-b936-dac18934bc54" />
+    </api>
+    <api id="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFileStream">
+      <topicdata name="IsolatedStorageFileStream" group="list" subgroup="members" typeTopicId="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name="IsolatedStorageFileStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Stream.CanTimeout" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="P:System.IO.Stream.ReadTimeout" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="P:System.IO.Stream.WriteTimeout" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor">
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.IsolatedStorage.IsolatedStorageFile)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.IsolatedStorage.IsolatedStorageFile)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.IO.IsolatedStorage.IsolatedStorageFile)" />
+        </element>
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanRead" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanSeek" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanWrite" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Flush" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Length" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Position" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadByte" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.SetLength(System.Int64)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Write(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteByte(System.Byte)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      </containers>
+      <file name="bf52bda5-db13-7826-b8c8-760516b98505" />
+    </api>
+    <api id="Methods.T:System.IO.IsolatedStorage.IsolatedStorageFileStream">
+      <topicdata name="IsolatedStorageFileStream" group="list" subgroup="Methods" typeTopicId="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name="IsolatedStorageFileStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Flush" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadByte" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.SetLength(System.Int64)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Write(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteByte(System.Byte)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      </containers>
+      <file name="60d47bb4-cd97-b53b-2af5-2ee7f560aabc" />
+    </api>
+    <api id="Properties.T:System.IO.IsolatedStorage.IsolatedStorageFileStream">
+      <topicdata name="IsolatedStorageFileStream" group="list" subgroup="Properties" typeTopicId="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name="IsolatedStorageFileStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Stream.CanTimeout" />
+        <element api="P:System.IO.Stream.ReadTimeout" />
+        <element api="P:System.IO.Stream.WriteTimeout" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanRead" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanSeek" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanWrite" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Length" />
+        <element api="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Position" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      </containers>
+      <file name="89c1fd73-c506-77ed-220d-1ab3674d5862" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Stream.Dispose" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="e3febd51-f65f-4918-6eac-f354921008eb" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync">
+      <topicdata name="FlushAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name="FlushAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Stream.FlushAsync" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync(System.Threading.CancellationToken)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="8ecfad5b-e444-5b83-b846-accf897aca7c" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync">
+      <topicdata name="ReadAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name="ReadAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="9ec8d37d-90a0-e92f-1b14-09fc71aa47a8" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync">
+      <topicdata name="WriteAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="4f7bda6a-fca2-0db5-9acf-429a1207bd2c" />
+    </api>
+    <api id="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.IsolatedStorage.IsolatedStorageFile)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.IsolatedStorage.IsolatedStorageFile)" />
+        <element api="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.IO.IsolatedStorage.IsolatedStorageFile)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="110f0cdd-68ce-420c-add9-614b03b76757" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.IO.IsolatedStorage.IsolatedStorageFile)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.FileAccess" ref="true" />
+        </parameter>
+        <parameter name="share">
+          <type api="T:System.IO.FileShare" ref="true" />
+        </parameter>
+        <parameter name="isf">
+          <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="436d6748-518b-6fa0-db68-e77d89dd4571" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.IsolatedStorage.IsolatedStorageFile)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.FileAccess" ref="true" />
+        </parameter>
+        <parameter name="isf">
+          <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="53a447d4-4abe-0e8a-abfc-543b5653cdfb" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.IsolatedStorage.IsolatedStorageFile)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+        <parameter name="isf">
+          <type api="T:System.IO.IsolatedStorage.IsolatedStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="a6aa7a76-7d80-5424-6ae3-2b656450702e" />
+    </api>
+    <api id="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanRead">
+      <topicdata group="api" />
+      <apidata name="CanRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanRead">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanRead" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="b0c3a836-55b2-10a4-8eca-b905dbb864ef" />
+    </api>
+    <api id="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanSeek">
+      <topicdata group="api" />
+      <apidata name="CanSeek" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanSeek">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanSeek" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="bf7de3e6-40f0-43ff-d4ee-2870c360870d" />
+    </api>
+    <api id="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanWrite">
+      <topicdata group="api" />
+      <apidata name="CanWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanWrite">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanWrite" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="de2820c2-875b-0ab4-6c9f-4c613e8336b8" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Dispose(System.Boolean)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="da57248b-38ad-d624-2632-fa006c120b9c" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Flush">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="3a8a170c-9e20-58fe-626d-066dbfb95020" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync(System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="FlushAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.FlushAsync(System.Threading.CancellationToken)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="ae9e54c3-44e0-f988-d2c2-78683620b69e" />
+    </api>
+    <api id="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Length">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Length" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="c099baa8-9cd3-964e-ebf2-6cef3ac94b3f" />
+    </api>
+    <api id="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Position">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Position" />
+      <setter name="set_Position" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="a7f5aa41-91fd-b6f1-4192-f623340fdc42" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="93611272-40b9-b061-3a16-171922353b18" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="ReadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task`1" ref="true">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="0ed15843-dde5-3015-7c0f-5554a5151289" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadByte">
+      <topicdata group="api" />
+      <apidata name="ReadByte" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.ReadByte">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="a06b7444-c277-d02c-30d9-2dbdd28d5ce9" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <topicdata group="api" />
+      <apidata name="Seek" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="origin">
+          <type api="T:System.IO.SeekOrigin" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="05f72a01-1df3-0b2c-4417-155fef2e2e01" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.SetLength(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="SetLength" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.SetLength(System.Int64)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="05881aaa-9615-4f01-a425-f0ed2578a6f7" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="7488cf8c-0df1-249d-b59b-afcc48b9c89d" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="bdb1bb1b-b997-3440-9a83-a7f82cf931fa" />
+    </api>
+    <api id="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteByte(System.Byte)">
+      <topicdata group="api" />
+      <apidata name="WriteByte" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.WriteByte(System.Byte)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.IsolatedStorage" module="System.IO.IsolatedStorage" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.IsolatedStorage" />
+        <type api="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" ref="true" />
+      </containers>
+      <file name="2b6ad145-4d63-06c2-211b-0e0a0c734289" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+    <assembly name="Windows.UI.Xaml.Hosting.HostingContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Xaml.Hosting">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Xaml.Hosting" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Xaml.Hosting.ElementCompositionPreview" />
+        <element api="T:Windows.UI.Xaml.Hosting.HostingContract" />
+        <element api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost" />
+        <element api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2" />
+        <element api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3" />
+        <element api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" />
+      </elements>
+      <file name="85a5493f-edea-745c-e435-3494fa86ad82" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Hosting.ElementCompositionPreview">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Hosting.ElementCompositionPreview" />
+      <apidata name="ElementCompositionPreview" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="00de82de-331e-f870-a16e-82eb87dcb92e" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Hosting.ElementCompositionPreview">
+      <topicdata name="ElementCompositionPreview" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Hosting.ElementCompositionPreview" />
+      <apidata name="ElementCompositionPreview" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Hosting.ElementCompositionPreview.GetContainerVisual(Windows.UI.Xaml.UIElement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.ElementCompositionPreview" />
+      </containers>
+      <file name="0f5eb8a9-0e6a-3bbe-f40a-c29e8a968ede" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Hosting.ElementCompositionPreview">
+      <topicdata name="ElementCompositionPreview" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Hosting.ElementCompositionPreview" />
+      <apidata name="ElementCompositionPreview" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Hosting.ElementCompositionPreview.GetContainerVisual(Windows.UI.Xaml.UIElement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.ElementCompositionPreview" />
+      </containers>
+      <file name="928da690-88b4-9989-534f-faea64c5b6ae" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.ElementCompositionPreview.GetContainerVisual(Windows.UI.Xaml.UIElement)">
+      <topicdata group="api" />
+      <apidata name="GetContainerVisual" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="element" in="true">
+          <type api="T:Windows.UI.Xaml.UIElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.ElementCompositionPreview" ref="true" />
+      </containers>
+      <file name="f9267103-0496-03c1-db71-9f89ef95dc52" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Hosting.HostingContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Hosting.HostingContract" />
+      <apidata name="HostingContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4778c881-199f-1f69-51b1-7aabcc05c92a" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Hosting.HostingContract">
+      <topicdata name="HostingContract" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Hosting.HostingContract" />
+      <apidata name="HostingContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.HostingContract" />
+      </containers>
+      <file name="077cbefb-caf6-4438-746b-e2731b9f7e8c" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Hosting.HostingContract">
+      <topicdata name="HostingContract" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Hosting.HostingContract" />
+      <apidata name="HostingContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.HostingContract" />
+      </containers>
+      <file name="57220eb4-c13e-52cc-dcb5-698f5251d377" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost" />
+      <apidata name="IXamlUIPresenterHost" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.UI.Xaml.Hosting.HostingContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2868610253</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>40813</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20352</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>172</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>44</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>14</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>108</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>185</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>243</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>22</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>89</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="70735efa-7b95-1725-33ea-0db304c3c0aa" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost">
+      <topicdata name="IXamlUIPresenterHost" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost" />
+      <apidata name="IXamlUIPresenterHost" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost.ResolveFileResource(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost" />
+      </containers>
+      <file name="0b611b3d-d12c-1743-e543-250b6ed5c78c" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost">
+      <topicdata name="IXamlUIPresenterHost" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost" />
+      <apidata name="IXamlUIPresenterHost" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost.ResolveFileResource(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost" />
+      </containers>
+      <file name="fd7e23f0-4a4b-896a-f7a7-aec0a1124000" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost.ResolveFileResource(System.String)">
+      <topicdata group="api" />
+      <apidata name="ResolveFileResource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="path" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost" ref="true" />
+      </containers>
+      <file name="2ba20144-5e59-9a52-721e-4ae3c3739669" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2" />
+      <apidata name="IXamlUIPresenterHost2" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1633244786</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>31908</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18977</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>181</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>106</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>136</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>244</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>129</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>35</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>136</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>202</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.UI.Xaml.Hosting.HostingContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7d94c450-595d-5e33-33ce-bd9a7fbeca45" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2">
+      <topicdata name="IXamlUIPresenterHost2" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2" />
+      <apidata name="IXamlUIPresenterHost2" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2.GetGenericXamlFilePath" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2" />
+      </containers>
+      <file name="cfac4688-b36e-db77-0382-8f66debc5b7b" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2">
+      <topicdata name="IXamlUIPresenterHost2" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2" />
+      <apidata name="IXamlUIPresenterHost2" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2.GetGenericXamlFilePath" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2" />
+      </containers>
+      <file name="d25d7d8f-5b53-dc5b-fe21-9a703b108214" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2.GetGenericXamlFilePath">
+      <topicdata group="api" />
+      <apidata name="GetGenericXamlFilePath" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost2" ref="true" />
+      </containers>
+      <file name="48ffd010-07c5-e317-7a15-2dfcd05ad697" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3" />
+      <apidata name="IXamlUIPresenterHost3" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.UI.Xaml.Hosting.HostingContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2973930175</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>29472</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16827</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>159</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>38</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>77</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>111</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>211</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>77</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>180</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>90</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7f6cb690-f2c2-acc0-7685-b342e4be9450" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3">
+      <topicdata name="IXamlUIPresenterHost3" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3" />
+      <apidata name="IXamlUIPresenterHost3" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3.ResolveDictionaryResource(Windows.UI.Xaml.ResourceDictionary,System.Object,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3" />
+      </containers>
+      <file name="3a4f1f93-973c-1970-1e26-469d2948da79" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3">
+      <topicdata name="IXamlUIPresenterHost3" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3" />
+      <apidata name="IXamlUIPresenterHost3" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3.ResolveDictionaryResource(Windows.UI.Xaml.ResourceDictionary,System.Object,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3" />
+      </containers>
+      <file name="cf84d444-51c5-1375-8a5e-cfec08078c9a" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3.ResolveDictionaryResource(Windows.UI.Xaml.ResourceDictionary,System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ResolveDictionaryResource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dictionary" in="true">
+          <type api="T:Windows.UI.Xaml.ResourceDictionary" ref="true" />
+        </parameter>
+        <parameter name="dictionaryKey" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="suggestedValue" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost3" ref="true" />
+      </containers>
+      <file name="26823ac9-e2a6-ada2-0c9d-54e14de8a7ff" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Hosting.XamlUIPresenter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Hosting.XamlUIPresenter" />
+      <apidata name="XamlUIPresenter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.UI.Xaml.Hosting.HostingContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0a803fed-0804-a107-88b7-ceab8861d36c" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Hosting.XamlUIPresenter">
+      <topicdata name="XamlUIPresenter" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" />
+      <apidata name="XamlUIPresenter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.CompleteTimelinesAutomatically" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.GetFlyoutPlacement(Windows.Foundation.Rect,Windows.Foundation.Size,Windows.Foundation.Size,Windows.Foundation.Rect,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode,System.Boolean,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode@)" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.GetFlyoutPlacementTargetInfo(Windows.UI.Xaml.FrameworkElement,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode@,System.Boolean@)" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.NotifyWindowSizeChanged" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.Present" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.Render" />
+        <element api="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.RootElement" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.SetHost(Windows.UI.Xaml.Hosting.IXamlUIPresenterHost)" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.SetSize(System.Int32,System.Int32)" />
+        <element api="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.ThemeKey" />
+        <element api="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.ThemeResourcesXaml" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" />
+      </containers>
+      <file name="972ae73d-85fb-5bd4-04be-5fb0a9bc8f1c" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Hosting.XamlUIPresenter">
+      <topicdata name="XamlUIPresenter" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" />
+      <apidata name="XamlUIPresenter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.GetFlyoutPlacement(Windows.Foundation.Rect,Windows.Foundation.Size,Windows.Foundation.Size,Windows.Foundation.Rect,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode,System.Boolean,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode@)" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.GetFlyoutPlacementTargetInfo(Windows.UI.Xaml.FrameworkElement,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode@,System.Boolean@)" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.NotifyWindowSizeChanged" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.Present" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.Render" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.SetHost(Windows.UI.Xaml.Hosting.IXamlUIPresenterHost)" />
+        <element api="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.SetSize(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" />
+      </containers>
+      <file name="a988346b-a5e5-abbd-d099-63a587f034f9" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Hosting.XamlUIPresenter">
+      <topicdata name="XamlUIPresenter" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" />
+      <apidata name="XamlUIPresenter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.CompleteTimelinesAutomatically" />
+        <element api="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.RootElement" />
+        <element api="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.ThemeKey" />
+        <element api="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.ThemeResourcesXaml" />
+      </elements>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" />
+      </containers>
+      <file name="6387e2fd-6881-98ab-b6e9-af9aee355ccd" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.CompleteTimelinesAutomatically">
+      <topicdata group="api" />
+      <apidata name="CompleteTimelinesAutomatically" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CompleteTimelinesAutomatically" />
+      <setter name="set_CompleteTimelinesAutomatically" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="d2e889cf-832f-61cd-397a-e037135e227e" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.GetFlyoutPlacement(Windows.Foundation.Rect,Windows.Foundation.Size,Windows.Foundation.Size,Windows.Foundation.Rect,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode,System.Boolean,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode@)">
+      <topicdata group="api" />
+      <apidata name="GetFlyoutPlacement" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="placementTargetBounds" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="controlSize" in="true">
+          <type api="T:Windows.Foundation.Size" ref="false" />
+        </parameter>
+        <parameter name="minControlSize" in="true">
+          <type api="T:Windows.Foundation.Size" ref="false" />
+        </parameter>
+        <parameter name="containerRect" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="targetPreferredPlacement" in="true">
+          <type api="T:Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode" ref="false" />
+        </parameter>
+        <parameter name="allowFallbacks" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="chosenPlacement" out="true">
+          <referenceTo>
+            <type api="T:Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="ec1e5966-7730-35f7-dc0a-ece33ad54c23" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.GetFlyoutPlacementTargetInfo(Windows.UI.Xaml.FrameworkElement,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode,Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode@,System.Boolean@)">
+      <topicdata group="api" />
+      <apidata name="GetFlyoutPlacementTargetInfo" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="placementTarget" in="true">
+          <type api="T:Windows.UI.Xaml.FrameworkElement" ref="true" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode" ref="false" />
+        </parameter>
+        <parameter name="targetPreferredPlacement" out="true">
+          <referenceTo>
+            <type api="T:Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="allowFallbacks" out="true">
+          <referenceTo>
+            <type api="T:System.Boolean" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="77ab1640-d74c-005c-5fe0-ff7accb6c9e9" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.NotifyWindowSizeChanged">
+      <topicdata group="api" />
+      <apidata name="NotifyWindowSizeChanged" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="4576a521-7f49-841c-569f-8c0cdae6e862" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.Present">
+      <topicdata group="api" />
+      <apidata name="Present" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="8f7b38e1-4fea-2f3b-d7dc-98a9e3bcee3f" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.Render">
+      <topicdata group="api" />
+      <apidata name="Render" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="058448b6-eab8-e612-02f8-fef7c7ecc407" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.RootElement">
+      <topicdata group="api" />
+      <apidata name="RootElement" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RootElement" />
+      <setter name="set_RootElement" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.UIElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="f4e713a7-7554-ab3a-5552-0935bce4c03a" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.SetHost(Windows.UI.Xaml.Hosting.IXamlUIPresenterHost)">
+      <topicdata group="api" />
+      <apidata name="SetHost" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="host" in="true">
+          <type api="T:Windows.UI.Xaml.Hosting.IXamlUIPresenterHost" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="8a8702b0-3d5c-43d7-f34e-d5eae1a4559a" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Hosting.XamlUIPresenter.SetSize(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetSize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="width" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="a3396b01-10f7-126b-0532-4277b9443675" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.ThemeKey">
+      <topicdata group="api" />
+      <apidata name="ThemeKey" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ThemeKey" />
+      <setter name="set_ThemeKey" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="f52e36ed-60b9-76e4-b48e-3bebe71a65d2" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Hosting.XamlUIPresenter.ThemeResourcesXaml">
+      <topicdata group="api" />
+      <apidata name="ThemeResourcesXaml" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ThemeResourcesXaml" />
+      <setter name="set_ThemeResourcesXaml" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.UI.Xaml.Hosting.HostingContract" module="Windows.UI.Xaml.Hosting.HostingContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Hosting" />
+        <type api="T:Windows.UI.Xaml.Hosting.XamlUIPresenter" ref="true" />
+      </containers>
+      <file name="695a10c3-7d94-dd8c-25df-c81cfe51dcbc" />
+    </api>
+  </apis>
+</reflection>

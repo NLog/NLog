@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="FSharp.Core">
+      <assemblydata version="2.3.5.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.FSharpInterfaceDataVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>2</value>
+          </argument>
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </argument>
+          <argument>
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Core.LanguagePrimitives.IntrinsicOperators</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Core</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Collections</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Control</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FSharp.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Visual Studio® 2012</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.3.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.3.60315.1</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.3.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.3.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.FSharp.Linq.QueryRunExtensions">
+      <topicdata group="api" />
+      <apidata name="Microsoft.FSharp.Linq.QueryRunExtensions" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority" />
+        <element api="T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority" />
+      </elements>
+      <file name="1ecf976f-4ec8-4c8d-a801-88ba21d497ab" />
+    </api>
+    <api id="T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority" />
+      <apidata name="HighPriority" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Linq.QueryRunExtensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="Module" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3df979d2-ddc5-ba4d-606e-9d10e25df7f3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority">
+      <topicdata name="HighPriority" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority" />
+      <apidata name="HighPriority" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority.RunQueryAsEnumerable``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{Microsoft.FSharp.Linq.QuerySource{``0,System.Collections.IEnumerable}})" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Linq.QueryRunExtensions" />
+        <type api="T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority" />
+      </containers>
+      <file name="3e35b91b-9a22-bce6-6627-0281c3e02976" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority">
+      <topicdata name="HighPriority" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority" />
+      <apidata name="HighPriority" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority.RunQueryAsEnumerable``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{Microsoft.FSharp.Linq.QuerySource{``0,System.Collections.IEnumerable}})" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Linq.QueryRunExtensions" />
+        <type api="T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority" />
+      </containers>
+      <file name="b3c36c4f-f02a-5aba-c428-efeefc5e883f" />
+    </api>
+    <api id="M:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority.RunQueryAsEnumerable``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{Microsoft.FSharp.Linq.QuerySource{``0,System.Collections.IEnumerable}})">
+      <topicdata group="api" />
+      <apidata name="RunQueryAsEnumerable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="this">
+          <type api="T:Microsoft.FSharp.Linq.QueryBuilder" ref="true" />
+        </parameter>
+        <parameter name="q">
+          <type api="T:Microsoft.FSharp.Quotations.FSharpExpr`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.FSharp.Linq.QuerySource`2" ref="true">
+                <specialization>
+                  <template name="T" index="0" api="M:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority.RunQueryAsEnumerable``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{Microsoft.FSharp.Linq.QuerySource{``0,System.Collections.IEnumerable}})" />
+                  <type api="T:System.Collections.IEnumerable" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority.RunQueryAsEnumerable``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{Microsoft.FSharp.Linq.QuerySource{``0,System.Collections.IEnumerable}})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Linq.QueryRunExtensions" />
+        <type api="T:Microsoft.FSharp.Linq.QueryRunExtensions.HighPriority" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationArgumentCountsAttribute" ref="true" />
+          <argument>
+            <arrayOf rank="1">
+              <type api="T:System.Int32" ref="false" />
+            </arrayOf>
+            <value>System.Int32[]</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationSourceNameAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Run</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e522fbeb-5568-52a0-6b10-2a02565f2edb" />
+    </api>
+    <api id="T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority" />
+      <apidata name="LowPriority" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Linq.QueryRunExtensions" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.AutoOpenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationMappingAttribute" ref="true" />
+          <argument>
+            <type api="T:Microsoft.FSharp.Core.SourceConstructFlags" ref="false" />
+            <enumValue>
+              <field name="Module" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bab7fc20-f607-40b5-e233-7c7938364f4b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority">
+      <topicdata name="LowPriority" group="list" subgroup="members" typeTopicId="T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority" />
+      <apidata name="LowPriority" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority.RunQueryAsValue``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{``0})" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Linq.QueryRunExtensions" />
+        <type api="T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority" />
+      </containers>
+      <file name="0b83c483-101f-8ed0-5f36-12a3e3042e6b" />
+    </api>
+    <api id="Methods.T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority">
+      <topicdata name="LowPriority" group="list" subgroup="Methods" typeTopicId="T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority" />
+      <apidata name="LowPriority" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority.RunQueryAsValue``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{``0})" />
+      </elements>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Linq.QueryRunExtensions" />
+        <type api="T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority" />
+      </containers>
+      <file name="da396da7-91ed-d89a-5d08-cabc543205a3" />
+    </api>
+    <api id="M:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority.RunQueryAsValue``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{``0})">
+      <topicdata group="api" />
+      <apidata name="RunQueryAsValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="this">
+          <type api="T:Microsoft.FSharp.Linq.QueryBuilder" ref="true" />
+        </parameter>
+        <parameter name="q">
+          <type api="T:Microsoft.FSharp.Quotations.FSharpExpr`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority.RunQueryAsValue``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority.RunQueryAsValue``1(Microsoft.FSharp.Linq.QueryBuilder,Microsoft.FSharp.Quotations.FSharpExpr{``0})" />
+      </returns>
+      <containers>
+        <library assembly="FSharp.Core" module="FSharp.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.3.5.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.FSharp.Linq.QueryRunExtensions" />
+        <type api="T:Microsoft.FSharp.Linq.QueryRunExtensions.LowPriority" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationArgumentCountsAttribute" ref="true" />
+          <argument>
+            <arrayOf rank="1">
+              <type api="T:System.Int32" ref="false" />
+            </arrayOf>
+            <value>System.Int32[]</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.FSharp.Core.CompilationSourceNameAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Run</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ef691fe1-1739-7d23-c4d7-f145114bb30c" />
+    </api>
+  </apis>
+</reflection>

@@ -269,7 +269,7 @@ namespace NLog.UnitTests
         {
 #if SILVERLIGHT || UWP10
             XElement element = XElement.Parse(configXml);
-            return new XmlLoggingConfiguration(element.CreateReader(), null);
+            return new XmlLoggingConfiguration(element.CreateReader(), "nlog.config");
 #else
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(configXml);

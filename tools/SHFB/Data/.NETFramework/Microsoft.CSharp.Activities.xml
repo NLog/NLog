@@ -1,0 +1,923 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.CSharp.Activities">
+      <topicdata group="api" />
+      <apidata name="Microsoft.CSharp.Activities" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+        <element api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      </elements>
+      <file name="a6d965db-eb1f-f0b5-6443-fa102a34b232" />
+    </api>
+    <api id="T:Microsoft.CSharp.Activities.CSharpReference`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      <apidata name="CSharpReference" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor" contentProperty="P:Microsoft.CSharp.Activities.CSharpReference`1.ExpressionText" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.Location`1" ref="true">
+                <specialization>
+                  <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.Activity`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.Location`1" ref="true">
+                <specialization>
+                  <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <implements>
+        <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ExpressionText</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="af493565-5aa9-f7f1-b95c-d82e0b5443d0" />
+    </api>
+    <api id="AllMembers.T:Microsoft.CSharp.Activities.CSharpReference`1">
+      <topicdata name="CSharpReference" group="list" subgroup="members" typeTopicId="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      <apidata name="CSharpReference" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor" contentProperty="P:Microsoft.CSharp.Activities.CSharpReference`1.ExpressionText" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="Overload:Microsoft.CSharp.Activities.CSharpReference`1.#ctor">
+          <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor" />
+          <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor(System.String)" />
+        </element>
+        <element api="Overload:Microsoft.CSharp.Activities.CSharpReference`1.CacheMetadata">
+          <element api="M:System.Activities.CodeActivity`1.CacheMetadata(System.Activities.ActivityMetadata)" />
+          <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.CacheMetadata(System.Activities.CodeActivityMetadata)" />
+        </element>
+        <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.Execute(System.Activities.CodeActivityContext)" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpReference`1.ExpressionText" />
+        <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.GetExpressionTree" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpReference`1.Language" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpReference`1.RequiresCompilation" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="P:System.Activities.Activity.CacheId" />
+        <element api="P:System.Activities.Activity.Constraints" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="P:System.Activities.CodeActivity`1.Implementation" />
+        <element api="P:System.Activities.CodeActivity`1.ImplementationVersion" />
+        <element api="M:System.Activities.CodeActivity`1.OnCreateDynamicUpdateMap(System.Activities.DynamicUpdate.UpdateMapMetadata,System.Activities.Activity)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      </containers>
+      <file name="b969fc4b-034d-d852-d7fe-c70ddbb3feb4" />
+    </api>
+    <api id="Methods.T:Microsoft.CSharp.Activities.CSharpReference`1">
+      <topicdata name="CSharpReference" group="list" subgroup="Methods" typeTopicId="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      <apidata name="CSharpReference" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor" contentProperty="P:Microsoft.CSharp.Activities.CSharpReference`1.ExpressionText" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="Overload:Microsoft.CSharp.Activities.CSharpReference`1.CacheMetadata">
+          <element api="M:System.Activities.CodeActivity`1.CacheMetadata(System.Activities.ActivityMetadata)" />
+          <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.CacheMetadata(System.Activities.CodeActivityMetadata)" />
+        </element>
+        <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.Execute(System.Activities.CodeActivityContext)" />
+        <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.GetExpressionTree" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="M:System.Activities.CodeActivity`1.OnCreateDynamicUpdateMap(System.Activities.DynamicUpdate.UpdateMapMetadata,System.Activities.Activity)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      </containers>
+      <file name="85ec33fc-26ee-564b-801b-02ce67ddec78" />
+    </api>
+    <api id="Properties.T:Microsoft.CSharp.Activities.CSharpReference`1">
+      <topicdata name="CSharpReference" group="list" subgroup="Properties" typeTopicId="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      <apidata name="CSharpReference" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor" contentProperty="P:Microsoft.CSharp.Activities.CSharpReference`1.ExpressionText" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.CSharp.Activities.CSharpReference`1.ExpressionText" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpReference`1.Language" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpReference`1.RequiresCompilation" />
+        <element api="P:System.Activities.Activity.CacheId" />
+        <element api="P:System.Activities.Activity.Constraints" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="P:System.Activities.CodeActivity`1.Implementation" />
+        <element api="P:System.Activities.CodeActivity`1.ImplementationVersion" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      </containers>
+      <file name="378e7f41-69db-5608-2ceb-5d097381ac7b" />
+    </api>
+    <api id="Overload:Microsoft.CSharp.Activities.CSharpReference`1.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor" />
+        <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="8205afe7-f408-de9b-b56a-ce41a2beb925" />
+    </api>
+    <api id="Overload:Microsoft.CSharp.Activities.CSharpReference`1.CacheMetadata">
+      <topicdata name="CacheMetadata" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.CSharp.Activities.CSharpReference`1" />
+      <apidata name="CacheMetadata" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.CodeActivity`1.CacheMetadata(System.Activities.ActivityMetadata)" />
+        <element api="M:Microsoft.CSharp.Activities.CSharpReference`1.CacheMetadata(System.Activities.CodeActivityMetadata)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="4a4374d2-50d0-5681-9ce8-feff70837848" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.Activities.CSharpReference`1.#ctor" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="bf28a15d-aa93-60a7-9041-da93b37a077a" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpReference`1.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.Activities.CSharpReference`1.#ctor" />
+      <parameters>
+        <parameter name="expressionText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="658a8db2-630b-295c-26fd-2c4921a0c415" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpReference`1.CacheMetadata(System.Activities.CodeActivityMetadata)">
+      <topicdata group="api" />
+      <apidata name="CacheMetadata" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.CSharp.Activities.CSharpReference`1.CacheMetadata" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Activities.CodeActivity`1.CacheMetadata(System.Activities.CodeActivityMetadata)">
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.Location`1" ref="true">
+                <specialization>
+                  <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="metadata">
+          <type api="T:System.Activities.CodeActivityMetadata" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="b51bf22a-f78d-ef97-8d13-c902fc877324" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpReference`1.Execute(System.Activities.CodeActivityContext)">
+      <topicdata group="api" />
+      <apidata name="Execute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Activities.CodeActivity`1.Execute(System.Activities.CodeActivityContext)">
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.Location`1" ref="true">
+                <specialization>
+                  <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Activities.CodeActivityContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Location`1" ref="true">
+          <specialization>
+            <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpReference`1" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="ff14a14c-aa05-3c20-0ed3-3861163b8936" />
+    </api>
+    <api id="P:Microsoft.CSharp.Activities.CSharpReference`1.ExpressionText">
+      <topicdata group="api" />
+      <apidata name="ExpressionText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExpressionText" />
+      <setter name="set_ExpressionText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.ExpressionText">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="6ac15bed-2df9-2528-71a1-ef963368d887" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpReference`1.GetExpressionTree">
+      <topicdata group="api" />
+      <apidata name="GetExpressionTree" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Linq.Expressions.Expression" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Expressions.ITextExpression.GetExpressionTree">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="e03d89b4-174a-792b-1b73-f1eb6a72d37c" />
+    </api>
+    <api id="P:Microsoft.CSharp.Activities.CSharpReference`1.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.Language">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bd217523-f401-b5ff-017b-e350705d93b7" />
+    </api>
+    <api id="P:Microsoft.CSharp.Activities.CSharpReference`1.RequiresCompilation">
+      <topicdata group="api" />
+      <apidata name="RequiresCompilation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequiresCompilation" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.RequiresCompilation">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpReference`1" ref="true" />
+      </containers>
+      <file name="f018d062-a710-662a-5e4d-7f0e50245a18" />
+    </api>
+    <api id="T:Microsoft.CSharp.Activities.CSharpValue`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      <apidata name="CSharpValue" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor" contentProperty="P:Microsoft.CSharp.Activities.CSharpValue`1.ExpressionText" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+            </specialization>
+          </type>
+          <type api="T:System.Activities.Activity`1" ref="true">
+            <specialization>
+              <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+            </specialization>
+          </type>
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <implements>
+        <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ExpressionText</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4e40cb46-8d8d-f3f0-18e8-90cca12dd601" />
+    </api>
+    <api id="AllMembers.T:Microsoft.CSharp.Activities.CSharpValue`1">
+      <topicdata name="CSharpValue" group="list" subgroup="members" typeTopicId="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      <apidata name="CSharpValue" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor" contentProperty="P:Microsoft.CSharp.Activities.CSharpValue`1.ExpressionText" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="Overload:Microsoft.CSharp.Activities.CSharpValue`1.#ctor">
+          <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor" />
+          <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor(System.String)" />
+        </element>
+        <element api="Overload:Microsoft.CSharp.Activities.CSharpValue`1.CacheMetadata">
+          <element api="M:System.Activities.CodeActivity`1.CacheMetadata(System.Activities.ActivityMetadata)" />
+          <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.CacheMetadata(System.Activities.CodeActivityMetadata)" />
+        </element>
+        <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.Execute(System.Activities.CodeActivityContext)" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpValue`1.ExpressionText" />
+        <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.GetExpressionTree" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpValue`1.Language" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpValue`1.RequiresCompilation" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="P:System.Activities.Activity.CacheId" />
+        <element api="P:System.Activities.Activity.Constraints" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="P:System.Activities.CodeActivity`1.Implementation" />
+        <element api="P:System.Activities.CodeActivity`1.ImplementationVersion" />
+        <element api="M:System.Activities.CodeActivity`1.OnCreateDynamicUpdateMap(System.Activities.DynamicUpdate.UpdateMapMetadata,System.Activities.Activity)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      </containers>
+      <file name="c9ca7ba1-153b-4ba8-4a83-ee771cca4fb8" />
+    </api>
+    <api id="Methods.T:Microsoft.CSharp.Activities.CSharpValue`1">
+      <topicdata name="CSharpValue" group="list" subgroup="Methods" typeTopicId="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      <apidata name="CSharpValue" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor" contentProperty="P:Microsoft.CSharp.Activities.CSharpValue`1.ExpressionText" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="Overload:Microsoft.CSharp.Activities.CSharpValue`1.CacheMetadata">
+          <element api="M:System.Activities.CodeActivity`1.CacheMetadata(System.Activities.ActivityMetadata)" />
+          <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.CacheMetadata(System.Activities.CodeActivityMetadata)" />
+        </element>
+        <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.Execute(System.Activities.CodeActivityContext)" />
+        <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.GetExpressionTree" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="M:System.Activities.CodeActivity`1.OnCreateDynamicUpdateMap(System.Activities.DynamicUpdate.UpdateMapMetadata,System.Activities.Activity)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      </containers>
+      <file name="23fd886a-1222-7eb1-e999-c10c1af0173b" />
+    </api>
+    <api id="Properties.T:Microsoft.CSharp.Activities.CSharpValue`1">
+      <topicdata name="CSharpValue" group="list" subgroup="Properties" typeTopicId="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      <apidata name="CSharpValue" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor" contentProperty="P:Microsoft.CSharp.Activities.CSharpValue`1.ExpressionText" />
+      <templates>
+        <template name="TResult" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.CSharp.Activities.CSharpValue`1.ExpressionText" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpValue`1.Language" />
+        <element api="P:Microsoft.CSharp.Activities.CSharpValue`1.RequiresCompilation" />
+        <element api="P:System.Activities.Activity.CacheId" />
+        <element api="P:System.Activities.Activity.Constraints" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="P:System.Activities.CodeActivity`1.Implementation" />
+        <element api="P:System.Activities.CodeActivity`1.ImplementationVersion" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      </containers>
+      <file name="23744c28-5c7d-aae7-99c7-91f7c142ffd2" />
+    </api>
+    <api id="Overload:Microsoft.CSharp.Activities.CSharpValue`1.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor" />
+        <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="9f6c12d5-5689-de85-8ffc-59884f0abb44" />
+    </api>
+    <api id="Overload:Microsoft.CSharp.Activities.CSharpValue`1.CacheMetadata">
+      <topicdata name="CacheMetadata" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      <apidata name="CacheMetadata" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.CodeActivity`1.CacheMetadata(System.Activities.ActivityMetadata)" />
+        <element api="M:Microsoft.CSharp.Activities.CSharpValue`1.CacheMetadata(System.Activities.CodeActivityMetadata)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="72464e94-ba61-64cf-3d46-d2e6fde60e20" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.Activities.CSharpValue`1.#ctor" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="8cd4ec13-4378-7575-674e-09329ffa259e" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpValue`1.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.Activities.CSharpValue`1.#ctor" />
+      <parameters>
+        <parameter name="expressionText">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="892bd674-3794-97f9-a7fc-fa5784bf9c32" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpValue`1.CacheMetadata(System.Activities.CodeActivityMetadata)">
+      <topicdata group="api" />
+      <apidata name="CacheMetadata" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.CSharp.Activities.CSharpValue`1.CacheMetadata" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Activities.CodeActivity`1.CacheMetadata(System.Activities.CodeActivityMetadata)">
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+            </specialization>
+          </type>
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="metadata">
+          <type api="T:System.Activities.CodeActivityMetadata" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="41b967c0-8f07-3e1a-2727-3a6857d0a141" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpValue`1.Execute(System.Activities.CodeActivityContext)">
+      <topicdata group="api" />
+      <apidata name="Execute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Activities.CodeActivity`1.Execute(System.Activities.CodeActivityContext)">
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+            </specialization>
+          </type>
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Activities.CodeActivityContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="TResult" index="0" api="T:Microsoft.CSharp.Activities.CSharpValue`1" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="55f28e89-3c5d-34b3-54a1-b6d2e16354bb" />
+    </api>
+    <api id="P:Microsoft.CSharp.Activities.CSharpValue`1.ExpressionText">
+      <topicdata group="api" />
+      <apidata name="ExpressionText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExpressionText" />
+      <setter name="set_ExpressionText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.ExpressionText">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="2d6aa4c5-ae04-a083-b14c-a8cbb883dd35" />
+    </api>
+    <api id="M:Microsoft.CSharp.Activities.CSharpValue`1.GetExpressionTree">
+      <topicdata group="api" />
+      <apidata name="GetExpressionTree" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Linq.Expressions.Expression" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Expressions.ITextExpression.GetExpressionTree">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="01482ff4-e4bc-1d02-7063-75b49defcc9c" />
+    </api>
+    <api id="P:Microsoft.CSharp.Activities.CSharpValue`1.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.Language">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e82388cb-bedc-1ba9-b695-d3794261a4cd" />
+    </api>
+    <api id="P:Microsoft.CSharp.Activities.CSharpValue`1.RequiresCompilation">
+      <topicdata group="api" />
+      <apidata name="RequiresCompilation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RequiresCompilation" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Activities.Expressions.ITextExpression.RequiresCompilation">
+          <type api="T:System.Activities.Expressions.ITextExpression" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.Activities" />
+        <type api="T:Microsoft.CSharp.Activities.CSharpValue`1" ref="true" />
+      </containers>
+      <file name="f7a2b9a7-4cae-5ec5-a245-0975ca5295c4" />
+    </api>
+  </apis>
+</reflection>

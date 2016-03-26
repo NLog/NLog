@@ -1,0 +1,2097 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Runtime.WindowsRuntime.UI.Xaml">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.UI.Xaml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.UI.Xaml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.UI.Xaml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Xaml.Markup">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Xaml.Markup" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Xaml.Markup.XamlParseException" />
+        <element api="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" />
+        <element api="T:Windows.UI.Xaml.Markup.XamlReader" />
+        <element api="T:Windows.UI.Xaml.Markup.IComponentConnector" />
+        <element api="T:Windows.UI.Xaml.Markup.IXamlType" />
+        <element api="T:Windows.UI.Xaml.Markup.IXamlMember" />
+        <element api="T:Windows.UI.Xaml.Markup.XmlnsDefinition" />
+        <element api="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" />
+        <element api="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" />
+        <element api="T:Windows.UI.Xaml.Markup.XamlBinaryWriter" />
+      </elements>
+      <file name="a4845702-bfd2-afed-0ad4-f6a81d3345a0" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" />
+      <apidata name="ContentPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Markup.ContentPropertyAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="RuntimeClass" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="32aeb023-5ebe-1758-b1ef-2599b73b283c" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.ContentPropertyAttribute">
+      <topicdata name="ContentPropertyAttribute" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" />
+      <apidata name="ContentPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Markup.ContentPropertyAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.Markup.ContentPropertyAttribute.#ctor" />
+        <element api="F:Windows.UI.Xaml.Markup.ContentPropertyAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" />
+      </containers>
+      <file name="97bd34af-e41b-c8da-c4f7-ca2f8f641a79" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.ContentPropertyAttribute">
+      <topicdata name="ContentPropertyAttribute" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" />
+      <apidata name="ContentPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Markup.ContentPropertyAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" />
+      </containers>
+      <file name="cb569c9a-1640-3e66-23ed-b2bd7183a8b6" />
+    </api>
+    <api id="Fields.T:Windows.UI.Xaml.Markup.ContentPropertyAttribute">
+      <topicdata name="ContentPropertyAttribute" group="list" subgroup="Fields" typeTopicId="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" />
+      <apidata name="ContentPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Markup.ContentPropertyAttribute.#ctor" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Markup.ContentPropertyAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" />
+      </containers>
+      <file name="a19c949e-62f6-4e54-5910-658c4eec864e" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.ContentPropertyAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" ref="true" />
+      </containers>
+      <file name="6ad8a723-6842-83cd-5b52-a6b585783b5e" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Markup.ContentPropertyAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.ContentPropertyAttribute" ref="true" />
+      </containers>
+      <file name="3ca3fa0b-5d11-e51c-ce3b-f7dbee7657ff" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.IComponentConnector">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.IComponentConnector" />
+      <apidata name="IComponentConnector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4135127431</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>59109</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18418</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>146</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>198</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>236</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>204</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>228</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>186</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>21</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>154</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d40978e2-99fe-3e03-bd63-d19325a24d76" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.IComponentConnector">
+      <topicdata name="IComponentConnector" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.IComponentConnector" />
+      <apidata name="IComponentConnector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Markup.IComponentConnector.Connect(System.Int32,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IComponentConnector" />
+      </containers>
+      <file name="362a03ef-58cb-2d56-1084-cc137399a84e" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.IComponentConnector">
+      <topicdata name="IComponentConnector" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.IComponentConnector" />
+      <apidata name="IComponentConnector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Markup.IComponentConnector.Connect(System.Int32,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IComponentConnector" />
+      </containers>
+      <file name="25fa31da-17af-0489-0321-1923a277ae97" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IComponentConnector.Connect(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="Connect" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="connectionId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="target" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IComponentConnector" ref="true" />
+      </containers>
+      <file name="2291c399-7e6b-c4b8-bcb8-2d04cb94a232" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.IXamlMember">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.IXamlMember" />
+      <apidata name="IXamlMember" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3309434252</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17321</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16918</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>183</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>24</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>224</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>177</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>27</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>20</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>233</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>62</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8440b241-95fe-d074-6dad-54ba5634ba77" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.IXamlMember">
+      <topicdata name="IXamlMember" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.IXamlMember" />
+      <apidata name="IXamlMember" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Markup.IXamlMember.GetValue(System.Object)" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.IsAttachable" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.IsDependencyProperty" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.IsReadOnly" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.Name" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlMember.SetValue(System.Object,System.Object)" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.TargetType" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" />
+      </containers>
+      <file name="50b29467-ba5c-9ed3-5184-cd060051aa51" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.IXamlMember">
+      <topicdata name="IXamlMember" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.IXamlMember" />
+      <apidata name="IXamlMember" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Markup.IXamlMember.GetValue(System.Object)" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlMember.SetValue(System.Object,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" />
+      </containers>
+      <file name="33c9f83f-be9f-34cc-6d10-1f766ba41150" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Markup.IXamlMember">
+      <topicdata name="IXamlMember" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Markup.IXamlMember" />
+      <apidata name="IXamlMember" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.IsAttachable" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.IsDependencyProperty" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.IsReadOnly" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.Name" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.TargetType" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlMember.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" />
+      </containers>
+      <file name="5d309067-a997-7f2a-d6a7-29a43fcdfa2d" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlMember.GetValue(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="instance" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </containers>
+      <file name="6264939e-ac6b-74c7-95f1-5964a46e718b" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlMember.IsAttachable">
+      <topicdata group="api" />
+      <apidata name="IsAttachable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsAttachable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </containers>
+      <file name="10424438-363f-8627-a4e2-488016a1787c" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlMember.IsDependencyProperty">
+      <topicdata group="api" />
+      <apidata name="IsDependencyProperty" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsDependencyProperty" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </containers>
+      <file name="df49db94-e84a-9f45-b3f6-b9c103816f0f" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlMember.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </containers>
+      <file name="764828a2-7fb1-3bdb-bdc0-50288e000b6b" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlMember.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </containers>
+      <file name="a80c9ddf-116b-f041-e919-5d5f9e20741e" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlMember.SetValue(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="instance" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </containers>
+      <file name="dc1f032c-44b1-e3b6-262d-9bb9f061fe9c" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlMember.TargetType">
+      <topicdata group="api" />
+      <apidata name="TargetType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_TargetType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </containers>
+      <file name="b87e4412-d5b6-84d9-0518-64a842f6c143" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlMember.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </containers>
+      <file name="84b58a0e-795e-ef0f-307e-6c8295adc8dc" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" />
+      <apidata name="IXamlMetadataProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3010878825</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>26789</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19250</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>136</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>97</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>253</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>185</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>12</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>31</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>88</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>54</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f01b4631-8ae3-ef1c-f4cb-29b5a59ef429" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.IXamlMetadataProvider">
+      <topicdata name="IXamlMetadataProvider" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" />
+      <apidata name="IXamlMetadataProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType">
+          <element api="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType(System.String)" />
+          <element api="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType(Windows.UI.Xaml.Interop.TypeName)" />
+        </element>
+        <element api="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXmlnsDefinitions" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" />
+      </containers>
+      <file name="3f0b5032-280f-5f05-5dec-90ebf1499507" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.IXamlMetadataProvider">
+      <topicdata name="IXamlMetadataProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" />
+      <apidata name="IXamlMetadataProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType">
+          <element api="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType(System.String)" />
+          <element api="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType(Windows.UI.Xaml.Interop.TypeName)" />
+        </element>
+        <element api="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXmlnsDefinitions" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" />
+      </containers>
+      <file name="de8c8d5d-7151-f7da-522d-f722e853f041" />
+    </api>
+    <api id="Overload:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType">
+      <topicdata name="GetXamlType" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" />
+      <apidata name="GetXamlType" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType(System.String)" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType(Windows.UI.Xaml.Interop.TypeName)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" ref="true" />
+      </containers>
+      <file name="edc3392f-5e0d-7d90-1b3b-009c538b0684" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetXamlType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="fullName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetXamlTypeByFullName</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b226cf3e-3d19-6e98-f3fd-f6e9c859f776" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType(Windows.UI.Xaml.Interop.TypeName)">
+      <topicdata group="api" />
+      <apidata name="GetXamlType" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXamlType" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="type" in="true">
+          <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DefaultOverloadAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetXamlType</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="985dd905-7177-5576-a40d-4ee5d18091e6" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlMetadataProvider.GetXmlnsDefinitions">
+      <topicdata group="api" />
+      <apidata name="GetXmlnsDefinitions" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Windows.UI.Xaml.Markup.XmlnsDefinition" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" ref="true" />
+      </containers>
+      <file name="e493ca32-b70d-87f8-e1a0-13149b04f704" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.IXamlType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.IXamlType" />
+      <apidata name="IXamlType" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2032200369</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>41701</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18330</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>189</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>80</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>108</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>239</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>60</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>11</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>112</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="825cb6ca-35e7-414d-70df-8c8a37b77b23" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.IXamlType">
+      <topicdata name="IXamlType" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.IXamlType" />
+      <apidata name="IXamlType" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.ActivateInstance" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.AddToMap(System.Object,System.Object,System.Object)" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.AddToVector(System.Object,System.Object)" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.BaseType" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.ContentProperty" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.CreateFromString(System.String)" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.FullName" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.GetMember(System.String)" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsArray" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsBindable" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsCollection" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsConstructible" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsDictionary" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsMarkupExtension" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.ItemType" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.KeyType" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.RunInitializer" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.UnderlyingType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" />
+      </containers>
+      <file name="9fc06b2a-322e-3e5f-c2ee-428e747a0eaa" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.IXamlType">
+      <topicdata name="IXamlType" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.IXamlType" />
+      <apidata name="IXamlType" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.ActivateInstance" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.AddToMap(System.Object,System.Object,System.Object)" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.AddToVector(System.Object,System.Object)" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.CreateFromString(System.String)" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.GetMember(System.String)" />
+        <element api="M:Windows.UI.Xaml.Markup.IXamlType.RunInitializer" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" />
+      </containers>
+      <file name="d1a227ee-51c6-55f5-d47f-d01d5b728d43" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Markup.IXamlType">
+      <topicdata name="IXamlType" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Markup.IXamlType" />
+      <apidata name="IXamlType" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.BaseType" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.ContentProperty" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.FullName" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsArray" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsBindable" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsCollection" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsConstructible" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsDictionary" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.IsMarkupExtension" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.ItemType" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.KeyType" />
+        <element api="P:Windows.UI.Xaml.Markup.IXamlType.UnderlyingType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" />
+      </containers>
+      <file name="ecca6681-6298-1779-3ada-080cf9716b51" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlType.ActivateInstance">
+      <topicdata group="api" />
+      <apidata name="ActivateInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="6e4435dd-c6c4-e3b9-93d6-a7800616614c" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlType.AddToMap(System.Object,System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="AddToMap" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="instance" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="key" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="f5a39ef9-fa5b-670f-e120-43f484bff025" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlType.AddToVector(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="AddToVector" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="instance" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="ef41252a-2230-8d7e-5328-abb53fa4d98b" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.BaseType">
+      <topicdata group="api" />
+      <apidata name="BaseType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_BaseType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="ebc553ce-464a-2361-a3c0-1923be8054e1" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.ContentProperty">
+      <topicdata group="api" />
+      <apidata name="ContentProperty" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ContentProperty" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="7ba8ba1b-b410-efd8-0c74-c8a1dc14f474" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlType.CreateFromString(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="3b40f0f4-d716-ee4e-224b-a6245210d689" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.FullName">
+      <topicdata group="api" />
+      <apidata name="FullName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_FullName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="391dddd3-0ec6-8b45-2c9d-a47e72e69ef4" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlType.GetMember(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetMember" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlMember" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="bae0e29e-9399-3508-1984-e7363e4afe94" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.IsArray">
+      <topicdata group="api" />
+      <apidata name="IsArray" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsArray" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="ef8d5a36-c636-7dc8-e4b6-b07346433204" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.IsBindable">
+      <topicdata group="api" />
+      <apidata name="IsBindable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsBindable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="fe0cee6a-b821-f5a9-0f4c-08f5a9d32a73" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.IsCollection">
+      <topicdata group="api" />
+      <apidata name="IsCollection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsCollection" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="74385b7b-8a75-8215-f4c6-cc19deb221b4" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.IsConstructible">
+      <topicdata group="api" />
+      <apidata name="IsConstructible" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsConstructible" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="daeef0b5-3593-b9c8-6455-ae749512c14c" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.IsDictionary">
+      <topicdata group="api" />
+      <apidata name="IsDictionary" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsDictionary" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="6a96a3a3-0071-f061-ac23-766d498be7b1" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.IsMarkupExtension">
+      <topicdata group="api" />
+      <apidata name="IsMarkupExtension" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsMarkupExtension" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="839c0b94-0b93-d323-c367-341d961a880e" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.ItemType">
+      <topicdata group="api" />
+      <apidata name="ItemType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ItemType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="c0c59b87-3a7c-f024-5be2-077e08870a64" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.KeyType">
+      <topicdata group="api" />
+      <apidata name="KeyType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_KeyType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="fa3317a7-5326-0e9e-7f3a-33c4173fba07" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.IXamlType.RunInitializer">
+      <topicdata group="api" />
+      <apidata name="RunInitializer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="5f8d2f9b-88da-e229-5027-7fdcee38a768" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Markup.IXamlType.UnderlyingType">
+      <topicdata group="api" />
+      <apidata name="UnderlyingType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_UnderlyingType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.IXamlType" ref="true" />
+      </containers>
+      <file name="de7d105f-4e3c-a389-caca-67d5aa92a5ca" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.XamlBinaryWriter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.XamlBinaryWriter" />
+      <apidata name="XamlBinaryWriter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlBinaryWriter" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="44867e7a-c292-a722-71ef-848a6d883aac" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.XamlBinaryWriter">
+      <topicdata name="XamlBinaryWriter" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.XamlBinaryWriter" />
+      <apidata name="XamlBinaryWriter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.Markup.XamlBinaryWriter.Write(Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IRandomAccessStream},Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IRandomAccessStream},Windows.UI.Xaml.Markup.IXamlMetadataProvider)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriter" />
+      </containers>
+      <file name="3747523d-9f34-fe68-e207-47237f45a7f3" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.XamlBinaryWriter">
+      <topicdata name="XamlBinaryWriter" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.XamlBinaryWriter" />
+      <apidata name="XamlBinaryWriter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.Markup.XamlBinaryWriter.Write(Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IRandomAccessStream},Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IRandomAccessStream},Windows.UI.Xaml.Markup.IXamlMetadataProvider)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriter" />
+      </containers>
+      <file name="26e59813-5eb1-25bb-7f5b-8d415bc35f92" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.XamlBinaryWriter.Write(Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IRandomAccessStream},Windows.Foundation.Collections.IVector{Windows.Storage.Streams.IRandomAccessStream},Windows.UI.Xaml.Markup.IXamlMetadataProvider)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="inputStreams" in="true">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="outputStreams" in="true">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="xamlMetadataProvider" in="true">
+          <type api="T:Windows.UI.Xaml.Markup.IXamlMetadataProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriter" ref="true" />
+      </containers>
+      <file name="e683879b-6417-932c-4366-a366393bf3cd" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" />
+      <apidata name="XamlBinaryWriterErrorInformation" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4b6f6d24-492f-1358-333b-1daa985fe828" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation">
+      <topicdata name="XamlBinaryWriterErrorInformation" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" />
+      <apidata name="XamlBinaryWriterErrorInformation" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.InputStreamIndex" />
+        <element api="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.LineNumber" />
+        <element api="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.LinePosition" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" />
+      </containers>
+      <file name="312721a3-fccd-6ba3-e5a9-7a1f81f7d76e" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation">
+      <topicdata name="XamlBinaryWriterErrorInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" />
+      <apidata name="XamlBinaryWriterErrorInformation" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" />
+      </containers>
+      <file name="642b3387-26c7-507f-23aa-899682d37729" />
+    </api>
+    <api id="Fields.T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation">
+      <topicdata name="XamlBinaryWriterErrorInformation" group="list" subgroup="Fields" typeTopicId="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" />
+      <apidata name="XamlBinaryWriterErrorInformation" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.InputStreamIndex" />
+        <element api="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.LineNumber" />
+        <element api="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.LinePosition" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" />
+      </containers>
+      <file name="7afdce2c-c60e-b7de-1554-58b6ba832391" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.InputStreamIndex">
+      <topicdata group="api" />
+      <apidata name="InputStreamIndex" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" ref="false" />
+      </containers>
+      <file name="df3ef0b0-b6ce-20e9-bea1-cd64263c7fb1" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.LineNumber">
+      <topicdata group="api" />
+      <apidata name="LineNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" ref="false" />
+      </containers>
+      <file name="2edad08c-7a30-9cd3-0b13-3bc29a4d5922" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation.LinePosition">
+      <topicdata group="api" />
+      <apidata name="LinePosition" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlBinaryWriterErrorInformation" ref="false" />
+      </containers>
+      <file name="c8bd6e21-6b5b-50b8-b820-48e8f14758c1" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.XamlParseException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.XamlParseException" />
+      <apidata name="XamlParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime.UI.Xaml" module="System.Runtime.WindowsRuntime.UI.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="18506218-715b-c9ac-0762-28d1b884cbf1" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.XamlParseException">
+      <topicdata name="XamlParseException" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.XamlParseException" />
+      <apidata name="XamlParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:Windows.UI.Xaml.Markup.XamlParseException.#ctor">
+          <element api="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+          <element api="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor(System.String)" />
+          <element api="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime.UI.Xaml" module="System.Runtime.WindowsRuntime.UI.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlParseException" />
+      </containers>
+      <file name="d148288e-7ce5-399c-f827-9fb650e8f300" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.XamlParseException">
+      <topicdata name="XamlParseException" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.XamlParseException" />
+      <apidata name="XamlParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime.UI.Xaml" module="System.Runtime.WindowsRuntime.UI.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlParseException" />
+      </containers>
+      <file name="84632152-4aab-7d54-98c8-55f6ac18e751" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Markup.XamlParseException">
+      <topicdata name="XamlParseException" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Markup.XamlParseException" />
+      <apidata name="XamlParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime.UI.Xaml" module="System.Runtime.WindowsRuntime.UI.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlParseException" />
+      </containers>
+      <file name="bac69c68-537f-25a9-0232-a3aa6c17910f" />
+    </api>
+    <api id="Overload:Windows.UI.Xaml.Markup.XamlParseException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.XamlParseException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+        <element api="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor(System.String)" />
+        <element api="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime.UI.Xaml" module="System.Runtime.WindowsRuntime.UI.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlParseException" ref="true" />
+      </containers>
+      <file name="dc806c52-6106-5ab6-80bc-6bc5c26c73d2" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime.UI.Xaml" module="System.Runtime.WindowsRuntime.UI.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlParseException" ref="true" />
+      </containers>
+      <file name="36c5b602-816f-c48d-9e2a-fea653e1c68d" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime.UI.Xaml" module="System.Runtime.WindowsRuntime.UI.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlParseException" ref="true" />
+      </containers>
+      <file name="3ba583f6-1fa0-2b7f-9d71-7b2bfe692462" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.XamlParseException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Xaml.Markup.XamlParseException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime.UI.Xaml" module="System.Runtime.WindowsRuntime.UI.Xaml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlParseException" ref="true" />
+      </containers>
+      <file name="c38f1efa-ae33-b8e3-536e-c5957e36b7a8" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.XamlReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.XamlReader" />
+      <apidata name="XamlReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Xaml.Markup.IXamlReader" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="db4b5796-75d3-9b14-d960-2a609a24b458" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.XamlReader">
+      <topicdata name="XamlReader" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.XamlReader" />
+      <apidata name="XamlReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.Markup.XamlReader.Load(System.String)" />
+        <element api="M:Windows.UI.Xaml.Markup.XamlReader.LoadWithInitialTemplateValidation(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlReader" />
+      </containers>
+      <file name="66b0aa2a-a736-ebe3-401f-e903a65c7162" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.XamlReader">
+      <topicdata name="XamlReader" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.XamlReader" />
+      <apidata name="XamlReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.Markup.XamlReader.Load(System.String)" />
+        <element api="M:Windows.UI.Xaml.Markup.XamlReader.LoadWithInitialTemplateValidation(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlReader" />
+      </containers>
+      <file name="47fa88cd-5f67-8547-ae0f-0969c3f847b1" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.XamlReader.Load(System.String)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="xaml" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlReader" ref="true" />
+      </containers>
+      <file name="3e4435a7-0e26-0e89-9ae6-598c0810e408" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Markup.XamlReader.LoadWithInitialTemplateValidation(System.String)">
+      <topicdata group="api" />
+      <apidata name="LoadWithInitialTemplateValidation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="xaml" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XamlReader" ref="true" />
+      </containers>
+      <file name="7e69b78f-ee8c-36a1-3c0b-3b428772da1c" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Markup.XmlnsDefinition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Markup.XmlnsDefinition" />
+      <apidata name="XmlnsDefinition" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="496a4b52-70a8-b1f3-67d8-61a3a52a56d3" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Markup.XmlnsDefinition">
+      <topicdata name="XmlnsDefinition" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Markup.XmlnsDefinition" />
+      <apidata name="XmlnsDefinition" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="F:Windows.UI.Xaml.Markup.XmlnsDefinition.Namespace" />
+        <element api="F:Windows.UI.Xaml.Markup.XmlnsDefinition.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XmlnsDefinition" />
+      </containers>
+      <file name="db633551-3315-fcb1-1ec1-ee1bb971b053" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Markup.XmlnsDefinition">
+      <topicdata name="XmlnsDefinition" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Markup.XmlnsDefinition" />
+      <apidata name="XmlnsDefinition" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XmlnsDefinition" />
+      </containers>
+      <file name="a1724d1c-bb52-e2e7-4542-0f997a3e3b07" />
+    </api>
+    <api id="Fields.T:Windows.UI.Xaml.Markup.XmlnsDefinition">
+      <topicdata name="XmlnsDefinition" group="list" subgroup="Fields" typeTopicId="T:Windows.UI.Xaml.Markup.XmlnsDefinition" />
+      <apidata name="XmlnsDefinition" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Markup.XmlnsDefinition.Namespace" />
+        <element api="F:Windows.UI.Xaml.Markup.XmlnsDefinition.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XmlnsDefinition" />
+      </containers>
+      <file name="ff20d96b-cbbc-70c0-b15b-09d4b7301e0a" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Markup.XmlnsDefinition.Namespace">
+      <topicdata group="api" />
+      <apidata name="Namespace" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XmlnsDefinition" ref="false" />
+      </containers>
+      <file name="a3cc0326-9c97-f2b9-7ac4-73ed02460521" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Markup.XmlnsDefinition.XmlNamespace">
+      <topicdata group="api" />
+      <apidata name="XmlNamespace" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Markup" />
+        <type api="T:Windows.UI.Xaml.Markup.XmlnsDefinition" ref="false" />
+      </containers>
+      <file name="bb984ead-f067-46c7-023d-4d6ee216682f" />
+    </api>
+  </apis>
+</reflection>

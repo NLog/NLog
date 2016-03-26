@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Embedded.DeviceLockdown.DeviceLockdownContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Embedded.DeviceLockdown">
+      <topicdata group="api" />
+      <apidata name="Windows.Embedded.DeviceLockdown" group="namespace" />
+      <elements>
+        <element api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract" />
+        <element api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" />
+        <element api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" />
+      </elements>
+      <file name="3feb65f0-64bd-3b3b-1341-9af8efe98c85" />
+    </api>
+    <api id="T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract" />
+      <apidata name="DeviceLockdownContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="22c2668f-6955-edb7-d76c-f580274ec8dc" />
+    </api>
+    <api id="AllMembers.T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract">
+      <topicdata name="DeviceLockdownContract" group="list" subgroup="members" typeTopicId="T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract" />
+      <apidata name="DeviceLockdownContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract" />
+      </containers>
+      <file name="834c0092-a47c-c99d-9ece-eee7970c5c7a" />
+    </api>
+    <api id="Methods.T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract">
+      <topicdata name="DeviceLockdownContract" group="list" subgroup="Methods" typeTopicId="T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract" />
+      <apidata name="DeviceLockdownContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract" />
+      </containers>
+      <file name="9123de50-eb71-d5bf-6d00-6e35d4e8b4c0" />
+    </api>
+    <api id="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" />
+      <apidata name="DeviceLockdownProfile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="900facac-a58f-c820-a3fd-353dba4ae800" />
+    </api>
+    <api id="AllMembers.T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile">
+      <topicdata name="DeviceLockdownProfile" group="list" subgroup="members" typeTopicId="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" />
+      <apidata name="DeviceLockdownProfile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.ApplyLockdownProfileAsync(System.Guid)" />
+        <element api="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetCurrentLockdownProfile" />
+        <element api="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetLockdownProfileInformation(System.Guid)" />
+        <element api="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetSupportedLockdownProfiles" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" />
+      </containers>
+      <file name="331494d1-e3e1-461e-c6d9-1f09287f5a4d" />
+    </api>
+    <api id="Methods.T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile">
+      <topicdata name="DeviceLockdownProfile" group="list" subgroup="Methods" typeTopicId="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" />
+      <apidata name="DeviceLockdownProfile" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.ApplyLockdownProfileAsync(System.Guid)" />
+        <element api="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetCurrentLockdownProfile" />
+        <element api="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetLockdownProfileInformation(System.Guid)" />
+        <element api="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetSupportedLockdownProfiles" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" />
+      </containers>
+      <file name="e5d14c07-1ced-bdce-2276-ce4bd1614e8e" />
+    </api>
+    <api id="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.ApplyLockdownProfileAsync(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="ApplyLockdownProfileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="profileID" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" ref="true" />
+      </containers>
+      <file name="12a325af-beb5-806b-a195-1e11649cd6ad" />
+    </api>
+    <api id="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetCurrentLockdownProfile">
+      <topicdata group="api" />
+      <apidata name="GetCurrentLockdownProfile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" ref="true" />
+      </containers>
+      <file name="d8baa215-a614-6765-e850-1dd710ecf8b2" />
+    </api>
+    <api id="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetLockdownProfileInformation(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="GetLockdownProfileInformation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="profileID" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" ref="true" />
+      </containers>
+      <file name="4cb2678c-0239-33d7-4f5c-542e60e69c89" />
+    </api>
+    <api id="M:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile.GetSupportedLockdownProfiles">
+      <topicdata group="api" />
+      <apidata name="GetSupportedLockdownProfiles" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.Guid" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfile" ref="true" />
+      </containers>
+      <file name="17321c75-ad93-5f95-a894-0b26f62e3ac6" />
+    </api>
+    <api id="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" />
+      <apidata name="DeviceLockdownProfileInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5ba5bdf7-7179-944e-d0ad-6b5366eae9f0" />
+    </api>
+    <api id="AllMembers.T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation">
+      <topicdata name="DeviceLockdownProfileInformation" group="list" subgroup="members" typeTopicId="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" />
+      <apidata name="DeviceLockdownProfileInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" />
+      </containers>
+      <file name="7a358cb1-aa74-afb2-ddd0-fbfb627afef7" />
+    </api>
+    <api id="Methods.T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation">
+      <topicdata name="DeviceLockdownProfileInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" />
+      <apidata name="DeviceLockdownProfileInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" />
+      </containers>
+      <file name="c6cc6684-b50e-5585-d4dc-ca494ef50cc2" />
+    </api>
+    <api id="Properties.T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation">
+      <topicdata name="DeviceLockdownProfileInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" />
+      <apidata name="DeviceLockdownProfileInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" />
+      </containers>
+      <file name="d51791b9-cf32-a57c-4c2c-672cb4309acc" />
+    </api>
+    <api id="P:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" module="Windows.Embedded.DeviceLockdown.DeviceLockdownContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Embedded.DeviceLockdown" />
+        <type api="T:Windows.Embedded.DeviceLockdown.DeviceLockdownProfileInformation" ref="true" />
+      </containers>
+      <file name="5eb80ee3-8ee7-fd96-4858-6d95732351e7" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_JavaScript">JavaScript</item>
+  <item id="devlang_js">JavaScript</item>
+  <item id="devlang_ecmascript">JavaScript</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_JavaScript">JavaScript</item>
+  <item id="metaLang_js">JavaScript</item>
+  <item id="metaLang_ecmascript">JavaScript</item>
+
+	<!-- JavaScript (Script#) syntax section messages -->
+	<item id="UnsupportedType_ScriptSharp">This type supports the Script# infrastructure and cannot be used directly from JavaScript.</item>
+	<item id="UnsupportedUnsafe_JavaScript">JavaScript does not support APIs that consume or return unsafe types.</item>
+	<item id="UnsupportedGeneric_JavaScript">JavaScript does not support generic types or methods.</item>
+	<item id="UnsupportedExplicit_JavaScript">JavaScript does not support explicit interface implementations.</item>
+	<item id="UnsupportedOperator_JavaScript">JavaScript does not support overloaded operators.</item>
+	<item id="UnsupportedStructure_JavaScript">JavaScript supports the use of structures, but not the declaration of new ones.</item>
+	<item id="UnsupportedIndex_JavaScript">JavaScript does not support indexed properties.</item>
+	<item id="UnsupportedCast_JavaScript">JavaScript does not support the declaration of new casting operators.</item>
+
+</content>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Alex Sherman, verifications Sergey Zhurikhin -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_J#">J#</item>
+  <item id="devlang_JSharp">J#</item>
+  <item id="devlang_jsh">J#</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_J#">VJ#</item>
+  <item id="metaLang_JSharp">VJ#</item>
+  <item id="metaLang_jsh">VJ#</item>
+
+	<!-- J# syntax section messages -->
+	<item id="UnsupportedUnsafe_JSharp">J# не поддерживает интерфейсы API, которые принимают или возвращают небезопасные типы.</item>
+	<item id="UnsupportedGeneric_JSharp">J# позволяет использовать универсальные типы, но не позволяет объявлять новые.</item>
+	<item id="UnsupportedOperator_JSharp">J# не поддерживает перегруженные операторы.</item>
+	<item id="UnsupportedStaticConstructor_JSharp">J# не поддерживает статические конструкторы.</item>
+	<item id="UnsupportedExplicit_JSharp">J# позволяет использовать явные реализации интерфейсов, но не позволяет объявлять новые.</item>
+
+</content>

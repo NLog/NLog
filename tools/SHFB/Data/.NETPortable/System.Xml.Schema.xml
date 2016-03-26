@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Xml.ReaderWriter">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.ReaderWriter.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.ReaderWriter.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.ReaderWriter.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Xml.Schema">
+      <topicdata group="api" />
+      <apidata name="System.Xml.Schema" group="namespace" />
+      <elements>
+        <element api="T:System.Xml.Schema.XmlSchema" />
+        <element api="T:System.Xml.Schema.XmlSchemaForm" />
+      </elements>
+      <file name="5de1619d-edb1-0317-7a53-bab5cfe4a1ee" />
+    </api>
+    <api id="T:System.Xml.Schema.XmlSchema">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Schema.XmlSchema" />
+      <apidata name="XmlSchema" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml.ReaderWriter" module="System.Xml.ReaderWriter" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="75ba01b1-e667-10a6-71a0-1083b924de9e" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Schema.XmlSchema">
+      <topicdata name="XmlSchema" group="list" subgroup="members" typeTopicId="T:System.Xml.Schema.XmlSchema" />
+      <apidata name="XmlSchema" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.ReaderWriter" module="System.Xml.ReaderWriter" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchema" />
+      </containers>
+      <file name="8387c161-ee1e-a51d-eedb-e24cad7a5e5d" />
+    </api>
+    <api id="Methods.T:System.Xml.Schema.XmlSchema">
+      <topicdata name="XmlSchema" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Schema.XmlSchema" />
+      <apidata name="XmlSchema" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.ReaderWriter" module="System.Xml.ReaderWriter" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchema" />
+      </containers>
+      <file name="8df9d69f-fdbf-5a13-6638-04ca9eaf58d5" />
+    </api>
+    <api id="T:System.Xml.Schema.XmlSchemaForm">
+      <topicdata group="api" />
+      <apidata name="XmlSchemaForm" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Xml.Schema.XmlSchemaForm.None" />
+        <element api="F:System.Xml.Schema.XmlSchemaForm.Qualified" />
+        <element api="F:System.Xml.Schema.XmlSchemaForm.Unqualified" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.ReaderWriter" module="System.Xml.ReaderWriter" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+      </containers>
+      <file name="838f543c-4edb-ed64-20c9-1f1e7793d00e" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlSchemaForm.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Xml.ReaderWriter" module="System.Xml.ReaderWriter" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </containers>
+      <file name="e7a07769-b019-94db-fa37-934fb2058380" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlSchemaForm.Qualified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Qualified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Xml.ReaderWriter" module="System.Xml.ReaderWriter" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </containers>
+      <file name="1bd47e0a-3936-ea2d-1d51-49b9578f982e" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlSchemaForm.Unqualified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unqualified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Xml.ReaderWriter" module="System.Xml.ReaderWriter" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </containers>
+      <file name="1a7b7e12-264f-decf-234e-e4fc08d5d306" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Security.EnterpriseData">
+      <topicdata group="api" />
+      <apidata name="Windows.Security.EnterpriseData" group="namespace" />
+      <elements>
+        <element api="T:Windows.Security.EnterpriseData.FileProtectionStatus" />
+        <element api="T:Windows.Security.EnterpriseData.FileRevocationManager" />
+      </elements>
+      <file name="436afb0b-586a-3df8-cba6-8da2eb4f86bf" />
+    </api>
+    <api id="T:Windows.Security.EnterpriseData.FileProtectionStatus">
+      <topicdata group="api" />
+      <apidata name="FileProtectionStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.EnterpriseData.FileProtectionStatus.Undetermined" />
+        <element api="F:Windows.Security.EnterpriseData.FileProtectionStatus.Unprotected" />
+        <element api="F:Windows.Security.EnterpriseData.FileProtectionStatus.Revoked" />
+        <element api="F:Windows.Security.EnterpriseData.FileProtectionStatus.Protected" />
+        <element api="F:Windows.Security.EnterpriseData.FileProtectionStatus.ProtectedByOtherUser" />
+        <element api="F:Windows.Security.EnterpriseData.FileProtectionStatus.ProtectedToOtherEnterprise" />
+        <element api="F:Windows.Security.EnterpriseData.FileProtectionStatus.NotProtectable" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8ba612f3-6fe7-dc54-d655-1fbe5b035fa0" />
+    </api>
+    <api id="F:Windows.Security.EnterpriseData.FileProtectionStatus.NotProtectable">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotProtectable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </containers>
+      <file name="133c17c2-6901-8212-a690-f2f8d61548ab" />
+    </api>
+    <api id="F:Windows.Security.EnterpriseData.FileProtectionStatus.Protected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Protected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </containers>
+      <file name="37f51da0-c824-b3a8-a753-7c4bae2dc6a0" />
+    </api>
+    <api id="F:Windows.Security.EnterpriseData.FileProtectionStatus.ProtectedByOtherUser">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtectedByOtherUser" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </containers>
+      <file name="dbaeea0f-8d7b-4c87-dc04-cb340426eff9" />
+    </api>
+    <api id="F:Windows.Security.EnterpriseData.FileProtectionStatus.ProtectedToOtherEnterprise">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtectedToOtherEnterprise" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </containers>
+      <file name="2b7da986-b87e-5903-f186-6e6021705543" />
+    </api>
+    <api id="F:Windows.Security.EnterpriseData.FileProtectionStatus.Revoked">
+      <topicdata group="api" notopic="" />
+      <apidata name="Revoked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </containers>
+      <file name="5bf94570-f870-6429-6652-0d2951700578" />
+    </api>
+    <api id="F:Windows.Security.EnterpriseData.FileProtectionStatus.Undetermined">
+      <topicdata group="api" notopic="" />
+      <apidata name="Undetermined" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </containers>
+      <file name="f366c125-de1c-f3b4-8dd7-b537f08cc7c0" />
+    </api>
+    <api id="F:Windows.Security.EnterpriseData.FileProtectionStatus.Unprotected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unprotected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+      </containers>
+      <file name="0c2c6439-2ff9-c995-9d87-a62de7eddd77" />
+    </api>
+    <api id="T:Windows.Security.EnterpriseData.FileRevocationManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.EnterpriseData.FileRevocationManager" />
+      <apidata name="FileRevocationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="677a10a6-d08b-89f1-8a1b-7dbade24aad2" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.EnterpriseData.FileRevocationManager">
+      <topicdata name="FileRevocationManager" group="list" subgroup="members" typeTopicId="T:Windows.Security.EnterpriseData.FileRevocationManager" />
+      <apidata name="FileRevocationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Security.EnterpriseData.FileRevocationManager.CopyProtectionAsync(Windows.Storage.IStorageItem,Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Security.EnterpriseData.FileRevocationManager.GetStatusAsync(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Security.EnterpriseData.FileRevocationManager.ProtectAsync(Windows.Storage.IStorageItem,System.String)" />
+        <element api="M:Windows.Security.EnterpriseData.FileRevocationManager.Revoke(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileRevocationManager" />
+      </containers>
+      <file name="cfc00d27-1376-7f20-0edc-da79dc81c31a" />
+    </api>
+    <api id="Methods.T:Windows.Security.EnterpriseData.FileRevocationManager">
+      <topicdata name="FileRevocationManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.EnterpriseData.FileRevocationManager" />
+      <apidata name="FileRevocationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Security.EnterpriseData.FileRevocationManager.CopyProtectionAsync(Windows.Storage.IStorageItem,Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Security.EnterpriseData.FileRevocationManager.GetStatusAsync(Windows.Storage.IStorageItem)" />
+        <element api="M:Windows.Security.EnterpriseData.FileRevocationManager.ProtectAsync(Windows.Storage.IStorageItem,System.String)" />
+        <element api="M:Windows.Security.EnterpriseData.FileRevocationManager.Revoke(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileRevocationManager" />
+      </containers>
+      <file name="70736171-be1d-7d4e-3de6-169da576b0c8" />
+    </api>
+    <api id="M:Windows.Security.EnterpriseData.FileRevocationManager.CopyProtectionAsync(Windows.Storage.IStorageItem,Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="CopyProtectionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceStorageItem" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+        <parameter name="targetStorageItem" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileRevocationManager" ref="true" />
+      </containers>
+      <file name="a755206f-06b4-89af-553e-ab433d28afa7" />
+    </api>
+    <api id="M:Windows.Security.EnterpriseData.FileRevocationManager.GetStatusAsync(Windows.Storage.IStorageItem)">
+      <topicdata group="api" />
+      <apidata name="GetStatusAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="storageItem" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileRevocationManager" ref="true" />
+      </containers>
+      <file name="7bf00294-b31a-5682-084f-ee9984ccba98" />
+    </api>
+    <api id="M:Windows.Security.EnterpriseData.FileRevocationManager.ProtectAsync(Windows.Storage.IStorageItem,System.String)">
+      <topicdata group="api" />
+      <apidata name="ProtectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="storageItem" in="true">
+          <type api="T:Windows.Storage.IStorageItem" ref="true" />
+        </parameter>
+        <parameter name="enterpriseIdentity" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.EnterpriseData.FileProtectionStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileRevocationManager" ref="true" />
+      </containers>
+      <file name="45d73119-3cae-18f6-376d-c2d03606d72e" />
+    </api>
+    <api id="M:Windows.Security.EnterpriseData.FileRevocationManager.Revoke(System.String)">
+      <topicdata group="api" />
+      <apidata name="Revoke" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="enterpriseIdentity" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.EnterpriseData" />
+        <type api="T:Windows.Security.EnterpriseData.FileRevocationManager" ref="true" />
+      </containers>
+      <file name="839053ed-9841-3b65-963d-1b19ffdb3e75" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BED7F4EA-1A96-11d2-8F08-00A0C9A6186D</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Remoting.Lifetime">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Remoting.Lifetime" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+        <element api="T:System.Runtime.Remoting.Lifetime.ILease" />
+        <element api="T:System.Runtime.Remoting.Lifetime.ISponsor" />
+        <element api="T:System.Runtime.Remoting.Lifetime.LeaseState" />
+        <element api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
+      </elements>
+      <file name="42c4e5c3-b69c-cf36-0a5e-225808bb19f5" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Lifetime.ClientSponsor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+      <apidata name="ClientSponsor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="95950219-1c20-580d-301a-6f0d324f7828" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Lifetime.ClientSponsor">
+      <topicdata name="ClientSponsor" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+      <apidata name="ClientSponsor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="Overload:System.Runtime.Remoting.Lifetime.ClientSponsor.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor">
+          <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor" />
+          <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor(System.TimeSpan)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Close" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Finalize" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.InitializeLifetimeService" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Register(System.MarshalByRefObject)" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Renewal(System.Runtime.Remoting.Lifetime.ILease)" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ClientSponsor.RenewalTime" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Unregister(System.MarshalByRefObject)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+      </containers>
+      <file name="84129fca-ba9c-5598-af63-cd61b9e28d37" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Lifetime.ClientSponsor">
+      <topicdata name="ClientSponsor" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+      <apidata name="ClientSponsor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="Overload:System.Runtime.Remoting.Lifetime.ClientSponsor.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Close" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Finalize" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.InitializeLifetimeService" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Register(System.MarshalByRefObject)" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Renewal(System.Runtime.Remoting.Lifetime.ILease)" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Unregister(System.MarshalByRefObject)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+      </containers>
+      <file name="6d274d01-ffc7-bb2e-3729-1129c64a30d4" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Lifetime.ClientSponsor">
+      <topicdata name="ClientSponsor" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+      <apidata name="ClientSponsor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Lifetime.ClientSponsor.RenewalTime" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+      </containers>
+      <file name="59d99a2a-7fc3-4d90-f752-4cf64039f05e" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Lifetime.ClientSponsor" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor(System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <file name="bc65df79-e355-c4b0-56ec-a74677275bd7" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <file name="caf1d5ca-27ff-d447-0abd-67d10b601441" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Lifetime.ClientSponsor.#ctor" />
+      <parameters>
+        <parameter name="renewalTime">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <file name="d209bed5-e5ac-3817-159d-9428330248cb" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="34c1045a-7d4a-24d4-a2cf-1c2837e01265" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <file name="4414119f-59c7-62d1-9546-8c0d411a58da" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ClientSponsor.InitializeLifetimeService">
+      <topicdata group="api" />
+      <apidata name="InitializeLifetimeService" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.MarshalByRefObject.InitializeLifetimeService">
+          <type api="T:System.MarshalByRefObject" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d90cd3ab-f894-af1c-6443-6f196da14410" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Register(System.MarshalByRefObject)">
+      <topicdata group="api" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.MarshalByRefObject" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9f6b12c3-234a-5710-4563-fb6cbd0339da" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Renewal(System.Runtime.Remoting.Lifetime.ILease)">
+      <topicdata group="api" />
+      <apidata name="Renewal" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="lease">
+          <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Lifetime.ISponsor.Renewal(System.Runtime.Remoting.Lifetime.ILease)">
+          <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f5f90044-8ba1-b024-d71a-c33eae2db5e6" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.ClientSponsor.RenewalTime">
+      <topicdata group="api" />
+      <apidata name="RenewalTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RenewalTime" />
+      <setter name="set_RenewalTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <file name="dbb0a8c9-5254-fb58-1cdb-ce7b43afb96e" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ClientSponsor.Unregister(System.MarshalByRefObject)">
+      <topicdata group="api" />
+      <apidata name="Unregister" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.MarshalByRefObject" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2183ccb6-3495-10d4-1492-0b94dee921aa" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Lifetime.ILease">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Lifetime.ILease" />
+      <apidata name="ILease" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="80bb4e71-5499-b71c-ecee-3ca317364f56" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Lifetime.ILease">
+      <topicdata name="ILease" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Lifetime.ILease" />
+      <apidata name="ILease" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.CurrentState" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.InitialLeaseTime" />
+        <element api="Overload:System.Runtime.Remoting.Lifetime.ILease.Register">
+          <element api="M:System.Runtime.Remoting.Lifetime.ILease.Register(System.Runtime.Remoting.Lifetime.ISponsor)" />
+          <element api="M:System.Runtime.Remoting.Lifetime.ILease.Register(System.Runtime.Remoting.Lifetime.ISponsor,System.TimeSpan)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.Lifetime.ILease.Renew(System.TimeSpan)" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.SponsorshipTimeout" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ILease.Unregister(System.Runtime.Remoting.Lifetime.ISponsor)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" />
+      </containers>
+      <file name="f7a3511f-f40d-228c-f0d7-ac356d8c2a00" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Lifetime.ILease">
+      <topicdata name="ILease" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Lifetime.ILease" />
+      <apidata name="ILease" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Runtime.Remoting.Lifetime.ILease.Register">
+          <element api="M:System.Runtime.Remoting.Lifetime.ILease.Register(System.Runtime.Remoting.Lifetime.ISponsor)" />
+          <element api="M:System.Runtime.Remoting.Lifetime.ILease.Register(System.Runtime.Remoting.Lifetime.ISponsor,System.TimeSpan)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.Lifetime.ILease.Renew(System.TimeSpan)" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ILease.Unregister(System.Runtime.Remoting.Lifetime.ISponsor)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" />
+      </containers>
+      <file name="0755b902-ea03-d13f-5cec-a832597c21b3" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Lifetime.ILease">
+      <topicdata name="ILease" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Lifetime.ILease" />
+      <apidata name="ILease" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.CurrentState" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.InitialLeaseTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.ILease.SponsorshipTimeout" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" />
+      </containers>
+      <file name="dfad5d43-01da-cbb8-ee3f-375be98f3a0e" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Lifetime.ILease.Register">
+      <topicdata name="Register" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Lifetime.ILease" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Lifetime.ILease.Register(System.Runtime.Remoting.Lifetime.ISponsor)" />
+        <element api="M:System.Runtime.Remoting.Lifetime.ILease.Register(System.Runtime.Remoting.Lifetime.ISponsor,System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <file name="51192dc3-47a6-9d26-1a68-33bed1bd701c" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.ILease.CurrentLeaseTime">
+      <topicdata group="api" />
+      <apidata name="CurrentLeaseTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentLeaseTime">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <file name="50a34350-0222-5dd5-84e7-5cd765a3a739" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.ILease.CurrentState">
+      <topicdata group="api" />
+      <apidata name="CurrentState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentState">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <file name="180f73c5-6faf-8ce9-5817-02390569146a" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.ILease.InitialLeaseTime">
+      <topicdata group="api" />
+      <apidata name="InitialLeaseTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialLeaseTime">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_InitialLeaseTime">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <file name="2dbd0b5d-606e-626c-987b-a86ea26f990f" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ILease.Register(System.Runtime.Remoting.Lifetime.ISponsor)">
+      <topicdata group="api" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Remoting.Lifetime.ILease.Register" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="39bd5b2e-5d65-b790-1368-60ca15ff2f7a" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ILease.Register(System.Runtime.Remoting.Lifetime.ISponsor,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Remoting.Lifetime.ILease.Register" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" ref="true" />
+        </parameter>
+        <parameter name="renewalTime">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="bc70e44d-09c9-171a-2ce2-ea378ea1db40" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ILease.Renew(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="Renew" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="renewalTime">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2a457146-ee27-8a03-7d46-74230427011d" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.ILease.RenewOnCallTime">
+      <topicdata group="api" />
+      <apidata name="RenewOnCallTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RenewOnCallTime">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_RenewOnCallTime">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <file name="6b659b16-44b9-c334-a1ea-f48cb74cdfe9" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.ILease.SponsorshipTimeout">
+      <topicdata group="api" />
+      <apidata name="SponsorshipTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SponsorshipTimeout">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_SponsorshipTimeout">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <file name="4825655a-085e-a30f-ac83-f18bbd3970f3" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ILease.Unregister(System.Runtime.Remoting.Lifetime.ISponsor)">
+      <topicdata group="api" />
+      <apidata name="Unregister" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="44d44b7c-265b-af17-64b0-acc0f5c874cd" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Lifetime.ISponsor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Lifetime.ISponsor" />
+      <apidata name="ISponsor" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Runtime.Remoting.Lifetime.ClientSponsor" ref="true" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3a90b58b-5f2e-fb66-bb87-ed30eba8ec12" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Lifetime.ISponsor">
+      <topicdata name="ISponsor" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Lifetime.ISponsor" />
+      <apidata name="ISponsor" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Lifetime.ISponsor.Renewal(System.Runtime.Remoting.Lifetime.ILease)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" />
+      </containers>
+      <file name="1665fce7-7e35-b82a-9862-6d644f658bfc" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Lifetime.ISponsor">
+      <topicdata name="ISponsor" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Lifetime.ISponsor" />
+      <apidata name="ISponsor" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Lifetime.ISponsor.Renewal(System.Runtime.Remoting.Lifetime.ILease)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" />
+      </containers>
+      <file name="be0a3d34-b8ed-7ed6-c8bb-c66c1c1d3758" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.ISponsor.Renewal(System.Runtime.Remoting.Lifetime.ILease)">
+      <topicdata group="api" />
+      <apidata name="Renewal" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="lease">
+          <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3e322de1-a585-5d99-966d-b011856631ad" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Lifetime.LeaseState">
+      <topicdata group="api" />
+      <apidata name="LeaseState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Lifetime.LeaseState.Null" />
+        <element api="F:System.Runtime.Remoting.Lifetime.LeaseState.Initial" />
+        <element api="F:System.Runtime.Remoting.Lifetime.LeaseState.Active" />
+        <element api="F:System.Runtime.Remoting.Lifetime.LeaseState.Renewing" />
+        <element api="F:System.Runtime.Remoting.Lifetime.LeaseState.Expired" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="26aef506-a7ff-c9f7-6791-4150835b55d1" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Lifetime.LeaseState.Active">
+      <topicdata group="api" notopic="" />
+      <apidata name="Active" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </containers>
+      <file name="ee702142-e606-b0dd-26e9-855aa232f6f9" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Lifetime.LeaseState.Expired">
+      <topicdata group="api" notopic="" />
+      <apidata name="Expired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </containers>
+      <file name="661cf763-fca0-dd9f-99c8-308ab97bc906" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Lifetime.LeaseState.Initial">
+      <topicdata group="api" notopic="" />
+      <apidata name="Initial" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </containers>
+      <file name="2c6c02e7-6d8a-445c-e55e-7d146624222f" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Lifetime.LeaseState.Null">
+      <topicdata group="api" notopic="" />
+      <apidata name="Null" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </containers>
+      <file name="e5127d78-b5d6-f319-4f2d-63584a69924e" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Lifetime.LeaseState.Renewing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Renewing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LeaseState" ref="false" />
+      </containers>
+      <file name="b8f47d81-1d4f-bbe0-401d-f8385ac2e630" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Lifetime.LifetimeServices">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
+      <apidata name="LifetimeServices" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Lifetime.LifetimeServices.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="af610bbe-d07b-981e-04f6-2639c7a191ad" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Lifetime.LifetimeServices">
+      <topicdata name="LifetimeServices" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
+      <apidata name="LifetimeServices" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Lifetime.LifetimeServices.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Lifetime.LifetimeServices.#ctor" />
+        <element api="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.LifetimeServices.RenewOnCallTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.LifetimeServices.SponsorshipTimeout" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
+      </containers>
+      <file name="9a087383-1704-19e7-d134-fc35b5080c00" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Lifetime.LifetimeServices">
+      <topicdata name="LifetimeServices" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
+      <apidata name="LifetimeServices" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Lifetime.LifetimeServices.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
+      </containers>
+      <file name="98dbbbdf-1391-85c4-06bd-574ccb34bcd5" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Lifetime.LifetimeServices">
+      <topicdata name="LifetimeServices" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
+      <apidata name="LifetimeServices" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Lifetime.LifetimeServices.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.LifetimeServices.RenewOnCallTime" />
+        <element api="P:System.Runtime.Remoting.Lifetime.LifetimeServices.SponsorshipTimeout" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" />
+      </containers>
+      <file name="b371b4ca-ccf2-fa8c-4cee-816f53d4ce07" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Lifetime.LifetimeServices.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Do not create instances of the LifetimeServices class.  Call the static methods directly on this type instead</value>
+          </argument>
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d0d0033f-e872-7a01-8cba-a8a3d4e72e11" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseManagerPollTime">
+      <topicdata group="api" />
+      <apidata name="LeaseManagerPollTime" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LeaseManagerPollTime" />
+      <setter name="set_LeaseManagerPollTime">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" ref="true" />
+      </containers>
+      <file name="3ccefa32-f838-3843-4f82-74e67ab0cf22" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.LifetimeServices.LeaseTime">
+      <topicdata group="api" />
+      <apidata name="LeaseTime" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LeaseTime" />
+      <setter name="set_LeaseTime">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" ref="true" />
+      </containers>
+      <file name="b5ff5b5b-883f-83a5-379d-c95c262143c9" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.LifetimeServices.RenewOnCallTime">
+      <topicdata group="api" />
+      <apidata name="RenewOnCallTime" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RenewOnCallTime" />
+      <setter name="set_RenewOnCallTime">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" ref="true" />
+      </containers>
+      <file name="40db0bee-099f-7ae3-d766-dcd975cfe310" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Lifetime.LifetimeServices.SponsorshipTimeout">
+      <topicdata group="api" />
+      <apidata name="SponsorshipTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SponsorshipTimeout" />
+      <setter name="set_SponsorshipTimeout">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Lifetime" />
+        <type api="T:System.Runtime.Remoting.Lifetime.LifetimeServices" ref="true" />
+      </containers>
+      <file name="b89c6fe9-e8cc-9675-b124-43aef06cd898" />
+    </api>
+  </apis>
+</reflection>

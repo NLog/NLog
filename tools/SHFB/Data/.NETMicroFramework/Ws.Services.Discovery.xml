@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Discovery">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Discovery" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Discovery.WsDiscovery" />
+      </elements>
+      <file name="e55d74a0-eaeb-fdae-19e2-d83df00a0bb9" />
+    </api>
+    <api id="T:Ws.Services.Discovery.WsDiscovery">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Discovery.WsDiscovery" />
+      <apidata name="WsDiscovery" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Discovery" />
+      </containers>
+      <file name="1fa48c39-e827-3b83-22dc-b08286a75b01" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Discovery.WsDiscovery">
+      <topicdata name="WsDiscovery" group="list" subgroup="members" typeTopicId="T:Ws.Services.Discovery.WsDiscovery" />
+      <apidata name="WsDiscovery" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryAddress" />
+        <element api="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryEndPoint" />
+        <element api="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryPort" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Discovery" />
+        <type api="T:Ws.Services.Discovery.WsDiscovery" />
+      </containers>
+      <file name="50e2bab9-d362-ce12-a5af-bfe019c96db6" />
+    </api>
+    <api id="Fields.T:Ws.Services.Discovery.WsDiscovery">
+      <topicdata name="WsDiscovery" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Discovery.WsDiscovery" />
+      <apidata name="WsDiscovery" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryAddress" />
+        <element api="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryEndPoint" />
+        <element api="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryPort" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Discovery" />
+        <type api="T:Ws.Services.Discovery.WsDiscovery" />
+      </containers>
+      <file name="1778134c-2969-a606-80f4-36d4bad102f0" />
+    </api>
+    <api id="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryAddress">
+      <topicdata group="api" />
+      <apidata name="WsDiscoveryAddress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Net.IPAddress" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Discovery" />
+        <type api="T:Ws.Services.Discovery.WsDiscovery" ref="true" />
+      </containers>
+      <file name="df20dee8-2bd1-bc6b-037a-7dbfba33395c" />
+    </api>
+    <api id="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryEndPoint">
+      <topicdata group="api" />
+      <apidata name="WsDiscoveryEndPoint" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Net.IPEndPoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Discovery" />
+        <type api="T:Ws.Services.Discovery.WsDiscovery" ref="true" />
+      </containers>
+      <file name="18d6746a-fcb6-a723-39b3-2f6de54eb3a3" />
+    </api>
+    <api id="F:Ws.Services.Discovery.WsDiscovery.WsDiscoveryPort">
+      <topicdata group="api" />
+      <apidata name="WsDiscoveryPort" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>3702</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Discovery" />
+        <type api="T:Ws.Services.Discovery.WsDiscovery" ref="true" />
+      </containers>
+      <file name="c6e6fb10-bfb1-1284-520b-314e710c0fab" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Michael Buchner -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_Managed C++">C++</item>
+  <item id="devlang_CPlusPlus">C++</item>
+  <item id="devlang_ManagedCPlusPlus">C++</item>
+  <item id="devlang_cpp">C++</item>
+  <item id="devlang_cpp#">C++</item>
+  <item id="devlang_c++">C++</item>
+  <item id="devlang_kblangcpp">C++</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_Managed C++">C++</item>
+  <item id="metaLang_CPlusPlus">C++</item>
+  <item id="metaLang_ManagedCPlusPlus">C++</item>
+  <item id="metaLang_cpp">C++</item>
+  <item id="metaLang_cpp#">C++</item>
+  <item id="metaLang_c++">C++</item>
+  <item id="metaLang_kblangcpp">C++</item>
+
+	<!-- C++ syntax section messages -->
+	<item id="UnsupportedOperator_ManagedCPlusPlus">Managed C++ unterstützt diesen Operator nicht.</item>
+
+</content>
