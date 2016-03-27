@@ -255,7 +255,7 @@ namespace NLog.Config
         {
             get
             {
-                return this.fileMustAutoReloadLookup.Values.All(mustAutoReload => mustAutoReload);
+                return this.fileMustAutoReloadLookup.Values.DefaultIfEmpty(true).All(mustAutoReload => mustAutoReload);
             }
             set
             {
