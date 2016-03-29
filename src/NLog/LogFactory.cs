@@ -851,6 +851,7 @@ namespace NLog
             {
                 yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
             }
+            yield return Path.Combine(Directory.GetCurrentDirectory(), "NLog.config");
 
             // Current config file with .config renamed to .nlog
             string cf = CurrentAppDomain.ConfigurationFile;
