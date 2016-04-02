@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
+
 namespace NLog.UnitTests.Config
 {
     using System;
@@ -111,7 +113,7 @@ namespace NLog.UnitTests.Config
 
             Assert.Equal("p2", t.Parameters[1].Name);
             Assert.Equal("'${level}'", t.Parameters[1].Layout.ToString());
-            
+
             Assert.Equal("p3", t.Parameters[2].Name);
             Assert.Equal("'${logger}'", t.Parameters[2].Layout.ToString());
         }
@@ -417,6 +419,37 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(debugTarget);
             Assert.Equal("d_wrapped", debugTarget.Name);
             Assert.Equal("'${level}'", debugTarget.Layout.ToString());
+        }
+
+        [Fact]
+        public void DontThrowExceptionWhenArchiveEverySetByDefaultParameters()
+        {
+
+            var configuration = CreateConfigurationFromString(@"
+<nlog throwExceptions='true'>
+    <targets>
+        <default-target-parameters 
+            type='File'
+            concurrentWrites='true'
+            keepFileOpen='true'
+            maxArchiveFiles='5'
+            archiveNumbering='Rolling'
+            archiveEvery='Day' />
+
+          <target fileName='" + Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + @".log'
+                name = 'file'
+                type = 'File'
+                layout = '${message}' />
+    </targets>
+
+    <rules>
+        <logger name='*' writeTo='file'/>
+    </rules>
+</nlog> ");
+
+            LogManager.Configuration = configuration;
+            LogManager.GetLogger("TestLogger").Info("DefaultFileTargetParametersTests.DontThrowExceptionWhenArchiveEverySetByDefaultParameters is true");
+
         }
 
         [Fact]
