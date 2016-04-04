@@ -5,7 +5,7 @@
 ===
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Twitter](https://img.shields.io/badge/Twitter-NLogOfficial-blue.svg)](https://twitter.com/nlogofficial)
-[![Last News](https://img.shields.io/badge/News-28_dec_2015-orange.svg)](http://nlog-project.org/archives/)
+[![Last News](https://img.shields.io/badge/News-24_mar_2016-orange.svg)](http://nlog-project.org/archives/)
 [![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=master)](https://codecov.io/github/NLog/NLog?branch=master) 
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-3D9FE0.svg)](http://semver.org/)
 
@@ -40,8 +40,8 @@ NLog consists of multiple packages. Most of the functionality is inside the NLog
 Package  | Build status | NuGet |
 -------- | :------------ | :------------ | :------------------
 NLog (Windows / Silverlight 4+5)                                    | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.svg)](https://www.nuget.org/packages/NLog)                            |
-NLog (Xamarin iOS / Xamarin Android / Windows Phone 8)              | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.3.0--rc1-blue.svg)](https://www.nuget.org/packages/NLog)         |
-NLog (CoreCLR)                                                | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.4.0--beta2-blue.svg)](https://www.nuget.org/packages/NLog)       | 
+NLog (Xamarin iOS / Xamarin Android / Windows Phone 8)              | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.3.0--rc2-blue.svg)](https://www.nuget.org/packages/NLog)         |
+NLog (CoreCLR)                                                | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/coreclr.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/coreclr)                   | [![NuGet package](https://img.shields.io/badge/nuget-v4.4.0--beta3-blue.svg)](https://www.nuget.org/packages/NLog)       | 
 [NLog (ASP.NET 5)](https://github.com/NLog/NLog.Framework.Logging)  | [![Build status](https://img.shields.io/appveyor/ci/nlog/nlog-framework-logging/master.svg)](https://ci.appveyor.com/project/nlog/nlog-framework-logging/branch/master) | [![NuGet Pre Release](https://badge.fury.io/nu/NLog.Extensions.Logging.svg)](https://www.nuget.org/packages/NLog.Extensions.Logging) |
 NLog (Mono)                                                         | [![Build Status](https://travis-ci.org/NLog/NLog.svg?branch=master)](https://travis-ci.org/NLog/NLog)                                                         |                                                                                                                                  |
 NLog.Config                                                         | [![AppVeyor](https://img.shields.io/appveyor/ci/nlog/nlog/master.svg)](https://ci.appveyor.com/project/nlog/nlog/branch/master)                   | [![NuGet package](https://badge.fury.io/nu/NLog.Config.svg)](https://www.nuget.org/packages/NLog.Config)                   |
