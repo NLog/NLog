@@ -1994,7 +1994,8 @@ namespace NLog.Targets
             var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
 
             var fileName1 = fileName.Substring(lastDirSeparator + 1);
-            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
+            //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
+            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator + 1) : string.Empty;
 
             char[] fileName1Chars = null;
             foreach (var invalidChar in InvalidFileNameChars)
@@ -2014,9 +2015,13 @@ namespace NLog.Targets
 
             //only if an invalid char was replaced do we create a new string.
             if (fileName1Chars != null)
+            {
                 fileName1 = new string(fileName1Chars);
+                return Path.Combine(dirName, fileName1);
+            }
+            return fileName;
 
-            return Path.Combine(dirName, fileName1);
+
 #else
             return fileName;
 #endif
