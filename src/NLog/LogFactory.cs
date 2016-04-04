@@ -190,6 +190,29 @@ namespace NLog
                         }
                     }
 
+#if __ANDROID__
+                    if (this.config == null)
+                    {
+                        //try nlog.config in assets folder
+                        const string nlogConfigFilename = "NLog.config";
+                        try
+                        {
+                            using (var stream = Android.App.Application.Context.Assets.Open(nlogConfigFilename))
+                            {
+                                if (stream != null)
+                                {
+                                    LoadLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
+                                }
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            InternalLogger.Trace(e, "no {0} in assets folder", nlogConfigFilename);
+                        }
+
+                    }
+#endif
+
                     if (this.config != null)
                     {
                         try
