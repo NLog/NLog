@@ -244,20 +244,38 @@ namespace NLog.Config
 #if !SILVERLIGHT
 
             var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.CodeBase).LocalPath);
-            if (assemblyLocation == null)
+            LoadExtensionsFromPath(assemblyLocation, factory);
+#endif
+
+            //also check path of currentDirectory
+            var currentDirectory = Directory.GetCurrentDirectory();
+
+            if (!currentDirectory.Equals(assemblyLocation))
+            {
+                LoadExtensionsFromPath(currentDirectory, factory);
+            }
+            InternalLogger.Debug("Auto loading done");
+
+
+            return factory;
+        }
+
+        private static void LoadExtensionsFromPath(string extensionsLocation, ConfigurationItemFactory factory)
+        {
+            if (extensionsLocation == null)
             {
                 InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
-                return factory;
-            }
+                return;
 
-            var extensionDlls = Directory.GetFiles(assemblyLocation, "NLog*.dll")
+            }
+            var extensionDlls = Directory.GetFiles(extensionsLocation, "NLog*.dll")
                 .Select(Path.GetFileName)
                 .Where(x => !x.Equals("NLog.dll", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Equals("NLog.UnitTests.dll", StringComparison.OrdinalIgnoreCase))
                 .Where(x => !x.Equals("NLog.Extended.dll", StringComparison.OrdinalIgnoreCase))
-                .Select(x => Path.Combine(assemblyLocation, x));
+                .Select(x => Path.Combine(extensionsLocation, x));
 
-            InternalLogger.Debug("Start auto loading, location: {0}", assemblyLocation);
+            InternalLogger.Debug("Start auto loading, location: {0}", extensionsLocation);
             foreach (var extensionDll in extensionDlls)
             {
                 InternalLogger.Info("Auto loading assembly file: {0}", extensionDll);
@@ -283,12 +301,7 @@ namespace NLog.Config
                 {
                     InternalLogger.Info("Auto loading assembly file: {0} succeeded!", extensionDll);
                 }
-
             }
-            InternalLogger.Debug("Auto loading done");
-#endif
-
-            return factory;
         }
 
         /// <summary>
