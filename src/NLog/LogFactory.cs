@@ -847,9 +847,16 @@ namespace NLog
             yield return "NLog.config";
 #elif !SILVERLIGHT
             // NLog.config from application directory
-            if (CurrentAppDomain.BaseDirectory != null)
+            var baseDirectory = CurrentAppDomain.BaseDirectory;
+            if (baseDirectory != null)
             {
-                yield return Path.Combine(CurrentAppDomain.BaseDirectory, "NLog.config");
+                yield return Path.Combine(baseDirectory, "NLog.config");
+            }
+
+            var currentDirectory = Directory.GetCurrentDirectory();
+            if (!currentDirectory.Equals(baseDirectory))
+            {
+                yield return Path.Combine(currentDirectory, "NLog.config");
             }
 
             // Current config file with .config renamed to .nlog
