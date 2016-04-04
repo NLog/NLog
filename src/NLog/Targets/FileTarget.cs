@@ -1994,7 +1994,10 @@ namespace NLog.Targets
             var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
 
             var fileName1 = fileName.Substring(lastDirSeparator + 1);
-            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
+            // Keep the trailing "\" or "/" if it's not the first char in the string.
+            // This is important for files at the root like C:\log.txt, because Path.Combine("C:", "log.txt")
+            // would return "C:log.txt" which is a different thing: "log.txt" in the current directory of drive "C:"
+            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator + 1) : string.Empty;
 
             char[] fileName1Chars = null;
             foreach (var invalidChar in InvalidFileNameChars)
@@ -2013,10 +2016,12 @@ namespace NLog.Targets
             }
 
             //only if an invalid char was replaced do we create a new string.
-            if (fileName1Chars != null)
-                fileName1 = new string(fileName1Chars);
-
+            if (fileName1Chars == null)
+                return fileName;
+            
+            fileName1 = new string(fileName1Chars);
             return Path.Combine(dirName, fileName1);
+            
 #else
             return fileName;
 #endif
