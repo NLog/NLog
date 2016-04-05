@@ -551,6 +551,70 @@ namespace NLog.UnitTests.LayoutRenderers
         }
 
 
+        [Fact]
+        public void CheckStackTraceUsageForTwoRules()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                    <target name='debug2' type='Debug' layout='${callsite} ${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug2' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules msg");
+        }
+
+
+        [Fact]
+        public void CheckStackTraceUsageForTwoRules_chained()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                    <target name='debug2' type='Debug' layout='${callsite} ${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForTwoRules_chained msg");
+        }
+
+
+        [Fact]
+        public void CheckStackTraceUsageForMultipleRules()
+        {
+            LogManager.Configuration = CreateConfigurationFromString(@"
+            <nlog>
+                <targets>
+                    <target name='debug' type='Debug' layout='${message}' />
+                    <target name='debug2' type='Debug' layout='${callsite} ${message}' />
+                </targets>
+                <rules>
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                    <logger name='*' minlevel='Debug' writeTo='debug,debug2' />
+                    <logger name='*' minlevel='Debug' writeTo='debug' />
+                </rules>
+            </nlog>");
+
+            ILogger logger = LogManager.GetLogger("A");
+            logger.Debug("msg");
+            AssertDebugLastMessage("debug2", "NLog.UnitTests.LayoutRenderers.CallSiteTests.CheckStackTraceUsageForMultipleRules msg");
+        }
+
 
         #region Compositio unit test
 

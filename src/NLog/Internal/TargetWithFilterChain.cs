@@ -47,6 +47,9 @@ namespace NLog.Internal
     [NLogConfigurationItem]
     internal class TargetWithFilterChain
     {
+        /// <summary>
+        /// cached result as calculating is expensive.
+        /// </summary>
         private StackTraceUsage? _stackTraceUsage;
 
         /// <summary>
@@ -90,12 +93,6 @@ namespace NLog.Internal
 
         internal StackTraceUsage PrecalculateStackTraceUsage()
         {
-            //no need to recalculated as this method is only called once.
-            if (_stackTraceUsage.HasValue)
-            {
-                return _stackTraceUsage.Value;
-            }
-
             var stackTraceUsage = StackTraceUsage.None;
 
             // find all objects which may need stack trace
