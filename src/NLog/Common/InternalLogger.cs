@@ -52,6 +52,9 @@ namespace NLog.Common
     /// 
     /// Writes to file, console or custom textwriter (see <see cref="InternalLogger.LogWriter"/>)
     /// </summary>
+    /// <remarks>
+    /// Don't use <see cref="ExceptionHelper.MustBeRethrown"/> as that can lead to recursive calls - stackoverflows
+    /// </remarks>
     public static partial class InternalLogger
     {
         private static readonly object LockObject = new object();
@@ -379,7 +382,7 @@ namespace NLog.Common
                 }
                 catch (Exception exception)
                 {
-                    if (exception.MustBeRethrown())
+                    if (exception.MustBeRethrownImmediately())
                     {
                         throw;
                     }
@@ -403,7 +406,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
@@ -426,7 +429,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
@@ -454,7 +457,7 @@ namespace NLog.Common
             {
                 Error(exception, "Cannot create needed directories to '{0}'.", filename);
 
-                if (exception.MustBeRethrown())
+                if (exception.MustBeRethrownImmediately())
                 {
                     throw;
                 }
