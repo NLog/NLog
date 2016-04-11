@@ -590,6 +590,15 @@ namespace NLog.UnitTests.Config
             public Uri UriProperty { get; set; }
 
             public LineEndingMode LineEndingModeProperty { get; set; }
+
+            public MyTarget() : base()
+            {
+            }
+
+            public MyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
         }
 
 
@@ -625,6 +634,15 @@ namespace NLog.UnitTests.Config
             public Layout LayoutProperty { get; set; }
 
             public ConditionExpression ConditionProperty { get; set; }
+
+            public MyNullableTarget() : base()
+            {
+            }
+
+            public MyNullableTarget(string name) : this()
+            {
+                this.Name = name;
+            }
         }
 
         public enum MyEnum

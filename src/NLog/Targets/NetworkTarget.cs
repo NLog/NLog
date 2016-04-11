@@ -102,6 +102,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NetworkTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public NetworkTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets the network address.
         /// </summary>
         /// <remarks>

@@ -62,6 +62,28 @@ namespace NLog.Targets
     public sealed class TraceTarget : TargetWithLayout
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="TraceTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public TraceTarget() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraceTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public TraceTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Writes the specified logging event to the <see cref="System.Diagnostics.Trace"/> facility.
         /// If the log level is greater than or equal to <see cref="LogLevel.Error"/> it uses the
         /// <see cref="System.Diagnostics.Trace.Fail(string)"/> method, otherwise it uses

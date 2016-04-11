@@ -60,6 +60,28 @@ namespace NLog.Targets
     public sealed class OutputDebugStringTarget : TargetWithLayout
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="OutputDebugStringTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public OutputDebugStringTarget() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OutputDebugStringTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public OutputDebugStringTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Outputs the rendered logging event through the <c>OutputDebugString()</c> Win32 API.
         /// </summary>
         /// <param name="logEvent">The logging event.</param>

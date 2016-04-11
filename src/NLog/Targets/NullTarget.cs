@@ -65,6 +65,28 @@ namespace NLog.Targets
         public bool FormatMessage { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NullTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public NullTarget() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NullTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name"></param>
+        public NullTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Does nothing. Optionally it calculates the layout text but
         /// discards the results.
         /// </summary>
