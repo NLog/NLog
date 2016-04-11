@@ -265,6 +265,7 @@ namespace NLog.Internal.FileAppenders
         /// <param name="expireTime">The time which prior the appenders considered expired</param>
         public void CloseAppenders(DateTime expireTime)
         {
+            lock(this)
             for (int i = 0; i < this.appenders.Length; ++i)
             {
                 if (this.appenders[i] == null)

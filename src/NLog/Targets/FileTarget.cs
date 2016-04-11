@@ -664,8 +664,7 @@ namespace NLog.Targets
                                 while (true)
                                 {
                                     Thread.Sleep(200);
-                                    lock (SyncRoot)
-                                        this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
+                                    this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
                                 }
                             }));
                             this.appenderInvalidatorThread.Start();
@@ -1721,26 +1720,22 @@ namespace NLog.Targets
 
         private void AutoClosingTimerCallback(object state)
         {
-            lock (this.SyncRoot)
+            if (!this.IsInitialized)
             {
-                if (!this.IsInitialized)
-                {
-                    return;
-                }
+                return;
+            }
+            try
+            {
+                DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
+                this.fileAppenderCache.CloseAppenders(expireTime);
+            }
+            catch (Exception exception)
+            {
+                InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
 
-                try
+                if (exception.MustBeRethrown())
                 {
-                    DateTime expireTime = DateTime.UtcNow.AddSeconds(-this.OpenFileCacheTimeout);
-                    this.fileAppenderCache.CloseAppenders(expireTime);
-                }
-                catch (Exception exception)
-                {
-                    InternalLogger.Warn(exception, "Exception in AutoClosingTimerCallback.");
-
-                    if (exception.MustBeRethrown())
-                    {
-                        throw;
-                    }
+                    throw;
                 }
             }
         }
