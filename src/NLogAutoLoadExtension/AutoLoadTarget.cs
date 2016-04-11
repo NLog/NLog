@@ -39,6 +39,15 @@ namespace NLogAutloadExtension
     [Target("AutoLoadTarget")]
     public class AutoLoadTarget : Target
     {
+        public AutoLoadTarget() : base()
+        {
+        }
+
+        public AutoLoadTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
         protected override void Write(LogEventInfo logEvent)
         {
             // do nothing

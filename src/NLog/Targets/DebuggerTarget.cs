@@ -57,6 +57,28 @@ namespace NLog.Targets
     public sealed class DebuggerTarget : TargetWithLayoutHeaderAndFooter
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="DebuggerTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public DebuggerTarget() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DebuggerTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public DebuggerTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Initializes the target.
         /// </summary>
         protected override void InitializeTarget()

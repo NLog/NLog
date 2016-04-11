@@ -1507,6 +1507,11 @@ namespace NLog.UnitTests
                 Layout = "${stacktrace}";
             }
 
+            public MyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             public LogEventInfo LastEvent { get; private set; }
 
             protected override void Write(LogEventInfo logEvent)

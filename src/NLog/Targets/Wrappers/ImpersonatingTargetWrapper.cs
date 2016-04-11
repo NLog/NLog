@@ -58,8 +58,18 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="ImpersonatingTargetWrapper" /> class.
         /// </summary>
         public ImpersonatingTargetWrapper()
-            : this(null)
+            : this((Target)null)
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImpersonatingTargetWrapper" /> class.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        public ImpersonatingTargetWrapper(string name)
+            : this()
+        {
+            this.Name = name;
         }
 
         /// <summary>

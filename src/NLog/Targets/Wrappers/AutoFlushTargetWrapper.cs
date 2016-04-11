@@ -63,8 +63,21 @@ namespace NLog.Targets.Wrappers
         /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
         /// </remarks>
         public AutoFlushTargetWrapper()
-            : this(null)
+            : this((Target)null)
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoFlushTargetWrapper" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target</param>
+        public AutoFlushTargetWrapper(string name)
+            : this()
+        {
+            this.Name = name;
         }
 
         /// <summary>

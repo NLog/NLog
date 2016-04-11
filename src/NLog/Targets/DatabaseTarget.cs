@@ -93,6 +93,15 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseTarget" /> class.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        public DatabaseTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets the name of the database provider.
         /// </summary>
         /// <remarks>

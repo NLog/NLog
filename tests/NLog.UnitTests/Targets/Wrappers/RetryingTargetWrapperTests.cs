@@ -140,6 +140,11 @@ namespace NLog.UnitTests.Targets.Wrappers
                 this.Events = new List<LogEventInfo>();
             }
 
+            public MyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             public List<LogEventInfo> Events { get; set; }
 
             public int ThrowExceptions { get; set; }

@@ -79,6 +79,28 @@ namespace NLog.Targets
 #endif
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        public ConsoleTarget() : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public ConsoleTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Initializes the target.
         /// </summary>
         protected override void InitializeTarget()

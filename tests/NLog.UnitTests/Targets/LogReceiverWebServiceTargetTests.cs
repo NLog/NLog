@@ -209,6 +209,14 @@ namespace NLog.UnitTests.Targets
             public NLogEvents LastPayload;
             public int SendCount;
 
+            public MyLogReceiverWebServiceTarget() : base()
+            {
+            }
+
+            public MyLogReceiverWebServiceTarget(string name) : base(name)
+            {
+            }
+
             protected internal override bool OnSend(NLogEvents events, IEnumerable<AsyncLogEventInfo> asyncContinuations)
             {
                 this.LastPayload = events;
