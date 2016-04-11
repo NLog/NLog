@@ -71,14 +71,14 @@ namespace NLog.UnitTests.Targets
                         {
                             if (pi.CanRead && !pi.Name.Equals("Name"))
                             {
-                                if (pi.GetValue(defaultConstructedTarget) != null && pi.GetValue(namedConstructedTarget) != null)
+                                if (pi.GetValue(defaultConstructedTarget, null) != null && pi.GetValue(namedConstructedTarget, null) != null)
                                 {
-                                    Assert.Equal(pi.GetValue(defaultConstructedTarget), namedConstructedTarget);
+                                    Assert.Equal(pi.GetValue(defaultConstructedTarget, null), namedConstructedTarget);
                                 }
                                 else
                                 {
-                                    Assert.Null(pi.GetValue(defaultConstructedTarget));
-                                    Assert.Null(pi.GetValue(namedConstructedTarget));
+                                    Assert.Null(pi.GetValue(defaultConstructedTarget, null));
+                                    Assert.Null(pi.GetValue(namedConstructedTarget, null));
                                 }
                             }
                         }
