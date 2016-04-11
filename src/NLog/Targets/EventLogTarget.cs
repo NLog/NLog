@@ -90,6 +90,15 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="EventLogTarget"/> class.
+        /// </summary>
+        /// <param name="name">Name of the target.</param>
+        public EventLogTarget(string name) : this(AppDomainWrapper.CurrentDomain)
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets the name of the machine on which Event Log service is running.
         /// </summary>
         /// <docgen category='Event Log Options' order='10' />

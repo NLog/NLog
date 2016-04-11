@@ -522,6 +522,16 @@ namespace NLog.UnitTests
         public sealed class MemoryQueueTarget : TargetWithLayout
         {
             private int maxSize;
+
+            public MemoryQueueTarget() : this(1)
+            {
+            }
+
+            public MemoryQueueTarget(string name)
+            {
+                this.Name = name;
+            }
+
             public MemoryQueueTarget(int size)
             {
                 this.Logs = new Queue<string>();

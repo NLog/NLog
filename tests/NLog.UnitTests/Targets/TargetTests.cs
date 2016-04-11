@@ -45,6 +45,55 @@ namespace NLog.UnitTests.Targets
     public class TargetTests : NLogTestBase
     {
         [Fact]
+        public void ConstructorsTest()
+        {
+            List<Type> targetTypes = new List<Type>();
+
+            foreach (Type candidateType in typeof(Target).Assembly.GetExportedTypes())
+            {
+                if (!candidateType.IsAbstract &&
+                    typeof(Target).IsAssignableFrom(candidateType))
+                {
+                    Target defaultConstructedTarget;
+                    Target namedConstructedTarget;
+                    bool constructionFailed = false;
+
+                    try
+                    {
+                        // Check if the Target can be created using a default constructor
+                        defaultConstructedTarget = (Target)Activator.CreateInstance(candidateType);
+
+                        // Check if the Target can be created using a constructor with the name parameter
+                        namedConstructedTarget = (Target)Activator.CreateInstance(candidateType, candidateType.ToString());
+
+                        // Check that the created targets are the same except for name
+                        foreach (System.Reflection.PropertyInfo pi in (typeof(Target)).GetProperties())
+                        {
+                            if (pi.CanRead && !pi.Name.Equals("Name"))
+                            {
+                                if (pi.GetValue(defaultConstructedTarget) != null && pi.GetValue(namedConstructedTarget) != null)
+                                {
+                                    Assert.Equal(pi.GetValue(defaultConstructedTarget), namedConstructedTarget);
+                                }
+                                else
+                                {
+                                    Assert.Null(pi.GetValue(defaultConstructedTarget));
+                                    Assert.Null(pi.GetValue(namedConstructedTarget));
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        constructionFailed = true;
+                        string failureMessage = String.Format("Error testing constructors for type '{0}'.\n{1}", candidateType, ex.ToString());
+                        Assert.False(constructionFailed, failureMessage);
+                    }
+                }
+            }
+        }
+
+        [Fact]
         public void InitializeTest()
         {
             var target = new MyTarget();
@@ -291,6 +340,15 @@ namespace NLog.UnitTests.Targets
             public bool ThrowOnInitialize { get; set; }
             public int WriteCount3 { get; set; }
 
+            public MyTarget() : base()
+            {
+            }
+
+            public MyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             protected override void InitializeTarget()
             {
                 if (this.ThrowOnInitialize)
@@ -363,6 +421,15 @@ namespace NLog.UnitTests.Targets
 
         public class WrongMyTarget : Target
         {
+            public WrongMyTarget() : base()
+            {
+            }
+
+            public WrongMyTarget(string name) : this()
+            {
+                this.Name = name;
+            }
+
             /// <summary>
             /// Initializes the target. Can be used by inheriting classes
             /// to initialize logging.
