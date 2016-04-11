@@ -476,7 +476,7 @@ namespace NLog.Targets
         /// </summary>
         /// <param name="logEvents">Logging events to be written out.</param>
         protected virtual void Write(AsyncLogEventInfo[] logEvents)
-        {//todo: Possible the only place for lock
+        {
             for (int i = 0; i < logEvents.Length; ++i)
             {
                 this.Write(logEvents[i]);
