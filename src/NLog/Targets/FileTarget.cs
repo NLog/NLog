@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -617,6 +617,12 @@ namespace NLog.Targets
         {
             var nullEvent = LogEventInfo.CreateNullEvent();
             string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
+            if (fileNamePattern == null)
+            {
+                InternalLogger.Debug("no RefreshFileArchive because fileName is NULL");
+                return;
+            }
+
             if (!ContainsFileNamePattern(fileNamePattern))
             {
                 try
@@ -870,6 +876,10 @@ namespace NLog.Targets
 
         private string GetCleanedFileName(LogEventInfo logEvent)
         {
+            if (this.FileName == null)
+            {
+                return null;
+            }
             return cachedCleanedFileNamed ?? CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
         }
 
@@ -938,7 +948,10 @@ namespace NLog.Targets
                     }
 
                     string fileNamePattern = this.GetArchiveFileNamePattern(fileName, logEvent);
-                    this.DeleteOldDateArchives(fileNamePattern);
+                    if (fileNamePattern != null)
+                    {
+                        this.DeleteOldDateArchives(fileNamePattern);
+                    }
                     this.previousFileNames.Enqueue(fileName);
                 }
             }
@@ -1578,6 +1591,12 @@ namespace NLog.Targets
             }
 
             string fileNamePattern = GetArchiveFileNamePattern(fileName, eventInfo);
+
+            if (fileNamePattern == null)
+            {
+                InternalLogger.Warn("Skip auto archive because fileName is NULL");
+                return;
+            }
 
             if (!ContainsFileNamePattern(fileNamePattern))
             {
