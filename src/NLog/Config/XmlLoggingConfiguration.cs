@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -63,6 +63,14 @@ namespace NLog.Config
     ///<remarks>This class is thread-safe.<c>.ToList()</c> is used for that purpose.</remarks>
     public class XmlLoggingConfiguration : LoggingConfiguration
     {
+#if __ANDROID__
+
+        /// <summary>
+        /// Prefix for assets in Xamarin Android
+        /// </summary>
+        internal const string AssetsPrefix = "assets/";
+#endif
+
         #region private fields
 
         private readonly Dictionary<string, bool> fileMustAutoReloadLookup = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
@@ -133,11 +141,10 @@ namespace NLog.Config
                 fileName = fileName.Trim();
 #if __ANDROID__
                 //suport loading config from special assets folder in nlog.config
-                const string assetsPrefix = "assets/";
-                if (fileName.StartsWith(assetsPrefix, StringComparison.OrdinalIgnoreCase))
+                if (fileName.StartsWith(AssetsPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     //remove prefix
-                    fileName = fileName.Substring(assetsPrefix.Length);
+                    fileName = fileName.Substring(AssetsPrefix.Length);
                     Stream stream = Android.App.Application.Context.Assets.Open(fileName);
                     return XmlReader.Create(stream);
                 }

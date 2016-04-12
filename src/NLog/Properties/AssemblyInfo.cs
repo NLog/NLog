@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -68,7 +68,7 @@ using System.Security;
 [assembly: AssemblyDescription("NLog")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NLog")]
-[assembly: AssemblyCopyright("Copyright (c) 2004-2011 by Jaroslaw Kowalski")]
+[assembly: AssemblyCopyright("Copyright (c) 2004-2016 Jaroslaw Kowalski, Kim Christensen, Julian Verdurmen")]
 [assembly: AssemblyCulture("")]
 //assembly version should ONLY be changed with major release, e.g. 5.0, 6.0 Don't change this with minor releases, e.g. 4.2, 4.3 etc.
 [assembly: AssemblyVersion("4.0.0.0")]

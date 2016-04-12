@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -222,7 +222,14 @@ namespace NLog.Layouts
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
         {
             this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
-            if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
+
+            if (this.Renderers.Count == 0)
+            {
+                //todo fixedText = null is also used if the text is fixed, but is a empty renderers not fixed?
+                this.fixedText = null;
+                this.StackTraceUsage = StackTraceUsage.None;
+            }
+            else if (this.Renderers.Count == 1 && this.Renderers[0] is LiteralLayoutRenderer)
             {
                 this.fixedText = ((LiteralLayoutRenderer)this.Renderers[0]).Text;
                 this.StackTraceUsage = StackTraceUsage.None;

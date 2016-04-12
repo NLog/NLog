@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -195,6 +195,29 @@ namespace NLog
 #endif
                         }
                     }
+
+#if __ANDROID__
+                    if (this.config == null)
+                    {
+                        //try nlog.config in assets folder
+                        const string nlogConfigFilename = "NLog.config";
+                        try
+                        {
+                            using (var stream = Android.App.Application.Context.Assets.Open(nlogConfigFilename))
+                            {
+                                if (stream != null)
+                                {
+                                    LoadLoggingConfiguration(XmlLoggingConfiguration.AssetsPrefix + nlogConfigFilename);
+                                }
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            InternalLogger.Trace(e, "no {0} in assets folder", nlogConfigFilename);
+                        }
+
+                    }
+#endif
 
                     if (this.config != null)
                     {

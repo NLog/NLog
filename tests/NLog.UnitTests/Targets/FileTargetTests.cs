@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -103,6 +103,43 @@ namespace NLog.UnitTests.Targets
             {
                 if (File.Exists(logFile))
                     File.Delete(logFile);
+            }
+        }
+
+        /// <summary>
+        /// There was a bug when creating the file in the root.
+        /// 
+        /// Please note that this test can fail because the unit test doesn't have write access in the root.
+        /// </summary>
+        [Fact]
+        public void SimpleFileTestInRoot()
+        {
+
+            if (NLog.Internal.PlatformDetector.IsWin32)
+            {
+                var logFile = "c:\\nlog-test.log";
+                try
+                {
+                    var fileTarget = WrapFileTarget(new FileTarget
+                    {
+                        FileName = SimpleLayout.Escape(logFile),
+                        LineEnding = LineEndingMode.LF,
+                        Layout = "${level} ${message}",
+                    });
+
+                    SimpleConfigurator.ConfigureForTargetLogging(fileTarget, LogLevel.Debug);
+
+                    logger.Debug("aaa");
+                    logger.Info("bbb");
+                    logger.Warn("ccc");
+                    LogManager.Configuration = null;
+                    AssertFileContents(logFile, "Debug aaa\nInfo bbb\nWarn ccc\n", Encoding.UTF8);
+                }
+                finally
+                {
+                    if (File.Exists(logFile))
+                        File.Delete(logFile);
+                }
             }
         }
 
@@ -813,8 +850,8 @@ namespace NLog.UnitTests.Targets
 
                     if (timeSource.Time.Date != previousWriteTime.Date)
                     {
-                        string currentLogFile = includeDateInLogFilePath 
-                            ? logFile.Replace("${shortdate}", timeSource.Time.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)) 
+                        string currentLogFile = includeDateInLogFilePath
+                            ? logFile.Replace("${shortdate}", timeSource.Time.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture))
                             : logFile;
                         // Simulate that previous file write began in previous day and ended on current day.
                         try

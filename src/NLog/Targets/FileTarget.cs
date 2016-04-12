@@ -1,5 +1,5 @@
 // 
-// Copyright (c) 2004-2011 Jaroslaw Kowalski <jaak@jkowalski.net>
+// Copyright (c) 2004-2016 Jaroslaw Kowalski <jaak@jkowalski.net>, Kim Christensen, Julian Verdurmen
 // 
 // All rights reserved.
 // 
@@ -605,6 +605,12 @@ namespace NLog.Targets
         {
             var nullEvent = LogEventInfo.CreateNullEvent();
             string fileNamePattern = GetArchiveFileNamePattern(GetCleanedFileName(nullEvent), nullEvent);
+            if (fileNamePattern == null)
+            {
+                InternalLogger.Debug("no RefreshFileArchive because fileName is NULL");
+                return;
+            }
+
             if (!ContainsFileNamePattern(fileNamePattern))
             {
                 try
@@ -860,6 +866,10 @@ namespace NLog.Targets
 
         private string GetCleanedFileName(LogEventInfo logEvent)
         {
+            if (this.FileName == null)
+            {
+                return null;
+            }
             return cachedCleanedFileNamed ?? CleanupInvalidFileNameChars(this.FileName.Render(logEvent));
         }
 
@@ -923,7 +933,10 @@ namespace NLog.Targets
                         this.previousFileNames.Dequeue();
                     }
                     string fileNamePattern = this.GetArchiveFileNamePattern(fileName, logEvent);
-                    this.DeleteOldDateArchives(fileNamePattern);
+                    if (fileNamePattern != null)
+                    {
+                        this.DeleteOldDateArchives(fileNamePattern);
+                    }
                     this.previousFileNames.Enqueue(fileName);
                 }
             }
@@ -1565,6 +1578,12 @@ namespace NLog.Targets
 
             string fileNamePattern = GetArchiveFileNamePattern(fileName, eventInfo);
 
+            if (fileNamePattern == null)
+            {
+                InternalLogger.Warn("Skip auto archive because fileName is NULL");
+                return;
+            }
+
             if (!ContainsFileNamePattern(fileNamePattern))
             {
                 if (fileArchive.Archive(fileNamePattern, fileInfo.FullName, CreateDirs))
@@ -1992,7 +2011,8 @@ namespace NLog.Targets
             var lastDirSeparator = fileName.LastIndexOfAny(DirectorySeparatorChars);
 
             var fileName1 = fileName.Substring(lastDirSeparator + 1);
-            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator) : string.Empty;
+            //keep the / in the dirname, because dirname could be c:/ and combine of c: and file name won't work well.
+            var dirName = lastDirSeparator > 0 ? fileName.Substring(0, lastDirSeparator + 1) : string.Empty;
 
             char[] fileName1Chars = null;
             foreach (var invalidChar in InvalidFileNameChars)
@@ -2012,9 +2032,13 @@ namespace NLog.Targets
 
             //only if an invalid char was replaced do we create a new string.
             if (fileName1Chars != null)
+            {
                 fileName1 = new string(fileName1Chars);
+                return Path.Combine(dirName, fileName1);
+            }
+            return fileName;
 
-            return Path.Combine(dirName, fileName1);
+
 #else
             return fileName;
 #endif
