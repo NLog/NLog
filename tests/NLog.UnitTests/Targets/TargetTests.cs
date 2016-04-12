@@ -47,8 +47,6 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ConstructorsTest()
         {
-            List<Type> targetTypes = new List<Type>();
-
             foreach (Type candidateType in typeof(Target).Assembly.GetExportedTypes())
             {
                 if (!candidateType.IsAbstract &&
