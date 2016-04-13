@@ -10,7 +10,17 @@ before_test:
 after_test:
   - tests\DeleteTestUsers.cmd
 
+artifacts:
+  - path: '**\*.nupkg'
 deploy: off
 # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
   - packages -> **\packages.config
+
+test_script:
+#  - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
+  - nuget.exe install OpenCover -ExcludeVersion
+  - OpenCover\tools\OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" -targetargs:"\"C:\projects\nlog\artifacts\Debug\dnx451\NLog.UnitTests.dll\" -appveyor -noshadow"  -returntargetcode -filter:"+[NLog]* +[NLog.Extended]* -[NLog]JetBrains.Annotations.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:coverage.xml
+  - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+  - pip install codecov
+  - codecov -f "coverage.xml"
