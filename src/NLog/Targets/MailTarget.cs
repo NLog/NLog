@@ -108,7 +108,22 @@ namespace NLog.Targets
         /// Gets the mailSettings/smtp configuration from app.config in cases when we need those configuration.
         /// E.g when UseSystemNetMailSettings is enabled and we need to read the From attribute from system.net/mailSettings/smtp
         /// </summary>
-        private readonly Lazy<SmtpSection> _lazyConfigurationSmptSection = new Lazy<SmtpSection>(() => System.Configuration.ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection);
+        private SmtpSection _smptConfigurationSection;
+
+        private SmtpSection SmtpSection
+        {
+            get
+            {
+                if (null == _smptConfigurationSection)
+                {
+                    _smptConfigurationSection = System.Configuration.ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
+                }
+
+                return _smptConfigurationSection;
+            }
+        }
+
+
 
         /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
@@ -537,7 +552,7 @@ namespace NLog.Targets
 
             if (UseSystemNetMailSettings)
             {
-                var fromValue = _lazyConfigurationSmptSection.Value.From;
+                var fromValue = SmtpSection.From;
 
                 if (!string.IsNullOrEmpty(fromValue))
                 {
