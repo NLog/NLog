@@ -42,6 +42,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Net;
     using System.Net.Mail;
+    using System.Configuration;
     using System.Net.Configuration;
     using System.Text;
     using System.IO;
@@ -104,26 +105,27 @@ namespace NLog.Targets
             this.Timeout = 10000;
         }
 
+
+        private SmtpSection _currentailSettings;
+
         /// <summary>
         /// Gets the mailSettings/smtp configuration from app.config in cases when we need those configuration.
         /// E.g when UseSystemNetMailSettings is enabled and we need to read the From attribute from system.net/mailSettings/smtp
         /// </summary>
-        private SmtpSection _smptConfigurationSection;
-
-        private SmtpSection SmtpSection
+        public SmtpSection MailSettings
         {
             get
             {
-                if (null == _smptConfigurationSection)
+                if (null == _currentailSettings)
                 {
-                    _smptConfigurationSection = System.Configuration.ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
+                    _currentailSettings = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).GetSection("system.net/mailSettings/smtp") as SmtpSection;
                 }
 
-                return _smptConfigurationSection;
+                return _currentailSettings;
             }
+
+            set { _currentailSettings = value; }
         }
-
-
 
         /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
@@ -305,10 +307,23 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-
+            InitializeFrom();
             CheckRequiredParameters();
 
             base.InitializeTarget();
+        }
+
+        /// <summary>
+        /// In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
+        /// Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
+        /// It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
+        ///  </summary>
+        private void InitializeFrom()
+        {
+            if (UseSystemNetMailSettings)
+            {
+                From = string.IsNullOrEmpty(MailSettings.From) ? From : MailSettings.From;
+            }
         }
 
         /// <summary>
@@ -549,16 +564,6 @@ namespace NLog.Targets
             var msg = new MailMessage();
 
             var renderedFrom = this.From == null ? null : this.From.Render(lastEvent);
-
-            if (UseSystemNetMailSettings)
-            {
-                var fromValue = SmtpSection.From;
-
-                if (!string.IsNullOrEmpty(fromValue))
-                {
-                    renderedFrom = fromValue;
-                }
-            }
 
             if (string.IsNullOrEmpty(renderedFrom))
             {
