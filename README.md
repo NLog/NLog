@@ -5,7 +5,7 @@
 ===
 [![Join the chat at https://gitter.im/NLog/NLog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLog/NLog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Twitter Follow](https://img.shields.io/twitter/follow/NLogOfficial.svg?style=social?maxAge=2592000)](https://twitter.com/NLogOfficial)
-[![Last News](https://img.shields.io/badge/News-24_mar_2016-orange.svg)](http://nlog-project.org/archives/)
+[![Last News](https://img.shields.io/badge/News-16_april_2016-orange.svg)](http://nlog-project.org/archives/)
 [![codecov.io](https://codecov.io/github/NLog/NLog/coverage.svg?branch=master)](https://codecov.io/github/NLog/NLog?branch=master) 
 [![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-3D9FE0.svg)](http://semver.org/)
 
