@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 using JetBrains.Annotations;
 
 #if !SILVERLIGHT
@@ -49,6 +48,12 @@ namespace NLog.Targets
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+
+    // For issue #1351 - These are not available for Android or IOS
+#if !__ANDROID__ && !__IOS__
+    using System.Configuration;
+    using System.Net.Configuration;
+#endif
 
     /// <summary>
     /// Sends log messages by email using SMTP protocol.
@@ -103,6 +108,29 @@ namespace NLog.Targets
             this.SmtpAuthentication = SmtpAuthenticationMode.None;
             this.Timeout = 10000;
         }
+
+#if !__ANDROID__ && !__IOS__
+        private SmtpSection _currentailSettings;
+
+        /// <summary>
+        /// Gets the mailSettings/smtp configuration from app.config in cases when we need those configuration.
+        /// E.g when UseSystemNetMailSettings is enabled and we need to read the From attribute from system.net/mailSettings/smtp
+        /// </summary>
+        public SmtpSection MailSettings
+        {
+            get
+            {
+                if (null == _currentailSettings)
+                {
+                    _currentailSettings = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).GetSection("system.net/mailSettings/smtp") as SmtpSection;
+                }
+
+                return _currentailSettings;
+            }
+
+            set { _currentailSettings = value; }
+        }
+#endif
 
         /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
@@ -284,10 +312,24 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-
             CheckRequiredParameters();
 
             base.InitializeTarget();
+        }
+
+        /// <summary>
+        /// In contrary to other settings, System.Net.Mail.SmtpClient doesn't read the 'From' attribute from the system.net/mailSettings/smtp section in the config file.
+        /// Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
+        /// It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
+        ///  </summary>
+        private void ConfigureFrom()
+        {
+#if !__ANDROID__ && !__IOS__
+                if (!string.IsNullOrEmpty(MailSettings.From))
+                {
+                    From = MailSettings.From;
+                }
+#endif
         }
 
         /// <summary>
@@ -315,7 +357,13 @@ namespace NLog.Targets
                     using (ISmtpClient client = this.CreateSmtpClient())
                     {
                         if (!UseSystemNetMailSettings)
+                        {
                             ConfigureMailClient(lastEvent, client);
+                        }
+                        else
+                        {
+			                ConfigureFrom();
+                        }
 
                         InternalLogger.Debug("Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl);
                         InternalLogger.Trace("  Subject: '{0}'", msg.Subject);
@@ -405,7 +453,7 @@ namespace NLog.Targets
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
             }
-            
+
             if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
@@ -416,7 +464,7 @@ namespace NLog.Targets
                 var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
                 if (string.IsNullOrEmpty(renderedSmtpServer))
                 {
-                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer" ));
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
                 }
 
                 client.Host = renderedSmtpServer;
@@ -448,7 +496,7 @@ namespace NLog.Targets
             client.DeliveryMethod = this.DeliveryMethod;
             client.Timeout = this.Timeout;
 
-            
+
         }
 
         /// <summary>
@@ -525,9 +573,10 @@ namespace NLog.Targets
         /// </summary>
         private MailMessage CreateMailMessage(LogEventInfo lastEvent, string body)
         {
-
             var msg = new MailMessage();
+
             var renderedFrom = this.From == null ? null : this.From.Render(lastEvent);
+
             if (string.IsNullOrEmpty(renderedFrom))
             {
                 throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "From");
