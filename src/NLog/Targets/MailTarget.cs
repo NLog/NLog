@@ -33,7 +33,7 @@
 
 using JetBrains.Annotations;
 
-#if !SILVERLIGHT && !__ANDROID__
+#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
 
 namespace NLog.Targets
 {
