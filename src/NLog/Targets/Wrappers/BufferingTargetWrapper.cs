@@ -190,15 +190,12 @@ namespace NLog.Targets.Wrappers
 
         private void FlushCallback(object state)
         {
-            lock (this.SyncRoot)
+            if (this.IsInitialized)
             {
-                if (this.IsInitialized)
+                AsyncLogEventInfo[] events = this.buffer.GetEventsAndClear();
+                if (events.Length > 0)
                 {
-                    AsyncLogEventInfo[] events = this.buffer.GetEventsAndClear();
-                    if (events.Length > 0)
-                    {
-                        this.WrappedTarget.WriteAsyncLogEvents(events);
-                    }
+                    this.WrappedTarget.WriteAsyncLogEvents(events);
                 }
             }
         }
