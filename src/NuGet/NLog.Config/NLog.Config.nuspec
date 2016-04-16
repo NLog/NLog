@@ -16,7 +16,7 @@
     <releaseNotes>NLog $BuildVersion$</releaseNotes>
     <dependencies>
       <dependency id="NLog" version="$BuildVersion$" />
-      <dependency id="NLog.Schema" version="4.2.1" />
+      <dependency id="NLog.Schema" version="4.3.0" />
     </dependencies>
     <tags>nlog, xml, config</tags>
   </metadata>
