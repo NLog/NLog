@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 using JetBrains.Annotations;
 
 #if !SILVERLIGHT
@@ -43,6 +42,7 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Net;
     using System.Net.Mail;
+    using System.Net.Configuration;
     using System.Text;
     using System.IO;
     using NLog.Common;
@@ -103,6 +103,12 @@ namespace NLog.Targets
             this.SmtpAuthentication = SmtpAuthenticationMode.None;
             this.Timeout = 10000;
         }
+
+        /// <summary>
+        /// Gets the mailSettings/smtp configuration from app.config in cases when we need those configuration.
+        /// E.g when UseSystemNetMailSettings is enabled and we need to read the From attribute from system.net/mailSettings/smtp
+        /// </summary>
+        private readonly Lazy<SmtpSection> _lazyConfigurationSmptSection = new Lazy<SmtpSection>(() => System.Configuration.ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection);
 
         /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
@@ -405,7 +411,7 @@ namespace NLog.Targets
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
             }
-            
+
             if (this.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory && string.IsNullOrEmpty(this.PickupDirectoryLocation))
             {
                 throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "PickupDirectoryLocation"));
@@ -416,7 +422,7 @@ namespace NLog.Targets
                 var renderedSmtpServer = this.SmtpServer.Render(lastEvent);
                 if (string.IsNullOrEmpty(renderedSmtpServer))
                 {
-                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer" ));
+                    throw new NLogRuntimeException(string.Format(RequiredPropertyIsEmptyFormat, "SmtpServer"));
                 }
 
                 client.Host = renderedSmtpServer;
@@ -448,7 +454,7 @@ namespace NLog.Targets
             client.DeliveryMethod = this.DeliveryMethod;
             client.Timeout = this.Timeout;
 
-            
+
         }
 
         /// <summary>
@@ -525,9 +531,20 @@ namespace NLog.Targets
         /// </summary>
         private MailMessage CreateMailMessage(LogEventInfo lastEvent, string body)
         {
-
             var msg = new MailMessage();
+
             var renderedFrom = this.From == null ? null : this.From.Render(lastEvent);
+
+            if (UseSystemNetMailSettings)
+            {
+                var fromValue = _lazyConfigurationSmptSection.Value.From;
+
+                if (!string.IsNullOrEmpty(fromValue))
+                {
+                    renderedFrom = fromValue;
+                }
+            }
+
             if (string.IsNullOrEmpty(renderedFrom))
             {
                 throw new NLogRuntimeException(RequiredPropertyIsEmptyFormat, "From");
