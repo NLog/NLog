@@ -115,7 +115,7 @@ namespace NLog.UnitTests.LayoutRenderers
 
             LogManager.Configuration.Variables["password"] = "123";
             ILogger logger = LogManager.GetLogger("A");
-
+            // LogManager.ReconfigExistingLoggers();
             logger.Debug("msg");
             var lastMessage = GetDebugLastMessage("debug");
             Assert.Equal("msg and 123==123", lastMessage);
@@ -243,8 +243,9 @@ namespace NLog.UnitTests.LayoutRenderers
         public void null_should_be_ok()
         {
             Layout l = "${var:var1}";
-            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
-            LogManager.Configuration.Variables["var1"] = null;
+            var config = new NLog.Config.LoggingConfiguration();
+            config.Variables["var1"] = null;
+            l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal("", result);
         }
@@ -253,8 +254,9 @@ namespace NLog.UnitTests.LayoutRenderers
         public void null_should_not_use_default()
         {
             Layout l = "${var:var1:default=x}";
-            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
-            LogManager.Configuration.Variables["var1"] = null;
+            var config = new NLog.Config.LoggingConfiguration();
+            config.Variables["var1"] = null;
+            l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal("", result);
         }
@@ -263,8 +265,8 @@ namespace NLog.UnitTests.LayoutRenderers
         public void notset_should_use_default()
         {
             Layout l = "${var:var1:default=x}";
-            LogManager.Configuration = new NLog.Config.LoggingConfiguration();
-
+            var config = new NLog.Config.LoggingConfiguration();
+            l.Initialize(config);
             var result = l.Render(LogEventInfo.CreateNullEvent());
             Assert.Equal("x", result);
         }
