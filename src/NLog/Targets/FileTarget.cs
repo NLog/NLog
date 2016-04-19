@@ -663,7 +663,16 @@ namespace NLog.Targets
                             {
                                 while (true)
                                 {
-                                    Thread.Sleep(200);
+                                    try
+                                    {
+                                        Thread.Sleep(200);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        //non-critical, this could be a ThreadAbortException
+                                        InternalLogger.Warn(ex, "Exception in Thread.Sleep, most of the time not an issue.");
+                                    }
+                                   
                                     lock (SyncRoot)
                                         this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
                                 }
