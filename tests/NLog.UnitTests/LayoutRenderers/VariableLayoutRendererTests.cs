@@ -103,7 +103,7 @@ namespace NLog.UnitTests.LayoutRenderers
             <nlog>
                 <variable name='dir' value='{0}' />
                 <targets>
-                    <target name='f' type='file' fileName='${{var:dir}}\test.log' layout='${{message}}' lineEnding='LF' />
+                    <target name='f' type='file' fileName='${{var:dir}}/test.log' layout='${{message}}' lineEnding='LF' />
                 </targets>
                 <rules>
                     <logger name='*' writeTo='f' />
