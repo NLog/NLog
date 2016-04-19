@@ -234,6 +234,31 @@ namespace NLog.UnitTests
                 </rules>
             </nlog>");
         }
+
+        [Fact]
+        public void ValueWithVariableMustNotCauseInfiniteRecursion()
+        {
+            LogManager.Configuration = null;
+            
+            File.WriteAllText("NLog.config", @"
+            <nlog>
+                <variable name='dir' value='c:\mylogs' />
+                <targets>
+                    <target name='f' type='file' fileName='${var:dir}\test.log' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='f' />
+                </rules>
+            </nlog>");
+            try
+            {
+                LogManager.Configuration.ToString();
+            }
+            finally
+            {
+                File.Delete("NLog.config");
+            }
+        }
         
         [Fact]
         public void EnableAndDisableLogging()
