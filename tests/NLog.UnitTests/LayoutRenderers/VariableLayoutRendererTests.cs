@@ -33,12 +33,10 @@
 
 #region
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
+using System.IO;
 using Xunit;
 
 #endregion
@@ -47,8 +45,6 @@ namespace NLog.UnitTests.LayoutRenderers
 {
     public class VariableLayoutRendererTests : NLogTestBase
     {
-
-
         [Fact]
         public void Var_from_xml()
         {
@@ -97,6 +93,34 @@ namespace NLog.UnitTests.LayoutRenderers
             Assert.Equal("msg and logger=A=123", lastMessage);
         }
 
+        [Fact]
+        public void Var_in_file_target()
+        {
+			string folderPath = Path.GetTempPath();
+			string logFilePath = Path.Combine(folderPath, "test.log");
+
+            LogManager.Configuration = CreateConfigurationFromString(string.Format(@"
+            <nlog>
+                <variable name='dir' value='{0}' />
+                <targets>
+                    <target name='f' type='file' fileName='${{var:dir}}\test.log' layout='${{message}}' lineEnding='LF' />
+                </targets>
+                <rules>
+                    <logger name='*' writeTo='f' />
+                </rules>
+            </nlog>", folderPath));
+            try
+            {
+                LogManager.GetLogger("A").Debug("msg");
+
+                Assert.True(File.Exists(logFilePath), "Log file was not created at expected file path.");
+                Assert.Equal("msg\n", File.ReadAllText(logFilePath));
+            }
+            finally
+            {
+                File.Delete(logFilePath);
+            }
+        }
 
         [Fact]
         public void Var_with_other_var()
