@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Globalization;
+
 namespace NLog.UnitTests.LayoutRenderers
 {
     using NLog.LayoutRenderers;
@@ -45,7 +47,7 @@ namespace NLog.UnitTests.LayoutRenderers
             dt.UniversalTime = true;
 
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("HH:mm:ss.ffff"), dt.Render(ei));
+            Assert.Equal(ei.TimeStamp.ToUniversalTime().ToString("HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
         }
 
         [Fact]
@@ -55,7 +57,7 @@ namespace NLog.UnitTests.LayoutRenderers
             dt.UniversalTime = false;
 
             var ei = new LogEventInfo(LogLevel.Info, "logger", "msg");
-            Assert.Equal(ei.TimeStamp.ToString("HH:mm:ss.ffff"), dt.Render(ei));
+            Assert.Equal(ei.TimeStamp.ToString("HH:mm:ss.ffff", CultureInfo.InvariantCulture), dt.Render(ei));
         }
         
         [Fact]
