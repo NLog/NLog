@@ -35,15 +35,15 @@ using System.IO;
 
 namespace NLog.UnitTests.Config
 {
-    using System;
-    using System.Globalization;
-    using System.Text;
     using NLog.Conditions;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using System;
+    using System.Globalization;
+    using System.Text;
     using Xunit;
 
     public class TargetConfigurationTests : NLogTestBase
@@ -89,6 +89,31 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(t.Layout);
             Assert.Equal(1, l.Renderers.Count);
             Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+        }
+
+        [Fact]
+        public void ComplexElementSyntaxTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <extensions>
+                    <add type='" + typeof(StructuredConfigDebugTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+                <targets>
+                    <target type='StructuredConfigDebug'>
+                      <name>structuredTgt</name>
+                      <layout>${message}</layout>
+                      <parameter name='parent'>
+                        <parameter name='child' />
+                      </parameter>
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("structuredTgt") as StructuredConfigDebugTarget;
+            Assert.NotNull(t);
+            Assert.Equal("parent", t.Parameter.Name);
+            Assert.Equal("child", t.Parameter.Parameter.Name);
         }
 
         [Fact]
@@ -644,6 +669,34 @@ namespace NLog.UnitTests.Config
             Value2 = 2,
 
             Value3 = 4,
+        }
+
+        [Target("StructuredConfigDebug")]
+        public class StructuredConfigDebugTarget : TargetWithLayout
+        {
+            public TargetParentParameter Parameter { get; set; }
+
+            public StructuredConfigDebugTarget()
+            {
+                Parameter = new TargetParentParameter();
+            }
+        }
+
+        public class TargetParentParameter
+        {
+            public string Name { get; set; }
+
+            public TargetChildParameter Parameter { get; set; }
+
+            public TargetParentParameter()
+            {
+                Parameter = new TargetChildParameter();
+            }
+        }
+
+        public class TargetChildParameter
+        {
+            public string Name { get; set; }
         }
     }
 }

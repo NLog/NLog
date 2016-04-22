@@ -1066,6 +1066,11 @@ namespace NLog.Config
                 return;
             }
 
+            if (this.SetItemFromElement(o, element))
+            {
+                return;
+            }
+
             PropertyHelper.SetPropertyFromString(o, element.LocalName, this.ExpandSimpleVariables(element.Value), this.ConfigurationItemFactory);
         }
 
@@ -1091,23 +1096,6 @@ namespace NLog.Config
             }
 
             return false;
-        }
-
-        private void ConfigureObjectFromAttributes(object targetObject, NLogXmlElement element, bool ignoreType)
-        {
-            var attributeValues = element.AttributeValues.ToList();
-            foreach (var kvp in attributeValues)
-            {
-                string childName = kvp.Key;
-                string childValue = kvp.Value;
-
-                if (ignoreType && childName.Equals("type", StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-
-                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.ConfigurationItemFactory);
-            }
         }
 
         private bool SetLayoutFromElement(object o, NLogXmlElement layoutElement)
@@ -1137,6 +1125,42 @@ namespace NLog.Config
             }
 
             return false;
+        }
+
+        private bool SetItemFromElement(object o, NLogXmlElement element)
+        {
+            if (element.Value != null)
+                return false;
+
+            string name = element.LocalName;
+
+            PropertyInfo propInfo;
+            if (!PropertyHelper.TryGetPropertyInfo(o, name, out propInfo))
+            {
+                return false;
+            }
+
+            object item = propInfo.GetValue(o, null);
+            this.ConfigureObjectFromAttributes(item, element, true);
+            this.ConfigureObjectFromElement(item, element);
+            return true;
+        }
+
+        private void ConfigureObjectFromAttributes(object targetObject, NLogXmlElement element, bool ignoreType)
+        {
+            var attributeValues = element.AttributeValues.ToList();
+            foreach (var kvp in attributeValues)
+            {
+                string childName = kvp.Key;
+                string childValue = kvp.Value;
+
+                if (ignoreType && childName.Equals("type", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.ConfigurationItemFactory);
+            }
         }
 
         private void ConfigureObjectFromElement(object targetObject, NLogXmlElement element)
