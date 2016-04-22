@@ -32,7 +32,6 @@
 // 
 
 
-
 #if !SILVERLIGHT && !__ANDROID__ && !__IOS__
 
 namespace NLog.UnitTests.Targets
@@ -41,12 +40,12 @@ namespace NLog.UnitTests.Targets
 	using System.Collections.Generic;
 	using System.Net;
 	using System.Net.Mail;
-    using System.Configuration;
+	using System.Configuration;
 	using NLog.Internal;
 	using NLog.Layouts;
 	using NLog.Targets;
 	using Xunit;
-	  using System.IO;
+	using System.IO;
 
 	public class MailTargetTests : NLogTestBase
 	{
@@ -753,22 +752,22 @@ namespace NLog.UnitTests.Targets
 		[Fact]
 		public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile()
 		{
-		    var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);            
-            var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
-		    section.From = "foo@bar.com";
+			var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);            
+			var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
+			section.From = "foo@bar.com";
 
 			var mmt = new MockMailTarget()
 			{
-                From = "foo@foo.com",
+				From = "foo@foo.com",
 				To = "bar@bar.com",
 				SmtpServer = "server1",
 				SmtpPort = 27,
 				Body = "${level} ${logger} ${message}",
 				UseSystemNetMailSettings = true,
-                MailSettings = section
+				MailSettings = section
 			};
-			mmt.Initialize();
-            mmt.ConfigureMailClient();
+			mmt.Initialize(null);
+			mmt.ConfigureMailClient();
 
 			var exceptions = new List<Exception>();
 			mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "MyLogger", "log message").WithContinuation(exceptions.Add));
@@ -776,60 +775,60 @@ namespace NLog.UnitTests.Targets
 			Assert.Equal("'foo@bar.com'", mmt.From.ToString());
 		}
 
-        [Fact]
-        public void MailTarget_UseSystemNetMailSettings_False_ReadFromFromConfigFile()
-        {
-            var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
-            section.From = "foo@bar.com";
+		[Fact]
+		public void MailTarget_UseSystemNetMailSettings_False_ReadFromFromConfigFile()
+		{
+			var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
+			section.From = "foo@bar.com";
 
-            var mmt = new MockMailTarget()
-            {
-                From = "foo@foo.com",
-                To = "bar@bar.com",
-                SmtpServer = "server1",
-                SmtpPort = 27,
-                Body = "${level} ${logger} ${message}",
-                UseSystemNetMailSettings = false,
-                MailSettings = section
-            };
-            mmt.Initialize();
+			var mmt = new MockMailTarget()
+			{
+				From = "foo@foo.com",
+				To = "bar@bar.com",
+				SmtpServer = "server1",
+				SmtpPort = 27,
+				Body = "${level} ${logger} ${message}",
+				UseSystemNetMailSettings = false,
+				MailSettings = section
+			};
+            mmt.Initialize(null);
             mmt.ConfigureMailClient();
 
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "MyLogger", "log message").WithContinuation(exceptions.Add));
+			var exceptions = new List<Exception>();
+			mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "MyLogger", "log message").WithContinuation(exceptions.Add));
 
-            Assert.Equal("'foo@foo.com'", mmt.From.ToString());
-        }
+			Assert.Equal("'foo@foo.com'", mmt.From.ToString());
+		}
 
-        [Fact]
-        public void MailTarget_UseSystemNetMailSettings_True_KeepOverridenFiles()
-        {
-            var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
-            section.From = null;
+		[Fact]
+		public void MailTarget_UseSystemNetMailSettings_True_KeepOverridenFiles()
+		{
+			var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+			var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
+			section.From = null;
 
-            var mmt = new MockMailTarget()
-            {
-                From = "foo@foo.com",
-                To = "bar@bar.com",
-                SmtpServer = "server1",
-                SmtpPort = 27,
-                Body = "${level} ${logger} ${message}",
-                UseSystemNetMailSettings = true,
-                MailSettings = section
-            };
+			var mmt = new MockMailTarget()
+			{
+				From = "foo@foo.com",
+				To = "bar@bar.com",
+				SmtpServer = "server1",
+				SmtpPort = 27,
+				Body = "${level} ${logger} ${message}",
+				UseSystemNetMailSettings = true,
+				MailSettings = section
+			};
 
-            mmt.Initialize();
+            mmt.Initialize(null);
             mmt.ConfigureMailClient();
 
-            var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "MyLogger", "log message").WithContinuation(exceptions.Add));
+			var exceptions = new List<Exception>();
+			mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "MyLogger", "log message").WithContinuation(exceptions.Add));
 
-            Assert.Equal("'foo@foo.com'", mmt.From.ToString());
-        }
+			Assert.Equal("'foo@foo.com'", mmt.From.ToString());
+		}
 
-        [Fact]
+		[Fact]
 		public void MailTarget_WithoutSubject_SendsMessageWithDefaultSubject()
 		{
 			var mmt = new MockMailTarget
@@ -908,12 +907,6 @@ namespace NLog.UnitTests.Targets
 
 			}
 
-			public void Initialize()
-			{
-				InitializeTarget();
-			}
-
-
 			public List<MockSmtpClient> CreatedMocks = new List<MockSmtpClient>();
 
 			internal override ISmtpClient CreateSmtpClient()
@@ -924,6 +917,7 @@ namespace NLog.UnitTests.Targets
 
 				return client;
 			}
+
 
 			public void ConfigureMailClient()
 			{

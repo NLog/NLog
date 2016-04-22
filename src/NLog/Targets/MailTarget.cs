@@ -33,7 +33,7 @@
 
 using JetBrains.Annotations;
 
-#if !SILVERLIGHT && !__ANDROID__ && !__IOS__
+#if !SILVERLIGHT
 
 namespace NLog.Targets
 {
@@ -42,14 +42,18 @@ namespace NLog.Targets
     using System.ComponentModel;
     using System.Net;
     using System.Net.Mail;
-    using System.Configuration;
-    using System.Net.Configuration;
     using System.Text;
     using System.IO;
     using NLog.Common;
     using NLog.Config;
     using NLog.Internal;
     using NLog.Layouts;
+
+    // For issue #1351 - These are not available for Android or IOS
+#if !__ANDROID__ && !__IOS__
+    using System.Configuration;
+    using System.Net.Configuration;
+#endif
 
     /// <summary>
     /// Sends log messages by email using SMTP protocol.
@@ -105,7 +109,7 @@ namespace NLog.Targets
             this.Timeout = 10000;
         }
 
-
+#if !__ANDROID__ && !__IOS__
         private SmtpSection _currentailSettings;
 
         /// <summary>
@@ -126,6 +130,7 @@ namespace NLog.Targets
 
             set { _currentailSettings = value; }
         }
+#endif
 
         /// <summary>
         /// Gets or sets sender's email address (e.g. joe@domain.com).
@@ -307,7 +312,6 @@ namespace NLog.Targets
         /// </summary>
         protected override void InitializeTarget()
         {
-            InitializeFrom();
             CheckRequiredParameters();
 
             base.InitializeTarget();
@@ -318,12 +322,14 @@ namespace NLog.Targets
         /// Thus, when UseSystemNetMailSettings is enabled we have to read the configuration section of system.net/mailSettings/smtp to initialize the 'From' address.
         /// It will do so only if the 'From' attribute in system.net/mailSettings/smtp is not empty.
         ///  </summary>
-        private void InitializeFrom()
+        private void ConfigureFrom()
         {
-            if (UseSystemNetMailSettings)
-            {
-                From = string.IsNullOrEmpty(MailSettings.From) ? From : MailSettings.From;
-            }
+#if !__ANDROID__ && !__IOS__
+                if (!string.IsNullOrEmpty(MailSettings.From))
+                {
+                    From = MailSettings.From;
+                }
+#endif
         }
 
         /// <summary>
@@ -351,7 +357,13 @@ namespace NLog.Targets
                     using (ISmtpClient client = this.CreateSmtpClient())
                     {
                         if (!UseSystemNetMailSettings)
+                        {
                             ConfigureMailClient(lastEvent, client);
+                        }
+                        else
+                        {
+			                ConfigureFrom();
+                        }
 
                         InternalLogger.Debug("Sending mail to {0} using {1}:{2} (ssl={3})", msg.To, client.Host, client.Port, client.EnableSsl);
                         InternalLogger.Trace("  Subject: '{0}'", msg.Subject);
