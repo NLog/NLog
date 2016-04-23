@@ -31,6 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+using NLog.Internal.Pooling.Pools;
+
 namespace NLog
 {
     using System;
@@ -40,6 +43,7 @@ namespace NLog
 #if ASYNC_SUPPORTED
     using System.Threading.Tasks;
 #endif
+    using Internal.Pooling;
 
     /// <summary>
     /// Provides logging interface and utility functions.
@@ -56,6 +60,8 @@ namespace NLog
         private volatile bool isWarnEnabled;
         private volatile bool isErrorEnabled;
         private volatile bool isFatalEnabled;
+
+        private LoggingConfiguration loggingConfiguration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Logger"/> class.
@@ -119,7 +125,7 @@ namespace NLog
             }
         }
 
-        #region Log() overloads
+#region Log() overloads
 
         /// <overloads>
         /// Writes the diagnostic message at the specified level using the specified format provider and format parameters.
@@ -383,12 +389,34 @@ namespace NLog
 
         internal void WriteToTargets(LogLevel level, Exception ex, [Localizable(false)] string message, object[] args)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, ex, this.Factory.DefaultCultureInfo, message, args)), this.Factory);
+            LogEventInfo info;
+
+            if (this.loggingConfiguration.PoolingEnabled())
+            {
+                info = this.loggingConfiguration.PoolFactory.Get<LogEventInfoPool, LogEventInfo>().Get(level, this.Name, this.Factory.DefaultCultureInfo, message, args, ex);
+            }
+            else
+            {
+                info = LogEventInfo.Create(level, this.Name, ex, this.Factory.DefaultCultureInfo, message, args);
+            }
+
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(info), this.Factory);
         }
 
         internal void WriteToTargets(LogLevel level, Exception ex, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, ex, formatProvider, message, args)), this.Factory);
+            LogEventInfo info;
+
+            if (this.loggingConfiguration.PoolingEnabled())
+            {
+                info = this.loggingConfiguration.PoolFactory.Get<LogEventInfoPool, LogEventInfo>().Get(level, this.Name, formatProvider, message, args, ex);
+            }
+            else
+            {
+                info = LogEventInfo.Create(level, this.Name, ex, formatProvider, message, args);
+            }
+
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(info), this.Factory);
         }
 
 
@@ -399,10 +427,9 @@ namespace NLog
                 logEvent.FormatProvider = this.Factory.DefaultCultureInfo;
             }
             return logEvent;
-
         }
 
-        #endregion
+#endregion
 
 
         /// <summary>
@@ -539,29 +566,62 @@ namespace NLog
         }
 #endif
 
-        internal void Initialize(string name, LoggerConfiguration loggerConfiguration, LogFactory factory)
+        internal void Initialize(string name, LoggerConfiguration loggerConfiguration, LogFactory factory, LoggingConfiguration loggingConfiguration)
         {
             this.Name = name;
             this.Factory = factory;
-            this.SetConfiguration(loggerConfiguration);
+            this.SetConfiguration(loggerConfiguration, loggingConfiguration);
         }
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message, object[] args)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, message, args)), this.Factory);
+            LogEventInfo info;
+
+            if (this.loggingConfiguration.PoolingEnabled())
+            {
+                info = this.loggingConfiguration.PoolFactory.Get<LogEventInfoPool, LogEventInfo>().Get(level, this.Name, formatProvider, message, args, null);
+            }
+            else
+            {
+                info = LogEventInfo.Create(level, this.Name, formatProvider, message, args);
+            }
+
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(info), this.Factory);
         }
 
         internal void WriteToTargets(LogLevel level, IFormatProvider formatProvider, [Localizable(false)] string message)
         {
             // please note that this overload calls the overload of LogEventInfo.Create with object[] parameter on purpose -
             // to avoid unnecessary string.Format (in case of calling Create(LogLevel, string, IFormatProvider, object))
-            var logEvent = LogEventInfo.Create(level, this.Name, formatProvider, message, (object[])null);
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(logEvent), this.Factory);
+
+            LogEventInfo info;
+
+            if (this.loggingConfiguration.PoolingEnabled())
+            {
+                info = this.loggingConfiguration.PoolFactory.Get<LogEventInfoPool, LogEventInfo>().Get(level, this.Name, formatProvider, message, (object[])null, null);
+            }
+            else
+            {
+                info = LogEventInfo.Create(level, this.Name, formatProvider, message, (object[])null);
+            }
+
+            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(info), this.Factory);
         }
 
         internal void WriteToTargets<T>(LogLevel level, IFormatProvider formatProvider, T value)
         {
-            var logEvent = PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, formatProvider, value));
+            LogEventInfo logEventInfo;
+
+            if (this.loggingConfiguration.PoolingEnabled())
+            {
+                logEventInfo = this.loggingConfiguration.PoolFactory.Get<LogEventInfoPool, LogEventInfo>().Get(level, this.Name, this.Factory.DefaultCultureInfo, "{0}", new object[] { value }, null);
+            }
+            else
+            {
+                logEventInfo = LogEventInfo.Create(level, this.Name, formatProvider, value);
+            }
+
+            var logEvent = PrepareLogEventInfo(logEventInfo);
             var ex = value as Exception;
             if (ex != null)
             {
@@ -575,7 +635,18 @@ namespace NLog
         [Obsolete("Use WriteToTargets(Exception ex, LogLevel level, IFormatProvider formatProvider, string message, object[] args) method instead.")]
         internal void WriteToTargets(LogLevel level, [Localizable(false)] string message, Exception ex)
         {
-            LoggerImpl.Write(this.loggerType, this.GetTargetsForLevel(level), PrepareLogEventInfo(LogEventInfo.Create(level, this.Name, message, ex)), this.Factory);
+            LogEventInfo logEventInfo;
+
+            if (this.loggingConfiguration.PoolingEnabled())
+            {
+                logEventInfo = this.loggingConfiguration.PoolFactory.Get<LogEventInfoPool, LogEventInfo>().Get(level, this.Name, this.Factory.DefaultCultureInfo, message, null, ex);
+            }
+            else
+            {
+                logEventInfo = LogEventInfo.Create(level, this.Name, message, ex);
+            }
+
+            this.WriteToTargets(logEventInfo);
         }
 
 
@@ -594,9 +665,10 @@ namespace NLog
             LoggerImpl.Write(wrapperType ?? this.loggerType, this.GetTargetsForLevel(logEvent.Level), PrepareLogEventInfo(logEvent), this.Factory);
         }
 
-        internal void SetConfiguration(LoggerConfiguration newConfiguration)
+        internal void SetConfiguration(LoggerConfiguration newConfiguration, LoggingConfiguration loggingConfiguration)
         {
             this.configuration = newConfiguration;
+            this.loggingConfiguration = loggingConfiguration;
 
             // pre-calculate 'enabled' flags
             this.isTraceEnabled = newConfiguration.IsEnabled(LogLevel.Trace);

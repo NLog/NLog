@@ -31,12 +31,12 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.IO;
 using System.Security;
+using NLog.Config;
 
 namespace NLog.Internal.FileAppenders
 {
-    using System.IO;
-
     /// <summary>
     /// Implementation of <see cref="BaseFileAppender"/> which caches 
     /// file information.
@@ -118,13 +118,18 @@ namespace NLog.Internal.FileAppenders
         /// <param name="bytes">The bytes to be written.</param>
         public override void Write(byte[] bytes)
         {
+            Write(bytes, 0, bytes.Length);
+        }
+
+        public override void Write(byte[] bytes, int offset, int count)
+        {
             if (this.file == null)
             {
                 return;
             }
 
-            this.currentFileLength += bytes.Length;
-            this.file.Write(bytes, 0, bytes.Length);
+            this.currentFileLength += count;
+            this.file.Write(bytes, offset, count);
             FileTouched();
         }
 

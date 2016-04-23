@@ -32,8 +32,13 @@
 // 
 
 using System;
+using System.IO;
 using System.Text;
 using NLog.Config;
+using NLog.Internal.FileAppenders;
+
+using NLog.Internal.Pooling;
+using NLog.Internal.Pooling.Pools;
 
 namespace NLog.Internal
 {
@@ -59,5 +64,82 @@ namespace NLog.Internal
             builder.Append(Convert.ToString(o, formatProvider));
         }
 
+
+        public static void WriteTo(this StringBuilder builder, BaseFileAppender appender, LoggingConfiguration configuration, Encoding encoding)
+        {
+#if NET4_5
+            char[] array;
+            MemoryStream ms;
+
+            if (configuration != null && configuration.PoolConfiguration.Enabled)
+            {
+                array = configuration.PoolFactory.Get<CharArrayPool, char[]>().Get(builder.Length);
+                // We need at most 8 times the amount of chars to store each character, probably less, 
+                // unless we are writing korean chinese or other multi byte language
+                ms = configuration.PoolFactory.Get<MemoryStreamPool, MemoryStream>().Get();
+            }
+            else
+            {
+                array = new char[builder.Length];
+                ms = new MemoryStream(builder.Length * 8);
+            }
+            ms.Capacity = builder.Length * 8;
+
+            // Copy contents of string builder to array
+            builder.CopyTo(0, array, 0, builder.Length);
+
+            var bytes = ms.GetBuffer();
+
+            int bytesWritten = encoding.GetBytes(array, 0, builder.Length, bytes, 0);
+
+            appender.Write(bytes, 0, bytesWritten);
+
+            configuration.PutBack(array);
+            configuration.PutBack(ms);
+
+#else
+            var str = builder.ToString();
+            byte[] bytes = encoding.GetBytes(str);
+            appender.Write(bytes, 0, bytes.Length);
+#endif
+        }
+
+        public static void WriteTo(this StringBuilder builder, Stream stream, LoggingConfiguration configuration, Encoding encoding)
+        {
+#if NET4_5
+            char[] array;
+            MemoryStream ms;
+
+            if (configuration.PoolingEnabled())
+            {
+                array = configuration.PoolFactory.Get<CharArrayPool, char[]>().Get(builder.Length);
+                // We need at most 8 times the amount of chars to store each character, probably less, 
+                // unless we are writing korean chinese or other multi byte language
+                ms = configuration.PoolFactory.Get<MemoryStreamPool, MemoryStream>().Get();
+            }
+            else
+            {
+                array = new char[builder.Length];
+                ms = new MemoryStream(builder.Length * 8);
+            }
+            ms.Capacity = builder.Length * 8;
+
+            // Copy contents of string builder to array
+            builder.CopyTo(0, array, 0, builder.Length);
+
+            var bytes = ms.GetBuffer();
+            int bytesWritten = encoding.GetBytes(array, 0, builder.Length, bytes, 0);
+
+            stream.Write(bytes, 0, bytesWritten);
+
+            configuration.PutBack(array);
+            configuration.PutBack(ms);
+
+#else
+            var str = builder.ToString();
+            byte[] bytes = encoding.GetBytes(str);
+            stream.Write(bytes, 0, bytes.Length);
+#endif
+        }
     }
 }

@@ -37,6 +37,8 @@ using System.Linq;
 
 namespace NLog.Internal
 {
+    using System.Globalization;
+
     /// <summary>
     /// Helpers for <see cref="string"/>.
     /// </summary>
@@ -58,6 +60,12 @@ namespace NLog.Internal
 #else
             return string.IsNullOrWhiteSpace(value);
 #endif
+        }
+
+        internal static string AsString<T>(this T data)
+            where T: struct, IFormattable
+        {
+            return data.ToString(null, CultureInfo.InvariantCulture);
         }
     }
 }

@@ -72,6 +72,7 @@
             this.DumpApiDocs(writer, "filter", "NLog.FilterAttribute", "", " filter");
 
             this.DumpApiDocs(writer, "time-source", "NLog.Time.TimeSourceAttribute", "", " time source");
+            this.DumpApiDocs(writer, "pooling", "NLog.Internal.Pooling.PoolingAttribute", "", "pooling");
             writer.WriteEndElement();
         }
 

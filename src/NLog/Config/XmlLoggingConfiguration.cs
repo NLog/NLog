@@ -390,6 +390,9 @@ namespace NLog.Config
                 }
                 InitializeSucceeded = true;
 
+                // Automatically reconfigure existing pools as soon as the configuration has been loaded
+                this.PoolConfiguration.ReconfigurePools(this.PoolFactory);
+
                 this.CheckUnusedTargets();
 
             }
@@ -574,6 +577,9 @@ namespace NLog.Config
 
                     case "TIME":
                         this.ParseTimeElement(child);
+                        break;
+                    case "POOLING":
+                        this.ParsePoolingElement(child);
                         break;
 
                     default:
@@ -1029,6 +1035,13 @@ namespace NLog.Config
 
                 throw new NLogConfigurationException("Error when including: " + newFileName, exception);
             }
+        }
+
+
+        private void ParsePoolingElement(NLogXmlElement poolElement)
+        {
+            this.ConfigureObjectFromAttributes(this.PoolConfiguration, poolElement, false);
+           
         }
 
         private void ParseTimeElement(NLogXmlElement timeElement)

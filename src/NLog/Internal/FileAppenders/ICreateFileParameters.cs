@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Internal.Pooling;
+
 namespace NLog.Internal.FileAppenders
 {
     using NLog.Targets;
@@ -90,5 +92,9 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         Win32FileAttributes FileAttributes { get; }
 #endif
+        /// <summary>
+        /// Gets whether or not pooling is enabled
+        /// </summary>
+        bool PoolingEnabled { get; }
     }
 }

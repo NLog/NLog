@@ -647,7 +647,7 @@ namespace NLog.UnitTests.LayoutRenderers
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("exception-custom", typeof(CustomExceptionLayoutRendrer));
 
             LogManager.Configuration = CreateConfigurationFromString(@"
-            <nlog>
+            <nlog throwExceptions='true'>
                 <targets>
                     <target name='debug1' type='Debug' layout='${exception-custom:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message}' />
                     <target name='debug2' type='Debug' layout='${exception-custom:format=shorttype,message:maxInnerExceptionLevel=1:innerExceptionSeparator=&#13;&#10;----INNER----&#13;&#10;:innerFormat=type,message,data}' />

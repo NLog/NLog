@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Common;
+
 namespace NLog.Config
 {
     using Internal;
@@ -193,6 +195,41 @@ namespace NLog.Config
             }
 
             return value;
+        }
+
+        /// <summary>
+        /// Gets a value from the attributes and convert it to the given type <typeparamref name="TValue"/>
+        /// </summary>
+        /// <typeparam name="TValue">Type to convert value to</typeparam>
+        /// <param name="attributeName"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns>The converted value, or the default value given if string value cannot be converted or is null or empty</returns>
+        public TValue GetOptionalAttribute<TValue>(string attributeName, TValue defaultValue)
+            where TValue:struct, IConvertible
+        {
+            string value;
+
+            if (!this.AttributeValues.TryGetValue(attributeName, out value))
+            {
+                return defaultValue;
+            }
+
+            if (StringHelpers.IsNullOrWhiteSpace(value))
+            {
+                //not default otherwise no difference between not defined and empty value.
+                return defaultValue;
+            }
+
+            try
+            {
+                return (TValue)Convert.ChangeType(value, typeof(TValue), CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                InternalLogger.Error(e, string.Format("Could not parse string value:{0} into value of type:{1}", value, typeof(TValue).Name));
+            }
+
+            return defaultValue;
         }
 
         /// <summary>

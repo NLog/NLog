@@ -38,6 +38,8 @@ using NLog.Targets;
 
 namespace NLog.UnitTests.Common
 {
+    using System.Threading;
+
     /// <summary>
     /// Target for unit testing the last written LogEvent (non rendered!)
     /// </summary>

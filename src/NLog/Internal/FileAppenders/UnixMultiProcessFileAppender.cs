@@ -67,9 +67,9 @@ namespace NLog.Internal.FileAppenders
 
         public static readonly IFileAppenderFactory TheFactory = new Factory();
 
-        public class Factory : IFileAppenderFactory
+        private class Factory : IFileAppenderFactory
         {
-            public BaseFileAppender Open(string fileName, ICreateFileParameters parameters)
+            BaseFileAppender IFileAppenderFactory.Open(string fileName, ICreateFileParameters parameters)
             {
                 return new UnixMultiProcessFileAppender(fileName, parameters);
             }
@@ -77,7 +77,9 @@ namespace NLog.Internal.FileAppenders
 
         public UnixMultiProcessFileAppender(string fileName, ICreateFileParameters parameters) : base(fileName, parameters)
         {
-            int fd = Syscall.open(fileName, OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6)));
+            var openFlags = OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND;
+            var permissions = (FilePermissions)(6 | (6 << 3) | (6 << 6));
+            int fd = Syscall.open(fileName, openFlags, permissions);
             if (fd == -1)
             {
                 if (Stdlib.GetLastError() == Errno.ENOENT && parameters.CreateDirs)
@@ -86,7 +88,7 @@ namespace NLog.Internal.FileAppenders
                     if (!Directory.Exists(dirName) && parameters.CreateDirs)
                         Directory.CreateDirectory(dirName);
                     
-                    fd = Syscall.open(fileName, OpenFlags.O_CREAT | OpenFlags.O_WRONLY | OpenFlags.O_APPEND, (FilePermissions)(6 | (6 << 3) | (6 << 6)));
+                    fd = Syscall.open(fileName, openFlags, permissions);
                 }
             }
             if (fd == -1)
@@ -105,9 +107,17 @@ namespace NLog.Internal.FileAppenders
 
         public override void Write(byte[] bytes)
         {
+             Write(bytes, 0, bytes.Length);
+        }
+
+        public override void Write(byte[] bytes, int offset, int count)
+        {
             if (this.file == null)
+            {
                 return;
-            this.file.Write(bytes, 0, bytes.Length);
+            }
+                        
+            this.file.Write(bytes, offset, count);
         }
 
         public override void Close()

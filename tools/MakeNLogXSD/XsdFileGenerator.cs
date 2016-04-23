@@ -49,13 +49,15 @@ namespace MakeNLogXSD
         private XElement typesGoHere;
         private XElement filtersGoHere;
 
+        private XElement poolConfigGoHere;
+
         public XsdFileGenerator()
         {
             this.template = LoadTemplateXSD();
 
             this.filtersGoHere = template.Descendants("filters-go-here").Single();
             this.typesGoHere = template.Descendants("types-go-here").Single();
-
+            this.poolConfigGoHere = template.Descendants("pool-config-go-here").Single();
             this.typesEmitted = new HashSet<string>();
         }
 
@@ -95,6 +97,17 @@ namespace MakeNLogXSD
 
                     case "time-source":
                         baseType = "TimeSource";
+                        break;
+                    case "pooling":
+                        var poolConfig = new XElement(xsd + "complexType",
+                            new XAttribute("name", (string)type.Attribute("name")),
+                           new XElement(xsd + "choice",
+                                new XAttribute("minOccurs", "0"),
+                                new XAttribute("maxOccurs", "unbounded"),
+                                GetPropertyElements(type)),
+                          GetAttributeElements(type));
+                        poolConfigGoHere.AddBeforeSelf(poolConfig);
+                        baseType = null;
                         break;
                 }
 
@@ -159,6 +172,7 @@ namespace MakeNLogXSD
             template.Attribute("xmlns").Value = this.TargetNamespace;
             filtersGoHere.Remove();
             typesGoHere.Remove();
+            poolConfigGoHere.Remove();
 
             Console.WriteLine("Saving '{0}'", Path.GetFullPath(outputFile));
             template.Save(outputFile);

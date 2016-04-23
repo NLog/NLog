@@ -31,14 +31,17 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading;
+using NLog.Internal;
+using NLog.Internal.Pooling;
+using NLog.Internal.Pooling.Pools;
+
 namespace NLog.Common
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.Threading;
-    using NLog.Internal;
-
     /// <summary>
     /// Helpers for asynchronous operations.
     /// </summary>
@@ -54,6 +57,21 @@ namespace NLog.Common
         /// have been iterated.</param>
         /// <param name="action">The action to invoke for each item.</param>
         public static void ForEachItemSequentially<T>(IEnumerable<T> items, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
+        {
+            ForEachItemInParallel(null, items, asyncContinuation, action);
+        }
+
+        /// <summary>
+        /// Iterates over all items in the given collection and runs the specified action
+        /// in sequence (each action executes only after the preceding one has completed without an error).
+        /// </summary>
+        /// <typeparam name="T">Type of each item.</typeparam>
+        /// <param name="configuration">The logging configuration.</param>
+        /// <param name="items">The items to iterate.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation to invoke once all items
+        /// have been iterated.</param>
+        /// <param name="action">The action to invoke for each item.</param>
+        public static void ForEachItemSequentially<T>(LoggingConfiguration configuration, IEnumerable<T> items, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
             action = ExceptionGuard(action);
             AsyncContinuation invokeNext = null;
@@ -73,7 +91,7 @@ namespace NLog.Common
                     return;
                 }
 
-                action(enumerator.Current, PreventMultipleCalls(invokeNext));
+                action(enumerator.Current, PreventMultipleCalls(configuration, invokeNext));
             };
 
             invokeNext(null);
@@ -86,6 +104,18 @@ namespace NLog.Common
         /// <param name="asyncContinuation">The asynchronous continuation to invoke at the end.</param>
         /// <param name="action">The action to invoke.</param>
         public static void Repeat(int repeatCount, AsyncContinuation asyncContinuation, AsynchronousAction action)
+        {
+            Repeat(null, repeatCount, asyncContinuation, action);
+        }
+
+        /// <summary>
+        /// Repeats the specified asynchronous action multiple times and invokes asynchronous continuation at the end.
+        /// </summary>
+        /// <param name="loggingConfiguration">The logging configuration.</param>
+        /// <param name="repeatCount">The repeat count.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation to invoke at the end.</param>
+        /// <param name="action">The action to invoke.</param>
+        public static void Repeat(LoggingConfiguration loggingConfiguration, int repeatCount, AsyncContinuation asyncContinuation, AsynchronousAction action)
         {
             action = ExceptionGuard(action);
             AsyncContinuation invokeNext = null;
@@ -105,7 +135,7 @@ namespace NLog.Common
                         return;
                     }
 
-                    action(PreventMultipleCalls(invokeNext));
+                    action(PreventMultipleCalls(loggingConfiguration,invokeNext));
                 };
 
             invokeNext(null);
@@ -118,6 +148,19 @@ namespace NLog.Common
         /// <param name="action">The action to pre-pend.</param>
         /// <returns>Continuation which will execute the given action before forwarding to the actual continuation.</returns>
         public static AsyncContinuation PrecededBy(AsyncContinuation asyncContinuation, AsynchronousAction action)
+        {
+            return PrecededBy(null, asyncContinuation, action);
+        }
+
+
+        /// <summary>
+        /// Modifies the continuation by pre-pending given action to execute just before it.
+        /// </summary>
+        /// <param name="loggingConfiguration">The logging configuration.</param>
+        /// <param name="asyncContinuation">The async continuation.</param>
+        /// <param name="action">The action to pre-pend.</param>
+        /// <returns>Continuation which will execute the given action before forwarding to the actual continuation.</returns>
+        public static AsyncContinuation PrecededBy(LoggingConfiguration loggingConfiguration, AsyncContinuation asyncContinuation, AsynchronousAction action)
         {
             action = ExceptionGuard(action);
 
@@ -132,7 +175,7 @@ namespace NLog.Common
                     }
 
                     // call the action and continue
-                    action(PreventMultipleCalls(asyncContinuation));
+                    action(PreventMultipleCalls(loggingConfiguration, asyncContinuation));
                 };
 
             return continuation;
@@ -161,6 +204,21 @@ namespace NLog.Common
         /// have been iterated.</param>
         /// <param name="action">The action to invoke for each item.</param>
         public static void ForEachItemInParallel<T>(IEnumerable<T> values, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
+        {
+            ForEachItemInParallel(null, values, asyncContinuation, action);
+        }
+
+        /// <summary>
+        /// Iterates over all items in the given collection and runs the specified action
+        /// in parallel (each action executes on a thread from thread pool).
+        /// </summary>
+        /// <typeparam name="T">Type of each item.</typeparam>
+        /// <param name="configuration">The logging configuration</param>
+        /// <param name="values">The items to iterate.</param>
+        /// <param name="asyncContinuation">The asynchronous continuation to invoke once all items
+        /// have been iterated.</param>
+        /// <param name="action">The action to invoke for each item.</param>
+        public static void ForEachItemInParallel<T>(LoggingConfiguration configuration, IEnumerable<T> values, AsyncContinuation asyncContinuation, AsynchronousAction<T> action)
         {
             action = ExceptionGuard(action);
 
@@ -191,7 +249,7 @@ namespace NLog.Common
                         }
 
                         r = Interlocked.Decrement(ref remaining);
-                        InternalLogger.Trace("Parallel task completed. {0} items remaining", r);
+                        InternalLogger.Trace("Parallel task completed. {0} items remaining", r.AsString());
                         if (r == 0)
                         {
                             asyncContinuation(GetCombinedException(exceptions));
@@ -202,7 +260,7 @@ namespace NLog.Common
             {
                 T itemCopy = item;
 
-                ThreadPool.QueueUserWorkItem(s => action(itemCopy, PreventMultipleCalls(continuation)));
+                ThreadPool.QueueUserWorkItem(s =>  action(itemCopy, PreventMultipleCalls(configuration,continuation)));
             }
         }
 
@@ -216,10 +274,24 @@ namespace NLog.Common
         /// </remarks>
         public static void RunSynchronously(AsynchronousAction action)
         {
+            RunSynchronously(null, action);
+        }
+
+        /// <summary>
+        /// Runs the specified asynchronous action synchronously (blocks until the continuation has
+        /// been invoked).
+        /// </summary>
+        /// <param name="loggingConfiguration"></param>
+        /// <param name="action">The action.</param>
+        /// <remarks>
+        /// Using this method is not recommended because it will block the calling thread.
+        /// </remarks>
+        public static void RunSynchronously(LoggingConfiguration loggingConfiguration, AsynchronousAction action)
+        {
             var ev = new ManualResetEvent(false);
             Exception lastException = null;
 
-            action(PreventMultipleCalls(ex => { lastException = ex; ev.Set(); }));
+            action(PreventMultipleCalls(loggingConfiguration, ex => { lastException = ex; ev.Set(); }));
             ev.WaitOne();
             if (lastException != null)
             {
@@ -230,17 +302,39 @@ namespace NLog.Common
         /// <summary>
         /// Wraps the continuation with a guard which will only make sure that the continuation function
         /// is invoked only once.
+        /// Please only call this from unit tests, since it will not pool objects.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         /// <returns>Wrapped asynchronous continuation.</returns>
         public static AsyncContinuation PreventMultipleCalls(AsyncContinuation asyncContinuation)
         {
+            return PreventMultipleCalls(null, asyncContinuation);
+        }
+        /// <summary>
+        /// Wraps the continuation with a guard which will only make sure that the continuation function
+        /// is invoked only once.
+        /// </summary>
+        /// <param name="configuration">The configuration to use for pooling</param>
+        /// <param name="asyncContinuation">The asynchronous continuation.</param>
+        /// <returns>Wrapped asynchronous continuation.</returns>
+        public static AsyncContinuation PreventMultipleCalls(LoggingConfiguration configuration, AsyncContinuation asyncContinuation)
+        {
+            if (asyncContinuation == null)
+            {
+                throw new ArgumentNullException("asyncContinuation");
+            }
+
             if (asyncContinuation.Target is SingleCallContinuation)
             {
                 return asyncContinuation;
             }
 
-            return new SingleCallContinuation(asyncContinuation).Function;
+            if (configuration.PoolingEnabled())
+            {
+                return configuration.PoolFactory.Get<SingleCallContinuationPool,SingleCallContinuation>().Get(asyncContinuation).Delegate;
+            }
+
+            return new SingleCallContinuation(asyncContinuation).Delegate;
         }
 
         /// <summary>
@@ -250,6 +344,11 @@ namespace NLog.Common
         /// <returns>Combined exception or null if no exception was thrown.</returns>
         public static Exception GetCombinedException(IList<Exception> exceptions)
         {
+            if (exceptions == null)
+            {
+                return null;
+            }
+
             if (exceptions.Count == 0)
             {
                 return null;
@@ -272,6 +371,11 @@ namespace NLog.Common
             }
 
             return new NLogRuntimeException("Got multiple exceptions:\r\n" + sb);
+        }
+
+        internal static Exception GetCombinedException(params Exception[] exceptions)
+        {
+            return new CombinedException(exceptions);
         }
 
         private static AsynchronousAction ExceptionGuard(AsynchronousAction action)

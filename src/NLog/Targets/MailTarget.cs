@@ -348,7 +348,18 @@ namespace NLog.Targets
         /// <param name="logEvents">Array of logging events.</param>
         protected override void Write(AsyncLogEventInfo[] logEvents)
         {
-            foreach (var bucket in logEvents.BucketSort(c => this.GetSmtpSettingsKey(c.LogEvent)))
+            this.Write(new ArraySegment<AsyncLogEventInfo>(logEvents));
+        }
+
+        /// <summary>
+        /// Writes an array of logging events to the log target. By default it iterates on all
+        /// events and passes them to "Write" method. Inheriting classes can use this method to
+        /// optimize batch writes.
+        /// </summary>
+        /// <param name="logEvents">Logging events to be written out.</param>
+        protected override void Write(ArraySegment<AsyncLogEventInfo> logEvents)
+        {
+            foreach (var bucket in logEvents.BucketSort(l=>l.LogEvent!=null,c => this.GetSmtpSettingsKey(c.LogEvent)))
             {
                 var eventInfos = bucket.Value;
                 this.ProcessSingleMailMessage(eventInfos);

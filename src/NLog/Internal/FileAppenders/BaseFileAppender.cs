@@ -39,9 +39,7 @@ namespace NLog.Internal.FileAppenders
     using System.IO;
     using System.Runtime.InteropServices;
     using NLog.Common;
-    using NLog.Config;
     using NLog.Internal;
-    using NLog.Time;
 
     /// <summary>
     /// Base class for optimized file appenders.
@@ -50,7 +48,7 @@ namespace NLog.Internal.FileAppenders
     internal abstract class BaseFileAppender : IDisposable
     {
         private readonly Random random = new Random();
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseFileAppender" /> class.
         /// </summary>
@@ -99,6 +97,14 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <param name="bytes">The bytes.</param>
         public abstract void Write(byte[] bytes);
+
+        /// <summary>
+        /// Writes the specified bytes.
+        /// </summary>
+        /// <param name="bytes">The byte array to write.</param>
+        /// <param name="offset">The offset in the byte array to start writing from.</param>
+        /// <param name="count">The number of bytes to write.</param>
+        public abstract void Write(byte[] bytes, int offset, int count);
 
         /// <summary>
         /// Flushes this instance.
@@ -163,7 +169,7 @@ namespace NLog.Internal.FileAppenders
         {
             int currentDelay = this.CreateFileParameters.ConcurrentWriteAttemptDelay;
 
-            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting);
+            InternalLogger.Trace("Opening {0} with allowFileSharedWriting={1}", this.FileName, allowFileSharedWriting.ToString());
             for (int i = 0; i < this.CreateFileParameters.ConcurrentWriteAttempts; ++i)
             {
                 try
@@ -191,7 +197,7 @@ namespace NLog.Internal.FileAppenders
                     }
 
                     int actualDelay = this.random.Next(currentDelay);
-                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i, this.FileName, actualDelay);
+                    InternalLogger.Warn("Attempt #{0} to open {1} failed. Sleeping for {2}ms", i.AsString(), this.FileName, actualDelay.AsString());
                     currentDelay *= 2;
                     System.Threading.Thread.Sleep(actualDelay);
                 }
@@ -223,7 +229,7 @@ namespace NLog.Internal.FileAppenders
             {
                 handle = Win32FileNativeMethods.CreateFile(
                 fileName,
-                Win32FileNativeMethods.FileAccess.GenericWrite,
+                Win32FileNativeMethods.FileAccess.GenericWrite | Win32FileNativeMethods.FileAccess.GenericRead,
                 fileShare,
                 IntPtr.Zero,
                 Win32FileNativeMethods.CreationDisposition.OpenAlways,
@@ -235,7 +241,25 @@ namespace NLog.Internal.FileAppenders
                     Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
                 }
 
+#if!SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && NET4_5
+
+                // TODO: Beware there be dragons here, every time we create a file stream, it creates a byte array the size of the buffersize.
+                // TODO: in MS .NET implementation, the file stream does write to its internal buffer if you are writing something that is bigger than its buffer size, 
+                // So, to prevent allocations, we set the buffer to 1, since then it will just write whats in the incoming buffer and not allocate a buffer
+                if (this.CreateFileParameters.PoolingEnabled)
+                {
+                    fileStream = new FileStream(handle, FileAccess.ReadWrite, 1);
+                }
+                else
+                {
+                    fileStream = new FileStream(handle, FileAccess.ReadWrite, this.CreateFileParameters.BufferSize);
+                }
+
+#else
                 fileStream = new FileStream(handle, FileAccess.Write, this.CreateFileParameters.BufferSize);
+#endif
+
+
                 fileStream.Seek(0, SeekOrigin.End);
                 return fileStream;
             }
@@ -276,23 +300,40 @@ namespace NLog.Internal.FileAppenders
                 fileShare |= FileShare.Delete;
             }
 
+            // TODO: Beware there be dragons here, every time we create a file stream, it creates a byte array the size of the buffersize.
+            // TODO: in MS .NET implementation, the file stream does write to its internal buffer if you are writing something that is bigger than its buffer size, 
+            // So, to prevent allocations, we might as well set the buffer to 0, since then it will just write whats in the incoming buffer
+            // Possibly find out if we could do something about it, so that it does not create 
+
+#if!SILVERLIGHT && !MONO && !__IOS__ && !__ANDROID__ && NET4_5
+            return new FileStream(
+                this.FileName,
+                FileMode.Append,
+                FileAccess.ReadWrite,
+                fileShare,
+                1);
+#else
             return new FileStream(
                 this.FileName,
                 FileMode.Append,
                 FileAccess.Write,
                 fileShare,
                 this.CreateFileParameters.BufferSize);
+#endif
         }
 
         private void UpdateCreationTime()
         {
             if (File.Exists(this.FileName))
             {
+                if (this.CreationTime == default(DateTime))
+                {
 #if !SILVERLIGHT
-                this.CreationTime = File.GetCreationTimeUtc(this.FileName);
+                    this.CreationTime = File.GetCreationTimeUtc(this.FileName);
 #else
-                this.CreationTime = File.GetCreationTime(this.FileName);
+                    this.CreationTime = File.GetCreationTime(this.FileName);
 #endif
+                }
             }
             else
             {

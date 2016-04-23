@@ -36,6 +36,10 @@ namespace NLog.LayoutRenderers.Wrappers
     using System.ComponentModel;
     using System.Globalization;
     using NLog.Config;
+    using NLog.Internal.Pooling.Pools;
+    using System.Text;
+    
+
 
     /// <summary>
     /// Converts the result of another layout output to upper case.
@@ -50,6 +54,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class UppercaseLayoutRendererWrapper : WrapperLayoutRendererBase
     {
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UppercaseLayoutRendererWrapper" /> class.
         /// </summary>
@@ -80,7 +85,66 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Padded and trimmed string.</returns>
         protected override string Transform(string text)
         {
-            return this.Uppercase ? text.ToUpper(this.Culture) : text;
+            if (!this.Uppercase)
+            {
+                return text;
+            }
+
+            return text.ToUpper(this.Culture);
         }
+
+#if NET4_5
+        private void Transform(StringBuilder builder)
+        {
+            int length = builder.Length;
+            var resultArray = this.LoggingConfiguration.PoolFactory.Get<CharArrayPool, char[]>().Get(length);
+          
+            builder.CopyTo(0, resultArray, 0, length);
+            for (int x = 0; x < length; x++)
+            {
+                char c = resultArray[x];
+                resultArray[x] = char.ToUpper(c, this.Culture);
+            }
+            builder.Length = 0;
+            builder.Append(resultArray, 0, length);
+            
+            this.LoggingConfiguration.PutBack(resultArray);
+        }
+
+
+        /// <summary>
+        /// Renders the inner layout to the given string builder.
+        /// </summary>
+        /// <param name="builder">The string builder.</param>
+        /// <param name="logEvent">The log event to render.</param>
+        protected override void RenderInner(StringBuilder builder, LogEventInfo logEvent)
+        {
+            StringBuilder innerBuilder = this.Inner.RenderBuilder(logEvent);
+            if (this.LoggingConfiguration.PoolingEnabled())
+            {
+                this.Transform(innerBuilder);
+
+                var resultArray = this.LoggingConfiguration.PoolFactory.Get<CharArrayPool, char[]>().Get(innerBuilder.Length);
+
+                innerBuilder.CopyTo(0, resultArray, 0, innerBuilder.Length);
+                builder.Append(resultArray, 0, innerBuilder.Length);
+
+                this.LoggingConfiguration.PutBack(resultArray);
+                this.LoggingConfiguration.PutBack(innerBuilder);
+            }
+            else
+            {
+                if (this.Uppercase)
+                {
+                    string result = this.Transform(innerBuilder.ToString());
+                    builder.Append(result);
+                }
+                else
+                {
+                    builder.Append(innerBuilder);
+                }
+            }
+        }
+#endif
     }
 }

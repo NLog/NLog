@@ -51,6 +51,12 @@ namespace NLog.Internal
         /// <returns>Key selected from log event.</returns>
         internal delegate TKey KeySelector<TValue, TKey>(TValue value);
 
+        internal delegate Dictionary<TKey, TValue> DictionaryFactory<TKey, TValue>();
+
+        internal delegate List<TValue> ListFactory<TValue>();
+
+
+
         /// <summary>
         /// Performs bucket sort (group by) on an array of items and returns a dictionary for easy traversal of the result set.
         /// </summary>
@@ -63,15 +69,65 @@ namespace NLog.Internal
         /// </returns>
         public static Dictionary<TKey, List<TValue>> BucketSort<TValue, TKey>(this IEnumerable<TValue> inputs, KeySelector<TValue, TKey> keySelector)
         {
-            var buckets = new Dictionary<TKey, List<TValue>>();
+            return BucketSort(inputs, val => true, keySelector, () => new Dictionary<TKey, List<TValue>>(), () => new List<TValue>());
+        }
 
+        public static Dictionary<TKey, List<TValue>> BucketSort<TKey, TValue>(
+            this IEnumerable<TValue> inputs,
+            Func<TValue, bool> validator,
+            KeySelector<TValue, TKey> keySelector,
+            DictionaryFactory<TKey, List<TValue>> dictionaryFactory,
+            ListFactory<TValue> listFactory)
+        {
+            var buckets = dictionaryFactory();
             foreach (var input in inputs)
             {
+                if (!validator(input))
+                {
+                    continue;
+                }
                 var keyValue = keySelector(input);
                 List<TValue> eventsInBucket;
                 if (!buckets.TryGetValue(keyValue, out eventsInBucket))
                 {
-                    eventsInBucket = new List<TValue>();
+                    eventsInBucket = listFactory();
+                    buckets.Add(keyValue, eventsInBucket);
+                }
+
+                eventsInBucket.Add(input);
+            }
+
+            return buckets;
+        }
+        public static Dictionary<TKey, List<TValue>> BucketSort<TKey, TValue>(
+          this ArraySegment<TValue> inputs,
+          Func<TValue, bool> validator,
+          KeySelector<TValue, TKey> keySelector)
+        {
+            return BucketSort(inputs, validator, keySelector, () => new Dictionary<TKey, List<TValue>>(), () => new List<TValue>());
+        }
+
+        public static Dictionary<TKey, List<TValue>> BucketSort<TKey, TValue>(
+           this ArraySegment<TValue> inputs,
+           Func<TValue, bool> validator,
+           KeySelector<TValue, TKey> keySelector,
+           DictionaryFactory<TKey, List<TValue>> dictionaryFactory,
+           ListFactory<TValue> listFactory)
+        {
+            var buckets = dictionaryFactory();
+            for (int x = 0; x < inputs.Count; x++)
+            {
+                var input = inputs.Array[x];
+                if (!validator(input))
+                {
+                    continue;
+                }
+
+                var keyValue = keySelector(input);
+                List<TValue> eventsInBucket;
+                if (!buckets.TryGetValue(keyValue, out eventsInBucket))
+                {
+                    eventsInBucket = listFactory();
                     buckets.Add(keyValue, eventsInBucket);
                 }
 

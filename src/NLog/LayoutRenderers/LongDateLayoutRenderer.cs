@@ -35,10 +35,10 @@ namespace NLog.LayoutRenderers
 {
     using System;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Text;
 
     using NLog.Config;
+    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// The date and time in a long, sortable format yyyy-MM-dd HH:mm:ss.mmm.
@@ -67,33 +67,102 @@ namespace NLog.LayoutRenderers
                 dt = dt.ToUniversalTime();
             }
 
-            Append4DigitsZeroPadded(builder, dt.Year);
-            builder.Append('-');
-            Append2DigitsZeroPadded(builder, dt.Month);
-            builder.Append('-');
-            Append2DigitsZeroPadded(builder, dt.Day);
-            builder.Append(' ');
-            Append2DigitsZeroPadded(builder, dt.Hour);
-            builder.Append(':');
-            Append2DigitsZeroPadded(builder, dt.Minute);
-            builder.Append(':');
-            Append2DigitsZeroPadded(builder, dt.Second);
-            builder.Append('.');
-            Append4DigitsZeroPadded(builder, (int)(dt.Ticks % 10000000) / 1000);
+            long ticks = dt.Ticks;
+
+            var charArray = Chars;
+            if (dt.Ticks > this.cachedCurrentYearTicks)
+            {
+                int year = dt.Year;
+                this.cachedCurrentYearTicks = new DateTime(year, 12, 31, 23, 59, 59, 999, dt.Kind).Ticks;
+                Append4DigitsZeroPadded(charArray, 0, year);
+            }
+
+            if (ticks > this.cachedCurrentMonthTicks)
+            {
+                int month = dt.Month;
+                int year = dt.Year;
+                Append2DigitsZeroPadded(charArray, 5, month);
+                this.cachedCurrentMonthTicks = new DateTime(year, month, DateTime.DaysInMonth(year, month), 23, 59, 59, 999, dt.Kind).Ticks;
+            }
+
+            if (ticks > this.cachedCurrentDayTicks)
+            {
+                int month = dt.Month;
+                int year = dt.Year;
+                int day = dt.Day;
+
+                this.cachedCurrentDayTicks = new DateTime(year, month, day, 23, 59, 59, 999, dt.Kind).Ticks;
+                Append2DigitsZeroPadded(charArray, 8, dt.Day);
+            }
+
+            if (ticks > this.cachedCurrentHourTicks)
+            {
+                int hour = dt.Hour;
+                Append2DigitsZeroPadded(charArray, 11, dt.Hour);
+                this.cachedCurrentHourTicks = new DateTime(dt.Year, dt.Month, dt.Day, hour, 59, 59, 999, dt.Kind).Ticks;
+            }
+
+            if (ticks > this.cachedCurrentMinuteTicks)
+            {
+                int minute = dt.Minute;
+                Append2DigitsZeroPadded(charArray, 14, minute);
+                this.cachedCurrentMinuteTicks = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, minute, 59, 999, dt.Kind).Ticks;
+            }
+
+            if (ticks > this.cachedCurrentSecondTicks)
+            {
+                int second = dt.Second;
+                Append2DigitsZeroPadded(charArray, 17, second);
+                this.cachedCurrentSecondTicks = new DateTime(dt.Year, dt.Month, 1, dt.Hour, dt.Minute, second, 999, dt.Kind).Ticks;
+            }
+
+            Append4DigitsZeroPadded(charArray, 20, (int)(ticks % 10000000) / 1000);
+            builder.Append(charArray, 0, 24);
         }
 
-        private static void Append2DigitsZeroPadded(StringBuilder builder, int number)
+        private char[] charArray;
+        private long cachedCurrentYearTicks;
+        private long cachedCurrentMonthTicks;
+        private long cachedCurrentDayTicks;
+        private long cachedCurrentHourTicks;
+        private long cachedCurrentMinuteTicks;
+        private long cachedCurrentSecondTicks;
+        private char[] Chars
         {
-            builder.Append((char)((number / 10) + '0'));
-            builder.Append((char)((number % 10) + '0'));
+            get
+            {
+                if (this.charArray == null)
+                {
+                    this.charArray = new char[24];
+                    this.charArray[4] = '-';
+                    this.charArray[7] = '-';
+                    this.charArray[10] = ' ';
+                    this.charArray[13] = ':';
+                    this.charArray[16] = ':';
+                    this.charArray[19] = '.';
+                }
+
+                return this.charArray;
+            }
         }
 
-        private static void Append4DigitsZeroPadded(StringBuilder builder, int number)
+#if NET4_5
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private static void Append2DigitsZeroPadded(char[] chars, int index, int number)
         {
-            builder.Append((char)(((number / 1000) % 10) + '0'));
-            builder.Append((char)(((number / 100) % 10) + '0'));
-            builder.Append((char)(((number / 10) % 10) + '0'));
-            builder.Append((char)(((number / 1) % 10) + '0'));
+            chars[index] = (char)((number / 10) + '0');
+            chars[index + 1] = (char)((number % 10) + '0');
+        }
+#if NET4_5
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private static void Append4DigitsZeroPadded(char[] chars, int index, int number)
+        {
+            chars[index] = (char)(((number / 1000) % 10) + '0');
+            chars[index + 1] = (char)(((number / 100) % 10) + '0');
+            chars[index + 2] = (char)(((number / 10) % 10) + '0');
+            chars[index + 3] = (char)(((number / 1) % 10) + '0');
         }
     }
 }

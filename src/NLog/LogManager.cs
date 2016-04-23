@@ -376,6 +376,11 @@ namespace NLog
                     if (target != null) target.Dispose();
                 }
             }
+
+            if (Configuration != null && Configuration.PoolFactory != null)
+            {
+                Configuration.PoolFactory.Dispose();
+            }
         }
 
 #if !SILVERLIGHT && !MONO

@@ -96,7 +96,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            AsyncHelpers.ForEachItemInParallel(this.Targets, asyncContinuation, (t, c) => t.Flush(c));
+            AsyncHelpers.ForEachItemInParallel(this.LoggingConfiguration, this.Targets, asyncContinuation, (t, c) => t.Flush(c));
         }
     }
 }

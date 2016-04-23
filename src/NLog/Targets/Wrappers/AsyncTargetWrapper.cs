@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using NLog.Config;
+
 namespace NLog.Targets.Wrappers
 {
     using System;
@@ -119,7 +121,7 @@ namespace NLog.Targets.Wrappers
         /// <param name="overflowAction">The action to be taken when the queue overflows.</param>
         public AsyncTargetWrapper(Target wrappedTarget, int queueLimit, AsyncTargetWrapperOverflowAction overflowAction)
         {
-            this.RequestQueue = new AsyncRequestQueue(10000, AsyncTargetWrapperOverflowAction.Discard);
+            this.RequestQueue = new AsyncRequestQueue(this.LoggingConfiguration, 10000, AsyncTargetWrapperOverflowAction.Discard);
             this.TimeToSleepBetweenBatches = 50;
             this.BatchSize = 100;
             this.WrappedTarget = wrappedTarget;
@@ -172,13 +174,38 @@ namespace NLog.Targets.Wrappers
 
         /// <summary>
         /// Waits for the lazy writer thread to finish writing messages.
+        /// Blocking call as it should be, otherwise AsyncTargetWrapper might not have flushed all messages before call returns
+        /// if <see cref="TimeToSleepBetweenBatches"/> is too high.
         /// </summary>
         /// <param name="asyncContinuation">The asynchronous continuation.</param>
         protected override void FlushAsync(AsyncContinuation asyncContinuation)
         {
-            lock (continuationQueueLock)
+            Exception exception = null;
+            try
             {
-                this.flushAllContinuations.Enqueue(asyncContinuation);
+                ManualResetEvent evt = new ManualResetEvent(false);
+
+                AsyncContinuation waiter = ex =>
+                    {
+                        exception = ex;
+                        evt.Set();
+                    };
+
+                lock (continuationQueueLock)
+                {
+                    this.flushAllContinuations.Enqueue(waiter);
+                }
+
+                // Wait for flush to happen
+                evt.WaitOne();
+            }
+            catch (Exception e)
+            {
+                exception = AsyncHelpers.GetCombinedException(exception, e);
+            }
+            finally
+            {
+                asyncContinuation(exception);
             }
         }
 
@@ -187,11 +214,13 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void InitializeTarget()
         {
-            if (this.TimeToSleepBetweenBatches <= 0) {
+            if (this.TimeToSleepBetweenBatches <= 0)
+            {
                 throw new NLogConfigurationException("The AysncTargetWrapper\'s TimeToSleepBetweenBatches property must be > 0");
             }
 
             base.InitializeTarget();
+            this.RequestQueue.Initialize(this.LoggingConfiguration);
             this.RequestQueue.Clear();
             InternalLogger.Trace("AsyncWrapper '{0}': start timer", Name);
             this.lazyWriterTimer = new Timer(this.ProcessPendingEvents, null, Timeout.Infinite, Timeout.Infinite);
@@ -237,6 +266,7 @@ namespace NLog.Targets.Wrappers
                 if (this.lazyWriterTimer != null)
                 {
                     this.lazyWriterTimer.Change(Timeout.Infinite, Timeout.Infinite);
+                    this.lazyWriterTimer.Dispose();
                     this.lazyWriterTimer = null;
                 }
             }
@@ -271,21 +301,20 @@ namespace NLog.Targets.Wrappers
 
             try
             {
-
                 if (this.WrappedTarget == null)
                 {
-                    InternalLogger.Error("AsyncWrapper '{0}': WrappedTarget is NULL", Name);
+                    InternalLogger.Error("AsyncWrapper '{0}': WrappedTarget is NULL", this.Name);
                     return;
                 }
 
-                foreach (var continuation in continuations)
+                for(int x=0;x<continuations.Length;x++)
                 {
+                    var continuation = continuations[x];
                     int count = this.BatchSize;
                     if (continuation != null)
                     {
                         count = this.RequestQueue.RequestCount;
                     }
-                    InternalLogger.Trace("AsyncWrapper '{0}': Flushing {1} events.", Name, count);
 
                     if (this.RequestQueue.RequestCount == 0)
                     {
@@ -293,25 +322,44 @@ namespace NLog.Targets.Wrappers
                         {
                             continuation(null);
                         }
+
+                        return;
+                    }
+                    if (InternalLogger.IsTraceEnabled)
+                    {
+                        InternalLogger.Trace("{0} - AsyncWrapper '{1}': Trying to flush {2} events.", DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss.ffff"), this.Name, count.AsString());
                     }
 
-                    AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count);
+                    int actualCount;
+                    AsyncLogEventInfo[] logEventInfos = this.RequestQueue.DequeueBatch(count, out actualCount);
 
-                    if (continuation != null)
+                    if (InternalLogger.IsTraceEnabled)
                     {
-                        // write all events, then flush, then call the continuation
-                        this.WrappedTarget.WriteAsyncLogEvents(logEventInfos, ex => this.WrappedTarget.Flush(continuation));
+                        InternalLogger.Trace("{0} - AsyncWrapper '{1}': Flushing {2} events.", DateTime.UtcNow.ToString("yyyy-MM-dd hh:mm:ss.ffff"), this.Name, actualCount.AsString());
                     }
-                    else
+
+                    try
                     {
-                        // just write all events
-                        this.WrappedTarget.WriteAsyncLogEvents(logEventInfos);
+                        if (continuation != null)
+                        {
+                            // write all events, then flush, then call the continuation
+                            this.WrappedTarget.WriteAsyncLogEvents(new ArraySegment<AsyncLogEventInfo>(logEventInfos, 0, actualCount), ex => this.WrappedTarget.Flush(continuation));
+                        }
+                        else
+                        {
+                            // just write all events
+                            this.WrappedTarget.WriteAsyncLogEvents(new ArraySegment<AsyncLogEventInfo>(logEventInfos, 0, actualCount));
+                        }
+                    }
+                    finally
+                    {
+                        this.LoggingConfiguration.PutBack(logEventInfos);
                     }
                 }
             }
             catch (Exception exception)
             {
-                InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", Name);
+                InternalLogger.Error(exception, "AsyncWrapper '{0}': Error in lazy writer timer procedure.", this.Name);
 
                 if (exception.MustBeRethrown())
                 {

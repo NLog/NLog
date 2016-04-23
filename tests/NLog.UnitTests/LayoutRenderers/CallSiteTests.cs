@@ -31,18 +31,21 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using NLog.Config;
 using NLog.Internal;
 using NLog.Layouts;
 using NLog.Targets;
-using System.Runtime.CompilerServices;
 
 namespace NLog.UnitTests.LayoutRenderers
 {
     using System;
-    using System.IO;
     using System.Reflection;
     using System.Threading;
+    using System.IO;
     using System.Threading.Tasks;
     using Xunit;
 

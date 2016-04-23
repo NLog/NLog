@@ -289,6 +289,17 @@ namespace NLog
         /// <returns>The enumeration value.</returns>
         public static LogLevel FromString(string levelName)
         {
+            return FromString(levelName, true);
+        }
+
+        /// <summary>
+        /// Returns the <see cref="T:NLog.LogLevel"/> that corresponds to the supplied <see langword="string" />.
+        /// </summary>
+        /// <param name="levelName">The textual representation of the log level.</param>
+        /// <param name="throwOnNotFound">Whether or not to throw an exception or just return null if the level cannot be found.</param>
+        /// <returns>The enumeration value.</returns>
+        public static LogLevel FromString(string levelName, bool throwOnNotFound)
+        {
             if (levelName == null)
             {
                 throw new ArgumentNullException("levelName");
@@ -329,7 +340,11 @@ namespace NLog
                 return Off;
             }
 
-            throw new ArgumentException("Unknown log level: " + levelName);
+            if (throwOnNotFound)
+            {
+                throw new ArgumentException("Unknown log level: " + levelName);
+            }
+            return null;
         }
 
         /// <summary>

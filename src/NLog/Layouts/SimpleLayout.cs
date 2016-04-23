@@ -31,8 +31,9 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-using System.Collections.Generic;
 using System.Linq;
+
+using NLog.Internal.Pooling.Pools;
 
 namespace NLog.Layouts
 {
@@ -43,6 +44,8 @@ namespace NLog.Layouts
     using NLog.Config;
     using NLog.Internal;
     using NLog.LayoutRenderers;
+    using Internal.Pooling;
+
 
     /// <summary>
     /// Represents a string with embedded placeholders that can render contextual information.
@@ -114,7 +117,7 @@ namespace NLog.Layouts
 
             set
             {
-                OriginalText = value;
+                this.OriginalText = value;
 
                 LayoutRenderer[] renderers;
                 string txt;
@@ -141,7 +144,7 @@ namespace NLog.Layouts
         /// </summary>
         public string FixedText
         {
-            get { return fixedText; }
+            get { return this.fixedText; }
         }
 
         /// <summary>
@@ -253,7 +256,7 @@ namespace NLog.Layouts
                 LayoutRenderer renderer = this.Renderers[i];
                 try
                 {
-                    renderer.Initialize(LoggingConfiguration);
+                    renderer.Initialize(this.LoggingConfiguration);
                 }
                 catch (Exception exception)
                 {
@@ -283,16 +286,20 @@ namespace NLog.Layouts
         /// <returns>The rendered layout.</returns>
         protected override string GetFormattedMessage(LogEventInfo logEvent)
         {
-            if (IsFixedText)
+            if (this.IsFixedText)
             {
                 return this.fixedText;
             }
 
-            string cachedValue;
-
-            if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+            // Only makes sense to cache message if layouts are not thread agnostic
+            if (!this.IsThreadAgnostic)
             {
-                return cachedValue;
+                string cachedValue;
+
+                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                {
+                    return cachedValue;
+                }
             }
 
             int initialSize = this.maxRenderedLength;
@@ -300,9 +307,99 @@ namespace NLog.Layouts
             {
                 initialSize = MaxInitialRenderBufferLength;
             }
+            string result;
 
-            var builder = new StringBuilder(initialSize);
+            if (this.LoggingConfiguration.PoolingEnabled())
+            {
+                var pool = this.LoggingConfiguration.PoolFactory.Get<StringBuilderPool, StringBuilder>();
+                var builder = pool.Get();
+                this.Render(builder, logEvent);
 
+                result = builder.ToString();
+                pool.PutBack(builder);
+            }
+            else
+            {
+                var builder = new StringBuilder(initialSize);
+                this.Render(builder, logEvent);
+                result = builder.ToString();
+            }
+
+            if (!this.IsThreadAgnostic)
+            {
+                if (logEvent.TryGetCachedLayoutValue(this, out result))
+                {
+                    return result;
+                }
+            }
+
+            return result;
+        }
+
+        /// <inheritdoc/>
+
+        protected override void AppendFormattedMessage(StringBuilder target, LogEventInfo logEvent)
+        {
+            this.Render(target, logEvent);
+        }
+
+        private void Render(StringBuilder target, LogEventInfo logEvent)
+        {
+            if (!this.IsThreadAgnostic)
+            {
+                string cachedValue;
+
+                if (logEvent.TryGetCachedLayoutValue(this, out cachedValue))
+                {
+                    target.Append(cachedValue);
+                    return;
+                }
+            }
+
+
+            StringBuilder intermediate = target;
+
+            if (target.Length != 0)
+            {
+                int initialSize = this.maxRenderedLength;
+                if (initialSize > MaxInitialRenderBufferLength)
+                {
+                    initialSize = MaxInitialRenderBufferLength;
+                }
+
+                if (this.LoggingConfiguration.PoolingEnabled())
+                {
+                    intermediate = this.LoggingConfiguration.PoolFactory.Get<StringBuilderPool, StringBuilder>().Get();
+                }
+                else
+                {
+                    intermediate = new StringBuilder(initialSize);
+                }
+            }
+
+            this.RenderAllRenderers(logEvent, intermediate);
+            
+            if (!this.IsThreadAgnostic)
+            {
+                logEvent.AddCachedLayoutValue(this, intermediate.ToString());
+            }
+
+            if (intermediate.Length > this.maxRenderedLength)
+            {
+                this.maxRenderedLength = target.Length;
+            }
+
+            if (target != intermediate)
+            {
+                target.Append(intermediate);
+
+                this.LoggingConfiguration.PutBack(intermediate);
+                
+            }
+        }
+
+        private void RenderAllRenderers(LogEventInfo logEvent, StringBuilder builder)
+        {
             //Memory profiling pointed out that using a foreach-loop was allocating
             //an Enumerator. Switching to a for-loop avoids the memory allocation.
             for (int i = 0; i < this.Renderers.Count; i++)
@@ -328,15 +425,6 @@ namespace NLog.Layouts
                     }
                 }
             }
-
-            if (builder.Length > this.maxRenderedLength)
-            {
-                this.maxRenderedLength = builder.Length;
-            }
-
-            string value = builder.ToString();
-            logEvent.AddCachedLayoutValue(this, value);
-            return value;
         }
 
 

@@ -31,6 +31,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+
+
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -44,6 +46,9 @@ namespace NLog.UnitTests.Targets
     using NLog.Targets.Wrappers;
     using NLog.Common;
     using Xunit;
+    using System.Collections.Generic;
+
+    using Xunit.Extensions;
 
     public class ConcurrentFileTargetTests : NLogTestBase
 	{
@@ -90,7 +95,6 @@ namespace NLog.UnitTests.Targets
 
             ConfigureSharedFile(mode);
             InternalLogger.LogLevel = LogLevel.Trace;
-            InternalLogger.LogToConsole = true;
             int numLogs = Convert.ToInt32(numLogsString);
             for (int i = 0; i < numLogs; ++i)
             {
@@ -100,6 +104,8 @@ namespace NLog.UnitTests.Targets
             LogManager.Configuration = null;
         }
 
+        [PropertyData("Types")]
+        [Theory]
         private void DoConcurrentTest(int numProcesses, int numLogs, string mode)
         {
             string logFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "file.txt");
@@ -116,8 +122,10 @@ namespace NLog.UnitTests.Targets
             
             for (int i = 0; i < numProcesses; ++i)
             {
-                processes[i].WaitForExit();
-                string output = processes[i].StandardOutput.ReadToEnd();
+                while (!processes[i].WaitForExit(10000))
+                {
+
+                }
                 Assert.Equal(0, processes[i].ExitCode);
                 processes[i].Dispose();
                 processes[i] = null;
@@ -149,36 +157,21 @@ namespace NLog.UnitTests.Targets
                 }
             }
         }
-
-        private void DoConcurrentTest(string mode)
+        public static IEnumerable<object[]> Types
         {
-            DoConcurrentTest(2, 10000, mode);
-            DoConcurrentTest(5, 4000, mode);
-            DoConcurrentTest(10, 2000, mode);
-        }
-
-        [Fact]
-        public void SimpleConcurrentTest()
-        {
-            DoConcurrentTest("none");
-        }
-
-        [Fact]
-        public void AsyncConcurrentTest()
-        {
-            DoConcurrentTest(2, 100, "async");
-        }
-
-        [Fact]
-        public void BufferedConcurrentTest()
-        {
-            DoConcurrentTest(2, 100, "buffered");
-        }
-
-        [Fact]
-        public void BufferedTimedFlushConcurrentTest()
-        {
-            DoConcurrentTest(2, 100, "buffered_timed_flush");
+            get
+            {
+                return new object[][] 
+                {
+                    new object[] { 2, 100, "async" },
+                    new object[] { 2, 100, "buffered" },
+                    new object[] { 2, 100, "buffered_timed_flush" },
+                    new object[] {2,10000,"none"},
+                    new object[] {5,4000,"none"},
+                    new object[] {10,2000,"none"},
+                    
+                };
+            }
         }
     }
 }

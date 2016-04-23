@@ -28,7 +28,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET4_5;WCF_SUPPORTED;ASYNC_SUPPORTED;NET4_5;WCF_SUPPORTED;ASYNC_SUPPORTED</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <Optimize>false</Optimize>
@@ -40,18 +40,20 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <OutputPath>..\..\build\bin\Debug\.NET Framework 4.5\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <BaseAddress>285212672</BaseAddress>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET4_5;WCF_SUPPORTED;ASYNC_SUPPORTED;NET4_5;WCF_SUPPORTED;ASYNC_SUPPORTED</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>pdbonly</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 4.5</TargetFrameworkName>
@@ -78,6 +80,7 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>..\..\src\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\src\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -156,11 +159,14 @@
     <Compile Include="Filters\WhenNotEqualTests.cs" />
     <Compile Include="Fluent\LogBuilderTests.cs" />
     <Compile Include="GetLoggerTests.cs" />
+    <Compile Include="Internal\ConcurrentRingBufferTest.cs" />
     <Compile Include="Internal\EnumHelpersTests.cs" />
     <Compile Include="Internal\ExceptionHelperTests.cs" />
     <Compile Include="Internal\FileAppenders\FileAppenderCacheTests.cs" />
     <Compile Include="Internal\NetworkSenders\TcpNetworkSenderTests.cs" />
     <Compile Include="Internal\NetworkSenders\UdpNetworkSenderTests.cs" />
+    <Compile Include="Internal\Pooling\PoolingEnabledLoggingTest.cs" />
+    <Compile Include="Internal\PoolingConfigurationTest.cs" />
     <Compile Include="Internal\StringHelpersTests.cs" />
     <Compile Include="LayoutRenderers\AppDomainLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\AppSettingTests.cs" />
@@ -191,17 +197,20 @@
     <Compile Include="LayoutRenderers\Rot13Tests.cs" />
     <Compile Include="LayoutRenderers\ShortDateTests.cs" />
     <Compile Include="LayoutRenderers\SpecialFolderTests.cs" />
+    <Compile Include="LayoutRenderers\ThreadIdTests.cs" />
     <Compile Include="LayoutRenderers\ThreadNameTests.cs" />
     <Compile Include="LayoutRenderers\TimeTests.cs" />
     <Compile Include="LayoutRenderers\VariableLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\CachedTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\FileSystemNormalizeTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\JsonEncodeTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\LowerCaseLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\OnExceptionTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\PaddingTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceNewLinesTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\ReplaceTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\TrimWhiteSpaceTests.cs" />
+    <Compile Include="LayoutRenderers\Wrappers\UpperCaseLayoutRendererTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenEmptyTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WhenTests.cs" />
     <Compile Include="LayoutRenderers\Wrappers\WrapLineTests.cs" />

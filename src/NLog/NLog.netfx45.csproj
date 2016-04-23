@@ -15,7 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -26,22 +27,26 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET4_5;CLIENT_SKU;WCF_SUPPORTED;ASYNC_SUPPORTED;NET4_5;CLIENT_SKU;WCF_SUPPORTED;ASYNC_SUPPORTED</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>..\..\build\bin\Debug\.NET Framework 4.5\</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>..\..\build\bin\Debug\.NET Framework 4.5\NLog.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET4_5;CLIENT_SKU;WCF_SUPPORTED;ASYNC_SUPPORTED;NET4_5;CLIENT_SKU;WCF_SUPPORTED;ASYNC_SUPPORTED;NET4_5;CLIENT_SKU;WCF_SUPPORTED;ASYNC_SUPPORTED;NET4_5;CLIENT_SKU;WCF_SUPPORTED;ASYNC_SUPPORTED;NET4_5;CLIENT_SKU;WCF_SUPPORTED;ASYNC_SUPPORTED</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Release</OutputPath>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworkName>.NET Framework 4.5</TargetFrameworkName>
@@ -67,6 +72,11 @@
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
     <Compile Include="Common\AsyncLogEventInfo.cs" />
+    <Compile Include="Common\CombinedAsyncContinuation.cs" />
+    <Compile Include="Common\CombinedException.cs" />
+    <Compile Include="Common\ContinueWhenAll.cs" />
+    <Compile Include="Common\Counter.cs" />
+    <Compile Include="Common\ExceptionHandlerContinuation.cs" />
     <Compile Include="Common\InternalLogger.cs" />
     <Compile Include="Common\InternalLogger-generated.cs">
       <AutoGen>True</AutoGen>
@@ -109,6 +119,7 @@
     <Compile Include="Config\InstallationContext.cs" />
     <Compile Include="Config\LoggingConfiguration.cs" />
     <Compile Include="Config\LoggingConfigurationChangedEventArgs.cs" />
+    <Compile Include="Config\LoggingConfigurationExtensions.cs" />
     <Compile Include="Config\LoggingConfigurationReloadedEventArgs.cs" />
     <Compile Include="Config\LoggingRule.cs" />
     <Compile Include="Config\MethodFactory.cs" />
@@ -158,6 +169,7 @@
     <Compile Include="Internal\FileAppenders\ICreateFileParameters.cs" />
     <Compile Include="Internal\FileAppenders\IFileAppenderFactory.cs" />
     <Compile Include="Internal\FileAppenders\MutexMultiProcessFileAppender.cs" />
+    <Compile Include="Internal\FileAppenders\NullAppender.cs" />
     <Compile Include="Internal\FileAppenders\RetryingMultiProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\SingleProcessFileAppender.cs" />
     <Compile Include="Internal\FileAppenders\UnixMultiProcessFileAppender.cs" />
@@ -189,6 +201,29 @@
     <Compile Include="Internal\ObjectGraphScanner.cs" />
     <Compile Include="Internal\ParameterUtils.cs" />
     <Compile Include="Internal\PlatformDetector.cs" />
+    <Compile Include="Internal\Pooling\ConcurrentRingBufferImpl.cs" />
+    <Compile Include="Internal\Pooling\IPool.cs" />
+    <Compile Include="Internal\Pooling\IPooledItem.cs" />
+    <Compile Include="Internal\Pooling\PoolConfiguration.cs" />
+    <Compile Include="Internal\Pooling\PoolFactory.cs" />
+    <Compile Include="Internal\Pooling\PoolingAttribute.cs" />
+    <Compile Include="Internal\Pooling\Pools\ArrayPoolBase.cs" />
+    <Compile Include="Internal\Pooling\Pools\AsyncContinuationListPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\AsyncLogEventInfoArrayPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\AsyncLogEventInfoListPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\ByteArrayPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\CharArrayPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\CombinedAsyncContinuationPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\ExceptionHandlerPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\FileNameDictionaryPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\GenericPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\LogEventInfoPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\MemoryStreamPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\PoolBase.cs" />
+    <Compile Include="Internal\Pooling\Pools\PoolBaseOfT.cs" />
+    <Compile Include="Internal\Pooling\Pools\SingleCallContinuationPool.cs" />
+    <Compile Include="Internal\Pooling\Pools\StringBuilderPool.cs" />
+    <Compile Include="Internal\Pooling\StackPoolImpl.cs" />
     <Compile Include="Internal\PortableFileCharacteristicsHelper.cs" />
     <Compile Include="Internal\PortableThreadIDHelper.cs" />
     <Compile Include="Internal\PropertyHelper.cs" />
@@ -438,6 +473,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(StyleCopTargetsFile)" Condition="Exists('$(StyleCopTargetsFile)')" />
   <Target Name="BeforeBuild">

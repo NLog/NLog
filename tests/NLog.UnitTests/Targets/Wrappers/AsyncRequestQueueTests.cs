@@ -48,7 +48,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
             var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
-            var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Discard);
+            var queue = new AsyncRequestQueue(new NLog.Config.LoggingConfiguration(),3, AsyncTargetWrapperOverflowAction.Discard);
             Assert.Equal(3, queue.RequestLimit);
             Assert.Equal(AsyncTargetWrapperOverflowAction.Discard, queue.OnOverflow);
             Assert.Equal(0, queue.RequestCount);
@@ -60,8 +60,8 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(3, queue.RequestCount);
             queue.Enqueue(ev4);
             Assert.Equal(3, queue.RequestCount);
-
-            AsyncLogEventInfo[] logEventInfos = queue.DequeueBatch(10);
+            int actualCount;
+            AsyncLogEventInfo[] logEventInfos = queue.DequeueBatch(10, out actualCount);
             Assert.Equal(0, queue.RequestCount);
 
             // ev1 is lost
@@ -81,7 +81,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
             var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
             
-            var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
+            var queue = new AsyncRequestQueue(new NLog.Config.LoggingConfiguration(), 3, AsyncTargetWrapperOverflowAction.Grow);
             Assert.Equal(3, queue.RequestLimit);
             Assert.Equal(AsyncTargetWrapperOverflowAction.Grow, queue.OnOverflow);
             Assert.Equal(0, queue.RequestCount);
@@ -93,11 +93,11 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(3, queue.RequestCount);
             queue.Enqueue(ev4);
             Assert.Equal(4, queue.RequestCount);
+            int actualCount;
+            AsyncLogEventInfo[] logEventInfos = queue.DequeueBatch(10, out actualCount);
+            
 
-            AsyncLogEventInfo[] logEventInfos = queue.DequeueBatch(10);
-            int result = logEventInfos.Length;
-
-            Assert.Equal(4, result);
+            Assert.Equal(4, actualCount);
             Assert.Equal(0, queue.RequestCount);
 
             // ev1 is lost
@@ -114,7 +114,7 @@ namespace NLog.UnitTests.Targets.Wrappers
         [Fact]
         public void AsyncRequestQueueWithBlockBehavior()
         {
-            var queue = new AsyncRequestQueue(10, AsyncTargetWrapperOverflowAction.Block);
+            var queue = new AsyncRequestQueue(new NLog.Config.LoggingConfiguration(), 10, AsyncTargetWrapperOverflowAction.Block);
 
             ManualResetEvent producerFinished = new ManualResetEvent(false);
 
@@ -140,24 +140,25 @@ namespace NLog.UnitTests.Targets.Wrappers
             // consumer thread
             AsyncLogEventInfo[] logEventInfos;
             int total = 0;
-
+            int actualCount;
             while (total < 500)
             {
                 int left = 500 - total;
-
-                logEventInfos = queue.DequeueBatch(left);
-                int got = logEventInfos.Length;
-                Assert.True(got <= queue.RequestLimit);
-                total += got;
+                
+                logEventInfos = queue.DequeueBatch(left, out actualCount);
+               
+                Assert.True(actualCount <= queue.RequestLimit);
+                total += actualCount;
             }
 
-            Thread.Sleep(500);
+            Thread.Sleep(20);
 
             // producer is blocked on trying to push event #510
             Assert.Equal(510, pushingEvent);
-            queue.DequeueBatch(1);
+            
+            queue.DequeueBatch(1, out actualCount);
             total++;
-            Thread.Sleep(500);
+            Thread.Sleep(20);
 
             // producer is now blocked on trying to push event #511
 
@@ -166,10 +167,10 @@ namespace NLog.UnitTests.Targets.Wrappers
             {
                 int left = 1000 - total;
 
-                logEventInfos = queue.DequeueBatch(left);
-                int got = logEventInfos.Length;
-                Assert.True(got <= queue.RequestLimit);
-                total += got;
+                logEventInfos = queue.DequeueBatch(left, out actualCount);
+                
+                Assert.True(actualCount <= queue.RequestLimit);
+                total += actualCount;
             }
 
             // producer should now finish
@@ -184,7 +185,7 @@ namespace NLog.UnitTests.Targets.Wrappers
             var ev3 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
             var ev4 = LogEventInfo.CreateNullEvent().WithContinuation(ex => { });
 
-            var queue = new AsyncRequestQueue(3, AsyncTargetWrapperOverflowAction.Grow);
+            var queue = new AsyncRequestQueue(new NLog.Config.LoggingConfiguration(), 3, AsyncTargetWrapperOverflowAction.Grow);
             Assert.Equal(3, queue.RequestLimit);
             Assert.Equal(AsyncTargetWrapperOverflowAction.Grow, queue.OnOverflow);
             Assert.Equal(0, queue.RequestCount);
@@ -200,10 +201,11 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(0, queue.RequestCount);
 
             AsyncLogEventInfo[] logEventInfos;
-
-            logEventInfos = queue.DequeueBatch(10);
-            int result = logEventInfos.Length;
-            Assert.Equal(0, result);
+            int actualCount;
+            logEventInfos = queue.DequeueBatch(10, out actualCount);
+            
+            
+            Assert.Equal(0, actualCount);
             Assert.Equal(0, queue.RequestCount);
         }
     }
