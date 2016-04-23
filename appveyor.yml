@@ -6,8 +6,6 @@ build_script:
   - if not defined build_with_xamarin appveyor AddCompilationMessage "Warning, Android and iOS compilation were not performed because AppVeyor account must be set" -Category Warning
   - if defined build_with_xamarin Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinAndroid=true /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
   - if defined build_with_xamarin Msbuild.exe src/NLog.proj /verbosity:minimal /t:rebuild /p:BuildAllFrameworks=false /p:BuildXamarinIOS=true     /p:BuildLastMajorVersion=4.0.0 /p:AssemblyFileVersion=4.9.9 /p:BuildVersion=4.9.9
-before_test:
-  - tests\CreateTestUsers.cmd
 test_script:
   - tools\CheckSourceCode\NLog.SourceCodeTests.exe no-interactive
   - xunit.console.clr4 "build\bin\Debug\.NET Framework 3.5\NLog.UnitTests.dll" /appveyor /noshadow
@@ -19,10 +17,6 @@ test_script:
   - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
   - pip install codecov
   - codecov -f "coverage.xml"
-  
-after_test:
-  - tests\DeleteTestUsers.cmd
-
 deploy: off
 # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
 cache:
