@@ -1098,6 +1098,23 @@ namespace NLog.Config
             return false;
         }
 
+        private void ConfigureObjectFromAttributes(object targetObject, NLogXmlElement element, bool ignoreType)
+        {
+            var attributeValues = element.AttributeValues.ToList();
+            foreach (var kvp in attributeValues)
+            {
+                string childName = kvp.Key;
+                string childValue = kvp.Value;
+
+                if (ignoreType && childName.Equals("type", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.ConfigurationItemFactory);
+            }
+        }
+
         private bool SetLayoutFromElement(object o, NLogXmlElement layoutElement)
         {
             PropertyInfo targetPropertyInfo;
@@ -1144,23 +1161,6 @@ namespace NLog.Config
             this.ConfigureObjectFromAttributes(item, element, true);
             this.ConfigureObjectFromElement(item, element);
             return true;
-        }
-
-        private void ConfigureObjectFromAttributes(object targetObject, NLogXmlElement element, bool ignoreType)
-        {
-            var attributeValues = element.AttributeValues.ToList();
-            foreach (var kvp in attributeValues)
-            {
-                string childName = kvp.Key;
-                string childValue = kvp.Value;
-
-                if (ignoreType && childName.Equals("type", StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-
-                PropertyHelper.SetPropertyFromString(targetObject, childName, this.ExpandSimpleVariables(childValue), this.ConfigurationItemFactory);
-            }
         }
 
         private void ConfigureObjectFromElement(object targetObject, NLogXmlElement element)
