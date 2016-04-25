@@ -31,7 +31,6 @@ examples/NLogDemo/gmail*.txt
 *.user
 tools/FAKE/
 packages/
-build/
 *.sublime-*
 *.DotSettings
 src/NLog/project.lock.json*.vshost.*
@@ -40,7 +39,6 @@ artifacts/
 nuget/
 artifacts/
 samples/
-build.ps1
 tools/packages.config
 #ignore results of unit tests
 /**/testresults.xml

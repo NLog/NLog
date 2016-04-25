@@ -1,3 +1,4 @@
+#load "./build/process.cake"
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
@@ -42,79 +43,6 @@ var testProjects = System.IO.Directory.GetDirectories(string.Format(".{0}tests",
 // Error Handling
 List<Exception> errors = new List<Exception>();
 
-//////////////////////////////////////////////////////////////////////
-// Build method
-//////////////////////////////////////////////////////////////////////
-
-Action<string, string, DNRuntime, DNArchitecture, IEnumerable<string>, IEnumerable<string>, string> buildAndTest = (string target, string dnxVersion, DNRuntime runtime, DNArchitecture architecture, IEnumerable<string> buildTargets, IEnumerable<string> testTargets, string frameworkForTests) =>
-{
-	foreach(var buildTarget in buildTargets)
-	{
-		string projectJsonFile = buildTarget + "/project.json";
-		if(!System.IO.File.Exists(projectJsonFile))
-			continue;
-	
-		// Build
-		DNUBuildSettings dnuBuildSettings = new DNUBuildSettings
-		{
-			Architecture = architecture,
-			Runtime = runtime,
-			Version = dnxVersion,
-			Frameworks = new [] { target },
-			Configurations = new[] { configuration },
-			OutputDirectory = buildDir,
-			Quiet = true
-		};
-        
-		Information("Building project " + buildTarget);
-		DNUBuild(buildTarget, dnuBuildSettings);
-	}
-	
-	foreach(var testTarget in testTargets)
-	{
-		string testProjectJsonFile = testTarget + "/project.json";
-		if(!System.IO.File.Exists(testProjectJsonFile))
-			continue;
-	
-		// Build
-		var dnuBuildSettingsForTest = new DNUBuildSettings
-		{
-			Architecture = architecture,
-			Runtime = runtime,
-			Version = dnxVersion,
-			Frameworks = new [] { frameworkForTests },
-			Configurations = new[] { configuration },
-			OutputDirectory = buildDir,
-			Quiet = true
-		};
-        
-		Information("Building project " + testTarget);
-		DNUBuild(testTarget, dnuBuildSettingsForTest);
-	
-		// Test
-		var settings = new DNXRunSettings
-		{	
-			Architecture = architecture,
-			Runtime = runtime,
-			Version = dnxVersion
-		};
-		
-		/*OpenCover(tool => {
-			tool.DNXRun(testTarget, "test", settings);
-		},
-		new FilePath("./cover_result.xml"),
-		new OpenCoverSettings());*/
-		
-		Information("Running unit tests in project " + testTarget);
-		DNXRun(testTarget, "test", settings);
-		
-		var di = new System.IO.DirectoryInfo(testTarget);
-		string unitTestResultFile = "testresults_" + di.Name + ".xml";
-		CopyFile(testTarget + "/testresults.xml", (buildDir + Directory(configuration) + Directory(target)) + File(unitTestResultFile));
-	}
-	
-};
-
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -138,6 +66,12 @@ Task("Clean")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
+	.IsDependentOn("Clean")
+	.IsDependentOn("dotnet5.4")
+	.IsDependentOn("net35")
+	.IsDependentOn("net451")
+	.IsDependentOn("sl5")
+	.IsDependentOn("Pack")
     .IsDependentOn("checkErrors");
 
 Task("checkErrors")
@@ -155,8 +89,8 @@ Task("checkErrors")
     });
 
 Task("pack")
+	.IsDependentOn("restore")
     .WithCriteria(() => !errors.Any())
-	.IsDependentOn("sl5") //last task in chain
 	.Does(() => 
 {
 	string[] frameworks = null;
@@ -194,7 +128,6 @@ Task("pack")
 
 /*Task("uap10")
 	.ContinueOnError()
-	.IsDependentOn("sl5")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
@@ -219,7 +152,7 @@ Task("pack")
 });*/
    
 Task("sl5")
-	.IsDependentOn("net35")
+	.IsDependentOn("restore")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
@@ -233,7 +166,7 @@ Task("sl5")
 });
 
 Task("net35")
-	.IsDependentOn("net451")
+	.IsDependentOn("restore")
     .WithCriteria(IsRunningOnWindows())
 	.Does(() =>
 {
@@ -246,7 +179,7 @@ Task("net35")
 });
 
 Task("net451")
-	.IsDependentOn("dotnet5.4")
+	.IsDependentOn("restore")
 	.Does(() =>
 {
 	buildAndTest("net451", buildDnxVersion, 
