@@ -351,22 +351,6 @@ namespace NLog.UnitTests.Targets
 #endif
         }
 
-
-        [Fact]
-        public void WrongMyTargetShouldThrowException()
-        {
-
-            Assert.Throws<NLogRuntimeException>(() =>
-            {
-                var target = new WrongMyTarget();
-                LogManager.ThrowExceptions = true;
-                SimpleConfigurator.ConfigureForTargetLogging(target);
-                var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
-                logger.Info("Testing");
-            });
-
-        }
-
         [Fact]
         public void WrongMyTargetShouldNotThrowExceptionWhenThrowExceptionsIsFalse()
         {
@@ -375,6 +359,8 @@ namespace NLog.UnitTests.Targets
             SimpleConfigurator.ConfigureForTargetLogging(target);
             var logger = LogManager.GetLogger("WrongMyTargetShouldThrowException");
             logger.Info("Testing");
+            var layouts = target.GetAllLayouts();
+            Assert.NotNull(layouts);
         }
 
 
@@ -386,7 +372,7 @@ namespace NLog.UnitTests.Targets
             /// </summary>
             protected override void InitializeTarget()
             {
-                //this is wrong. base.InitializeTarget() should be called
+                //base.InitializeTarget() should be called
             }
         }
     }

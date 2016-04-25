@@ -310,9 +310,11 @@ namespace NLog.Targets
                     {
                         this.InitializeTarget();
                         this.initializeException = null;
-                        if (this.allLayouts == null)
+                        if (!scannedForLayouts)
                         {
-                            throw new NLogRuntimeException("{0}.allLayouts is null. Call base.InitializeTarget() in {0}", this.GetType());
+                            InternalLogger.Debug("InitializeTarget is done but not scanned For Layouts");
+                            //this is critical, as we need the layouts. So if base.InitializeTarget() isn't called, we fix the layouts here.
+                            FindAllLayouts();
                         }
                     }
                     catch (Exception exception)
