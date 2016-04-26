@@ -33,10 +33,11 @@
 
 namespace NLog.LayoutRenderers.Wrappers
 {
-    using NLog.Config;
     using System;
     using System.ComponentModel;
-    using System.Collections.Generic;
+    using System.Text;
+
+    using NLog.Config;
 
     /// <summary>
     /// Replaces newline characters from the result of another layout renderer with spaces.
@@ -71,27 +72,24 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
-            return string.Join(Environment.NewLine, MakeChunks(text, WrapLine));
-        }
+            var chunkLength = WrapLine;
+            var textLength = text.Length;
 
-        /// <summary>
-        /// Splits a string into chunks
-        /// </summary>
-        /// <param name="toSplit">The string to split</param>
-        /// <param name="chunkLength">The chunk length</param>
-        /// <returns>Collection of strings</returns>
-        private static IEnumerable<string> MakeChunks(string toSplit, int chunkLength)
-        {
-            if (String.IsNullOrEmpty(toSplit)) throw new ArgumentException();
-            if (chunkLength < 1) throw new ArgumentException();
+            var sb = new StringBuilder(textLength);
 
-            for (int i = 0; i < toSplit.Length; i += chunkLength)
+            // based on : http://stackoverflow.com/questions/36788754/how-can-i-limit-the-length-of-a-line-in-nlog/36789394
+            // and : http://stackoverflow.com/questions/1450774/splitting-a-string-into-chunks-of-a-certain-size/8944374#8944374 
+            for (int pos = 0; pos < text.Length; pos += chunkLength)
             {
-                if (chunkLength + i > toSplit.Length)
-                    chunkLength = toSplit.Length - i;
+                if (chunkLength + pos > textLength)
+                    chunkLength = textLength - pos;
 
-                yield return toSplit.Substring(i, chunkLength);
+                sb.Append(text.Substring(pos, chunkLength) + Environment.NewLine);
             }
+
+            sb.Remove(sb.Length - Environment.NewLine.Length, Environment.NewLine.Length);
+
+            return sb.ToString();
         }
     }
 }
