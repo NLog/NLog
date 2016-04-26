@@ -44,7 +44,10 @@ namespace NLog.UnitTests.Targets
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-	  using System.IO;
+    using System.IO;
+#if !__ANDROID__ && !__IOS__
+    using System.Configuration;
+#endif
 
     public class MailTargetTests : NLogTestBase
     {
@@ -747,6 +750,89 @@ namespace NLog.UnitTests.Targets
             var separator = Path.DirectorySeparatorChar;
             Assert.Contains(string.Format("{0}App_Data{0}Mail", separator), mmt.SmtpClientPickUpDirectory);
         }
+
+#if !__ANDROID__ && !__IOS__
+
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile()
+        {
+            var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);            
+            var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
+            section.From = "foo@bar.com";
+
+            var mmt = new MockMailTarget()
+            {
+                From = "foo@foo.com",
+                To = "bar@bar.com",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = true,
+                MailSettings = section
+            };
+            mmt.Initialize(null);
+            mmt.ConfigureMailClient();
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "MyLogger", "log message").WithContinuation(exceptions.Add));
+
+            Assert.Equal("'foo@bar.com'", mmt.From.ToString());
+        }
+
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_False_ReadFromFromConfigFile()
+        {
+            var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
+            section.From = "foo@bar.com";
+
+            var mmt = new MockMailTarget()
+            {
+                From = "foo@foo.com",
+                To = "bar@bar.com",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = false,
+                MailSettings = section
+            };
+            mmt.Initialize(null);
+            mmt.ConfigureMailClient();
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "MyLogger", "log message").WithContinuation(exceptions.Add));
+
+            Assert.Equal("'foo@foo.com'", mmt.From.ToString());
+        }
+
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_True_KeepOverridenFiles()
+        {
+            var configuration = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var section = configuration.GetSection("system.net/mailSettings/smtp") as System.Net.Configuration.SmtpSection;
+            section.From = null;
+
+            var mmt = new MockMailTarget()
+            {
+                From = "foo@foo.com",
+                To = "bar@bar.com",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = true,
+                MailSettings = section
+            };
+
+            mmt.Initialize(null);
+            mmt.ConfigureMailClient();
+
+            var exceptions = new List<Exception>();
+            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Debug, "MyLogger", "log message").WithContinuation(exceptions.Add));
+
+            Assert.Equal("'foo@foo.com'", mmt.From.ToString());
+        }
+
+#endif
 
         [Fact]
         public void MailTarget_WithoutSubject_SendsMessageWithDefaultSubject()
