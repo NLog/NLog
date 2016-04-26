@@ -682,6 +682,7 @@ namespace NLog.Targets
                                         this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
                                 }
                             }));
+                            this.appenderInvalidatorThread.IsBackground = true;
                             this.appenderInvalidatorThread.Start();
                         }
                     }
