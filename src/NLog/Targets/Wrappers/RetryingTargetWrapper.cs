@@ -72,7 +72,7 @@ namespace NLog.Targets.Wrappers
         /// Initializes a new instance of the <see cref="RetryingTargetWrapper" /> class.
         /// </summary>
         /// <param name="name">Name of the target.</param>
-        public RetryingTargetWrapper(string name)
+        public RetryingTargetWrapper(string name) : this()
         {
             this.Name = name;
         }
