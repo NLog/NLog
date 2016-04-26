@@ -32,6 +32,8 @@
 // 
 
 using NLog.Config;
+using NLog.LayoutRenderers;
+using NLog.Layouts;
 
 namespace NLog.UnitTests.Targets
 {
@@ -47,7 +49,10 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ConstructorsTest()
         {
-            foreach (Type candidateType in typeof(Target).Assembly.GetExportedTypes())
+            var targetTypes = typeof(Target).Assembly.GetExportedTypes();
+            int needed = targetTypes.Length;
+            int @checked = 0;
+            foreach (Type candidateType in targetTypes)
             {
                 if (!candidateType.IsAbstract &&
                     typeof(Target).IsAssignableFrom(candidateType))
@@ -55,7 +60,8 @@ namespace NLog.UnitTests.Targets
                     Target defaultConstructedTarget;
                     Target namedConstructedTarget;
                     bool constructionFailed = false;
-
+                    string lastPropertyName = null;
+                    
                     try
                     {
                         // Check if the Target can be created using a default constructor
@@ -64,34 +70,55 @@ namespace NLog.UnitTests.Targets
                         // Check if the Target can be created using a constructor with the name parameter
                         namedConstructedTarget = (Target)Activator.CreateInstance(candidateType, candidateType.ToString());
 
-                        // Check that the created targets are the same except for name
-                        foreach (System.Reflection.PropertyInfo pi in (typeof(Target)).GetProperties(
+                        var checkedAtLeastOneProperty = false;
+
+                        foreach (System.Reflection.PropertyInfo pi in candidateType.GetProperties(
                             System.Reflection.BindingFlags.NonPublic |
                             System.Reflection.BindingFlags.Instance |
                             System.Reflection.BindingFlags.Static))
                         {
+                           
+                            lastPropertyName = pi.Name;
                             if (pi.CanRead && !pi.Name.Equals("Name") && !pi.Name.Equals("SyncRoot"))
                             {
-                                if (pi.GetValue(defaultConstructedTarget, null) != null && pi.GetValue(namedConstructedTarget, null) != null)
+                                var value1 = pi.GetValue(defaultConstructedTarget, null);
+                                var value2 = pi.GetValue(namedConstructedTarget, null);
+                                if (value1 != null && value2 != null)
                                 {
-                                    Assert.Equal(pi.GetValue(defaultConstructedTarget, null), pi.GetValue(namedConstructedTarget, null));
+                                    if (value1 is SimpleLayout || value1 is LayoutRenderer || value1 is Layout)
+                                    {
+                                        Assert.Equal(value1.ToString(), value2.ToString());
+                                    }
+                                    else
+                                    {
+                                        Assert.Equal(value1, value2);
+                                    }
+                                  
                                 }
                                 else
                                 {
-                                    Assert.Null(pi.GetValue(defaultConstructedTarget, null));
-                                    Assert.Null(pi.GetValue(namedConstructedTarget, null));
+                                    Assert.Null(value1);
+                                    Assert.Null(value2);
                                 }
+                                checkedAtLeastOneProperty = true;
                             }
+
+                        }
+
+                        if (checkedAtLeastOneProperty)
+                        {
+                            @checked ++;
                         }
                     }
                     catch (Exception ex)
                     {
                         constructionFailed = true;
-                        string failureMessage = String.Format("Error testing constructors for type '{0}'.\n{1}", candidateType, ex.ToString());
+                        string failureMessage = String.Format("Error testing constructors for '{0}.{1}`\n{2}", candidateType, lastPropertyName, ex.ToString());
                         Assert.False(constructionFailed, failureMessage);
                     }
                 }
             }
+            Assert.Equal(needed,@checked);
         }
 
         [Fact]
