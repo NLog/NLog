@@ -35,15 +35,15 @@ using System.IO;
 
 namespace NLog.UnitTests.Config
 {
-    using System;
-    using System.Globalization;
-    using System.Text;
     using NLog.Conditions;
     using NLog.Config;
     using NLog.LayoutRenderers;
     using NLog.Layouts;
     using NLog.Targets;
     using NLog.Targets.Wrappers;
+    using System;
+    using System.Globalization;
+    using System.Text;
     using Xunit;
 
     public class TargetConfigurationTests : NLogTestBase
@@ -89,6 +89,31 @@ namespace NLog.UnitTests.Config
             Assert.NotNull(t.Layout);
             Assert.Equal(1, l.Renderers.Count);
             Assert.IsType(typeof(MessageLayoutRenderer), l.Renderers[0]);
+        }
+
+        [Fact]
+        public void NestedXmlConfigElementTest()
+        {
+            LoggingConfiguration c = CreateConfigurationFromString(@"
+            <nlog>
+                <extensions>
+                    <add type='" + typeof(StructuredDebugTarget).AssemblyQualifiedName + @"' />
+                </extensions>
+                <targets>
+                    <target type='StructuredDebugTarget'>
+                      <name>structuredTgt</name>
+                      <layout>${message}</layout>
+                      <config platform='any'>
+                        <parameter name='param1' />
+                      </config>
+                    </target>
+                </targets>
+            </nlog>");
+
+            var t = c.FindTargetByName("structuredTgt") as StructuredDebugTarget;
+            Assert.NotNull(t);
+            Assert.Equal("any", t.Config.Platform);
+            Assert.Equal("param1", t.Config.Parameter.Name);
         }
 
         [Fact]
@@ -644,6 +669,34 @@ namespace NLog.UnitTests.Config
             Value2 = 2,
 
             Value3 = 4,
+        }
+
+        [Target("StructuredDebugTarget")]
+        public class StructuredDebugTarget : TargetWithLayout
+        {
+            public StructuredDebugTargetConfig Config { get; set; }
+
+            public StructuredDebugTarget()
+            {
+                Config = new StructuredDebugTargetConfig();
+            }
+        }
+
+        public class StructuredDebugTargetConfig
+        {
+            public string Platform { get; set; }
+
+            public StructuredDebugTargetParameter Parameter { get; set; }
+
+            public StructuredDebugTargetConfig()
+            {
+                Parameter = new StructuredDebugTargetParameter();
+            }
+        }
+
+        public class StructuredDebugTargetParameter
+        {
+            public string Name { get; set; }
         }
     }
 }
