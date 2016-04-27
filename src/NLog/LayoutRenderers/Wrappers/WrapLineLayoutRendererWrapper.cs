@@ -72,24 +72,33 @@ namespace NLog.LayoutRenderers.Wrappers
         /// <returns>Post-processed text.</returns>
         protected override string Transform(string text)
         {
-            var chunkLength = WrapLine;
-            var textLength = text.Length;
+            if (WrapLine <= 0)
+            {
+                throw new ArgumentException("WrapLine must be a positive integer");
+            }
 
-            var sb = new StringBuilder(textLength);
+            var chunkLength = WrapLine;
+
+            var result = "";
 
             // based on : http://stackoverflow.com/questions/36788754/how-can-i-limit-the-length-of-a-line-in-nlog/36789394
             // and : http://stackoverflow.com/questions/1450774/splitting-a-string-into-chunks-of-a-certain-size/8944374#8944374 
             for (int pos = 0; pos < text.Length; pos += chunkLength)
             {
-                if (chunkLength + pos > textLength)
-                    chunkLength = textLength - pos;
+                if (chunkLength + pos > text.Length)
+                {
+                    chunkLength = text.Length - pos;
+                }
 
-                sb.Append(text.Substring(pos, chunkLength) + Environment.NewLine);
+                result += text.Substring(pos, chunkLength);
+
+                if (chunkLength + pos < text.Length)
+                {
+                    result += Environment.NewLine;
+                }
             }
 
-            sb.Remove(sb.Length - Environment.NewLine.Length, Environment.NewLine.Length);
-
-            return sb.ToString();
+            return result;
         }
     }
 }

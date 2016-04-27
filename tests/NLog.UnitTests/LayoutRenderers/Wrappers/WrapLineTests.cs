@@ -34,6 +34,7 @@
 namespace NLog.UnitTests.LayoutRenderers.Wrappers
 {
     using NLog;
+    using NLog.Common;
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
@@ -81,11 +82,35 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         {
             MappedDiagnosticsContext.Clear();
 
-            SimpleLayout l = "${message:wrapline=7}";
+            SimpleLayout l = "${message:wrapline=3}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobar");
 
-            Assert.Equal("foobar", l.Render(le));
+            Assert.Equal("foo" + System.Environment.NewLine + "bar", l.Render(le));
+        }
+
+        [Fact]
+        public void WrapLineAtPositionZeroTest()
+        {
+            MappedDiagnosticsContext.Clear();
+
+            SimpleLayout l = "${message:wrapline=0}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobar");
+
+            Assert.Equal("", l.Render(le));
+        }
+
+        [Fact]
+        public void WrapLineAtNegativePositionTest()
+        {
+            MappedDiagnosticsContext.Clear();
+
+            SimpleLayout l = "${message:wrapline=0}";
+
+            var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobar");
+
+            Assert.Equal("", l.Render(le));
         }
 
         [Fact]
