@@ -61,6 +61,48 @@ namespace NLog.LayoutRenderers
         public string Default { get; set; }
 
         /// <summary>
+        /// Initializes the layout renderer.
+        /// </summary>
+        protected override void InitializeLayoutRenderer()
+        {
+
+            SimpleLayout layout;
+            if (TryGetLayout(out layout))
+            {
+                if (layout != null)
+                {
+                    //pass loggingConfiguration to layout
+                    layout.Initialize(LoggingConfiguration);
+                }
+            }
+
+            base.InitializeLayoutRenderer();
+        }
+
+        /// <summary>
+        /// Try get the 
+        /// </summary>
+        /// <param name="layout"></param>
+        /// <returns></returns>
+        private bool TryGetLayout(out SimpleLayout layout)
+        {
+            if (this.Name != null)
+            {
+                //don't use LogManager (locking, recursion)
+                var loggingConfiguration = LoggingConfiguration; //?? LogManager.Configuration;
+                var vars = loggingConfiguration != null ? loggingConfiguration.Variables : null;
+                if (vars != null && vars.TryGetValue(Name, out layout))
+                {
+                    return true;
+                }
+
+            }
+            layout = null;
+            return false;
+        }
+
+
+        /// <summary>
         /// Renders the specified variable and appends it to the specified <see cref="StringBuilder" />.
         /// </summary>
         /// <param name="builder">The <see cref="StringBuilder"/> to append the rendered data to.</param>
@@ -70,13 +112,15 @@ namespace NLog.LayoutRenderers
             if (this.Name != null)
             {
                 SimpleLayout layout;
-                var loggingConfiguration = LoggingConfiguration ?? LogManager.Configuration;
-                var vars = loggingConfiguration != null ? loggingConfiguration.Variables : null;
-                if (vars != null && vars.TryGetValue(Name, out layout))
+                if (TryGetLayout(out layout))
                 {
                     //todo in later stage also layout as values?
                     //ignore NULL, but it set, so don't use default.
-                    if (layout != null) builder.Append(layout.Render(logEvent));
+
+                    if (layout != null)
+                    {
+                        builder.Append(layout.Render(logEvent));
+                    }
                 }
                 else if (Default != null)
                 {

@@ -78,8 +78,9 @@
                 "System.Transactions": "",
                 "System.IO.Compression": "",
                 "System.Threading.Tasks": "",
-                "System.Xml.Linq": ""
-               
+                "System.Xml.Linq": "",
+                "System.DirectoryServices.AccountManagement": ""
+
 
             },
             "dependencies": {

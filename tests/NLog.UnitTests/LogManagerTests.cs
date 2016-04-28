@@ -38,12 +38,10 @@ namespace NLog.UnitTests
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Diagnostics;
     using System.IO;
     using Xunit;
     using NLog.Common;
     using NLog.Config;
-    using NLog.Layouts;
     using NLog.Targets;
 
 #if NET4_5 && !DNX
@@ -406,7 +404,7 @@ namespace NLog.UnitTests
         }
 
         [Fact]
-        void GetCurrentClassLogger_static_class()
+        public void GetCurrentClassLogger_static_class()
         {
             ImAStaticClass.DummyToInvokeInitializers();
         }
@@ -431,7 +429,7 @@ namespace NLog.UnitTests
         /// Creating instance in a static ctor should not be a problm
         /// </summary>
         [Fact]
-        void GetCurrentClassLogger_abstract_class()
+        public void GetCurrentClassLogger_abstract_class()
         {
             var instance = new InheritedFromAbstractClass();
         }
@@ -450,7 +448,7 @@ namespace NLog.UnitTests
         /// ImNotALogger inherits not from Logger , but should not throw an exception
         /// </summary>
         [Fact]
-        void GetLogger_wrong_loggertype_should_continue()
+        public void GetLogger_wrong_loggertype_should_continue()
         {
             var instance = LogManager.GetLogger("a", typeof(ImNotALogger));
             Assert.NotNull(instance);
@@ -461,7 +459,7 @@ namespace NLog.UnitTests
         /// ImNotALogger inherits not from Logger , but should not throw an exception
         /// </summary>
         [Fact]
-        void GetLogger_wrong_loggertype_should_continue_even_if_class_is_static()
+        public void GetLogger_wrong_loggertype_should_continue_even_if_class_is_static()
         {
             var instance = LogManager.GetLogger("a", typeof(ImAStaticClass));
             Assert.NotNull(instance);

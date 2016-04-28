@@ -218,7 +218,7 @@ namespace NLog.Layouts
         {
             return "'" + this.Text + "'";
         }
- 
+
         internal void SetRenderers(LayoutRenderer[] renderers, string text)
         {
             this.Renderers = new ReadOnlyCollection<LayoutRenderer>(renderers);
@@ -241,6 +241,38 @@ namespace NLog.Layouts
             }
 
             this.layoutText = text;
+        }
+
+        /// <summary>
+        /// Initializes the layout.
+        /// </summary>
+        protected override void InitializeLayout()
+        {
+            for (int i = 0; i < this.Renderers.Count; i++)
+            {
+                LayoutRenderer renderer = this.Renderers[i];
+                try
+                {
+                    renderer.Initialize(LoggingConfiguration);
+                }
+                catch (Exception exception)
+                {
+                    //also check IsErrorEnabled, otherwise 'MustBeRethrown' writes it to Error
+
+                    //check for performance
+                    if (InternalLogger.IsWarnEnabled || InternalLogger.IsErrorEnabled)
+                    {
+                        InternalLogger.Warn(exception, "Exception in '{0}.InitializeLayout()'", renderer.GetType().FullName);
+                    }
+
+                    if (exception.MustBeRethrown())
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            base.InitializeLayout();
         }
 
         /// <summary>
