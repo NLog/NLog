@@ -65,13 +65,16 @@ namespace NLog.UnitTests.Targets
                         namedConstructedTarget = (Target)Activator.CreateInstance(candidateType, candidateType.ToString());
 
                         // Check that the created targets are the same except for name
-                        foreach (System.Reflection.PropertyInfo pi in (typeof(Target)).GetProperties())
+                        foreach (System.Reflection.PropertyInfo pi in (typeof(Target)).GetProperties(
+                            System.Reflection.BindingFlags.NonPublic |
+                            System.Reflection.BindingFlags.Instance |
+                            System.Reflection.BindingFlags.Static))
                         {
-                            if (pi.CanRead && !pi.Name.Equals("Name"))
+                            if (pi.CanRead && !pi.Name.Equals("Name") && !pi.Name.Equals("SyncRoot"))
                             {
                                 if (pi.GetValue(defaultConstructedTarget, null) != null && pi.GetValue(namedConstructedTarget, null) != null)
                                 {
-                                    Assert.Equal(pi.GetValue(defaultConstructedTarget, null), namedConstructedTarget);
+                                    Assert.Equal(pi.GetValue(defaultConstructedTarget, null), pi.GetValue(namedConstructedTarget, null));
                                 }
                                 else
                                 {
