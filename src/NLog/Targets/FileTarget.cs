@@ -249,8 +249,11 @@ namespace NLog.Targets
 
                 fileName = value;
 
-                RefreshFileArchive();
-                RefreshArchiveFilePatternToWatch();
+                if (IsInitialized)
+                {
+                    RefreshFileArchive();
+                    RefreshArchiveFilePatternToWatch();
+                }
             }
         }
 
@@ -819,6 +822,9 @@ namespace NLog.Targets
         protected override void InitializeTarget()
         {
             base.InitializeTarget();
+            RefreshFileArchive();
+            RefreshArchiveFilePatternToWatch();
+
             this.appenderFactory = GetFileAppenderFactory();
 
             this.fileAppenderCache = new FileAppenderCache(this.OpenFileCacheSize, this.appenderFactory, this);
