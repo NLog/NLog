@@ -44,6 +44,15 @@ namespace NLog.UnitTests.Common
     [Target("LastLogEvent")]
     public class LastLogEventListTarget : TargetWithLayout
     {
+        public LastLogEventListTarget() : base()
+        {
+        }
+
+        public LastLogEventListTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
         /// <summary>
         /// Increases the number of messages.
         /// </summary>

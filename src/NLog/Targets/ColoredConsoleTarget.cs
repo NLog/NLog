@@ -73,6 +73,18 @@ namespace NLog.Targets
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ColoredConsoleTarget" /> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
+        /// </remarks>
+        /// <param name="name">Name of the target.</param>
+        public ColoredConsoleTarget(string name) : this()
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether the error stream (stderr) should be used instead of the output stream (stdout).
         /// </summary>
         /// <docgen category='Output Options' order='10' />
