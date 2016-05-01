@@ -37,7 +37,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     using NLog.Layouts;
     using Xunit;
 
-    public class UpperCaseTests : NLogTestBase
+    public class UppercaseTests : NLogTestBase
     {
         [Fact]
         public void UppercaseWithoutParameterValueTest()
