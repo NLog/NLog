@@ -44,8 +44,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineAtPositionOnceTest()
         {
-            MappedDiagnosticsContext.Clear();
-
             SimpleLayout l = "${message:wrapline=3}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobar");
@@ -56,8 +54,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineAtPositionOnceTextLengthNotMultipleTest()
         {
-            MappedDiagnosticsContext.Clear();
-
             SimpleLayout l = "${message:wrapline=3}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "fooba");
@@ -68,8 +64,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineMultipleTimesTest()
         {
-            MappedDiagnosticsContext.Clear();
-
             SimpleLayout l = "${message:wrapline=3}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobarbaz");
@@ -80,8 +74,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineMultipleTimesTextLengthNotMultipleTest()
         {
-            MappedDiagnosticsContext.Clear();
-
             SimpleLayout l = "${message:wrapline=3}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobarba");
@@ -92,8 +84,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineAtPositionAtExactTextLengthTest()
         {
-            MappedDiagnosticsContext.Clear();
-
             SimpleLayout l = "${message:wrapline=6}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobar");
@@ -104,8 +94,6 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineAtPositionGreaterThanTextLengthTest()
         {
-            MappedDiagnosticsContext.Clear();
-
             SimpleLayout l = "${message:wrapline=10}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobar");
@@ -116,32 +104,26 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         [Fact]
         public void WrapLineAtPositionZeroTest()
         {
-            MappedDiagnosticsContext.Clear();
-
             SimpleLayout l = "${message:wrapline=0}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobar");
 
-            Assert.Equal("", l.Render(le));
+            Assert.Equal("foobar", l.Render(le));
         }
 
         [Fact]
         public void WrapLineAtNegativePositionTest()
         {
-            MappedDiagnosticsContext.Clear();
-
             SimpleLayout l = "${message:wrapline=0}";
 
             var le = LogEventInfo.Create(LogLevel.Info, "logger", "foobar");
 
-            Assert.Equal("", l.Render(le));
+            Assert.Equal("foobar", l.Render(le));
         }
 
         [Fact]
         public void WrapLineFromConfig()
         {
-            MappedDiagnosticsContext.Clear();
-
             var configuration = CreateConfigurationFromString(@"
 <nlog throwExceptions='true'>
     <targets>

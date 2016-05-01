@@ -36,7 +36,7 @@ namespace NLog.LayoutRenderers.Wrappers
     using System;
     using System.ComponentModel;
     using System.Text;
-
+    using Common;
     using NLog.Config;
 
     /// <summary>
@@ -47,6 +47,7 @@ namespace NLog.LayoutRenderers.Wrappers
     [ThreadAgnostic]
     public sealed class WrapLineLayoutRendererWrapper : WrapperLayoutRendererBase
     {
+
         /// <summary>
         /// Initializes a new instance of the <see cref="WrapLineLayoutRendererWrapper" /> class.
         /// </summary>
@@ -74,7 +75,8 @@ namespace NLog.LayoutRenderers.Wrappers
         {
             if (WrapLine <= 0)
             {
-                throw new ArgumentException("WrapLine must be a positive integer");
+
+                return text;
             }
 
             var chunkLength = WrapLine;
