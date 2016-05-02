@@ -435,5 +435,42 @@ namespace NLog
             Configuration = null;
             InternalLogger.Info("Logger has been shut down.");
         }
+
+        static IFileCompressor _fileCompressor;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool HasFileCompressor
+        {
+            get
+            {
+#if NET4_5
+                return true;
+#else
+                return _fileCompressor != null;
+#endif
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static void SetFileCompressor(IFileCompressor fileCompressor)
+        {
+            _fileCompressor = fileCompressor;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static IFileCompressor GetFileCompressor()
+        {
+            if (!HasFileCompressor)
+                return null;
+
+            return _fileCompressor ?? new DefaultFileCompressor();
+        }
     }
 }

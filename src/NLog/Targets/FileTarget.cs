@@ -141,9 +141,8 @@ namespace NLog.Targets
 
         private FileArchivePeriod archiveEvery;
         private long archiveAboveSize;
-#if NET4_5
+
         private bool enableArchiveFileCompression;
-#endif
 
         /// <summary>
         /// The filename if <see cref="FileName"/> is a fixed string
@@ -562,7 +561,6 @@ namespace NLog.Targets
         /// <docgen category='Archival Options' order='10' />
         public ArchiveNumberingMode ArchiveNumbering { get; set; }
 
-#if NET4_5
         /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
@@ -570,19 +568,13 @@ namespace NLog.Targets
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression
         {
-            get { return enableArchiveFileCompression; }
+            get { return enableArchiveFileCompression && LogManager.HasFileCompressor; }
             set
             {
                 enableArchiveFileCompression = value;
                 RefreshArchiveFilePatternToWatch();
             }
         }
-#else
-        /// <summary>
-        /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
-        /// </summary>
-        private const bool EnableArchiveFileCompression = false;
-#endif
 
         /// <summary>
         /// Gets or set a value indicating whether a managed file stream is forced, instead of used the native implementation.
@@ -1186,26 +1178,20 @@ namespace NLog.Targets
             string archiveFolderPath = Path.GetDirectoryName(archiveFileName);
             if (!Directory.Exists(archiveFolderPath))
                 Directory.CreateDirectory(archiveFolderPath);
-
-#if NET4_5
+            
             if (EnableArchiveFileCompression)
             {
                 InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
-                using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
-                using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
-                using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
+                if (LogManager.GetFileCompressor().Compress(fileName, archiveFileName))
                 {
-                    var zipArchiveEntry = archive.CreateEntry(Path.GetFileName(fileName));
-                    using (var destination = zipArchiveEntry.Open())
-                    {
-                        originalFileStream.CopyTo(destination);
-                    }
+                    DeleteAndWaitForFileDelete(fileName);
                 }
-                
-                DeleteAndWaitForFileDelete(fileName);
+                else
+                {
+                    InternalLogger.Error("Can't compress {0} to zip-archive {1} => ", fileName, archiveFileName);
+                }
             }
             else
-#endif
             {
                 InternalLogger.Info("Archiving {0} to {1}", fileName, archiveFileName);
                 File.Move(fileName, archiveFileName);
