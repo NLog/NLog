@@ -42,6 +42,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     public class WrapLineTests : NLogTestBase
     {
         [Fact]
+        public void WrapLineWithInnerLayoutDefaultTest()
         {
             MappedDiagnosticsContext.Clear();
             MappedDiagnosticsContext.Set("foo", "foobar");
@@ -52,6 +53,7 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
         }
 
         [Fact]
+        public void WrapLineWithInnerLayoutTest()
         {
             MappedDiagnosticsContext.Clear();
             MappedDiagnosticsContext.Set("foo", "foobar");
