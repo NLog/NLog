@@ -9,7 +9,7 @@ using System.IO.Compression;
     /// So log files created via <see cref="FileTarget"/> can be zipped when archived
     /// w/o 3rd party zip library.
     /// </summary>
-    public class ZipArchiveFileCompressor : IFileCompressor
+    internal class ZipArchiveFileCompressor : IFileCompressor
     {
         /// <summary>
         /// Implements <see cref="IFileCompressor.Compress(string, string)"/>
