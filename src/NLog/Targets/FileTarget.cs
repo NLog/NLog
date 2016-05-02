@@ -200,7 +200,16 @@ namespace NLog.Targets
             this.previousFileNames = new Queue<string>(this.maxLogFilenames);
             this.fileAppenderCache = FileAppenderCache.Empty;
             this.CleanupFileName = true;
+            
+            this.Compressor = DefaultCompressor;
         }
+
+#if NET4_5
+        static FileTarget()
+        {
+            DefaultCompressor = new ZipArchiveFileCompressor();
+        }
+#endif
 
         /// <summary>
         /// Gets or sets the name of the file to write to.
@@ -562,13 +571,28 @@ namespace NLog.Targets
         public ArchiveNumberingMode ArchiveNumbering { get; set; }
 
         /// <summary>
+        /// Per instance file compressor to be used to compress log files during archiving.
+        /// Defaults to <see cref="DefaultCompressor"/>.
+        /// </summary>
+        public IFileCompressor Compressor { get; set; }
+
+        /// <summary>
+        /// This is used as the initial value of <see cref="Compressor"/>.
+        /// Only those <see cref="FileTarget"/> instances created after changing this property will use that file compressor.
+        /// This may be used to provide your own implementation of a zip file compressor,
+        /// to e.g. add zip archive support to platforms other than .Net4.5.
+        /// Defaults to ZipArchiveFileCompressor on .Net4.5 and to null otherwise.
+        /// </summary>
+        public static IFileCompressor DefaultCompressor { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to compress archive files into the zip archive format.
         /// </summary>
         /// <docgen category='Archival Options' order='10' />
         [DefaultValue(false)]
         public bool EnableArchiveFileCompression
         {
-            get { return enableArchiveFileCompression && LogManager.HasFileCompressor; }
+            get { return enableArchiveFileCompression && Compressor != null; }
             set
             {
                 enableArchiveFileCompression = value;
@@ -1182,14 +1206,8 @@ namespace NLog.Targets
             if (EnableArchiveFileCompression)
             {
                 InternalLogger.Info("Archiving {0} to zip-archive {1}", fileName, archiveFileName);
-                if (LogManager.GetFileCompressor().Compress(fileName, archiveFileName))
-                {
-                    DeleteAndWaitForFileDelete(fileName);
-                }
-                else
-                {
-                    InternalLogger.Error("Can't compress {0} to zip-archive {1} => ", fileName, archiveFileName);
-                }
+                Compressor.Compress(fileName, archiveFileName);
+                DeleteAndWaitForFileDelete(fileName);
             }
             else
             {

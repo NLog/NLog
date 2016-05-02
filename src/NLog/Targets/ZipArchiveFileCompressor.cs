@@ -1,24 +1,21 @@
-﻿namespace NLog.Common
+﻿namespace NLog.Targets
 {
-#if NET4_5
 using System.IO;
 using System.IO.Compression;
-#endif
 
     /// <summary>
-    /// Uses .Net4.5 ZipArchive
+    /// Builtin IFileCompressor implementation utilizing the .Net4.5 specific <see cref="ZipArchive"/> 
+    /// and is used as the default value for <see cref="FileTarget.DefaultCompressor"/>.
+    /// So log files created via <see cref="FileTarget"/> can be zipped when archived
+    /// w/o 3rd party zip library.
     /// </summary>
-    public class DefaultFileCompressor : IFileCompressor
+    public class ZipArchiveFileCompressor : IFileCompressor
     {
         /// <summary>
-        /// 
+        /// Implements <see cref="IFileCompressor.Compress(string, string)"/>
         /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="archiveFileName"></param>
-        /// <returns></returns>
-        public bool Compress(string fileName, string archiveFileName)
+        public void Compress(string fileName, string archiveFileName)
         {
-#if NET4_5
             using (var archiveStream = new FileStream(archiveFileName, FileMode.Create))
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create))
             using (var originalFileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ))
@@ -29,10 +26,6 @@ using System.IO.Compression;
                     originalFileStream.CopyTo(destination);
                 }
             }
-            return true;
-#else
-            return false;
-#endif
         }
     }
 }

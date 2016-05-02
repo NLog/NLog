@@ -66,8 +66,6 @@
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
     <Compile Include="Common\AsyncLogEventInfo.cs" />
-    <Compile Include="Common\DefaultFileCompressor.cs" />
-    <Compile Include="Common\IFileCompressor.cs" />
     <Compile Include="Common\InternalLogger.cs" />
     <Compile Include="Common\InternalLogger-generated.cs">
       <AutoGen>True</AutoGen>
@@ -367,6 +365,7 @@
     <Compile Include="Targets\EventLogTargetOverflowAction.cs" />
     <Compile Include="Targets\FileArchivePeriod.cs" />
     <Compile Include="Targets\FileTarget.cs" />
+    <Compile Include="Targets\IFileCompressor.cs" />
     <Compile Include="Targets\LineEndingMode.cs" />
     <Compile Include="Targets\LogReceiverWebServiceTarget.cs" />
     <Compile Include="Targets\MailTarget.cs" />
