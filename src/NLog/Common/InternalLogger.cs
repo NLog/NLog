@@ -89,7 +89,7 @@ namespace NLog.Common
             LogFile = string.Empty;
             IncludeTimestamp = true;
 #endif
-
+            ExceptionThrowWhenWriting = false;
             LogWriter = null;
         }
 
@@ -151,6 +151,8 @@ namespace NLog.Common
         /// Gets or sets a value indicating whether timestamp should be included in internal log output.
         /// </summary>
         public static bool IncludeTimestamp { get; set; }
+
+        internal static bool ExceptionThrowWhenWriting = false;
 
         /// <summary>
         /// Logs the specified message without an <see cref="Exception"/> at the specified level.
@@ -281,6 +283,7 @@ namespace NLog.Common
             }
             catch (Exception exception)
             {
+                ExceptionThrowWhenWriting = true;
                 // no log looping.
                 // we have no place to log the message to so we ignore it
                 if (exception.MustBeRethrownImmediately())
