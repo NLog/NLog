@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NLog.Common
+﻿namespace NLog.Common
 {
+#if NET4_5
+using System.IO;
+using System.IO.Compression;
+#endif
+
     /// <summary>
     /// Uses .Net4.5 ZipArchive
     /// </summary>

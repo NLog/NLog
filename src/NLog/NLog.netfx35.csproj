@@ -27,8 +27,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
-    <CodeAnalysisRules></CodeAnalysisRules>
-    <CodeAnalysisRules></CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -62,6 +64,8 @@
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
     <Compile Include="Common\AsyncLogEventInfo.cs" />
+    <Compile Include="Common\DefaultFileCompressor.cs" />
+    <Compile Include="Common\IFileCompressor.cs" />
     <Compile Include="Common\InternalLogger.cs" />
     <Compile Include="Common\InternalLogger-generated.cs">
       <AutoGen>True</AutoGen>
