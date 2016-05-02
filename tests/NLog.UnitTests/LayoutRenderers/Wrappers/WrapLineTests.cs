@@ -42,6 +42,26 @@ namespace NLog.UnitTests.LayoutRenderers.Wrappers
     public class WrapLineTests : NLogTestBase
     {
         [Fact]
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("foo", "foobar");
+
+            SimpleLayout le = "${wrapline:${mdc:foo}:WrapLine=3}";
+
+            Assert.Equal("foo" + System.Environment.NewLine + "bar", le.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
+        {
+            MappedDiagnosticsContext.Clear();
+            MappedDiagnosticsContext.Set("foo", "foobar");
+
+            SimpleLayout le = "${wrapline:Inner=${mdc:foo}:WrapLine=3}";
+
+            Assert.Equal("foo" + System.Environment.NewLine + "bar", le.Render(LogEventInfo.CreateNullEvent()));
+        }
+
+        [Fact]
         public void WrapLineAtPositionOnceTest()
         {
             SimpleLayout l = "${message:wrapline=3}";
