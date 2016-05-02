@@ -31,7 +31,6 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
-
 #if !SILVERLIGHT
 
 namespace NLog.UnitTests.Targets
@@ -44,10 +43,19 @@ namespace NLog.UnitTests.Targets
     using NLog.Layouts;
     using NLog.Targets;
     using Xunit;
-	  using System.IO;
+    using System.IO;
+#if !__ANDROID__ && !__IOS__
+    using System.Configuration;
+    using System.Net.Configuration;
+#endif
 
     public class MailTargetTests : NLogTestBase
     {
+        public MailTargetTests()
+        {
+            LogManager.ThrowExceptions = true;
+        }
+
         [Fact]
         public void SimpleEmailTest()
         {
@@ -267,6 +275,7 @@ namespace NLog.UnitTests.Targets
         [Fact]
         public void ErrorHandlingTest()
         {
+            LogManager.ThrowExceptions = false;
             var mmt = new MockMailTarget
             {
                 From = "foo@bar.com",
@@ -438,7 +447,7 @@ namespace NLog.UnitTests.Targets
 
             var messageSent = mmt.CreatedMocks[0].MessagesSent[0];
             Assert.True(messageSent.IsBodyHtml);
-            var lines = messageSent.Body.Split(new[] {Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            var lines = messageSent.Body.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             Assert.True(lines.Length == 3);
         }
 
@@ -538,8 +547,6 @@ namespace NLog.UnitTests.Targets
 
             var exceptions = new List<Exception>();
             mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-
-            Assert.Null(exceptions[0]);
             Assert.Equal(1, mmt.CreatedMocks.Count);
             Assert.Equal(1, mmt.CreatedMocks[0].MessagesSent.Count);
         }
@@ -557,12 +564,9 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
             };
             mmt.Initialize(null);
-
             var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
+            Assert.Throws<NLogRuntimeException>(() => mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add)));
 
-            Assert.NotNull(exceptions[0]);
-            Assert.IsType<NLogRuntimeException>(exceptions[0]);
         }
 
         [Fact]
@@ -580,10 +584,7 @@ namespace NLog.UnitTests.Targets
             mmt.Initialize(null);
 
             var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-
-            Assert.NotNull(exceptions[0]);
-            Assert.IsType<NLogRuntimeException>(exceptions[0]);
+            Assert.Throws<NLogRuntimeException>(() => mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add)));
         }
 
         [Fact]
@@ -601,10 +602,7 @@ namespace NLog.UnitTests.Targets
             mmt.Initialize(null);
 
             var exceptions = new List<Exception>();
-            mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add));
-
-            Assert.NotNull(exceptions[0]);
-            Assert.IsType<NLogRuntimeException>(exceptions[0]);
+            Assert.Throws<NLogRuntimeException>(() => mmt.WriteAsyncLogEvent(new LogEventInfo(LogLevel.Info, "MyLogger", "log message 1").WithContinuation(exceptions.Add)));
         }
 
         [Fact]
@@ -630,7 +628,8 @@ namespace NLog.UnitTests.Targets
                 Subject = "Hello from NLog",
                 SmtpServer = "server1",
                 SmtpPort = 27,
-                Body = "${level} ${logger} ${message}"
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = false
             };
             Assert.Throws<NLogConfigurationException>(() => mmt.Initialize(null));
         }
@@ -647,7 +646,7 @@ namespace NLog.UnitTests.Targets
                 Body = "${level} ${logger} ${message}",
                 UseSystemNetMailSettings = true
             };
-
+            mmt.Initialize(null);
         }
 
         [Fact]
@@ -726,7 +725,7 @@ namespace NLog.UnitTests.Targets
 
             Assert.Equal(mmt.SmtpClientPickUpDirectory, inConfigVal);
         }
-    
+
         [Fact]
         public void MailTarget_UseSystemNetMailSettings_True_WithVirtualPath()
         {
@@ -742,11 +741,77 @@ namespace NLog.UnitTests.Targets
                 DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory
             };
             mmt.ConfigureMailClient();
-            
+
             Assert.NotEqual(inConfigVal, mmt.SmtpClientPickUpDirectory);
             var separator = Path.DirectorySeparatorChar;
             Assert.Contains(string.Format("{0}App_Data{0}Mail", separator), mmt.SmtpClientPickUpDirectory);
         }
+
+#if !__ANDROID__ && !__IOS__
+
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile_dontoverride()
+        {
+
+            var mmt = new MailTarget()
+            {
+                From = "nlog@foo.com",
+                To = "bar@bar.com",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = true,
+                SmtpSection = new SmtpSection { From = "config@foo.com" }
+            };
+            Assert.Equal("'nlog@foo.com'", mmt.From.ToString());
+
+            mmt.Initialize(null);
+
+            Assert.Equal("'nlog@foo.com'", mmt.From.ToString());
+        }
+
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_True_ReadFromFromConfigFile()
+        {
+
+            var mmt = new MailTarget()
+            {
+                From = null,
+                To = "bar@bar.com",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = true,
+                SmtpSection = new SmtpSection { From = "config@foo.com" }
+            };
+            Assert.Equal("'config@foo.com'", mmt.From.ToString());
+
+            mmt.Initialize(null);
+
+            Assert.Equal("'config@foo.com'", mmt.From.ToString());
+        }
+
+        [Fact]
+        public void MailTarget_UseSystemNetMailSettings_False_ReadFromFromConfigFile()
+        {
+
+            var mmt = new MailTarget()
+            {
+                From = null,
+                To = "bar@bar.com",
+                SmtpServer = "server1",
+                SmtpPort = 27,
+                Body = "${level} ${logger} ${message}",
+                UseSystemNetMailSettings = false,
+                SmtpSection = new SmtpSection { From = "config@foo.com" }
+            };
+            Assert.Null(mmt.From);
+
+            Assert.Throws <NLogConfigurationException>(() => mmt.Initialize(null));
+
+        }
+  
+#endif
 
         [Fact]
         public void MailTarget_WithoutSubject_SendsMessageWithDefaultSubject()
@@ -838,6 +903,7 @@ namespace NLog.UnitTests.Targets
 
                 return client;
             }
+
 
             public void ConfigureMailClient()
             {

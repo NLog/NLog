@@ -279,7 +279,9 @@ namespace NLog
 
                     this.config = value;
 
-                    if (this.config != null)
+                    if (this.config == null)
+                        this.configLoaded = false;
+                    else
                     {
                         try
                         {

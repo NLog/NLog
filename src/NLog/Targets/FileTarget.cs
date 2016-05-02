@@ -663,11 +663,26 @@ namespace NLog.Targets
                             {
                                 while (true)
                                 {
-                                    Thread.Sleep(200);
+                                    try
+                                    {
+                                        Thread.Sleep(200);
+                                    }
+                                    catch (ThreadAbortException ex)
+                                    {
+                                        //ThreadAbortException will be automatically re-thrown at the end of the try/catch/finally if ResetAbort isn't called.
+                                        Thread.ResetAbort();
+                                        InternalLogger.Trace(ex, "ThreadAbortException in Thread.Sleep");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        InternalLogger.Warn(ex, "Exception in Thread.Sleep, most of the time not an issue.");
+                                    }
+                                   
                                     lock (SyncRoot)
                                         this.fileAppenderCache.InvalidateAppendersForInvalidFiles();
                                 }
                             }));
+                            this.appenderInvalidatorThread.IsBackground = true;
                             this.appenderInvalidatorThread.Start();
                         }
                     }
