@@ -15,8 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NLog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <StyleCopTargetsFile>$(MSBuildExtensionsPath)\Microsoft\StyleCop\v4.4\Microsoft.StyleCop.Targets</StyleCopTargetsFile>
     <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -68,7 +67,6 @@
     <Compile Include="Common\AsyncHelpers.cs" />
     <Compile Include="Common\AsynchronousAction.cs" />
     <Compile Include="Common\AsyncLogEventInfo.cs" />
-    <Compile Include="Targets\ZipArchiveFileCompressor.cs" />
     <Compile Include="Common\InternalLogger.cs" />
     <Compile Include="Common\InternalLogger-generated.cs">
       <AutoGen>True</AutoGen>
@@ -413,6 +411,7 @@
     <Compile Include="Targets\Wrappers\SecurityLogOnType.cs" />
     <Compile Include="Targets\Wrappers\SplitGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
+    <Compile Include="Targets\ZipArchiveFileCompressor.cs" />
     <Compile Include="Time\AccurateLocalTimeSource.cs" />
     <Compile Include="Time\AccurateUtcTimeSource.cs" />
     <Compile Include="Time\CachedTimeSource.cs" />

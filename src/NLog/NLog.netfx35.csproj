@@ -27,10 +27,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <OutputPath>bin\Debug</OutputPath>
-    <CodeAnalysisRules>
-    </CodeAnalysisRules>
-    <CodeAnalysisRules>
-    </CodeAnalysisRules>
+    <CodeAnalysisRules></CodeAnalysisRules>
+    <CodeAnalysisRules></CodeAnalysisRules>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -408,6 +406,7 @@
     <Compile Include="Targets\Wrappers\SecurityLogOnType.cs" />
     <Compile Include="Targets\Wrappers\SplitGroupTarget.cs" />
     <Compile Include="Targets\Wrappers\WrapperTargetBase.cs" />
+    <Compile Include="Targets\ZipArchiveFileCompressor.cs" />
     <Compile Include="Time\AccurateLocalTimeSource.cs" />
     <Compile Include="Time\AccurateUtcTimeSource.cs" />
     <Compile Include="Time\CachedTimeSource.cs" />

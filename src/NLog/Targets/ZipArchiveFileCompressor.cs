@@ -1,5 +1,6 @@
 ﻿namespace NLog.Targets
 {
+#if NET4_5
 using System.IO;
 using System.IO.Compression;
 
@@ -28,4 +29,5 @@ using System.IO.Compression;
             }
         }
     }
+#endif
 }
