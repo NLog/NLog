@@ -128,6 +128,15 @@ namespace NLog
         }
 
         /// <summary>
+        /// Returns all item names
+        /// </summary>
+        /// <returns>A collection of the names of all items in current logical context.</returns>
+        public static ICollection<string> GetItems()
+        {
+            return LogicalThreadDictionary.Keys;
+        }
+
+        /// <summary>
         /// Checks whether the specified <paramref name="item"/> exists in current logical context.
         /// </summary>
         /// <param name="item">Item name.</param>

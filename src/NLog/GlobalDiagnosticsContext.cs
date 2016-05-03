@@ -113,6 +113,18 @@ namespace NLog
         }
 
         /// <summary>
+        /// Returns all item names
+        /// </summary>
+        /// <returns>A collection of the names of all items in the Global Diagnostics Context.</returns>
+        public static ICollection<string> GetItems()
+        {
+            lock (dict)
+            {
+                return dict.Keys;
+            }
+        }
+
+        /// <summary>
         /// Checks whether the specified item exists in the Global Diagnostics Context.
         /// </summary>
         /// <param name="item">Item name.</param>

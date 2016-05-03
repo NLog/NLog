@@ -112,6 +112,15 @@ namespace NLog
         }
 
         /// <summary>
+        /// Returns all item names
+        /// </summary>
+        /// <returns>A collection of the names of all items in current  thread MDC.</returns>
+        public static ICollection<string> GetItems()
+        {
+            return ThreadDictionary.Keys;
+        }
+
+        /// <summary>
         /// Checks whether the specified item exists in current thread MDC.
         /// </summary>
         /// <param name="item">Item name.</param>
