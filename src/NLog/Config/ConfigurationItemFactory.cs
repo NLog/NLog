@@ -244,7 +244,7 @@ namespace NLog.Config
 #if !SILVERLIGHT
 
             var assemblyLocation = Path.GetDirectoryName(new Uri(nlogAssembly.CodeBase).LocalPath);
-            if (assemblyLocation == null)
+            if (assemblyLocation == null || !Directory.Exists(assemblyLocation))
             {
                 InternalLogger.Warn("No auto loading because Nlog.dll location is unknown");
                 return factory;
