@@ -127,6 +127,40 @@ namespace NLog.UnitTests.Contexts
         }
 
         [Fact]
+        public void given_no_item_exists_when_getting_items_should_return_empty_collection()
+        {
+            Assert.Equal(0,MappedDiagnosticsLogicalContext.GetItems().Count);
+        }
+
+        [Fact]
+        public void given_item_exists_when_getting_items_should_return_that_item()
+        {
+            const string key = "Key";
+            MappedDiagnosticsLogicalContext.Set(key, "Item");
+
+            Assert.Equal(1, MappedDiagnosticsLogicalContext.GetItems().Count);
+            Assert.True(MappedDiagnosticsLogicalContext.GetItems().Contains("Key"));
+
+        }
+
+        [Fact]
+        public void given_item_exists_after_removing_item_when_getting_items_should_not_contain_item()
+        {
+            const string keyThatRemains1 = "Key1";
+            const string keyThatRemains2 = "Key2";
+            const string keyThatIsRemoved = "KeyR";
+
+            MappedDiagnosticsLogicalContext.Set(keyThatRemains1, "7");
+            MappedDiagnosticsLogicalContext.Set(keyThatIsRemoved, 7);
+            MappedDiagnosticsLogicalContext.Set(keyThatRemains2, 8);
+
+            MappedDiagnosticsLogicalContext.Remove(keyThatIsRemoved);
+
+            Assert.Equal(2, MappedDiagnosticsLogicalContext.GetItems().Count);
+            Assert.False(MappedDiagnosticsLogicalContext.GetItems().Contains(keyThatIsRemoved));
+        }
+
+        [Fact]
         public void given_item_does_not_exist_when_checking_if_context_contains_should_return_false()
         {
             Assert.False(MappedDiagnosticsLogicalContext.Contains("keyForItemThatDoesNotExist"));
